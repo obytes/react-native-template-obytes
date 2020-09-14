@@ -8,32 +8,23 @@ export const Home = () => {
     <Screen>
       <View flex={1} justifyContent="center">
         <Text variant="header" textAlign="center">
-          {translate('hello')}
+          {translate('name')}
         </Text>
-        <Text variant="body" textAlign="center">
-          Bunny App is Here {API}
+        <Text variant="header" textAlign="center">
+          This is An ENV Var : {API}
         </Text>
       </View>
       <View flex={1}>
         <Button
-          label="Delete This Option"
+          label="This is a button "
           onPress={() => {}}
           variant="primary"
         />
+        <Input name="firstName" label="First Name" placeholder="Your Name" />
         <Input
-          name="advice"
-          label="Preparation Advice"
-          placeholder="Enter preparation advice for dish"
-        />
-        <Input
-          name="advice"
-          label="Preparation Advice"
-          placeholder="Enter preparation advice for dish"
-        />
-        <Input
-          name="advice"
-          label="Preparation Advice"
-          placeholder="Enter preparation advice for dish"
+          name="lastName"
+          label="Last Name"
+          placeholder="Your Last  Name"
         />
       </View>
     </Screen>
