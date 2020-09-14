@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="React Native Template Obytes" src="https://raw.githubusercontent.com/obytes/react-native-template-obytes/master/logo.png" width="200" />
+    <img alt="React Native Template Obytes" src="https://user-images.githubusercontent.com/11137944/93101697-808bc580-f6a2-11ea-8ce3-482be6ca456a.png" width="200" />
 
 </p>
 <h1 align="center">
