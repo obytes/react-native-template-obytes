@@ -6766,6 +6766,11 @@ react-native-screens@^2.10.1:
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.10.1.tgz#06d22fae87ef0ce51c616c34a199726db1403b95"
   integrity sha512-Z2kKSk4AwWRQNCBmTjViuBQK0/Lx0jc25TZptn/2gKYUCOuVRvCekoA26u0Tsb3BIQ8tWDsZW14OwDlFUXW1aw==
 
+react-native-sensitive-info@^6.0.0-alpha.6:
+  version "6.0.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/react-native-sensitive-info/-/react-native-sensitive-info-6.0.0-alpha.6.tgz#9d7ca058259a2db533037829c2930da71b109945"
+  integrity sha512-f44YllDlvGNtgg9r7vEgyT2I0PTchD+MB44qwshe8c3qgYlWxOJ5eXrTA3vjT6Xkum3/9YYJJblu1IMMYTBL/g==
+
 react-native-toast-message@^1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/react-native-toast-message/-/react-native-toast-message-1.3.3.tgz#d506e4421cb131fb8fc09d5b42e0daee16041f9b"

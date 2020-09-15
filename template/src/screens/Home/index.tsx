@@ -1,31 +1,20 @@
 import React from 'react';
-import {Button, Screen, Text, Input, View} from 'ui';
+import {Button, Screen, Text, View} from 'ui';
 import {API} from '@env';
-import {translate} from 'core';
+import {translate, useAuth} from 'core';
 
 export const Home = () => {
+  const {signOut} = useAuth();
   return (
     <Screen>
       <View flex={1} justifyContent="center">
         <Text variant="header" textAlign="center">
           {translate('name')}
         </Text>
-        <Text variant="header" textAlign="center">
+        <Text variant="body" textAlign="center">
           This is An ENV Var : {API}
         </Text>
-      </View>
-      <View flex={1}>
-        <Button
-          label="This is a button "
-          onPress={() => {}}
-          variant="primary"
-        />
-        <Input name="firstName" label="First Name" placeholder="Your Name" />
-        <Input
-          name="lastName"
-          label="Last Name"
-          placeholder="Your Last  Name"
-        />
+        <Button label="LogOut" onPress={signOut} />
       </View>
     </Screen>
   );

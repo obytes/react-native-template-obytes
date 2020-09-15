@@ -32,6 +32,7 @@
     "react-native-reanimated": "^1.13.0",
     "react-native-safe-area-context": "^3.1.7",
     "react-native-screens": "^2.10.1",
+    "react-native-sensitive-info": "^6.0.0-alpha.6",
     "react-native-toast-message": "^1.3.3",
     "react-native-vector-icons": "^7.0.0"
   },
