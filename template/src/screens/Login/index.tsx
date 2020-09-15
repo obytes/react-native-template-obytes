@@ -13,7 +13,7 @@ export const Login = () => {
         onPress={() => {
           signIn('my-token-secret');
         }}
-        variant="primary"
+        variant="secondary"
       />
     </Screen>
   );

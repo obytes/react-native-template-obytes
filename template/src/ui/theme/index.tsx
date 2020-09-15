@@ -1,16 +1,15 @@
 import * as React from 'react';
 import {createTheme} from '@shopify/restyle';
 import {ThemeProvider as ReThemeProvider} from '@shopify/restyle';
-import {ReactNode} from 'react';
-import {palette} from './palette';
 
 export const theme = createTheme({
   colors: {
-    mainBackground: palette.white,
-    cardPrimaryBackground: palette.purplePrimary,
-    textColor: palette.black,
-    black: palette.black,
-    white: palette.white,
+    text: '#202124',
+    background: '#fff',
+    primary: '#1a73e8',
+    secondary: '#9c27b0',
+    muted: '#f1f3f4',
+    white: 'white',
   },
   spacing: {
     s: 8,
@@ -22,6 +21,7 @@ export const theme = createTheme({
     phone: 0,
     tablet: 768,
   },
+  // TODO : Not sure if this the best way to handel navigation theme
   navigation: {
     dark: false,
     colors: {
@@ -35,44 +35,47 @@ export const theme = createTheme({
   },
   buttonVariants: {
     primary: {
-      color: 'white',
-      backgroundColor: 'black',
-      fontSize: 16,
-      fontWeight: 'bold',
-      borderRadius: 5,
+      backgroundColor: 'primary',
+    },
+    secondary: {
+      backgroundColor: 'secondary',
     },
   },
   textVariants: {
     header: {
-      //fontFamily: 'ShopifySans-Bold',
       fontWeight: 'bold',
       fontSize: 34,
       lineHeight: 42.5,
-      color: 'black',
+      color: 'text',
     },
     subheader: {
-      //fontFamily: 'ShopifySans-SemiBold',
       fontWeight: '600',
       fontSize: 28,
       lineHeight: 36,
-      color: 'black',
+      color: 'text',
     },
     body: {
-      //fontFamily: 'ShopifySans',
       fontSize: 16,
       lineHeight: 24,
-      color: 'black',
+      color: 'text',
     },
     button: {
-      fontSize: 16,
+      fontWeight: 'bold',
+      fontSize: 20,
       lineHeight: 24,
-      color: 'black',
+      color: 'white',
+    },
+    label: {
+      fontWeight: 'bold',
+      ontSize: 16,
+      lineHeight: 24,
+      color: 'text',
     },
   },
 });
 
 export type Theme = typeof theme;
 
-export const ThemeProvider = ({children}: {children: ReactNode}) => (
+export const ThemeProvider = ({children}: {children: React.ReactNode}) => (
   <ReThemeProvider theme={theme}>{children}</ReThemeProvider>
 );

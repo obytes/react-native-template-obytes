@@ -20,7 +20,11 @@ export const Input = React.forwardRef<any, Props>(
 
     return (
       <View marginVertical="m" key={`input-${name}`}>
-        {label && <Text marginVertical="s">{label}</Text>}
+        {label && (
+          <Text marginVertical="s" variant="label">
+            {label}
+          </Text>
+        )}
         <View>
           <TextInput
             autoCapitalize="none"

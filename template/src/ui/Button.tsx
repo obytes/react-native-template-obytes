@@ -13,9 +13,6 @@ import {
   createVariant,
   TextShadowProps,
   TypographyProps,
-  color,
-  typography,
-  textShadow,
   ColorProps,
 } from '@shopify/restyle';
 
@@ -36,13 +33,6 @@ const restyleFunctions = [
   backgroundColor,
 ];
 
-const textRestyleFunctions = [
-  buttonVariant as any,
-  color,
-  typography,
-  textShadow,
-];
-
 type Props = SpacingProps<Theme> &
   VariantProps<Theme, 'buttonVariants'> &
   ColorProps<Theme> &
@@ -61,19 +51,18 @@ export const Button = ({
   ...rest
 }: Props) => {
   const props = useRestyle(restyleFunctions, {...rest, variant});
-  const textProps = useRestyle(textRestyleFunctions, {
-    ...rest,
-    variant,
-  });
+
   return (
     <TouchableOpacity onPress={onPress}>
       <ButtonContainer
+        borderRadius={5}
         flexDirection="row"
         paddingVertical="m"
         paddingHorizontal="xl"
+        marginVertical="s"
         justifyContent="center"
-        style={props.style}>
-        <Text style={textProps.style}>{label}</Text>
+        {...props}>
+        <Text variant="button">{label}</Text>
       </ButtonContainer>
     </TouchableOpacity>
   );

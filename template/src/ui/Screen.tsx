@@ -13,7 +13,7 @@ export const Screen = ({children}: Props) => (
       flexDirection="column"
       paddingHorizontal="m"
       flex={1}
-      bg="mainBackground">
+      bg="background">
       {children}
     </View>
   </ErrorHandler>
