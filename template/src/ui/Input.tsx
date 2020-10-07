@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {TextInput, TextStyle, TextInputProps} from 'react-native';
+import {TextInput, TextStyle, TextInputProps, StyleSheet} from 'react-native';
 import {FieldError} from 'react-hook-form';
 
 import {Text} from './Text';
@@ -19,14 +19,16 @@ export const Input = React.forwardRef<any, Props>(
     const {label, error, disabled, password, name, ...inputProps} = props;
 
     return (
-      <View marginVertical="m" key={`input-${name}`}>
-        {label && (
-          <Text marginVertical="s" variant="label">
-            {label}
-          </Text>
-        )}
-        <View>
+      <View marginBottom="s" key={`input-${name}`}>
+        {label && <Text variant="label">{label}</Text>}
+        <View
+          borderColor="grey4"
+          borderWidth={2}
+          borderRadius={10}
+          style={styles.inputContainer}>
           <TextInput
+            placeholderTextColor="#666666"
+            style={styles.input}
             autoCapitalize="none"
             ref={ref}
             editable={!disabled}
@@ -39,3 +41,14 @@ export const Input = React.forwardRef<any, Props>(
     );
   },
 );
+
+const styles = StyleSheet.create({
+  inputContainer: {
+    backgroundColor: '#FAFAFA',
+  },
+  input: {
+    fontFamily: 'Inter',
+    fontSize: 15,
+    padding: 12,
+  },
+});

@@ -1,14 +1,34 @@
 import * as React from 'react';
-import {createTheme} from '@shopify/restyle';
-import {ThemeProvider as ReThemeProvider} from '@shopify/restyle';
+// import { createTheme, BaseTheme } from '@shopify/restyle';
+import {
+  ThemeProvider as ReThemeProvider,
+  TextProps,
+  BoxProps,
+} from '@shopify/restyle';
 
-export const theme = createTheme({
+type BaseThemeType = typeof BaseTheme & {
+  textVariants: {[key: string]: TextProps<typeof BaseTheme>};
+  navigation: any;
+  buttonVariants: {[key: string]: BoxProps<typeof BaseTheme>};
+};
+
+const createTheme = <T extends BaseThemeType>(themeObject: T): T => themeObject;
+
+const BaseTheme = {
   colors: {
     text: '#202124',
     background: '#fff',
-    primary: '#1a73e8',
+    primary: '#151522',
     secondary: '#9c27b0',
     muted: '#f1f3f4',
+
+    // from figma file
+
+    black: '#151522',
+    grey1: '#333333',
+    grey2: '#666666',
+    grey3: '#C3C3C3',
+    grey4: '#E4E4E4',
     white: 'white',
   },
   spacing: {
@@ -21,6 +41,10 @@ export const theme = createTheme({
     phone: 0,
     tablet: 768,
   },
+};
+
+export const theme = createTheme({
+  ...BaseTheme,
   // TODO : Not sure if this the best way to handel navigation theme
   navigation: {
     dark: false,
@@ -40,36 +64,58 @@ export const theme = createTheme({
     secondary: {
       backgroundColor: 'secondary',
     },
+    outline: {
+      backgroundColor: 'white',
+      borderColor: 'primary',
+      borderWidth: 1,
+    },
   },
   textVariants: {
+    defaults: {},
     header: {
+      fontFamily: 'Inter',
       fontWeight: 'bold',
-      fontSize: 34,
+      fontSize: 22,
       lineHeight: 42.5,
-      color: 'text',
+      color: 'black',
     },
     subheader: {
+      fontFamily: 'Inter',
       fontWeight: '600',
       fontSize: 28,
       lineHeight: 36,
-      color: 'text',
+      color: 'grey1',
     },
     body: {
-      fontSize: 16,
+      fontFamily: 'Inter',
+      fontSize: 15,
       lineHeight: 24,
-      color: 'text',
+      color: 'grey2',
     },
-    button: {
-      fontWeight: 'bold',
-      fontSize: 20,
-      lineHeight: 24,
+    button_primary: {
+      fontFamily: 'Inter',
+      fontSize: 16,
+      lineHeight: 22,
       color: 'white',
     },
-    label: {
-      fontWeight: 'bold',
-      ontSize: 16,
-      lineHeight: 24,
+    button_secondary: {
+      fontFamily: 'Inter',
+      fontSize: 16,
+      lineHeight: 22,
+      color: 'white',
+    },
+    button_outline: {
+      fontFamily: 'Inter',
+      fontSize: 16,
+      lineHeight: 22,
       color: 'text',
+    },
+    label: {
+      fontFamily: 'Inter',
+      fontSize: 13,
+      lineHeight: 18,
+      color: 'grey2',
+      paddingVertical: 's',
     },
   },
 });

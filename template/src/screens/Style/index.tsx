@@ -17,7 +17,9 @@ export const Style = () => {
         <Button
           variant="secondary"
           label="secondary button "
-          onPress={() => {}}
+          onPress={() => {
+            throw new Error();
+          }}
         />
         <Input
           label="This is an Input "

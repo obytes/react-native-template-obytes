@@ -10,13 +10,18 @@ interface ErrorMap {
   [key: string]: FieldError | undefined;
 }
 
+type ValueOptions = {
+  shouldValidate?: boolean;
+};
+
 interface Props {
   children: JSX.Element | JSX.Element[];
   register: ({name}: {name: string}, validation: ValidationRules) => void;
   errors: ErrorMap;
   validation: ValidationMap;
-  setValue: (name: string, value: string, validate?: boolean) => void;
-  triggerValidation: (name: string) => void;
+  setValue: (name: string, value: string, options?: ValueOptions) => void;
+  triggerValidation?: (name: string) => void;
+  getValues?: (name?: string) => string;
 }
 
 export function Form({
@@ -25,6 +30,7 @@ export function Form({
   setValue,
   validation,
   children,
+  getValues,
 }: Props) {
   const Inputs = React.useRef<Array<TextInput>>([]);
 
@@ -45,11 +51,12 @@ export function Form({
             ? React.createElement(child.type, {
                 ...{
                   ...child.props,
+                  defaultValue: getValues?.(child.props.name),
                   ref: (e: TextInput) => {
                     Inputs.current[i] = e;
                   },
                   onChangeText: (v: string) =>
-                    setValue(child.props.name, v, true),
+                    setValue(child.props.name, v, {shouldValidate: true}),
                   onSubmitEditing: () => {
                     Inputs.current[i + 1]
                       ? Inputs.current[i + 1].focus()

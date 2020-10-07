@@ -7,4 +7,4 @@ export * from './Input';
 export * from './Form';
 export * from './ErrorHandler';
 export {default as Toast} from './Toast';
-export * from './Icon';
+export * from './icons';

@@ -10,7 +10,7 @@ import Toast from '../Toast';
 import {ErrorFallback} from './ErrorFallback';
 
 setJSExceptionHandler((error, isFatal) => {
-  console.log({error, isFatal});
+  console.log(error, isFatal);
   Toast.show({
     text1: 'Something went wrong ',
     text2: 'we will fix it ASAP ',
@@ -20,7 +20,7 @@ setJSExceptionHandler((error, isFatal) => {
   });
   //TODO: send reports to Sentry
   // create a toast
-}, false);
+});
 
 //For most use cases:
 setNativeExceptionHandler((exceptionString) => {

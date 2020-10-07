@@ -33,8 +33,8 @@
     "react-native-safe-area-context": "^3.1.7",
     "react-native-screens": "^2.10.1",
     "react-native-sensitive-info": "^6.0.0-alpha.6",
-    "react-native-toast-message": "^1.3.3",
-    "react-native-vector-icons": "^7.0.0"
+    "react-native-svg": "^12.1.0",
+    "react-native-toast-message": "^1.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

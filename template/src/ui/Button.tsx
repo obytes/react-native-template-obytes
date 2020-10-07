@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {ActivityIndicator, TouchableOpacity} from 'react-native';
 import {
   useRestyle,
   spacing,
@@ -11,9 +11,6 @@ import {
   VariantProps,
   createRestyleComponent,
   createVariant,
-  TextShadowProps,
-  TypographyProps,
-  ColorProps,
 } from '@shopify/restyle';
 
 import {Text} from './Text';
@@ -35,34 +32,41 @@ const restyleFunctions = [
 
 type Props = SpacingProps<Theme> &
   VariantProps<Theme, 'buttonVariants'> &
-  ColorProps<Theme> &
   BorderProps<Theme> &
-  TextShadowProps<Theme> &
-  TypographyProps<Theme> &
   BackgroundColorProps<Theme> & {
     onPress: () => void;
     label?: string;
+    outline?: boolean;
+    loading?: boolean;
   };
 
 export const Button = ({
   onPress,
   label,
+  loading = false,
   variant = 'primary',
   ...rest
 }: Props) => {
   const props = useRestyle(restyleFunctions, {...rest, variant});
+  const textVariant = 'button_' + variant;
 
   return (
     <TouchableOpacity onPress={onPress}>
       <ButtonContainer
-        borderRadius={5}
+        borderRadius={44}
         flexDirection="row"
         paddingVertical="m"
         paddingHorizontal="xl"
         marginVertical="s"
         justifyContent="center"
         {...props}>
-        <Text variant="button">{label}</Text>
+        {loading ? (
+          <ActivityIndicator size="small" />
+        ) : (
+          <Text variant={textVariant as Partial<keyof Theme['textVariants']>}>
+            {label}
+          </Text>
+        )}
       </ButtonContainer>
     </TouchableOpacity>
   );
