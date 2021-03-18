@@ -13,6 +13,7 @@ A simple React Native Template based on Obytes Mobile tribe best practices.
 - ✅ Typescript by default based on official Typescript template
 - ✅ Generate App Icon and Splash screen
 - ✅ React Navigation Pre-installed
+- ✅ React Query to fetch Data
 - ✅ Auth flow with sensitive-info to secure tokens
 - ✅ A clean project structure based on our experience with React Native
 - ✅ Minimal UI kit setup using restyle and configurable theme & icons using react-native-svg
