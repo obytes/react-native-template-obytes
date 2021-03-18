@@ -1,9 +1,9 @@
 package com.obytes;
+import android.os.Bundle; // <- add this necessary import
+import com.zoontek.rnbootsplash.RNBootSplash; // <- add this necessary import
 
-import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
-import com.zoontek.rnbootsplash.RNBootSplash;
 
 public class MainActivity extends ReactActivity {
 
@@ -18,7 +18,7 @@ public class MainActivity extends ReactActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    RNBootSplash.init(this, R.style.AppTheme); // <- display the generated bootsplash.xml drawable over our MainActivity
     super.onCreate(savedInstanceState);
+    RNBootSplash.init(R.drawable.bootsplash, MainActivity.this); // <- display the generated bootsplash.xml drawable over our MainActivity
   }
 }
