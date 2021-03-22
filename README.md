@@ -36,14 +36,14 @@ Replace App logo template `logo.png` with your logo under `assets` folder
 Run the following command to generate App icons assets :
 
 ```
-react-native set-icon  --path ./assets/logo.png --background "#FFF"
+yarn react-native set-icon  --path ./assets/logo.png --background "#FFF"
 
 ```
 
 > For android icon Make sure to provide a logo with more padding and generate a new app icon for android :
 
 ```
-react-native set-icon  --platform android  --path ./assets/android_logo.png --background "#FFF"
+yarn react-native set-icon  --platform android  --path ./assets/android_logo.png --background "#FFF"
 
 ```
 
