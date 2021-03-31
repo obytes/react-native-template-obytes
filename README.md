@@ -36,14 +36,14 @@ Replace App logo template `logo.png` with your logo under `assets` folder
 Run the following command to generate App icons assets :
 
 ```
-react-native set-icon  --path ./assets/logo.png --background "#FFF"
+yarn react-native set-icon  --path ./assets/logo.png --background "#FFF"
 
 ```
 
 > For android icon Make sure to provide a logo with more padding and generate a new app icon for android :
 
 ```
-react-native set-icon  --platform android  --path ./assets/android_logo.png --background "#FFF"
+yarn react-native set-icon  --platform android  --path ./assets/android_logo.png --background "#FFF"
 
 ```
 
@@ -56,6 +56,19 @@ yarn react-native generate-bootsplash assets/logo.png \
   --assets-path=assets
 ```
 
+## Custom fonts
+
+Replace Inter.ttf font file with your fonts under `assets/fonts` folder
+
+Run the following command to generate App icons assets :
+
+```
+yarn react-native link
+
+
+
+More details [how to customize App Icon and Splash screen](https://handbook.obytes.com/docs/mobile/generate-app-icon)
+
 More details [how to customize App Icon and Splash screen](https://handbook.obytes.com/docs/mobile/generate-app-icon)
 
 ## Read More About Modules
@@ -65,3 +78,4 @@ More details [how to customize App Icon and Splash screen](https://handbook.obyt
 ## 💻 Contributing
 
 TO BE DONE
+```
