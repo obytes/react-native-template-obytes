@@ -65,7 +65,7 @@ Run the following command to generate App icons assets :
 ```
 yarn react-native link
 
-
+```
 
 More details [how to customize App Icon and Splash screen](https://handbook.obytes.com/docs/mobile/generate-app-icon)
 
@@ -78,4 +78,3 @@ More details [how to customize App Icon and Splash screen](https://handbook.obyt
 ## 💻 Contributing
 
 TO BE DONE
-```
