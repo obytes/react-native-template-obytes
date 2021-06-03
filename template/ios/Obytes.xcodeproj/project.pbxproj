@@ -12,10 +12,10 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		3B08ACFE0967FE116BA85E97 /* libPods-Obytes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9AE65C939A1E7039E306A3D /* libPods-Obytes.a */; };
+		7465969F5AEF4F68882226E9 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3CF57466703456AB2A1B578 /* Inter.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B271E3E8C13B4F60C9AD08B6 /* libPods-Obytes-ObytesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 159D9859B72F49AA9F861859 /* libPods-Obytes-ObytesTests.a */; };
 		DD85BD2D2603B826003D17A0 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD85BD2C2603B826003D17A0 /* BootSplash.storyboard */; };
-		7465969F5AEF4F68882226E9 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F3CF57466703456AB2A1B578 /* Inter.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +46,8 @@
 		DD85BD2C2603B826003D17A0 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = Obytes/BootSplash.storyboard; sourceTree = "<group>"; };
 		E4D9D20BA97BAA5F3A62D17A /* Pods-Obytes-ObytesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Obytes-ObytesTests.debug.xcconfig"; path = "Target Support Files/Pods-Obytes-ObytesTests/Pods-Obytes-ObytesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F3CF57466703456AB2A1B578 /* Inter.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = Inter.ttf; path = ../assets/fonts/Inter.ttf; sourceTree = "<group>"; };
 		F9AE65C939A1E7039E306A3D /* libPods-Obytes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Obytes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F3CF57466703456AB2A1B578 /* Inter.ttf */ = {isa = PBXFileReference; name = "Inter.ttf"; path = "../assets/fonts/Inter.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,13 +155,13 @@
 			sourceTree = "<group>";
 		};
 		D555CBC4B5F74AE3A8C625AD /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				F3CF57466703456AB2A1B578 /* Inter.ttf */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
 			path = "";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 

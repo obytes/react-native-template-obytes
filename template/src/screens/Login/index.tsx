@@ -11,7 +11,7 @@ export const Login = () => {
       <Button
         label="Login"
         onPress={() => {
-          signIn('my-token-secret');
+          signIn({access: 'access-token', refresh: 'refresh-token'});
         }}
         variant="secondary"
       />
