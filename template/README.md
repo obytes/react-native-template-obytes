@@ -1,11 +1,11 @@
-# Obytes Mobile App
+# React Native Template Obytes
 
-The project was created using [react-native-obytes-template](https://github.com/obytes/react-native-template-obytes)
+> Easy to use React Native template with best practices and performance in mind
 
-## Features
+## ⭐ Features
 
 - ✅ Typescript by default based on official Typescript template
-- ✅ Generate App Icon and Splash screen
+- ✅ Auto Generate App Icon and Splash screen
 - ✅ React Navigation Pre-installed
 - ✅ React Query to fetch Data
 - ✅ Auth flow with sensitive-info to secure tokens
@@ -17,7 +17,25 @@ The project was created using [react-native-obytes-template](https://github.com/
 - ✅ Localization
 - More ...
 
-## Update App Icon & Splash screen
+## ▶️ Usage
+
+```
+npx react-native init MyApp --template react-native-template-obytes
+```
+
+## ⚙️ Enable husky Git pre-hooks
+
+Add the following script to your `packages.json` and reinstall dependencies to enable husky pre-commit using `yarn install`
+
+```json
+"scripts": {
+    //...
+     "postinstall": "husky install",
+  },
+
+```
+
+## 📲 Update App Icon & Splash screen
 
 Replace App logo template `logo.png` with your logo under `assets` folder
 
@@ -28,7 +46,7 @@ yarn react-native set-icon  --path ./assets/logo.png --background "#FFF"
 
 ```
 
-> For android icon Make sure to provide a logo with more padding and generate a new app icon for android :
+> For android icon, make sure to provide a logo with more padding and generate a new app icon for android :
 
 ```
 yarn react-native set-icon  --platform android  --path ./assets/android_logo.png --background "#FFF"
@@ -44,7 +62,7 @@ yarn react-native generate-bootsplash assets/logo.png \
   --assets-path=assets
 ```
 
-## Custom fonts
+## ✏️ Custom fonts
 
 Replace Inter.ttf font file with your fonts under `assets/fonts` folder
 
@@ -56,8 +74,10 @@ yarn react-native link
 
 More details [how to customize App Icon and Splash screen](https://handbook.obytes.com/docs/mobile/generate-app-icon)
 
-More details [how to customize App Icon and Splash screen](https://handbook.obytes.com/docs/mobile/generate-app-icon)
-
-## Read More About Modules
+## 📚 Read More About Modules
 
 👉 https://handbook.obytes.com/docs/mobile/get-started
+
+## 🔖 License
+
+This project is MIT licensed.
