@@ -1,54 +1,85 @@
 import * as React from 'react';
-import {TextInput, TextStyle, TextInputProps, StyleSheet} from 'react-native';
-import {FieldError} from 'react-hook-form';
+import {TextInput, TextInputProps, StyleSheet} from 'react-native';
+import {Control, Path, RegisterOptions, useController} from 'react-hook-form';
 
 import {Text} from './Text';
 import {View} from './View';
+import {useTheme} from './theme';
 
-interface Props extends TextInputProps {
-  name: string;
+// types
+type TRule = Omit<
+  RegisterOptions,
+  'valueAsNumber' | 'valueAsDate' | 'setValueAs'
+>;
+
+export type RuleType<T> = {[name in keyof T]: TRule};
+export type InputControllerType<T> = {
+  name: Path<T>;
+  control: Control<T>;
+  rules?: TRule;
+};
+
+interface Props<T> extends TextInputProps, InputControllerType<T> {
   disabled?: boolean;
   label?: string;
-  labelStyle?: TextStyle;
-  error?: FieldError | undefined;
-  password?: boolean;
 }
 
-export const Input = React.forwardRef<any, Props>(
-  (props, ref): React.ReactElement => {
-    const {label, error, disabled, password, name, ...inputProps} = props;
+// component
 
-    return (
-      <View marginBottom="s" key={`input-${name}`}>
-        {label && <Text variant="label">{label}</Text>}
-        <View
-          borderColor="grey4"
-          borderWidth={2}
-          borderRadius={10}
-          style={styles.inputContainer}>
-          <TextInput
-            placeholderTextColor="#666666"
-            style={styles.input}
-            autoCapitalize="none"
-            ref={ref}
-            editable={!disabled}
-            secureTextEntry={password}
-            {...inputProps}
-          />
-        </View>
-        <Text style={{color: '#fc6d47'}}>{error && error.message}</Text>
-      </View>
-    );
-  },
-);
+export function Input<T>(props: Props<T>) {
+  const {label, name, control, rules, ...inputProps} = props;
+  const {colors} = useTheme();
+  const {field, fieldState} = useController({control, name, rules});
+  const [isFocussed, setIsFocussed] = React.useState(false);
+  const onBlur = () => setIsFocussed(false);
+  const onFocus = () => setIsFocussed(true);
+
+  const borderColor = fieldState.invalid
+    ? colors.red
+    : isFocussed
+    ? colors.secondary
+    : colors.grey2;
+  return (
+    <View key={`input-${name}`} marginBottom="m">
+      {label && (
+        <Text
+          variant="label"
+          color={
+            fieldState.invalid ? 'red' : isFocussed ? 'secondary' : 'grey1'
+          }>
+          {label}
+        </Text>
+      )}
+      <TextInput
+        placeholderTextColor={colors.grey4}
+        style={[
+          styles.input,
+          {color: isFocussed ? colors.secondary : colors.grey1, borderColor},
+        ]}
+        autoCapitalize="none"
+        onChangeText={field.onChange}
+        value={field.value as string}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        {...inputProps}
+      />
+      {fieldState.error && (
+        <Text fontSize={12} color="red">
+          {fieldState.error.message}
+        </Text>
+      )}
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   inputContainer: {
-    backgroundColor: '#FAFAFA',
+    backgroundColor: '#F3F3F3',
   },
   input: {
-    fontFamily: 'Inter',
-    fontSize: 15,
-    padding: 12,
+    borderBottomWidth: 1,
+    marginBottom: 4,
+    padding: 2,
+    fontSize: 16,
   },
 });
