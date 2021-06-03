@@ -8,13 +8,13 @@
 
 A simple React Native Template based on Obytes Mobile tribe best practices.
 
-## Features
+## ⭐ Features
 
 - ✅ Typescript by default based on official Typescript template
-- ✅ Generate App Icon and Splash screen
+- ✅ Auto Generate App Icon and Splash screen
 - ✅ React Navigation Pre-installed
 - ✅ React Query to fetch Data
-- ✅ Auth flow with sensitive-info to secure tokens
+- ✅ Auth flow with react-native-mmkv to secure tokens
 - ✅ A clean project structure based on our experience with React Native
 - ✅ Minimal UI kit setup using restyle and configurable theme & icons using react-native-svg
 - ✅ A good approach to handle forms based on react-hook-form
@@ -23,13 +23,25 @@ A simple React Native Template based on Obytes Mobile tribe best practices.
 - ✅ Localization
 - More ...
 
-## Usage
+## ▶️ Usage
 
 ```
-npx react-native init MyApp --template https://github.com/obytes/react-native-template-obytes
+npx react-native init MyApp --template react-native-template-obytes
 ```
 
-## App Icon & Splash screen
+## ⚙️ Enable husky Git pre-hooks
+
+Add the following script to your `packages.json` and reinstall dependencies to enable husky pre-commit using `yarn install`
+
+```json
+"scripts": {
+    //...
+     "postinstall": "husky install",
+  },
+
+```
+
+## 📲 Update App Icon & Splash screen
 
 Replace App logo template `logo.png` with your logo under `assets` folder
 
@@ -40,7 +52,7 @@ yarn react-native set-icon  --path ./assets/logo.png --background "#FFF"
 
 ```
 
-> For android icon Make sure to provide a logo with more padding and generate a new app icon for android :
+> For android icon, make sure to provide a logo with more padding and generate a new app icon for android :
 
 ```
 yarn react-native set-icon  --platform android  --path ./assets/android_logo.png --background "#FFF"
@@ -56,7 +68,7 @@ yarn react-native generate-bootsplash assets/logo.png \
   --assets-path=assets
 ```
 
-## Custom fonts
+## ✏️ Custom fonts
 
 Replace Inter.ttf font file with your fonts under `assets/fonts` folder
 
@@ -64,17 +76,14 @@ Run the following command to generate App icons assets :
 
 ```
 yarn react-native link
-
 ```
 
 More details [how to customize App Icon and Splash screen](https://handbook.obytes.com/docs/mobile/generate-app-icon)
 
-More details [how to customize App Icon and Splash screen](https://handbook.obytes.com/docs/mobile/generate-app-icon)
-
-## Read More About Modules
+## 📚 Read More About Modules
 
 👉 https://handbook.obytes.com/docs/mobile/get-started
 
-## 💻 Contributing
+## 🔖 License
 
-TO BE DONE
+This project is MIT licensed.

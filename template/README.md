@@ -1,6 +1,6 @@
-# React Native Template Obytes
+# Obytes Mobile App
 
-> Easy to use React Native template with best practices and performance in mind
+The project was created using [react-native-obytes-template](https://github.com/obytes/react-native-template-obytes)
 
 ## ⭐ Features
 
@@ -8,7 +8,7 @@
 - ✅ Auto Generate App Icon and Splash screen
 - ✅ React Navigation Pre-installed
 - ✅ React Query to fetch Data
-- ✅ Auth flow with sensitive-info to secure tokens
+- ✅ Auth flow with react-native-mmkv to secure tokens
 - ✅ A clean project structure based on our experience with React Native
 - ✅ Minimal UI kit setup using restyle and configurable theme & icons using react-native-svg
 - ✅ A good approach to handle forms based on react-hook-form
@@ -77,7 +77,3 @@ More details [how to customize App Icon and Splash screen](https://handbook.obyt
 ## 📚 Read More About Modules
 
 👉 https://handbook.obytes.com/docs/mobile/get-started
-
-## 🔖 License
-
-This project is MIT licensed.
