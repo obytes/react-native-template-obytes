@@ -26,7 +26,7 @@ A simple React Native Template based on Obytes Mobile tribe best practices.
 ## ▶️ Usage
 
 ```
-npx react-native init MyApp --template react-native-template-obytes
+npx react-native init MyApp --template https://github.com/obytes/react-native-template-obytes
 ```
 
 ## ⚙️ Enable husky Git pre-hooks
@@ -35,7 +35,6 @@ Add the following script to your `packages.json` and reinstall dependencies to e
 
 ```json
 "scripts": {
-    //...
      "postinstall": "husky install",
   },
 
