@@ -14,6 +14,7 @@
     "setup:ios": "cd ios && pod install --repo-update && cd .."
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.5.2",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.8",
     "@react-navigation/native": "^5.9.3",
@@ -35,10 +36,10 @@
     "react-native-reanimated": "^2.0.0",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.3.0",
-    "react-native-sensitive-info": "^5.5.8",
     "react-native-svg": "^12.1.0",
     "react-native-toast-message": "^1.4.9",
     "react-query": "^3.12.3",
+    "yup": "^0.32.9",
     "zustand": "^3.5.1"
   },
   "devDependencies": {

@@ -4,6 +4,7 @@ import {
   ThemeProvider as ReThemeProvider,
   TextProps,
   BoxProps,
+  useTheme as useRTheme,
 } from '@shopify/restyle';
 
 type BaseThemeType = typeof BaseTheme & {
@@ -30,6 +31,7 @@ const BaseTheme = {
     grey3: '#C3C3C3',
     grey4: '#E4E4E4',
     white: 'white',
+    red: '#EB5757',
   },
   spacing: {
     s: 8,
@@ -125,3 +127,5 @@ export type Theme = typeof theme;
 export const ThemeProvider = ({children}: {children: React.ReactNode}) => (
   <ReThemeProvider theme={theme}>{children}</ReThemeProvider>
 );
+
+export const useTheme = () => useRTheme<Theme>();

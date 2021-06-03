@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Input, Screen, Text, View} from 'ui';
+import {Button, Screen, Text, View} from 'ui';
 
 export const Style = () => {
   return (
@@ -20,11 +20,6 @@ export const Style = () => {
           onPress={() => {
             throw new Error();
           }}
-        />
-        <Input
-          label="This is an Input "
-          name="input"
-          placeholder="a placeholder"
         />
       </View>
     </Screen>
