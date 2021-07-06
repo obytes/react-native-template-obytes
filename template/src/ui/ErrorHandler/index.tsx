@@ -1,29 +1,19 @@
 import * as React from 'react';
-// import {captureException} from '@sentry/react-native';
 import {ErrorBoundary} from 'react-error-boundary';
 import {
   setJSExceptionHandler,
   setNativeExceptionHandler,
 } from 'react-native-exception-handler';
-
-import Toast from '../Toast';
+import {showErrorMessage} from 'ui/utils';
 import {ErrorFallback} from './ErrorFallback';
 
 setJSExceptionHandler((error, isFatal) => {
   console.log(error, isFatal);
-  Toast.show({
-    text1: 'Something went wrong ',
-    text2: 'we will fix it ASAP ',
-    bottomOffset: 80,
-    type: 'error',
-    position: 'bottom',
-  });
-  //TODO: send reports to Sentry
-  // create a toast
+  showErrorMessage();
 });
 
 //For most use cases:
-setNativeExceptionHandler((exceptionString) => {
+setNativeExceptionHandler(exceptionString => {
   console.log({exceptionString});
   // This is your custom global error handler
   // You do stuff likehit google analytics to track crashes.

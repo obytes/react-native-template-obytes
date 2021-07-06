@@ -30,6 +30,7 @@
     "react-native-bootsplash": "^3.2.0",
     "react-native-dotenv": "^2.5.3",
     "react-native-exception-handler": "^2.10.9",
+    "react-native-flash-message": "^0.1.23",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-localize": "^2.0.2",
     "react-native-mmkv": "^1.1.6",
@@ -37,7 +38,6 @@
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^3.3.0",
     "react-native-svg": "^12.1.0",
-    "react-native-toast-message": "^1.4.9",
     "react-query": "^3.12.3",
     "yup": "^0.32.9",
     "zustand": "^3.5.1"

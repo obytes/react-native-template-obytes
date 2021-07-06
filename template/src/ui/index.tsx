@@ -5,5 +5,5 @@ export * from './Button';
 export * from './Screen';
 export * from './Input';
 export * from './ErrorHandler';
-export {default as Toast} from './Toast';
+export * from './utils';
 export * from './icons';

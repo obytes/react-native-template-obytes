@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Screen, Text, View} from 'ui';
+import {Button, Screen, showErrorMessage, Text, View} from 'ui';
 import {API_URL} from '@env';
 import {translate, useAuth} from 'core';
 import {useTasks} from 'api';
@@ -23,6 +23,11 @@ export const Home = () => {
           Data from Api : {JSON.stringify(data)}
         </Text>
         <Button label="LogOut" onPress={signOut} />
+        <Button
+          variant="secondary"
+          label="Show message"
+          onPress={() => showErrorMessage()}
+        />
       </View>
     </Screen>
   );

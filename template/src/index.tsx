@@ -1,6 +1,7 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-import {ThemeProvider, Toast} from 'ui';
+import {ThemeProvider} from 'ui';
+import FlashMessage from 'react-native-flash-message';
 import {RootNavigator} from 'navigation';
 import {hydrateAuth, setI18nConfig} from 'core';
 import APIProvider from 'api/APIProvider';
@@ -13,7 +14,7 @@ const App = () => {
     <APIProvider>
       <ThemeProvider>
         <RootNavigator />
-        <Toast ref={(ref: any) => Toast.setRef(ref)} />
+        <FlashMessage position="top" />
       </ThemeProvider>
     </APIProvider>
   );
