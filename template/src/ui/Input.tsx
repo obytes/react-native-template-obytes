@@ -24,8 +24,6 @@ interface Props<T> extends TextInputProps, InputControllerType<T> {
   label?: string;
 }
 
-// component
-
 export function Input<T>(props: Props<T>) {
   const {label, name, control, rules, ...inputProps} = props;
   const {colors} = useTheme();
@@ -51,10 +49,12 @@ export function Input<T>(props: Props<T>) {
         </Text>
       )}
       <TextInput
-        placeholderTextColor={colors.grey4}
+        placeholderTextColor={colors.grey2}
         style={[
           styles.input,
-          {color: isFocussed ? colors.secondary : colors.grey1, borderColor},
+          {
+            borderColor,
+          },
         ]}
         autoCapitalize="none"
         onChangeText={field.onChange}
