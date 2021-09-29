@@ -18,9 +18,9 @@ export const Root = () => {
   }, [status]);
   return (
     <Stack.Navigator
-      headerMode="none"
       screenOptions={{
         cardOverlayEnabled: false,
+        headerShown: false,
         gestureEnabled: false,
         animationTypeForReplace: status === 'signIn' ? 'push' : 'pop',
       }}>
