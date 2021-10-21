@@ -7378,6 +7378,11 @@ react-native-bootsplash@^3.2.0:
     fs-extra "^9.1.0"
     jimp "^0.16.1"
 
+react-native-clean-project@^3.6.7:
+  version "3.6.7"
+  resolved "https://registry.yarnpkg.com/react-native-clean-project/-/react-native-clean-project-3.6.7.tgz#6d22ad22fe3a1e6efdb040eb66f9bdfb2273ac2e"
+  integrity sha512-GSJG1oNRJKtINPMzfHgRmu7HJs7phwgtwQ6GvyGARiySqQlU/bAc5zsI9rOeNPGlpgYongQtjOGdmqSpsWMJTw==
+
 react-native-codegen@^0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.0.7.tgz#86651c5c5fec67a8077ef7f4e36f7ed459043e14"
@@ -7428,15 +7433,15 @@ react-native-localize@^2.0.2:
   resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-2.1.0.tgz#ab80f294f4f48b6feaef182d3197fdbc01ce8a34"
   integrity sha512-+054+Hdw6ds5A0PIXEf+Xj2DmMZQ5jj9XzRg7Hq4lmZq/sL0dEs5MOsuID2JyO5y6wRbFEZ7XE4HUBVdT9Jisw==
 
-react-native-mmkv@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/react-native-mmkv/-/react-native-mmkv-1.1.6.tgz#562699c57fc55ec84b17ef675f6f609339096dfd"
-  integrity sha512-mvpnGLkXsEwlhGc2IoiqwI+7F9PwkcoJdt3PZOMtSCrt1ngDPJXXfyIxJ4/Ia8vd/gm7K3G+/mfusjEoiOsjxw==
+react-native-mmkv@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/react-native-mmkv/-/react-native-mmkv-1.5.2.tgz#d2b84f22f13d3ed0c2395addbd6ef8f2fe986c35"
+  integrity sha512-vvmtcjWVUTKoErg1RxMwPijyoySqWd2nuD6LC1PiZsBQO0sCXi8mJel1dI5Agnq3SsNYhPTcRNSHzVKz4q7gyw==
 
-react-native-reanimated@^2.0.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.2.0.tgz#a6412c56b4e591d1f00fac949f62d0c72c357c78"
-  integrity sha512-lOJDd+5w1gY6DHGXG2jD1dsjzQmXQ2699HUc3IztvI2WP4zUT+UAA+zSG+5JiBS5DUnTL8YhhkmUQmr1KNGO5w==
+react-native-reanimated@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.2.3.tgz#edecfe477ad9efac6f006f7e1194e8c9aa4fc6d5"
+  integrity sha512-d+BV39Jp4Om0ZkgVjop672/004ytlTfDT01EloO3HFZs9wR2QTuCjekq8yi3xl0G2xGZKd4DXhvqabIa7OnMYA==
   dependencies:
     "@babel/plugin-transform-object-assign" "^7.10.4"
     fbjs "^3.0.0"
