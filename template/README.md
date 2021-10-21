@@ -74,6 +74,10 @@ yarn react-native link
 
 More details [how to customize App Icon and Splash screen](https://handbook.obytes.com/docs/mobile/generate-app-icon)
 
+## Releasing and building the app with Github action
+
+👉 https://handbook.obytes.com/docs/mobile/ci-cd/github-action-build
+
 ## 📚 Read More About Modules
 
 👉 https://handbook.obytes.com/docs/mobile/get-started
