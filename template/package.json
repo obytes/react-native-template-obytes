@@ -9,7 +9,9 @@
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "clean": "react-native-clean-project",
-    "setup:ios": "cd ios && pod install --repo-update && cd .."
+    "setup:ios": "cd ios && pod install --repo-update && cd ..",
+    "release": "release-it --no-npm",
+    "postversion": "react-native-version"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.5.2",
@@ -61,7 +63,9 @@
     "metro-react-native-babel-preset": "^0.66.2",
     "npm-run-all": "^4.1.5",
     "react-native-clean-project": "^3.6.7",
+    "react-native-version": "^4.0.0",
     "react-test-renderer": "17.0.2",
+    "release-it": "^14.11.6",
     "typescript": "^4.3.2"
   },
   "resolutions": {
@@ -80,5 +84,9 @@
   },
   "lint-staged": {
     "*.{js,jsx,tsx}": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/your-repo.git"
   }
 }

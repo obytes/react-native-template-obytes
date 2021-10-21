@@ -2,25 +2,25 @@
 
 The project was created using [react-native-obytes-template](https://github.com/obytes/react-native-template-obytes)
 
-## ⭐ Features
-
-- ✅ Typescript by default based on official Typescript template
-- ✅ Auto Generate App Icon and Splash screen
-- ✅ React Navigation Pre-installed
-- ✅ React Query to fetch Data
-- ✅ Auth flow with react-native-mmkv to secure tokens
-- ✅ A clean project structure based on our experience with React Native
-- ✅ Minimal UI kit setup using restyle and configurable theme & icons using react-native-svg
-- ✅ A good approach to handle forms based on react-hook-form
-- ✅ A complete setup to Handle Errors
-- ✅ Handel environment variables with react-native-env
-- ✅ Localization
-- More ...
-
 ## ▶️ Usage
 
-```
-npx react-native init MyApp --template react-native-template-obytes
+1. [Setting up IOS and Android development environment](https://reactnative.dev/docs/environment-setup)
+
+2. Start working
+
+```bash
+## install deps
+yarn
+
+## install ios pods
+yarn setup:ios
+
+## ios
+yarn ios
+
+## android
+yarn android
+
 ```
 
 ## ⚙️ Enable husky Git pre-hooks
