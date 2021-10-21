@@ -1,21 +1,23 @@
 import {MMKV} from 'react-native-mmkv';
 
 const TOKEN = 'token';
+const storage = new MMKV();
+
 export type TokenType = {
   access: string;
   refresh: string;
 };
 
 export function getItem<T>(key: string): TokenType {
-  const value = MMKV.getString(key);
+  const value = storage.getString(key);
   return value ? JSON.parse(value) || null : null;
 }
 
 export async function setItem<T>(key: string, value: T) {
-  MMKV.set(key, JSON.stringify(value));
+  storage.set(key, JSON.stringify(value));
 }
 export async function removeItem(key: string) {
-  MMKV.delete(key);
+  storage.delete(key);
 }
 
 export const getToken = () => getItem<TokenType>(TOKEN);
