@@ -11,6 +11,7 @@ A simple React Native Template based on Obytes Mobile tribe best practices.
 ## ⭐ Features
 
 - ✅ Typescript by default based on official Typescript template
+- ✅ A simple workflow to release and build new version using Github action.
 - ✅ Auto Generate App Icon and Splash screen
 - ✅ React Navigation Pre-installed
 - ✅ React Query to fetch Data
@@ -82,6 +83,10 @@ More details [how to customize App Icon and Splash screen](https://handbook.obyt
 ## 📚 Read More About Modules
 
 👉 https://handbook.obytes.com/docs/mobile/get-started
+
+## Releasing and building the app with Github action
+
+👉 https://handbook.obytes.com/docs/mobile/ci-cd/github-action-build
 
 ## 🔖 License
 
