@@ -19,7 +19,7 @@
     "@react-navigation/bottom-tabs": "^6.0.7",
     "@react-navigation/native": "^6.0.4",
     "@react-navigation/stack": "^6.0.9",
-    "@shopify/restyle": "^1.4.0",
+    "@shopify/restyle": "^1.5.0",
     "axios": "^0.21.1",
     "i18n-js": "^3.8.0",
     "lodash.memoize": "^4.1.2",
