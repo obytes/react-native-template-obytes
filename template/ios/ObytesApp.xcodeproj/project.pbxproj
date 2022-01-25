@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* ObytesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ObytesTests.m */; };
-		06D550F1EA174A68B36B3A95 /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FC07241FCA74214AFC3203A /* Inter.ttf */; };
-		0DA64CCC4FACCCD5E91EE008 /* libPods-Obytes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CB2B1359E2BEF6194774FD9 /* libPods-Obytes.a */; };
+		00E356F31AD99517003FC87E /* ObytesAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ObytesAppTests.m */; };
+		08B9EA680646E2F73BEE77FC /* libPods-ObytesApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC888B2D84EA88D2C83A8DC /* libPods-ObytesApp.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		13BD978F1B9850DACA5CB682 /* libPods-ObytesApp-ObytesAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E37C124CF8575AB63D1463 /* libPods-ObytesApp-ObytesAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		DD73E8F02721835D00F871BC /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD73E8EF2721835D00F871BC /* BootSplash.storyboard */; };
-		F72B6550EA90D72AFD296740 /* libPods-Obytes-ObytesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42637017CD42E795A6F2CBDA /* libPods-Obytes-ObytesTests.a */; };
+		DD27C5CA27A04AAE00CC6EF0 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD27C5C927A04AAE00CC6EF0 /* BootSplash.storyboard */; };
+		EB25AB80466049068004C6FB /* Inter.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0114343DF6B74928A2495BB8 /* Inter.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,30 +24,30 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = Obytes;
+			remoteInfo = ObytesApp;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* ObytesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObytesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* ObytesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObytesAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* ObytesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObytesTests.m; sourceTree = "<group>"; };
-		03DAC78C339B72AF7197FF66 /* Pods-Obytes-ObytesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Obytes-ObytesTests.release.xcconfig"; path = "Target Support Files/Pods-Obytes-ObytesTests/Pods-Obytes-ObytesTests.release.xcconfig"; sourceTree = "<group>"; };
-		040BFF3DC68A252DB5B6B0BF /* Pods-Obytes-ObytesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Obytes-ObytesTests.debug.xcconfig"; path = "Target Support Files/Pods-Obytes-ObytesTests/Pods-Obytes-ObytesTests.debug.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* Obytes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Obytes.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Obytes/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Obytes/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Obytes/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Obytes/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Obytes/main.m; sourceTree = "<group>"; };
-		165580B55EE81400DE6C4833 /* Pods-Obytes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Obytes.release.xcconfig"; path = "Target Support Files/Pods-Obytes/Pods-Obytes.release.xcconfig"; sourceTree = "<group>"; };
-		1FC07241FCA74214AFC3203A /* Inter.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Inter.ttf; path = ../assets/fonts/Inter.ttf; sourceTree = "<group>"; };
-		42637017CD42E795A6F2CBDA /* libPods-Obytes-ObytesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Obytes-ObytesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Obytes/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8CB2B1359E2BEF6194774FD9 /* libPods-Obytes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Obytes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1D1A9D6649D11D9BE7621A2 /* Pods-Obytes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Obytes.debug.xcconfig"; path = "Target Support Files/Pods-Obytes/Pods-Obytes.debug.xcconfig"; sourceTree = "<group>"; };
-		DD73E8EF2721835D00F871BC /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = Obytes/BootSplash.storyboard; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* ObytesAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObytesAppTests.m; sourceTree = "<group>"; };
+		0114343DF6B74928A2495BB8 /* Inter.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Inter.ttf; path = ../assets/fonts/Inter.ttf; sourceTree = "<group>"; };
+		07B80C2D3E080535D7CCB162 /* Pods-ObytesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObytesApp.release.xcconfig"; path = "Target Support Files/Pods-ObytesApp/Pods-ObytesApp.release.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* ObytesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObytesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ObytesApp/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ObytesApp/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ObytesApp/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ObytesApp/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ObytesApp/main.m; sourceTree = "<group>"; };
+		5DC888B2D84EA88D2C83A8DC /* libPods-ObytesApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ObytesApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6134401B80769B5659C29565 /* Pods-ObytesApp-ObytesAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObytesApp-ObytesAppTests.debug.xcconfig"; path = "Target Support Files/Pods-ObytesApp-ObytesAppTests/Pods-ObytesApp-ObytesAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ObytesApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DD27C5C927A04AAE00CC6EF0 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = ObytesApp/BootSplash.storyboard; sourceTree = "<group>"; };
+		E1E37C124CF8575AB63D1463 /* libPods-ObytesApp-ObytesAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ObytesApp-ObytesAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F8DDF0E97EFDD5956F2F7DBE /* Pods-ObytesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObytesApp.debug.xcconfig"; path = "Target Support Files/Pods-ObytesApp/Pods-ObytesApp.debug.xcconfig"; sourceTree = "<group>"; };
+		F9F85C9F18BC4CAB255E7CB6 /* Pods-ObytesApp-ObytesAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObytesApp-ObytesAppTests.release.xcconfig"; path = "Target Support Files/Pods-ObytesApp-ObytesAppTests/Pods-ObytesApp-ObytesAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F72B6550EA90D72AFD296740 /* libPods-Obytes-ObytesTests.a in Frameworks */,
+				13BD978F1B9850DACA5CB682 /* libPods-ObytesApp-ObytesAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,20 +63,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DA64CCC4FACCCD5E91EE008 /* libPods-Obytes.a in Frameworks */,
+				08B9EA680646E2F73BEE77FC /* libPods-ObytesApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* ObytesTests */ = {
+		00E356EF1AD99517003FC87E /* ObytesAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* ObytesTests.m */,
+				00E356F21AD99517003FC87E /* ObytesAppTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = ObytesTests;
+			path = ObytesAppTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -87,45 +87,37 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* Obytes */ = {
+		13B07FAE1A68108700A75B9A /* ObytesApp */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				DD73E8EF2721835D00F871BC /* BootSplash.storyboard */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				DD27C5C927A04AAE00CC6EF0 /* BootSplash.storyboard */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = Obytes;
-			sourceTree = "<group>";
-		};
-		249B6FE111774A3E94B612C7 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				1FC07241FCA74214AFC3203A /* Inter.ttf */,
-			);
-			name = Resources;
+			name = ObytesApp;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				8CB2B1359E2BEF6194774FD9 /* libPods-Obytes.a */,
-				42637017CD42E795A6F2CBDA /* libPods-Obytes-ObytesTests.a */,
+				5DC888B2D84EA88D2C83A8DC /* libPods-ObytesApp.a */,
+				E1E37C124CF8575AB63D1463 /* libPods-ObytesApp-ObytesAppTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5B447BA24613CB8E78CB4356 /* Pods */ = {
+		3CA31F2372084A08E1A62864 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A1D1A9D6649D11D9BE7621A2 /* Pods-Obytes.debug.xcconfig */,
-				165580B55EE81400DE6C4833 /* Pods-Obytes.release.xcconfig */,
-				040BFF3DC68A252DB5B6B0BF /* Pods-Obytes-ObytesTests.debug.xcconfig */,
-				03DAC78C339B72AF7197FF66 /* Pods-Obytes-ObytesTests.release.xcconfig */,
+				F8DDF0E97EFDD5956F2F7DBE /* Pods-ObytesApp.debug.xcconfig */,
+				07B80C2D3E080535D7CCB162 /* Pods-ObytesApp.release.xcconfig */,
+				6134401B80769B5659C29565 /* Pods-ObytesApp-ObytesAppTests.debug.xcconfig */,
+				F9F85C9F18BC4CAB255E7CB6 /* Pods-ObytesApp-ObytesAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -140,13 +132,13 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* Obytes */,
+				13B07FAE1A68108700A75B9A /* ObytesApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* ObytesTests */,
+				00E356EF1AD99517003FC87E /* ObytesAppTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				5B447BA24613CB8E78CB4356 /* Pods */,
-				249B6FE111774A3E94B612C7 /* Resources */,
+				3CA31F2372084A08E1A62864 /* Pods */,
+				A8895B3D529047CFB92225FF /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -156,56 +148,64 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* Obytes.app */,
-				00E356EE1AD99517003FC87E /* ObytesTests.xctest */,
+				13B07F961A680F5B00A75B9A /* ObytesApp.app */,
+				00E356EE1AD99517003FC87E /* ObytesAppTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A8895B3D529047CFB92225FF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0114343DF6B74928A2495BB8 /* Inter.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* ObytesTests */ = {
+		00E356ED1AD99517003FC87E /* ObytesAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ObytesTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ObytesAppTests" */;
 			buildPhases = (
-				6C1C612D43840F93DFFFEA4E /* [CP] Check Pods Manifest.lock */,
+				4E3D6352D5130F2720E26E83 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				2BEBFD0DD59ECB0B56AD6175 /* [CP] Embed Pods Frameworks */,
-				E381F205F04E3CC41FD611C8 /* [CP] Copy Pods Resources */,
+				990B2591A240809310141FBD /* [CP] Embed Pods Frameworks */,
+				FEF1901124F2CF0559E8B7D3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = ObytesTests;
-			productName = ObytesTests;
-			productReference = 00E356EE1AD99517003FC87E /* ObytesTests.xctest */;
+			name = ObytesAppTests;
+			productName = ObytesAppTests;
+			productReference = 00E356EE1AD99517003FC87E /* ObytesAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* Obytes */ = {
+		13B07F861A680F5B00A75B9A /* ObytesApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Obytes" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ObytesApp" */;
 			buildPhases = (
-				D29993BC654B433BCC8CF3BC /* [CP] Check Pods Manifest.lock */,
+				0ED0CA6A7446B79D297A0488 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				21B0F6126F8D4256E6C90BE5 /* [CP] Embed Pods Frameworks */,
-				8E6CBF2E470F094C8B19EC28 /* [CP] Copy Pods Resources */,
+				42DAC6C0A9613E67ED10DB50 /* [CP] Embed Pods Frameworks */,
+				1F754F85CCB601ABDE59529D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Obytes;
-			productName = Obytes;
-			productReference = 13B07F961A680F5B00A75B9A /* Obytes.app */;
+			name = ObytesApp;
+			productName = ObytesApp;
+			productReference = 13B07F961A680F5B00A75B9A /* ObytesApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -225,7 +225,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Obytes" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ObytesApp" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -238,8 +238,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* Obytes */,
-				00E356ED1AD99517003FC87E /* ObytesTests */,
+				13B07F861A680F5B00A75B9A /* ObytesApp */,
+				00E356ED1AD99517003FC87E /* ObytesAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -256,10 +256,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD73E8F02721835D00F871BC /* BootSplash.storyboard in Resources */,
+				DD27C5CA27A04AAE00CC6EF0 /* BootSplash.storyboard in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				06D550F1EA174A68B36B3A95 /* Inter.ttf in Resources */,
+				EB25AB80466049068004C6FB /* Inter.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,41 +280,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		21B0F6126F8D4256E6C90BE5 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Obytes/Pods-Obytes-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Obytes/Pods-Obytes-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Obytes/Pods-Obytes-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2BEBFD0DD59ECB0B56AD6175 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Obytes-ObytesTests/Pods-Obytes-ObytesTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Obytes-ObytesTests/Pods-Obytes-ObytesTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Obytes-ObytesTests/Pods-Obytes-ObytesTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6C1C612D43840F93DFFFEA4E /* [CP] Check Pods Manifest.lock */ = {
+		0ED0CA6A7446B79D297A0488 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -329,31 +295,48 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Obytes-ObytesTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ObytesApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8E6CBF2E470F094C8B19EC28 /* [CP] Copy Pods Resources */ = {
+		1F754F85CCB601ABDE59529D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Obytes/Pods-Obytes-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ObytesApp/Pods-ObytesApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Obytes/Pods-Obytes-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ObytesApp/Pods-ObytesApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Obytes/Pods-Obytes-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ObytesApp/Pods-ObytesApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D29993BC654B433BCC8CF3BC /* [CP] Check Pods Manifest.lock */ = {
+		42DAC6C0A9613E67ED10DB50 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ObytesApp/Pods-ObytesApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ObytesApp/Pods-ObytesApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ObytesApp/Pods-ObytesApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E3D6352D5130F2720E26E83 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -368,28 +351,28 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Obytes-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ObytesApp-ObytesAppTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E381F205F04E3CC41FD611C8 /* [CP] Copy Pods Resources */ = {
+		990B2591A240809310141FBD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Obytes-ObytesTests/Pods-Obytes-ObytesTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ObytesApp-ObytesAppTests/Pods-ObytesApp-ObytesAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Obytes-ObytesTests/Pods-Obytes-ObytesTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-ObytesApp-ObytesAppTests/Pods-ObytesApp-ObytesAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Obytes-ObytesTests/Pods-Obytes-ObytesTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ObytesApp-ObytesAppTests/Pods-ObytesApp-ObytesAppTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -411,6 +394,23 @@
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		FEF1901124F2CF0559E8B7D3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ObytesApp-ObytesAppTests/Pods-ObytesApp-ObytesAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ObytesApp-ObytesAppTests/Pods-ObytesApp-ObytesAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ObytesApp-ObytesAppTests/Pods-ObytesApp-ObytesAppTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -418,7 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* ObytesTests.m in Sources */,
+				00E356F31AD99517003FC87E /* ObytesAppTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,7 +436,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* Obytes */;
+			target = 13B07F861A680F5B00A75B9A /* ObytesApp */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -444,14 +444,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 040BFF3DC68A252DB5B6B0BF /* Pods-Obytes-ObytesTests.debug.xcconfig */;
+			baseConfigurationReference = 6134401B80769B5659C29565 /* Pods-ObytesApp-ObytesAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ObytesTests/Info.plist;
+				INFOPLIST_FILE = ObytesAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -465,17 +465,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Obytes.app/Obytes";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ObytesApp.app/ObytesApp";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03DAC78C339B72AF7197FF66 /* Pods-Obytes-ObytesTests.release.xcconfig */;
+			baseConfigurationReference = F9F85C9F18BC4CAB255E7CB6 /* Pods-ObytesApp-ObytesAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = ObytesTests/Info.plist;
+				INFOPLIST_FILE = ObytesAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -489,19 +489,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Obytes.app/Obytes";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ObytesApp.app/ObytesApp";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A1D1A9D6649D11D9BE7621A2 /* Pods-Obytes.debug.xcconfig */;
+			baseConfigurationReference = F8DDF0E97EFDD5956F2F7DBE /* Pods-ObytesApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = Obytes/Info.plist;
+				INFOPLIST_FILE = ObytesApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -512,7 +512,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = Obytes;
+				PRODUCT_NAME = ObytesApp;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -521,12 +521,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 165580B55EE81400DE6C4833 /* Pods-Obytes.release.xcconfig */;
+			baseConfigurationReference = 07B80C2D3E080535D7CCB162 /* Pods-ObytesApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = Obytes/Info.plist;
+				INFOPLIST_FILE = ObytesApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -537,7 +537,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = Obytes;
+				PRODUCT_NAME = ObytesApp;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -576,7 +576,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -600,7 +600,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/lib/swift\"",
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -642,7 +641,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 ";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -659,7 +658,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/lib/swift\"",
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
-					"\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -671,7 +669,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ObytesTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ObytesAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -680,7 +678,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Obytes" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ObytesApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -689,7 +687,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Obytes" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ObytesApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

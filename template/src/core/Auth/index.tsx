@@ -24,6 +24,7 @@ export const useAuth = create<AuthState>((set, get) => ({
   hydrate: () => {
     try {
       const userToken = getToken();
+      console.log({userToken});
       if (userToken !== null) {
         get().signIn(userToken);
       } else {
