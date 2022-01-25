@@ -1,5 +1,5 @@
 {
-  "name": "Obytes",
+  "name": "obytesapp",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,37 +10,38 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "clean": "react-native-clean-project",
     "setup:ios": "cd ios && pod install --repo-update && cd ..",
-    "release": "release-it --no-npm",
-    "postversion": "react-native-version"
+    "np": "np --no-publish",
+    "postversion": "react-native-version",
+    "xcode": "xed -b ios"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.5.2",
-    "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.0.7",
-    "@react-navigation/native": "^6.0.4",
-    "@react-navigation/stack": "^6.0.9",
-    "@shopify/restyle": "^1.5.0",
-    "axios": "^0.21.1",
+    "@react-navigation/native": "^6.0.6",
+    "@react-navigation/stack": "^6.0.11",
+    "@shopify/restyle": "^1.6.1",
+    "axios": "^0.25.0",
     "i18n-js": "^3.8.0",
     "lodash.memoize": "^4.1.2",
     "react": "17.0.2",
     "react-error-boundary": "^3.1.3",
     "react-hook-form": "^7.7.1",
-    "react-native": "0.66.1",
-    "react-native-bootsplash": "^3.2.0",
-    "react-native-dotenv": "^3.2.0",
+    "react-native": "0.67.1",
+    "react-native-bootsplash": "^4.1.0",
+    "react-native-dotenv": "^3.3.1",
     "react-native-exception-handler": "^2.10.10",
     "react-native-flash-message": "^0.2.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-localize": "^2.0.2",
-    "react-native-mmkv": "^1.5.2",
-    "react-native-reanimated": "^2.2.3",
+    "react-native-mmkv": "^2.0.0",
+    "react-native-reanimated": "^2.3.1",
     "react-native-safe-area-context": "^3.3.2",
-    "react-native-screens": "^3.8.0",
+    "react-native-screens": "^3.10.2",
     "react-native-svg": "^12.1.1",
-    "react-query": "^3.12.3",
+    "react-query": "^3.34.12",
     "yup": "^0.32.9",
-    "zustand": "^3.5.1"
+    "zustand": "^3.6.9"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -62,11 +63,10 @@
     "lint-staged": "^11.0.0",
     "metro-react-native-babel-preset": "^0.66.2",
     "npm-run-all": "^4.1.5",
-    "react-native-clean-project": "^3.6.7",
+    "react-native-clean-project": "^4.0.0",
     "react-native-version": "^4.0.0",
     "react-test-renderer": "17.0.2",
-    "release-it": "^14.11.6",
-    "typescript": "^4.3.2"
+    "typescript": "^4.4.4"
   },
   "resolutions": {
     "@types/react": "^17"
