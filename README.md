@@ -8,7 +8,7 @@
 
 📱 A template for your next React Native project 🚀, Made with developer experience and performance first: TypeScript, Husky, Lint-Staged, react-navigation, react-query, restyle, react-hook-form, AppIcon, Splash Screen.
 
-🚀 Use the template to start your next project or just navigate to [code source](https://github.com/obytes/react-native-template-obytes/tree/master/template) to get some inspiration 😉
+🚀 Use the template to start your next project or navigate to [code source](https://github.com/obytes/react-native-template-obytes/tree/master/template) to get some inspiration 😉
 
 ### ⭐ Features
 
@@ -33,11 +33,11 @@
 - 🧩 Minimal code
 - ⚠️ well maintained third-party libraries
 
-### Requirements
+### 🛠 Requirements
 
 - [Setting up the development environment](https://reactnative.dev/docs/environment-setup)
 
-### Getting started
+### 🤖 Getting started
 
 Start your project using obytes template by running:
 
@@ -90,7 +90,7 @@ src
     └── utils.tsx
 ```
 
-Enable husky Git prehooks by adding the following script to your `packages.json` and reinstall dependencies to enable husky pre-commit using `yarn install`
+Enable husky Git pre-hooks by adding the following script to your `packages.json` and reinstall dependencies to enable husky pre-commit using `yarn install`
 
 ```json
    "scripts": {
@@ -98,7 +98,7 @@ Enable husky Git prehooks by adding the following script to your `packages.json`
     },
 ```
 
-### Customization
+### 🧩 Customization
 
 #### 📲 Update App Icon & Splash screen
 
