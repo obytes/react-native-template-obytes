@@ -19,6 +19,7 @@
 - 🦊 Husky for Git Hooks
 - 💡 Clean project structure with Absolute Imports
 - 🚫 Lint-staged for running linters on Git staged files
+- 🗂 VSCode recommended extensions configuration
 - ☂️ [React Navigation](https://reactnavigation.org/) pre-installed with examples
 - 💫 Auth flow with [zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage to save sensitive data.
 - 🛠 A simple workflow to build, release and distribute your application using [Github action](https://github.com/features/actions)
