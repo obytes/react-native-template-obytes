@@ -9,6 +9,7 @@ import {
   BorderProps,
   BackgroundColorProps,
   VariantProps,
+  composeRestyleFunctions,
   createRestyleComponent,
   createVariant,
 } from '@shopify/restyle';
@@ -23,12 +24,12 @@ const ButtonContainer = createRestyleComponent<
   Theme
 >([buttonVariant], View);
 
-const restyleFunctions = [
+const restyleFunctions = composeRestyleFunctions([
   buttonVariant as any,
   spacing,
   border,
   backgroundColor,
-];
+]);
 
 type Props = SpacingProps<Theme> &
   VariantProps<Theme, 'buttonVariants'> &

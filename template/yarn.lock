@@ -1902,10 +1902,10 @@
   dependencies:
     any-observable "^0.3.0"
 
-"@shopify/restyle@^1.6.1":
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/@shopify/restyle/-/restyle-1.6.1.tgz#64645f06b5848029b3bac73a3859e35ba5c1332e"
-  integrity sha512-y31cYkp/fGGLunBerzNnHaLSPB4VvNhoaPF7GR0V6FFgf12rRUTZCHJyeR+dYn6rlworjad7zMZRnIkSgZLWOw==
+"@shopify/restyle@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@shopify/restyle/-/restyle-2.0.0.tgz#8d93daac3c700e3ffd8a45b302175ece8bd524c0"
+  integrity sha512-MkmHQ1K6zOgY2eww4W4rZr755RR1ImGtgEpMDF/BInjn2Z6e5zJuAHg53Oc5A1P3PqXP4I1raghJdzq0hgXrAw==
 
 "@sideway/address@^4.1.0":
   version "4.1.2"
