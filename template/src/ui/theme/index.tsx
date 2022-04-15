@@ -60,6 +60,7 @@ export const theme = createTheme({
     },
   },
   buttonVariants: {
+    defaults: {},
     primary: {
       backgroundColor: 'primary',
     },

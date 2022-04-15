@@ -6,7 +6,7 @@
         <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
     </style>
 
-     <!-- BootTheme should inherit from Theme.SplashScreen -->
+    <!-- BootTheme should inherit from Theme.SplashScreen -->
     <style name="BootTheme" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/bootsplash_background</item>
         <item name="windowSplashScreenAnimatedIcon">@mipmap/bootsplash_logo</item>
