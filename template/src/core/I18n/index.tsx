@@ -10,7 +10,7 @@ const translationGetters = {
 };
 
 export const translate = memoize(
-  (key) => i18n.t(key),
+  key => i18n.t(key),
   (key, config) => (config ? key + JSON.stringify(config) : key),
 );
 
@@ -27,6 +27,6 @@ export const setI18nConfig = () => {
   // update layout direction
   I18nManager.forceRTL(isRTL);
   // set Lang to english for now
-  i18n.translations = {[languageTag]: translationGetters['en']()};
+  i18n.translations = {[languageTag]: translationGetters.en()};
   i18n.locale = languageTag;
 };

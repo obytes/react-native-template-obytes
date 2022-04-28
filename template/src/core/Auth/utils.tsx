@@ -8,7 +8,7 @@ export type TokenType = {
   refresh: string;
 };
 
-export function getItem<T>(key: string): TokenType {
+export function getItem<T>(key: string): T {
   const value = storage.getString(key);
   return value ? JSON.parse(value) || null : null;
 }
