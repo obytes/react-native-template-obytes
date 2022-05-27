@@ -35,7 +35,7 @@
     "react-native-gesture-handler": "^1.10.3",
     "react-native-localize": "^2.2.1",
     "react-native-mmkv": "^2.3.1",
-    "react-native-reanimated": "^2.7.0",
+    "react-native-reanimated": "^2.8.0",
     "react-native-safe-area-context": "^3.4.1",
     "react-native-screens": "^3.13.1",
     "react-native-svg": "^12.3.0",
