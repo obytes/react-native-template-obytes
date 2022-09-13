@@ -1,9 +1,10 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import React from 'react';
-import {Button, Screen, Input} from 'ui';
-import {useAuth} from 'core';
-import {useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
+
+import { useAuth } from '@/core';
+import { Button, Input, View } from '@/ui';
 
 type FormData = {
   email: string;
@@ -16,18 +17,18 @@ const schema = yup.object().shape({
 });
 
 export const Login = () => {
-  const {signIn} = useAuth();
+  const { signIn } = useAuth();
 
-  const {handleSubmit, control} = useForm<FormData>({
+  const { handleSubmit, control } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = (data: FormData) => {
     console.log(data);
-    signIn({access: 'access-token', refresh: 'refresh-token'});
+    signIn({ access: 'access-token', refresh: 'refresh-token' });
   };
   return (
-    <Screen>
+    <View className="flex-1 justify-center p-4">
       <Input control={control} name="email" label="Email" />
       <Input
         control={control}
@@ -39,8 +40,13 @@ export const Login = () => {
       <Button
         label="Login"
         onPress={handleSubmit(onSubmit)}
+        variant="primary"
+      />
+      <Button
+        label="Login"
+        onPress={handleSubmit(onSubmit)}
         variant="secondary"
       />
-    </Screen>
+    </View>
   );
 };

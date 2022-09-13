@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Svg, {Path, SvgProps} from 'react-native-svg';
+import type { SvgProps } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 
-export const Settings = ({color = '#C3C3C3', ...props}: SvgProps) => {
+export const Settings = ({ color = '#C3C3C3', ...props }: SvgProps) => {
   return (
     <Svg width={29} height={29} fill="none" {...props}>
       <Path

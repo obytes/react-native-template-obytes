@@ -1,17 +1,12 @@
 import React from 'react';
-import {View} from './View';
+import { View } from 'react-native';
 
 type Props = {
   children: React.ReactNode;
 };
 
-export const Screen = ({children}: Props) => (
-  <View
-    justifyContent="center"
-    flexDirection="column"
-    paddingHorizontal="m"
-    flex={1}
-    bg="background">
+export const Screen = ({ children }: Props) => (
+  <View className="flex flex-1 flex-col justify-center bg-white px-2">
     {children}
   </View>
 );

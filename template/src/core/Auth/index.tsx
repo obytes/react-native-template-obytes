@@ -1,6 +1,8 @@
 /// Auth.tsx
 import create from 'zustand';
-import {getToken, setToken, removeToken, TokenType} from './utils';
+
+import type { TokenType } from './utils';
+import { getToken, removeToken, setToken } from './utils';
 
 interface AuthState {
   token: TokenType | null;
@@ -13,18 +15,18 @@ interface AuthState {
 export const useAuth = create<AuthState>((set, get) => ({
   status: 'idle',
   token: null,
-  signIn: token => {
+  signIn: (token) => {
     setToken(token);
-    set({status: 'signIn', token});
+    set({ status: 'signIn', token });
   },
   signOut: () => {
     removeToken();
-    set({status: 'signOut', token: null});
+    set({ status: 'signOut', token: null });
   },
   hydrate: () => {
     try {
       const userToken = getToken();
-      console.log({userToken});
+      console.log({ userToken });
       if (userToken !== null) {
         get().signIn(userToken);
       } else {

@@ -7,6 +7,11 @@
     "streetsidesoftware.code-spell-checker",
     "formulahendry.auto-close-tag",
     "formulahendry.auto-rename-tag",
-    "dsznajder.es7-react-js-snippets"
+    "dsznajder.es7-react-js-snippets",
+    "bradlc.vscode-tailwindcss",
+    "lokalise.i18n-ally",
+    "wesbos.theme-cobalt2",
+    "github.copilot",
+    "ChakrounAnas.turbo-console-log"
   ]
 }
