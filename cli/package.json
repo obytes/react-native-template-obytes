@@ -1,0 +1,26 @@
+{
+  "name": "create-obytes-app",
+  "version": "1.0.0",
+  "description": "Obytes expo starter",
+  "homepage": "https://github.com/obytes/react-native-template-obytes",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/obytes/react-native-template-obytes"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "bin": "./index.js",
+  "files": [
+    "index.js",
+    "utils.js"
+  ],
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "chalk-animation": "^1.6.0",
+    "fs-extra": "^10.1.0",
+    "nanospinner": "^1.0.0"
+  }
+}
