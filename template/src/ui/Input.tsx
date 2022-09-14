@@ -1,70 +1,52 @@
 import { styled } from 'nativewind';
 import * as React from 'react';
-import type {
-  Control,
-  FieldValues,
-  Path,
-  RegisterOptions,
-} from 'react-hook-form';
-import { useController } from 'react-hook-form';
-import type { TextInputProps } from 'react-native';
+import type { FieldError } from 'react-hook-form';
+import type { TextInput, TextInputProps } from 'react-native';
 import { TextInput as NTextInput } from 'react-native';
-import colors from 'tailwindcss/colors';
 
 import { Text, View } from './core';
+import colors from './theme/colors';
 
 // types
 
 const STextInput = styled(NTextInput);
 
-type TRule = Omit<
-  RegisterOptions,
-  'valueAsNumber' | 'valueAsDate' | 'setValueAs'
->;
-
-export type RuleType<T> = { [name in keyof T]: TRule };
-export type InputControllerType<T extends FieldValues> = {
-  name: Path<T>;
-  control: Control<T>;
-  rules?: TRule;
-};
-
-interface Props<T extends FieldValues>
-  extends TextInputProps,
-    InputControllerType<T> {
-  disabled?: boolean;
+export interface NInputProps extends TextInputProps {
   label?: string;
+  disabled?: boolean;
+  error?: Omit<FieldError, 'type'> | undefined;
 }
 
-export function Input<T extends FieldValues>(props: Props<T>) {
-  const { label, name, control, rules, ...inputProps } = props;
+export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
+  const { label, error, ...inputProps } = props;
 
-  const { field, fieldState } = useController({ control, name, rules });
   const [isFocussed, setIsFocussed] = React.useState(false);
-  const onBlur = () => setIsFocussed(false);
-  const onFocus = () => setIsFocussed(true);
+  const onBlur = React.useCallback(() => setIsFocussed(false), []);
+  const onFocus = React.useCallback(() => setIsFocussed(true), []);
 
-  const borderColor = fieldState.invalid
-    ? 'border-b-red-600'
+  const borderColor = error
+    ? 'border-danger-600'
     : isFocussed
-    ? 'border-b-indigo-600'
-    : 'border-b-gray-300';
+    ? 'border-neutral-600'
+    : 'border-neutral-400';
+
+  const bgColor = error ? 'bg-danger-50' : 'bg-neutral-200';
   return (
-    <View key={`input-${name}`} className="mb-4">
-      {label && <Text variant="label">{label}</Text>}
+    <View className="mb-4">
+      {label && (
+        <Text variant="md" className={error ? 'text-danger-600' : 'text-black'}>
+          {label}
+        </Text>
+      )}
       <STextInput
-        placeholderTextColor={colors.gray[300]}
-        className={`mt-0 border-b-[1px] py-2  ${borderColor}`}
-        autoCapitalize="none"
-        onChangeText={field.onChange}
-        value={field.value as string}
+        ref={ref}
+        placeholderTextColor={colors.neutral[400]}
+        className={`mt-0 border-[1px] py-4 px-2  ${borderColor} rounded-md ${bgColor} text-[16px]`}
         onBlur={onBlur}
         onFocus={onFocus}
         {...inputProps}
       />
-      {fieldState.error && (
-        <Text variant="error">{fieldState.error.message}</Text>
-      )}
+      {error && <Text variant="error">{error.message}</Text>}
     </View>
   );
-}
+});

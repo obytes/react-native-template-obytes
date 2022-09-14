@@ -1,5 +1,6 @@
 export * from './button';
 export * from './constants';
+export * from './controlled-input';
 export * from './core';
 export * from './error-handler';
 export * from './icons';

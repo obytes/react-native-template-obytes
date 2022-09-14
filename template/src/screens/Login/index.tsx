@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { useAuth } from '@/core';
-import { Button, Input, View } from '@/ui';
+import { Button, ControlledInput, View } from '@/ui';
 
 type FormData = {
   email: string;
@@ -29,8 +29,8 @@ export const Login = () => {
   };
   return (
     <View className="flex-1 justify-center p-4">
-      <Input control={control} name="email" label="Email" />
-      <Input
+      <ControlledInput control={control} name="email" label="Email" />
+      <ControlledInput
         control={control}
         name="password"
         label="Password"

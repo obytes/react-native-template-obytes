@@ -1,12 +1,44 @@
 import React from 'react';
-import type { PressableProps } from 'react-native';
-import { Pressable } from 'react-native';
-import { ActivityIndicator } from 'react-native';
+import type { TouchableOpacityProps } from 'react-native';
 
-import { Text, View } from './core';
+import { ActivityIndicator, Text, TouchableOpacity } from './core';
 
-interface Props extends PressableProps {
-  variant?: keyof typeof buttonsVariants;
+type Variant = {
+  container: string;
+  label: string;
+  indicator: string;
+};
+type VariantName = 'defaults' | 'primary' | 'outline' | 'secondary';
+type BVariant = {
+  [key in VariantName]: Variant;
+};
+
+export const buttonVariants: BVariant = {
+  defaults: {
+    container:
+      'flex-row items-center justify-center rounded-full px-12 py-3 my-2',
+    label: 'text-[16px] font-medium text-white',
+    indicator: 'text-white h-[30px]',
+  },
+  primary: {
+    container: 'bg-black',
+    label: '',
+    indicator: 'text-white',
+  },
+  secondary: {
+    container: 'bg-primary-600',
+    label: 'text-secondary-600',
+    indicator: 'text-white',
+  },
+  outline: {
+    container: 'border border-neutral-400',
+    label: 'text-black',
+    indicator: 'text-black',
+  },
+};
+
+interface Props extends TouchableOpacityProps {
+  variant?: VariantName;
   label?: string;
   loading?: boolean;
 }
@@ -15,49 +47,37 @@ export const Button = ({
   label,
   loading = false,
   variant = 'primary',
+  disabled = false,
   ...props
 }: Props) => {
   return (
-    <Pressable {...props}>
-      <View
-        className={`
-        my-2 flex-row items-center justify-center rounded-lg p-4
-        ${buttonsVariants.defaults.container}
-         ${buttonsVariants[variant].container}
-        `}
-      >
-        {loading ? (
-          <ActivityIndicator size="small" />
-        ) : (
-          <Text
-            className={`
-          ${buttonsVariants.defaults.label}
-           ${buttonsVariants[variant].label}
+    <TouchableOpacity
+      {...props}
+      disabled={disabled || loading}
+      className={`
+    ${buttonVariants.defaults.container}
+     ${buttonVariants[variant].container}
+     ${disabled ? 'opacity-50' : ''}
+    `}
+    >
+      {loading ? (
+        <ActivityIndicator
+          size="small"
+          className={`
+          ${buttonVariants.defaults.indicator}
+           ${buttonVariants[variant].indicator}
           `}
-          >
-            {label}
-          </Text>
-        )}
-      </View>
-    </Pressable>
+        />
+      ) : (
+        <Text
+          className={`
+          ${buttonVariants.defaults.label}
+           ${buttonVariants[variant].label}
+          `}
+        >
+          {label}
+        </Text>
+      )}
+    </TouchableOpacity>
   );
-};
-
-const buttonsVariants = {
-  defaults: {
-    container: 'px-12 py-3  border border-primary-600 rounded ',
-    label: 'text-sm font-medium text-white',
-  },
-  primary: {
-    container: 'bg-primary-600',
-    label: '',
-  },
-  secondary: {
-    container: 'bg-white ',
-    label: 'text-secondary-600',
-  },
-  outline: {
-    container: 'bg-white',
-    label: 'text-primary-600',
-  },
 };

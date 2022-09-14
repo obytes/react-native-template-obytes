@@ -5,7 +5,7 @@ import type { ComponentType } from 'react';
 import * as React from 'react';
 import type { SvgProps } from 'react-native-svg';
 
-import { Home } from '@/screens';
+import { Home, Style } from '@/screens';
 import { COLORS, Feed as FeedIcon, Home as HomeIcon } from '@/ui';
 
 type TabParamList = {
@@ -45,7 +45,7 @@ const tabs: TabType[] = [
   },
   {
     name: 'Style',
-    component: Home,
+    component: Style,
     label: 'Style',
   },
   {
