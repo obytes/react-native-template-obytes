@@ -2,7 +2,10 @@ import { styled } from 'nativewind';
 import * as React from 'react';
 import type { FieldError } from 'react-hook-form';
 import type { TextInput, TextInputProps } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { TextInput as NTextInput } from 'react-native';
+
+import { isRTL } from '@/core';
 
 import { Text, View } from './core';
 import colors from './theme/colors';
@@ -29,6 +32,7 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
     : 'border-neutral-400';
 
   const bgColor = error ? 'bg-danger-50' : 'bg-neutral-200';
+  const textDirection = isRTL ? 'text-right' : 'text-left';
   return (
     <View className="mb-4">
       {label && (
@@ -39,10 +43,13 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
       <STextInput
         ref={ref}
         placeholderTextColor={colors.neutral[400]}
-        className={`mt-0 border-[1px] py-4 px-2  ${borderColor} rounded-md ${bgColor} text-[16px]`}
+        className={`mt-0 border-[1px] py-4 px-2  ${borderColor} rounded-md ${bgColor} text-[16px] ${textDirection}`}
         onBlur={onBlur}
         onFocus={onFocus}
         {...inputProps}
+        style={StyleSheet.flatten([
+          { writingDirection: isRTL ? 'rtl' : 'ltr' },
+        ])}
       />
       {error && <Text variant="error">{error.message}</Text>}
     </View>

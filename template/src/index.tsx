@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import * as SplashScreen from 'expo-splash-screen';
 import React from 'react';
 import FlashMessage from 'react-native-flash-message';
@@ -13,10 +14,12 @@ SplashScreen.preventAutoHideAsync();
 
 const App = () => {
   return (
-    <APIProvider>
-      <RootNavigator />
-      <FlashMessage position="top" />
-    </APIProvider>
+    <BottomSheetModalProvider>
+      <APIProvider>
+        <RootNavigator />
+        <FlashMessage position="top" />
+      </APIProvider>
+    </BottomSheetModalProvider>
   );
 };
 

@@ -1,36 +1,30 @@
 import React from 'react';
 
+import type { Post } from '@/api';
 import { Image, Pressable, Text, View } from '@/ui';
 
-type Props = {
-  onPress?: () => void;
-  image: string;
-  title: string;
-  description: string;
-};
+type Props = Post & { onPress?: () => void };
 
-export const Card = ({
-  title,
-  description,
-  image = 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
-  onPress,
-}: Props) => {
+export const Card = ({ title, body, onPress = () => {} }: Props) => {
   return (
     <Pressable
-      className="my-1 block overflow-hidden rounded-2xl"
+      className="m-2 block overflow-hidden bg-neutral-200 p-2 "
       onPress={onPress}
     >
       <Image
         className="h-56 w-full object-cover"
         source={{
-          uri: image,
+          uri: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
         }}
       />
 
-      <View className="bg-gray-900 p-4">
-        <Text className="text-xs text-gray-500">website.com</Text>
-        <Text className="text-sm text-white">{title}</Text>
-        <Text className="mt-1 text-xs text-gray-500">{description}</Text>
+      <View>
+        <Text variant="md" numberOfLines={1} className="font-bold">
+          {title}
+        </Text>
+        <Text variant="xs" numberOfLines={3}>
+          {body}
+        </Text>
       </View>
     </Pressable>
   );

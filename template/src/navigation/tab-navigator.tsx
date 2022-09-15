@@ -6,7 +6,12 @@ import * as React from 'react';
 import type { SvgProps } from 'react-native-svg';
 
 import { Feed, Settings, Style } from '@/screens';
-import { COLORS, Feed as FeedIcon, Settings as SettingsIcon } from '@/ui';
+import {
+  Feed as FeedIcon,
+  Settings as SettingsIcon,
+  Style as StyleIcon,
+} from '@/ui';
+import colors from '@/ui/theme/colors';
 
 type TabParamList = {
   Style: undefined;
@@ -27,7 +32,7 @@ type TabIconsType = {
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const tabsIcons: TabIconsType = {
-  Style: (props: SvgProps) => <FeedIcon {...props} />,
+  Style: (props: SvgProps) => <StyleIcon {...props} />,
   Feed: (props: SvgProps) => <FeedIcon {...props} />,
   Settings: (props: SvgProps) => <SettingsIcon {...props} />,
 };
@@ -71,11 +76,11 @@ export const TabNavigator = () => {
       screenOptions={({ route }) => ({
         // eslint-disable-next-line react/no-unstable-nested-components
         tabBarIcon: ({ color }) => <BarIcon name={route.name} color={color} />,
-        tabBarActiveTintColor: COLORS.WARM_PINK,
-        tabBarInactiveTintColor: COLORS.SLATE_GREY,
+        tabBarActiveTintColor: colors.primary[400],
+        tabBarInactiveTintColor: colors.neutral[600],
         tabBarStyle: [
-          { backgroundColor: COLORS.WHITE },
-          { borderTopWidth: 1, borderTopColor: COLORS.SILVER },
+          { backgroundColor: colors.white },
+          { borderTopWidth: 1, borderTopColor: colors.neutral[200] },
         ],
       })}
     >

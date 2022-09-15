@@ -6,4 +6,6 @@ export * from './error-handler';
 export * from './icons';
 export * from './input';
 export * from './screen';
+export * from './select-input';
+export * from './select-input/options';
 export * from './utils';

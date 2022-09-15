@@ -1,8 +1,14 @@
 import React from 'react';
 
-import { Input, View } from '@/ui';
+import { Input, SelectInput, View } from '@/ui';
 
 import { Title } from './title';
+
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' },
+];
 
 export const InputVariants = () => {
   return (
@@ -15,6 +21,7 @@ export const InputVariants = () => {
           error={{ message: 'Lorem ipsum dolor sit amet' }}
         />
         <Input label="Focused" autoFocus />
+        <SelectInput label="Focused" options={options} />
       </View>
     </>
   );

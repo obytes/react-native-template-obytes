@@ -11,7 +11,7 @@ const development = {
   scheme: `${SCHEME}.development`,
   icon: './assets/icon.development.jpeg',
   foregroundImage: './assets/icon.development.jpeg',
-  API_URL: 'https://qa-api.give.org.kw',
+  API_URL: 'https://dummyjson.com/',
   version: packageJSON.version,
 };
 
@@ -21,7 +21,7 @@ const staging = {
   scheme: `${SCHEME}.staging`,
   icon: './assets/icon.staging.jpeg',
   foregroundImage: './assets/icon.staging.jpeg',
-  API_URL: 'https://qa-api.give.org.kw',
+  API_URL: 'https://dummyjson.com/',
   version: packageJSON.version,
 };
 const production = {
@@ -30,7 +30,7 @@ const production = {
   scheme: `${SCHEME}`,
   icon: './assets/icon.jpeg',
   foregroundImage: './assets/icon.jpeg',
-  API_URL: 'https://api.give.org.kw',
+  API_URL: 'https://dummyjson.com/',
   version: packageJSON.version,
 };
 

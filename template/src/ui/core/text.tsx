@@ -2,7 +2,9 @@
 import { styled } from 'nativewind';
 import React from 'react';
 import type { TextProps } from 'react-native';
-import { Text as NNText } from 'react-native';
+import { StyleSheet, Text as NNText } from 'react-native';
+
+import { isRTL } from '@/core';
 
 const SText = styled(NNText);
 
@@ -13,9 +15,9 @@ export const textVariants = {
   h3: 'text-[24px] leading-[36px] font-medium',
   xl: 'text-[20px] leading-[30px]',
   lg: 'text-[18px] leading-[30px]',
-  md: 'text-[16px] leading-[30px]',
-  sm: 'text-[14px] leading-[30px]',
-  xs: 'text-[12px] leading-[30px]',
+  md: 'text-[16px] leading-[32px]',
+  sm: 'text-[14px] leading-[21px]',
+  xs: 'text-[12px] leading-[18px]',
   error: ' text-[12px] leading-[30px] text-danger-500',
 };
 
@@ -24,7 +26,12 @@ interface Props extends TextProps {
   className?: string;
 }
 
-export const Text = ({ variant = 'md', className = '', ...props }: Props) => {
+export const Text = ({
+  variant = 'md',
+  className = '',
+  style,
+  ...props
+}: Props) => {
   return (
     <SText
       className={`
@@ -32,6 +39,10 @@ export const Text = ({ variant = 'md', className = '', ...props }: Props) => {
       ${textVariants[variant]}
       ${className}
     `}
+      style={StyleSheet.flatten([
+        { writingDirection: isRTL ? 'rtl' : 'ltr' },
+        style,
+      ])}
       {...props}
     />
   );
