@@ -13,5 +13,6 @@ type ConfigType = {
   version: string;
   name: string;
 };
+const Config = NConfig as ConfigType;
 
-export const Config = NConfig as ConfigType;
+export default Config;

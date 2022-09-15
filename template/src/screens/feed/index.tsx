@@ -1,4 +1,4 @@
-import { Config } from '@config';
+import Config from '@config';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -24,7 +24,7 @@ const articles = [
   },
 ];
 
-export const Home = () => {
+export const Feed = () => {
   const { signOut } = useAuth();
   const { t } = useTranslation();
   return (
