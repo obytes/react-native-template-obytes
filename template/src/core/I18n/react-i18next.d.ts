@@ -1,4 +1,4 @@
-import type { resources } from './index';
+import type { resources } from './resources';
 
 // react-i18next versions higher than 11.11.0
 

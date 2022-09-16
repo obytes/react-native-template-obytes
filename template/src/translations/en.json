@@ -1,3 +1,30 @@
 {
+  "onboarding": {
+    "message": "Welcome to obytes app site"
+  },
+  "settings": {
+    "about": "About",
+    "app_name": "App Name",
+    "arabic": "Arabic",
+    "dark": "Dark",
+    "english": "English",
+    "generale": "General",
+    "github": "Github",
+    "language": "Language",
+    "light": "Light",
+    "links": "Links",
+    "logout": "Logout",
+    "more": "More",
+    "privacy": "Privacy Policy",
+    "rate": "Rate",
+    "share": "Share",
+    "support": "Support",
+    "support_us": "Support Us",
+    "terms": "Terms of Service",
+    "theme": "Theme",
+    "title": "Settings",
+    "version": "Version",
+    "website": "Website"
+  },
   "welcome": "Welcome to obytes app site"
 }

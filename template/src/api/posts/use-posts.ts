@@ -3,8 +3,6 @@ import { useQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 
 import { client, getQueryKey } from '../common';
-import type { Post } from '.';
-
 export type Post = {
   userId: number;
   id: number;

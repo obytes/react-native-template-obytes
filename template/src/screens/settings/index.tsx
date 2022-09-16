@@ -3,7 +3,8 @@ import type { BottomSheetModal } from '@gorhom/bottom-sheet';
 import * as React from 'react';
 
 import { useAuth, useSelectedLanguage } from '@/core';
-import type { Language } from '@/core/i18n/utils';
+import { translate } from '@/core';
+import type { Language } from '@/core/i18n/types';
 import type { Option } from '@/ui';
 import { Options, ScrollView, Text, View } from '@/ui';
 import { Github, Rate, Share, Support, Website } from '@/ui/icons';
@@ -18,38 +19,47 @@ export const Settings = ({}: Props) => {
     <ScrollView className="bg-white">
       <View className="flex-1 px-4 pt-16">
         <Text variant="lg" className="font-bold">
-          Settings
+          {translate('settings.title')}
         </Text>
-        <ItemsContainer title="UI">
+        <ItemsContainer title="settings.generale">
           <LanguageItem />
+          <Item
+            text="settings.theme"
+            onPress={() => {}}
+            value={translate('settings.light')}
+          />
         </ItemsContainer>
 
-        <ItemsContainer title="Generale">
-          <Item text="Share" icon={<Share />} onPress={() => {}} />
-          <Item text="Rate" icon={<Rate />} onPress={() => {}} />
-          <Item text="Support" icon={<Support />} onPress={() => {}} />
+        <ItemsContainer title="settings.about">
+          <Item text="settings.app_name" value={Config.name} />
+          <Item text="settings.version" value={Config.version} />
         </ItemsContainer>
 
-        <ItemsContainer title="Links">
-          <Item text="Github" icon={<Github />} onPress={() => {}} />
-          <Item text="Website" icon={<Website />} onPress={() => {}} />
+        <ItemsContainer title="settings.support_us">
+          <Item text="settings.share" icon={<Share />} onPress={() => {}} />
+          <Item text="settings.rate" icon={<Rate />} onPress={() => {}} />
+          <Item text="settings.support" icon={<Support />} onPress={() => {}} />
         </ItemsContainer>
 
-        <ItemsContainer title="About">
-          <Item text="App Name" value={Config.name} />
-          <Item text="Version" value={Config.version} />
+        <ItemsContainer title="settings.links">
+          <Item text="settings.privacy" onPress={() => {}} />
+          <Item text="settings.terms" onPress={() => {}} />
+          <Item text="settings.github" icon={<Github />} onPress={() => {}} />
+          <Item text="settings.website" icon={<Website />} onPress={() => {}} />
         </ItemsContainer>
 
-        <ItemsContainer title="More">
-          <Item text="Sign Out" onPress={signOut} />
-        </ItemsContainer>
+        <View className="my-8">
+          <ItemsContainer>
+            <Item text="settings.logout" onPress={signOut} />
+          </ItemsContainer>
+        </View>
       </View>
     </ScrollView>
   );
 };
 
 const LanguageItem = () => {
-  const { setLanguage } = useSelectedLanguage();
+  const { language, setLanguage } = useSelectedLanguage();
   const optionsRef = React.useRef<BottomSheetModal>(null);
   const open = React.useCallback(() => optionsRef.current?.present(), []);
   const onSelect = React.useCallback(
@@ -62,14 +72,24 @@ const LanguageItem = () => {
 
   const langs = React.useMemo(
     () => [
-      { label: 'English', value: 'en' },
-      { label: 'Arabic', value: 'ar' },
+      { label: translate('settings.english'), value: 'en' },
+      { label: translate('settings.arabic'), value: 'ar' },
     ],
     []
   );
+
+  const selectedLanguageLabel = React.useMemo(
+    () => langs.find((lang) => lang.value === language)?.label,
+    [language, langs]
+  );
+
   return (
     <>
-      <Item text="Language" value="English" onPress={open} />
+      <Item
+        text="settings.language"
+        value={selectedLanguageLabel}
+        onPress={open}
+      />
       <Options ref={optionsRef} options={langs} onSelect={onSelect} />
     </>
   );

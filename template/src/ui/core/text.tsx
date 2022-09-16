@@ -4,9 +4,16 @@ import React from 'react';
 import type { TextProps } from 'react-native';
 import { StyleSheet, Text as NNText } from 'react-native';
 
-import { isRTL } from '@/core';
+import type { TxKeyPath } from '@/core';
+import { isRTL, translate } from '@/core';
 
 const SText = styled(NNText);
+
+interface Props extends TextProps {
+  variant?: keyof typeof textVariants;
+  className?: string;
+  tx?: TxKeyPath;
+}
 
 export const textVariants = {
   defaults: 'text-base text-black font-inter  font-normal',
@@ -21,17 +28,15 @@ export const textVariants = {
   error: ' text-[12px] leading-[30px] text-danger-500',
 };
 
-interface Props extends TextProps {
-  variant?: keyof typeof textVariants;
-  className?: string;
-}
-
 export const Text = ({
   variant = 'md',
   className = '',
   style,
+  tx,
+  children,
   ...props
 }: Props) => {
+  const content = tx ? translate(tx) : children;
   return (
     <SText
       className={`
@@ -44,6 +49,8 @@ export const Text = ({
         style,
       ])}
       {...props}
-    />
+    >
+      {content}
+    </SText>
   );
 };

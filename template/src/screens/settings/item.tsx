@@ -1,9 +1,10 @@
 import * as React from 'react';
 
+import type { TxKeyPath } from '@/core';
 import { ArrowRight, Text, TouchableOpacity, View } from '@/ui';
 
 type ItemProps = {
-  text: string;
+  text: TxKeyPath;
   value?: string;
   onPress?: () => void;
   icon?: React.ReactNode;
@@ -19,7 +20,7 @@ export const Item = ({ text, value, icon, onPress }: ItemProps) => {
     >
       <View className="flex-row items-center">
         {icon && <View className="pr-2">{icon}</View>}
-        <Text variant="md">{text}</Text>
+        <Text variant="md" tx={text} />
       </View>
       <View className="flex-row  items-center">
         <Text variant="md" className="text-neutral-600">
