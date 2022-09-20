@@ -1,7 +1,9 @@
 import React from 'react';
 import type { TouchableOpacityProps } from 'react-native';
 
-import { ActivityIndicator, Text, TouchableOpacity } from './core';
+import { ActivityIndicator } from './activity-indicator';
+import { Text } from './text';
+import { TouchableOpacity } from './touchable-opacity';
 
 type Variant = {
   container: string;

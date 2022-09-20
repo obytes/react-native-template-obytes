@@ -1,19 +1,17 @@
 import Config from '@config';
-import type { BottomSheetModal } from '@gorhom/bottom-sheet';
 import * as React from 'react';
 
-import { useAuth, useSelectedLanguage } from '@/core';
+import { useAuth } from '@/core';
 import { translate } from '@/core';
-import type { Language } from '@/core/i18n/types';
-import type { Option } from '@/ui';
-import { Options, ScrollView, Text, View } from '@/ui';
+import { ScrollView, Text, View } from '@/ui';
 import { Github, Rate, Share, Support, Website } from '@/ui/icons';
 
 import { Item } from './item';
 import { ItemsContainer } from './items-container';
+import { LanguageItem } from './language-item';
+import { ThemeItem } from './theme-item';
 
-type Props = {};
-export const Settings = ({}: Props) => {
+export const Settings = () => {
   const { signOut } = useAuth();
   return (
     <ScrollView className="bg-white">
@@ -23,11 +21,7 @@ export const Settings = ({}: Props) => {
         </Text>
         <ItemsContainer title="settings.generale">
           <LanguageItem />
-          <Item
-            text="settings.theme"
-            onPress={() => {}}
-            value={translate('settings.light')}
-          />
+          <ThemeItem />
         </ItemsContainer>
 
         <ItemsContainer title="settings.about">
@@ -55,42 +49,5 @@ export const Settings = ({}: Props) => {
         </View>
       </View>
     </ScrollView>
-  );
-};
-
-const LanguageItem = () => {
-  const { language, setLanguage } = useSelectedLanguage();
-  const optionsRef = React.useRef<BottomSheetModal>(null);
-  const open = React.useCallback(() => optionsRef.current?.present(), []);
-  const onSelect = React.useCallback(
-    (option: Option) => {
-      setLanguage(option.value as Language);
-      optionsRef.current?.dismiss();
-    },
-    [setLanguage]
-  );
-
-  const langs = React.useMemo(
-    () => [
-      { label: translate('settings.english'), value: 'en' },
-      { label: translate('settings.arabic'), value: 'ar' },
-    ],
-    []
-  );
-
-  const selectedLanguageLabel = React.useMemo(
-    () => langs.find((lang) => lang.value === language)?.label,
-    [language, langs]
-  );
-
-  return (
-    <>
-      <Item
-        text="settings.language"
-        value={selectedLanguageLabel}
-        onPress={open}
-      />
-      <Options ref={optionsRef} options={langs} onSelect={onSelect} />
-    </>
   );
 };

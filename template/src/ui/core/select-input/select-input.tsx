@@ -2,7 +2,9 @@ import type { BottomSheetModal } from '@gorhom/bottom-sheet';
 import * as React from 'react';
 import type { FieldError } from 'react-hook-form';
 
-import { Text, TouchableOpacity, View } from '../core';
+import { Text } from '../text';
+import { TouchableOpacity } from '../touchable-opacity';
+import { View } from '../view';
 import { Arrow } from './arrow';
 import type { Option } from './options';
 import { Options } from './options';
@@ -44,7 +46,7 @@ export const SelectInput = (props: SelectInputProps) => {
           </Text>
         )}
         <TouchableOpacity
-          className={` mt-0 flex-row items-center justify-center border-[1px] py-3 px-2  ${borderColor} rounded-md ${bgColor} text-[16px]`}
+          className={`mt-0 flex-row items-center justify-center border-[1px] py-3 px-2  ${borderColor} rounded-md ${bgColor} text-[16px]`}
           disabled={disabled}
           onPress={open}
         >

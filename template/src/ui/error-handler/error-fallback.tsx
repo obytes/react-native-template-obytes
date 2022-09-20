@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import { Button } from '../button';
-import { Text, View } from '../core';
+import { Button, Text, View } from '../core';
 import { Screen } from '../screen';
 
 export function ErrorFallback({ resetErrorBoundary }: any) {

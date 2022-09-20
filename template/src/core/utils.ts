@@ -1,3 +1,4 @@
+import { Linking } from 'react-native';
 import { MMKV } from 'react-native-mmkv';
 
 export const storage = new MMKV();
@@ -12,4 +13,8 @@ export async function setItem<T>(key: string, value: T) {
 }
 export async function removeItem(key: string) {
   storage.delete(key);
+}
+
+export function openLinkInBrowser(url: string) {
+  Linking.canOpenURL(url).then((canOpen) => canOpen && Linking.openURL(url));
 }
