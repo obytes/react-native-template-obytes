@@ -15,10 +15,18 @@ export interface SelectInputProps {
   error?: Omit<FieldError, 'type'> | undefined;
   options?: Option[];
   onSelect?: (option: Option) => void;
+  placeholder?: string;
 }
 
 export const SelectInput = (props: SelectInputProps) => {
-  const { label, error, options = [], disabled = false, onSelect } = props;
+  const {
+    label,
+    error,
+    options = [],
+    placeholder = 'select...',
+    disabled = false,
+    onSelect,
+  } = props;
   const optionsRef = React.useRef<BottomSheetModal>(null);
   const open = React.useCallback(() => optionsRef.current?.present(), []);
   const close = React.useCallback(() => optionsRef.current?.dismiss(), []);
@@ -52,7 +60,7 @@ export const SelectInput = (props: SelectInputProps) => {
         >
           <View className="flex-1">
             <Text variant="md" className="text-neutral-600">
-              select here
+              {placeholder}
             </Text>
           </View>
           <Arrow />

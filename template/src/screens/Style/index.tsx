@@ -11,10 +11,10 @@ export const Style = () => {
   return (
     <ScrollView className="bg-white">
       <View className="flex-1  px-4 pt-10">
-        <InputVariants />
-        <ButtonVariants />
         <TextVariants />
         <ColorVariants />
+        <InputVariants />
+        <ButtonVariants />
       </View>
     </ScrollView>
   );

@@ -20,7 +20,7 @@ export const InputVariants = () => {
           label="Error"
           error={{ message: 'Lorem ipsum dolor sit amet' }}
         />
-        <Input label="Focused" autoFocus />
+        <Input label="Focused" />
         <SelectInput label="Focused" options={options} />
       </View>
     </>
