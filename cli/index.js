@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-import chalk from "chalk";
-import { runCommand, cleanUpFolder } from "./utils.js";
+
+const chalk = require("chalk");
+const { runCommand, cleanUpFolder } = require("./utils.js");
 
 const createObytesApp = async () => {
   // get project name from command line

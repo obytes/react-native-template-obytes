@@ -1,6 +1,6 @@
 {
   "name": "create-obytes-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Obytes expo starter",
   "homepage": "https://github.com/obytes/react-native-template-obytes",
   "type": "module",

@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-import chalk from "chalk";
-import fs from "fs-extra";
-import { createSpinner } from "nanospinner";
-import { exec } from "child_process";
-import path from "path";
+const chalk = require("chalk");
+const fs = require("fs-extra");
+const { createSpinner } = require("nanospinner");
+const { exec } = require("child_process");
+const path = require("path");
 
-export const execShellCommand = (cmd) => {
+const execShellCommand = (cmd) => {
   return new Promise((resolve, reject) => {
     exec(cmd, (error, stdout, stderr) => {
       if (error) {
@@ -17,7 +17,7 @@ export const execShellCommand = (cmd) => {
   });
 };
 
-export const runCommand = async (
+const runCommand = async (
   command,
   { loading = "loading ....", success = "success", error = "error" }
 ) => {
@@ -33,7 +33,7 @@ export const runCommand = async (
 };
 
 // remove ios and android folders
-export const cleanUpFolder = async (projectName) => {
+const cleanUpFolder = async (projectName) => {
   const spinner = createSpinner(`Clean up project folder`).start();
   try {
     fs.removeSync(path.join(process.cwd(), `${projectName}/ios`));
@@ -44,4 +44,9 @@ export const cleanUpFolder = async (projectName) => {
     console.log(chalk.red(`Failed to clean up project folder`), error);
     process.exit(1);
   }
+};
+
+module.exports = {
+  runCommand,
+  cleanUpFolder,
 };
