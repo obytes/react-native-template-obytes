@@ -52,14 +52,6 @@ npx create-obytes-app MyApp
 
 ```
 
-Enable husky Git pre-hooks by adding the following script to your `packages.json` and reinstall dependencies to enable husky pre-commit using `yarn install`
-
-```json
-   "scripts": {
-      "postinstall": "husky install",
-    },
-```
-
 Run the app
 
 ```bash

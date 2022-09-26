@@ -31,14 +31,30 @@ const runCommand = async (
     process.exit(1);
   }
 };
+const initGit = async (projectName) => {
+  await execShellCommand(`cd ${projectName} && git init && cd ..`);
+};
+
+// add husky script to package.json
+const addPostInstallScript = async (projectName) => {
+  const packageJsonPath = path.join(
+    process.cwd(),
+    `${projectName}/package.json`
+  );
+  const packageJson = fs.readJsonSync(packageJsonPath);
+  packageJson.scripts.postinstall = "husky install";
+  fs.writeJsonSync(packageJsonPath, packageJson, { spaces: 2 });
+};
 
 // remove ios and android folders
 const cleanUpFolder = async (projectName) => {
-  const spinner = createSpinner(`Clean up project folder`).start();
+  const spinner = createSpinner(`Clean and Setup  project folder`).start();
   try {
     fs.removeSync(path.join(process.cwd(), `${projectName}/ios`));
     fs.removeSync(path.join(process.cwd(), `${projectName}/android`));
-    spinner.success({ text: "Clean up project folder" });
+    await initGit(projectName);
+    addPostInstallScript(projectName);
+    spinner.success({ text: "Clean and Setup  project folder" });
   } catch (error) {
     spinner.error({ text: error });
     console.log(chalk.red(`Failed to clean up project folder`), error);
