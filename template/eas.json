@@ -1,0 +1,84 @@
+{
+  "cli": {
+    "version": ">= 0.57.0"
+  },
+  "build": {
+    "production": {
+      "channel": "production",
+      "distribution": "store",
+      "ios": {
+        "image": "latest"
+      },
+      "android": {
+        "buildType": "app-bundle",
+        "image": "latest"
+      },
+      "env": {
+        "APP_ENV": "production",
+        "FLIPPER_DISABLE": "1"
+      },
+      "prebuildCommand": "prebuild --skip-dependency-update react",
+      "cache": {
+        "key": "give-1"
+      }
+    },
+    "preview": {
+      "channel": "staging",
+      "distribution": "internal",
+      "ios": {
+        "image": "latest"
+      },
+      "android": {
+        "buildType": "apk",
+        "image": "latest"
+      },
+      "env": {
+        "APP_ENV": "staging",
+        "FLIPPER_DISABLE": "1"
+      },
+
+      "prebuildCommand": "prebuild --skip-dependency-update react",
+      "cache": {
+        "key": "give-1"
+      }
+    },
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "image": "latest"
+      },
+      "android": {
+        "image": "latest"
+      },
+      "env": {
+        "APP_ENV": "development"
+      },
+
+      "prebuildCommand": "prebuild --skip-dependency-update react",
+      "cache": {
+        "key": "give-1"
+      }
+    },
+    "simulator": {
+      "ios": {
+        "simulator": true,
+        "image": "latest"
+      },
+      "android": {
+        "image": "latest"
+      },
+      "env": {
+        "APP_ENV": "development"
+      },
+      "node": "14.18.1",
+      "prebuildCommand": "prebuild --skip-dependency-update react",
+      "cache": {
+        "key": "give-1"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "View": {
+    "prefix": "v",
+    "body": [
+      "<View className=\"flex-1 items-center justify-center\">",
+      "  $1",
+      "</View>"
+    ],
+    "description": "A Simple View "
+  },
+  "Text": {
+    "prefix": "t",
+    "body": [
+      "<Text variant=\"body\" className=\"text-center\">",
+      "  $1",
+      "</Text>"
+    ],
+    "description": "A Simple Text"
+  },
+  "export *": {
+    "prefix": "ex *",
+    "body": ["export * from '.$1';"],
+    "description": "export *"
+  },
+  "Component": {
+    "prefix": "comp",
+    "body": [
+      "import * as React from 'react';",
+      "",
+      "import { Text, View } from '@/ui';",
+      "",
+      "type Props = {",
+      "  $2",
+      "};",
+      "export const ${1:CompName} = ({}: Props) => {",
+      "  return (",
+      "    <View className=\"flex-1\">",
+      "      <Text className=\"text-base\">${1:CompName} Component</Text>",
+      "    </View>",
+      "  );",
+      "};",
+      ""
+    ],
+    "description": "Component"
+  },
+  // update it here https://snippet-generator.app/?description=useInfiniteQuery&tabtrigger=useiq&snippet=import+type+%7B+UseInfiniteQueryOptions+%7D+from+%27%40tanstack%2Freact-query%27%3B%0Aimport+%7B+useInfiniteQuery+%7D+from+%27%40tanstack%2Freact-query%27%3B%0Aimport+type+%7B+AxiosError+%7D+from+%27axios%27%3B%0A%0Aimport+%7B%0A++client%2C%0A++DEFAULT_LIMIT%2C%0A++getNextPageParam%2C%0A++getQueryKey%2C%0A%7D+from+%27..%2Fcommon%27%3B%0Aimport+type+%7B+PaginateQuery+%7D+from+%27..%2Ftypes%27%3B%0A%0Atype+Params+%3D+%7B%0A++pageParam%3F%3A+number%3B%0A%7D%3B%0A%0Atype+Response+%3D+PaginateQuery%3C%7B%243%7D%3E%0A%0Aconst+get%241+%3D+%28%7B+pageParam+%7D%3A+Params%29%3A+Promise%3CResponse%3E+%3D%3E+%7B%0A++return+client%28%7B%0A++++url%3A+%27%242%27%2C%0A++++method%3A+%27GET%27%2C%0A++++params%3A+%7B%0A++++++limit%3A+DEFAULT_LIMIT%2C%0A++++++offset%3A+pageParam%2C%0A++++%7D%2C%0A++%7D%29.then%28%28response%29+%3D%3E+response.data%29%3B%0A%7D%3B%0A%0Aexport+function+use%241Infinite%28%0A++config%3F%3A+UseInfiniteQueryOptions%3CResponse%2C+AxiosError%3E%0A%29+%7B%0A++const+queryKey+%3D+getQueryKey%28%27%24%7B1%2F%28.*%29%2F%24%7B1%3A%2Fdowncase%7D%2F%7D%27%29%3B%0A++return+useInfiniteQuery%3CResponse%2C+AxiosError%3E%28%0A++++queryKey%2C%0A++++%28%7B+pageParam+%3D+0+%7D%29+%3D%3E+get%241%28%7B+pageParam+%7D%29%2C%0A++++%7B+...config%2C+getNextPageParam+%7D%0A++%29%3B%0A%7D%0A&mode=vscode
+  "useInfiniteQuery": {
+    "prefix": "useiq",
+    "body": [
+      "import type { UseInfiniteQueryOptions } from '@tanstack/react-query';",
+      "import { useInfiniteQuery } from '@tanstack/react-query';",
+      "import type { AxiosError } from 'axios';",
+      "",
+      "import {",
+      "  client,",
+      "  DEFAULT_LIMIT,",
+      "  getNextPageParam,",
+      "  getQueryKey,",
+      "} from '../common';",
+      "import type { PaginateQuery } from '../types';",
+      "",
+      "type Params = {",
+      "  pageParam?: number;",
+      "};",
+      "",
+      "type Response = PaginateQuery<{$3}>;",
+      "",
+      "function get$({ }: Params): Promise<Response> {",
+      "  return client({",
+      "    url: '$2',",
+      "    method: 'GET',",
+      "    params: {",
+      "      limit: DEFAULT_LIMIT,",
+      "      offset: pageParam,",
+      "    },",
+      "  }).then((response) => response.data);",
+      "};",
+      "",
+      "export function use$1Infinite(",
+      "  config?: UseInfiniteQueryOptions<Response, AxiosError>",
+      ") {",
+      "  const queryKey = getQueryKey('${1/(.*)/${1:/downcase}/}');",
+      "  return useInfiniteQuery<Response, AxiosError>(",
+      "    queryKey,",
+      "    ({ pageParam = 0 }) => get$1({ pageParam }),",
+      "    { ...config, getNextPageParam }",
+      "  );",
+      "}",
+      ""
+    ],
+    "description": "useInfiniteQuery"
+  },
+  // https://snippet-generator.app/?description=useQuery&tabtrigger=useq&snippet=import+type+%7B+UseQueryOptions+%7D+from+%27%40tanstack%2Freact-query%27%3B%0Aimport+%7B+useQuery+%7D+from+%27%40tanstack%2Freact-query%27%3B%0Aimport+type+%7B+AxiosError+%7D+from+%27axios%27%3B%0A%0Aimport+%7B+client%2C+getQueryKey+%7D+from+%27..%2Fcommon%27%3B%0A%0Atype+Params+%3D+%7B%243%7D%3B%0Atype+Response+%3D+%7B%244%7D%3B%0A%0Afunction+get%241%28%7B+%7D%3A+Params%29%3A+Promise%3CResponse%3E+%7B%0A++return+client%28%7B%0A++++url%3A+%60%242%60%2C%0A++++method%3A+%27GET%27%2C%0A++%7D%29.then%28%28response%29+%3D%3E+response.data%29%3B%0A%7D%3B%0A%0Aexport+function+use%241%28%0A++params%3A+Params%2C%0A++config%3F%3A+UseQueryOptions%3CResponse%2C+AxiosError%3E%0A%29+%7B%0A++const+queryKey+%3D+getQueryKey%3CParams%3E%28%27%24%7B1%2F%28.*%29%2F%24%7B1%3A%2Fdowncase%7D%2F%7D%27%2C+params%29%3B%0A++return+useQuery%3CResponse%2C+AxiosError%3E%28%0A++++queryKey%2C%0A++++%28%29+%3D%3E+get%241%28params%29%2C%0A++++config%0A++%29%3B%0A%7D%0A&mode=vscode
+  "useQuery": {
+    "prefix": "useq",
+    "body": [
+      "import type { UseQueryOptions } from '@tanstack/react-query';",
+      "import { useQuery } from '@tanstack/react-query';",
+      "import type { AxiosError } from 'axios';",
+      "",
+      "import { client, getQueryKey } from '../common';",
+      "",
+      "type Params = {$3};",
+      "type Response = {$4};",
+      "",
+      "function get$1({ }: Params): Promise<Response> {",
+      "  return client({",
+      "    url: `$2`,",
+      "    method: 'GET',",
+      "  }).then((response) => response.data);",
+      "};",
+      "",
+      "export function use$1(",
+      "  params: Params,",
+      "  config?: UseQueryOptions<Response, AxiosError>",
+      ") {",
+      "  const queryKey = getQueryKey<Params>('${1/(.*)/${1:/downcase}/}', params);",
+      "  return useQuery<Response, AxiosError>(",
+      "    queryKey,",
+      "    () => get$1(params),",
+      "    config",
+      "  );",
+      "}",
+      ""
+    ],
+    "description": "useQuery"
+  },
+  //https://snippet-generator.app/?description=useMutation&tabtrigger=usem&snippet=import+type+%7B+UseMutationOptions+%7D+from+%27%40tanstack%2Freact-query%27%3B%0Aimport+%7B+useMutation+%7D+from+%27%40tanstack%2Freact-query%27%3B%0Aimport+type+%7B+AxiosError+%7D+from+%27axios%27%3B%0A%0Aimport+%7B+client+%7D+from+%27..%2Fcommon%27%3B%0A%0Atype+Input+%3D+%7B%243%7D%3B%0A%0Atype+Response+%3D+%7B%244%7D%3B%0A%0Aconst+%24%7B1%2F%28.*%29%2F%24%7B1%3A%2Fcamelcase%7D%2F%7D+%3D+%28input%3A+Input%29%3A+Promise%3CResponse%3E+%3D%3E+%7B%0A++return+client%28%7B%0A++++url%3A+%27%242%27%2C%0A++++method%3A+%27POST%27%2C%0A++++data%3A+input%2C%0A++%7D%29.then%28%28response%29+%3D%3E+response.data%29%3B%0A%7D%3B%0A%0Aexport+function+use%241%28%0A++config%3A+UseMutationOptions%3CResponse%2C+AxiosError%2C+Input%3E%0A%29+%7B%0A++return+useMutation%3CResponse%2C+AxiosError%2C+Input%3E%28%24%7B1%2F%28.*%29%2F%24%7B1%3A%2Fcamelcase%7D%2F%7D%2C+config%29%3B%0A%7D%0A&mode=vscode
+  "useMutation": {
+    "prefix": "usem",
+    "body": [
+      "import type { UseMutationOptions } from '@tanstack/react-query';",
+      "import { useMutation } from '@tanstack/react-query';",
+      "import type { AxiosError } from 'axios';",
+      "",
+      "import { client } from '../common';",
+      "",
+      "type Input = {$3};",
+      "",
+      "type Response = {$4};",
+      "",
+      "const ${1/(.*)/${1:/camelcase}/} = (input: Input): Promise<Response> => {",
+      "  return client({",
+      "    url: '$2',",
+      "    method: 'POST',",
+      "    data: input,",
+      "  }).then((response) => response.data);",
+      "};",
+      "",
+      "export function use$1(",
+      "  config: UseMutationOptions<Response, AxiosError, Input>",
+      ") {",
+      "  return useMutation<Response, AxiosError, Input>(${1/(.*)/${1:/camelcase}/}, config);",
+      "}",
+      ""
+    ],
+    "description": "useMutation"
+  }
+}

@@ -1,0 +1,22 @@
+version: 2
+updates:
+    - package-ecosystem: npm
+      directory: '/'
+      schedule:
+          interval: daily
+      open-pull-requests-limit: 10
+      reviewers:
+          - B3ns44d
+          - ayoubaharmim
+      labels:
+          - type:dependencies
+      assignees:
+          - B3ns44d
+          - ayoubaharmim
+      labels:
+          - dependencies
+          - dependabot
+      commit-message:
+          prefix: fix
+          prefix-development: chore
+          include: scope

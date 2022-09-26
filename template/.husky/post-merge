@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+function changed {
+    git diff --name-only HEAD@{1} HEAD | grep "^$1" >/dev/null 2>&1
+}
+
+echo 'Checking for changes in yarn.lock...'
+
+if changed 'yarn.lock'; then
+    echo "📦 yarn.lock changed. Run yarn install to bring your dependencies up to date."
+    yarn install
+fi
+
+echo 'You are up to date :)'
+
+echo 'If necessary, you can run yarn prebuild to generate native code.'
+
+exit 0

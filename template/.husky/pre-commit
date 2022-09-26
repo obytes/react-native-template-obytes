@@ -1,4 +1,19 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
+. "$(dirname "$0")/common.sh"
 
-yarn lint
+
+echo "===\n>> Checking branch name..."
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+PROTECTED_BRANCHES="^(main)"
+
+if [[ $BRANCH =~ $PROTECTED_BRANCHES ]]; then
+  echo ">> Direct commits to the main branch are not allowed. Please choose a new branch name."
+  exit 1
+fi
+
+echo ">> Finish checking branch name"
+echo ">> Linting your files and fixing them if needed..."
+
+yarn lint-staged

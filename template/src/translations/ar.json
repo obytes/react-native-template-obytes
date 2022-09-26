@@ -1,0 +1,30 @@
+{
+  "onboarding": {
+    "message": "مرحبا بكم في موقع تطبيق obytes"
+  },
+  "settings": {
+    "about": "حول التطبيق ",
+    "app_name": "اسم التطبيق",
+    "arabic": "عربي",
+    "dark": "مظلم",
+    "english": "إنجليزي",
+    "generale": "عام",
+    "github": "جيثب",
+    "language": "لغة",
+    "light": "خفيفة",
+    "links": "الروابط",
+    "logout": "تسجيل خروج",
+    "more": "أكثر",
+    "privacy": "سياسة الخصوصية",
+    "rate": "تقييم",
+    "share": "شارك",
+    "support": "الدعم",
+    "support_us": "ادعمنا",
+    "terms": "شروط الخدمة",
+    "theme": "سمة",
+    "title": "إعدادات",
+    "version": "إصدار",
+    "website": "موقع الكتروني"
+  },
+  "welcome": "test arabic"
+}

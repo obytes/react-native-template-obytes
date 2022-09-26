@@ -1,29 +1,31 @@
-module.exports = {
-  presets: ['module:metro-react-native-babel-preset'],
-  plugins: [
-    'module:react-native-dotenv',
-    [
-      'module-resolver',
-      {
-        root: ['./src'],
-        extensions: [
-          '.ios.ts',
-          '.android.ts',
-          '.ts',
-          '.ios.tsx',
-          '.android.tsx',
-          '.tsx',
-          '.jsx',
-          '.js',
-          '.json',
-        ],
-      },
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ['babel-preset-expo'],
+    plugins: [
+      [
+        'module-resolver',
+        {
+          root: ['./'],
+          alias: {
+            '@': './src',
+            '@config': './config',
+          },
+          extensions: [
+            '.ios.ts',
+            '.android.ts',
+            '.ts',
+            '.ios.tsx',
+            '.android.tsx',
+            '.tsx',
+            '.jsx',
+            '.js',
+            '.json',
+          ],
+        },
+      ],
+      ['nativewind/babel', { mode: 'compileOnly' }],
+      'react-native-reanimated/plugin',
     ],
-    'react-native-reanimated/plugin',
-  ],
-  env: {
-    production: {
-      plugins: ['transform-remove-console'],
-    },
-  },
+  };
 };

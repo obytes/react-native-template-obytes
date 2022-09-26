@@ -1,83 +1,65 @@
-# Obytes Mobile App
+<h1 align="center">
+  <img alt="Obytesapp logo" src="./assets/icon.jpeg" width="124px" style="border-radius:10px"/><br/>
+ObytesApp Mobile App </h1>
 
-The project was created using [react-native-obytes-template](https://github.com/obytes/react-native-template-obytes)
+Due to the fact that this project is based on [`expo-dev-client` ](https://docs.expo.dev/development/getting-started/), we are able to add our own native libraries as well as utilize the entire Expo ecosystem.
 
-## ▶️ Usage
+## 🔗 Requirements
 
-1. [Setting up IOS and Android development environment](https://reactnative.dev/docs/environment-setup)
+- [Node.js LTS release](https://nodejs.org/en/)
+- [Git](https://git-scm.com/)
+- [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall), required only for macOS or Linux users
+- [Yarn](https://classic.yarnpkg.com/en/docs/install)
+- [Expo Cli](https://docs.expo.dev/workflow/expo-cli/)
+- [VS Code Editor](https://code.visualstudio.com/download) ⚠️ Make sure to install all recommended extension from `.vscode/extensions.json`
 
-2. Start working
+## 👋 Quick start
 
-```bash
-## install deps
-yarn
-
-## install ios pods
-yarn setup:ios
-
-## ios
-yarn ios
-
-## android
-yarn android
-
-```
-
-## ⚙️ Enable husky Git pre-hooks
-
-Add the following script to your `packages.json` and reinstall dependencies to enable husky pre-commit using `yarn install`
-
-```json
-"scripts": {
-    //...
-     "postinstall": "husky install",
-  },
-
-```
-
-## 📲 Update App Icon & Splash screen
-
-Replace App logo template `logo.png` with your logo under `assets` folder
-
-Run the following command to generate App icons assets :
-
-```
-yarn react-native set-icon  --path ./assets/logo.png --background "#FFF"
-
-```
-
-> For android icon, make sure to provide a logo with more padding and generate a new app icon for android :
-
-```
-yarn react-native set-icon  --platform android  --path ./assets/android_logo.png --background "#FFF"
-
-```
-
-To generate a standard splash screen using bootsplash package.
+Clone the repo to your machine and install deps :
 
 ```sh
-yarn react-native generate-bootsplash assets/logo.png \
-  --background-color=FFFFFF \
-  --logo-width=150 \
-  --assets-path=assets
+git clone https://github.com/user/obytesapp.git
+
+cd ./obytesapp
+
+yarn
 ```
 
-## ✏️ Custom fonts
+To run the app on ios
 
-Replace Inter.ttf font file with your fonts under `assets/fonts` folder
-
-Run the following command to generate App icons assets :
-
-```
-yarn react-native link
+```sh
+yarn ios
 ```
 
-More details [how to customize App Icon and Splash screen](https://handbook.obytes.com/docs/mobile/generate-app-icon)
+To run the app on Android
 
-## Releasing and building the app with Github action
+```sh
+yarn android
+```
 
-👉 https://handbook.obytes.com/docs/mobile/ci-cd/github-action-build
+## Project setup
 
-## 📚 Read More About Modules
+The project use `husky` and `lint-staged` to manage the project. We will run `yarn lint` before your commit for all the files that are added or modified to make sure that the project is linted and your code respects the best practices.
 
-👉 https://handbook.obytes.com/docs/mobile/get-started
+we are also enforcing a conventional git commit message format based on the [conventional-commits](https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional) guidelines.
+
+If you set up VsCode correctly and install all the recommended extensions, you will be able to see all the linting errors in the editor.
+
+You can always run `yarn lint` in your terminal if you have trouble setting up eslint.
+
+If you had trouble setting up vs code, try updating to the last version and turning off other extensions for the project. If it still doesn't work, please make a problem report on github.
+
+## Built with
+
+The project is built with the following libraries :
+
+- [expo](https://expo.dev)
+- [react-query](https://tanstack.com/query/v4/)
+- [zustand](https://zustand-demo.pmnd.rs/)
+- [nativewind](https://nativewind.dev/)
+- [react-navigation](https://reactnavigation.org/)
+- [react-hook-form](https://react-hook-form.com/)
+- [@shopify/flash-list](https://shopify.github.io/flash-list/)
+- [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv)
+
+> Its always a good idea to check out those libraries and see how they work.😉
