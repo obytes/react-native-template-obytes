@@ -6,89 +6,50 @@
   React Native Template Obytes
 </h1>
 
-📱 A template for your next React Native project 🚀, Made with developer experience and performance first: TypeScript, Husky, Lint-Staged, react-navigation, react-query, restyle, react-hook-form, AppIcon, Splash Screen.
+📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo,TypeScript,tailwindcss, Husky, Lint-Staged, react-navigation, react-query, react-hook-form, I18n.
 
 🚀 Use the template to start your next project or navigate to [code source](https://github.com/obytes/react-native-template-obytes/tree/master/template) to get some inspiration 😉
 
 ### ⭐ Features
 
-- ✅ Last React Native version
+- ✅ Last Expo SDK + Costume Dev client
 - 🎉 Type checking [TypeScript](https://www.typescriptlang.org/)
-- 💅 Minimal UI kit using [@shopify/restyle](https://github.com/Shopify/restyle) with theming
-- 🤖 Auto generate App Icon using [react-native-make](https://github.com/bamlab/react-native-make) and Splash screen using [react-native-bootsplash](https://github.com/zoontek/react-native-bootsplash/)
+- 💅 Minimal UI kit using [tailwindcss](https://www.nativewind.dev/) with theming.
+- ⚙️ Support multiple environnement builds [Production, Staging, Development] using Expo configuration.
 - 🦊 Husky for Git Hooks
 - 💡 Clean project structure with Absolute Imports
-- 🚫 Lint-staged for running linters on Git staged files
-- 🗂 VSCode recommended extensions configuration
+- 🚫 Lint-staged for running linters + typescript checking on Git staged files
+- 🗂 VSCode recommended extensions configuration, settings and snippets for a better developer experience
 - ☂️ [React Navigation](https://reactnavigation.org/) pre-installed with examples
 - 💫 Auth flow with [zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage to save sensitive data.
 - 🛠 A simple workflow to build, release and distribute your application using [Github action](https://github.com/features/actions)
 - 🔥 [React Query](https://react-query.tanstack.com/) & [axios](https://github.com/axios/axios) to fetch Data
 - 🧵 A good approach with example to handle forms based on [react-hook-form](https://react-hook-form.com/) and [yup](https://github.com/jquense/yup) for validation
-- ⚙️ Handel environment variables with [react-native-env](https://github.com/goatandsheep/react-native-dotenv)
-- 🎯 Localization
+- 🎯 Localization with [i18next](https://www.i18next.com/) + validation using Eslint.
 
 ### 🎤 Philosophy
 
 - 🚀 Production-ready
-- 🧩 Minimal code
+- 🥷 Developer experience + Productivity
+- 🧩 Minimal code and dependencies
 - ⚠️ well maintained third-party libraries
 
-### 🛠 Requirements
+## 🔗 Requirements
 
-- [Setting up the development environment](https://reactnative.dev/docs/environment-setup)
+- [Node.js LTS release](https://nodejs.org/en/)
+- [Git](https://git-scm.com/)
+- [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall), required only for macOS or Linux users
+- [Yarn](https://classic.yarnpkg.com/en/docs/install)
+- [Expo Cli](https://docs.expo.dev/workflow/expo-cli/)
+- [VS Code Editor](https://code.visualstudio.com/download)
 
 ### 🤖 Getting started
 
-Start your project using obytes template by running:
+Start your project by running the following command:
 
-```
-npx react-native init MyApp --template https://github.com/obytes/react-native-template-obytes
-```
+```bash
+npx create-obytes-app MyApp
 
-Open the project on your favorite IDE (vscode 😉)
-
-```sh
-src
-├── api                    #axios client and api hooks using react-query
-│   ├── APIProvider.tsx
-│   ├── client.tsx
-│   ├── index.tsx
-│   ├── useAddTask.tsx
-│   └── useTasks.tsx
-├── core                   # core functionalities:authentication, storage, localization
-│   ├── Auth
-│   ├── I18n
-│   └── index.tsx
-├── index.tsx
-├── navigation             # Navigation, stacks and tabs
-│   ├── AuthNavigator.tsx
-│   ├── RootNavigator.tsx
-│   ├── TabNavigator.tsx
-│   ├── index.tsx
-│   ├── types.tsx
-│   └── utils.tsx
-├── screens                # App screens
-│   ├── Home
-│   ├── Login
-│   ├── Style
-│   └── index.tsx
-├── translations          # translation files
-│   └── en.json
-└── ui                    # ui component with theming
-    ├── Button.tsx
-    ├── ErrorHandler
-    ├── Input.tsx
-    ├── Pressable.tsx
-    ├── SafeAreaView.tsx
-    ├── Screen.tsx
-    ├── Text.tsx
-    ├── View.tsx
-    ├── constants.tsx
-    ├── icons
-    ├── index.tsx
-    ├── theme
-    └── utils.tsx
 ```
 
 Enable husky Git pre-hooks by adding the following script to your `packages.json` and reinstall dependencies to enable husky pre-commit using `yarn install`
@@ -99,54 +60,106 @@ Enable husky Git pre-hooks by adding the following script to your `packages.json
     },
 ```
 
+Run the app
+
+```bash
+yarn ios
+
+yarn android
+```
+
+### Project structure
+
+```bash
+src
+├── api
+│   ├── common
+│   │   ├── api-provider.tsx
+│   │   ├── client.tsx
+│   │   ├── index.tsx
+│   │   └── utils.tsx
+│   ├── index.tsx
+│   ├── posts
+│   │   ├── index.tsx
+│   │   └── use-posts.ts
+│   └── types.ts
+├── core
+│   ├── auth
+│   │   ├── index.tsx
+│   │   └── utils.tsx
+│   ├── i18n
+│   │   ├── index.tsx
+│   │   ├── react-i18next.d.ts
+│   │   ├── resources.ts
+│   │   ├── types.ts
+│   │   └── utils.tsx
+│   ├── index.tsx
+│   └── utils.ts
+├── index.tsx
+├── navigation
+│   ├── auth-navigator.tsx
+│   ├── index.tsx
+│   ├── navigation-container.tsx
+│   ├── root-navigator.tsx
+│   ├── tab-navigator.tsx
+│   ├── types.tsx
+│   └── utils.tsx
+├── screens
+│   ├── feed
+│   │   ├── card.tsx
+│   │   └── index.tsx
+│   ├── index.tsx
+│   ├── login
+│   │   └── index.tsx
+│   ├── settings
+│   └── style
+├── translations
+│   ├── ar.json
+│   └── en.json
+├── types
+│   └── index.ts
+└── ui
+    ├── core
+    │   ├── activity-indicator.tsx
+    │   ├── bottom-sheet
+    │   ├── button.tsx
+    │   ├── image.tsx
+    │   ├── index.tsx
+    │   ├── input
+    │   ├── list
+    │   ├── pressable.tsx
+    │   ├── scroll-view.tsx
+    │   ├── select-input
+    │   ├── text.tsx
+    │   ├── touchable-opacity.tsx
+    │   └── view.tsx
+    ├── error-handler
+    │   ├── error-fallback.tsx
+    │   └── index.tsx
+    ├── icons
+    ├── index.tsx
+    ├── screen.tsx
+    ├── theme
+    │   ├── colors.js
+    │   ├── constants.tsx
+    │   └── index.ts
+    └── utils.tsx
+```
+
 ### 🧩 Customization
 
 #### 📲 Update App Icon & Splash screen
 
-Replace App logo template `logo.png` with your logo under `assets` folder
+Replace App icons template with your icons under `assets` folder
 
 Run the following command to generate App icons assets :
 
 ```
-yarn react-native set-icon  --path ./assets/logo.png --background "#FFF"
+yarn prebuild
+
+yarn ios
 
 ```
-
-> For android icon, make sure to provide a logo with more padding and generate a new app icon for android :
-
-```
-yarn react-native set-icon  --platform android  --path ./assets/android_logo.png --background "#FFF"
-
-```
-
-To generate a standard splash screen using bootsplash package.
-
-```sh
-yarn react-native generate-bootsplash assets/logo.png \
-  --background-color=FFFFFF \
-  --logo-width=150 \
-  --assets-path=assets
-```
-
-#### ✏️ Custom fonts
-
-Replace `Inter.ttf` font file with your fonts under `assets/fonts` folder
-
-Run the following command to generate App icons assets :
-
-```
-yarn react-native link
-```
-
-More details [how to customize App Icon and Splash screen](https://handbook.obytes.com/docs/mobile/generate-app-icon)
-
-### 📚 Read More About Modules
-
-👉 https://handbook.obytes.com/docs/mobile/get-started
-
-### Releasing and building the app with Github action
-
-👉 https://handbook.obytes.com/docs/mobile/ci-cd/github-action-build
 
 ### 🔖 License
 
