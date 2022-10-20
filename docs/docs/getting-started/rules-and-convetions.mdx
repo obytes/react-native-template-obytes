@@ -1,0 +1,77 @@
+---
+sidebar_position: 2
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import EslintConfig from "!!raw-loader!../../../template/.eslintrc.js";
+import PreCommit from "!!raw-loader!../../../template/.husky/pre-commit";
+import PostMerge from "!!raw-loader!../../../template/.husky/post-merge";
+import CommitMsg from "!!raw-loader!../../../template/.husky/commit-msg";
+
+# Rules and Conventions
+
+In order to force a consistent code style and avoid common issues in the codebase, we have a set of rules and conventions that we follow and enforced by the starter.
+
+## Typescript
+
+This starter uses Typescript to provide type safety and to avoid common bugs in the codebase. The project configuration is based on expo config with some updates to support absolute important.
+
+<!-- <CodeBlock language="json">{Config}</CodeBlock> -->
+
+You can find more information about it [here](https://docs.expo.io/guides/typescript/).
+
+## Naming
+
+We follow kabab-case for naming files and folders as we think it's the most readable and consistent way to name files and folders in large projects and it's the most common way to name files and folders in the react native community.
+
+Example of kabab-case naming: `my-component.tsx`
+
+For naming variables, functions, classes, interfaces, types, enums, we follow camelCase as it's the most common way to name variables in the react community and as it forced by the linter as you cant create a function component without using camelCase.
+
+## Linting
+
+Using a linter is a must in any javascript project. for the starter we are using eslint with the react native community config and some custom rules to make sure we are following the rules and conventions related to file naming, tailwindcss classes typescript types, import order, internationalization files and more.
+
+Here is the complete eslint configuration file:
+
+<CodeBlock language="js">{EslintConfig}</CodeBlock>
+
+## Git Hooks with Husky
+
+The starter comes with a set of git hooks that help us to enforce rules and conventions. Those hooks are configured using [Husky](https://typicode.github.io/husky/#/). and here is the complete list of the hooks:
+
+### pre-commit
+
+As the name suggest, this hook will run before each commit and it will make sure you are not committing directly on the main branch and it will run the linter and typescript checking on the staged files.
+
+<CodeBlock language="bash">{PreCommit}</CodeBlock>
+
+### post-merge
+
+As the name suggest, this hook will run after each merge and it will check if there is any changed in yarn.lock and if there is any, it will run `yarn install` to make sure the dependencies are up to date.
+
+<CodeBlock language="bash">{PostMerge}</CodeBlock>
+
+### commit-msg
+
+This hook will check if the commit message is following the conventional commit format. If it's not, the commit will be aborted and will show you what going wrong with your commit message.
+
+<CodeBlock language="bash">{CommitMsg}</CodeBlock>
+
+We are using [commitlint](https://commitlint.js.org/#/) to check if the commit message is following the conventional commit format.
+
+In general your commit message should follow this format:
+
+```bash
+type(scope?): subject  #scope is optional; multiple scopes are supported (current delimiter options: "/", "\" and ",")
+```
+
+Real world examples can look like this:
+
+```txt
+fix(ui): fix input width
+feat(ui): add button variants
+feat(api): add usePost query hook
+```
+
+`type` should be one of the following: build, chore, ci ,docs,feat,fix, perf, refactor, revert, style or test.

@@ -1,0 +1,155 @@
+---
+sidebar_position: 5
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import BabelConfig from "!!raw-loader!../../../template/babel.config.js";
+
+# Customizing App Icon and Splash Screen
+
+If you open the new project in VS code you will see the following structure:
+
+```bash title="Project Structure"
+src
+├── api ## any think related to api calls and data fetching
+│   ├── common ## common api files such us axios client and  react query provider
+│   │   ├── api-provider.tsx
+│   │   ├── client.tsx
+│   │   ├── index.tsx
+│   │   └── utils.tsx
+│   ├── index.tsx
+│   ├── posts ## query and mutation related to posts
+│   │   ├── index.tsx
+│   │   └── use-posts.ts
+│   └── types.ts
+├── core # core files such as auth, localization, storage and more
+│   ├── auth
+│   │   ├── index.tsx
+│   │   └── utils.tsx
+│   ├── i18n
+│   │   ├── index.tsx
+│   │   ├── react-i18next.d.ts
+│   │   ├── resources.ts
+│   │   ├── types.ts
+│   │   └── utils.tsx
+│   ├── index.tsx
+│   └── utils.ts
+├── index.tsx
+├── navigation # navigation files such as stack, tab and drawer navigators
+│   ├── auth-navigator.tsx
+│   ├── index.tsx
+│   ├── navigation-container.tsx
+│   ├── root-navigator.tsx
+│   ├── tab-navigator.tsx
+│   ├── types.tsx
+│   └── utils.tsx
+├── screens # screens files
+│   ├── feed
+│   │   ├── card.tsx
+│   │   └── index.tsx
+│   ├── index.tsx
+│   ├── login
+│   │   └── index.tsx
+│   ├── settings
+│   └── style
+├── translations # translation resources files
+│   ├── ar.json
+│   └── en.json
+├── types ## global types
+│   └── index.ts
+└── ui ## ui components and theme configuration
+    ├── core
+    │   ├── activity-indicator.tsx
+    │   ├── bottom-sheet
+    │   ├── button.tsx
+    │   ├── image.tsx
+    │   ├── index.tsx
+    │   ├── input
+    │   ├── list
+    │   ├── pressable.tsx
+    │   ├── scroll-view.tsx
+    │   ├── select-input
+    │   ├── text.tsx
+    │   ├── touchable-opacity.tsx
+    │   └── view.tsx
+    ├── error-handler
+    │   ├── error-fallback.tsx
+    │   └── index.tsx
+    ├── icons
+    ├── index.tsx
+    ├── screen.tsx
+    ├── theme
+    │   ├── colors.js
+    │   ├── constants.tsx
+    │   └── index.ts
+    └── utils.tsx
+```
+
+- `ui`: This folder contains all the UI components and the theme configuration. we provide minimal components with a basic obytes theme. you can add you own components and theme configuration here.
+
+- `core`: This folder contains the core files such as auth, localization, storage and more. This folder can be shared with other projects that why we are going only to find module that has nothing to do with project logic. This approach help us share code between projects and also update the starter with new features.
+
+- `navigation`: This folder contains the navigation files such as stack, tab and drawer navigators. we provide a basic navigation structure for the demo app that you can modify to fit your needs.
+
+- `screens`: This folder contains the screens files. we provide a basic screens structure for the demo app that you can remove and add your own screens. If you need to create a specific component for a screen you can create a `components` folder inside the screen folder.
+
+- `api`: This folder contains the api files. we provide a basic api client and provider and you just need to create query and mutation for your modules. Check `posts` folder for inspiration on how to create a query and mutation.
+
+- `translations`: This folder contains the translation resources files. you recommend using translation file even you are not supporting multiple languages as it will help you to support multiple languages in the future and also help you to find all the strings in one place.
+
+- `types`: This folder contains the global types.
+
+:::note
+The structure is very opinionated but we think it's the best way to structure a react native project. For sure you can change it as you like but we recommend you to follow this structure.
+:::
+
+## Importing files
+
+We use absolute imports to import files using babel module resolver plugin and typescript path mapping. This approach help us to long relative paths and make the code more clean and readable.
+
+Here is a simple example on how the Feed screen look like with absolute imports:
+
+```tsx title="Feed Screen"
+import { FlashList } from "@shopify/flash-list";
+import React from "react";
+
+import type { Post } from "@/api";
+import { usePosts } from "@/api";
+import { EmptyList, SafeAreaView, Text, View } from "@/ui";
+
+import { Card } from "./card";
+
+export const Feed = () => {
+  const { data, isLoading } = usePosts();
+
+  const renderItem = React.useCallback(
+    ({ item }: { item: Post }) => <Card {...item} />,
+    []
+  );
+  return (
+    <View className="flex-1 bg-white">
+      <FlashList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={(_, index) => `item-${index}`}
+        ListHeaderComponent={ListHeader}
+        ListEmptyComponent={<EmptyList isLoading={isLoading} />}
+        estimatedItemSize={300}
+      />
+    </View>
+  );
+};
+
+const ListHeader = () => (
+  <SafeAreaView className="ml-4">
+    <Text variant="lg" className="font-bold">
+      Feed
+    </Text>
+  </SafeAreaView>
+);
+```
+
+<details>
+  <summary>Babel configuration</summary>
+  <CodeBlock language="bash">{BabelConfig}</CodeBlock>
+</details>
