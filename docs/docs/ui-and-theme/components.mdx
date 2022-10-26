@@ -1,0 +1,266 @@
+---
+sidebar_position: 3
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import Card from "!!raw-loader!../../../template/src/screens/feed/card";
+import View from "!!raw-loader!../../../template/src/ui/core/view";
+import TouchableOpacity from "!!raw-loader!../../../template/src/ui/core/touchable-opacity";
+import Pressable from "!!raw-loader!../../../template/src/ui/core/pressable";
+import ScrollView from "!!raw-loader!../../../template/src/ui/core/scroll-view";
+import ActivityIndicator from "!!raw-loader!../../../template/src/ui/core/activity-indicator";
+import List from "!!raw-loader!../../../template/src/ui/core/list";
+import EmptyList from "!!raw-loader!../../../template/src/ui/core/list/empty-list";
+import Image from "!!raw-loader!../../../template/src/ui/core/image";
+import Text from "!!raw-loader!../../../template/src/ui/core/text";
+
+# Components
+
+The starter comes with a set of basic component and a simple design system based on Nativewind to help you get started and save you time.
+
+All those components can be found in the `src/ui/core` folder. Most of them are just wrappers around the React Native core components with `styled` function from Nativewind to make them ready for Tailwind CSS class Names.
+
+Our philosophy is to keep the components as simple as possible and to avoid adding too much logic to them. This way, they are easier to reuse and to customize.
+
+Based on your needs, you can either use them as they are or customize them to fit your needs as well as creating new ones based on the same approach.
+
+```bash title="./src/ui/core"
+.
+├── activity-indicator.tsx
+├── bottom-sheet
+│   ├── backdrop.tsx
+│   └── index.tsx
+├── button.tsx
+├── image.tsx
+├── index.tsx
+├── input
+│   ├── controlled-input.tsx
+│   ├── index.tsx
+│   └── input.tsx
+├── list
+│   ├── empty-list.tsx
+│   └── index.tsx
+├── pressable.tsx
+├── scroll-view.tsx
+├── select-input
+│   ├── arrow.tsx
+│   ├── check.tsx
+│   ├── index.tsx
+│   ├── options.tsx
+│   └── select-input.tsx
+├── text.tsx
+├── touchable-opacity.tsx
+└── view.tsx
+```
+
+Here is a simple example of more porject specific component that uses some primitives components from the `ui` folder.
+
+<CodeBlock language="tsx" title="./src/ui/screen/feed/card.tsx">
+  {Card}
+</CodeBlock>
+
+:::tip
+To save time creating new component or screens, we can just start typing `comp` and click enter to create a new component with the right structure.
+
+![Create component](./img/snippet-demo.gif)
+:::
+
+## View
+
+The `View` component is a wrapper around the React Native `View` component with the `styled` function from Nativewind to accept Tailwind CSS class names.
+
+<CodeBlock language="tsx" title="./src/ui/core/view.tsx">
+  {View}
+</CodeBlock>
+
+**Props**
+
+- All React Native View Props are supported
+- `className` - Tailwind CSS class names
+
+**Use Case**
+
+```tsx
+import * as React from "react";
+import { View, Text } from "@/ui";
+
+const MyComponent = () => {
+  return (
+    <View className="flex flex-col items-center justify-center">
+      <Text>My Component</Text>
+    </View>
+  );
+};
+```
+
+:::tip
+You can use `v` snippet to create a simple View with a default classname
+:::
+
+## Touchable Opacity and Pressable
+
+The `TouchableOpacity` and `Pressable` components are wrappers around the React Native `TouchableOpacity` and `Pressable` components with the `styled` function from Nativewind to accept Tailwind CSS class names.
+
+<CodeBlock language="tsx" title="./src/ui/core/touchable-opacity.tsx">
+  {TouchableOpacity}
+</CodeBlock>
+
+<CodeBlock language="tsx" title="./src/ui/core/pressable.tsx">
+  {Pressable}
+</CodeBlock>
+
+**Props**
+
+- All React Native TouchableOpacity and Pressable Props are supported
+- `className` - Tailwind CSS class names
+
+**Use Case**
+
+```tsx
+import * as React from "react";
+import { TouchableOpacity, Text } from "@/ui";
+
+const MyComponent = () => {
+  return (
+    <TouchableOpacity
+      className="flex flex-col items-center justify-center bg-gray-100"
+      onPress={() => console.log("pressed")}
+    >
+      <Text>My Component</Text>
+    </TouchableOpacity>
+  );
+};
+```
+
+## Scroll View
+
+The `ScrollView` component is a wrapper around the React Native `ScrollView` component with the `styled` function from Nativewind to accept Tailwind CSS class names as `contentContainerStyle`.
+
+<CodeBlock language="tsx" title="./src/ui/core/scroll-view.tsx">
+  {ScrollView}
+</CodeBlock>
+
+**Props**
+
+- All React Native ScrollView Props are supported
+- `className` - Tailwind CSS class names that will be applied to the `contentContainerStyle`
+
+**Use Case**
+
+```tsx
+import * as React from "react";
+import { ScrollView, Text } from "@/ui";
+
+const MyComponent = () => {
+  return (
+    <ScrollView className="p-2">
+      <Text>My Component1</Text>
+      <Text>My Component2</Text>
+    </ScrollView>
+  );
+};
+```
+
+## Activity Indicator
+
+The `ActivityIndicator` component is a wrapper around the React Native `ActivityIndicator` component with the `styled` function from Nativewind to accept Tailwind CSS class names.
+
+<CodeBlock language="tsx" title="./src/ui/core/activity-indicator.tsx">
+  {ActivityIndicator}
+</CodeBlock>
+
+**Props**
+
+- All React Native ActivityIndicator Props are supported
+- `className` - Tailwind CSS class names
+
+**Use Case**
+
+```tsx
+import * as React from "react";
+import { ActivityIndicator } from "@/ui";
+
+const MyComponent = () => {
+  return <ActivityIndicator className="text-blue-500" />;
+};
+```
+
+## List
+
+The `List` component is a wrapper around the `@shopify/flash-list` component with the `styled` function from Nativewind to accept Tailwind CSS class names as `contentContainerStyle`.
+
+<CodeBlock language="tsx" title="./src/ui/core/list/index.tsx">
+  {List}
+</CodeBlock>
+
+**Props**
+
+- All `@shopify/flash-list` Props are supported
+- `className` - Tailwind CSS class names that will be applied to the `contentContainerStyle`
+
+<details>
+  <summary>EmptyList</summary>
+  <div>
+    We also provide a `EmptyList` component that you can use to display a
+    message when the list is empty. Feel free to customize it to fit your needs.
+  </div>
+  <CodeBlock language="tsx" title="./src/ui/core/list/empty-list.tsx">
+    {EmptyList}
+  </CodeBlock>
+</details>
+
+**Use Case**
+
+```tsx
+import * as React from "react";
+import { List, EmptyList, Text } from "@/ui";
+
+const MyComponent = () => {
+  return (
+    <List
+      data={["Item 1", "Item 2"]}
+      renderItem={({ item }) => <Text>{item}</Text>}
+      ListEmptyComponent={<EmptyList message="No items" />}
+    />
+  );
+};
+```
+
+## Image
+
+For the `Image` component, we use the `react-native-fast-image` library to provide a fast and performant image component. The `Image` component is a wrapper around the `FastImage` component with the `styled` function from Nativewind to accept Tailwind CSS class names.
+
+<CodeBlock language="tsx" title="./src/ui/core/image.tsx">
+  {Image}
+</CodeBlock>
+
+**Props**
+
+- All `FastImage` Props are supported
+- `className` - Tailwind CSS class names
+
+**Use Case**
+
+```tsx
+import * as React from "react";
+import { Image } from "@/ui";
+
+const MyComponent = () => {
+  return (
+    <Image
+      className="w-32 h-32"
+      source={{
+        uri: "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+      }}
+    />
+  );
+};
+```
+
+## Text
+
+The `Text` component comes with a set for variants based on a simple object configuration that you can easily customize.
+
+<CodeBlock language="tsx" title="./src/ui/core/text.tsx">
+  {Text}
+</CodeBlock>

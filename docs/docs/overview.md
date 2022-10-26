@@ -24,7 +24,7 @@ We built this starter with the following principles in mind:
 - 🧩 Minimal code and dependencies
 - 💪 well maintained third-party libraries
 
-## ⭐ Features
+## ⭐ key Features
 
 - ✅ Last Expo SDK + Costume Dev client
 - 🎉 Type checking [TypeScript](https://www.typescriptlang.org/)
@@ -60,6 +60,32 @@ The short answer is yes, if you are building a react native app and you want to 
 
 If you don't think using a starter is a good idea you can just take a look and get some inspiration for your project to find some good practices and solutions for common challenges react native developers are facing while building apps.
 
+## 🧑‍💻 Stay up to date
+
+The starter is constantly improving and we are adding new features and fixing bugs as soon as we can. You can stay up to date by watching the repository or by hitting the start button.
+
+<!-- add a gif image here  -->
+
+## 💎 Libraries used
+
+- [Expo](https://docs.expo.io/)
+- [React Navigation](https://reactnavigation.org/)
+- [Nativewind](https://www.nativewind.dev/)
+- [Flash list](https://github.com/Shopify/flash-list)
+- [React Query](https://tanstack.com/query/v4)
+- [Axios](https://axios-http.com/docs/intro)
+- [React Hook Form](https://react-hook-form.com/)
+- [i18next](https://www.i18next.com/)
+- [zustand](https://github.com/pmndrs/zustand)
+- [React Native MMKV](https://github.com/mrousavy/react-native-mmkv)
+- [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/)
+- [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/)
+- [React Naive Svg](https://github.com/software-mansion/react-native-svg)
+- [ React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
+- [React Native fast image](https://github.com/DylanVann/react-native-fast-image)
+
+## work with us
+
 ## Contributors
 
 more:
@@ -67,7 +93,7 @@ more:
 - get started
 - project structure
 - validation & rules : git hooks and linting + typescript checking + file names
-- github actions for new PRs to validate hooks and typing s
+- Github actions for new PRs to validate hooks and typing
 - customizing app icons + splash screen
 - ui and theming and tawiwindcss
 
