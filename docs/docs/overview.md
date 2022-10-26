@@ -87,24 +87,3 @@ The starter is constantly improving and we are adding new features and fixing bu
 ## work with us
 
 ## Contributors
-
-more:
-
-- get started
-- project structure
-- validation & rules : git hooks and linting + typescript checking + file names
-- Github actions for new PRs to validate hooks and typing
-- customizing app icons + splash screen
-- ui and theming and tawiwindcss
-
-## Guides
-
-- auth module
-- storage module
-- handling froms
-- localization
-- More
-- api module and handling apis calls for the app
-
-- vs code setting and extensions
-- build and release with eas and github actions
