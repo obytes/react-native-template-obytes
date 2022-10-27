@@ -8,6 +8,7 @@ Let's create a new React native project with obytes starter.
 
 ## Requirements
 
+- [React Native dev environment ](https://reactnative.dev/docs/environment-setup)
 - [Node.js LTS release](https://nodejs.org/en/)
 - [Git](https://git-scm.com/)
 - [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall), required only for macOS or Linux users
@@ -60,7 +61,7 @@ Here is the complete list of recommended extensions:
 
 ## Running the app
 
-If the installation is done successfully, the generated app should be ready to run using the following commands in the project directory:
+If the installation was successful, the created app should be ready to use, and because we are using the expo custom dev client, you may launch the app on your simulator or device by running the following command:
 
 ```bash
 # Run the app on iOS simulator
@@ -69,3 +70,7 @@ yarn ios
 # Run the app on Android simulator
 yarn android
 ```
+
+:::note
+Because we're utilizing the Expo custom dev client to support some native dependencies with the starter. The Expo Go app is not an option to consider here; instead, you create the app and install it on your simulator or device to begin using it.
+:::
