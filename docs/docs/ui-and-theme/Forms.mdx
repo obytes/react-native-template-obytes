@@ -1,0 +1,102 @@
+---
+sidebar_position: 4
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import ControlledInput from "!!raw-loader!../../../template/src/ui/core/input/controlled-input";
+
+# Forms
+
+Forms are a common feature of any application. In this section, we will show you how you can handle form the right way with the starter.
+
+## react-hook-form
+
+The starter uses [react-hook-form](https://react-hook-form.com/) to handle forms. It is a popular library that provides a lot of features out of the box. It is also very easy to use and integrate with React Native.
+
+Make check the [react-hook-form documentation](https://react-hook-form.com/) to learn more about how to use it.
+
+As we mention in the components section of the documentation [here](./components), we create a set of controlled components that are only used with react-hook-form. The starter only provide two components: `ControlledInput` and `ControlledSelect` but you can easily create other components using the same approach.
+
+Here is an example of a form that uses the `ControlledInput` component:
+
+<CodeBlock language="jsx" title="./src/ui/core/input/controlled-input.tsx">
+  {ControlledInput}
+</CodeBlock>
+
+## Use Case
+
+Lets say you want to create a form that allows the user login to the application. You will need to create a screen that will contain the form with email and password as well as a button to submit the form. The form will need to be validated and the data will need to be sent to the backend. here is who you can do it:
+
+**Step 1: Create your schema validation **
+
+The right way to validate a form is to create a schema validation. You can use any library you want but we recommend using zod as you can easily infer the types from the schema. Here is how you can create a schema validation for the login form:
+
+```tsx
+import * as z from "zod";
+
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(6),
+});
+
+type FormType = z.infer<typeof schema>;
+```
+
+**Step 2: Create your form component**
+
+Now that you have your schema validation, you can create your form component. Here is how you can create a form component that uses the `ControlledInput` component:
+
+```tsx
+import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+
+import { useAuth } from "@/core";
+import { Button, ControlledInput, View } from "@/ui";
+
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(6),
+});
+
+type FormType = z.infer<typeof schema>;
+
+export const Login = () => {
+  const { signIn } = useAuth();
+
+  const { handleSubmit, control } = useForm<FormType>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = (data: FormType) => {
+    console.log(data);
+    signIn({ access: "access-token", refresh: "refresh-token" });
+  };
+  return (
+    <View className="flex-1 justify-center p-4">
+      <ControlledInput control={control} name="email" label="Email" />
+      <ControlledInput
+        control={control}
+        name="password"
+        label="Password"
+        placeholder="***"
+        secureTextEntry={true}
+      />
+      <Button
+        label="Login"
+        onPress={handleSubmit(onSubmit)}
+        variant="primary"
+      />
+    </View>
+  );
+};
+```
+
+Done ! You have created a form that is validated with typescript support for input names.
+
+:::tip
+As your controlled component Props inherit from the `ControlledInputProps` interface, you component should be compatible and ready to be used the same way we are using the `ControlledInput` component here.
+
+Check `ControlledSelect` input that use the same approach to see how it is done
+:::

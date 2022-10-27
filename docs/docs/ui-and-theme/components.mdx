@@ -13,6 +13,9 @@ import List from "!!raw-loader!../../../template/src/ui/core/list";
 import EmptyList from "!!raw-loader!../../../template/src/ui/core/list/empty-list";
 import Image from "!!raw-loader!../../../template/src/ui/core/image";
 import Text from "!!raw-loader!../../../template/src/ui/core/text";
+import Button from "!!raw-loader!../../../template/src/ui/core/button";
+import Input from "!!raw-loader!../../../template/src/ui/core/input/input";
+import Select from "!!raw-loader!../../../template/src/ui/core/select/select";
 
 # Components
 
@@ -260,7 +263,184 @@ const MyComponent = () => {
 ## Text
 
 The `Text` component comes with a set for variants based on a simple object configuration that you can easily customize.
+With this custom Text component you can use translation key as `tx` prop and it will automatically translate the text based on the current locale as week as supporting rtl language based on selected locale.
 
 <CodeBlock language="tsx" title="./src/ui/core/text.tsx">
   {Text}
 </CodeBlock>
+
+Make sure to update the `textVariants` object in `./src/ui/core/text.tsx` to fit your needs.
+
+:::tip
+You can also use the `t` snippet to create a simple Text with a default `className`.
+
+If you want more complex variants logic, we recommend using [`cva` package ](https://github.com/joe-bell/cva)
+:::
+
+**Props**
+
+- All React Native Text Props are supported
+- `className` - Tailwind CSS class names
+- `tx` - Translation key
+- `variant` - Text variant, one of `textVariants` objects keys (default: `md`)
+
+**Use Case**
+
+```tsx
+import * as React from "react";
+import { Text, View } from "@/ui";
+
+const MyComponent = () => {
+  return (
+    <View className="flex flex-col items-center justify-center">
+      <Text variant="h1" tx="welcome" />
+      <Text variant="md" className="text-base">
+        Hello world
+      </Text>
+    </View>
+  );
+};
+```
+
+## Button
+
+The starter comes with simple `Button` component that you can use to create a simple `TouchableOpacity` with a `Text` component inside. The `Button` support multiple variants `primary`, `secondary` and `outline` based on a simple object configuration to making updating and adding new variants easy.
+
+Every variant must contain style for `container`, `indicator` and `text` keys. The `container` style will be applied to the `TouchableOpacity` and the `text` style will be applied to the `Text` component and the `indicator` style will be applied to the `ActivityIndicator` component when the `loading` prop is `true`.
+
+<CodeBlock language="tsx" title="./src/ui/core/button.tsx">
+  {Button}
+</CodeBlock>
+
+**Props**
+
+- All React Native TouchableOpacity Props are supported
+- `variant` - Button variant, one of `buttonVariants` objects keys (default: `primary`)
+- `loading` - Show loading indicator (default: `false`)
+- `label` - Button label
+
+**Use Case**
+
+```tsx
+import * as React from "react";
+import { Button, View } from "@/ui";
+
+const MyComponent = () => {
+  return (
+    <View className="flex flex-col items-center justify-center">
+      <Button
+        variant="primary"
+        label="Primary"
+        onPress={() => console.log("Primary Button Pressed")}
+      />
+      <Button
+        variant="secondary"
+        label="Secondary"
+        onPress={() => console.log("Secondary Button Pressed")}
+      />
+      <Button
+        variant="outline"
+        label="Outline"
+        onPress={() => console.log("Outline Button Pressed")}
+      />
+    </View>
+  );
+};
+```
+
+## Input
+
+We provide a simple `Input` component with a `Text` component for the label and a `TextInput` component for the input. This Input comes wit custom focus and error styling.
+
+You can use it as the same way you use the `TextInput` component from React Native but with extra props to customize the label and error styling.
+
+We tried to keep the `Input` component as simple as possible but you can add more functionality such as `onFocus` and `onBlur` or adding left and right icons to the input.
+
+<CodeBlock language="tsx" title="./src/ui/core/input.tsx">
+  {Input}
+</CodeBlock>
+
+**Props**
+
+- All React Native TextInput Props are supported
+- `label` - Input label
+- `error` - Input error message
+
+**Use Case**
+
+```tsx
+import * as React from "react";
+import { Input, View } from "@/ui";
+
+const MyComponent = () => {
+  return (
+    <View className="flex flex-col items-center justify-center">
+      <Input label="Email" error="Email is required" />
+    </View>
+  );
+};
+```
+
+## Controlled Input
+
+We provide a simple `ControlledInput` component that use the `Input` component under the hood but with a `useController` hook from `react-hook-form` to make it ready to use with `react-hook-form` library.
+
+Read more about Handling Forms [here](./forms).
+
+## Select
+
+We provide a simple `SelectInput` component using a bottom sheet with a simple List component to select an item from a list of items.
+
+We opt to use a bottom sheet instead of a dropdown to make it more flexible and easy to use on both iOS and Android and also to minimize the number of dependencies in the starter.
+
+Feel free to update the component implementation to fit your need and as you keep the same Props signature for the `SelectInput` component the component will work with our form handling solution without any changes.
+
+<CodeBlock language="tsx" title="./src/ui/core/select-input.tsx">
+  {Select}
+</CodeBlock>
+
+**Props**
+
+- `label`: `string` - Input label
+- `error`: `string` - Input error message
+- `options` : array of `{ label: string; value: string | number }` - List of items to select from
+- `value` : `string | number` - Selected item value
+- `onSelect`: `(option: Option) => void;` - Callback function to handle item selection
+- `placeholder`: `string`- Placeholder text
+- `disabled`: `boolean` - Disable select input (default: `false`)
+
+**Use Case**
+
+```tsx
+import * as React from "react";
+
+import type { Option } from "@/ui";
+import { SelectInput, View } from "@/ui";
+
+const options: Option[] = [
+  { value: "chocolate", label: "Chocolate" },
+  { value: "strawberry", label: "Strawberry" },
+  { value: "vanilla", label: "Vanilla" },
+];
+
+const MyComponent = () => {
+  const [value, setValue] = React.useState<string | number | undefined>();
+  return (
+    <View className="flex flex-col items-center justify-center">
+      <Select
+        label="Select"
+        error="Select is required"
+        options={options}
+        value={value}
+        onSelect={(option) => setValue(option.value)}
+      />
+    </View>
+  );
+};
+```
+
+## Controlled Input
+
+We provide a simple `ControlledSelect` component that use the `Select` component under the hood but with a `useController` hook from `react-hook-form` to make it ready to use with `react-hook-form` library.
+
+Read more about Handling Forms [here](./forms).
