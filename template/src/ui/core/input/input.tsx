@@ -1,6 +1,5 @@
 import { styled } from 'nativewind';
 import * as React from 'react';
-import type { FieldError } from 'react-hook-form';
 import type { TextInput, TextInputProps } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { TextInput as NTextInput } from 'react-native';
@@ -16,7 +15,7 @@ const STextInput = styled(NTextInput);
 export interface NInputProps extends TextInputProps {
   label?: string;
   disabled?: boolean;
-  error?: Omit<FieldError, 'type'> | undefined;
+  error?: string;
 }
 
 export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
@@ -52,7 +51,7 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
           { writingDirection: isRTL ? 'rtl' : 'ltr' },
         ])}
       />
-      {error && <Text variant="error">{error.message}</Text>}
+      {error && <Text variant="error">{error}</Text>}
     </View>
   );
 });

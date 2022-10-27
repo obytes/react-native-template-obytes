@@ -39,7 +39,7 @@ export function ControlledInput<T extends FieldValues>(
       onChangeText={field.onChange}
       value={field.value as string}
       {...inputProps}
-      error={fieldState.error}
+      error={fieldState.error?.message}
     />
   );
 }
