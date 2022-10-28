@@ -63,7 +63,7 @@
     "react-native-svg": "13.1.0",
     "react-native-web": "~0.18.9",
     "yarn": "^1.22.19",
-    "yup": "^0.32.11",
+    "zod": "^3.19.1",
     "zustand": "^4.1.1"
   },
   "devDependencies": {
