@@ -84,6 +84,8 @@ The starter is constantly improving and we are adding new features and fixing bu
 - [ React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
 - [React Native fast image](https://github.com/DylanVann/react-native-fast-image)
 
-## work with us
-
 ## Contributors
+
+This starter is maintained by [Obytes mobile tribe team](https://www.obytes.com/team) and we are happy to welcome new contributors to the project.
+
+We are also open to work on your project and help you build your app. You can contact us on [obytes.com/contact](https://www.obytes.com/contact).

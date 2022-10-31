@@ -7,7 +7,7 @@ export type AuthStackParamList = {
   Login: undefined;
 };
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<AuthStackParamList>();
 
 export const AuthNavigator = () => {
   return (

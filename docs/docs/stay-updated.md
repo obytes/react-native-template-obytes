@@ -2,7 +2,7 @@
 sidebar_position: 10
 ---
 
-# Stay updated
+# Stay updated with react native
 
 Make sure to check the links below to stay updated about react native news:
 
