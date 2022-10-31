@@ -10,7 +10,7 @@ import { TabNavigator } from './tab-navigator';
 const Stack = createStackNavigator();
 
 export const Root = () => {
-  const { status } = useAuth();
+  const status = useAuth((state) => state.status);
   const hideSplash = React.useCallback(async () => {
     await SplashScreen.hideAsync();
   }, []);
