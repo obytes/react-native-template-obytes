@@ -4,6 +4,7 @@ sidebar_position: 4
 
 import CodeBlock from "@theme/CodeBlock";
 import ControlledInput from "!!raw-loader!../../../template/src/ui/core/input/controlled-input";
+import Select from "!!raw-loader!../../../template/src/ui/core/select/controlled-select";
 
 # Forms
 
@@ -13,14 +14,21 @@ Forms are a common feature of any application. In this section, we will show you
 
 The starter uses [react-hook-form](https://react-hook-form.com/) to handle forms. It is a popular library that provides a lot of features out of the box. It is also very easy to use and integrate with React Native.
 
-Make check the [react-hook-form documentation](https://react-hook-form.com/) to learn more about how to use it.
+Make sure check the [react-hook-form documentation](https://react-hook-form.com/) to learn more about how to use it.
 
 As we mention in the components section of the documentation [here](./components), we create a set of controlled components that are only used with react-hook-form. The starter only provide two components: `ControlledInput` and `ControlledSelect` but you can easily create other components using the same approach.
 
-Here is an example of a form that uses the `ControlledInput` component:
+Here is the complete code of our `ControlledInput` when we use `useController` hook from react-hook-form to handle form state and validation rules:
 
-<CodeBlock language="jsx" title="./src/ui/core/input/controlled-input.tsx">
+<CodeBlock language="tsx" title="./src/ui/core/input/controlled-input.tsx">
   {ControlledInput}
+</CodeBlock>
+
+If you want to create your own controlled component, you just need to make sure your component props type extends from `InputControllerType` the same way we are using it with `ControlledInput`.
+Here is an other example of a Select input we create using the same approach as `ControlledInput`:
+
+<CodeBlock language="tsx" title="./src/ui/core/select/controlled-select.tsx">
+  {Select}
 </CodeBlock>
 
 ## Use Case
@@ -44,7 +52,8 @@ type FormType = z.infer<typeof schema>;
 
 **Step 2: Create your form component**
 
-Now that you have your schema validation, you can create your form component. Here is how you can create a form component that uses the `ControlledInput` component:
+Now that you have your schema validation, you can easily create your login screen using react-hook-form and controlled components we already have.
+Here is how you can create your login screen:
 
 ```tsx
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -93,10 +102,8 @@ export const Login = () => {
 };
 ```
 
-Done ! You have created a form that is validated with typescript support for input names.
+Done ! You have created a form with validation and typescript support.
 
 :::tip
-As your controlled component Props inherit from the `ControlledInputProps` interface, you component should be compatible and ready to be used the same way we are using the `ControlledInput` component here.
-
-Check `ControlledSelect` input that use the same approach to see how it is done
+Any Component with props that inherit from the `InputControllerType` can be used with react-hook-form. You can easily create your own controlled component using the same approach as `ControlledInput` and `ControlledSelect`.
 :::
