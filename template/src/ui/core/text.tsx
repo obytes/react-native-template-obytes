@@ -22,7 +22,7 @@ export const textVariants = {
   h3: 'text-[24px] leading-[36px] font-medium',
   xl: 'text-[20px] leading-[30px]',
   lg: 'text-[18px] leading-[30px]',
-  md: 'text-[16px] leading-[32px]',
+  md: '',
   sm: 'text-[14px] leading-[21px]',
   xs: 'text-[12px] leading-[18px]',
   error: ' text-[12px] leading-[30px] text-danger-500',
