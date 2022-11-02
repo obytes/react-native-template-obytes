@@ -22,10 +22,10 @@ module.exports = {
   ],
   moduleFileExtensions: ["js", "ts", "tsx"],
   transformIgnorePatterns: [
-    "node_modules/(?!((jest-)?react-native(-.*)?|@react-native(- community)?)/)",
+    "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)",
   ],
   coverageReporters: ["json-summary", "text", "lcov"],
   moduleNameMapper: {
-    "//(.*)/": "./src/*", // '/@core/(.*)': '<rootDir>/src/ui/core/$1',
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
 };

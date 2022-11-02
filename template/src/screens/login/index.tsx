@@ -1,10 +1,10 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
+import { yupResolver } from "@hookform/resolvers/yup";
+import React from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
 
-import { useAuth } from '@/core';
-import { Button, ControlledInput, View } from '@/ui';
+import { useAuth } from "@/core";
+import { Button, ControlledInput, View } from "@/ui";
 
 type FormData = {
   email: string;
@@ -25,12 +25,18 @@ export const Login = () => {
 
   const onSubmit = (data: FormData) => {
     console.log(data);
-    signIn({ access: 'access-token', refresh: 'refresh-token' });
+    signIn({ access: "access-token", refresh: "refresh-token" });
   };
   return (
     <View className="flex-1 justify-center p-4">
-      <ControlledInput control={control} name="email" label="Email" />
       <ControlledInput
+        testID="emailInput"
+        control={control}
+        name="email"
+        label="Email"
+      />
+      <ControlledInput
+        testID="passwordInput"
         control={control}
         name="password"
         label="Password"
@@ -38,6 +44,7 @@ export const Login = () => {
         secureTextEntry={true}
       />
       <Button
+        testID="LoginButton"
         label="Login"
         onPress={handleSubmit(onSubmit)}
         variant="primary"
