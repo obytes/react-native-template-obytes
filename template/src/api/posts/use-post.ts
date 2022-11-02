@@ -9,8 +9,6 @@ type Params = { id: number };
 type Response = Post;
 
 function getPost({ id }: Params): Promise<Response> {
-  console.log(`posts/${id}`);
-
   return client({
     url: `posts/${id}`,
     method: 'GET',

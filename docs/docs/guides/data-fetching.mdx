@@ -1,0 +1,122 @@
+---
+sidebar_position: 3
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import UsePosts from "!!raw-loader!../../../template/src/api/posts/use-posts.ts";
+import UsePost from "!!raw-loader!../../../template/src/api/posts/use-post.ts";
+import UseAddPost from "!!raw-loader!../../../template/src/api/posts/use-add-post.ts";
+import Feed from "!!raw-loader!../../../template/src/screens/feed/list";
+import Post from "!!raw-loader!../../../template/src/screens/feed/post";
+import AddPost from "!!raw-loader!../../../template/src/screens/feed/add-post";
+
+# Data Fetching
+
+From the beginning of React, tha community has been building a rich ecosystem of tools and libraries that help you build your applications. One of the most important parts of this ecosystem is the ability to fetch data from a server and display it in your application.
+
+There are many ways to fetch data for react and react native apps nowadays but in the last few years, the community has been moving towards using react-query as a default solution to fetch data as it comes with many features every app needs out of the box and the fact that it is very easy and simple to use.
+
+## What is react-query?
+
+[React-query](https://tanstack.com/query/v4/docs/overview) It is a very powerful library that helps you manage your data fetching, caching, invalidating, and even implement optimistic UI in a very simple way.
+
+react-query provides a set of hooks to query and mutate data in your app. and give you the ability to create your own custom hooks based on `useQuery` and `useMutation` hooks.
+
+## Using react-query
+
+The starter comes with react-query installed and configured with axios as the default client to save you time and effort.
+
+All fetching logic is located in the `src/api` folder. You can find a `common` folder which contains the `client`, `queryClient` and a set of utility functions to help you work with react-query.
+
+As we are using axios as client, we can benefit from the axios features like interceptors, request cancellation, and many more. You can find more information about axios[here](https://axios-http.com/).
+
+:::tip
+
+You recommend reading this series of articles to learn more about react-query and how to use it effectively in your app.
+
+- [Practical React Query](https://tkdodo.eu/blog/practical-react-query)
+
+:::
+
+## Fetching Data with react-query
+
+Lets imagine you are building a blog app and you need to implement the following features:
+
+- A Feed Screen to list all posts
+- A Post Screen to show the details of a post
+- A Screen to create a new post
+
+Before we start, lets create a new folder called `posts` inside `src/api`, this folder will contain all the logic related to posts. You can think the same way about users or any other entity in your app.
+
+### The Feed Screen
+
+The feed screen will list all posts in the app. We will create the `usePosts` hook to fetch the posts and display them in a list.
+
+1. Create a new file called `use-posts.ts` inside `src/api/posts`
+2. Create a type for your Response and Params if needed to make sure that you are getting the right data from the server.(eg. `Post` type)
+3. Create a function that return a `Promise` and will be used to fetch the data from the server. This function will be called by react-query to fetch the data.(eg. `getPosts` function)
+4. Finally, you need to create a custom hook that will use the `useQuery` hook from react-query to fetch the data and return it. (eg. `usePosts` hook)
+
+Here is the complete code for the `use-posts.ts` file:
+
+<CodeBlock title="src/api/posts/use-posts.ts" language="tsx">
+  {UsePosts}
+</CodeBlock>
+
+:::tip
+Use the snippet to generate query in no time using vscode
+--> snippet here
+:::
+
+5. Now that we have our custom hook ready we can use it in our app. Lets create a new screen called `Posts` and use data from `usePosts` hook to display a list of posts:
+
+<CodeBlock title="src/screens/feed/list.tsx" language="tsx">
+  {Feed}
+</CodeBlock>
+
+As you can see in the code above we are using the `usePosts` that provide us with data and loading state to display a loading indicator while the data is being fetched and then display the list of posts.
+
+### The Post Screen
+
+The post screen will show the details of a post. We will create the `usePost` hook to fetch the post and display it.
+
+We are going to use the same steps as we did in the previous section to create the `usePost` hook. The only difference is that we will use the `id` as a parameter to fetch the post.
+
+Here is the complete code for the `use-post.ts` file:
+
+<CodeBlock title="src/api/posts/use-post.ts" language="tsx">
+  {UsePost}
+</CodeBlock>
+
+Now our hook is ready to be used in our post details screen:
+
+<CodeBlock title="src/screens/feed/post.tsx" language="tsx">
+  {Post}
+</CodeBlock>
+
+### Creating a new post
+
+To implement the create post feature we will need to use the `useMutation` hook from react-query following the steps below:
+
+1. Create a new file called `add-post.ts` inside `src/api/posts`
+2. Create a type mutation input and response to make sure that you are sending the right data to the server.( `Input` type)
+3. Create a function that take our input as params and return a `Promise` and will be used to send the data to the server. This function will be called by react-query to send the data.( `addPost` function)
+4. Now that we have our mutation function ready we can create a custom hook that will use the `useMutation` hook from react-query to send the input data and return the result. ( `useAddPost` hook)
+
+Here is the complete code for the `add-post.ts` file:
+
+<CodeBlock title="src/api/posts/add-post.ts" language="tsx">
+  {UseAddPost}
+</CodeBlock>
+
+Now that we have our mutation hook ready. Lets create a new screen called `AddPost` and use data from `useAddPost` hook to create a new post:
+
+Exactly the same way we did in [form section](../ui-and-theme/Forms.mdx) while creating a login form, we will follow the same approach to create a from to create a new post.
+
+1. Create the schema for the new form using zod
+2. Create the form using react-hook-form
+3. Get `mutate` function from `useAddPost` hook and call on handleSubmit
+
+<CodeBlock title="src/screens/feed/add-post.tsx" language="tsx">
+  {AddPost}
+</CodeBlock>

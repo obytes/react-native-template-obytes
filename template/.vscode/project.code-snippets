@@ -155,5 +155,10 @@
       ""
     ],
     "description": "useMutation"
+  },
+  "navigate": {
+    "prefix": "navigate",
+    "body": ["const { navigate } = useNavigation();", ""],
+    "description": "navigate"
   }
 }
