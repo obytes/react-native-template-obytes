@@ -1,4 +1,4 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
 
@@ -7,7 +7,7 @@ import { useAuth } from '@/core';
 import { AuthNavigator } from './auth-navigator';
 import { NavigationContainer } from './navigation-container';
 import { TabNavigator } from './tab-navigator';
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export const Root = () => {
   const status = useAuth((state) => state.status);
@@ -24,9 +24,9 @@ export const Root = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        cardOverlayEnabled: false,
         headerShown: false,
         gestureEnabled: false,
+        animation: 'none',
       }}
     >
       {status === 'signOut' ? (

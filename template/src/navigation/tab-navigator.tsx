@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type { RouteProp } from '@react-navigation/native';
-import type { StackNavigationProp } from '@react-navigation/stack';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { ComponentType } from 'react';
 import * as React from 'react';
 import type { SvgProps } from 'react-native-svg';
@@ -40,7 +40,7 @@ const tabsIcons: TabIconsType = {
 };
 
 export type TabList<T extends keyof TabParamList> = {
-  navigation: StackNavigationProp<TabParamList, T>;
+  navigation: NativeStackNavigationProp<TabParamList, T>;
   route: RouteProp<TabParamList, T>;
 };
 

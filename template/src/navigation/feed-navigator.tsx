@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
 
 import { AddPost, Feed, Post } from '@/screens';
@@ -11,7 +11,7 @@ export type FeedStackParamList = {
   AddPost: undefined;
 };
 
-const Stack = createStackNavigator<FeedStackParamList>();
+const Stack = createNativeStackNavigator<FeedStackParamList>();
 
 const GoToAddPost = () => {
   const { navigate } = useNavigation();
