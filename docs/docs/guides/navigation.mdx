@@ -3,7 +3,7 @@ sidebar_position: 2
 ---
 
 import CodeBlock from "@theme/CodeBlock";
-import AuthNavigator from "!!raw-loader!../../../template/src/navigation/auth-navigator";
+import FeedNavigator from "!!raw-loader!../../../template/src/navigation/feed-navigator";
 import Types from "!!raw-loader!../../../template/src/navigation/types";
 
 # Navigation
@@ -13,8 +13,6 @@ import Types from "!!raw-loader!../../../template/src/navigation/types";
 [react-navigation](https://reactnavigation.org/) is the most popular navigation library for React Native. It is easy to use and provides a lot of features out of the box. It is also very customizable and extensible. It is a great choice for most apps now a day waiting for expo router to be stable and ready for production 😀 (looks promising 🔥).
 
 Probably nothing we can add here that doesn't exist in the official docs except that we are using native stack navigation instead of the default one.
-
-Make sure to check the official docs for more information and examples about [react-navigation](https://reactnavigation.org/).
 
 All the navigation related code is located in the `src/navigation` folder. we opted for this approach to keep the project structure clean and easy to navigate.
 
@@ -28,8 +26,10 @@ One ever you add a new stack navigator you need to add it to the `RootStackParam
 
 The Demo app comes with different stack and tabs navigator. feel free to remove what is not working for you and add your own using the same approach as the existing ones and remember to add the the typing to the `RootStackParamList` type.
 
-Here is a simple example of the auth stack navigator.
+Here is a simple example of the feed stack navigator.
 
-<CodeBlock title="src/navigation/auth-navigator.tsx" language="tsx">
-  {AuthNavigator}
+<CodeBlock title="src/navigation/feed-navigator.tsx" language="tsx">
+  {FeedNavigator}
 </CodeBlock>
+
+Make sure to check the official docs for more information and examples about [react-navigation](https://reactnavigation.org/).

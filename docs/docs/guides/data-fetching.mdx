@@ -48,7 +48,7 @@ Lets imagine you are building a blog app and you need to implement the following
 
 Before we start, lets create a new folder called `posts` inside `src/api`, this folder will contain all the logic related to posts. You can think the same way about users or any other entity in your app.
 
-### The Feed Screen
+### Feed Screen
 
 The feed screen will list all posts in the app. We will create the `usePosts` hook to fetch the posts and display them in a list.
 
@@ -76,7 +76,7 @@ Use the snippet to generate query in no time using vscode
 
 As you can see in the code above we are using the `usePosts` that provide us with data and loading state to display a loading indicator while the data is being fetched and then display the list of posts.
 
-### The Post Screen
+### Post Screen
 
 The post screen will show the details of a post. We will create the `usePost` hook to fetch the post and display it.
 
@@ -94,7 +94,7 @@ Now our hook is ready to be used in our post details screen:
   {Post}
 </CodeBlock>
 
-### Creating a new post
+### Add new post
 
 To implement the create post feature we will need to use the `useMutation` hook from react-query following the steps below:
 
@@ -115,8 +115,24 @@ Exactly the same way we did in [form section](../ui-and-theme/Forms.mdx) while c
 
 1. Create the schema for the new form using zod
 2. Create the form using react-hook-form
-3. Get `mutate` function from `useAddPost` hook and call on handleSubmit
+3. Get `mutate` function from `useAddPost` hook and call it when the form is submitted
+4. You can use the `isLoading` state to display a loading indicator while the data is being sent to the server and then redirect the user to the feed screen on success.
 
 <CodeBlock title="src/screens/feed/add-post.tsx" language="tsx">
   {AddPost}
 </CodeBlock>
+
+## Create API Hooks with Vs Code Snippets
+
+Maybe you mentioned that creating a new query or mutation hook looks the same every time and you are right. That is why we created a set of vscode snippets to help you create your hooks in no time.
+
+- `useq` : Create a new query hook
+
+![useQuery snippet](./img/use-query.gif)
+
+- `useqp` : Create a new query hook with params
+
+![useQuery with params snippet](./img/use-query-params.gif)
+
+- `useiq` : Create a new infinite query hook
+- `usem` : Create a new mutation hook
