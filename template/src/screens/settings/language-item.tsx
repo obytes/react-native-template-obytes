@@ -45,7 +45,7 @@ export const LanguageItem = () => {
         ref={optionsRef}
         options={langs}
         onSelect={onSelect}
-        value={selectedLanguage}
+        value={selectedLanguage?.value}
       />
     </>
   );

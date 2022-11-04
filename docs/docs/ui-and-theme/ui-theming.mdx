@@ -1,0 +1,56 @@
+---
+sidebar_position: 1
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import Card from "!!raw-loader!../../../template/src/screens/feed/card";
+
+# UI and Theming
+
+How we manage the UI and theming of the application.
+
+## Why [Tailwind CSS](https://tailwindcss.com/) ?
+
+For the past few years we tried multiple approach to style our react native apps,Stylesheet API, styled components, restyle and more.
+
+Right now we are confident that using Tailwind CSS with react native is the right solution specially after we try [Nativewind](https://nativewind.dev/).
+
+If you are familiar with Tailwind CSS on the web you will find it very easy to use and you can even copy past your styling from a web application and should work without issues with react native too with some minor adjustments of course.
+
+Last and not least, Tailwind CSS was a natural choice for us knowing that most of our team members are coming from a web background and they had the chance to work with Tailwind CSS before.
+
+:::tip
+
+If you are not familiar with Tailwind CSS, we recommend you to read the [Tailwind CSS documentation](https://tailwindcss.com/docs) first.
+
+We would also recommend playing with the [Tailwind CSS playground](https://play.tailwindcss.com/) to get a better understanding of how it works as well as practicing by building a simple web app with it before jumping into react native.
+
+:::
+
+## About Nativewind
+
+Nativewind is a library that allows you to use Tailwind CSS with react native. Nativewind achieves this by pre-compiling the Tailwind CSS classes into react native stylesheets with a minimal runtime to selectively apply the styles.
+
+Nativewind comes with different babel configuration options but we are using `compile only` configuration which means that you need to create your own component and warp them with `styled` component from Nativewind to use them with Tailwind class names.
+
+This approach give us more control over the component we want to style as we don't want Nativewind babel plugin to transform all the components in our application.
+
+For more details about Nativewind you can check their [documentation](https://www.nativewind.dev/overview/).
+
+Here is an example of how your component should look like:
+
+<CodeBlock title="Card Component" language="tsx">
+  {Card}
+</CodeBlock>
+
+You guess it right, all components imported from `@/ui` are wrapped with `styled` component from Nativewind and ready to accept Tailwind CSS class names. Enjoy 🥳
+
+## Configuration
+
+Nativewind is the same as Tailwind CSS, it comes with a default theme and colors that you can override by creating your own theme and colors.
+
+You need to understand that Nativewind is a library that is built on top of Tailwind CSS. Feel free to add any Tailwind CSS config that you want to use in your application such as updating colors, spacing, typography, etc.
+
+We have created a `ui/theme` folder when you can finds our costume colors that has been imported to `tailwind.config.js` and used as a theme for our demo application. You can add your own colors palette and use them in your component with Tailwind class names.
+
+You can read more about how to [configure your project with Tailwind CSS](https://tailwindcss.com/docs/configuration).

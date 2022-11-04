@@ -91,8 +91,8 @@
     "description": "useInfiniteQuery"
   },
   // https://snippet-generator.app/?description=useQuery&tabtrigger=useq&snippet=import+type+%7B+UseQueryOptions+%7D+from+%27%40tanstack%2Freact-query%27%3B%0Aimport+%7B+useQuery+%7D+from+%27%40tanstack%2Freact-query%27%3B%0Aimport+type+%7B+AxiosError+%7D+from+%27axios%27%3B%0A%0Aimport+%7B+client%2C+getQueryKey+%7D+from+%27..%2Fcommon%27%3B%0A%0Atype+Params+%3D+%7B%243%7D%3B%0Atype+Response+%3D+%7B%244%7D%3B%0A%0Afunction+get%241%28%7B+%7D%3A+Params%29%3A+Promise%3CResponse%3E+%7B%0A++return+client%28%7B%0A++++url%3A+%60%242%60%2C%0A++++method%3A+%27GET%27%2C%0A++%7D%29.then%28%28response%29+%3D%3E+response.data%29%3B%0A%7D%3B%0A%0Aexport+function+use%241%28%0A++params%3A+Params%2C%0A++config%3F%3A+UseQueryOptions%3CResponse%2C+AxiosError%3E%0A%29+%7B%0A++const+queryKey+%3D+getQueryKey%3CParams%3E%28%27%24%7B1%2F%28.*%29%2F%24%7B1%3A%2Fdowncase%7D%2F%7D%27%2C+params%29%3B%0A++return+useQuery%3CResponse%2C+AxiosError%3E%28%0A++++queryKey%2C%0A++++%28%29+%3D%3E+get%241%28params%29%2C%0A++++config%0A++%29%3B%0A%7D%0A&mode=vscode
-  "useQuery": {
-    "prefix": "useq",
+  "useQuery with params": {
+    "prefix": "useqp",
     "body": [
       "import type { UseQueryOptions } from '@tanstack/react-query';",
       "import { useQuery } from '@tanstack/react-query';",
@@ -123,7 +123,33 @@
       "}",
       ""
     ],
-    "description": "useQuery"
+    "description": "useQuery with params"
+  },
+  //https://snippet-generator.app/?description=useQuery+without+params&tabtrigger=useq&snippet=import+type+%7B+UseQueryOptions+%7D+from+%27%40tanstack%2Freact-query%27%3B%0Aimport+%7B+useQuery+%7D+from+%27%40tanstack%2Freact-query%27%3B%0Aimport+type+%7B+AxiosError+%7D+from+%27axios%27%3B%0A%0Aimport+%7B+client%2C+getQueryKey+%7D+from+%27..%2Fcommon%27%3B%0A%0Atype+Response+%3D+%7B%243%7D%3B%0A%0Afunction+get%241%28%29%3A+Promise%3CResponse%3E+%7B%0A++return+client%28%7B%0A++++url%3A+%60%242%60%2C%0A++++method%3A+%27GET%27%2C%0A++%7D%29.then%28%28response%29+%3D%3E+response.data%29%3B%0A%7D%3B%0A%0Aexport+function+use%241%28config%3F%3A+UseQueryOptions%3CResponse%2C+AxiosError%3E%29+%7B%0A++const+queryKey+%3D+getQueryKey%28%27%24%7B1%2F%28.*%29%2F%24%7B1%3A%2Fdowncase%7D%2F%7D%27%29%3B%0A++return+useQuery%3CResponse%2C+AxiosError%3E%28queryKey%2C+get%241%2C+config%29%3B%0A%7D&mode=vscode
+  "useQuery without params": {
+    "prefix": "useq",
+    "body": [
+      "import type { UseQueryOptions } from '@tanstack/react-query';",
+      "import { useQuery } from '@tanstack/react-query';",
+      "import type { AxiosError } from 'axios';",
+      "",
+      "import { client, getQueryKey } from '../common';",
+      "",
+      "type Response = {$3};",
+      "",
+      "function get$1(): Promise<Response> {",
+      "  return client({",
+      "    url: `$2`,",
+      "    method: 'GET',",
+      "  }).then((response) => response.data);",
+      "};",
+      "",
+      "export function use$1(config?: UseQueryOptions<Response, AxiosError>) {",
+      "  const queryKey = getQueryKey('${1/(.*)/${1:/downcase}/}');",
+      "  return useQuery<Response, AxiosError>(queryKey, get$1, config);",
+      "}"
+    ],
+    "description": "useQuery without params"
   },
   //https://snippet-generator.app/?description=useMutation&tabtrigger=usem&snippet=import+type+%7B+UseMutationOptions+%7D+from+%27%40tanstack%2Freact-query%27%3B%0Aimport+%7B+useMutation+%7D+from+%27%40tanstack%2Freact-query%27%3B%0Aimport+type+%7B+AxiosError+%7D+from+%27axios%27%3B%0A%0Aimport+%7B+client+%7D+from+%27..%2Fcommon%27%3B%0A%0Atype+Input+%3D+%7B%243%7D%3B%0A%0Atype+Response+%3D+%7B%244%7D%3B%0A%0Aconst+%24%7B1%2F%28.*%29%2F%24%7B1%3A%2Fcamelcase%7D%2F%7D+%3D+%28input%3A+Input%29%3A+Promise%3CResponse%3E+%3D%3E+%7B%0A++return+client%28%7B%0A++++url%3A+%27%242%27%2C%0A++++method%3A+%27POST%27%2C%0A++++data%3A+input%2C%0A++%7D%29.then%28%28response%29+%3D%3E+response.data%29%3B%0A%7D%3B%0A%0Aexport+function+use%241%28%0A++config%3A+UseMutationOptions%3CResponse%2C+AxiosError%2C+Input%3E%0A%29+%7B%0A++return+useMutation%3CResponse%2C+AxiosError%2C+Input%3E%28%24%7B1%2F%28.*%29%2F%24%7B1%3A%2Fcamelcase%7D%2F%7D%2C+config%29%3B%0A%7D%0A&mode=vscode
   "useMutation": {
@@ -155,5 +181,10 @@
       ""
     ],
     "description": "useMutation"
+  },
+  "navigate": {
+    "prefix": "navigate",
+    "body": ["const { navigate } = useNavigation();", ""],
+    "description": "navigate"
   }
 }

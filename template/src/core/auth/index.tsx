@@ -1,4 +1,3 @@
-/// Auth.tsx
 import create from 'zustand';
 
 import type { TokenType } from './utils';
@@ -26,7 +25,6 @@ export const useAuth = create<AuthState>((set, get) => ({
   hydrate: () => {
     try {
       const userToken = getToken();
-      console.log({ userToken });
       if (userToken !== null) {
         get().signIn(userToken);
       } else {
@@ -40,4 +38,5 @@ export const useAuth = create<AuthState>((set, get) => ({
 }));
 
 export const signOut = () => useAuth.getState().signOut();
+export const signIn = (token: TokenType) => useAuth.getState().signIn(token);
 export const hydrateAuth = () => useAuth.getState().hydrate();

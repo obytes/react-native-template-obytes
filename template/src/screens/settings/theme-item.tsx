@@ -41,7 +41,7 @@ export const ThemeItem = () => {
         ref={optionsRef}
         options={themes}
         onSelect={onSelect}
-        value={selectedTheme}
+        value={selectedTheme?.value}
       />
     </>
   );
