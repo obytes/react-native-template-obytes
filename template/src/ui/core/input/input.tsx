@@ -4,11 +4,11 @@ import type { TextInput, TextInputProps } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { TextInput as NTextInput } from 'react-native';
 
-import { isRTL } from "@/core";
+import { isRTL } from '@/core';
 
-import colors from "../../theme/colors";
-import { Text } from "../text";
-import { View } from "../view";
+import colors from '../../theme/colors';
+import { Text } from '../text';
+import { View } from '../view';
 
 const STextInput = styled(NTextInput);
 
@@ -26,17 +26,17 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
   const onFocus = React.useCallback(() => setIsFocussed(true), []);
 
   const borderColor = error
-    ? "border-danger-600"
+    ? 'border-danger-600'
     : isFocussed
-    ? "border-neutral-600"
-    : "border-neutral-400";
+    ? 'border-neutral-600'
+    : 'border-neutral-400';
 
-  const bgColor = error ? "bg-danger-50" : "bg-neutral-200";
-  const textDirection = isRTL ? "text-right" : "text-left";
+  const bgColor = error ? 'bg-danger-50' : 'bg-neutral-200';
+  const textDirection = isRTL ? 'text-right' : 'text-left';
   return (
     <View className="mb-4">
       {label && (
-        <Text variant="md" className={error ? "text-danger-600" : "text-black"}>
+        <Text variant="md" className={error ? 'text-danger-600' : 'text-black'}>
           {label}
         </Text>
       )}
@@ -49,7 +49,7 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
         onFocus={onFocus}
         {...inputProps}
         style={StyleSheet.flatten([
-          { writingDirection: isRTL ? "rtl" : "ltr" },
+          { writingDirection: isRTL ? 'rtl' : 'ltr' },
         ])}
       />
       {error && <Text variant="error">{error}</Text>}

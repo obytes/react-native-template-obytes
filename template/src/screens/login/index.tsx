@@ -3,8 +3,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
-import { useAuth } from "@/core";
-import { Button, ControlledInput, View } from "@/ui";
+import { useAuth } from '@/core';
+import { Button, ControlledInput, View } from '@/ui';
 
 const schema = z.object({
   email: z.string().email(),
@@ -22,7 +22,7 @@ export const Login = () => {
 
   const onSubmit = (data: FormType) => {
     console.log(data);
-    signIn({ access: "access-token", refresh: "refresh-token" });
+    signIn({ access: 'access-token', refresh: 'refresh-token' });
   };
   return (
     <View className="flex-1 justify-center p-4">

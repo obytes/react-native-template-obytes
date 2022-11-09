@@ -1,1 +1,1 @@
-module.exports = require("react-native-reanimated/mock");
+module.exports = require('react-native-reanimated/mock');

@@ -1,5 +1,5 @@
-import React from "react";
-import { FlatList, Modal, ScrollView, View } from "react-native";
+import React from 'react';
+import { FlatList, Modal, ScrollView, View } from 'react-native';
 
 const BottomSheetModalContext = React.createContext(null);
 

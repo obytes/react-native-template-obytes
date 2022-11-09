@@ -1,4 +1,4 @@
-import { FlatList, ScrollView, TouchableOpacity, View } from "react-native";
+import { FlatList, ScrollView, TouchableOpacity, View } from 'react-native';
 
 module.exports = {
   ScrollView,
@@ -16,10 +16,10 @@ module.exports = {
     DOWN: 8,
   },
   State: {
-    BEGAN: "BEGAN",
-    FAILED: "FAILED",
-    ACTIVE: "ACTIVE",
-    END: "END",
-    UNDETERMINED: "UNDETERMINED",
+    BEGAN: 'BEGAN',
+    FAILED: 'FAILED',
+    ACTIVE: 'ACTIVE',
+    END: 'END',
+    UNDETERMINED: 'UNDETERMINED',
   },
 };
