@@ -24,7 +24,7 @@
 - 💫 Auth flow with [zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage to save sensitive data.
 - 🛠 A simple workflow to build, release and distribute your application using [Github action](https://github.com/features/actions)
 - 🔥 [React Query](https://react-query.tanstack.com/) & [axios](https://github.com/axios/axios) to fetch Data
-- 🧵 A good approach with example to handle forms based on [react-hook-form](https://react-hook-form.com/) and [yup](https://github.com/jquense/yup) for validation
+- 🧵 A good approach with example to handle forms based on [react-hook-form](https://react-hook-form.com/) and [zod](https://github.com/colinhacks/zod) for validation
 - 🎯 Localization with [i18next](https://www.i18next.com/) + validation using Eslint.
 
 ### 🎤 Philosophy

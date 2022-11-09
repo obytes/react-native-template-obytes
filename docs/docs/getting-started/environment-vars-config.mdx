@@ -1,0 +1,39 @@
+---
+sidebar_position: 4
+---
+
+import CodeBlock from "@theme/CodeBlock";
+import ConfigJs from "!!raw-loader!../../../template/config/config.js";
+
+import ConfigTs from "!!raw-loader!../../../template/config/index.ts";
+import APICommons from "!!raw-loader!../../../template/src/api/common/client.tsx";
+
+# Environment variable and configuration
+
+We opted to use a simple typescript file to store all the environment variables and configuration for a simple reason, adding typechecking for the environment variables to make sure we are not missing any required variables using the correct type for each variable.
+
+Using a simple typescript file for environment variables help us keep the project simple as possible as we didn't need to add any extra dependencies to the project.
+
+## Adding environment variables
+
+The environment variables file is located at `src/config` and it's support multiple app variant such as `development`, `staging` and `production`.
+
+<CodeBlock title="config/config.js" language="js">
+  {ConfigJs}
+</CodeBlock>
+
+<CodeBlock title="config/index.ts" language="ts">
+  {ConfigTs}
+</CodeBlock>
+
+:::note
+We need only the ts file configuration file but as we can't import typescript files in expo config file. we need to create a js file that will export the same configuration as the ts file.
+:::
+
+## Using environment variables
+
+As we are using an absolute import for the configuration file, you can easily import environment variables in any file in the project.
+
+<CodeBlock title="api/common/client.tsx" language="ts">
+  {APICommons}
+</CodeBlock>

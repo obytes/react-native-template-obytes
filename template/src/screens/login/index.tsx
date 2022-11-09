@@ -1,29 +1,26 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import React from "react";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import { zodResolver } from '@hookform/resolvers/zod';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
 
 import { useAuth } from "@/core";
 import { Button, ControlledInput, View } from "@/ui";
 
-type FormData = {
-  email: string;
-  password: string;
-};
-
-const schema = yup.object().shape({
-  email: yup.string().required().email(),
-  password: yup.string().required().min(6),
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(6),
 });
+
+type FormType = z.infer<typeof schema>;
 
 export const Login = () => {
   const { signIn } = useAuth();
 
-  const { handleSubmit, control } = useForm<FormData>({
-    resolver: yupResolver(schema),
+  const { handleSubmit, control } = useForm<FormType>({
+    resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: FormType) => {
     console.log(data);
     signIn({ access: "access-token", refresh: "refresh-token" });
   };

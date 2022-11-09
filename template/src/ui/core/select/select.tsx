@@ -1,26 +1,27 @@
 import type { BottomSheetModal } from '@gorhom/bottom-sheet';
 import * as React from 'react';
-import type { FieldError } from 'react-hook-form';
 
 import { Text } from '../text';
 import { TouchableOpacity } from '../touchable-opacity';
 import { View } from '../view';
-import { Arrow } from './arrow';
+import { Arrow } from './icons';
 import type { Option } from './options';
 import { Options } from './options';
 
-export interface SelectInputProps {
+export interface SelectProps {
+  value?: string | number;
   label?: string;
   disabled?: boolean;
-  error?: Omit<FieldError, 'type'> | undefined;
+  error?: string;
   options?: Option[];
   onSelect?: (option: Option) => void;
   placeholder?: string;
 }
 
-export const SelectInput = (props: SelectInputProps) => {
+export const Select = (props: SelectProps) => {
   const {
     label,
+    value,
     error,
     options = [],
     placeholder = 'select...',
@@ -42,6 +43,11 @@ export const SelectInput = (props: SelectInputProps) => {
   const borderColor = error ? 'border-danger-600' : 'border-neutral-400';
 
   const bgColor = error ? 'bg-danger-50' : 'bg-neutral-200';
+
+  const textValue =
+    value !== undefined
+      ? options?.filter((t) => t.value === value)?.[0]?.label ?? placeholder
+      : placeholder;
   return (
     <>
       <View className="mb-4">
@@ -60,12 +66,12 @@ export const SelectInput = (props: SelectInputProps) => {
         >
           <View className="flex-1">
             <Text variant="md" className="text-neutral-600">
-              {placeholder}
+              {textValue}
             </Text>
           </View>
           <Arrow />
         </TouchableOpacity>
-        {error && <Text variant="error">{error.message}</Text>}
+        {error && <Text variant="error">{error}</Text>}
       </View>
       <Options ref={optionsRef} options={options} onSelect={onSelectOption} />
     </>
