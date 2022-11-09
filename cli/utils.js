@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-const chalk = require("chalk");
-const fs = require("fs-extra");
-const { createSpinner } = require("nanospinner");
-const { exec } = require("child_process");
-const path = require("path");
+const chalk = require('chalk');
+const fs = require('fs-extra');
+const { createSpinner } = require('nanospinner');
+const { exec } = require('child_process');
+const path = require('path');
 
 const execShellCommand = (cmd) => {
   return new Promise((resolve, reject) => {
@@ -19,7 +19,7 @@ const execShellCommand = (cmd) => {
 
 const runCommand = async (
   command,
-  { loading = "loading ....", success = "success", error = "error" }
+  { loading = 'loading ....', success = 'success', error = 'error' }
 ) => {
   const spinner = createSpinner(loading).start({ text: loading });
   try {
@@ -42,7 +42,7 @@ const addPostInstallScript = async (projectName) => {
     `${projectName}/package.json`
   );
   const packageJson = fs.readJsonSync(packageJsonPath);
-  packageJson.scripts.postinstall = "husky install";
+  packageJson.scripts.postinstall = 'husky install';
   fs.writeJsonSync(packageJsonPath, packageJson, { spaces: 2 });
 };
 
@@ -54,7 +54,7 @@ const cleanUpFolder = async (projectName) => {
     fs.removeSync(path.join(process.cwd(), `${projectName}/android`));
     await initGit(projectName);
     addPostInstallScript(projectName);
-    spinner.success({ text: "Clean and Setup  project folder" });
+    spinner.success({ text: 'Clean and Setup  project folder' });
   } catch (error) {
     spinner.error({ text: error });
     console.log(chalk.red(`Failed to clean up project folder`), error);

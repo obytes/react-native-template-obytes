@@ -1,0 +1,32 @@
+{
+  "name": "react-native-template-obytes",
+  "version": "1.6.1",
+  "description": "A React Native template based on Obytes Mobile tribe best practices ",
+  "scripts": {
+    "np": "np --no-publish"
+  },
+  "files": [
+    "template",
+    "template.config.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/obytes/react-native-template-obytes.git"
+  },
+  "keywords": [
+    "react-native",
+    "typescript",
+    "jest",
+    "template",
+    "boilerplate"
+  ],
+  "author": "Youssouf EL Azizi<youssoufelazizi@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/obytes/react-native-template-obytes.git/issues"
+  },
+  "homepage": "https://github.com/obytes/react-native-template-obytes.git#readme",
+  "devDependencies": {
+    "np": "^7.5.0"
+  }
+}
