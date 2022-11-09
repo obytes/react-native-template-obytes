@@ -41,6 +41,7 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
         </Text>
       )}
       <STextInput
+        testID="STextInput"
         ref={ref}
         placeholderTextColor={colors.neutral[400]}
         className={`mt-0 border-[1px] py-4 px-2  ${borderColor} rounded-md ${bgColor} text-[16px] ${textDirection}`}

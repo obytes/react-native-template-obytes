@@ -26,8 +26,14 @@ export const Login = () => {
   };
   return (
     <View className="flex-1 justify-center p-4">
-      <ControlledInput control={control} name="email" label="Email" />
       <ControlledInput
+        testID="emailInput"
+        control={control}
+        name="email"
+        label="Email"
+      />
+      <ControlledInput
+        testID="passwordInput"
         control={control}
         name="password"
         label="Password"
@@ -35,6 +41,7 @@ export const Login = () => {
         secureTextEntry={true}
       />
       <Button
+        testID="LoginButton"
         label="Login"
         onPress={handleSubmit(onSubmit)}
         variant="primary"
