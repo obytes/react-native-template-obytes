@@ -1,17 +1,9 @@
 module.exports = {
-  testEnvironment: 'jsdom',
   preset: 'jest-expo',
-  globals: {
-    'ts-jest': {
-      tsconfig: {
-        jsx: 'react',
-      },
-    },
-  },
-  transform: {
-    '^.+\\.js$': '<rootDir>/node_modules/react-native/jest/preprocessor.js',
-    '^.+\\.tsx?$': 'ts-jest',
-  },
+  setupFilesAfterEnv: [
+    '@testing-library/jest-native/extend-expect',
+    '<rootDir>/setup.ts',
+  ],
   testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
   collectCoverageFrom: [
     '**/*.{ts,tsx}',

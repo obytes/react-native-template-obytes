@@ -54,13 +54,13 @@ export const Button = ({
 }: Props) => {
   return (
     <TouchableOpacity
-      {...props}
       disabled={disabled || loading}
       className={`
     ${buttonVariants.defaults.container}
      ${buttonVariants[variant].container}
      ${disabled ? 'opacity-50' : ''}
     `}
+      {...props}
     >
       {loading ? (
         <ActivityIndicator

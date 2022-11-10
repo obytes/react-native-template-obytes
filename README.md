@@ -47,6 +47,17 @@ We built this starter with the following principles in mind:
 - 🧵 A good approach with example to handle forms based on [react-hook-form](https://react-hook-form.com/) and [zod](https://github.com/colinhacks/zod) for validation
 - 🎯 Localization with [i18next](https://www.i18next.com/) + validation using Eslint.
 
+## ✍️ Documentation
+
+- [Rules and Conventions](https://starter.obytes.com/docs/getting-started/rules-and-convetions)
+- [Project structure](https://starter.obytes.com/docs/getting-started/project-structure)
+- [Environment vars and config](https://starter.obytes.com/docs/getting-started/environment-vars-config)
+- [UI and Theming](https://starter.obytes.com/docs/ui-and-theme/ui-theming)
+- [Components](https://starter.obytes.com/docs/ui-and-theme/components)
+- [Forms](https://starter.obytes.com/docs/ui-and-theme/Forms)
+- [Data fetching](https://starter.obytes.com/docs/guides/data-fetching)
+- [Contribute to starter](https://starter.obytes.com/docs/contribute)
+
 ## 😉 Why Expo?
 
 Expo is a great tool to build react native apps, it helps you to build your app faster and with less effort.
