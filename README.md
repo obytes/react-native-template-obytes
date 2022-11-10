@@ -1,19 +1,14 @@
 <p align="center">
     <img alt="React Native Template Obytes" src="https://user-images.githubusercontent.com/11137944/93101697-808bc580-f6a2-11ea-8ce3-482be6ca456a.png" width="200" />
-
 </p>
-<a href='https://starter.obytes.com'>
-  <h2 align="center">
-    https://starter.obytes.com
-  </h2>
-</a>
+
 <h1 align="center">
   React Native Template Obytes
 </h1>
 
 📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo,TypeScript,tailwindcss, Husky, Lint-Staged, react-navigation, react-query, react-hook-form, I18n.
 
-# 😎 Overview
+## 😎 Overview
 
 This starter is based on obytes mobile tribe best practices for building react native apps and used on a daily based by our team. The starter is battle tested with multiple projects we worked on over the past four years.
 
@@ -71,11 +66,11 @@ The short answer is yes, if you are building a react native app and you want to 
 
 If you don't think using a starter is a good idea you can just take a look and get some inspiration for your project to find some good practices and solutions for common challenges react native developers are facing while building apps.
 
-# 🧑‍💻 Stay up to date
+## 🧑‍💻 Stay up to date
 
 The starter is constantly improving and we are adding new features and fixing bugs as soon as we can. You can stay up to date by watching the repository or by hitting the start button.
 
-# 💎 Libraries used
+## 💎 Libraries used
 
 - [Expo](https://docs.expo.io/)
 - [React Navigation](https://reactnavigation.org/)
@@ -90,16 +85,16 @@ The starter is constantly improving and we are adding new features and fixing bu
 - [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/)
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/)
 - [React Naive Svg](https://github.com/software-mansion/react-native-svg)
-- [ React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
+- [React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
 - [React Native fast image](https://github.com/DylanVann/react-native-fast-image)
 
-# 🥷 Contributors
+## 🥷 Contributors
 
 This starter is maintained by [Obytes mobile tribe team](https://www.obytes.com/team) and we are happy to welcome new contributors to the project.
 
 We are also open to work on your project and help you build your app. You can contact us on [obytes.com/contact](https://www.obytes.com/contact).
 
-# 🔥 How to contribute ?
+## 🔥 How to contribute ?
 
 First of all, thank you for your interest in contributing to this project. We are happy to have you here and here is how you can help us improve this project:
 
@@ -111,6 +106,6 @@ First of all, thank you for your interest in contributing to this project. We ar
 
 4. If you found a bug while using the starter or a typo in the documentation, feel free to open an issue or even better, open a pull request with the fix.
 
-# 🔖 License
+## 🔖 License
 
 This project is MIT licensed.
