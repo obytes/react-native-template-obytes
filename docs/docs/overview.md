@@ -26,7 +26,7 @@ We built this starter with the following principles in mind:
 
 ## ⭐ key Features
 
-- ✅ Last Expo SDK + Costume Dev client
+- ✅ Last Expo SDK + Custom Dev client
 - 🎉 Type checking [TypeScript](https://www.typescriptlang.org/)
 - 💅 Minimal UI kit using [tailwindcss](https://www.nativewind.dev/) with theming.
 - ⚙️ Support multiple environnement builds [Production, Staging, Development] using Expo configuration.
@@ -46,9 +46,9 @@ We built this starter with the following principles in mind:
 Expo is a great tool to build react native apps, it helps you to build your app faster and with less effort.
 One of the most famous questions we get from the community is why we use Expo and not React Native ClI?
 
-In the first version of the starter we used React Native CLI as back then using Expo is not the best option as we are using some native libraries and we will need to eject the app anyway. Last year Expo team introduce using costume dev client which allow you to use Expo without ejecting the app and use native libraries.
+In the first version of the starter we used React Native CLI as back then using Expo is not the best option as we are using some native libraries and we will need to eject the app anyway. Last year Expo team introduce using Custom dev client which allow you to use Expo without ejecting the app and use native libraries.
 
-The starter is using Expo with a costume dev client which means we will get access to the amazing Expo ecosystem and install native libraries without ejecting the app.
+The starter is using Expo with a Custom dev client which means we will get access to the amazing Expo ecosystem and install native libraries without ejecting the app.
 
 Last and not least, with older version of the starter we face a lot of issues while upgrading our apps to the last version but now with Expo we can upgrade our apps easily.
 

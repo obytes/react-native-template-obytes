@@ -6,3 +6,5 @@ coverage/
 ios/
 .expo
 .expo-shared
+docs/
+cli/

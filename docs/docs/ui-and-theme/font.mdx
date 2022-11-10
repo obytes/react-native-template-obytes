@@ -2,8 +2,8 @@
 sidebar_position: 2
 ---
 
-import CodeBlock from "@theme/CodeBlock";
-import Card from "!!raw-loader!../../../template/src/screens/feed/card";
+import CodeBlock from '@theme/CodeBlock';
+import Card from '!!raw-loader!../../../src/screens/feed/card';
 
 # Fonts
 
@@ -13,11 +13,11 @@ In the starter we are using are using [@bacons/link-assets](https://www.npmjs.co
 To add a custom font you only need to put the font file in the `assets/fonts` and update the expo config by adding the exact file path to `@bacons/link-assets` config like the following:
 
 ```js title="app.config.js"
-import type { ConfigContext, ExpoConfig } from "@expo/config";
+import type { ConfigContext, ExpoConfig } from '@expo/config';
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  plugins: [["@bacons/link-assets", ["./assets/fonts/Inter.ttf"]]],
+  plugins: [['@bacons/link-assets', ['./assets/fonts/Inter.ttf']]],
 });
 ```
 
@@ -25,12 +25,12 @@ Next Make sure to add your new font to Tailwind CSS config to use it with `class
 
 ```js title="tailwind.config.js"
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        sans: ['Inter', 'sans-serif'],
       },
     },
   },
