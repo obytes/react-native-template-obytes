@@ -2,20 +2,20 @@
 sidebar_position: 3
 ---
 
-import CodeBlock from "@theme/CodeBlock";
-import Card from "!!raw-loader!../../../template/src/screens/feed/card";
-import View from "!!raw-loader!../../../template/src/ui/core/view";
-import TouchableOpacity from "!!raw-loader!../../../template/src/ui/core/touchable-opacity";
-import Pressable from "!!raw-loader!../../../template/src/ui/core/pressable";
-import ScrollView from "!!raw-loader!../../../template/src/ui/core/scroll-view";
-import ActivityIndicator from "!!raw-loader!../../../template/src/ui/core/activity-indicator";
-import List from "!!raw-loader!../../../template/src/ui/core/list";
-import EmptyList from "!!raw-loader!../../../template/src/ui/core/list/empty-list";
-import Image from "!!raw-loader!../../../template/src/ui/core/image";
-import Text from "!!raw-loader!../../../template/src/ui/core/text";
-import Button from "!!raw-loader!../../../template/src/ui/core/button";
-import Input from "!!raw-loader!../../../template/src/ui/core/input/input";
-import Select from "!!raw-loader!../../../template/src/ui/core/select/select";
+import CodeBlock from '@theme/CodeBlock';
+import Card from '!!raw-loader!../../../src/screens/feed/card';
+import View from '!!raw-loader!../../../src/ui/core/view';
+import TouchableOpacity from '!!raw-loader!../../../src/ui/core/touchable-opacity';
+import Pressable from '!!raw-loader!../../../src/ui/core/pressable';
+import ScrollView from '!!raw-loader!../../../src/ui/core/scroll-view';
+import ActivityIndicator from '!!raw-loader!../../../src/ui/core/activity-indicator';
+import List from '!!raw-loader!../../../src/ui/core/list';
+import EmptyList from '!!raw-loader!../../../src/ui/core/list/empty-list';
+import Image from '!!raw-loader!../../../src/ui/core/image';
+import Text from '!!raw-loader!../../../src/ui/core/text';
+import Button from '!!raw-loader!../../../src/ui/core/button';
+import Input from '!!raw-loader!../../../src/ui/core/input/input';
+import Select from '!!raw-loader!../../../src/ui/core/select/select';
 
 # Components
 
@@ -84,8 +84,8 @@ The `View` component is a wrapper around the React Native `View` component with 
 **Use Case**
 
 ```tsx
-import * as React from "react";
-import { View, Text } from "@/ui";
+import * as React from 'react';
+import { View, Text } from '@/ui';
 
 const MyComponent = () => {
   return (
@@ -120,14 +120,14 @@ The `TouchableOpacity` and `Pressable` components are wrappers around the React 
 **Use Case**
 
 ```tsx
-import * as React from "react";
-import { TouchableOpacity, Text } from "@/ui";
+import * as React from 'react';
+import { TouchableOpacity, Text } from '@/ui';
 
 const MyComponent = () => {
   return (
     <TouchableOpacity
       className="flex flex-col items-center justify-center bg-gray-100"
-      onPress={() => console.log("pressed")}
+      onPress={() => console.log('pressed')}
     >
       <Text>My Component</Text>
     </TouchableOpacity>
@@ -151,8 +151,8 @@ The `ScrollView` component is a wrapper around the React Native `ScrollView` com
 **Use Case**
 
 ```tsx
-import * as React from "react";
-import { ScrollView, Text } from "@/ui";
+import * as React from 'react';
+import { ScrollView, Text } from '@/ui';
 
 const MyComponent = () => {
   return (
@@ -180,8 +180,8 @@ The `ActivityIndicator` component is a wrapper around the React Native `Activity
 **Use Case**
 
 ```tsx
-import * as React from "react";
-import { ActivityIndicator } from "@/ui";
+import * as React from 'react';
+import { ActivityIndicator } from '@/ui';
 
 const MyComponent = () => {
   return <ActivityIndicator className="text-blue-500" />;
@@ -215,13 +215,13 @@ The `List` component is a wrapper around the `@shopify/flash-list` component wit
 **Use Case**
 
 ```tsx
-import * as React from "react";
-import { List, EmptyList, Text } from "@/ui";
+import * as React from 'react';
+import { List, EmptyList, Text } from '@/ui';
 
 const MyComponent = () => {
   return (
     <List
-      data={["Item 1", "Item 2"]}
+      data={['Item 1', 'Item 2']}
       renderItem={({ item }) => <Text>{item}</Text>}
       ListEmptyComponent={<EmptyList message="No items" />}
     />
@@ -245,15 +245,15 @@ For the `Image` component, we use the `react-native-fast-image` library to provi
 **Use Case**
 
 ```tsx
-import * as React from "react";
-import { Image } from "@/ui";
+import * as React from 'react';
+import { Image } from '@/ui';
 
 const MyComponent = () => {
   return (
     <Image
       className="w-32 h-32"
       source={{
-        uri: "https://images.unsplash.com/photo-1524758631624-e2822e304c36",
+        uri: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36',
       }}
     />
   );
@@ -287,8 +287,8 @@ If you want more complex variants logic, we recommend using [`cva` package ](htt
 **Use Case**
 
 ```tsx
-import * as React from "react";
-import { Text, View } from "@/ui";
+import * as React from 'react';
+import { Text, View } from '@/ui';
 
 const MyComponent = () => {
   return (
@@ -322,8 +322,8 @@ Every variant must contain style for `container`, `indicator` and `text` keys. T
 **Use Case**
 
 ```tsx
-import * as React from "react";
-import { Button, View } from "@/ui";
+import * as React from 'react';
+import { Button, View } from '@/ui';
 
 const MyComponent = () => {
   return (
@@ -331,17 +331,17 @@ const MyComponent = () => {
       <Button
         variant="primary"
         label="Primary"
-        onPress={() => console.log("Primary Button Pressed")}
+        onPress={() => console.log('Primary Button Pressed')}
       />
       <Button
         variant="secondary"
         label="Secondary"
-        onPress={() => console.log("Secondary Button Pressed")}
+        onPress={() => console.log('Secondary Button Pressed')}
       />
       <Button
         variant="outline"
         label="Outline"
-        onPress={() => console.log("Outline Button Pressed")}
+        onPress={() => console.log('Outline Button Pressed')}
       />
     </View>
   );
@@ -369,8 +369,8 @@ We tried to keep the `Input` component as simple as possible but you can add mor
 **Use Case**
 
 ```tsx
-import * as React from "react";
-import { Input, View } from "@/ui";
+import * as React from 'react';
+import { Input, View } from '@/ui';
 
 const MyComponent = () => {
   return (
@@ -412,15 +412,15 @@ Feel free to update the component implementation to fit your need and as you kee
 **Use Case**
 
 ```tsx
-import * as React from "react";
+import * as React from 'react';
 
-import type { Option } from "@/ui";
-import { SelectInput, View } from "@/ui";
+import type { Option } from '@/ui';
+import { SelectInput, View } from '@/ui';
 
 const options: Option[] = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' },
 ];
 
 const MyComponent = () => {

@@ -2,8 +2,8 @@
 sidebar_position: 3
 ---
 
-import CodeBlock from "@theme/CodeBlock";
-import BabelConfig from "!!raw-loader!../../../template/babel.config.js";
+import CodeBlock from '@theme/CodeBlock';
+import BabelConfig from '!!raw-loader!../../../babel.config.js';
 
 # Project Structure
 
@@ -110,14 +110,14 @@ We use absolute imports to import files using babel module resolver plugin and t
 Here is a simple example on how the Feed screen look like with absolute imports:
 
 ```tsx title="Feed Screen"
-import { FlashList } from "@shopify/flash-list";
-import React from "react";
+import { FlashList } from '@shopify/flash-list';
+import React from 'react';
 
-import type { Post } from "@/api";
-import { usePosts } from "@/api";
-import { EmptyList, SafeAreaView, Text, View } from "@/ui";
+import type { Post } from '@/api';
+import { usePosts } from '@/api';
+import { EmptyList, SafeAreaView, Text, View } from '@/ui';
 
-import { Card } from "./card";
+import { Card } from './card';
 
 export const Feed = () => {
   const { data, isLoading } = usePosts();

@@ -2,9 +2,9 @@
 sidebar_position: 4
 ---
 
-import CodeBlock from "@theme/CodeBlock";
-import ControlledInput from "!!raw-loader!../../../template/src/ui/core/input/controlled-input";
-import Select from "!!raw-loader!../../../template/src/ui/core/select/controlled-select";
+import CodeBlock from '@theme/CodeBlock';
+import ControlledInput from '!!raw-loader!../../../src/ui/core/input/controlled-input';
+import Select from '!!raw-loader!../../../src/ui/core/select/controlled-select';
 
 # Forms
 
@@ -40,7 +40,7 @@ Lets say you want to create a form that allows the user login to the application
 The right way to validate a form is to create a schema validation. You can use any library you want but we recommend using zod as you can easily infer the types from the schema. Here is how you can create a schema validation for the login form:
 
 ```tsx
-import * as z from "zod";
+import * as z from 'zod';
 
 const schema = z.object({
   email: z.string().email(),
@@ -56,13 +56,13 @@ Now that you have your schema validation, you can easily create your login scree
 Here is how you can create your login screen:
 
 ```tsx
-import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
 
-import { useAuth } from "@/core";
-import { Button, ControlledInput, View } from "@/ui";
+import { useAuth } from '@/core';
+import { Button, ControlledInput, View } from '@/ui';
 
 const schema = z.object({
   email: z.string().email(),
@@ -80,7 +80,7 @@ export const Login = () => {
 
   const onSubmit = (data: FormType) => {
     console.log(data);
-    signIn({ access: "access-token", refresh: "refresh-token" });
+    signIn({ access: 'access-token', refresh: 'refresh-token' });
   };
   return (
     <View className="flex-1 justify-center p-4">
