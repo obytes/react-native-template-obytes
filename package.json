@@ -51,7 +51,7 @@
     "expo-system-ui": "^1.3.0",
     "i18next": "^21.9.1",
     "lodash.memoize": "^4.1.2",
-    "nativewind": "^2.0.10",
+    "nativewind": "^2.0.11",
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-error-boundary": "^3.1.4",
