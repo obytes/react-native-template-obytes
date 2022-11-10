@@ -36,7 +36,7 @@
     "@bacons/link-assets": "^1.1.0",
     "@gorhom/bottom-sheet": "^4",
     "@hookform/resolvers": "^2.9.8",
-    "@react-navigation/bottom-tabs": "^6.3.3",
+    "@react-navigation/bottom-tabs": "^6.4.0",
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/native-stack": "^6.9.1",
     "@shopify/flash-list": "1.2.2",
