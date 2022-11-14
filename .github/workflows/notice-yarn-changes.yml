@@ -1,5 +1,9 @@
 name: Notice yarn.lock changes
-on: [pull_request]
+on:
+  pull_request:
+    paths:
+      - 'yarn.lock'
+      - 'package-lock.json'
 
 jobs:
   check:
@@ -18,3 +22,52 @@ jobs:
           failOnDowngrade: 'false'
           path: 'yarn.lock'
           updateComment: 'true'
+  doctor:
+    name: Expo Doctor
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Restore node_modules from cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install expo cli & node_modules
+        run: |
+          npm install -g expo-cli
+          yarn install --frozen-lockfile
+
+      - name: Expo doctor
+        id: expo_doctor
+        shell: bash
+        run: |
+          delta=$(expo doctor)
+          delta="${delta//'%'/'%25'}"
+          delta="${delta//$'\n'/'%0A'}"
+          delta="${delta//$'\r'/'%0D'}"
+          echo "::set-output name=delta_output::$delta"
+
+      - name: Auto Comment
+        uses: bubkoo/auto-comment@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pullRequestOpened: >
+            👋 @{{ author }}
+
+            We run `expo doctor` for your changes and here is your results 👇
+
+            ```
+
+            ${{ steps.expo_doctor.outputs.delta_output }}
+
+            ```
+
+            Please make sure to fix any warning by running `expo doctor --fix-dependencies` locally
