@@ -94,7 +94,7 @@
     "eslint-plugin-i18n-json": "^3.1.0",
     "eslint-plugin-simple-import-sort": "^8.0.0",
     "eslint-plugin-tailwindcss": "^3.6.1",
-    "eslint-plugin-unicorn": "^43.0.2",
+    "eslint-plugin-unicorn": "^44.0.2",
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.1",
     "jest": "^26.6.3",
