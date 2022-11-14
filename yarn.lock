@@ -6483,10 +6483,10 @@ hyphenate-style-name@^1.0.2:
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
   integrity sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==
 
-i18next@^21.9.1:
-  version "21.10.0"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-21.10.0.tgz#85429af55fdca4858345d0e16b584ec29520197d"
-  integrity sha512-YeuIBmFsGjUfO3qBmMOc0rQaun4mIpGKET5WDwvu8lU7gvwpcariZLNtL0Fzj+zazcHUrlXHiptcFhBMFaxzfg==
+i18next@^22.0.5:
+  version "22.0.5"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-22.0.5.tgz#81f29574b19d1c00e76523c3b45b91e3f9223ee3"
+  integrity sha512-N2AXKCLHzv1ClfLqiwbAPJHClovfRv9iplySiZ/S3LfQ7PNjkVEkVpFbhCXDsPhQd6kLp6DKjbzpowniE8Mdiw==
   dependencies:
     "@babel/runtime" "^7.17.2"
 
