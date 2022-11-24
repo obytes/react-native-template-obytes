@@ -24,7 +24,8 @@ export const InputVariants = () => {
           label="Select"
           options={options}
           value={value}
-          onSelect={(option) => setValue(option.value)}
+          onSelect={(option) => setValue(option)}
+          error="This is a message error"
         />
       </View>
     </>

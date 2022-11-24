@@ -14,7 +14,7 @@ export interface SelectProps {
   disabled?: boolean;
   error?: string;
   options?: Option[];
-  onSelect?: (option: Option) => void;
+  onSelect?: (value: string | number) => void;
   placeholder?: string;
 }
 
@@ -34,7 +34,7 @@ export const Select = (props: SelectProps) => {
 
   const onSelectOption = React.useCallback(
     (option: Option) => {
-      onSelect?.(option);
+      onSelect?.(option.value);
       close();
     },
     [close, onSelect]
