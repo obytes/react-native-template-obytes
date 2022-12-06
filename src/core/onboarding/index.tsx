@@ -4,20 +4,20 @@ import { getToken, removeToken, setToken } from './utils';
 
 interface OnboardingState {
   status: 'onboardingEnabled' | 'onboardingDisabled' | 'idle';
-  setOnboarding: () => void;
+  disableOnboarding: () => void;
   enableOnboarding: () => void;
   hydrate: () => void;
 }
 
 export const useOnboarding = create<OnboardingState>((set) => ({
   status: 'idle',
-  setOnboarding: () => {
+  disableOnboarding: () => {
     setToken('true');
     set({ status: 'onboardingDisabled' });
   },
   enableOnboarding: () => {
     removeToken();
-    set({ status: 'onboardingDisabled' });
+    set({ status: 'onboardingEnabled' });
   },
   hydrate: () => {
     try {
@@ -33,7 +33,8 @@ export const useOnboarding = create<OnboardingState>((set) => ({
   },
 }));
 
-export const setOnboarding = () => useOnboarding.getState().setOnboarding();
+export const disableOnboarding = () =>
+  useOnboarding.getState().disableOnboarding();
 export const hydrateOnboarding = () => useOnboarding.getState().hydrate();
 export const enableOnboarding = () =>
   useOnboarding.getState().enableOnboarding();

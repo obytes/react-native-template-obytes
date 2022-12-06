@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { setOnboarding } from '@/core/onboarding';
+import { disableOnboarding } from '@/core/onboarding';
 import { Button, Text, View } from '@/ui';
 export const Onboarding = () => {
   return (
@@ -15,7 +15,10 @@ export const Onboarding = () => {
         Minimal code and dependencies
       </Text>
       <View className="mt-6">
-        <Button label="Let's Get Started " onPress={() => setOnboarding()} />
+        <Button
+          label="Let's Get Started "
+          onPress={() => disableOnboarding()}
+        />
       </View>
     </View>
   );
