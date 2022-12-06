@@ -9,6 +9,9 @@ import { APIProvider } from '@/api';
 import { hydrateAuth } from '@/core';
 import { RootNavigator } from '@/navigation';
 
+import { hydrateOnboarding } from './core/onboarding';
+
+hydrateOnboarding();
 hydrateAuth();
 SplashScreen.preventAutoHideAsync();
 
