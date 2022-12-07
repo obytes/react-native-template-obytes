@@ -18,10 +18,10 @@ export const Root = () => {
     await SplashScreen.hideAsync();
   }, []);
   useEffect(() => {
-    if (onboardingStatus !== 'idle') {
+    if (onboardingStatus !== 'idle' && status !== 'idle') {
       hideSplash();
     }
-  }, [hideSplash, onboardingStatus]);
+  }, [hideSplash, onboardingStatus, status]);
 
   return (
     <Stack.Navigator

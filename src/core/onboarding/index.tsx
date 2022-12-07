@@ -29,6 +29,7 @@ export const useOnboarding = create<OnboardingState>((set) => ({
       }
     } catch (e) {
       // catch error here
+      set({ status: 'onboardingEnabled' });
     }
   },
 }));
