@@ -3,11 +3,11 @@ import React from 'react';
 
 import { Onboarding } from '@/screens';
 
-export type WelcomeStackParamList = {
-  Welcome: undefined;
+export type OnboardingStackParamList = {
+  Onboarding: undefined;
 };
 
-const Stack = createNativeStackNavigator<WelcomeStackParamList>();
+const Stack = createNativeStackNavigator<OnboardingStackParamList>();
 
 export const OnboardingNavigator = () => {
   return (
@@ -16,7 +16,7 @@ export const OnboardingNavigator = () => {
         headerShown: false,
       }}
     >
-      <Stack.Screen name="Welcome" component={Onboarding} />
+      <Stack.Screen name="Onboarding" component={Onboarding} />
     </Stack.Navigator>
   );
 };

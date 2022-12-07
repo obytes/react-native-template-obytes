@@ -17,12 +17,11 @@ export const Root = () => {
   const hideSplash = React.useCallback(async () => {
     await SplashScreen.hideAsync();
   }, []);
-
   useEffect(() => {
     if (onboardingStatus !== 'idle') {
       hideSplash();
     }
-  }, [status, hideSplash, onboardingStatus]);
+  }, [hideSplash, onboardingStatus]);
 
   return (
     <Stack.Navigator
@@ -33,7 +32,10 @@ export const Root = () => {
       }}
     >
       {onboardingStatus === 'onboardingEnabled' ? (
-        <Stack.Screen name="Onboarding" component={OnboardingNavigator} />
+        <Stack.Screen
+          name="OnboardingNavigator"
+          component={OnboardingNavigator}
+        />
       ) : status === 'signOut' ? (
         <Stack.Screen name="Auth" component={AuthNavigator} />
       ) : (
@@ -43,10 +45,8 @@ export const Root = () => {
   );
 };
 
-export const RootNavigator = () => {
-  return (
-    <NavigationContainer>
-      <Root />
-    </NavigationContainer>
-  );
-};
+export const RootNavigator = () => (
+  <NavigationContainer>
+    <Root />
+  </NavigationContainer>
+);
