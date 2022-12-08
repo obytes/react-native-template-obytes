@@ -3,6 +3,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
 
 import { useAuth } from '@/core';
+import { useIsFirstTime } from '@/core/hooks';
+import { Onboarding } from '@/screens';
 
 import { AuthNavigator } from './auth-navigator';
 import { NavigationContainer } from './navigation-container';
@@ -11,10 +13,10 @@ const Stack = createNativeStackNavigator();
 
 export const Root = () => {
   const status = useAuth((state) => state.status);
+  const [isFirstTime] = useIsFirstTime();
   const hideSplash = React.useCallback(async () => {
     await SplashScreen.hideAsync();
   }, []);
-
   useEffect(() => {
     if (status !== 'idle') {
       hideSplash();
@@ -29,10 +31,16 @@ export const Root = () => {
         animation: 'none',
       }}
     >
-      {status === 'signOut' ? (
-        <Stack.Screen name="Auth" component={AuthNavigator} />
+      {isFirstTime ? (
+        <Stack.Screen name="Onboarding" component={Onboarding} />
       ) : (
-        <Stack.Screen name="App" component={TabNavigator} />
+        <Stack.Group>
+          {status === 'signOut' ? (
+            <Stack.Screen name="Auth" component={AuthNavigator} />
+          ) : (
+            <Stack.Screen name="App" component={TabNavigator} />
+          )}
+        </Stack.Group>
       )}
     </Stack.Navigator>
   );
