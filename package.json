@@ -101,7 +101,7 @@
     "jest-coverage-badges": "^1.1.2",
     "jest-environment-jsdom": "^29.2.2",
     "jest-expo": "^47.0.0",
-    "lint-staged": "^13.0.3",
+    "lint-staged": "^13.1.0",
     "metro-babel-register": "^0.73.3",
     "np": "^7.5.0",
     "prettier": "^2.7.1",
