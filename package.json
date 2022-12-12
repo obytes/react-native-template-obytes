@@ -80,7 +80,7 @@
     "@react-native-community/eslint-config": "^3.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/jest-native": "^5.1.2",
-    "@testing-library/react-native": "^11.3.0",
+    "@testing-library/react-native": "^11.5.0",
     "@types/i18n-js": "^3.8.2",
     "@types/jest": "^29.2.1",
     "@types/lodash.memoize": "^4.1.7",
