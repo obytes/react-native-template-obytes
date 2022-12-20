@@ -6,13 +6,20 @@ sidebar_position: 10
 
 Make sure to check the links below to stay updated about react native news:
 
-- [React Native Home Page](https://reactnative.dev/)
-- [This week in react](https://thisweekinreact.com/)
-- [Evan Bacon](https://twitter.com/Baconbrix)
-- [React Native Twitter Account](https://twitter.com/reactnative)
-- [Expo Twitter Account](https://twitter.com/expo)
+**Websites:**
+
+- [React Native Documentation](https://reactnative.dev/)
+- [React Native Dev Blog](https://reactnative.dev/blog)
 - [React Native Directory](https://reactnative.directory/)
-- [React weekly Newsletter](https://reactnative.dev/weekly)
 - [React Native Reddit Channel](https://www.reddit.com/r/reactnative/)
-- [React Native NewsLatter](https://reactnative.cc/)
-- [React Native Now NewsLatter](https://reactnativenow.com/)
+
+**Newsletters:**
+
+- [This week in react](https://thisweekinreact.com/)
+- [The React Native Newsletter](https://reactnativenewsletter.com/)
+
+**Twitter accounts to follow:**
+
+- [Evan Bacon](https://twitter.com/Baconbrix)
+- [React Native](https://twitter.com/reactnative)
+- [Expo](https://twitter.com/expo)
