@@ -8,44 +8,47 @@
 
 📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo,TypeScript,tailwindcss, Husky, Lint-Staged, react-navigation, react-query, react-hook-form, I18n.
 
-## 😎 Overview
+# Overview
 
-This starter is based on obytes mobile tribe best practices for building react native apps and used on a daily based by our team. The starter is battle tested with multiple projects we worked on over the past four years.
+As a team of experienced developers at Obytes Mobile Tribe, we have spent years refining our approach to building high-quality React Native applications. Our starter kit is based on the best practices and tools that we have found to be most effective in our own projects.
 
-Although the starter is very opinionated, we believe that we did our best to select the best solutions for the majority of the challenges we ran into while developing mobile apps for our clients.
+This starter kit has been thoroughly tested and proven successful in multiple projects over the past four years. It is regularly used by our team on a daily basis and has helped us deliver great results for our clients.
+
+While our starter kit is heavily influenced by our own opinions and experiences, we have carefully selected the included solutions to address common challenges and meet the needs of the majority of use cases. We believe it offers a streamlined and efficient approach to building React Native apps, and we are confident that it can help others achieve their project goals as well.
 
 ## 🚀 Motivation
 
-The idea behind the starter is that we wanted to create a starter that will help us create react native apps faster and with less effort.
-we want to make sure all our internal and external projects will have the same code quality and the same architecture which help us maintain and scale our apps easily as well as sharing code between projects and teams.
+Our goal with this starter kit was to streamline the process of building React Native apps, both for our own team and for our clients. We wanted to create a resource that would allow us to create high-quality apps faster and with less effort, while ensuring that all of our projects adhere to the same code standards and architectural principles.
 
-Using this starter help our team to switch projects easily and focus on the business logic and not on the boilerplate code.
+The benefits of using this starter kit are numerous. It helps our team easily switch between projects, as we can rely on a consistent foundation of code. It also allows us to focus on the business logic of each project rather than getting bogged down in boilerplate code. And, because it promotes consistency across projects, it makes it easier to maintain and scale our apps, as well as share code between teams.
+
+Overall, our starter kit is designed to facilitate efficient and effective app development, helping us to bring the best possible products to our clients
 
 ## ✍️ Philosophy
 
-We built this starter with the following principles in mind:
+When creating this starter kit, we had several guiding principles in mind::
 
-- 🚀 Production-ready
-- 🥷 Developer experience + Productivity
-- 🧩 Minimal code and dependencies
-- 💪 well maintained third-party libraries
+- **🚀 Production-ready**: We wanted to ensure that this starter was ready for real-world use, providing a solid foundation for building production-grade apps.
+- **🥷 Developer experience and productivity**: Our focus was on creating a starter that would enhance the developer experience and increase productivity.
+- **🧩 Minimal code and dependencies**: We aimed to keep the codebase and dependencies as small as possible.
+- **💪 Well-maintained third-party libraries**: We included only well-maintained and reliable third-party libraries, to provide stability and support for our projects.
 
 ## ⭐ key Features
 
-- ✅ Last Expo SDK + Custom Dev client
-- 🎉 Type checking [TypeScript](https://www.typescriptlang.org/)
-- 💅 Minimal UI kit using [tailwindcss](https://www.nativewind.dev/) with theming.
-- ⚙️ Support multiple environnement builds [Production, Staging, Development] using Expo configuration.
-- 🦊 Husky for Git Hooks
-- 💡 Clean project structure with Absolute Imports
-- 🚫 Lint-staged for running linters + typescript checking on Git staged files
-- 🗂 VSCode recommended extensions configuration, settings and snippets for a better developer experience
-- ☂️ [React Navigation](https://reactnavigation.org/) pre-installed with examples
-- 💫 Auth flow with [zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage to save sensitive data.
-- 🛠 A simple workflow to build, release and distribute your application using [Github action](https://github.com/features/actions)
-- 🔥 [React Query](https://react-query.tanstack.com/) & [axios](https://github.com/axios/axios) to fetch Data
-- 🧵 A good approach with example to handle forms based on [react-hook-form](https://react-hook-form.com/) and [zod](https://github.com/colinhacks/zod) for validation
-- 🎯 Localization with [i18next](https://www.i18next.com/) + validation using Eslint.
+- ✅ The latest version of Expo SDK, along with the Custom Dev client, to give you access to a range of powerful features and tools.
+- 🎉 [TypeScript](https://www.typescriptlang.org/) for type checking, to help you catch bugs and improve code quality.
+- 💅 A minimal UI kit built with [tailwindcss](https://www.nativewind.dev/), which provides a range of pre-defined classes for styling your app.
+- ⚙️ Support for multiple environment builds, including Production, Staging, and Development, using Expo configuration.
+- 🦊 Husky for Git Hooks, to automate your git hooks and enforce code standards.
+- 💡 A clean project structure with Absolute Imports, to make it easier to navigate and manage your code.
+- 🚫 Lint-staged for running linters and TypeScript checks on Git staged files, to ensure that your code is always up to standards.
+- 🗂 VSCode recommended extensions, settings, and snippets to enhance the developer experience.
+- ☂️ Pre-installed [React Navigation](https://reactnavigation.org/) with examples, to provide a comprehensive navigation solution for your app.
+- 💫 An auth flow with [zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage solution to save sensitive data.
+- 🛠 A simple workflow for building, releasing, and distributing your app using [Github action](https://github.com/features/actions).
+- 🔥 [React Query](https://react-query.tanstack.com/) & [axios](https://github.com/axios/axios) and [axios](https://github.com/axios/axios) for fetching data, to help you build efficient and performant apps.
+- 🧵 A good approach for handling forms with [react-hook-form](https://react-hook-form.com/) and [zod](https://github.com/colinhacks/zod) for validation.
+- 🎯 Localization with [i18next](https://www.i18next.com/) , along with Eslint for validation.
 
 ## ✍️ Documentation
 
@@ -60,26 +63,31 @@ We built this starter with the following principles in mind:
 
 ## 😉 Why Expo?
 
-Expo is a great tool to build react native apps, it helps you to build your app faster and with less effort.
-One of the most famous questions we get from the community is why we use Expo and not React Native ClI?
+Expo is a powerful tool for building React Native apps, offering a range of features and benefits that can help developers create high-quality apps more efficiently. One question we often receive from the community is why we choose to use Expo instead of the React Native CLI.
 
-In the first version of the starter we used React Native CLI as back then using Expo is not the best option as we are using some native libraries and we will need to eject the app anyway. Last year Expo team introduce using Custom dev client which allow you to use Expo without ejecting the app and use native libraries.
+In the past, our team used the React Native CLI for our starter kit. However, we found that using Expo presented several advantages. In particular, the introduction of the Custom dev client feature allowed us to take advantage of the Expo ecosystem and utilize native libraries without the need for ejecting the app. This has greatly simplified our development process and enabled us to focus on the business logic of our projects.
 
-The starter is using Expo with a Custom dev client which means we will get access to the amazing Expo ecosystem and install native libraries without ejecting the app.
+Additionally, we have found that using Expo has made it easier to upgrade our apps to new versions, eliminating the issues we previously encountered when using the React Native CLI.
 
-Last and not least, with older version of the starter we face a lot of issues while upgrading our apps to the last version but now with Expo we can upgrade our apps easily.
-
-Probably the right question is **Why not Expo?**
+Overall, we believe that Expo offers numerous benefits for building React Native apps and is a valuable tool for any developer. The real question may be, **why not use Expo?**
 
 ## 🤔 Is this starter for you?
 
-The short answer is yes, if you are building a react native app and you want to start with a solid foundation ,good architecture and a good developer experience then this starter is for you.
+If you are planning to build a React Native app and are looking for a strong foundation, well-designed architecture, and a positive developer experience, then this starter kit is an excellent resource to consider. It offers a comprehensive set of best practices and tools that have been tested and proven effective in multiple projects.
 
-If you don't think using a starter is a good idea you can just take a look and get some inspiration for your project to find some good practices and solutions for common challenges react native developers are facing while building apps.
+Even if you are not sure that using a starter kit is the right choice for your project, you can still benefit from this resource. You can explore the starter kit and draw inspiration from the solutions it provides for common challenges faced by React Native developers. This can be a helpful way to discover good practices and find effective solutions for your own app development process.
+
+Overall, whether you choose to use this starter kit as is or simply take some ideas from it, we believe it offers valuable insights and resources for anyone looking to build a high-quality React Native app.
 
 ## 🧑‍💻 Stay up to date
 
-The starter is constantly improving and we are adding new features and fixing bugs as soon as we can. You can stay up to date by watching the repository or by hitting the start button.
+We are committed to continually improving our starter kit and providing the best possible resources for building React Native apps. To that end, we regularly add new features and fix any bugs that are discovered.
+
+If you want to stay up to date with the latest developments in our starter kit, you can either watch the repository or hit the "star" button. This will allow you to receive notifications whenever new updates are available.
+
+We value the feedback and contributions of our users, and we encourage you to let us know if you have any suggestions for improving our starter kit. We are always looking for ways to make it even more effective and useful for our community. So, please do not hesitate to reach out and share your thoughts with us.
+
+<!-- add a gif image here  -->
 
 ## 💎 Libraries used
 
@@ -96,26 +104,28 @@ The starter is constantly improving and we are adding new features and fixing bu
 - [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/)
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/)
 - [React Naive Svg](https://github.com/software-mansion/react-native-svg)
-- [React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
+- [ React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
 - [React Native fast image](https://github.com/DylanVann/react-native-fast-image)
 
-## 🥷 Contributors
+## Contributors
 
-This starter is maintained by [Obytes mobile tribe team](https://www.obytes.com/team) and we are happy to welcome new contributors to the project.
+This starter is maintained by [Obytes mobile tribe team](https://www.obytes.com/team) and we welcome new contributors to join us in improving it. If you are interested in getting involved in the project, please don't hesitate to open an issue or submit a pull request.
 
-We are also open to work on your project and help you build your app. You can contact us on [obytes.com/contact](https://www.obytes.com/contact).
+In addition to maintaining this starter kit, we are also available to work on custom projects and help you build your dream app. If you are looking for experienced and reliable developers to bring your app vision to life, please visit our website at [obytes.com/contact](https://www.obytes.com/contact) to get in touch with us. We would be happy to discuss your project in more detail and explore how we can help you achieve your goals.
 
 ## 🔥 How to contribute ?
 
-First of all, thank you for your interest in contributing to this project. We are happy to have you here and here is how you can help us improve this project:
+Thank you for your interest in contributing to our project. Your involvement is greatly appreciated and we welcome your contributions. Here are some ways you can help us improve this project:
 
-1. Give the project a 🌟 on Github if you like it. This will help us to get more visibility and attract more contributors.
+1.Show your support for the project by giving it a 🌟 on Github. This helps us increase visibility and attract more contributors.
 
-2. If you have any suggestions or feedback about any approach we are using in this project, feel free to open an issue and let us know. we will be happy to hear from you and discuss it with you ASAP.
+2.Share your thoughts and ideas with us by opening an issue. If you have any suggestions or feedback about any aspect of the project, we are always eager to hear from you and have a discussion.
 
-3. If you have any questions about the project, feel free to open an issue and our team will do their best to answer your questions.
+3.If you have any questions about the project, please don't hesitate to ask. Simply open an issue and our team will do our best to provide a helpful and informative response.
 
-4. If you found a bug while using the starter or a typo in the documentation, feel free to open an issue or even better, open a pull request with the fix.
+4.If you encounter a bug or typo while using the starter kit or reading the documentation, we would be grateful if you could bring it to our attention. You can open an issue to report the issue, or even better, submit a pull request with a fix.
+
+We value the input and contributions of our community and look forward to working with you to improve this project.
 
 ## 🔖 License
 
