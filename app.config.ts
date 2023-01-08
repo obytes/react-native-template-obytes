@@ -1,6 +1,11 @@
 import type { ConfigContext, ExpoConfig } from '@expo/config';
 
-import { Config } from './config/config.js';
+import { getConfig } from './config/config.js';
+
+const appEnv = process.env.APP_ENV ?? 'development';
+
+const Config = getConfig(appEnv);
+
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: Config.name,
@@ -34,4 +39,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     favicon: './assets/favicon.png',
   },
   plugins: [['@bacons/link-assets', ['./assets/fonts/Inter.ttf']]],
+  extra: {
+    APP_ENV: appEnv,
+  },
 });
