@@ -1,7 +1,6 @@
 const packageJSON = require('../package.json');
 
 // default values
-const APP_ENV = process.env.APP_ENV ?? 'development';
 const SCHEME = 'com.obytes';
 const APP_NAME = 'ObytesApp';
 
