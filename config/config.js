@@ -1,7 +1,6 @@
 const packageJSON = require('../package.json');
 
 // default values
-const APP_ENV = process.env.APP_ENV ?? 'development';
 const SCHEME = 'com.obytes';
 const APP_NAME = 'ObytesApp';
 
@@ -36,5 +35,8 @@ const production = {
 
 const configs = { development, staging, production };
 
-const Config = configs[APP_ENV];
-module.exports = { Config };
+function getConfig(appEnv) {
+  return configs[appEnv];
+}
+
+module.exports = { getConfig };

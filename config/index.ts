@@ -1,10 +1,15 @@
 // we only use this file to add typescript support to the config file
-// unfortunately, we cant use typescript config inside expo config file
-import { Config as NConfig } from './config.js';
+// unfortunately, we cant import  typescript config inside expo config file
+import Constants from 'expo-constants';
 
-// TODO: check how we can use typescript for this
+import { getConfig } from './config.js';
+
+const NConfig = getConfig(
+  Constants.expoConfig?.extra?.APP_ENV ?? 'development'
+);
+
 type APP_ENV_Type = 'development' | 'staging' | 'production';
-type ConfigType = {
+export type ConfigType = {
   scheme: string;
   icon: string;
   foregroundImage: string;
