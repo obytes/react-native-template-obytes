@@ -22,7 +22,6 @@
     "build:staging:android": "APP_ENV=staging eas build --profile development --platform android ",
     "build:production:ios": "APP_ENV=production eas build --profile development --platform ios",
     "build:production:android": "APP_ENV=production eas build --profile development --platform android ",
-    "web": "expo start --web",
     "postinstall": "husky install",
     "np": "np --no-publish",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
