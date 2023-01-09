@@ -1,10 +1,11 @@
+import type { ConfigType } from '@config';
 import type { ConfigContext, ExpoConfig } from '@expo/config';
 
 import { getConfig } from './config/config.js';
-
+//@ts-ignore
 const appEnv = process.env.APP_ENV ?? 'development';
 
-const Config = getConfig(appEnv);
+const Config = getConfig(appEnv) as ConfigType;
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
