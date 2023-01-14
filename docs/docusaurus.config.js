@@ -50,10 +50,14 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
+        googleAnalytics: {
+          trackingID: "G-GQ45JJD1J",
+          anonymizeIP: true,
+        },
       }),
     ],
   ],
-
+  plugins: [require.resolve('docusaurus-lunr-search')],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
