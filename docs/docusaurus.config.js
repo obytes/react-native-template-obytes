@@ -50,7 +50,7 @@ const config = {
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
-        googleAnalytics: {
+        gtag: {
           trackingID: "G-GQ45JJD1JC",
           anonymizeIP: true,
         },
