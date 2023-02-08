@@ -14,7 +14,7 @@ PODS:
   - EXJSONUtils (0.4.0)
   - EXManifests (0.4.0):
     - EXJSONUtils
-  - Expo (47.0.3):
+  - Expo (47.0.13):
     - ExpoModulesCore
   - expo-dev-client (2.0.0):
     - EXManifests
@@ -92,12 +92,12 @@ PODS:
     - ExpoModulesCore
   - ExpoLocalization (14.0.0):
     - ExpoModulesCore
-  - ExpoModulesCore (1.0.2):
+  - ExpoModulesCore (1.1.1):
     - React-Core
     - ReactCommon/turbomodule/core
   - ExpoSystemUI (2.0.1):
     - ExpoModulesCore
-  - EXSplashScreen (0.17.4):
+  - EXSplashScreen (0.17.5):
     - ExpoModulesCore
     - React-Core
   - EXUpdatesInterface (0.8.1)
@@ -653,16 +653,16 @@ SPEC CHECKSUMS:
   EXFont: 319606bfe48c33b5b5063fb0994afdc496befe80
   EXJSONUtils: 09aef2c1fba1a116ca8c73a2c8299aac00d96b43
   EXManifests: 347f49430b63444579aa013f0ad057d16b8d1cc8
-  Expo: 8e4f1d149b58d5df10d302e0b5c489f9fc6623fc
+  Expo: b9fa98bf260992312ee3c424400819fb9beadafe
   expo-dev-client: d703087f68db9f3540a2346c077945976d8c97b6
   expo-dev-launcher: 4b79cc4ecc33f134a416db3f5368ce33c80bf874
   expo-dev-menu: ac5fda174a4aca9d5fa59baa0ad56ca334dc4820
   expo-dev-menu-interface: 45581093393dacd51ce5e7f641cf9ed5064a2e3f
   ExpoKeepAwake: 69b59d0a8d2b24de9f82759c39b3821fec030318
   ExpoLocalization: e202d1e2a4950df17ac8d0889d65a1ffd7532d7e
-  ExpoModulesCore: 20decc110ca3987e1728dee2ce4b3f79e147edda
+  ExpoModulesCore: 485dff3a59b036a33b6050c0a5aea3cf1037fdd1
   ExpoSystemUI: c844dec5e49e677bcd6bfe15cc305b02127b1124
-  EXSplashScreen: 4b57f8416a057411cb3c97db9fc9a615f8c1d5d9
+  EXSplashScreen: 3e989924f61a8dd07ee4ea584c6ba14be9b51949
   EXUpdatesInterface: bffd1ead18f0bab04fa784ca159c115607b8a23c
   FBLazyVector: affa4ba1bfdaac110a789192f4d452b053a86624
   FBReactNativeSpec: fe8b5f1429cfe83a8d72dc8ed61dc7704cac8745
