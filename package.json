@@ -1,6 +1,6 @@
 {
   "name": "obytesapp",
-  "version": "0.0.1",
+  "version": "1.6.1",
   "private": true,
   "scripts": {
     "start": "expo start --dev-client",
