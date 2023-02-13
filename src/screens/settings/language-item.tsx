@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { useSelectedLanguage } from '@/core';
 import { translate } from '@/core';
-import type { Language } from '@/core/i18n/types';
+import type { Language } from '@/core/i18n/resources';
 import type { Option } from '@/ui';
 import { Options } from '@/ui';
 

@@ -19,7 +19,7 @@
       },
       "prebuildCommand": "prebuild --skip-dependency-update react",
       "cache": {
-        "key": "give-1"
+        "key": "eas-1"
       }
     },
     "preview": {
@@ -39,7 +39,7 @@
 
       "prebuildCommand": "prebuild --skip-dependency-update react",
       "cache": {
-        "key": "give-1"
+        "key": "eas-1"
       }
     },
     "development": {
@@ -57,7 +57,7 @@
 
       "prebuildCommand": "prebuild --skip-dependency-update react",
       "cache": {
-        "key": "give-1"
+        "key": "eas-1"
       }
     },
     "simulator": {
@@ -74,7 +74,7 @@
       "node": "14.18.1",
       "prebuildCommand": "prebuild --skip-dependency-update react",
       "cache": {
-        "key": "give-1"
+        "key": "eas-1"
       }
     }
   },

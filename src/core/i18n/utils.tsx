@@ -1,14 +1,14 @@
+import * as Updates from 'expo-updates';
 import type TranslateOptions from 'i18next';
 import i18n from 'i18next';
 import memoize from 'lodash.memoize';
 import { useCallback } from 'react';
-import { NativeModules } from 'react-native';
-import { I18nManager } from 'react-native';
+import { I18nManager, NativeModules } from 'react-native';
 import { useMMKVString } from 'react-native-mmkv';
 
 import { storage } from '../utils';
-import type { resources } from './resources';
-import type { Language, RecursiveKeyOf } from './types';
+import type { Language, resources } from './resources';
+import type { RecursiveKeyOf } from './types';
 
 type DefaultLocale = typeof resources.en.translation;
 export type TxKeyPath = RecursiveKeyOf<DefaultLocale>;
@@ -30,7 +30,8 @@ export const changeLanguage = (lang: Language) => {
   } else {
     I18nManager.forceRTL(false);
   }
-  NativeModules.DevSettings.reload();
+  if (__DEV__) NativeModules.DevSettings.reload();
+  else Updates.reloadAsync();
 };
 
 export const useSelectedLanguage = () => {

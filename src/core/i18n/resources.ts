@@ -9,3 +9,5 @@ export const resources = {
     translation: ar,
   },
 };
+
+export type Language = keyof typeof resources;
