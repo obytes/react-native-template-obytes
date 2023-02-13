@@ -87,7 +87,7 @@
     "@types/react": "~18.0.24",
     "@types/react-native": "~0.70.6",
     "@types/react-test-renderer": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.36.2",
     "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^8.23.0",
