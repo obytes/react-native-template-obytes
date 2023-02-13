@@ -12,7 +12,7 @@ import { LanguageItem } from './language-item';
 import { ThemeItem } from './theme-item';
 
 export const Settings = () => {
-  const { signOut } = useAuth();
+  const signOut = useAuth.use.signOut();
   return (
     <ScrollView className="bg-white">
       <View className="flex-1 px-4 pt-16">

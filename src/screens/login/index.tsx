@@ -6,7 +6,7 @@ import type { FormType } from './login-form';
 import { LoginForm } from './login-form';
 
 export const Login = () => {
-  const { signIn } = useAuth();
+  const signIn = useAuth.use.signIn();
 
   const onSubmit = (data: FormType) => {
     console.log(data);

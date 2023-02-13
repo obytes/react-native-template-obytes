@@ -12,7 +12,7 @@ import { TabNavigator } from './tab-navigator';
 const Stack = createNativeStackNavigator();
 
 export const Root = () => {
-  const status = useAuth((state) => state.status);
+  const status = useAuth.use.status();
   const [isFirstTime] = useIsFirstTime();
   const hideSplash = React.useCallback(async () => {
     await SplashScreen.hideAsync();
