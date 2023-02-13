@@ -49,6 +49,7 @@
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "expo-system-ui": "~2.0.1",
+    "expo-updates": "~0.15.6",
     "i18next": "^21.9.1",
     "lodash.memoize": "^4.1.2",
     "nativewind": "^2.0.10",
