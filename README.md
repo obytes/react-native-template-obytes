@@ -52,6 +52,7 @@ When creating this starter kit, we had several guiding principles in mind::
 
 ## ✍️ Documentation
 
+- [Create new project ](https://starter.obytes.com/docs/getting-started/create-new-app)
 - [Rules and Conventions](https://starter.obytes.com/docs/getting-started/rules-and-convetions)
 - [Project structure](https://starter.obytes.com/docs/getting-started/project-structure)
 - [Environment vars and config](https://starter.obytes.com/docs/getting-started/environment-vars-config)

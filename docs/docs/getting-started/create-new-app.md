@@ -8,6 +8,8 @@ Let's create a new React native project with obytes starter.
 
 ## Requirements
 
+First make sure you have the following tools installed on your machine:
+
 - [React Native dev environment ](https://reactnative.dev/docs/environment-setup)
 - [Node.js LTS release](https://nodejs.org/en/)
 - [Git](https://git-scm.com/)
@@ -21,14 +23,18 @@ Let's create a new React native project with obytes starter.
 Start your project using `create-obytes-app` command:
 
 ```bash
-npx create-obytes-app MyApp
+npx create-obytes-app@latest MyApp
 ```
 
 The command will create an expo app named `MyApp` and install all the dependencies added by the starter.
 
+:::note
+Because we're using the Expo custom dev client to support native dependencies with the starter. The Expo Go app is not an option to consider here; instead, you need to create the app and install it on your simulator or device to start using it.
+:::
+
 ## Open Project on VS Code
 
-VS code is the recommended editor for this starter, The starter comes with a list of recommended extensions,settings and project snippets that we think will improve your developer experience.
+VS code is the recommended editor for this starter, The starter comes with a list of recommended extensions,settings and project snippets that we think will improve your coding experience.
 
 Open the project on VS Code using the following command:
 
@@ -36,9 +42,9 @@ Open the project on VS Code using the following command:
 code .
 ```
 
-When you open the project on VS Code you will see a popup asking you to install the recommended extensions, the easy way is to install all recommend extensions by clicking on `Install All` button.
+When you open the project on VS Code you will see a popup asking you to install the recommended extensions, the easy way is to install all recommended extensions by clicking on `Install All` button.
 
-If you are not convinced to install all the recommended extensions, we recommend you to install at least the following extensions as we use them to validate and format the code on save:
+To ensure that your code is properly validated and formatted, we highly recommend installing all of the recommended extensions. However, if you're hesitant to install them all, we suggest at least installing the following extensions, as they are essential to our code validation and formatting on file save:
 
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
@@ -70,7 +76,3 @@ yarn ios
 # Run the app on Android simulator
 yarn android
 ```
-
-:::note
-Because we're utilizing the Expo custom dev client to support some native dependencies with the starter. The Expo Go app is not an option to consider here; instead, you create the app and install it on your simulator or device to begin using it.
-:::
