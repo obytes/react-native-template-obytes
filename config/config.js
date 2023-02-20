@@ -1,9 +1,26 @@
+import { z } from 'zod';
+
 const packageJSON = require('../package.json');
 
 // default values
 const SCHEME = 'com.obytes';
 const APP_NAME = 'ObytesApp';
 
+const vars = z.object({
+  APP_ENV: z.enum(['development', 'staging', 'production']),
+  name: z.string(),
+  scheme: z.string(),
+  icon: z.string(),
+  foregroundImage: z.string(),
+  API_URL: z.string(),
+  version: z.string(),
+});
+console.log(vars);
+
+/** @typedef {z.infer<typeof vars>} ENVVarsType */
+/** @typedef { 'development' | 'staging' | 'production' } ENVType */
+
+/** @type {ENVVarsType} */
 const development = {
   APP_ENV: 'development',
   name: APP_NAME,
@@ -14,6 +31,7 @@ const development = {
   version: packageJSON.version,
 };
 
+/** @type {ENVVarsType} */
 const staging = {
   APP_ENV: 'staging',
   name: APP_NAME,
@@ -23,6 +41,7 @@ const staging = {
   API_URL: 'https://dummyjson.com/',
   version: packageJSON.version,
 };
+/** @type {ENVVarsType} */
 const production = {
   APP_ENV: 'production',
   name: APP_NAME,
@@ -35,8 +54,13 @@ const production = {
 
 const configs = { development, staging, production };
 
+/**
+ * @param {keyof typeof configs} appEnv
+ * @returns {ENVVarsType}
+ * */
+
 function getConfig(appEnv) {
   return configs[appEnv];
 }
 
-module.exports = { getConfig };
+export { getConfig };
