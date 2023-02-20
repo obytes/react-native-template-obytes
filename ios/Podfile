@@ -20,8 +20,15 @@ target 'ObytesApp' do
 
   use_react_native!(
     :path => config[:reactNativePath],
+# @generated begin expo-community-flipper-isprod - expo prebuild (DO NOT MODIFY) sync-828c22a1a38236bf5b7c203393f474bc68356b34
+    # ENV value added to support Hermes
+    :production => ENV["PRODUCTION"] == "1" ? true : false,
+# @generated end expo-community-flipper-isprod
     :hermes_enabled => podfile_properties['expo.jsEngine'] == 'hermes',
     :fabric_enabled => flags[:fabric_enabled],
+# @generated begin expo-community-flipper-urn - expo prebuild (DO NOT MODIFY) sync-c7cb57ad0548737963234cf3378d4b0e06dca78b
+    :flipper_configuration => FlipperConfiguration.enabled(["Debug", "Release"]),
+# @generated end expo-community-flipper-urn
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/..",
     #
