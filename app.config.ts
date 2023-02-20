@@ -39,7 +39,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   web: {
     favicon: './assets/favicon.png',
   },
-  plugins: [['@bacons/link-assets', ['./assets/fonts/Inter.ttf']]],
+  plugins: [
+    ['@bacons/link-assets', ['./assets/fonts/Inter.ttf']],
+    ['expo-community-flipper'],
+  ],
   extra: {
     APP_ENV: appEnv,
   },
