@@ -1,4 +1,4 @@
-name: Validate TS
+name: Validate RR
 
 on:
   push:
@@ -62,3 +62,28 @@ jobs:
 
       - name: Run ESLint
         run: yarn lint -f @jamesacarr/github-actions
+
+  test:
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    name: Tests (jest)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Restore node_modules from cache
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install node_modules
+        run: yarn install --frozen-lockfile
+
+      - name: Run Tests
+        run: test:ci
