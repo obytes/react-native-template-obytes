@@ -1,14 +1,128 @@
 ---
 sidebar_position: 4
 ---
-
 import CodeBlock from '@theme/CodeBlock';
-import ConfigJs from '!!raw-loader!../../../config/config.js';
+import Env from '!!raw-loader!../../../env.js';
+import BabelConfig from '!!raw-loader!../../../babel.config.js';
 
-import ConfigTs from '!!raw-loader!../../../config/index.ts';
-import APICommons from '!!raw-loader!../../../src/api/common/client.tsx';
 
-# Environment variable and configuration
+
+# Environment variables
+
+Managing environment variables in your project is an essential task, but it can also be a challenging one. That's why we have included a complete set up for environment variables in this project. This setup comes with validation and typechecking at both runtime and build time using the `zod` library.
+
+All the code related to environment variables is located in the `env.js` file. The `env.js` file defines the zod schema for the environment variables, parses the `_env` object, and returns the parsed object, or throws errors in case of invalid or missing variables.
+
+By using this pre-configured setup for environment variables, you can focus on building your project without worrying about managing and validating your environment variables.
+
+This setup is highly inspired by [T3 Stack](https://create.t3.gg/) 👌
+
+## Adding a new environment variable to the project.
+
+To add a new environment variable to the project, follow these steps:
+
+1. Add the new environment variable to the `zod` schema inside the `env.js` file. This will ensure that the new variable is validated correctly. Here's an example:
+
+```js title="env.js"
+const envSchema = z.object({
+  // ...
+  // add the new environment variable here
+  NEW_ENV_VAR: z.string(),
+});
+```
+2. Add the new environment variable to the `_env` object inside the `env.js` file. This will make the new variable available to your application code. Here's an example:
+
+```js title="env.js"
+const _env = {
+  // ...
+  // add the new environment variable here
+  NEW_ENV_VAR: process.env.NEW_ENV_VAR,
+};
+```
+
+3. Add the new environment variable to your `.env` files. Make sure to include it in all relevant files (`development`, `staging`, and `production`). Here's an example:
+
+```env title=".env."
+# ...
+# add the new environment variable here
+NEW_ENV_VAR=my-new-var
+```
+
+4. The new environment variable is now ready to use in your project. You can access it in your code using the `Env` object, like this:
+
+```ts title="client.ts"
+import { Env } from '@env';
+import axios from 'axios';
+export const client = axios.create({
+  baseURL: Env.API_URL,
+});
+
+```
+
+5. Use `APP_ENV` to load the correct `.env` file :
+
+```bash
+APP_ENV=production yarn start -cc
+```
+
+As mentioned earlier, `zod` is used to validate environment variables at runtime and build time. If there are any missing or invalid variables, you'll see an error message with information on what needs to be fixed. Here's an example error message:
+```bash
+❌ Invalid environment variables: { TEST: [ 'Required' ] }
+❌ Missing variables in .env.development file, Make sure all required variables are defined in the .env.development file.
+💡 Tip: If you recently updated the .env.development file and the error still persists, try restarting the server with the -cc flag to clear the cache.
+```
+
+## How it works
+
+#### ✅ Validate and parse environment variables
+
+If you take a look at the `env.js` file, you will notice that the file is split into tree main parts as shown below:
+
+
+<CodeBlock className="language-js"
+  title="env.js"
+  highlightLines={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
+  metastring="title=env.js">
+  {Env}
+</CodeBlock>
+
+**In the first part**  we define some static variables for the app such as the app name, bundle id and package. While these variables can be added to the `.env` files, we recommend keeping them in the `env.js` file as they are not meant to change. To handle different app variants, you can add suffixes to these variables using the `withEnvSuffix` function.
+
+**In the second part**, we define the `zod` schema for the environment variables. This schema is used to validate the environment variables at runtime and build time. All the environment variables should be added to this schema.
+
+We use the `z.infer` utility to infer the environment variables' types from the schema and use it to define the `_env` object type. This means that if you add a new environment variable to the schema, you will get a type error if you don't add it to the `_env` object as well, and vice versa.
+
+**Finally**, in the third part, we parse the _env object using the zod schema and return the parsed object or throw errors in case of invalid or missing variables. This object is what we use in our application code.
+
+
+#### ✅ Load variable from `.env` files
+
+To load the environment variables from the `.env` files, we are using two packages:
+
+- `dotenv` to load the variables from the `.env` files.
+- `babel-plugin-inline-dotenv`: to load variable from inline commands.
+
+For build time we use the following code inside `app.config.ts` to load the correct `.env` file based on the app variant.
+
+```ts title="app.config.ts"
+const path = require('path');
+
+const APP_ENV = process.env.APP_ENV ?? 'development';
+const envPath = path.resolve(__dirname, `.env.${APP_ENV}`);
+
+require('dotenv').config({
+  path: envPath,
+});
+// ....
+```
+
+For the run time, Bebel take care of loading the correct `.env` file based on the app variant.
+
+
+<CodeBlock language="js">{BabelConfig}</CodeBlock>
+
+<details>
+   <summary> Under 2.1.0 setup </summary>
 
 We opted to use a simple typescript file to store all the environment variables and configuration for a simple reason, adding typechecking for the environment variables to make sure we are not missing any required variables using the correct type for each variable.
 
@@ -18,13 +132,76 @@ Using a simple typescript file for environment variables help us keep the projec
 
 The environment variables file is located at `src/config` and it's support multiple app variant such as `development`, `staging` and `production`.
 
-<CodeBlock title="config/config.js" language="js">
-  {ConfigJs}
-</CodeBlock>
+```ts title="src/config/config.ts"
+const packageJSON = require('../package.json');
 
-<CodeBlock title="config/index.ts" language="ts">
-  {ConfigTs}
-</CodeBlock>
+// default values
+const SCHEME = 'com.obytes';
+const APP_NAME = 'ObytesApp';
+
+const development = {
+  APP_ENV: 'development',
+  name: APP_NAME,
+  scheme: `${SCHEME}.development`,
+  icon: './assets/icon.development.png',
+  foregroundImage: './assets/icon.development.png',
+  API_URL: 'https://dummyjson.com/',
+  version: packageJSON.version,
+};
+
+const staging = {
+  APP_ENV: 'staging',
+  name: APP_NAME,
+  scheme: `${SCHEME}.staging`,
+  icon: './assets/icon.staging.png',
+  foregroundImage: './assets/icon.staging.png',
+  API_URL: 'https://dummyjson.com/',
+  version: packageJSON.version,
+};
+const production = {
+  APP_ENV: 'production',
+  name: APP_NAME,
+  scheme: `${SCHEME}`,
+  icon: './assets/icon.png',
+  foregroundImage: './assets/icon.png',
+  API_URL: 'https://dummyjson.com/',
+  version: packageJSON.version,
+};
+
+const configs = { development, staging, production };
+
+function getConfig(appEnv) {
+  return configs[appEnv];
+}
+
+module.exports = { getConfig };
+```
+
+```ts title="src/config/index.ts"
+// we only use this file to add typescript support to the config file
+// unfortunately, we cant import  typescript config inside expo config file
+import Constants from 'expo-constants';
+
+import { getConfig } from './config.js';
+
+const NConfig = getConfig(
+  Constants.expoConfig?.extra?.APP_ENV ?? 'development'
+);
+
+type APP_ENV_Type = 'development' | 'staging' | 'production';
+export type ConfigType = {
+  scheme: string;
+  icon: string;
+  foregroundImage: string;
+  APP_ENV: APP_ENV_Type;
+  API_URL: string;
+  version: string;
+  name: string;
+};
+const Config = NConfig as ConfigType;
+
+export default Config;
+```
 
 :::note
 We need only the ts file configuration file but as we can't import typescript files in expo config file. we need to create a js file that will export the same configuration as the ts file.
@@ -34,6 +211,12 @@ We need only the ts file configuration file but as we can't import typescript fi
 
 As we are using an absolute import for the configuration file, you can easily import environment variables in any file in the project.
 
-<CodeBlock title="api/common/client.tsx" language="ts">
-  {APICommons}
-</CodeBlock>
+```ts title="src/api/common/client.tsx"
+import Config from '@config';
+import axios from 'axios';
+export const client = axios.create({
+  baseURL: Config.API_URL,
+});
+```
+
+</details>

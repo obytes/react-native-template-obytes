@@ -5,15 +5,20 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@config": ["./config/index.ts"]
+      "@env": ["./env.js"]
     },
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "checkJs": true
   },
   "exclude": [
     "node_modules",
     "babel.config.js",
     "metro.config.js",
     "docs",
-    "cli"
+    "cli",
+    "android",
+    "ios",
+    "__mocks__",
+    "lint-staged.config.js"
   ]
 }
