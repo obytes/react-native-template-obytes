@@ -1,15 +1,25 @@
+const path = require('path');
+const APP_ENV = process.env.APP_ENV ?? 'development';
+const envPath = path.resolve(__dirname, `.env.${APP_ENV}`);
+
 module.exports = function (api) {
   api.cache(true);
+
+  require('dotenv').config({
+    path: envPath,
+  });
+
   return {
     presets: ['babel-preset-expo'],
     plugins: [
+      ['inline-dotenv', { path: envPath }],
       [
         'module-resolver',
         {
           root: ['./'],
           alias: {
             '@': './src',
-            '@config': './config',
+            '@env': './env',
           },
           extensions: [
             '.ios.ts',

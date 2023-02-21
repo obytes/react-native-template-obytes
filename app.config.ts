@@ -1,20 +1,23 @@
-import type { ConfigType } from '@config';
 import type { ConfigContext, ExpoConfig } from '@expo/config';
+const path = require('path');
 
-import { getConfig } from './config/config.js';
-//@ts-ignore
-const appEnv = process.env.APP_ENV ?? 'development';
+const APP_ENV = process.env.APP_ENV ?? 'development';
+const envPath = path.resolve(__dirname, `.env.${APP_ENV}`);
 
-const Config = getConfig(appEnv) as ConfigType;
+require('dotenv').config({
+  path: envPath,
+});
+
+const { Env, withEnvSuffix } = require('./env');
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: Config.name,
-  description: `${Config.name} Mobile App`,
+  name: Env.NAME,
+  description: `${Env.NAME} Mobile App`,
   slug: 'obytesapp',
-  version: Config.version.toString(),
+  version: Env.VERSION.toString(),
   orientation: 'portrait',
-  icon: Config.icon,
+  icon: `${withEnvSuffix('./assets/icon')}.png`,
   userInterfaceStyle: 'light',
   splash: {
     image: './assets/splash.png',
@@ -27,20 +30,20 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   assetBundlePatterns: ['**/*'],
   ios: {
     supportsTablet: true,
-    bundleIdentifier: Config.scheme,
+    bundleIdentifier: Env.BUNDLE_ID,
   },
   android: {
     adaptiveIcon: {
-      foregroundImage: Config.foregroundImage,
+      foregroundImage: `${withEnvSuffix('./assets/icon')}.png`,
       backgroundColor: '#FFFFFF',
     },
-    package: Config.scheme,
+    package: Env.PACKAGE,
   },
   web: {
     favicon: './assets/favicon.png',
   },
   plugins: [['@bacons/link-assets', ['./assets/fonts/Inter.ttf']]],
   extra: {
-    APP_ENV: appEnv,
+    APP_ENV: Env.APP_ENV,
   },
 });

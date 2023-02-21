@@ -1,4 +1,4 @@
-import Config from '@config';
+import { Env } from '@env';
 import * as React from 'react';
 
 import { useAuth } from '@/core';
@@ -25,8 +25,8 @@ export const Settings = () => {
         </ItemsContainer>
 
         <ItemsContainer title="settings.about">
-          <Item text="settings.app_name" value={Config.name} />
-          <Item text="settings.version" value={Config.version} />
+          <Item text="settings.app_name" value={Env.NAME} />
+          <Item text="settings.version" value={Env.VERSION} />
         </ItemsContainer>
 
         <ItemsContainer title="settings.support_us">
