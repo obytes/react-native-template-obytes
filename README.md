@@ -104,7 +104,7 @@ We value the feedback and contributions of our users, and we encourage you to le
 - [React Native MMKV](https://github.com/mrousavy/react-native-mmkv)
 - [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/)
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/)
-- [React Naive Svg](https://github.com/software-mansion/react-native-svg)
+- [React Native Svg](https://github.com/software-mansion/react-native-svg)
 - [ React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
 - [React Native fast image](https://github.com/DylanVann/react-native-fast-image)
 
