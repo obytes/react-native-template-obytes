@@ -58,9 +58,6 @@ jobs:
           node-version: 18
           cache: 'yarn'
 
-      - name: 📦 Install reviewdog
-        uses: reviewdog/action-setup@v1
-
       - name: 📦 Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
