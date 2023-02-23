@@ -12,30 +12,37 @@ jobs:
     name: Compile TS (tsc)
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+      - name : 📦 Checkout project repo
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
 
-    - name: Install reviewdog
-      uses: reviewdog/action-setup@v1
+      - name: 📦 Install Reviewdog
+        uses: reviewdog/action-setup@v1
 
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
-    - name: Restore node_modules from cache
-      uses: actions/cache@v2
-      id: yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
-    - name: Install node_modules
-      run: yarn install --frozen-lockfile
+      - name: 📦 Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
-    - name: Run TypeScript # Reviewdog tsc errorformat: %f:%l:%c - error TS%n: %m
-      run: |
-        yarn type-check | reviewdog -name="tsc" -efm="%f(%l,%c): error TS%n: %m" -reporter="github-pr-review" -filter-mode="nofilter" -fail-on-error -tee
-      env:
-        REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 📦 Restore Project Dependencies (node_modules)
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: 📦 Install Project Dependencies
+        run: yarn install --immutable
+
+      - name: 🏃‍♂️ Run TypeScript # Reviewdog tsc errorformat: %f:%l:%c - error TS%n: %m
+        run: |
+          yarn type-check | reviewdog -name="tsc" -efm="%f(%l,%c): error TS%n: %m" -reporter="github-pr-review" -filter-mode="nofilter" -fail-on-error -tee
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
   lint:
@@ -44,24 +51,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name : 📦 Checkout project repo
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
 
-      - name: Get yarn cache directory path
+      - name: 📦 Install reviewdog
+        uses: reviewdog/action-setup@v1
+
+      - name: 📦 Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Restore node_modules from cache
-        uses: actions/cache@v2
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: 📦 Restore Project Dependencies (node_modules)
+        uses: actions/cache@v3
         id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: Install node_modules
-        run: yarn install --frozen-lockfile
 
-      - name: Run ESLint
-        run: yarn lint -f @jamesacarr/github-actions
+      - name: 📦 Install Project Dependencies
+        run: yarn install --immutable
+
+      - name: 🏃‍♂️ Run ESLint
+        run: yarn lint -f rdjson . | reviewdog -f=rdjson -reporter=github-pr-review
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test:
     if: ${{ github.actor != 'dependabot[bot]' }}
@@ -69,21 +88,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name : 📦 Checkout project repo
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
 
-      - name: Get yarn cache directory path
+      - name: 📦 Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Restore node_modules from cache
-        uses: actions/cache@v2
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: 📦 Restore Project Dependencies (node_modules)
+        uses: actions/cache@v3
         id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: Install node_modules
-        run: yarn install --frozen-lockfile
 
-      - name: Run Tests
+      - name: 📦 Install Project Dependencies
+        run: yarn install --immutable
+
+      - name: 🏃‍♂️ Run Tests
         run: yarn test:ci
