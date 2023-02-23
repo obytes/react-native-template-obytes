@@ -79,7 +79,6 @@
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@expo/config": "^7.0.2",
-    "@jamesacarr/eslint-formatter-github-actions": "^0.1.0",
     "@react-native-community/eslint-config": "^3.1.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/jest-native": "^5.1.2",
