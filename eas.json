@@ -22,7 +22,7 @@
         "key": "eas-1"
       }
     },
-    "preview": {
+    "staging": {
       "channel": "staging",
       "distribution": "internal",
       "ios": {
