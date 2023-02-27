@@ -2443,17 +2443,17 @@
   dependencies:
     defer-to-connect "^2.0.0"
 
-"@tanstack/query-core@4.14.5":
-  version "4.14.5"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.14.5.tgz#f8c061a9dd4d7a87f9992db4ddda35c479e93c4a"
-  integrity sha512-Su1AyrPb6xnm7wXTvpN5tt+B7LViYSh9k04vvuc6+eMVH0HkE9ktZTXibRrTvV83BI1KP5MG7v/k90ne/4zQzw==
+"@tanstack/query-core@4.24.10":
+  version "4.24.10"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-4.24.10.tgz#758e1f5b2d7faf7316d299facd272a9f64c26299"
+  integrity sha512-2QywqXEAGBIUoTdgn1lAB4/C8QEqwXHj2jrCLeYTk2xVGtLiPEUD8jcMoeB2noclbiW2mMt4+Fq7fZStuz3wAQ==
 
-"@tanstack/react-query@^4.3.4":
-  version "4.14.5"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.14.5.tgz#e2ff6419ee94426ec5e0eecf9bf77efbeb1a0e4b"
-  integrity sha512-CuWl/SxSB0zHhHaTja8LNhy9Vdk+vk9IkW3Oiq3lo4gPnTguHmbUzfjEA1x3RfvPeHfPMuq/pYMSbV+CX4aDQA==
+"@tanstack/react-query@^4.24.10":
+  version "4.24.10"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-4.24.10.tgz#2e1004bb1d1f55198961a21e875e2c65ec865130"
+  integrity sha512-FY1DixytOcNNCydPQXLxuKEV7VSST32CAuJ55BjhDNqASnMLZn+6c30yQBMrODjmWMNwzfjMZnq0Vw7C62Fwow==
   dependencies:
-    "@tanstack/query-core" "4.14.5"
+    "@tanstack/query-core" "4.24.10"
     use-sync-external-store "^1.2.0"
 
 "@testing-library/jest-dom@^5.16.5":
