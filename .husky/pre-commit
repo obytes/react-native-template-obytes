@@ -3,17 +3,23 @@
 . "$(dirname "$0")/common.sh"
 
 
-echo "===\n>> Checking branch name..."
+echo "===\n>> Running pre-commit checks..."
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
-PROTECTED_BRANCHES="^(main)"
+PROTECTED_BRANCHES="^(main|master)"
+RELEASE_FORMAT="^v(\d+)\.(\d+)\.(\d+)$"
 
+# Check if committing to main or master branch
 if [[ $BRANCH =~ $PROTECTED_BRANCHES ]]; then
-  echo ">> Direct commits to the main branch are not allowed. Please choose a new branch name."
-  exit 1
+  # Check commit message format for main or master branch
+  COMMIT_MSG=$(cat $1)
+  if [[ ! $COMMIT_MSG =~ $RELEASE_FORMAT ]]; then
+    echo ">> Direct commits to the $BRANCH branch are not allowed (exptect release commit with 'vx.x.x' format). Please choose a new branch name."
+    exit 1
+  fi
 fi
 
-echo ">> Finish checking branch name"
+echo ">> Finish checking branch Rules"
 echo ">> Linting your files and fixing them if needed..."
 
 yarn type-check
