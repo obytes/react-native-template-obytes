@@ -8,7 +8,6 @@ on:
 
 jobs:
   compile:
-    if: ${{ github.actor != 'dependabot[bot]' }}
     name: Compile TS (tsc)
     runs-on: ubuntu-latest
     steps:
@@ -46,7 +45,6 @@ jobs:
 
 
   lint:
-    if: ${{ github.actor != 'dependabot[bot]' }}
     name: Lint TS (eslint, prettier)
     runs-on: ubuntu-latest
 
@@ -82,7 +80,6 @@ jobs:
           eslint_flags: '. --ext .js,.jsx,.ts,.tsx'
 
   test:
-    if: ${{ github.actor != 'dependabot[bot]' }}
     name: Tests (jest)
     runs-on: ubuntu-latest
 
