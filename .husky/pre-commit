@@ -17,4 +17,4 @@ echo ">> Finish checking branch name"
 echo ">> Linting your files and fixing them if needed..."
 
 yarn type-check
-yarn lint-stage
+yarn lint-staged
