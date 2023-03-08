@@ -42,6 +42,7 @@ const updatePackageInfos = async (projectName) => {
     `${projectName}/package.json`
   );
   const packageJson = fs.readJsonSync(packageJsonPath);
+  packageJson.osMetadata = { initVersion : packageJson.version };
   packageJson.version = '0.0.1';
   packageJson.name = projectName?.toLowerCase();
   fs.writeJsonSync(packageJsonPath, packageJson, { spaces: 2 });
