@@ -11,14 +11,14 @@ export const Onboarding = () => {
       <Image className="w-full flex-1" source={require('./cover.png')} />
 
       <View className="justify-end ">
-        <Text className="my-3 text-5xl font-bold text-center">
+        <Text className="my-3 text-center text-5xl font-bold">
           Obytes Starter
         </Text>
-        <Text className="mb-2 text-lg text-center text-gray-600">
+        <Text className="mb-2 text-center text-lg text-gray-600">
           The right way to build your mobile app
         </Text>
 
-        <Text className="my-1 text-left text-lg pt-6">
+        <Text className="my-1 pt-6 text-left text-lg">
           🚀 Production-ready{' '}
         </Text>
         <Text className="my-1 text-left text-lg">
