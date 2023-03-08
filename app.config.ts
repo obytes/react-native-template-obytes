@@ -44,7 +44,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   plugins: [
     ['@bacons/link-assets', ['./assets/fonts/Inter.ttf']],
-    ['expo-community-flipper'],
+    'expo-localization',
   ],
   extra: {
     APP_ENV: Env.APP_ENV,

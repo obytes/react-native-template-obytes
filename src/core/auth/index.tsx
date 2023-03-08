@@ -1,4 +1,4 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 import { createSelectors } from '../utils';
 import type { TokenType } from './utils';
