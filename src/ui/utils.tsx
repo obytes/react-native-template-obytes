@@ -1,6 +1,10 @@
+import { Env } from '@env';
 import type { AxiosError } from 'axios';
+import { useColorScheme } from 'nativewind';
+import * as React from 'react';
 import { showMessage } from 'react-native-flash-message';
 
+import { SafeAreaView, Text, View } from './core';
 // for onError react queries and mutations
 export const showError = (error: AxiosError) => {
   console.log(JSON.stringify(error?.response?.data));
@@ -45,4 +49,22 @@ export const extractError = (data: unknown): string => {
     return `${messages.join('')} `;
   }
   return 'Something went wrong ';
+};
+
+export const VersionBanner = () => {
+  const { colorScheme } = useColorScheme();
+  const bgColor = colorScheme === 'dark' ? 'bg-black' : 'bg-white';
+  return (
+    <>
+      {Env.APP_ENV !== 'production' ? (
+        <SafeAreaView className={bgColor}>
+          <View className="h-10 justify-center bg-red-500">
+            <Text variant="md" className="text-center text-white">
+              v {Env.VERSION}
+            </Text>
+          </View>
+        </SafeAreaView>
+      ) : null}
+    </>
+  );
 };

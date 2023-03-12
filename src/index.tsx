@@ -8,7 +8,7 @@ import FlashMessage from 'react-native-flash-message';
 import { APIProvider } from '@/api';
 import { hydrateAuth } from '@/core';
 import { RootNavigator } from '@/navigation';
-
+import { VersionBanner } from '@/ui';
 hydrateAuth();
 SplashScreen.preventAutoHideAsync();
 
@@ -16,6 +16,7 @@ const App = () => {
   return (
     <BottomSheetModalProvider>
       <APIProvider>
+        <VersionBanner />
         <RootNavigator />
         <FlashMessage position="top" />
       </APIProvider>
