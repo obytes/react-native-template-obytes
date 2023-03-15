@@ -1,20 +1,17 @@
-import type { UseQueryOptions } from '@tanstack/react-query';
-import { useQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
+import { createQuery } from 'react-query-kit';
 
-import { client, getQueryKey } from '../common';
+import { client } from '../common';
 import type { Post } from './types';
 
 type Response = Post[];
+type Variables = void; // as react-query-kit is strongly typed, we need to specify the type of the variables as void in case we don't need them
 
-function getPosts(): Promise<Response> {
-  return client({
-    url: `posts`,
-    method: 'GET',
-  }).then((response) => response.data.posts);
-}
-
-export function usePosts(config?: UseQueryOptions<Response, AxiosError>) {
-  const queryKey = getQueryKey('posts');
-  return useQuery<Response, AxiosError>(queryKey, getPosts, config);
-}
+export const usePosts = createQuery<Response, Variables, AxiosError>(
+  'posts', // we recommend using  endpoint base url as primaryKey
+  ({ queryKey: [primaryKey] }) => {
+    // in case if variables is needed, we can use destructuring to get it from queryKey array like this: ({ queryKey: [primaryKey, variables] })
+    // primaryKey is 'posts' in this case
+    return client.get(`${primaryKey}`).then((response) => response.data.posts);
+  }
+);
