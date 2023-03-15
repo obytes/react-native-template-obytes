@@ -22,23 +22,29 @@ There are many ways to fetch data for react and react native apps nowadays but i
 
 react-query provides a set of hooks to query and mutate data in your app. and give you the ability to create your own custom hooks based on `useQuery` and `useMutation` hooks.
 
-## Using react-query
+## Using react-query-kit & axios
 
 The starter comes with react-query installed and configured with axios as the default client to save you time and effort.
 
 All fetching logic is located in the `src/api` folder. You can find a `common` folder which contains the `client`, `queryClient` and a set of utility functions to help you work with react-query.
 
-As we are using axios as client, we can benefit from the axios features like interceptors, request cancellation, and many more. You can find more information about axios[here](https://axios-http.com/).
+As we are using axios as client, we can benefit from the axios features like interceptors, request cancellation, and many more. You can find more information about axios [here](https://axios-http.com/).
+
+To make writing queries and mutation even easier we are using [react-query-kit](https://github.com/liaoliao666/react-query-kit) a simple toolkit for react-query that make ReactQuery reusable and typesafe with less boilerplate.
 
 :::tip
 
-You recommend reading this series of articles to learn more about react-query and how to use it effectively in your app.
+You recommend reading Those guides and check those resources to learn more about react-query:
 
+
+- [React-query](https://tanstack.com/query/v4/docs/overview)
+- [react-query-kit](https://github.com/liaoliao666/react-query-kit)
 - [Practical React Query](https://tkdodo.eu/blog/practical-react-query)
 
 :::
 
-## Fetching Data with react-query
+
+## Data Fetching Use Cases
 
 Lets imagine you are building a blog app and you need to implement the following features:
 
@@ -53,9 +59,8 @@ Before we start, lets create a new folder called `posts` inside `src/api`, this 
 The feed screen will list all posts in the app. We will create the `usePosts` hook to fetch the posts and display them in a list.
 
 1. Create a new file called `use-posts.ts` inside `src/api/posts`
-2. Create a type for your Response and Params if needed to make sure that you are getting the right data from the server.(eg. `Post` type)
-3. Create a function that return a `Promise` and will be used to fetch the data from the server. This function will be called by react-query to fetch the data.(eg. `getPosts` function)
-4. Finally, you need to create a custom hook that will use the `useQuery` hook from react-query to fetch the data and return it. (eg. `usePosts` hook)
+2. Create a type for your  `Response` and `Variables` if needed to make sure that you are getting the right data from the server.(eg. `Post` type)
+3. Use `createQuery` function from `react-query-kit` to create a query hook that will fetch the data from the server. (eg. `usePosts` hook)
 
 Here is the complete code for the `use-posts.ts` file:
 
@@ -63,8 +68,12 @@ Here is the complete code for the `use-posts.ts` file:
   {UsePosts}
 </CodeBlock>
 
+
+As you may notice in the code above using `createQuery` function is very simple and easy and accept 3 params: `queryKey`, `queryFn` and `options`. read more about `createQuery` [here]
+
 :::tip
 Use the snippet to generate query in no time using vscode : [🔗](#create-api-hooks-with-vs-code-snippets)
+
 :::
 
 5. Now that we have our custom hook ready we can use it in our app. Lets create a new screen called `Posts` and use data from `usePosts` hook to display a list of posts:
@@ -79,7 +88,7 @@ As you can see in the code above we are using the `usePosts` that provide us wit
 
 The post screen will show the details of a post. We will create the `usePost` hook to fetch the post and display it.
 
-We are going to use the same steps as we did in the previous section to create the `usePost` hook. The only difference is that we will use the `id` as a parameter to fetch the post.
+We are going to use the same steps as we did in the previous section to create the `usePost` hook. The only difference is that we will use the `id` as a variables to fetch the post.
 
 Here is the complete code for the `use-post.ts` file:
 
@@ -95,12 +104,11 @@ Now our hook is ready to be used in our post details screen:
 
 ### Add new post
 
-To implement the create post feature we will need to use the `useMutation` hook from react-query following the steps below:
+To implement the create post feature we will need to use the `createMutation` function from `react-query-kit` following the steps below:
 
 1. Create a new file called `add-post.ts` inside `src/api/posts`
-2. Create a type mutation input and response to make sure that you are sending the right data to the server.( `Input` type)
-3. Create a function that take our input as params and return a `Promise` and will be used to send the data to the server. This function will be called by react-query to send the data.( `addPost` function)
-4. Now that we have our mutation function ready we can create a custom hook that will use the `useMutation` hook from react-query to send the input data and return the result. ( `useAddPost` hook)
+2. Create a type mutation variables and response to make sure that you are sending the right data to the server.( `Variables` type)
+3. use `createMutation` function from `react-query-kit` to create a mutation hook that will send the data to the server. ( `useAddPost` hook).
 
 Here is the complete code for the `add-post.ts` file:
 
@@ -131,7 +139,8 @@ Maybe you mentioned that creating a new query or mutation hook looks the same ev
 
 - `useqp` : Create a new query hook with params
 
-![useQuery with params snippet](./img/use-query-params.gif)
 
 - `useiq` : Create a new infinite query hook
 - `usem` : Create a new mutation hook
+
+![useMutation snippet](./img/use-mutation.gif)
