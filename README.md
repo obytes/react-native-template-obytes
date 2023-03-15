@@ -106,7 +106,7 @@ We value the feedback and contributions of our users, and we encourage you to le
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/)
 - [React Native Svg](https://github.com/software-mansion/react-native-svg)
 - [ React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
-- [React Native fast image](https://github.com/DylanVann/react-native-fast-image)
+- [Expo Image](https://docs.expo.dev/versions/unversioned/sdk/image/)
 
 ## Contributors
 
