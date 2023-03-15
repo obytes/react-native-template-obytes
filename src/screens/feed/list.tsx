@@ -4,12 +4,12 @@ import React from 'react';
 
 import type { Post } from '@/api';
 import { usePosts } from '@/api';
-import { EmptyList, View } from '@/ui';
+import { EmptyList, Text, View } from '@/ui';
 
 import { Card } from './card';
 
 export const Feed = () => {
-  const { data, isLoading } = usePosts();
+  const { data, isLoading, isError } = usePosts();
   const { navigate } = useNavigation();
 
   const renderItem = React.useCallback(
@@ -18,6 +18,14 @@ export const Feed = () => {
     ),
     [navigate]
   );
+
+  if (isError) {
+    return (
+      <View>
+        <Text> Error Loading data </Text>
+      </View>
+    );
+  }
   return (
     <View className="flex-1 bg-white">
       <FlashList
