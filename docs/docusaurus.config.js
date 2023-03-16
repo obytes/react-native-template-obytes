@@ -138,7 +138,7 @@ const config = {
         },
         {
           name: "og:image",
-          content: "https://starter.obytes.com/img/cover.png",
+          content: "https://starter.obytes.com/img/cover.jpg",
         },
         {
           name: "og:url",
@@ -155,7 +155,7 @@ const config = {
         },
         {
           name: "twitter:image",
-          content: "https://starter.obytes.com/img/cover.png",
+          content: "https://starter.obytes.com/img/cover.jpg",
         },
         {
           name: "twitter:card",
