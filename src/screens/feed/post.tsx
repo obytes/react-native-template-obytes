@@ -7,7 +7,9 @@ import { ActivityIndicator, Text, View } from '@/ui';
 
 export const Post = () => {
   const { params } = useRoute<RouteProp<'Post'>>();
-  const { data, isLoading, isError } = usePost({ id: params.id });
+  const { data, isLoading, isError } = usePost({
+    variables: { id: params.id },
+  });
 
   if (isLoading) {
     return (
