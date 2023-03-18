@@ -18,6 +18,7 @@
     "cli",
     "android",
     "ios",
-    "lint-staged.config.js"
+    "lint-staged.config.js",
+    "scripts/generate-app-icon-variants.js"
   ]
 }

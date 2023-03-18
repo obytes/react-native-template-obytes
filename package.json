@@ -103,6 +103,7 @@
     "jest-coverage-badges": "^1.1.2",
     "jest-environment-jsdom": "^29.5.0",
     "jest-expo": "48.0.1",
+    "jimp": "^0.22.7",
     "lint-staged": "^13.1.2",
     "metro-babel-register": "^0.73.3",
     "np": "^7.6.3",
