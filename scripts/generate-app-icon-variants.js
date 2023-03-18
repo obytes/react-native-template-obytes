@@ -92,6 +92,8 @@ async function addAppBanners({
   await resultImage.writeAsync(resultFilename);
 }
 
+// we are calling the function here just for test purposes
+// TODO : remove this when we are done with the function and search for way to call it before the prebuild script and based on the APP_ENV variable we can genetate the right icon
 addAppBanners({
   appIconPath: './assets/icon.png',
   badgeOverlayPath: './assets/icon-badge.png',
