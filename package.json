@@ -22,7 +22,7 @@
     "build:staging:android": "APP_ENV=staging eas build --profile staging --platform android ",
     "build:production:ios": "APP_ENV=production eas build --profile production --platform ios",
     "build:production:android": "APP_ENV=production eas build --profile production --platform android ",
-    "postinstall": "husky install",
+    "postinstall": "husky install && yarn doctor",
     "np": "HUSKY=0 np --no-publish",
     "version": "yarn prebuild && git add .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
