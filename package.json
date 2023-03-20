@@ -23,7 +23,7 @@
     "build:production:ios": "APP_ENV=production eas build --profile production --platform ios",
     "build:production:android": "APP_ENV=production eas build --profile production --platform android ",
     "postinstall": "husky install && yarn doctor",
-    "np": "HUSKY=0 np --no-publish",
+    "np-release": "HUSKY=0 np --no-publish",
     "version": "yarn prebuild && git add .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "type-check": "tsc  --noemit",
