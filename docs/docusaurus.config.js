@@ -38,14 +38,16 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/obytes/react-native-template-obytes/tree/main/docs/docs",
+            "https://github.com/obytes/react-native-template-obytes/tree/master/docs/docs",
+          showLastUpdateAuthor: true,
+          showLastUpdateTime: true,
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/obytes/react-native-template-obytes/tree/main/docs/docs",
+            "https://github.com/obytes/react-native-template-obytes/tree/master/docs/docs",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
