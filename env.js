@@ -1,6 +1,20 @@
+/*
+ * Be careful, this file should be imported on you src folder.
+ * should only imported in app.config.ts (in the build phase)
+ * to get access to the env variables in your code use the Env file from the src folder
+ * example: import  Env  from '@env'
+ */
 const z = require('zod');
 
 const packageJSON = require('./package.json');
+const path = require('path');
+const APP_ENV = process.env.APP_ENV ?? 'development';
+const envPath = path.resolve(__dirname, `.env.${APP_ENV}`);
+
+// load env variables from .env file based on the APP_ENV
+require('dotenv').config({
+  path: envPath,
+});
 
 /**
  *  First part: Define your env variables
@@ -14,7 +28,6 @@ const packageJSON = require('./package.json');
 const BUNDLE_ID = 'com.obytes'; // ios bundle id
 const PACKAGE = 'com.obytes'; // android package name
 const NAME = 'ObytesApp'; // app name
-const APP_ENV = process.env.APP_ENV ?? 'development';
 
 /**
  * Add a suffix to variable env based on APP_ENV
@@ -44,6 +57,7 @@ const envVars = z.object({
 
   // ADD YOUR ENV VARS HERE
   API_URL: z.string(),
+  // SECRET_KEY: z.string(),
 });
 
 /**
@@ -58,6 +72,7 @@ const _env = {
 
   // ADD YOUR ENV VARS HERE TOO
   API_URL: process.env.API_URL,
+  // SECRET_KEY: process.env.SECRET_KEY,
 };
 
 /**
