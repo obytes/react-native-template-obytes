@@ -1,8 +1,16 @@
 /*
- * Be careful, this file should be imported on you src folder.
- * should only imported in app.config.ts (in the build phase)
- * to get access to the env variables in your code use the Env file from the src folder
- * example: import  Env  from '@env'
+ * Env file to load and validate env variables
+ * Be cautious; this file should not be imported into your source folder.
+ * We split the env variables into two parts:
+ * 1. Client variables: These variables are used in the client-side code (src folder).
+ * 2. Build-time variables: These variables are used in the build process (app.config.ts file).
+ * Import this file into the `app.config.ts` file to use environment variables during the build process. The client variables can then be passed to the client-side using the extra field in the `app.config.ts` file.
+ * To access the client environment variables in your `src` folder, you can import them from `@env`. For example: `import Env from '@env'`.
+ */
+/**
+ * 1st part: Import packages and Load your env variables
+ * we use dotenv to load the correct variables from the .env file based on the APP_ENV variable (default is development)
+ * APP_ENV is passed as an inline variable while executing the command, for example: APP_ENV=staging yarn build:android
  */
 const z = require('zod');
 
@@ -11,18 +19,16 @@ const path = require('path');
 const APP_ENV = process.env.APP_ENV ?? 'development';
 const envPath = path.resolve(__dirname, `.env.${APP_ENV}`);
 
-// load env variables from .env file based on the APP_ENV
 require('dotenv').config({
   path: envPath,
 });
 
 /**
- *  First part: Define your env variables
- *  Static variable for your app such as: bundle id, package name, app name, etc.
- *  you can add them to the .env file but we think it's better to keep them here.
+ * 2nd part: Define some static variables for the app
+ * Such as: bundle id, package name, app name.
  *
- * We declare a function withEnvSuffix that will add a suffix to the variable name based on the APP_ENV
- *
+ * You can add them to the .env file but we think it's better to keep them here as as we use prefix to generate this values based on the APP_ENV
+ * for example: if the APP_ENV is staging, the bundle id will be com.obytes.staging
  */
 
 const BUNDLE_ID = 'com.obytes'; // ios bundle id
@@ -30,6 +36,7 @@ const PACKAGE = 'com.obytes'; // android package name
 const NAME = 'ObytesApp'; // app name
 
 /**
+ * We declare a function withEnvSuffix that will add a suffix to the variable name based on the APP_ENV
  * Add a suffix to variable env based on APP_ENV
  * @param {string} name
  * @returns  {string}
@@ -40,35 +47,43 @@ const withEnvSuffix = (name) => {
 };
 
 /**
- *  2nd part: Define your env variables schema
- *  when ever you want to add a new variable, you should add it to the clientVars object or the buildTimeVars object
- *  Note : z.string() means that the variable is only exists and can be an empty string but not undefined.
- *  if you want to make the variable required you should use z.string().min(1) instead.
- *  Read more about zod here: https://zod.dev/?id=strings
+ * 2nd part: Define your env variables schema
+ * we use zod to define our env variables schema
+ *
+ * we split the env variables into two parts:
+ *    1. client: These variables are used in the client-side code (`src` folder).
+ *    2. buildTime: These variables are used in the build process (app.config.ts file). You can think of them as server-side variables.
+ *
+ * Main rules:
+ *    1. If you need your variable on the client-side, you should add it to the client schema; otherwise, you should add it to the buildTime schema.
+ *    2. Whenever you want to add a new variable, you should add it to the correct schema based on the previous rule, then you should add it to the corresponding object (_clientEnv or _buildTimeEnv).
+ *
+ * Note: `z.string()` means that the variable exists and can be an empty string, but not `undefined`.
+ * If you want to make the variable required, you should use `z.string().min(1)` instead.
+ * Read more about zod here: https://zod.dev/?id=strings
  *
  */
 
-// Add your variables here if you want to use it in your src code + build time (client side)
-const clientVars = z.object({
+const client = z.object({
   APP_ENV: z.enum(['development', 'staging', 'production']),
   NAME: z.string(),
   BUNDLE_ID: z.string(),
   PACKAGE: z.string(),
   VERSION: z.string(),
 
-  // ADD YOUR ENV VARS HERE
+  // ADD YOUR CLIENT ENV VARS HERE
   API_URL: z.string(),
 });
 
-// add you vars here if you want to use it only in the build time (app.config.ts)
-const buildTimeVars = z.object({
+const buildTime = z.object({
+  // ADD YOUR BUILD TIME ENV VARS HERE
   SECRET_KEY: z.string(),
 });
 
 /**
- * @type {Record<keyof z.infer<typeof clientVars> , string | undefined>}
+ * @type {Record<keyof z.infer<typeof client> , string | undefined>}
  */
-const _clientVars = {
+const _clientEnv = {
   APP_ENV,
   NAME: NAME,
   BUNDLE_ID: withEnvSuffix(BUNDLE_ID),
@@ -80,26 +95,25 @@ const _clientVars = {
 };
 
 /**
- * @type {Record<keyof z.infer<typeof buildTimeVars> , string | undefined>}
+ * @type {Record<keyof z.infer<typeof buildTime> , string | undefined>}
  */
-const _buildTimeVars = {
+const _buildTimeEnv = {
+  // ADD YOUR ENV VARS HERE TOO
   SECRET_KEY: process.env.SECRET_KEY,
 };
 
 /**
  * 3rd part: Merge and Validate your env variables
- * we use zod to validate our env variables
- * if the validation fails we throw an error and log the error to the console
- * if the validation passes we export the env variables
- * you can access the env variables by importing the Env object from this file
- * example: import { Env } from '@env'
+ * We use zod to validate our env variables based on the schema we defined above
+ * If the validation fails we throw an error and log the error to the console with a detailed message about missed variables
+ * If the validation passes we export the merged and parsed env variables to be used in the app.config.ts file as well as a ClientEnv object to be used in the client-side code
  **/
 const _env = {
-  ..._clientVars,
-  ..._buildTimeVars,
+  ..._clientEnv,
+  ..._buildTimeEnv,
 };
 
-const merged = buildTimeVars.merge(clientVars);
+const merged = buildTime.merge(client);
 const parsed = merged.safeParse(_env);
 
 if (parsed.success === false) {
@@ -116,7 +130,7 @@ if (parsed.success === false) {
 }
 
 const Env = parsed.data;
-const ClientEnv = clientVars.parse(_clientVars);
+const ClientEnv = client.parse(_clientEnv);
 
 module.exports = {
   Env,

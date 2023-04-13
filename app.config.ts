@@ -1,6 +1,7 @@
 import type { ConfigContext, ExpoConfig } from '@expo/config';
 
 import { ClientEnv, Env, withEnvSuffix } from './env';
+
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: Env.NAME,
