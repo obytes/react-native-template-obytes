@@ -162,7 +162,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				D3F968CEEEEB9AF8B4EEC3CE /* [CP] Embed Pods Frameworks */,
+				E4BA53D1912D438611465B1B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -281,7 +281,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ObytesApp/Pods-ObytesApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D3F968CEEEEB9AF8B4EEC3CE /* [CP] Embed Pods Frameworks */ = {
+		E4BA53D1912D438611465B1B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

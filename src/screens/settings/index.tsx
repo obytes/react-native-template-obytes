@@ -1,8 +1,8 @@
-import { Env } from '@env';
 import * as React from 'react';
 
 import { useAuth } from '@/core';
 import { translate } from '@/core';
+import { Env } from '@/core/env';
 import { ScrollView, Text, View } from '@/ui';
 import { Github, Rate, Share, Support, Website } from '@/ui/icons';
 

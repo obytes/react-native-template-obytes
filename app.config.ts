@@ -1,14 +1,6 @@
 import type { ConfigContext, ExpoConfig } from '@expo/config';
-const path = require('path');
 
-const APP_ENV = process.env.APP_ENV ?? 'development';
-const envPath = path.resolve(__dirname, `.env.${APP_ENV}`);
-
-require('dotenv').config({
-  path: envPath,
-});
-
-const { Env, withEnvSuffix } = require('./env');
+import { ClientEnv, Env, withEnvSuffix } from './env';
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
@@ -47,6 +39,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     'expo-localization',
   ],
   extra: {
-    APP_ENV: Env.APP_ENV,
+    ...ClientEnv,
   },
 });
