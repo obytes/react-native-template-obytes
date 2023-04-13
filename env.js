@@ -41,14 +41,15 @@ const withEnvSuffix = (name) => {
 
 /**
  *  2nd part: Define your env variables schema
- *  when ever you want to add a new variable you should add it  in the schema and the _env object.
+ *  when ever you want to add a new variable, you should add it to the clientVars object or the buildTimeVars object
  *  Note : z.string() means that the variable is only exists and can be an empty string but not undefined.
  *  if you want to make the variable required you should use z.string().min(1) instead.
  *  Read more about zod here: https://zod.dev/?id=strings
  *
  */
 
-const envVars = z.object({
+// Add your variables here if you want to use it in your src code + build time (client side)
+const clientVars = z.object({
   APP_ENV: z.enum(['development', 'staging', 'production']),
   NAME: z.string(),
   BUNDLE_ID: z.string(),
@@ -57,13 +58,17 @@ const envVars = z.object({
 
   // ADD YOUR ENV VARS HERE
   API_URL: z.string(),
-  // SECRET_KEY: z.string(),
+});
+
+// add you vars here if you want to use it only in the build time (app.config.ts)
+const buildTimeVars = z.object({
+  SECRET_KEY: z.string(),
 });
 
 /**
- * @type {Record<keyof z.infer<typeof envVars> , string | undefined>}
+ * @type {Record<keyof z.infer<typeof clientVars> , string | undefined>}
  */
-const _env = {
+const _clientVars = {
   APP_ENV,
   NAME: NAME,
   BUNDLE_ID: withEnvSuffix(BUNDLE_ID),
@@ -72,19 +77,30 @@ const _env = {
 
   // ADD YOUR ENV VARS HERE TOO
   API_URL: process.env.API_URL,
-  // SECRET_KEY: process.env.SECRET_KEY,
 };
 
 /**
- * 3rd part: Validate your env variables
+ * @type {Record<keyof z.infer<typeof buildTimeVars> , string | undefined>}
+ */
+const _buildTimeVars = {
+  SECRET_KEY: process.env.SECRET_KEY,
+};
+
+/**
+ * 3rd part: Merge and Validate your env variables
  * we use zod to validate our env variables
  * if the validation fails we throw an error and log the error to the console
  * if the validation passes we export the env variables
  * you can access the env variables by importing the Env object from this file
  * example: import { Env } from '@env'
  **/
+const _env = {
+  ..._clientVars,
+  ..._buildTimeVars,
+};
 
-const parsed = envVars.safeParse(_env);
+const merged = buildTimeVars.merge(clientVars);
+const parsed = merged.safeParse(_env);
 
 if (parsed.success === false) {
   console.error(
@@ -100,8 +116,10 @@ if (parsed.success === false) {
 }
 
 const Env = parsed.data;
+const ClientEnv = clientVars.parse(_clientVars);
 
 module.exports = {
   Env,
+  ClientEnv,
   withEnvSuffix,
 };

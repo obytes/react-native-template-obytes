@@ -1,6 +1,6 @@
 import type { ConfigContext, ExpoConfig } from '@expo/config';
 
-import { Env, withEnvSuffix } from './env';
+import { ClientEnv, Env, withEnvSuffix } from './env';
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: Env.NAME,
@@ -38,6 +38,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     'expo-localization',
   ],
   extra: {
-    ...Env,
+    ...ClientEnv,
   },
 });
