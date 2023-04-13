@@ -10,13 +10,13 @@ export const Onboarding = () => {
     <View className="flex h-full items-center justify-center bg-white">
       <Image
         style={
-          //eslint-disble-next-line react-native/no-inline-styles
+          //eslint-disble-next-line eslint(react-native/no-inline-styles)
           { flex: 1, width: '100%' }
         }
         source={require('./cover.png')}
       />
 
-      <View className="flex-1 justify-end ">
+      <View className="justify-end ">
         <Text className="my-3 text-center text-5xl font-bold ">
           Obytes Starter
         </Text>
