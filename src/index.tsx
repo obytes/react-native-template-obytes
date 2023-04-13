@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler';
+import './styles';
 
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import * as SplashScreen from 'expo-splash-screen';
@@ -8,7 +9,6 @@ import FlashMessage from 'react-native-flash-message';
 import { APIProvider } from '@/api';
 import { hydrateAuth } from '@/core';
 import { RootNavigator } from '@/navigation';
-
 hydrateAuth();
 SplashScreen.preventAutoHideAsync();
 
