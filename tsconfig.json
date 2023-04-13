@@ -19,6 +19,7 @@
     "android",
     "ios",
     "lint-staged.config.js",
-    "webpack.config.js"
+    "webpack.config.js",
+    "postcss.config.js"
   ]
 }

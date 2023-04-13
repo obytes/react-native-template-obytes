@@ -7,11 +7,17 @@ export const Onboarding = () => {
   // eslint-disable-next-line unused-imports/no-unused-vars
   const [_, setIsFirstTime] = useIsFirstTime();
   return (
-    <View className="flex h-full items-center  justify-center bg-white">
-      <Image className="w-full flex-1" source={require('./cover.png')} />
+    <View className="flex h-full items-center justify-center bg-white">
+      <Image
+        style={
+          //eslint-disble-next-line react-native/no-inline-styles
+          { flex: 1, width: '100%' }
+        }
+        source={require('./cover.png')}
+      />
 
-      <View className="justify-end ">
-        <Text className="my-3 text-center text-5xl font-bold">
+      <View className="flex-1 justify-end ">
+        <Text className="my-3 text-center text-5xl font-bold ">
           Obytes Starter
         </Text>
         <Text className="mb-2 text-center text-lg text-gray-600">
