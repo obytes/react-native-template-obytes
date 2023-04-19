@@ -2,9 +2,10 @@
 sidebar_position: 10
 ---
 
-# Stay updated with react native
+# Stay Up-to-Date with React Native
 
-Make sure to check the links below to stay updated about react native news:
+Make sure to check out the links below to stay up-to-date with React Native news.
+NOTE: We are in favor of reducing the number of news sources you use to avoid feeling overwhelmed. Therefore, we have only included resources that we think are essential and deserve your attention.
 
 **Websites:**
 
@@ -12,6 +13,11 @@ Make sure to check the links below to stay updated about react native news:
 - [React Native Dev Blog](https://reactnative.dev/blog)
 - [React Native Directory](https://reactnative.directory/)
 - [React Native Reddit Channel](https://www.reddit.com/r/reactnative/)
+
+
+**Blogs:**
+- [TkDodo's blog](https://tkdodo.eu/blog/)
+- [Developer way](https://www.developerway.com/)
 
 **Newsletters:**
 
