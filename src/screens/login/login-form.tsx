@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
+import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
@@ -20,11 +21,11 @@ const schema = z.object({
 
 export type FormType = z.infer<typeof schema>;
 
-type Props = {
-  onSubmit?: (data: FormType) => void;
+export type LoginFormProps = {
+  onSubmit?: SubmitHandler<FormType>;
 };
 
-export const LoginForm = ({ onSubmit = () => {} }: Props) => {
+export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
   const { handleSubmit, control } = useForm<FormType>({
     resolver: zodResolver(schema),
   });

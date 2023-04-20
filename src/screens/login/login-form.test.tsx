@@ -11,6 +11,7 @@ import {
 } from '@testing-library/react-native';
 import React from 'react';
 
+import type { LoginFormProps } from './login-form';
 import { LoginForm } from './login-form';
 
 afterEach(cleanup);
@@ -19,6 +20,8 @@ const customRender = (
   ui: React.ReactElement<any>,
   options?: RenderOptions | undefined
 ): RenderAPI => render(ui, { ...options }); // render(ui, {wrapper: ThemeProvider, ...options});
+
+const onSubmitMock: jest.Mock<LoginFormProps['onSubmit']> = jest.fn();
 
 describe('LoginForm Form ', () => {
   it('renders correctly', async () => {
@@ -56,11 +59,11 @@ describe('LoginForm Form ', () => {
   });
 
   it('Should call LoginForm with correct values when values are valid', async () => {
-    const mockOnSubmit = jest.fn(({ email, password }) => {
-      return Promise.resolve({ email, password });
-    });
+    // const mockOnSubmit = jest.fn(({ email, password }) => {
+    //   return Promise.resolve({ email, password });
+    // });
 
-    const { getByTestId } = customRender(<LoginForm onSubmit={mockOnSubmit} />);
+    const { getByTestId } = customRender(<LoginForm onSubmit={onSubmitMock} />);
 
     const button = getByTestId('login-button');
     const emailInput = getByTestId('email-input');
@@ -70,10 +73,10 @@ describe('LoginForm Form ', () => {
     fireEvent.changeText(passwordInput, 'password');
     fireEvent.press(button);
     await waitFor(() => {
-      expect(mockOnSubmit).toHaveBeenCalledTimes(1);
+      expect(onSubmitMock).toHaveBeenCalledTimes(1);
     });
     // undefined because we don't use second argument of the  SubmitHandler
-    expect(mockOnSubmit).toBeCalledWith(
+    expect(onSubmitMock).toBeCalledWith(
       {
         email: 'youssef@gmail.com',
         password: 'password',
