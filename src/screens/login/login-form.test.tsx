@@ -72,10 +72,13 @@ describe('LoginForm Form ', () => {
     await waitFor(() => {
       expect(mockOnSubmit).toHaveBeenCalledTimes(1);
     });
-    // TODO: check why this test is failing
-    // expect(mockOnSubmit).toBeCalledWith({
-    //   email: 'youssef@gmail.com',
-    //   password: 'password',
-    // });
+    // undefined because we don't use second argument of the  SubmitHandler
+    expect(mockOnSubmit).toBeCalledWith(
+      {
+        email: 'youssef@gmail.com',
+        password: 'password',
+      },
+      undefined
+    );
   });
 });
