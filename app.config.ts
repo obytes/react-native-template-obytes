@@ -45,6 +45,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   plugins: [
     ['@bacons/link-assets', ['./assets/fonts/Inter.ttf']],
     'expo-localization',
+    [
+      'app-icon-badge',
+      {
+        iconPath: './assets/icon.png',
+        environment: Env.APP_ENV,
+        enabled: Env.APP_ENV !== 'production',
+      },
+    ],
   ],
   extra: {
     APP_ENV: Env.APP_ENV,
