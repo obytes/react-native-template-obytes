@@ -3,7 +3,7 @@
 
 </p>
 <h1 align="center">
-  A simple CLI to create new react native project using obytes template
+  A simple CLI to create a new react native project using the Obytes template
 </h1>
 
 ## 🚀 Quick start
