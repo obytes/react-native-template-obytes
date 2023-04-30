@@ -25,7 +25,7 @@ jobs:
         uses: reviewdog/action-setup@v1
 
       - name: 📦 Install Project Dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: 🏃‍♂️ Run TypeScript # Reviewdog tsc errorformat: %f:%l:%c - error TS%n: %m
         run: |
@@ -50,7 +50,7 @@ jobs:
           cache: 'pnpm'
 
       - name: 📦 Install Project Dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: 🏃‍♂️ Run ESLint
         uses: reviewdog/action-eslint@v1
@@ -75,7 +75,7 @@ jobs:
           cache: 'pnpm'
 
       - name: 📦 Install Project Dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: 🏃‍♂️ Run Tests
-        run: yarn test:ci
+        run: pnpm test:ci
