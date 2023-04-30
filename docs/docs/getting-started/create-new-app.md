@@ -20,6 +20,12 @@ First make sure you have the following tools installed on your machine:
 
 ## Initializing a new project
 
+First make sure you have `pnpm` installed on your machine, if not you can install it using the following command:
+
+```bash
+npm install -g pnpm
+```
+
 Start your project using `create-obytes-app` command:
 
 ```bash
@@ -71,8 +77,8 @@ If the installation was successful, the created app should be ready to use, and 
 
 ```bash
 # Run the app on iOS simulator
-yarn ios
+pnpm ios
 
 # Run the app on Android simulator
-yarn android
+pnpm android
 ```
