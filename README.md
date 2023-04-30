@@ -114,7 +114,7 @@ This starter is maintained by [Obytes mobile tribe team](https://www.obytes.com/
 
 In addition to maintaining this starter kit, we are also available to work on custom projects and help you build your dream app. If you are looking for experienced and reliable developers to bring your app vision to life, please visit our website at [obytes.com/contact](https://www.obytes.com/contact) to get in touch with us. We would be happy to discuss your project in more detail and explore how we can help you achieve your goals.
 
-## 🔥 How to contribute ?
+## 🔥 How to contribute?
 
 Thank you for your interest in contributing to our project. Your involvement is greatly appreciated and we welcome your contributions. Here are some ways you can help us improve this project:
 
@@ -124,6 +124,10 @@ Thank you for your interest in contributing to our project. Your involvement is 
 4. If you encounter a bug or typo while using the starter kit or reading the documentation, we would be grateful if you could bring it to our attention. You can open an issue to report the issue, or even better, submit a pull request with a fix.
 
 We value the input and contributions of our community and look forward to working with you to improve this project.
+
+## ❓ FAQ
+
+If you have any questions about the starter and want answers, please check out the [Discussions](https://github.com/obytes/react-native-template-obytes/discussions) page.
 
 ## 🔖 License
 
