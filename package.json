@@ -23,7 +23,7 @@
     "build:staging:android": "APP_ENV=staging eas build --profile staging --platform android ",
     "build:production:ios": "APP_ENV=production eas build --profile production --platform ios",
     "build:production:android": "APP_ENV=production eas build --profile production --platform android ",
-    "postinstall": "husky install && pnpm run doctor",
+    "postinstall": "husky install",
     "np-release": "SKIP_BRANCH_PROTECTION=true np --no-publish",
     "version": "pnpm run prebuild && git add .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",

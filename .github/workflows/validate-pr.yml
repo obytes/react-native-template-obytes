@@ -7,7 +7,7 @@ on:
     branches: [main, master]
 
 jobs:
-  compile:
+  type-check:
     name: Type Check (tsc)
     runs-on: ubuntu-latest
     steps:
@@ -58,6 +58,28 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           eslint_flags: '. --ext .js,.jsx,.ts,.tsx'
+
+
+  doctor:
+    name: Expo Doctor (expo)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name : 📦 Checkout project repo
+        uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: 📦 Install Project Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🚑 Run Doctor Checks
+        run: pnpm run doctor
 
   test:
     name: Tests (jest)
