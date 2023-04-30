@@ -31,13 +31,13 @@ yarn
 To run the app on ios
 
 ```sh
-yarn ios
+pnpm ios
 ```
 
 To run the app on Android
 
 ```sh
-yarn android
+pnpm android
 ```
 
 ## ✍️ Documentation

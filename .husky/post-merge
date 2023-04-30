@@ -7,12 +7,12 @@ function changed {
 echo 'Checking for changes in yarn.lock...'
 
 if changed 'yarn.lock'; then
-    echo "📦 yarn.lock changed. Run yarn install to bring your dependencies up to date."
-    yarn install
+    echo "📦 yarn.lock changed. Run pnpm install to bring your dependencies up to date."
+    pnpm install
 fi
 
 echo 'You are up to date :)'
 
-echo 'If necessary, you can run yarn prebuild to generate native code.'
+echo 'If necessary, you can run pnpm prebuild to generate native code.'
 
 exit 0

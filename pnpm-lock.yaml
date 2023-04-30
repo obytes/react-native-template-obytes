@@ -31,6 +31,9 @@ dependencies:
   expo:
     specifier: ~48.0.11
     version: 48.0.11(@babel/core@7.21.0)
+  expo-constants:
+    specifier: ~14.2.1
+    version: 14.2.1(expo@48.0.11)
   expo-dev-client:
     specifier: ~2.2.1
     version: 2.2.1(expo@48.0.11)
