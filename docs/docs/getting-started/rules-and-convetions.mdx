@@ -48,7 +48,7 @@ As the name suggest, this hook will run before each commit and it will make sure
 
 ### post-merge
 
-As the name suggest, this hook will run after each merge and it will check if there is any changed in yarn.lock and if there is any, it will run `yarn install` to make sure the dependencies are up to date.
+As the name suggest, this hook will run after each merge and it will check if there is any changed in yarn.lock and if there is any, it will run `pnpm install` to make sure the dependencies are up to date.
 
 <CodeBlock language="bash">{PostMerge}</CodeBlock>
 

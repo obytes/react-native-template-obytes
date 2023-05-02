@@ -7,7 +7,7 @@ sidebar_position: 5
 :::note
 Please note that this guide is intended for updating your project dependencies only, and it does not ensure that your project will be in sync with the latest version of the starter.
 
-In order to take advantage of the latest improvements in the starter project, you will need to compare your `osMetadata.initVersion` with the latest release on GitHub, and manually apply any necessary changes to your project.
+To take advantage of the latest improvements in the starter project, you will need to compare your `osMetadata.initVersion` with the latest release on GitHub, and manually apply any necessary changes to your project.
 :::
 
 ## Easy way 🚀
@@ -22,15 +22,15 @@ Finally, run the following commands to make sur everything is working as expecte
 
 ```bash
 rm -rf node_modules ## remove node_modules folder
-yarn install ## install new dependencies
-yarn doctor ## check for any issues with the dependencies you added to your project
-yarn lint ## linting
-yarn type-check ## type checking
-yarn test ## tests
-yarn prebuild -clean ## clean ios and android build folders and regenerate them
-yarn ios ## run ios build
-yarn android ## run android build
-yarn start --cc ## start the server
+pnpm install ## install new dependencies
+pnpm run doctor ## check for any issues with the dependencies you added to your project
+pnpm lint ## linting
+pnpm type-check ## type checking
+pnpm test ## tests
+pnpm prebuild -clean ## clean ios and android build folders and regenerate them
+pnpm ios ## run ios build
+pnpm android ## run android build
+pnpm start --cc ## start the server
 ```
 
 :::info
@@ -46,13 +46,13 @@ Visit the npm package registry [here](https://www.npmjs.com/package/expo) to ens
 Once you have confirmed that you have the latest version, open your terminal and enter the following command:
 
 ```bash
-yarn add expo@lastVersion
-## yarn add expo@48.0.5 for example
+pnpm add expo@lastVersion
+## pnpm add expo@48.0.5 for example
 ```
 Thanks to the amazing work of the expo team, you can run the following command to upgrade your dependencies to match the correct version required by expo last version.
 
 ```bash
-yarn expo install --fix
+pnpm expo install --fix
 ```
 Running the command above will update your dependencies to ensure that they match the version requirements of Expo. In some cases, you may need to manually apply changes to your project in order to make it work with the new version. The command may also provide more detailed information on any necessary changes.
 
@@ -62,24 +62,24 @@ After updating your dependencies, run expo doctor to identify and fix any other 
 ```bash
 npx expo-doctor
 or
-yarn expo doctor ## a script inside the starter
+pnpm run doctor ## a script inside the starter
 ```
 
 Running this command will generate a list of issues that require manual attention. In addition, it will provide a set of npm packages that need to be updated with the exact version required by the new version of Expo.
 
 
-Now it time to make sure everything is still working as expected 😀:
+Now it's time to make sure everything is still working as expected 😀:
 
 ```bash
 rm -rf node_modules ## remove node_modules folder
-yarn install ## install new dependencies
-yarn lint ## linting
-yarn type-check ## type checking
-yarn test ## tests
-yarn prebuild -clean ## clean ios and android build folders and regenerate them
-yarn ios ## run ios build
-yarn android ## run android build
-yarn start --cc ## start the server
+pnpm install ## install new dependencies
+pnpm lint ## linting
+pnpm type-check ## type checking
+pnpm test ## tests
+pnpm prebuild -clean ## clean ios and android build folders and regenerate them
+pnpm ios ## run ios build
+pnpm android ## run android build
+pnpm start --cc ## start the server
 ```
 Unfortunately, there is no magic trick here in case you have any issues while running your checks, Fixing those errors may require some manual effort. You can start by reading the error message and identifying any relevant packages that may be causing the issue. Check the changelog of those packages to see if there have been any recent updates that might have introduced breaking changes. This will help you to pinpoint the root cause of the issue and take the necessary steps to resolve it.
 
@@ -96,11 +96,11 @@ Upgrading your project on a regular basis can make the process much easier. We r
 While Expo upgrade will help you update most native dependencies automatically through the process outlined above, it's important to keep in mind that non-native dependencies(JS only) may also need to be updated too.
 
 
-This time you will use the power of yarn to update dependencies to last version and then run our checks to make sure everything is working as expected.
+This time you will use the power of pnpm to update dependencies to the last version and then run our checks to make sure everything is working as expected.
 
 First run the following command:
 ```bash
-yarn upgrade-interactive --latest
+pnpm up -i
 ```
 When you run this command, it will generate a list of all dependencies associated with your project. You will then be prompted to select the dependencies that you want to update.
 
@@ -135,26 +135,26 @@ There is no one-size-fits-all solution for managing updates to your project's de
 We recommend to start updating `devDependencies` first by following this process:
 
 1. Select all devDependencies and update them to the latest version.
-2. run `yarn doctor` to revert any changes that is not in sync with the Expo version you are using.
+2. run `pnpm doctor` to revert any changes that is not in sync with the Expo version you are using.
 3. run your checks to make sure everything is working as expected.
 
 ```bash
 rm -rf node_modules ## remove node_modules folder
-yarn install ## install new dependencies
-yarn lint ## linting
-yarn type-check ## type checking
-yarn test ## tests
-yarn prebuild -clean ## clean ios and android build folders and regenerate them
-yarn ios ## run ios build
-yarn android ## run android build
-yarn start --cc ## start the server
+pnpm install ## install new dependencies
+pnpm lint ## linting
+pnpm type-check ## type checking
+pnpm test ## tests
+pnpm prebuild -clean ## clean ios and Android build folders and regenerate them
+pnpm ios ## run ios build
+pnpm android ## run android build
+pnpm start --cc ## start the server
 ```
 
 If you are lucky enough and everything work as expected without any issues, you can now update the rest of the dependencies.
 
 
 :::tip
-In case you application is not tested enough,it's a good idea to take some time to go throw the application and ensure that the most critical features are working correctly before committing any changes.
+In case your application is not tested enough, it's a good idea to take some time to go throw the application and ensure that the most critical features are working correctly before committing any changes.
 :::
 
 

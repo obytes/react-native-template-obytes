@@ -90,7 +90,7 @@ using `import { Env } from '@env';` will import the env from the `src/core/env.j
 5. Use `APP_ENV` to load the correct `.env` file :
 
 ```bash
-APP_ENV=production yarn start -cc
+APP_ENV=production pnpm start -cc
 ```
 
 As mentioned earlier, `zod` is used to validate environment variables at runtime and build time. If there are any missing or invalid variables, you'll see an error message with information on what needs to be fixed. Here's an example error message:

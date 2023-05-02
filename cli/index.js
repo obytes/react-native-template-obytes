@@ -25,10 +25,10 @@ const createObytesApp = async () => {
   await cleanUpFolder(projectName);
 
   // install dependencies
-  await runCommand(`cd ${projectName} && yarn`, {
+  await runCommand(`cd ${projectName} && pnpm install`, {
     loading: 'Installing dependencies',
     success: 'Dependencies installed',
-    error: 'Failed to install dependencies',
+    error: 'Failed to install dependencies, Make sure you have pnpm installed',
   });
 
   showMoreDetails();

@@ -98,8 +98,8 @@ const showMoreDetails = () => {
     '\n\n\n',
     chalk('🔥 Your project is ready to go! \n\n'),
     chalk('📱 Run your project: \n\n'),
-    chalk('   IOS     :  yarn ios \n'),
-    chalk('   Android :  yarn android \n\n'),
+    chalk('   IOS     :  pnpm ios \n'),
+    chalk('   Android :  pnpm android \n\n'),
     chalk.bold('📚 Starter Documentation: https://starter.obytes.com \n')
   );
 };

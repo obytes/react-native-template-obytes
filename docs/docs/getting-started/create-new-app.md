@@ -14,11 +14,17 @@ First make sure you have the following tools installed on your machine:
 - [Node.js LTS release](https://nodejs.org/en/)
 - [Git](https://git-scm.com/)
 - [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall), required only for macOS or Linux users
-- [Yarn](https://classic.yarnpkg.com/en/docs/install)
+- [Pnpm](https://pnpm.io/installation)
 - [Expo Cli](https://docs.expo.dev/workflow/expo-cli/)
 - [VS Code Editor](https://code.visualstudio.com/download)
 
 ## Initializing a new project
+
+First make sure you have `pnpm` installed on your machine, if not you can install it using the following command:
+
+```bash
+npm install -g pnpm
+```
 
 Start your project using `create-obytes-app` command:
 
@@ -49,6 +55,7 @@ To ensure that your code is properly validated and formatted, we highly recommen
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [Tailwindcss IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+- [Pretty TypeScript Errors](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)
 
 Here is the complete list of recommended extensions:
 
@@ -64,6 +71,7 @@ Here is the complete list of recommended extensions:
 - [Turbo console log](https://marketplace.visualstudio.com/items?itemName=ChakrounAnas.turbo-console-log)
 - [i18n Ally](https://marketplace.visualstudio.com/items?itemName=lokallise.i18n-ally)
 - [Github copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+- [Pretty TypeScript Errors](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)
 
 ## Running the app
 
@@ -71,8 +79,8 @@ If the installation was successful, the created app should be ready to use, and 
 
 ```bash
 # Run the app on iOS simulator
-yarn ios
+pnpm ios
 
 # Run the app on Android simulator
-yarn android
+pnpm android
 ```

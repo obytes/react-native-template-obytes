@@ -10,7 +10,7 @@
 /**
  * 1st part: Import packages and Load your env variables
  * we use dotenv to load the correct variables from the .env file based on the APP_ENV variable (default is development)
- * APP_ENV is passed as an inline variable while executing the command, for example: APP_ENV=staging yarn build:android
+ * APP_ENV is passed as an inline variable while executing the command, for example: APP_ENV=staging pnpm build:android
  */
 const z = require('zod');
 
