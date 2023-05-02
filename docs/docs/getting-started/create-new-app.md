@@ -14,7 +14,7 @@ First make sure you have the following tools installed on your machine:
 - [Node.js LTS release](https://nodejs.org/en/)
 - [Git](https://git-scm.com/)
 - [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall), required only for macOS or Linux users
-- [Yarn](https://classic.yarnpkg.com/en/docs/install)
+- [Pnpm](https://pnpm.io/installation)
 - [Expo Cli](https://docs.expo.dev/workflow/expo-cli/)
 - [VS Code Editor](https://code.visualstudio.com/download)
 
@@ -55,6 +55,7 @@ To ensure that your code is properly validated and formatted, we highly recommen
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [Tailwindcss IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+- [Pretty TypeScript Errors](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)
 
 Here is the complete list of recommended extensions:
 
@@ -70,6 +71,7 @@ Here is the complete list of recommended extensions:
 - [Turbo console log](https://marketplace.visualstudio.com/items?itemName=ChakrounAnas.turbo-console-log)
 - [i18n Ally](https://marketplace.visualstudio.com/items?itemName=lokallise.i18n-ally)
 - [Github copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+- [Pretty TypeScript Errors](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)
 
 ## Running the app
 

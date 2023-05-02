@@ -24,7 +24,7 @@
     "build:production:ios": "APP_ENV=production eas build --profile production --platform ios",
     "build:production:android": "APP_ENV=production eas build --profile production --platform android ",
     "postinstall": "husky install",
-    "np-release": "SKIP_BRANCH_PROTECTION=true np --no-publish",
+    "np-release": "SKIP_BRANCH_PROTECTION=true np --no-publish --no-cleanup",
     "version": "pnpm run prebuild && git add .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "type-check": "tsc  --noemit",

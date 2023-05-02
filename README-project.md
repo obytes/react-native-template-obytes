@@ -12,7 +12,7 @@ Mobile App </h1>
 - [Node.js LTS release](https://nodejs.org/en/)
 - [Git](https://git-scm.com/)
 - [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall), required only for macOS or Linux users
-- [Yarn](https://classic.yarnpkg.com/en/docs/install)
+- [Pnpm](https://pnpm.io/installation)
 - [Expo Cli](https://docs.expo.dev/workflow/expo-cli/)
 - [VS Code Editor](https://code.visualstudio.com/download) ⚠️ Make sure to install all recommended extension from `.vscode/extensions.json`
 
