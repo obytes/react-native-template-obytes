@@ -4,6 +4,7 @@ module.exports = {
   night: {
     screen: '#121212',
     card: '#ffffff1f',
+    post: '#ffffff0d',
     border: '#ffffff28',
     text: '#ffffffde',
   },

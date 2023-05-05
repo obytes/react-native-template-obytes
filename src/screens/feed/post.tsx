@@ -29,7 +29,7 @@ export const Post = () => {
   }
 
   return (
-    <View className="flex-1">
+    <View className="flex-1 dark:bg-night-screen">
       <Text variant="h2">{data.title}</Text>
       <Text variant="md">{data.body} </Text>
     </View>

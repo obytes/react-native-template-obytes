@@ -1,9 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useColorScheme } from 'nativewind';
 import * as React from 'react';
 
 import { AddPost, Feed, Post } from '@/screens';
 import { Pressable, Text } from '@/ui';
+import colors from '@/ui/theme/colors';
 
 export type FeedStackParamList = {
   Feed: undefined;
@@ -23,8 +25,18 @@ const GoToAddPost = () => {
 };
 
 export const FeedNavigator = () => {
+  const { colorScheme } = useColorScheme();
+  const isDark = colorScheme === 'dark';
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: isDark ? colors.night.screen : colors.white,
+        },
+
+        headerTintColor: isDark ? colors.night.text : colors.black,
+      }}
+    >
       <Stack.Group
         screenOptions={{
           // eslint-disable-next-line react/no-unstable-nested-components

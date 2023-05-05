@@ -29,7 +29,9 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
   const borderColor = error
     ? 'border-danger-600'
     : isFocussed
-    ? 'border-neutral-600'
+    ? isDark
+      ? 'border-white'
+      : 'border-neutral-600'
     : isDark
     ? 'border-night-border'
     : 'border-neutral-400';

@@ -27,7 +27,7 @@ export const Feed = () => {
     );
   }
   return (
-    <View className="flex-1 bg-white">
+    <View className="flex-1 bg-white dark:bg-night-screen">
       <FlashList
         data={data}
         renderItem={renderItem}
