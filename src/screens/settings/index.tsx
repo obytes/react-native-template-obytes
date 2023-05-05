@@ -14,8 +14,8 @@ import { ThemeItem } from './theme-item';
 export const Settings = () => {
   const signOut = useAuth.use.signOut();
   return (
-    <ScrollView className="bg-white">
-      <View className="flex-1 px-4 pt-16">
+    <ScrollView className="bg-white  dark:bg-night-screen ">
+      <View className="flex-1 px-4 pt-16 ">
         <Text variant="lg" className="font-bold">
           {translate('settings.title')}
         </Text>

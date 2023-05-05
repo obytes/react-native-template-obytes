@@ -59,10 +59,10 @@ const Option = ({
 }: PressableProps & { selected?: boolean; label: string }) => {
   return (
     <Pressable
-      className="flex-row items-center border-b-[1px] border-neutral-300 py-2 px-3"
+      className="dark:bg-night-item-bg flex-row items-center border-b-[1px] border-neutral-300 py-2 px-3 dark:border-night-border"
       {...props}
     >
-      <Text variant="md" className="flex-1">
+      <Text variant="md" className="flex-1 dark:text-neutral-400">
         {label}
       </Text>
       {selected && <Check />}

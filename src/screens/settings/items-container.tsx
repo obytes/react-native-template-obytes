@@ -12,9 +12,11 @@ export const ItemsContainer = ({ children, title }: Props) => {
   return (
     <>
       {title && <Text variant="lg" className="pt-4 pb-2" tx={title} />}
-      <View className="rounded-md border-[1px] border-neutral-200">
-        {children}
-      </View>
+      {
+        <View className=" rounded-md border-[1px] border-neutral-200 dark:border-night-border dark:bg-night-card">
+          {children}
+        </View>
+      }
     </>
   );
 };

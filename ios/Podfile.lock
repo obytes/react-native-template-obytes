@@ -128,9 +128,9 @@ PODS:
     - ReactCommon/turbomodule/core (= 0.71.7)
   - fmt (6.2.1)
   - glog (0.3.5)
-  - hermes-engine (0.71.6):
-    - hermes-engine/Pre-built (= 0.71.6)
-  - hermes-engine/Pre-built (0.71.6)
+  - hermes-engine (0.71.7):
+    - hermes-engine/Pre-built (= 0.71.7)
+  - hermes-engine/Pre-built (0.71.7)
   - libaom (2.0.2):
     - libvmaf
   - libavif (0.10.1):
@@ -783,7 +783,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 7714e6bc1e9ea23df6c4cb42f0b2fd9c6a3a559c
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
-  hermes-engine: b434cea529ad0152c56c7cb6486b0c4c0b23b5de
+  hermes-engine: 4438d2b8bf8bebaba1b1ac0451160bab59e491f8
   libaom: 9bb51e0f8f9192245e3ca2a1c9e4375d9cbccc52
   libavif: e242998ccec1c83bcba0bbdc256f460ad5077348
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
@@ -833,4 +833,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: e1fd065ec64a01e120b8378eed96f2fe5b6a53c4
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

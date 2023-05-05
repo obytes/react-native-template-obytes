@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type { RouteProp } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useColorScheme } from 'nativewind';
 import type { ComponentType } from 'react';
 import * as React from 'react';
 import type { SvgProps } from 'react-native-svg';
@@ -11,9 +12,9 @@ import {
   Settings as SettingsIcon,
   Style as StyleIcon,
 } from '@/ui';
-import colors from '@/ui/theme/colors';
 
 import { FeedNavigator } from './feed-navigator';
+import { darkTabStyle, tabStyle } from './tab-style';
 
 type TabParamList = {
   Style: undefined;
@@ -73,17 +74,13 @@ const BarIcon = ({ color, name, ...reset }: BarIconType) => {
 };
 
 export const TabNavigator = () => {
+  const { colorScheme } = useColorScheme();
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        ...(colorScheme === 'dark' ? darkTabStyle : tabStyle),
         // eslint-disable-next-line react/no-unstable-nested-components
         tabBarIcon: ({ color }) => <BarIcon name={route.name} color={color} />,
-        tabBarActiveTintColor: colors.primary[400],
-        tabBarInactiveTintColor: colors.neutral[600],
-        tabBarStyle: [
-          { backgroundColor: colors.white },
-          { borderTopWidth: 1, borderTopColor: colors.neutral[200] },
-        ],
       })}
     >
       <Tab.Group

@@ -1,6 +1,11 @@
 module.exports = {
   white: '#ffffff',
   black: '#000000',
+  night: {
+    screen: '#121212',
+    card: '#ffffff10',
+    border: '#ffffff0c',
+  },
   neutral: {
     50: '#FAFAFA',
     100: '#F5F5F5',
