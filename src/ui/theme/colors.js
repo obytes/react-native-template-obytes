@@ -3,9 +3,9 @@ module.exports = {
   black: '#000000',
   night: {
     screen: '#121212',
-    card: '#ffffff10',
-    border: '#ffffff0c',
-    text: '#ffffff57',
+    card: '#ffffff1f',
+    border: '#ffffff28',
+    text: '#ffffffde',
   },
   neutral: {
     50: '#FAFAFA',
