@@ -5,6 +5,7 @@ module.exports = {
     screen: '#121212',
     card: '#ffffff10',
     border: '#ffffff0c',
+    text: '#ffffff57',
   },
   neutral: {
     50: '#FAFAFA',
