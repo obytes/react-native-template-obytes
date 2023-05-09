@@ -6,12 +6,10 @@
     "about": "حول التطبيق ",
     "app_name": "اسم التطبيق",
     "arabic": "عربي",
-    "dark": "مظلم",
     "english": "إنجليزي",
     "generale": "عام",
     "github": "جيثب",
     "language": "لغة",
-    "light": "خفيفة",
     "links": "الروابط",
     "logout": "تسجيل خروج",
     "more": "أكثر",
@@ -21,7 +19,12 @@
     "support": "الدعم",
     "support_us": "ادعمنا",
     "terms": "شروط الخدمة",
-    "theme": "سمة",
+    "theme": {
+      "dark": "مظلم",
+      "light": "خفيفة",
+      "system": "System",
+      "title": "سمة"
+    },
     "title": "إعدادات",
     "version": "إصدار",
     "website": "موقع الكتروني"

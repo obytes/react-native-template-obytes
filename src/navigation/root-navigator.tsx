@@ -3,8 +3,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
 
 import { useAuth } from '@/core';
-import type { ThemeType } from '@/core/hooks';
-import { useIsFirstTime, useSelectedTheme } from '@/core/hooks';
+import { useIsFirstTime } from '@/core/hooks';
 import { Onboarding } from '@/screens';
 
 import { AuthNavigator } from './auth-navigator';
@@ -15,16 +14,14 @@ const Stack = createNativeStackNavigator();
 export const Root = () => {
   const status = useAuth.use.status();
   const [isFirstTime] = useIsFirstTime();
-  const [theme, setSelectedTheme] = useSelectedTheme();
   const hideSplash = React.useCallback(async () => {
     await SplashScreen.hideAsync();
   }, []);
   useEffect(() => {
     if (status !== 'idle') {
-      setSelectedTheme(theme as ThemeType);
       hideSplash();
     }
-  }, [hideSplash, status, theme, setSelectedTheme]);
+  }, [hideSplash, status]);
 
   return (
     <Stack.Navigator

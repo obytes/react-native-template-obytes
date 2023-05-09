@@ -6,12 +6,10 @@
     "about": "About",
     "app_name": "App Name",
     "arabic": "Arabic",
-    "dark": "Dark",
     "english": "English",
     "generale": "General",
     "github": "Github",
     "language": "Language",
-    "light": "Light",
     "links": "Links",
     "logout": "Logout",
     "more": "More",
@@ -21,7 +19,12 @@
     "support": "Support",
     "support_us": "Support Us",
     "terms": "Terms of Service",
-    "theme": "Theme",
+    "theme": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System",
+      "title": "Theme"
+    },
     "title": "Settings",
     "version": "Version",
     "website": "Website"
