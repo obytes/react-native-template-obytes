@@ -3,8 +3,6 @@ import React from 'react';
 import { useIsFirstTime } from '@/core/hooks';
 import { Button, Image, SafeAreaView, Text, View } from '@/ui';
 export const Onboarding = () => {
-  // TODO: disable this rule for vars with underscore
-  // eslint-disable-next-line unused-imports/no-unused-vars
   const [_, setIsFirstTime] = useIsFirstTime();
   return (
     <View className="flex h-full items-center  justify-center bg-white">
