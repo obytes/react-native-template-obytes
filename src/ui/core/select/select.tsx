@@ -47,11 +47,11 @@ export const Select = (props: SelectProps) => {
   const borderColor = error
     ? 'border-danger-600'
     : isDark
-    ? 'border-night-border'
+    ? 'border-charcoal-700'
     : 'border-neutral-400';
 
   const bgColor = isDark
-    ? 'bg-night-card'
+    ? 'bg-charcoal-800'
     : error
     ? 'bg-danger-50'
     : 'bg-neutral-200';
@@ -70,7 +70,7 @@ export const Select = (props: SelectProps) => {
               error
                 ? 'text-danger-600'
                 : isDark
-                ? 'text-night-text'
+                ? 'text-charcoal-100'
                 : 'text-black'
             }
           >
@@ -89,7 +89,7 @@ export const Select = (props: SelectProps) => {
                 error
                   ? 'text-danger-600'
                   : isDark
-                  ? 'text-night-text'
+                  ? 'text-charcoal-100'
                   : 'text-neutral-600'
               }
             >

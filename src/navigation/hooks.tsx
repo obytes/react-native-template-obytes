@@ -15,7 +15,7 @@ export function useThemeConfig() {
       background: colors.charcoal[950],
       text: colors.charcoal[100],
       border: colors.charcoal[500],
-      card: colors.charcoal[900],
+      card: colors.charcoal[850],
     },
   };
 

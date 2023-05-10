@@ -48,7 +48,7 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
         snapPoints={snapPoints}
         backdropComponent={renderBackdrop}
         handleIndicatorStyle={{
-          backgroundColor: isDark ? colors.white : colors.charcoal[900],
+          backgroundColor: isDark ? colors.white : colors.charcoal[800],
         }}
         backgroundStyle={{
           backgroundColor: isDark ? colors.charcoal[950] : colors.white,
