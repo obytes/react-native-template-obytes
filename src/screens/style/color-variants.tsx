@@ -44,7 +44,7 @@ const ColorCard = ({ color, value }: { value: string; color: string }) => {
     <View className="flex-[1/5] items-center justify-center py-1">
       <View
         style={{ backgroundColor: color }}
-        className={`h-[42px] w-[42px] items-center justify-center rounded-full  border-[1px] border-neutral-200 dark:border-night-border`}
+        className={`h-[42px] w-[42px] items-center justify-center rounded-full  border-[1px] border-neutral-200 dark:border-charcoal-700`}
       >
         <Text variant="sm">{value}</Text>
       </View>

@@ -34,7 +34,7 @@ export const buttonVariants: BVariant = {
   },
   outline: {
     container: 'border border-neutral-400',
-    label: 'text-black dark:text-night-text',
+    label: 'text-black dark:text-charcoal-100',
     indicator: 'text-black',
   },
 };

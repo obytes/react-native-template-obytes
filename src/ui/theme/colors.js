@@ -1,13 +1,18 @@
 module.exports = {
   white: '#ffffff',
   black: '#000000',
-  night: {
-    screen: '#121212',
-    card: '#ffffff1f',
-    post: '#ffffff0d',
-    border: '#ffffff28',
-    text: '#ffffffde',
-    inactiveTintColor: '#ffffff61',
+  charcoal: {
+    50: '#F2F2F2',
+    100: '#E5E5E5',
+    200: '#C9C9C9',
+    300: '#B0B0B0',
+    400: '#969696',
+    500: '#7D7D7D',
+    600: '#616161',
+    700: '#474747',
+    800: '#383838',
+    900: '#2E2E2E',
+    950: '#121212',
   },
   neutral: {
     50: '#FAFAFA',

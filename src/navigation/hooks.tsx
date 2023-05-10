@@ -12,10 +12,10 @@ export function useThemeConfig() {
     colors: {
       ...DarkTheme.colors,
       primary: colors.primary[200],
-      background: colors.night.screen,
-      text: colors.night.text,
-      border: colors.night.border,
-      card: colors.night.screen,
+      background: colors.charcoal[950],
+      text: colors.charcoal[100],
+      border: colors.charcoal[500],
+      card: colors.charcoal[900],
     },
   };
 
