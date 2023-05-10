@@ -47,6 +47,12 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
         index={0}
         snapPoints={snapPoints}
         backdropComponent={renderBackdrop}
+        handleIndicatorStyle={{
+          backgroundColor: isDark ? colors.white : colors.night.screen,
+        }}
+        backgroundStyle={{
+          backgroundColor: isDark ? colors.night.screen : colors.white,
+        }}
       >
         <BottomSheetFlatList
           data={options}
