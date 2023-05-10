@@ -7,6 +7,7 @@ import { useIsFirstTime } from '@/core/hooks';
 import { Onboarding } from '@/screens';
 
 import { AuthNavigator } from './auth-navigator';
+import { useThemeConfig } from './hooks';
 import { NavigationContainer } from './navigation-container';
 import { TabNavigator } from './tab-navigator';
 const Stack = createNativeStackNavigator();
@@ -46,8 +47,11 @@ export const Root = () => {
   );
 };
 
-export const RootNavigator = () => (
-  <NavigationContainer>
-    <Root />
-  </NavigationContainer>
-);
+export const RootNavigator = () => {
+  const theme = useThemeConfig();
+  return (
+    <NavigationContainer theme={theme}>
+      <Root />
+    </NavigationContainer>
+  );
+};

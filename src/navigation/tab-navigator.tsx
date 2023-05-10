@@ -8,13 +8,13 @@ import type { SvgProps } from 'react-native-svg';
 
 import { Settings, Style } from '@/screens';
 import {
+  colors,
   Feed as FeedIcon,
   Settings as SettingsIcon,
   Style as StyleIcon,
 } from '@/ui';
 
 import { FeedNavigator } from './feed-navigator';
-import { darkTabStyle, tabStyle } from './tab-style';
 
 type TabParamList = {
   Style: undefined;
@@ -78,7 +78,10 @@ export const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        ...(colorScheme === 'dark' ? darkTabStyle : tabStyle),
+        tabBarInactiveTintColor:
+          colorScheme === 'dark'
+            ? colors.night.inactiveTintColor
+            : colors.neutral[400],
         // eslint-disable-next-line react/no-unstable-nested-components
         tabBarIcon: ({ color }) => <BarIcon name={route.name} color={color} />,
       })}

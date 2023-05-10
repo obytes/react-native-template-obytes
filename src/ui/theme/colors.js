@@ -7,6 +7,7 @@ module.exports = {
     post: '#ffffff0d',
     border: '#ffffff28',
     text: '#ffffffde',
+    inactiveTintColor: '#ffffff61',
   },
   neutral: {
     50: '#FAFAFA',

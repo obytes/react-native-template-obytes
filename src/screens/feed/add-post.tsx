@@ -40,7 +40,7 @@ export const AddPost = () => {
     );
   };
   return (
-    <View className="flex-1 p-4 dark:bg-night-screen">
+    <View className="flex-1 p-4 ">
       <ControlledInput name="title" label="Title" control={control} />
       <ControlledInput
         name="body"

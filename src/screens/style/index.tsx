@@ -9,7 +9,7 @@ import { TextVariants } from './text-variants';
 
 export const Style = () => {
   return (
-    <ScrollView className="bg-white dark:bg-night-screen">
+    <ScrollView>
       <View className="flex-1  px-4 pt-10">
         <TextVariants />
         <ColorVariants />

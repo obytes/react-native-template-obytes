@@ -19,7 +19,7 @@ export const Settings = () => {
   const iconColor =
     colorScheme === 'dark' ? colors.neutral[400] : colors.neutral[500];
   return (
-    <ScrollView className="bg-white dark:bg-night-screen">
+    <ScrollView>
       <View className="flex-1 px-4 pt-16 ">
         <Text variant="lg" className="font-bold">
           {translate('settings.title')}
