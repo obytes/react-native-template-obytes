@@ -3,11 +3,10 @@ import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
 
 import { useAuth } from '@/core';
-import { useIsFirstTime } from '@/core/hooks';
+import { useIsFirstTime, useThemeConfig } from '@/core/hooks';
 import { Onboarding } from '@/screens';
 
 import { AuthNavigator } from './auth-navigator';
-import { useThemeConfig } from './hooks';
 import { NavigationContainer } from './navigation-container';
 import { TabNavigator } from './tab-navigator';
 const Stack = createNativeStackNavigator();
