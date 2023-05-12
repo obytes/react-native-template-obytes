@@ -35,6 +35,7 @@ export function ControlledInput<T extends FieldValues>(
   const { field, fieldState } = useController({ control, name, rules });
   return (
     <Input
+      ref={field.ref}
       autoCapitalize="none"
       onChangeText={field.onChange}
       value={field.value as string}
