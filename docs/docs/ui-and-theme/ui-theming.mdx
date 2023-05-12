@@ -70,7 +70,7 @@ this template comes with dark mode support out of the box, and it's very easy cu
 ### Implementation
 
 Since we’re using nativewind and react-navigation we let theme handle applying it ,and  we just take care of the colors we want .  
-we set the colors in `ui/theme/colors.js`  and we use them in our hook `useThemeConfig.tsx`  to generate the theme object that we pass to react-navigation container. for more information check out [react-navigation](https://reactnavigation.org/docs/themes/)
+we set the colors in `ui/theme/colors.js`  and we use them in our hook `useThemeConfig.tsx`  to get the theme object that we pass to react-navigation container. for more information check out [react-navigation](https://reactnavigation.org/docs/themes/)
 
 <CodeBlock title="useThemeConfig.tsx" language="tsx">
   {useThemeConfig}
@@ -84,8 +84,8 @@ we set the colors in `ui/theme/colors.js`  and we use them in our hook `useTheme
 
 ### how we handle theme changing?
 
-we use loadSelectedTheme function to load the theme from the storage if there's a theme saved in the storage, otherwise we let nativwind use the default value.
-also we use `useSelectedTheme` hook to set the selected theme in the storage and update the theme in the app.
+we use `loadSelectedTheme` function to load the theme from the storage if there's a theme saved in the storage, otherwise we let nativwind use the default value.
+and for setting selected theme we use `useSelectedTheme` hook to set the theme in the storage and update the color scheme of the app.
  
 <CodeBlock title="loading the theme and set the selected" language="tsx">
   {useSelectedTheme}
@@ -93,14 +93,14 @@ also we use `useSelectedTheme` hook to set the selected theme in the storage and
 
 ### Add dark mode for each component 
 
-to add the values for the light mode you can simply write them direlty in your component class and for dark mode you can use the **dark:** variant.
+to add the values for the light mode you can simply write them direlty in your component class and for the dark mode you can use the **dark:** variant.
 
 ``` tsx
 	<View className='... border-neutral-200 dark:border-yellow-700'>	
 		....
 	</View>
 ```
-if you want to use style prop you can use the useColorScheme hook to get the current color scheme and use it to apply the style you want but **for the most of the the cases you won't need it** dark: variant will do the job for you.
+if you want to use style prop you can use the `useColorScheme` hook to get the current color scheme and use it to apply the style you want but **for the most of the cases you don't need it** dark: variant will do the job for you.
   
   ``` tsx
   import { useColorScheme } from 'nativewind';
