@@ -1,0 +1,31 @@
+name: Type Check (tsc)
+
+on:
+  workflow_call:
+
+jobs:
+  type-check:
+    name: Type Check (tsc)
+    runs-on: ubuntu-latest
+    steps:
+      - name : 📦 Checkout project repo
+        uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: 📦 Install Reviewdog
+        uses: reviewdog/action-setup@v1
+
+      - name: 📦 Install Project Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏃‍♂️ Run TypeScript # Reviewdog tsc errorformat: %f:%l:%c - error TS%n: %m
+        run: |
+          pnpm type-check | reviewdog -name="tsc" -efm="%f(%l,%c): error TS%n: %m" -reporter="github-pr-review" -filter-mode="nofilter" -fail-on-error -tee
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
