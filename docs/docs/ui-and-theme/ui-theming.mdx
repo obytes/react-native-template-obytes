@@ -4,7 +4,9 @@ sidebar_position: 1
 
 import CodeBlock from '@theme/CodeBlock';
 import Card from '!!raw-loader!../../../src/screens/feed/card';
-import  useThemeConfig  from '!!raw-loader!../../../src/core/hooks/use-theme-config';
+import  useThemeConfig  from '!!raw-loader!../../../src/navigation/use-theme-config';
+import NavigationContainer from '!!raw-loader!../../../src/navigation/navigation-container';
+import useSelectedTheme from '!!raw-loader!../../../src/core/hooks/use-selected-theme';
 
 # UI and Theming
 
@@ -68,30 +70,28 @@ this template comes with dark mode support out of the box, and it's very easy to
 ### Implementation
 
 Since we’re using nativewind and react-navigation we let theme handle applying it ,and  we just take care of the colors we want .  
-we add the colors in `ui/theme/colors.js`  and we use them in our hook `useThemeConfig.tsx`  to generate the theme object that we pass to react-navigation container. for more information check out [react-navigation](https://reactnavigation.org/docs/themes/)
+we set the colors in `ui/theme/colors.js`  and we use them in our hook `useThemeConfig.tsx`  to generate the theme object that we pass to react-navigation container. for more information check out [react-navigation](https://reactnavigation.org/docs/themes/)
 
 <CodeBlock title="useThemeConfig.tsx" language="tsx">
   {useThemeConfig}
 </CodeBlock>
 
 
-```tsx
-export const RootNavigator = () => {
+<CodeBlock title="NavigationContainer" language="tsx">
+  {NavigationContainer}
+</CodeBlock>
 
-const theme = useThemeConfig();
 
-	return (
-	
-		<NavigationContainer theme={theme}>
-			<Root />
-		</NavigationContainer>
-	
-	);
+### how we handle theme changing?
 
-};
-```
+we use loadSelectedTheme function to load the theme from the storage if there's a theme saved in the storage, otherwise we let nativwind use the default value.
+also we use useSelectedTheme hook to get the current theme and use it to change the theme of the app.
+ 
+<CodeBlock title="loading the theme and set the selected" language="tsx">
+  {useSelectedTheme}
+</CodeBlock>
 
-#### Add dark mode for each component 
+### Add dark mode for each component 
 
 to add the values for the light mode you can simply write them direlty in your component class and for dark mode you can use the **dark:** variant.
 
