@@ -64,7 +64,7 @@ You can read more about how to [configure your project with Tailwind CSS](https:
 Dark mode has gained significant traction in recent years and it become an expected feature to have.
 By applying dark mode,it will make it easier on the eyes in low-light environments and reduces the eye strain, which mean more time on your app.
 
-this template comes with dark mode support out of the box, and it's very easy to change the color scheme of your app. thanks to [tailwindcss](https://tailwindcss.com/docs/dark-mode)
+this template comes with dark mode support out of the box, and it's very easy customize the color scheme of your app. thanks to [tailwindcss](https://tailwindcss.com/docs/dark-mode)
 
 
 ### Implementation
@@ -85,7 +85,7 @@ we set the colors in `ui/theme/colors.js`  and we use them in our hook `useTheme
 ### how we handle theme changing?
 
 we use loadSelectedTheme function to load the theme from the storage if there's a theme saved in the storage, otherwise we let nativwind use the default value.
-also we use useSelectedTheme hook to get the current theme and use it to change the theme of the app.
+also we use `useSelectedTheme` hook to set the selected theme in the storage and update the theme in the app.
  
 <CodeBlock title="loading the theme and set the selected" language="tsx">
   {useSelectedTheme}
