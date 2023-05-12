@@ -1,0 +1,30 @@
+name: Lint TS (eslint, prettier)
+
+on:
+  workflow_call:
+
+jobs:
+  lint:
+    name: Lint TS (eslint, prettier)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name : 📦 Checkout project repo
+        uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: 📦 Install Project Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏃‍♂️ Run ESLint
+        uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          eslint_flags: '. --ext .js,.jsx,.ts,.tsx'

@@ -8,96 +8,13 @@ on:
 
 jobs:
   type-check:
-    name: Type Check (tsc)
-    runs-on: ubuntu-latest
-    steps:
-      - name : 📦 Checkout project repo
-        uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm'
-
-      - name: 📦 Install Reviewdog
-        uses: reviewdog/action-setup@v1
-
-      - name: 📦 Install Project Dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: 🏃‍♂️ Run TypeScript # Reviewdog tsc errorformat: %f:%l:%c - error TS%n: %m
-        run: |
-          pnpm type-check | reviewdog -name="tsc" -efm="%f(%l,%c): error TS%n: %m" -reporter="github-pr-review" -filter-mode="nofilter" -fail-on-error -tee
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+    uses: ./.github/workflows/type-check.yml
 
   lint:
-    name: Lint TS (eslint, prettier)
-    runs-on: ubuntu-latest
-
-    steps:
-      - name : 📦 Checkout project repo
-        uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm'
-
-      - name: 📦 Install Project Dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: 🏃‍♂️ Run ESLint
-        uses: reviewdog/action-eslint@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-review
-          eslint_flags: '. --ext .js,.jsx,.ts,.tsx'
-
+    uses: ./.github/workflows/lint-ts.yml
 
   doctor:
-    name: Expo Doctor (expo)
-    runs-on: ubuntu-latest
-
-    steps:
-      - name : 📦 Checkout project repo
-        uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm'
-
-      - name: 📦 Install Project Dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: 🚑 Run Doctor Checks
-        run: pnpm run doctor
+    uses: ./.github/workflows/expo-doctor.yml
 
   test:
-    name: Tests (jest)
-    runs-on: ubuntu-latest
-
-    steps:
-      - name : 📦 Checkout project repo
-        uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm'
-
-      - name: 📦 Install Project Dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: 🏃‍♂️ Run Tests
-        run: pnpm test:ci
+    uses: ./.github/workflows/test.yml
