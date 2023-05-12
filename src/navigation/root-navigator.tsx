@@ -3,7 +3,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
 
 import { useAuth } from '@/core';
-import { useIsFirstTime, useThemeConfig } from '@/core/hooks';
+import { useIsFirstTime } from '@/core/hooks';
 import { Onboarding } from '@/screens';
 
 import { AuthNavigator } from './auth-navigator';
@@ -47,9 +47,8 @@ export const Root = () => {
 };
 
 export const RootNavigator = () => {
-  const theme = useThemeConfig();
   return (
-    <NavigationContainer theme={theme}>
+    <NavigationContainer>
       <Root />
     </NavigationContainer>
   );

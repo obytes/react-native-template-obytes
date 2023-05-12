@@ -1,15 +1,15 @@
-import type { Theme } from '@react-navigation/native';
 import { NavigationContainer as RNNavigationContainer } from '@react-navigation/native';
 import * as React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { useThemeConfig } from './use-theme-config';
+
 export const NavigationContainer = ({
   children,
-  theme,
 }: {
   children: React.ReactNode;
-  theme?: Theme | undefined;
 }) => {
+  const theme = useThemeConfig();
   return (
     <SafeAreaProvider>
       <RNNavigationContainer theme={theme}>{children}</RNNavigationContainer>
