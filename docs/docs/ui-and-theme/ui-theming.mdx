@@ -4,6 +4,7 @@ sidebar_position: 1
 
 import CodeBlock from '@theme/CodeBlock';
 import Card from '!!raw-loader!../../../src/screens/feed/card';
+import  useThemeConfig  from '!!raw-loader!../../../src/core/hooks/use-theme-config';
 
 # UI and Theming
 
@@ -61,65 +62,17 @@ You can read more about how to [configure your project with Tailwind CSS](https:
 Dark mode has gained significant traction in recent years and it become an expected feature to have.
 By applying dark mode,it will make it easier on the eyes in low-light environments and reduces the eye strain, which mean more time on your app.
 
-In this document, we'll explore how dark mode works and how to use it .
+this template comes with dark mode support out of the box, and it's very easy to change the color scheme of your app. thanks to [tailwindcss](https://tailwindcss.com/docs/dark-mode)
 
-### How dark mode works
-
-Dark mode is simply changing color scheme from light mode (white background dark text ...) to  dark background with light text. for all your UI components.
 
 ### Implementation
 
-To implement the dark mode, you typically define two sets of color palettes and Since we’re using nativewind and react-navigation we let theme handle applying it ,and  we just take care of the colors we want .
+Since we’re using nativewind and react-navigation we let theme handle applying it ,and  we just take care of the colors we want .  
+we add the colors in `ui/theme/colors.js`  and we use them in our hook `useThemeConfig.tsx`  to generate the theme object that we pass to react-navigation container. for more information check out [react-navigation](https://reactnavigation.org/docs/themes/)
 
-First add your colors to src/ui/theme/colors.js  then update this two objects in src/core/hooks/use-theme-config.tsx  once you change DarkTheme,LightTheme you can notice the new color scheme on your app as long as you didn't override them on component base level
-You can learn  more about theme props  [here_](https://reactnavigation.org/docs/themes/)
-
-```ts
-import type { Theme } from '@react-navigation/native';
-
-import {
-DarkTheme as _DarkTheme,
-DefaultTheme,
-} from '@react-navigation/native';
-
-import { useColorScheme } from 'nativewind';
-
-import { colors } from '@/ui/theme';
-
-
-const DarkTheme: Theme = {
-	..._DarkTheme,
-	colors: {
-		..._DarkTheme.colors,
-		primary: colors.primary[200],
-		background: colors.charcoal[950],
-		text: colors.charcoal[100],
-		border: colors.charcoal[500],
-		card: colors.charcoal[850],
-	},
-
-};
-
-const LightTheme: Theme = {
-	...DefaultTheme,
-	colors: {
-		...DefaultTheme.colors,
-		primary: colors.primary[400],
-		background: colors.white,
-	},
-
-};
-
-export function useThemeConfig() {
-
-  const { colorScheme } = useColorScheme();
-
-  if (colorScheme === 'dark') return DarkTheme;
-
-  return LightTheme;
-
-}
-```
+<CodeBlock title="useThemeConfig.tsx" language="tsx">
+  {useThemeConfig}
+</CodeBlock>
 
 
 ```tsx
@@ -140,14 +93,14 @@ const theme = useThemeConfig();
 
 #### Add dark mode for each component 
 
-to add values for light mode you can simple write them direlty in your component class and for dark mode you can use the dark: variant
+to add the values for the light mode you can simply write them direlty in your component class and for dark mode you can use the **dark:** variant.
 
 ``` tsx
 	<View className='... border-neutral-200 dark:border-yellow-700'>	
 		....
 	</View>
 ```
-if you want to use style prop you can use the useColorScheme hook to get the current color scheme and use it to apply the style you want
+if you want to use style prop you can use the useColorScheme hook to get the current color scheme and use it to apply the style you want but **for the most of the the cases you won't need it** dark: variant will do the job for you.
   
   ``` tsx
   import { useColorScheme } from 'nativewind';
@@ -156,3 +109,4 @@ if you want to use style prop you can use the useColorScheme hook to get the cur
   const style = colorScheme === 'dark' ? { backgroundColor: 'black' } : { backgroundColor: 'white' };
   
   ```
+  for more details about dark mode you can check [tailwind](https://tailwindcss.com/docs/dark-mode)   and [nativewind](https://www.nativewind.dev/core-concepts/dark-mode)
