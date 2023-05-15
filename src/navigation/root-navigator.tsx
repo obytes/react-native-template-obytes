@@ -46,8 +46,10 @@ export const Root = () => {
   );
 };
 
-export const RootNavigator = () => (
-  <NavigationContainer>
-    <Root />
-  </NavigationContainer>
-);
+export const RootNavigator = () => {
+  return (
+    <NavigationContainer>
+      <Root />
+    </NavigationContainer>
+  );
+};

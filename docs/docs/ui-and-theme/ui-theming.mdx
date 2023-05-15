@@ -4,6 +4,9 @@ sidebar_position: 1
 
 import CodeBlock from '@theme/CodeBlock';
 import Card from '!!raw-loader!../../../src/screens/feed/card';
+import  useThemeConfig  from '!!raw-loader!../../../src/navigation/use-theme-config';
+import NavigationContainer from '!!raw-loader!../../../src/navigation/navigation-container';
+import useSelectedTheme from '!!raw-loader!../../../src/core/hooks/use-selected-theme';
 
 # UI and Theming
 
@@ -54,3 +57,64 @@ You need to understand that Nativewind is a library that is built on top of Tail
 We have created a `ui/theme` folder when you can finds our Custom colors that has been imported to `tailwind.config.js` and used as a theme for our demo application. You can add your own colors palette and use them in your component with Tailwind class names.
 
 You can read more about how to [configure your project with Tailwind CSS](https://tailwindcss.com/docs/configuration).
+
+## Dark Mode
+
+<video controls height="600">
+  <source src="https://github-production-user-asset-6210df.s3.amazonaws.com/11137944/238315572-37620367-b639-417e-a802-c48a3d7566ba.mp4" type="video/mp4"/>
+  Your browser does not support the video tag.
+</video>
+
+### Why dark mode ?
+
+Dark mode has gained significant traction in recent years and has become an expected feature to have.
+By applying dark mode, it makes it easier on the eyes in low-light environments and reduces eye strain, which means more time spent on your app.
+
+This template comes with dark mode support out of the box, and it's very easy to customize the color scheme of your app. Thanks to [tailwindcss](https://tailwindcss.com/docs/dark-mode)
+
+
+### Implementation
+
+Since we're using [nativewind](https://www.nativewind.dev/) (which uses Tailwind CSS under the hood) and react-navigation we let them handle the application of theme ,and we just take care of the colors we want .  
+We set the colors in `ui/theme/colors.js`  and we use them in our hook `useThemeConfig.tsx`  to get the theme object that we pass to react-navigation container. For more information check out [react-navigation](https://reactnavigation.org/docs/themes/)
+
+
+<CodeBlock title="useThemeConfig.tsx" language="tsx">
+  {useThemeConfig}
+</CodeBlock>
+
+
+<CodeBlock title="NavigationContainer" language="tsx">
+  {NavigationContainer}
+</CodeBlock>
+
+
+### How we handle theme changing?
+
+We use the `loadSelectedTheme` function to load the theme from the storage if there's a theme saved in the storage, otherwise we let nativwind use the default theme (system).  
+To set the selected theme, we use the `useSelectedTheme` hook, which  set the theme in the storage and update the color scheme of the app.
+
+
+<CodeBlock title="loading the theme and set the selected" language="tsx">
+  {useSelectedTheme}
+</CodeBlock>
+
+### Add dark mode for each component 
+
+To add the values for the light mode, you can simply write them directly in your component class. For the dark mode, you can use the **dark:** variant.
+
+``` tsx
+	<View className='... border-neutral-200 dark:border-yellow-700'>	
+		....
+	</View>
+```
+If you want to use the style prop, you can use the `useColorScheme` hook to get the current color scheme and use it to apply the desired style. However, **in most cases, you won't need it** as the dark: variant will do the job.
+  
+  ``` tsx
+  import { useColorScheme } from 'nativewind';
+
+  const colorScheme = useColorScheme();
+  const style = colorScheme === 'dark' ? { backgroundColor: 'black' } : { backgroundColor: 'white' };
+  
+  ```
+  For more details about dark mode you can check [tailwind](https://tailwindcss.com/docs/dark-mode)   and [nativewind](https://www.nativewind.dev/core-concepts/dark-mode)

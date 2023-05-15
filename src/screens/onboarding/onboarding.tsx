@@ -1,15 +1,16 @@
 import React from 'react';
 
 import { useIsFirstTime } from '@/core/hooks';
-import { Button, Image, SafeAreaView, Text, View } from '@/ui';
+import { Button, SafeAreaView, Text, View } from '@/ui';
+
+import { Cover } from './cover';
 export const Onboarding = () => {
-  // TODO: disable this rule for vars with underscore
-  // eslint-disable-next-line unused-imports/no-unused-vars
   const [_, setIsFirstTime] = useIsFirstTime();
   return (
-    <View className="flex h-full items-center  justify-center bg-white">
-      <Image className="w-full flex-1" source={require('./cover.png')} />
-
+    <View className="flex h-full items-center  justify-center">
+      <View className="w-full flex-1">
+        <Cover />
+      </View>
       <View className="justify-end ">
         <Text className="my-3 text-center text-5xl font-bold">
           Obytes Starter

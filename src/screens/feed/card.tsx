@@ -8,7 +8,7 @@ type Props = Post & { onPress?: () => void };
 export const Card = ({ title, body, onPress = () => {} }: Props) => {
   return (
     <Pressable
-      className="m-2 block overflow-hidden bg-neutral-200  p-2  "
+      className="m-2 block overflow-hidden rounded-xl  bg-neutral-200 p-2 shadow-xl dark:bg-charcoal-900"
       onPress={onPress}
     >
       <Image

@@ -1,5 +1,8 @@
 import type { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { useColorScheme } from 'nativewind';
 import * as React from 'react';
+
+import colors from '@/ui/theme/colors';
 
 import { Text } from '../text';
 import { TouchableOpacity } from '../touchable-opacity';
@@ -31,7 +34,8 @@ export const Select = (props: SelectProps) => {
   const optionsRef = React.useRef<BottomSheetModal>(null);
   const open = React.useCallback(() => optionsRef.current?.present(), []);
   const close = React.useCallback(() => optionsRef.current?.dismiss(), []);
-
+  const { colorScheme } = useColorScheme();
+  const isDark = colorScheme === 'dark';
   const onSelectOption = React.useCallback(
     (option: Option) => {
       onSelect?.(option.value);
@@ -40,9 +44,17 @@ export const Select = (props: SelectProps) => {
     [close, onSelect]
   );
 
-  const borderColor = error ? 'border-danger-600' : 'border-neutral-400';
+  const borderColor = error
+    ? 'border-danger-600'
+    : isDark
+    ? 'border-charcoal-700'
+    : 'border-neutral-400';
 
-  const bgColor = error ? 'bg-danger-50' : 'bg-neutral-200';
+  const bgColor = isDark
+    ? 'bg-charcoal-800'
+    : error
+    ? 'bg-danger-50'
+    : 'bg-neutral-200';
 
   const textValue =
     value !== undefined
@@ -54,7 +66,13 @@ export const Select = (props: SelectProps) => {
         {label && (
           <Text
             variant="md"
-            className={error ? 'text-danger-600' : 'text-black'}
+            className={
+              error
+                ? 'text-danger-600'
+                : isDark
+                ? 'text-charcoal-100'
+                : 'text-black'
+            }
           >
             {label}
           </Text>
@@ -65,11 +83,20 @@ export const Select = (props: SelectProps) => {
           onPress={open}
         >
           <View className="flex-1">
-            <Text variant="md" className="text-neutral-600">
+            <Text
+              variant="md"
+              className={
+                error
+                  ? 'text-danger-600'
+                  : isDark
+                  ? 'text-charcoal-100'
+                  : 'text-neutral-600'
+              }
+            >
               {textValue}
             </Text>
           </View>
-          <Arrow />
+          <Arrow color={isDark ? colors.white : colors.black} />
         </TouchableOpacity>
         {error && <Text variant="error">{error}</Text>}
       </View>
