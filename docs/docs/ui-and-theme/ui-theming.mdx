@@ -69,7 +69,7 @@ this template comes with dark mode support out of the box, and it's very easy cu
 
 ### Implementation
 
-Since we’re using [nativewind](https://www.nativewind.dev/) (that use Tailwind CSS under the hood) and react-navigation we let them handle applying it ,and  we just take care of the colors we want .  
+Since we’re using [nativewind](https://www.nativewind.dev/) (that use Tailwind CSS under the hood) and react-navigation we let them handle applying it ,and we just take care of the colors we want .  
 we set the colors in `ui/theme/colors.js`  and we use them in our hook `useThemeConfig.tsx`  to get the theme object that we pass to react-navigation container. for more information check out [react-navigation](https://reactnavigation.org/docs/themes/)
 
 <CodeBlock title="useThemeConfig.tsx" language="tsx">
@@ -84,7 +84,7 @@ we set the colors in `ui/theme/colors.js`  and we use them in our hook `useTheme
 
 ### how we handle theme changing?
 
-we use `loadSelectedTheme` function to load the theme from the storage if there's a theme saved in the storage, otherwise we let nativwind use the default value.
+we use `loadSelectedTheme` function to load the theme from the storage if there's a theme saved in the storage, otherwise we let nativwind use the default theme (system).
 and for setting selected theme we use `useSelectedTheme` hook to set the theme in the storage and update the color scheme of the app.
  
 <CodeBlock title="loading the theme and set the selected" language="tsx">
