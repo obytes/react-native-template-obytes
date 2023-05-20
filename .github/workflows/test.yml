@@ -1,4 +1,4 @@
-name: Validate PR
+name: Tests (jest)
 
 on:
   push:
