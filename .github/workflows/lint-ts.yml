@@ -1,7 +1,10 @@
 name: Lint TS (eslint, prettier)
 
 on:
-  workflow_call:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
 
 jobs:
   lint:
@@ -22,9 +25,14 @@ jobs:
       - name: 📦 Install Project Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: 🏃‍♂️ Run ESLint
+      - name: 🏃‍♂️ Run ESLint PR
+        if: github.event_name == 'pull_request'
         uses: reviewdog/action-eslint@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           eslint_flags: '. --ext .js,.jsx,.ts,.tsx'
+
+      - name: 🏃‍♂️ Run ESLint PR
+        if: github.event_name != 'pull_request'
+        run: pnpm run lint

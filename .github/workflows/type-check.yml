@@ -1,7 +1,10 @@
 name: Type Check (tsc)
 
 on:
-  workflow_call:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
 
 jobs:
   type-check:
@@ -24,8 +27,15 @@ jobs:
       - name: 📦 Install Project Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: 🏃‍♂️ Run TypeScript # Reviewdog tsc errorformat: %f:%l:%c - error TS%n: %m
+      - name: 🏃‍♂️ Run TypeScript PR # Reviewdog tsc errorformat: %f:%l:%c - error TS%n: %m
+        # we only need to add the reviewdog step if it's a pull request
+        if: github.event_name == 'pull_request'
         run: |
           pnpm type-check | reviewdog -name="tsc" -efm="%f(%l,%c): error TS%n: %m" -reporter="github-pr-review" -filter-mode="nofilter" -fail-on-error -tee
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🏃‍♂️ Run TypeScript Commit
+          # If it's not a Pull Request then we just need to run the type-check
+        if: github.event_name != 'pull_request'
+        run: pnpm type-check
