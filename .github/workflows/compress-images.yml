@@ -28,8 +28,9 @@ jobs:
     name: calibreapp/image-actions
     runs-on: ubuntu-latest
     # Only run on main repo on and PRs that match the main repo.
+    # TODO: change this to your repo name.
     if: |
-      github.repository == 'yjose/elazizi.com' &&
+      github.repository == 'obytes/react-native-template-obytes' &&
       (github.event_name != 'pull_request' ||
        github.event.pull_request.head.repo.full_name == github.repository)
     steps:
