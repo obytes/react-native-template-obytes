@@ -79,6 +79,19 @@
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appName": "",
+        "ascAppId": "",
+        "appleId": ""
+      }
+    },
+    "staging": {
+      "ios": {
+        "appName": "",
+        "ascAppId": "",
+        "appleId": ""
+      }
+    }
   }
 }

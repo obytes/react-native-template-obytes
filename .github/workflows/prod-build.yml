@@ -1,0 +1,49 @@
+name: Prod Build
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  Build:
+    name: Android & IOS Prod Build
+    runs-on: ubuntu-latest
+    steps:
+      - name : 📦 Checkout project repo
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      - name: 📦 Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: 📦 Restore Project Dependencies (node_modules)
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: 📦 Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 📦 Install Project Dependencies
+        run: yarn install --immutable
+
+      - name: ⚙️ Run Prebuild
+        run: yarn prebuild:production --clean
+
+      - name: 📱 Run Android Build
+        run: yarn build:production:android --non-interactive --no-wait --message "obytes Prod ${{ github.event.release.tag_name }}"
+
+      - name: 📱 Run IOS Build
+        run: yarn build:production:ios --non-interactive --auto-submit --no-wait --message "obytes Prod ${{ github.event.release.tag_name }}"
