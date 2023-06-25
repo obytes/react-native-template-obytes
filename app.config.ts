@@ -1,6 +1,6 @@
 import type { ConfigContext, ExpoConfig } from '@expo/config';
 
-import { ClientEnv, Env, withEnvSuffix } from './env';
+import { ClientEnv, Env } from './env';
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
@@ -9,7 +9,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   slug: 'obytesapp',
   version: Env.VERSION.toString(),
   orientation: 'portrait',
-  icon: `${withEnvSuffix('./assets/icon')}.png`,
+  icon: './assets/icon.png',
   userInterfaceStyle: 'automatic',
   splash: {
     image: './assets/splash.png',
@@ -26,7 +26,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   android: {
     adaptiveIcon: {
-      foregroundImage: `${withEnvSuffix('./assets/icon')}.png`,
+      foregroundImage: './assets/adaptive-icon.png',
       backgroundColor: '#FFFFFF',
     },
     package: Env.PACKAGE,
@@ -37,6 +37,24 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   plugins: [
     ['@bacons/link-assets', ['./assets/fonts/Inter.ttf']],
     'expo-localization',
+    [
+      'app-icon-badge',
+      {
+        enabled: true,
+        badges: [
+          {
+            text: Env.APP_ENV,
+            type: 'banner',
+            color: 'white',
+          },
+          {
+            text: Env.VERSION.toString(),
+            type: 'ribbon',
+            color: 'white',
+          },
+        ],
+      },
+    ],
   ],
   extra: {
     ...ClientEnv,
