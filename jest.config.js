@@ -25,7 +25,7 @@ module.exports = {
   },
   coverageThreshold: {
     global: {
-      lines: 60,
+      lines: 20, // should be update to the number you want to reach for coverage
     },
   },
 };

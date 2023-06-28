@@ -31,3 +31,4 @@ jobs:
           test-script: 'pnpm test'
           skip-step: install
           annotations: failed-tests
+          package-manager: pnpm
