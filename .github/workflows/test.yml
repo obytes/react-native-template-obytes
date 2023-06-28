@@ -30,7 +30,7 @@ jobs:
 
       - name: 📜 Test Report
         uses: dorny/test-reporter@v1
-        if: failure()
+        if: failure() || success()
         with:
           name: Test Report             # Name of the check run which will be created
           path: reports/jest-*.xml    # Path to test results
