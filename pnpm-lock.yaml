@@ -198,9 +198,6 @@ devDependencies:
   jest:
     specifier: ^29.2.1
     version: 29.5.0(@types/node@18.11.9)(ts-node@10.9.1)
-  jest-coverage-badges:
-    specifier: ^1.1.2
-    version: 1.1.2
   jest-environment-jsdom:
     specifier: ^29.5.0
     version: 29.5.0
@@ -8023,14 +8020,6 @@ packages:
       - supports-color
     dev: true
 
-  /jest-coverage-badges@1.1.2:
-    resolution: {integrity: sha512-44A7i2xR6os8+fWk8ZRM6W4fKiD2jwKOLU9eB3iTIIWACd9RbdvmiCNpQZTOsUBhKvz7aQ/ASFhu5JOEhWUOlg==}
-    engines: {node: '>=6.11', npm: '>=5.3'}
-    hasBin: true
-    dependencies:
-      mkdirp: 0.5.1
-    dev: true
-
   /jest-diff@22.4.3:
     resolution: {integrity: sha512-/QqGvCDP5oZOF6PebDuLwrB2BMD8ffJv6TAGAdEVuDx1+uEgrHpSFrfrOiMRx2eJ1hgNjlQrOQEHetVwij90KA==}
     dependencies:
@@ -9550,10 +9539,6 @@ packages:
       kind-of: 6.0.3
     dev: true
 
-  /minimist@0.0.8:
-    resolution: {integrity: sha512-miQKw5Hv4NS1Psg2517mV4e4dYNaO3++hjAvLOAzKqZ61rH8NS1SK+vbfBWZ5PY/Me/bEWhUwqMghEW5Fb9T7Q==}
-    dev: true
-
   /minimist@1.2.7:
     resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
 
@@ -9606,14 +9591,6 @@ packages:
     dependencies:
       for-in: 1.0.2
       is-extendable: 1.0.1
-
-  /mkdirp@0.5.1:
-    resolution: {integrity: sha512-SknJC52obPfGQPnjIkXbmA6+5H15E+fR+E4iR2oQ3zzCLbd7/ONua69R/Gw7AgkTLsRG+r5fzksYwWe1AgTyWA==}
-    deprecated: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
-    hasBin: true
-    dependencies:
-      minimist: 0.0.8
-    dev: true
 
   /mkdirp@0.5.6:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}

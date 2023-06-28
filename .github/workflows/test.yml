@@ -26,4 +26,15 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: 🏃‍♂️ Run Tests
-        run: pnpm test:ci
+        if: github.event_name != 'pull_request'
+        run: pnpm run test
+
+      - name: 🏃‍♂️ Run Tests + Reports
+        if: github.event_name == 'pull_request'
+        uses: ArtiomTr/jest-coverage-report-action@v2
+        with:
+          test-script: 'pnpm test'
+          skip-step: install
+          annotations: failed-tests
+          package-manager: pnpm
+          threshold: 1
