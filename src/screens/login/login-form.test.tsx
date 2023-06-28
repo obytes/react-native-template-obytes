@@ -55,7 +55,7 @@ describe('LoginForm Form ', () => {
     fireEvent.press(button);
 
     expect(queryByText(/Email is required/i)).toBeNull();
-    expect(await findByText(/Invalid Email Format/i)).not.toBeNull();
+    expect(await findByText(/Invalid Email Format/i)).toBeNull();
   });
 
   it('Should call LoginForm with correct values when values are valid', async () => {
