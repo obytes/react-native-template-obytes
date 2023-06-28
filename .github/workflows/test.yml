@@ -32,9 +32,10 @@ jobs:
         uses: dorny/test-reporter@v1
         if: failure()
         with:
-          name: JEST Tests            # Name of the check run which will be created
+          name: Test Report             # Name of the check run which will be created
           path: reports/jest-*.xml    # Path to test results
           reporter: jest-junit        # Format of test results
+
 
       - name: 🫣 Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
