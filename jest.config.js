@@ -18,14 +18,17 @@ module.exports = {
   transformIgnorePatterns: [
     `node_modules/(?!(?:.pnpm/)?((jest-)?react-native|@react-native(-community)?|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg))`,
   ],
-  coverageReporters: ['text', 'clover'],
-  coverageDirectory: '<rootDir>/reports',
+  coverageReporters: ['json-summary', 'text', 'lcov'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   coverageThreshold: {
+    // TODO: set coverage threshold that work for your project, used by test CI to report coverage
     global: {
-      lines: 20, // should be update to the number you want to reach for coverage
+      branches: 0,
+      functions: 0,
+      lines: 0,
+      statements: 0,
     },
   },
 };
