@@ -25,10 +25,10 @@ module.exports = {
   coverageThreshold: {
     // TODO: set coverage threshold that work for your project, used by test CI to report coverage
     global: {
-      branches: 0,
-      functions: 0,
-      lines: 0,
-      statements: 0,
+      branches: 1,
+      functions: 1,
+      lines: 1,
+      statements: 1,
     },
   },
 };
