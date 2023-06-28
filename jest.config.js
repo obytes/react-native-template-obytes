@@ -22,13 +22,4 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  coverageThreshold: {
-    // TODO: set coverage threshold that work for your project, used by test CI to report coverage
-    global: {
-      branches: 1,
-      functions: 1,
-      lines: 1,
-      statements: 1,
-    },
-  },
 };

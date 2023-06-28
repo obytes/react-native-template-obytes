@@ -32,3 +32,4 @@ jobs:
           skip-step: install
           annotations: failed-tests
           package-manager: pnpm
+          threshold: 1
