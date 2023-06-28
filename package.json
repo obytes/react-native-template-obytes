@@ -31,7 +31,7 @@
     "lint:translations": "eslint ./src/translations/ --fix --ext .json  ",
     "test": "jest",
     "test:watch": "pnpm run test --watch",
-    "test:ci": "pnpm run test --ci --reporters=default --reporters=jest-junit --coverage"
+    "test:ci": "pnpm run test --ci --coverage"
   },
   "dependencies": {
     "@bacons/link-assets": "^1.1.0",

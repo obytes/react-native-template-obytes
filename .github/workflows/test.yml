@@ -28,14 +28,6 @@ jobs:
       - name: 🏃‍♂️ Run Tests
         run: pnpm test:ci
 
-      - name: 📜 Test Report
-        uses: dorny/test-reporter@v1
-        if: failure() || success()
-        with:
-          name: Test Report             # Name of the check run which will be created
-          path: reports/jest-*.xml    # Path to test results
-          reporter: jest-junit        # Format of test results
-
 
       - name: 🫣 Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0

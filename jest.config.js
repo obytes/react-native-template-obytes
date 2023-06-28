@@ -23,4 +23,5 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
+  reporters: ['default', ['github-actions', { silent: false }], 'summary'],
 };
