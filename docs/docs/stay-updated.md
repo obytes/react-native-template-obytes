@@ -10,12 +10,13 @@ NOTE: We are in favor of reducing the number of news sources you use to avoid fe
 **Websites:**
 
 - [React Native Documentation](https://reactnative.dev/)
-- [React Native Dev Blog](https://reactnative.dev/blog)
 - [React Native Directory](https://reactnative.directory/)
 - [React Native Reddit Channel](https://www.reddit.com/r/reactnative/)
 
-
 **Blogs:**
+
+- [Expo blog](https://blog.expo.dev/)
+- [React Native Dev Blog](https://reactnative.dev/blog)
 - [TkDodo's blog](https://tkdodo.eu/blog/)
 - [Developer way](https://www.developerway.com/)
 
@@ -29,3 +30,13 @@ NOTE: We are in favor of reducing the number of news sources you use to avoid fe
 - [Evan Bacon](https://twitter.com/Baconbrix)
 - [React Native](https://twitter.com/reactnative)
 - [Expo](https://twitter.com/expo)
+- [Sebastien Lorber](https://twitter.com/sebastienlorber)
+
+**Open source projects:**
+
+A list of open-source projects and production-ready apps that you can use to learn and get inspired from.
+
+- [showtime-frontend](https://github.com/showtime-xyz/showtime-frontend)
+- [xLog-mobile](https://github.com/Crossbell-Box/xLog-mobile)
+- [CommE2E](https://github.com/CommE2E/comm)
+- [Expensify](https://github.com/Expensify/App)
