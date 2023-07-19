@@ -26,8 +26,8 @@ dependencies:
     specifier: ^4.26.1
     version: 4.26.1(react-dom@18.2.0)(react-native@0.71.8)(react@18.2.0)
   app-icon-badge:
-    specifier: ^0.0.12
-    version: 0.0.12
+    specifier: ^0.0.13
+    version: 0.0.13
   axios:
     specifier: ^1.3.4
     version: 1.3.4
@@ -3953,8 +3953,8 @@ packages:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
-  /app-icon-badge@0.0.12:
-    resolution: {integrity: sha512-LSOEHXnEiHlTip3u+ZYWyhmTUdt69qcKrbBBxaq32XlWAD6YMUKrG/UkXUSf7NM2ny1cpEtjDdULL74qPwU4ow==}
+  /app-icon-badge@0.0.13:
+    resolution: {integrity: sha512-oT6XUfxX4FlvWN/QkeEeUeXElF6EhqLlxXkDFi4W0YZWhqZIZpAfxXPyfd459/4nV6sfgECo9643MreNxdGBbw==}
     dependencies:
       color-convert: 2.0.1
       delta-e: 0.0.8
