@@ -29,7 +29,7 @@ jobs:
         run: pnpm run test:ci
 
       - name: 📜 Test Report
-        uses: phoenix-actions/test-reporting@v8
+        uses: phoenix-actions/test-reporting@v12
         id: test-report               # Set ID reference for step
         if: success() || failure()    # run this step even if previous step failed
         with:
