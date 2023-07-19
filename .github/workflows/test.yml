@@ -26,15 +26,33 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: 🏃‍♂️ Run Tests
-        if: github.event_name != 'pull_request'
-        run: pnpm run test
+        run: pnpm run test:ci
 
-      - name: 🏃‍♂️ Run Tests + Reports
-        if: github.event_name == 'pull_request'
-        uses: ArtiomTr/jest-coverage-report-action@v2
+      - name: 📜 Test Report
+        uses: phoenix-actions/test-reporting@v8
+        id: test-report               # Set ID reference for step
+        if: success() || failure()    # run this step even if previous step failed
         with:
-          test-script: 'pnpm test'
-          skip-step: install
-          annotations: failed-tests
-          package-manager: pnpm
-          threshold: 1
+          name: JEST Tests            # Name of the check run which will be created
+          path: reports/jest-*.xml    # Path to test results
+          reporter: jest-junit        # Format of test results
+
+      - name: 🫣 Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: /**/clover.xml
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: both
+          thresholds: '40 60'
+
+      - name: 📄 Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: code-coverage-results.md
