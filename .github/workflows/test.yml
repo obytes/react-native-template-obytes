@@ -30,7 +30,7 @@ jobs:
 
       - name: Jest Coverage Comment
         uses: MishaKav/jest-coverage-comment@main
-        if: success() || failure() ##  TODO; only run on PRs
+        if: github.event_name == 'pull_request'
         with:
           coverage-summary-path: ./coverage/coverage-summary.json
           summary-title: '💯 Test covrage'
