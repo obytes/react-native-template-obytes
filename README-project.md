@@ -25,7 +25,7 @@ git clone https://github.com/user/repo-name
 
 cd ./repo-name
 
-yarn
+pnpm install
 ```
 
 To run the app on ios
