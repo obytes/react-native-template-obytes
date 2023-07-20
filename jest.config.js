@@ -20,6 +20,7 @@ module.exports = {
   ],
   coverageReporters: ['text', 'json-summary'],
   reporters: [
+    'default',
     ['github-actions', { silent: false }],
     'summary',
     [
