@@ -26,15 +26,21 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: 🏃‍♂️ Run Tests
-        if: github.event_name != 'pull_request'
-        run: pnpm run test
+        run: pnpm run test:ci
 
-      - name: 🏃‍♂️ Run Tests + Reports
+      - name: Jest Coverage Comment
+        uses: MishaKav/jest-coverage-comment@main
         if: github.event_name == 'pull_request'
-        uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          test-script: 'pnpm test'
-          skip-step: install
-          annotations: failed-tests
-          package-manager: pnpm
-          threshold: 1
+          coverage-summary-path: ./coverage/coverage-summary.json
+          summary-title: '💯 Test Coverage'
+          badge-title: Coverage
+          create-new-comment: false
+          junitxml-title: 😎 Tests Results
+          junitxml-path: ./coverage/jest-junit.xml
+          coverage-title: 👀 Tests Details
+          coverage-path: ./coverage/coverage.txt
+          report-only-changed-files: true
+
+
+
