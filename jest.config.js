@@ -20,7 +20,7 @@ module.exports = {
   ],
   coverageReporters: ['text', 'json-summary'],
   reporters: [['github-actions', { silent: false }], 'summary'],
-  coverageDirectory: '<rootDir>/reports',
+  coverageDirectory: '<rootDir>/coverage/',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
