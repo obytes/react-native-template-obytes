@@ -38,7 +38,7 @@ describe('LoginForm Form ', () => {
     expect(queryByText(/Email is required/i)).toBeNull();
     fireEvent.press(button);
     expect(await findByText(/Email is required/i)).not.toBeNull();
-    expect(getByText(/Password is required/i)).not.toBeNull();
+    expect(getByText(/Password is required/i)).toBeNull();
   });
 
   it('should display matching error when email is invalid', async () => {

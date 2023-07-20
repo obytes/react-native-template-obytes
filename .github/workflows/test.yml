@@ -40,6 +40,7 @@ jobs:
           junitxml-path: ./coverage/jest-junit.xml
           coverage-title: 👀 Tests Details
           coverage-path: ./coverage/coverage.txt
+          report-only-changed-files: true
 
 
 
