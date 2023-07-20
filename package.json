@@ -31,7 +31,8 @@
     "lint:translations": "eslint ./src/translations/ --fix --ext .json  ",
     "test": "jest",
     "test:ci": "mkdir -p ./coverage && pnpm run test --coverage | tee ./coverage/coverage.txt",
-    "test:watch": "pnpm run test --watch"
+    "test:watch": "pnpm run test --watch",
+    "eas-build-pre-install": "./eas-pre-install"
   },
   "dependencies": {
     "@bacons/link-assets": "^1.1.0",
