@@ -1,6 +1,0 @@
-yarn run v1.22.18
-$ pnpm run test --coverage | tee ./coverage/coverage.txt
-
-> obytesapp@3.4.1 test /Users/youssouf/Documents/obytes/react-native-template-obytes
-> jest "--coverage"
-
