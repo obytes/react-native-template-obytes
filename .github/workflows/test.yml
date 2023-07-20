@@ -33,7 +33,7 @@ jobs:
         if: github.event_name == 'pull_request'
         with:
           coverage-summary-path: ./coverage/coverage-summary.json
-          summary-title: '💯 Test covrage'
+          summary-title: '💯 Test Coverage'
           badge-title: Coverage
           create-new-comment: false
           junitxml-title: 😎 Tests Results
