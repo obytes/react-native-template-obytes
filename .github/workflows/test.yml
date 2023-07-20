@@ -28,14 +28,9 @@ jobs:
       - name: 🏃‍♂️ Run Tests
         run: pnpm run test:ci
 
-      - uses: actions/upload-artifact@v2  # upload test results
-        if: success() || failure()        # run this step even if previous step failed
-        with:
-          name: test-results
-          path: reports/jest-junit.xml
-
       - name: 🫣 Code Coverage Report
         uses: irongut/CodeCoverageSummary@v1.3.0
+        if: success() || failure()
         with:
           filename: /**/clover.xml
           badge: true
