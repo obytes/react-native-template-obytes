@@ -19,7 +19,22 @@ module.exports = {
     `node_modules/(?!(?:.pnpm/)?((jest-)?react-native|@react-native(-community)?|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg))`,
   ],
   coverageReporters: ['text', 'json-summary'],
-  reporters: [['github-actions', { silent: false }], 'summary'],
+  reporters: [
+    ['github-actions', { silent: false }],
+    'summary',
+    [
+      'jest-junit',
+      {
+        outputDirectory: 'coverage',
+        outputName: 'jest-junit.xml',
+        ancestorSeparator: ' › ',
+        uniqueOutputName: 'false',
+        suiteNameTemplate: '{filepath}',
+        classNameTemplate: '{classname}',
+        titleTemplate: '{title}',
+      },
+    ],
+  ],
   coverageDirectory: '<rootDir>/coverage/',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',

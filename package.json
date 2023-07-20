@@ -117,14 +117,5 @@
     "type": "git",
     "url": "git+https://github.com/obytes/react-native-template-obytes.git"
   },
-  "packageManager": "pnpm@8.6.5",
-  "jest-junit": {
-    "outputDirectory": "reports",
-    "outputName": "jest-junit.xml",
-    "ancestorSeparator": " › ",
-    "uniqueOutputName": "false",
-    "suiteNameTemplate": "{filepath}",
-    "classNameTemplate": "{classname}",
-    "titleTemplate": "{title}"
-  }
+  "packageManager": "pnpm@8.6.5"
 }

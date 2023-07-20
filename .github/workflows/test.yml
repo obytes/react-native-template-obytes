@@ -33,5 +33,11 @@ jobs:
         if: success() || failure() ##  TODO; only run on PRs
         with:
           coverage-summary-path: ./coverage/coverage-summary.json
+          summary-title: 'Jest Coverage'
+          badge-title: Coverage
+          create-new-comment: false
+          junitxml-title: Tests Results
+          junitxml-path: ./coverage/jest-junit.xml
+
 
 
