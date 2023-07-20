@@ -1,10 +1,10 @@
-import * as Updates from 'expo-updates';
 import type TranslateOptions from 'i18next';
 import i18n from 'i18next';
 import memoize from 'lodash.memoize';
 import { useCallback } from 'react';
 import { I18nManager, NativeModules } from 'react-native';
 import { useMMKVString } from 'react-native-mmkv';
+import RNRestart from 'react-native-restart';
 
 import { storage } from '../storage';
 import type { Language, resources } from './resources';
@@ -32,7 +32,7 @@ export const changeLanguage = (lang: Language) => {
     I18nManager.forceRTL(false);
   }
   if (__DEV__) NativeModules.DevSettings.reload();
-  else Updates.reloadAsync();
+  else RNRestart.restart();
 };
 
 export const useSelectedLanguage = () => {
