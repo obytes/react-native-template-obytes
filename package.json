@@ -3,7 +3,7 @@
   "version": "4.0.0",
   "private": true,
   "scripts": {
-    "start": "EXPO_NO_DOTENV=1 expo start --dev-client",
+    "start": "EXPO_NO_DOTENV=1 expo start",
     "prebuild": "EXPO_NO_DOTENV=1 pnpm expo prebuild",
     "android": "EXPO_NO_DOTENV=1 expo run:android",
     "ios": "EXPO_NO_DOTENV=1 expo run:ios",
