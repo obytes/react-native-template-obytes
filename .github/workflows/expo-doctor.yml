@@ -33,4 +33,4 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: 🚑 Run Doctor Checks
-        run: pnpm run doctor
+        run: rm -rf ios android && pnpm run doctor ## apprently the new update of expo will break if you already have ios and android folders in your project as they will show up a eas warning
