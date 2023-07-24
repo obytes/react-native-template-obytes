@@ -6,6 +6,8 @@
   React Native Template Obytes
 </h1>
 
+![expo](https://img.shields.io/github/package-json/dependency-version/obytes/react-native-template-obytes/expo?label=expo) ![GitHub Repo stars](https://img.shields.io/github/stars/obytes/react-native-template-obytes) ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/obytes/react-native-template-obytes) ![GitHub issues](https://img.shields.io/github/issues/obytes/react-native-template-obytes) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/obytes/react-native-template-obytes)
+
 📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo,TypeScript,tailwindcss, Husky, Lint-Staged, react-navigation, react-query, react-hook-form, I18n.
 
 # Overview

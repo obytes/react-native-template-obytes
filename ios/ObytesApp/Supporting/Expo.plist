@@ -5,12 +5,10 @@
     <key>EXUpdatesCheckOnLaunch</key>
     <string>ALWAYS</string>
     <key>EXUpdatesEnabled</key>
-    <true/>
+    <false/>
     <key>EXUpdatesLaunchWaitMs</key>
     <integer>0</integer>
     <key>EXUpdatesSDKVersion</key>
-    <string>48.0.0</string>
-    <key>EXUpdatesURL</key>
-    <string>https://exp.host/@yjose/obytesapp</string>
+    <string>49.0.0</string>
   </dict>
 </plist>
