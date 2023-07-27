@@ -1,6 +1,6 @@
 {
   "name": "obytesapp",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "private": true,
   "scripts": {
     "start": "EXPO_NO_DOTENV=1 expo start",
