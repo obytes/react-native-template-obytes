@@ -1,0 +1,16 @@
+name: 'Setup  Node + PNPM + Install Dependencies'
+description: 'Setup  Node + PNPM + Install Dependencies'
+runs:
+  using: 'composite'
+  steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: 📦 Install Project Dependencies
+        run: pnpm install --frozen-lockfile
+        shell: bash
