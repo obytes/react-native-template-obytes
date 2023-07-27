@@ -13,19 +13,15 @@ jobs:
     steps:
       - name : 📦 Checkout project repo
         uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
         with:
-          version: 8
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'pnpm'
+          fetch-depth: 0
+
+      - name : 📦 Setup Node + PNPM + install deps
+        uses: ./.github/actions/setup-node-pnpm-install
 
       - name: 📦 Install Reviewdog
+        if: github.event_name == 'pull_request'
         uses: reviewdog/action-setup@v1
-
-      - name: 📦 Install Project Dependencies
-        run: pnpm install --frozen-lockfile
 
       - name: 🏃‍♂️ Run TypeScript PR # Reviewdog tsc errorformat: %f:%l:%c - error TS%n: %m
         # we only need to add the reviewdog step if it's a pull request
