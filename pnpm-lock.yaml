@@ -38,6 +38,9 @@ dependencies:
   expo:
     specifier: ~49.0.4
     version: 49.0.4(@babel/core@7.21.0)
+  expo-build-properties:
+    specifier: ~0.8.3
+    version: 0.8.3(expo@49.0.4)
   expo-constants:
     specifier: ~14.4.2
     version: 14.4.2(expo@49.0.4)
@@ -86,6 +89,9 @@ dependencies:
   react-native:
     specifier: 0.72.3
     version: 0.72.3(@babel/core@7.21.0)(@babel/preset-env@7.20.2)(react@18.2.0)
+  react-native-avoid-softinput:
+    specifier: ^4.0.1
+    version: 4.0.1(react-native@0.72.3)(react@18.2.0)
   react-native-flash-message:
     specifier: ^0.4.0
     version: 0.4.0(prop-types@15.8.1)(react-native@0.72.3)(react@18.2.0)
@@ -3972,7 +3978,6 @@ packages:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
       uri-js: 4.4.1
-    dev: true
 
   /anser@1.4.10:
     resolution: {integrity: sha512-hCv9AqTQ8ycjpSd3upOJd7vFwW1JaoYQ7tpham03GJ1ca8/65rqn0RpaWpItOAd6ylW9wAw6luXYPJIyPFVOww==}
@@ -6190,6 +6195,16 @@ packages:
     transitivePeerDependencies:
       - expo
       - supports-color
+    dev: false
+
+  /expo-build-properties@0.8.3(expo@49.0.4):
+    resolution: {integrity: sha512-kEDDuAadHqJTkvCGK4fXYHVrePiJO1DjyW95AicmwuGwQvGJydYFbuoauf9ybAU+4UH4arhbce8gHI3ZpIj3Jw==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      ajv: 8.11.0
+      expo: 49.0.4(@babel/core@7.21.0)
+      semver: 7.5.4
     dev: false
 
   /expo-constants@14.4.2(expo@49.0.4):
@@ -8447,7 +8462,6 @@ packages:
 
   /json-schema-traverse@1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
-    dev: true
 
   /json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
@@ -10579,7 +10593,6 @@ packages:
   /punycode@2.1.1:
     resolution: {integrity: sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==}
     engines: {node: '>=6'}
-    dev: true
 
   /pupa@2.1.1:
     resolution: {integrity: sha512-l1jNAspIBSFqbT+y+5FosojNpVpF94nlI+wDUpqP9enwOTfHx9f0gh5nB96vl+6yTpsJsypeNrwfzPrKuHB41A==}
@@ -10738,6 +10751,16 @@ packages:
 
   /react-is@18.2.0:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
+
+  /react-native-avoid-softinput@4.0.1(react-native@0.72.3)(react@18.2.0):
+    resolution: {integrity: sha512-feMt+Pb/wEcuobbIRDHXj1leXT15uC8CekgwMb/t8s61kWy5ifCGtX/YqDZMDRiD0sqeFLZx0gykLQOSrCpybA==}
+    peerDependencies:
+      react: '>=17.0.0'
+      react-native: '>=0.65.0'
+    dependencies:
+      react: 18.2.0
+      react-native: 0.72.3(@babel/core@7.21.0)(@babel/preset-env@7.20.2)(react@18.2.0)
+    dev: false
 
   /react-native-flash-message@0.4.0(prop-types@15.8.1)(react-native@0.72.3)(react@18.2.0):
     resolution: {integrity: sha512-ZCVnQj+82cQnWqBtkIVPxMEJxwzWqq8WQcIulUqc9UiCdvWQJRLN0Pe0PvzFs/l/GM2ek6zXSck7LJzUq8pahQ==}
@@ -12462,7 +12485,6 @@ packages:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
       punycode: 2.1.1
-    dev: true
 
   /url-join@4.0.0:
     resolution: {integrity: sha512-EGXjXJZhIHiQMK2pQukuFcL303nskqIRzWvPvV5O8miOfwoUb9G+a/Cld60kUyeaybEI94wvVClT10DtfeAExA==}

@@ -59,10 +59,6 @@ describe('LoginForm Form ', () => {
   });
 
   it('Should call LoginForm with correct values when values are valid', async () => {
-    // const mockOnSubmit = jest.fn(({ email, password }) => {
-    //   return Promise.resolve({ email, password });
-    // });
-
     const { getByTestId } = customRender(<LoginForm onSubmit={onSubmitMock} />);
 
     const button = getByTestId('login-button');

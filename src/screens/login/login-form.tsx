@@ -7,6 +7,7 @@ import * as z from 'zod';
 import { Button, ControlledInput, Text, View } from '@/ui';
 
 const schema = z.object({
+  name: z.string().optional(),
   email: z
     .string({
       required_error: 'Email is required',
@@ -34,6 +35,14 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
       <Text testID="form-title" variant="h1" className="pb-6 text-center">
         Sign In
       </Text>
+
+      <ControlledInput
+        testID="name"
+        control={control}
+        name="name"
+        label="Name"
+      />
+
       <ControlledInput
         testID="email-input"
         control={control}
