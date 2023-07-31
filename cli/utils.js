@@ -74,13 +74,19 @@ const updateConfig = async (projectName) => {
 // remove ios and android folders and update project config
 const cleanUpFolder = async (projectName) => {
   const spinner = createSpinner(`Clean and Setup project folder`).start();
+  const FILES_TO_REMOVE = [
+    '.git',
+    'README.md',
+    'ios',
+    'android',
+    'docs',
+    'cli',
+    'LICENSE',
+  ];
   try {
-    fs.removeSync(path.join(process.cwd(), `${projectName}/.git`));
-    fs.removeSync(path.join(process.cwd(), `${projectName}/README.md`));
-    fs.removeSync(path.join(process.cwd(), `${projectName}/ios`));
-    fs.removeSync(path.join(process.cwd(), `${projectName}/android`));
-    fs.removeSync(path.join(process.cwd(), `${projectName}/docs`));
-    fs.removeSync(path.join(process.cwd(), `${projectName}/cli`));
+    FILES_TO_REMOVE.forEach((file) => {
+      fs.removeSync(path.join(process.cwd(), `${projectName}/${file}`));
+    });
     await initGit(projectName);
     updatePackageInfos(projectName);
     updateConfig(projectName);
