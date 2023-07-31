@@ -24,6 +24,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     supportsTablet: true,
     bundleIdentifier: Env.BUNDLE_ID,
   },
+
   android: {
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
@@ -37,6 +38,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   plugins: [
     ['@bacons/link-assets', ['./assets/fonts/Inter.ttf']],
     'expo-localization',
+    [
+      'expo-build-properties',
+      {
+        android: {
+          kotlinVersion: '1.7.22', // this is for softinput package
+        },
+      },
+    ],
     [
       'app-icon-badge',
       {

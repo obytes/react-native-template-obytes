@@ -41,7 +41,7 @@ When creating this starter kit, we had several guiding principles in mind::
 - 💫 An auth flow with [zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage solution to save sensitive data.
 - 🛠 A simple workflow for building, releasing, and distributing your app using [Github action](https://github.com/features/actions).
 - 🔥 [React Query](https://react-query.tanstack.com/) & [axios](https://github.com/axios/axios) and [axios](https://github.com/axios/axios) for fetching data, to help you build efficient and performant apps.
-- 🧵 A good approach for handling forms with [react-hook-form](https://react-hook-form.com/) and [zod](https://github.com/colinhacks/zod) for validation.
+- 🧵 A good approach for handling forms with [react-hook-form](https://react-hook-form.com/) and [zod](https://github.com/colinhacks/zod) for validation + keyboard handling.
 - 🎯 Localization with [i18next](https://www.i18next.com/) , along with Eslint for validation.
 
 ## 😉 Why Expo?

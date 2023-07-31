@@ -107,3 +107,28 @@ Done ! You have created a form with validation and typescript support.
 :::tip
 Any Component with props that inherit from the `InputControllerType` can be used with react-hook-form. You can easily create your own controlled component using the same approach as `ControlledInput` and `ControlledSelect`.
 :::
+
+## Handling Keyboard
+
+The template comes with [`react-native-avoid-softinput`](https://mateusz1913.github.io/react-native-avoid-softinput/) pre-installed and configured to handle the keyboard. You only need to use the `useSoftKeyboardEffect` hook on your screen, and you're good to go.
+
+```tsx
+
+import React from 'react';
+import { useSoftKeyboardEffect } from '@/core/keyboard';
+import { LoginForm } from './login-form';
+
+export const Login = () => {
+  useSoftKeyboardEffect();
+  return <LoginForm  />;
+};
+
+```
+
+
+
+
+:::tip
+Note that the hook is not an all-in-one solution for all cases, and you might need more customization depending on your use case. So, please refer to the documentation [recipes pages](https://mateusz1913.github.io/react-native-avoid-softinput/docs/recipes/recipes-form) for more information.
+:::
+
