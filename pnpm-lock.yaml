@@ -54,8 +54,8 @@ dependencies:
     specifier: ~14.3.0
     version: 14.3.0(expo@49.0.4)
   expo-splash-screen:
-    specifier: ~0.20.4
-    version: 0.20.4(expo-modules-autolinking@1.5.0)(expo@49.0.4)
+    specifier: ~0.20.5
+    version: 0.20.5(expo-modules-autolinking@1.5.0)(expo@49.0.4)
   expo-status-bar:
     specifier: ~1.6.0
     version: 1.6.0
@@ -6335,8 +6335,8 @@ packages:
       invariant: 2.2.4
     dev: false
 
-  /expo-splash-screen@0.20.4(expo-modules-autolinking@1.5.0)(expo@49.0.4):
-    resolution: {integrity: sha512-JMfVqkb3Fbt9mdrWfSkTxaIkjd2RMJmQ19/JN+4Gk2MVEP4L1yzTQLomneH5+z/N5x48Tk3ZN+bFhtUXIlfjzg==}
+  /expo-splash-screen@0.20.5(expo-modules-autolinking@1.5.0)(expo@49.0.4):
+    resolution: {integrity: sha512-nTALYdjHpeEA30rdOWSguxn72ctv8WM8ptuUgpfRgsWyn4i6rwYds/rBXisX69XO5fg+XjHAQqijGx/b28+3tg==}
     peerDependencies:
       expo: '*'
     dependencies:

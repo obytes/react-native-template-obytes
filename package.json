@@ -51,7 +51,7 @@
     "expo-dev-client": "~2.4.6",
     "expo-image": "~1.3.2",
     "expo-localization": "~14.3.0",
-    "expo-splash-screen": "~0.20.4",
+    "expo-splash-screen": "~0.20.5",
     "expo-status-bar": "~1.6.0",
     "expo-system-ui": "~2.4.0",
     "i18next": "^22.4.11",
