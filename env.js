@@ -23,8 +23,6 @@ require('dotenv').config({
   path: envPath,
 });
 
-console.log(`⚙️  Loading environment variables from: .env.${APP_ENV}`);
-
 /**
  * 2nd part: Define some static variables for the app
  * Such as: bundle id, package name, app name.
