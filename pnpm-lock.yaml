@@ -54,8 +54,8 @@ dependencies:
     specifier: ~14.3.0
     version: 14.3.0(expo@49.0.4)
   expo-splash-screen:
-    specifier: ~0.20.5
-    version: 0.20.5(expo-modules-autolinking@1.5.0)(expo@49.0.4)
+    specifier: 0.20.4
+    version: 0.20.4(expo-modules-autolinking@1.5.0)(expo@49.0.4)
   expo-status-bar:
     specifier: ~1.6.0
     version: 1.6.0
@@ -178,6 +178,9 @@ devDependencies:
   babel-plugin-module-resolver:
     specifier: ^5.0.0
     version: 5.0.0
+  cross-env:
+    specifier: ^7.0.3
+    version: 7.0.3
   dotenv:
     specifier: ^16.0.3
     version: 16.0.3
@@ -5143,6 +5146,14 @@ packages:
   /create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
 
+  /cross-env@7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
+    dev: true
+
   /cross-fetch@3.1.5:
     resolution: {integrity: sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==}
     dependencies:
@@ -6335,8 +6346,8 @@ packages:
       invariant: 2.2.4
     dev: false
 
-  /expo-splash-screen@0.20.5(expo-modules-autolinking@1.5.0)(expo@49.0.4):
-    resolution: {integrity: sha512-nTALYdjHpeEA30rdOWSguxn72ctv8WM8ptuUgpfRgsWyn4i6rwYds/rBXisX69XO5fg+XjHAQqijGx/b28+3tg==}
+  /expo-splash-screen@0.20.4(expo-modules-autolinking@1.5.0)(expo@49.0.4):
+    resolution: {integrity: sha512-JMfVqkb3Fbt9mdrWfSkTxaIkjd2RMJmQ19/JN+4Gk2MVEP4L1yzTQLomneH5+z/N5x48Tk3ZN+bFhtUXIlfjzg==}
     peerDependencies:
       expo: '*'
     dependencies:
