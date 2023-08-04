@@ -2,6 +2,7 @@ import { useRoute } from '@react-navigation/native';
 import * as React from 'react';
 
 import { usePost } from '@/api';
+import { FocusAwareStatusBar } from '@/navigation';
 import type { RouteProp } from '@/navigation/types';
 import { ActivityIndicator, Text, View } from '@/ui';
 
@@ -21,6 +22,7 @@ export const Post = () => {
   if (isError) {
     return (
       <View className="flex-1  justify-center">
+        <FocusAwareStatusBar />
         <Text variant="md" className="text-center">
           Error loading post
         </Text>
@@ -30,6 +32,7 @@ export const Post = () => {
 
   return (
     <View className="flex-1 ">
+      <FocusAwareStatusBar />
       <Text variant="h2">{data.title}</Text>
       <Text variant="md">{data.body} </Text>
     </View>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useIsFirstTime } from '@/core/hooks';
+import { FocusAwareStatusBar } from '@/navigation';
 import { Button, SafeAreaView, Text, View } from '@/ui';
 
 import { Cover } from './cover';
@@ -8,6 +9,7 @@ export const Onboarding = () => {
   const [_, setIsFirstTime] = useIsFirstTime();
   return (
     <View className="flex h-full items-center  justify-center">
+      <FocusAwareStatusBar />
       <View className="w-full flex-1">
         <Cover />
       </View>

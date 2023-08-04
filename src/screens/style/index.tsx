@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { FocusAwareStatusBar } from '@/navigation';
 import { ScrollView, View } from '@/ui';
 
 import { ButtonVariants } from './button-variants';
@@ -9,13 +10,16 @@ import { TextVariants } from './text-variants';
 
 export const Style = () => {
   return (
-    <ScrollView>
-      <View className="flex-1  px-4 pt-10">
-        <TextVariants />
-        <ColorVariants />
-        <InputVariants />
-        <ButtonVariants />
-      </View>
-    </ScrollView>
+    <>
+      <FocusAwareStatusBar />
+      <ScrollView>
+        <View className="flex-1  px-4 pt-10">
+          <TextVariants />
+          <ColorVariants />
+          <InputVariants />
+          <ButtonVariants />
+        </View>
+      </ScrollView>
+    </>
   );
 };
