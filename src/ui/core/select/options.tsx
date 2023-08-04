@@ -1,11 +1,12 @@
-import { BottomSheetFlatList, BottomSheetModal } from '@gorhom/bottom-sheet';
+import type { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import { useColorScheme } from 'nativewind';
 import * as React from 'react';
 import { type PressableProps } from 'react-native';
 
 import { colors } from '@/ui/theme';
 
-import { renderBackdrop } from '../bottom-sheet';
+import { Modal } from '../modal';
 import { Pressable } from '../pressable';
 import { Text } from '../text';
 import { Check } from './icons';
@@ -35,57 +36,49 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
           label={item.label}
           selected={value === item.value}
           onPress={() => onSelect(item)}
-          isDark={isDark}
         />
       ),
-      [onSelect, value, isDark]
+      [onSelect, value]
     );
 
     return (
-      <BottomSheetModal
+      <Modal
         ref={ref}
         index={0}
         snapPoints={snapPoints}
-        backdropComponent={renderBackdrop}
-        handleIndicatorStyle={{
-          backgroundColor: isDark ? colors.white : colors.charcoal[800],
-        }}
         backgroundStyle={{
-          backgroundColor: isDark ? colors.charcoal[950] : colors.white,
+          backgroundColor: isDark ? colors.charcoal[800] : colors.white,
         }}
       >
         <BottomSheetFlatList
           data={options}
           keyExtractor={keyExtractor}
           renderItem={renderSelectItem}
-          style={{
-            backgroundColor: isDark ? colors.charcoal[950] : colors.white,
-          }}
         />
-      </BottomSheetModal>
+      </Modal>
     );
   }
 );
 
-const Option = ({
-  label,
-  selected = false,
-  isDark = false,
-  ...props
-}: PressableProps & {
-  selected?: boolean;
-  label: string;
-  isDark?: boolean;
-}) => {
-  return (
-    <Pressable
-      className="flex-row items-center border-b-[1px] border-neutral-300 bg-white py-2 px-3 dark:border-charcoal-700 dark:bg-charcoal-800"
-      {...props}
-    >
-      <Text variant="md" className="flex-1 dark:text-charcoal-100">
-        {label}
-      </Text>
-      {selected && <Check color={isDark ? colors.white : colors.black} />}
-    </Pressable>
-  );
-};
+const Option = React.memo(
+  ({
+    label,
+    selected = false,
+    ...props
+  }: PressableProps & {
+    selected?: boolean;
+    label: string;
+  }) => {
+    return (
+      <Pressable
+        className="flex-row items-center border-b-[1px] border-neutral-300 bg-white py-2 px-3 dark:border-charcoal-700 dark:bg-charcoal-800"
+        {...props}
+      >
+        <Text variant="md" className="flex-1 dark:text-charcoal-100 ">
+          {label}
+        </Text>
+        {selected && <Check fill="fill-black dark:fill-white" />}
+      </Pressable>
+    );
+  }
+);
