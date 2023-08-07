@@ -60,7 +60,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: test-apk
-          path: ./app-release.apk
+          path: ${{ github.workspace }}/app-release.apk
 
       - name: 'Echo download path'
         run: echo ${{steps.test-apk.outputs.download-path}}
