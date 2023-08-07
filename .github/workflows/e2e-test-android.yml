@@ -86,8 +86,8 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           cores: 2
-          ram-size: 2048M
-          emulator-boot-timeout: 600 # 10min
+          ram-size: 4096M
+          profile: Nexus 6
           script: echo "Generated AVD snapshot for caching."
 
 
@@ -99,8 +99,8 @@ jobs:
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           cores: 2
-          ram-size: 2048M
-          emulator-boot-timeout: 600
+          ram-size: 4096M
+          profile: Nexus 6
           script: |
             adb install "${{ github.workspace }}/app-release.apk"
             $HOME/.maestro/bin/maestro test .maestro/ --env=APP_ID=com.obytes.development  --format junit

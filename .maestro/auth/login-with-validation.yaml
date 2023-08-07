@@ -14,6 +14,7 @@ env:
     id: "login-button"
 - tapOn:
     id: "login-button"
+- runFlow: ../utils/hide-keyboard.yaml # Hide keyboard login button will auto focus on email input which means keyboard will be visible, need to hide it to make sure error are visible
 - assertVisible: "Email is required"
 - assertVisible: "Password is required"
 - tapOn:
