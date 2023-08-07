@@ -87,7 +87,7 @@ jobs:
           script: echo "Generated AVD snapshot for caching."
 
 
-      - name: Run tests
+      - name: Run tests with Maestro
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29 # Android 13
