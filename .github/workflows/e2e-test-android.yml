@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
   pull_request:
     branches: [main, master]
-    types: [labeled]
 
 jobs:
   generate-test-apk:
@@ -91,7 +90,7 @@ jobs:
       - name: Run tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 33 # Android 13
+          api-level: 29 # Android 13
           script: |
             adb install "${{steps.test-apk.outputs.download-path}}"
             $HOME/.maestro/bin/maestro test .maestro/ --format junit
