@@ -27,6 +27,7 @@ env:
     id: "add-post-button"
 - assertVisible: "String must contain at least 120 character(s)"
 - inputText: ${CONTENT}
+- runFlow: ../utils/hide-keyboard.yaml
 - tapOn:
     id: "add-post-button"
 - assertVisible: "Post added successfully"
