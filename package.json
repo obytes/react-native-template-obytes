@@ -32,7 +32,9 @@
     "test": "jest",
     "test:ci": "mkdir -p ./coverage && pnpm run test --coverage | tee ./coverage/coverage.txt",
     "test:watch": "pnpm run test --watch",
-    "eas-build-pre-install": "./eas-pre-install"
+    "eas-build-pre-install": "./scripts/eas-pre-install",
+    "install-maestro": "curl -Ls 'https://get.maestro.mobile.dev' | bash",
+    "e2e-test": "maestro test .maestro/ -e APP_ID=com.obytes.development"
   },
   "dependencies": {
     "@bacons/link-assets": "^1.1.0",
