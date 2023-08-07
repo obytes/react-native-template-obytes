@@ -60,6 +60,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: test-apk
+          path: ./app-release.apk
 
       - name: 'Echo download path'
         run: echo ${{steps.test-apk.outputs.download-path}}
@@ -91,6 +92,9 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29 # Android 13
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: false
           script: |
             adb install "${{steps.test-apk.outputs.download-path}}"
             $HOME/.maestro/bin/maestro test .maestro/ --format junit
