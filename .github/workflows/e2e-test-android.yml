@@ -9,7 +9,7 @@ on:
 jobs:
   generate-test-apk:
     if: contains(github.event.pull_request.labels.*.name, 'android-test')
-    name: Generate Test APK
+    name: Generate Test APK (Gradle)
     runs-on: ubuntu-latest
 
     steps:
@@ -34,6 +34,8 @@ jobs:
           chmod +x ./gradlew
           ./gradlew assembleRelease  --no-daemon
           cd ..
+        env:
+          EXPO_NO_DOTENV: 1
 
       - name: Upload Text APK
         uses: actions/upload-artifact@v3
@@ -41,4 +43,61 @@ jobs:
           name: test-apk
           path: ./android/app/build/outputs/apk/release/app-release.apk
 
+  test-android:
+    name: Run Android Tests (Maestro)
+    needs: generate-test-apk
+    runs-on: macOS-latest
 
+    steps:
+      - name : 📦 Checkout project repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name : 📦 Install Maestro
+        run : npm run install-maestro ## we use npm because we dont need to install deps again
+
+      - name: Download Test APK
+        uses: actions/download-artifact@v3
+        with:
+          name: test-apk
+
+      - name: 'Echo download path'
+        run: echo ${{steps.test-apk.outputs.download-path}}
+
+      - name: Gradle cache
+        uses: gradle/gradle-build-action@v2
+
+      - name: AVD cache
+        uses: actions/cache@v3
+        id: avd-cache
+        with:
+          path: |
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: avd-cache-${{ runner.os }}
+
+      - name: create AVD and generate snapshot for caching
+        if: steps.avd-cache.outputs.cache-hit != 'true'
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: false
+          script: echo "Generated AVD snapshot for caching."
+
+
+      - name: Run tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33 # Android 13
+          script: |
+            adb install "${{steps.test-apk.outputs.download-path}}"
+            $HOME/.maestro/bin/maestro test .maestro/ --format junit
+      - name: Store tests result
+        uses: actions/upload-artifact@v3
+        with:
+          name: e2e_android_report
+          path: |
+            report.xml
