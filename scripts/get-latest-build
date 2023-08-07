@@ -1,0 +1,12 @@
+#!/bin/bash
+# this simple script will get the latest build url for the android platform
+build=$(eas build:list --platform=android  --non-interactive --json --status=finished --limit=1)
+buildUrl=$(echo "$build" | sed -n 's/.*"buildUrl": "\(.*\)".*/\1/p')
+
+
+filename='./build.apk'
+
+# Download the file using curl
+curl -o "$filename" "$buildUrl"
+
+echo "$buildUrl"

@@ -97,6 +97,7 @@ export const TabNavigator = () => {
               component={component}
               options={{
                 title: label,
+                tabBarTestID: `${name}-tab`,
               }}
             />
           );
