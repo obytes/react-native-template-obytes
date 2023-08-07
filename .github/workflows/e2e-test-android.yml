@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     branches: [main, master]
+    types: [labeled]
 
 jobs:
   generate-test-apk:
