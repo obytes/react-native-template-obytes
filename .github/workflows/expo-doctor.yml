@@ -27,5 +27,8 @@ jobs:
       - name : 📦 Setup Node + PNPM + install deps
         uses: ./.github/actions/setup-node-pnpm-install
 
+      - name: Run prebuild
+        run: pnpm run prebuild ## we only need to run this to generate the badged icon in `.expo` folder
+
       - name: 🚑 Run Doctor Checks
         run: rm -rf ios android && pnpm run doctor ## apprently the new update of expo will break if you already have ios and android folders in your project as they will show up a eas warning

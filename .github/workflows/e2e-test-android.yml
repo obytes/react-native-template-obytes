@@ -1,0 +1,43 @@
+name: E2E Tests Android (Maestro)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  generate-test-apk:
+    if: contains(github.event.pull_request.labels.*.name, 'android-test')
+    name: Generate Test APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name : 📦 Checkout project repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name : 📦 Setup Node + PNPM + install deps
+        uses: ./.github/actions/setup-node-pnpm-install
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '11'
+          cache: 'gradle'
+
+      - name: Generate Test APK
+        run: |
+          cd  android
+          chmod +x ./gradlew
+          ./gradlew assembleRelease  --no-daemon
+          cd ..
+
+      - name: Upload Text APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-apk
+          path: ./android/app/build/outputs/apk/release/app-release.apk
+
+
