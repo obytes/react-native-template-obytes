@@ -1,0 +1,78 @@
+---
+sidebar_position: 2
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import LoginForm from '!!raw-loader!../../../src/screens/login/login-form';
+import TestForm from '!!raw-loader!../../../src/screens/login/login-form.test';
+import TestUtils from '!!raw-loader!../../../src/core/test-utils';
+
+# Unit Tests
+
+As we mention in the overview page of the testing section, we include the [Jest](https://jestjs.io/) testing framework and the [React Native Testing Library](https://callstack.github.io/react-native-testing-library/) for unit tests, along with mocks for most libraries.
+
+If you are not familiar with the React Native Testing Library, we recommend reading the [official documentation](https://callstack.github.io/react-native-testing-library/) to get familiar with it.
+
+Also worth mentioning that we should aim to test the following:
+
+* **Business logic**: Test component and function utilities that contain business logic. Form validation, data manipulation and calculations, etc.
+
+* **Complex components**: Test components that contain complex logic. For example, components that contain a lot of conditional rendering, or components that contain a lot of state management logic.
+
+
+### Writing tests
+
+Let's start by writing a simple test for our login screen. We will test the following login form component:
+
+<CodeBlock language="tsx" title="./src/screens/login/login-form.tsx">
+  {LoginForm}
+</CodeBlock>
+
+:::tip
+
+To make it easier to write tests, we are separating the form from any other logic related to API calls, navigation, etc. This way, we can test the form logic without having to worry about other things.
+
+As you may have noticed, writing code with the intention of writing tests for it will assist us in producing cleaner code.
+:::
+
+Now, let's write a test for the login form component. We will test the following:
+
+* The form renders correctly.
+* Show the correct error messages on invalid or missing data.
+* Submit the form with valid data and make sure that the `onSubmit` function is called with the correct data.
+
+First, let's create a new file called `login-form.test.tsx` in the `src/screens/login` directory. Then, add the following code to it:
+
+<CodeBlock language="tsx" title="./src/screens/login/login-form.test.tsx">
+  {TestForm}
+</CodeBlock>
+
+As you may notice from the code we are importing a bunch of things from the `@/core/test-utils` directory. this is a simple file that export everything from the `@testing-library/react-native` library and overrides the `render` function to wrap the component with the providers we need. This way, we don't have to import the providers in every test file.
+
+:::tip
+You can update this file to add any other providers you need to wrap your components with as well as any other utility functions you need to use in your tests.
+
+<CodeBlock language="tsx" title="./src/core/test-utils">
+  {TestUtils}
+</CodeBlock>
+:::
+
+Now that we have our test file ready, let's run it and see what happens. To run the test, run the following command:
+
+```bash
+pnpm  test
+pnpm test:watch # To run the tests in watch mode
+```
+
+## Tests on CI with GitHub actions
+
+It's important to run tests on CI in addition to local testing. This ensures that our code doesn't break when we push it to Github. We have added a GitHub action that runs tests for every push to the main branch or new pull request. It reports the results to GitHub through annotations and provides a summary of the tests along with coverage.
+
+Here is an example of the output of the GitHub action:
+
+![GitHub action output](./img/github-action-output.png)
+
+
+
+
+
