@@ -1,36 +1,22 @@
-import 'react-native';
-import '@testing-library/jest-native/extend-expect';
-
-// Note: test renderer must be required after react-native.
-import type { RenderAPI, RenderOptions } from '@testing-library/react-native';
-import {
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react-native';
 import React from 'react';
+
+import { cleanup, fireEvent, render, waitFor } from '@/core/test-utils';
 
 import type { LoginFormProps } from './login-form';
 import { LoginForm } from './login-form';
 
 afterEach(cleanup);
 
-const customRender = (
-  ui: React.ReactElement<any>,
-  options?: RenderOptions | undefined
-): RenderAPI => render(ui, { ...options }); // render(ui, {wrapper: ThemeProvider, ...options});
-
 const onSubmitMock: jest.Mock<LoginFormProps['onSubmit']> = jest.fn();
 
 describe('LoginForm Form ', () => {
   it('renders correctly', async () => {
-    const { findByText } = customRender(<LoginForm />);
+    const { findByText } = render(<LoginForm />);
     expect(await findByText(/Sign in/i)).not.toBeNull();
   });
 
   it('should display required error when values are empty', async () => {
-    const { getByText, findByText, queryByText, getByTestId } = customRender(
+    const { getByText, findByText, queryByText, getByTestId } = render(
       <LoginForm />
     );
 
@@ -42,9 +28,7 @@ describe('LoginForm Form ', () => {
   });
 
   it('should display matching error when email is invalid', async () => {
-    const { getByTestId, findByText, queryByText } = customRender(
-      <LoginForm />
-    );
+    const { getByTestId, findByText, queryByText } = render(<LoginForm />);
 
     const button = getByTestId('login-button');
     const emailInput = getByTestId('email-input');
@@ -59,7 +43,7 @@ describe('LoginForm Form ', () => {
   });
 
   it('Should call LoginForm with correct values when values are valid', async () => {
-    const { getByTestId } = customRender(<LoginForm onSubmit={onSubmitMock} />);
+    const { getByTestId } = render(<LoginForm onSubmit={onSubmitMock} />);
 
     const button = getByTestId('login-button');
     const emailInput = getByTestId('email-input');
