@@ -4,8 +4,7 @@ import React from 'react';
 
 import type { Post } from '@/api';
 import { usePosts } from '@/api';
-import { FocusAwareStatusBar } from '@/navigation';
-import { EmptyList, Text, View } from '@/ui';
+import { EmptyList, FocusAwareStatusBar, Text, View } from '@/ui';
 
 import { Card } from './card';
 

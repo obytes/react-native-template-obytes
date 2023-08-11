@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { useIsFirstTime } from '@/core/hooks';
-import { FocusAwareStatusBar } from '@/navigation';
-import { Button, SafeAreaView, Text, View } from '@/ui';
+import { Button, FocusAwareStatusBar, SafeAreaView, Text, View } from '@/ui';
 
 import { Cover } from './cover';
 export const Onboarding = () => {

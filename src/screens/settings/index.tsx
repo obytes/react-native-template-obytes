@@ -4,8 +4,7 @@ import * as React from 'react';
 
 import { useAuth } from '@/core';
 import { translate } from '@/core';
-import { FocusAwareStatusBar } from '@/navigation';
-import { ScrollView, Text, View } from '@/ui';
+import { FocusAwareStatusBar, ScrollView, Text, View } from '@/ui';
 import { Github, Rate, Share, Support, Website } from '@/ui/icons';
 import colors from '@/ui/theme/colors';
 
