@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { FocusAwareStatusBar } from '@/navigation';
-import { ScrollView, View } from '@/ui';
+import { FocusAwareStatusBar, ScrollView, View } from '@/ui';
 
 import { ButtonVariants } from './button-variants';
 import { ColorVariants } from './color-variants';

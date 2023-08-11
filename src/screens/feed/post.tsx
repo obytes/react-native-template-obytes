@@ -2,9 +2,8 @@ import { useRoute } from '@react-navigation/native';
 import * as React from 'react';
 
 import { usePost } from '@/api';
-import { FocusAwareStatusBar } from '@/navigation';
 import type { RouteProp } from '@/navigation/types';
-import { ActivityIndicator, Text, View } from '@/ui';
+import { ActivityIndicator, FocusAwareStatusBar, Text, View } from '@/ui';
 
 export const Post = () => {
   const { params } = useRoute<RouteProp<'Post'>>();
