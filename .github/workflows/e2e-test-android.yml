@@ -7,7 +7,7 @@ on:
 
 jobs:
   generate-test-apk:
-    if: contains(github.event.pull_request.labels.*.name, 'android-test')
+    if: contains(github.event.pull_request.labels.*.name, 'android-test-github')
     name: Generate Test APK (Gradle)
     runs-on: ubuntu-latest
 
@@ -20,21 +20,8 @@ jobs:
       - name : 📦 Setup Node + PNPM + install deps
         uses: ./.github/actions/setup-node-pnpm-install
 
-      - name: Set Up JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
-          java-version: '11'
-          cache: 'gradle'
-
-      - name: Generate Test APK
-        run: |
-          cd  android
-          chmod +x ./gradlew
-          ./gradlew assembleRelease  --no-daemon
-          cd ..
-        env:
-          EXPO_NO_DOTENV: 1
+      - name: 📦 Set Up JDK + Generate Test APK
+        uses: ./.github/actions/setup-jdk-generate-apk
 
       - name: Upload Text APK
         uses: actions/upload-artifact@v3
