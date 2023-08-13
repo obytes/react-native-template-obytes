@@ -6,9 +6,9 @@ on:
     branches: [main, master]
 
 jobs:
-  generate-test-apk:
+  generate-and-test-apk:
     if: contains(github.event.pull_request.labels.*.name, 'android-test-maestro-cloud')
-    name: Generate Test APK (Gradle)
+    name: Generate and Test Test APK (Maestro Cloud)
     runs-on: ubuntu-latest
 
     steps:
