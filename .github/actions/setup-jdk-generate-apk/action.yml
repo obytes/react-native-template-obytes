@@ -1,0 +1,21 @@
+name: 'Setup  JAVA + GRADLE + Generate APK'
+description: 'Setup  JAVA + GRADLE + Generate APK'
+runs:
+  using: 'composite'
+  steps:
+      - name: Set Up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu' # See 'Supported distributions' for available options
+          java-version: '11'
+          cache: 'gradle'
+
+      - name: Generate Test APK
+        run: |
+          cd  android
+          chmod +x ./gradlew
+          ./gradlew assembleRelease  --no-daemon
+          cd ..
+        shell: bash
+        env:
+          EXPO_NO_DOTENV: 1
