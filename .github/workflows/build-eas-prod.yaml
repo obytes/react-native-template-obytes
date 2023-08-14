@@ -1,0 +1,22 @@
+name: Production Build (Android & IOS) (EAS)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Build:
+    name: Android & IOS Production Build (EAS)
+    runs-on: ubuntu-latest
+    steps:
+      - name : 📦 Checkout project repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name : 📦 Setup Node + PNPM + install deps
+        uses: ./.github/actions/setup-node-pnpm-install
+
+      - name: ⏱️ EAS Build
+        uses: ./.github/actions/eas-build
+        with:
+          APP_ENV: production
