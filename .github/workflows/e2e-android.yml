@@ -1,4 +1,4 @@
-name: E2E Tests Android (Maestro)
+name: E2E Tests Android (Maestro + Github Action)
 
 on:
   workflow_dispatch:
@@ -22,7 +22,8 @@ jobs:
 
       - name: 📦 Set Up JDK + Generate Test APK
         uses: ./.github/actions/setup-jdk-generate-apk
-
+        with:
+          APP_ENV: staging
       - name: Upload Text APK
         uses: actions/upload-artifact@v3
         with:
@@ -30,7 +31,7 @@ jobs:
           path: ./android/app/build/outputs/apk/release/app-release.apk
 
   test-android:
-    name: Run Android Tests (Maestro)
+    name: Run Android E2E Tests (Maestro + Github Action)
     needs: generate-test-apk
     runs-on: macOS-latest
 
@@ -48,9 +49,6 @@ jobs:
         with:
           name: test-apk
           path: ${{ github.workspace }}
-
-      - name: 'Echo download path'
-        run: echo ${{ github.workspace }}/app-release.apk
 
       - name: Gradle cache
         uses: gradle/gradle-build-action@v2
@@ -90,7 +88,7 @@ jobs:
           profile: Nexus 6
           script: |
             adb install "${{ github.workspace }}/app-release.apk"
-            $HOME/.maestro/bin/maestro test .maestro/ --env=APP_ID=com.obytes.development  --format junit
+            $HOME/.maestro/bin/maestro test .maestro/ --env=APP_ID=com.obytes.staging  --format junit
 
       - name: Upload artifacts
         if: always()

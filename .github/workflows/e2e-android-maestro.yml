@@ -22,16 +22,19 @@ jobs:
 
       - name: 📦 Set Up JDK + Generate Test APK
         uses: ./.github/actions/setup-jdk-generate-apk
+        with:
+          APP_ENV: staging
 
       - name: Upload Text APK
         uses: actions/upload-artifact@v3
         with:
           name: test-apk
           path: ./android/app/build/outputs/apk/release/app-release.apk
+
       - name: 📱 Run E2E Tests with Maestro Cloud
         uses: mobile-dev-inc/action-maestro-cloud@v1.4.1
         with:
           api-key: ${{ secrets.MAESTRO_CLOUD_API_KEY }}
           app-file: ./android/app/build/outputs/apk/release/app-release.apk
           env: |
-            APP_ID=com.obytes.development
+            APP_ID=com.obytes.staging
