@@ -7,7 +7,7 @@ on:
 
 jobs:
   generate-and-test-apk:
-    if: contains(github.event.pull_request.labels.*.name, 'android-test-maestro-cloud')
+    if: github.event_name != 'pull_request' || ( github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'android-test-maestro-cloud'))
     name: Generate and Test Test APK (Maestro Cloud)
     runs-on: ubuntu-latest
 
