@@ -1,4 +1,4 @@
-name: QA Build (Android & IOS) (EAS)
+name: EAS QA Build (Android & IOS) (EAS)
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   Build:
-    name: Android & IOS QA Build (EAS)
+    name: EAS QA Build (Android & IOS) (EAS)
     runs-on: ubuntu-latest
     steps:
       - name : 📦 Checkout project repo
