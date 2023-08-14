@@ -22,9 +22,10 @@ runs:
           pnpm prebuild:${{ inputs.APP_ENV }}
           cd  android
           chmod +x ./gradlew
-          ./gradlew assembleRelease  --no-daemon
+          ./gradlew assembleRelease
           cd ..
         shell: bash
         env:
           EXPO_NO_DOTENV: '1'
           APP_ENV: ${{ inputs.APP_ENV }}
+          CI: 'true'
