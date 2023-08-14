@@ -23,5 +23,6 @@ jobs:
         with:
           APP_ENV: staging
           VERSION: ${{ github.event.release.tag_name }}
+          IOS: false # TODO: set as true when IOS account is ready
 
 
