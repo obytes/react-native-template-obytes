@@ -14,7 +14,6 @@ runs:
         with:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '11'
-          cache: 'gradle'
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
