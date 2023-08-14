@@ -45,6 +45,7 @@ const updatePackageInfos = async (projectName) => {
   packageJson.osMetadata = { initVersion : packageJson.version };
   packageJson.version = '0.0.1';
   packageJson.name = projectName?.toLowerCase();
+  packageJson.repository = { type: 'git', url:'git+https://github.com/user/repo-name.git'}
   fs.writeJsonSync(packageJsonPath, packageJson, { spaces: 2 });
 };
 
