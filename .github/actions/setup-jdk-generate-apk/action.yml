@@ -1,5 +1,11 @@
-name: 'Setup  JAVA + GRADLE + Generate APK'
-description: 'Setup  JAVA + GRADLE + Generate APK'
+name: 'Setup  JDK + GRADLE + Generate APK'
+description: 'Setup  JDK + GRADLE + Generate APK'
+inputs:
+  APP_ENV:
+    description: 'APP_ENV (one of): development, staging, production'
+    required: true
+    default: 'staging'
+
 runs:
   using: 'composite'
   steps:
@@ -12,10 +18,12 @@ runs:
 
       - name: Generate Test APK
         run: |
+          pnpm prebuild:${{ inputs.APP_ENV }}
           cd  android
           chmod +x ./gradlew
           ./gradlew assembleRelease  --no-daemon
           cd ..
         shell: bash
         env:
-          EXPO_NO_DOTENV: 1
+          EXPO_NO_DOTENV: '1'
+          APP_ENV: ${{ inputs.APP_ENV }}
