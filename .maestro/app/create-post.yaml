@@ -6,7 +6,6 @@ env:
     \ Ipsum is that it has a more-or-less normal distribution of letters, as opposed\
     \ to using"
 ---
-- clearState
 - launchApp
 - runFlow: ../utils/onboarding-and-login.yaml
 - assertVisible:

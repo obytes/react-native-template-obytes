@@ -7,7 +7,7 @@ on:
 
 jobs:
   generate-test-apk:
-    if: contains(github.event.pull_request.labels.*.name, 'android-test-github')
+    if: github.event_name != 'pull_request' || ( github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'android-test-maestro-cloud'))
     name: Generate Test APK (Gradle)
     runs-on: ubuntu-latest
 
@@ -81,7 +81,7 @@ jobs:
         with:
           api-level: 29
           force-avd-creation: false
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           cores: 2
           ram-size: 4096M
