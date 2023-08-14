@@ -1,0 +1,24 @@
+name: New GitHub Release
+
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  release:
+    name: New GitHub Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name : 📦 Checkout project repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 🏃‍♂️Create A Draft Github Release
+        uses: ncipollo/release-action@v1
+        with:
+          generateReleaseNotes: true
+          draft: true
