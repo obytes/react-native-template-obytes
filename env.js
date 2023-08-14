@@ -34,6 +34,7 @@ require('dotenv').config({
 const BUNDLE_ID = 'com.obytes'; // ios bundle id
 const PACKAGE = 'com.obytes'; // android package name
 const NAME = 'ObytesApp'; // app name
+const EXPO_ACCOUNT_OWNER = 'obytes'; // expo account owner
 
 /**
  * We declare a function withEnvSuffix that will add a suffix to the variable name based on the APP_ENV
@@ -76,6 +77,7 @@ const client = z.object({
 });
 
 const buildTime = z.object({
+  EXPO_ACCOUNT_OWNER: z.string(),
   // ADD YOUR BUILD TIME ENV VARS HERE
   SECRET_KEY: z.string(),
 });
@@ -98,6 +100,7 @@ const _clientEnv = {
  * @type {Record<keyof z.infer<typeof buildTime> , string | undefined>}
  */
 const _buildTimeEnv = {
+  EXPO_ACCOUNT_OWNER,
   // ADD YOUR ENV VARS HERE TOO
   SECRET_KEY: process.env.SECRET_KEY,
 };

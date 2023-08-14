@@ -59,7 +59,8 @@ const updateConfig = async (projectName) => {
   });
   const replaced = contents
     .replace(/ObytesApp/gi, projectName)
-    .replace(/com.obytes/gi, `com.${projectName.toLowerCase()}`);
+    .replace(/com.obytes/gi, `com.${projectName.toLowerCase()}`)
+    .replace(/obytes/gi, 'expo-owner');
 
   fs.writeFileSync(configPath, replaced, { spaces: 2 });
   const readmeFilePath = path.join(
