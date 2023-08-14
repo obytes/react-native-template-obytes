@@ -1,11 +1,11 @@
-name: Production Build (Android & IOS) (EAS)
+name: EAS Production Build (Android & IOS) (EAS)
 
 on:
   workflow_dispatch:
 
 jobs:
   Build:
-    name: Android & IOS Production Build (EAS)
+    name: EAS Production Build (Android & IOS) (EAS)
     runs-on: ubuntu-latest
     steps:
       - name : 📦 Checkout project repo
