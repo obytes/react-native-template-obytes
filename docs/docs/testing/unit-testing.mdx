@@ -11,7 +11,8 @@ import TestUtils from '!!raw-loader!../../../src/core/test-utils';
 
 As we mention in the overview page of the testing section, we include the [Jest](https://jestjs.io/) testing framework and the [React Native Testing Library](https://callstack.github.io/react-native-testing-library/) for unit tests, along with mocks for most libraries.
 
-If you are not familiar with the React Native Testing Library, we recommend reading the [official documentation](https://callstack.github.io/react-native-testing-library/) to get familiar with it.
+The following guide is not a tutorial on how to write tests using React Native Testing Library and Jest, but rather a guide on how to write tests with this starter and some best practices to follow. If you are not familiar with testing, we recommend reading the [official documentation](https://jestjs.io/docs/en/getting-started) of Jest and [React Native Testing Library](https://callstack.github.io/react-native-testing-library/) to get familiar with them.
+
 
 Also worth mentioning that we should aim to test the following:
 
@@ -71,6 +72,15 @@ It's important to run tests on CI in addition to local testing. This ensures tha
 Here is an example of the output of the GitHub action:
 
 ![GitHub action output](./img/github-action-output.png)
+
+:::tip
+Aiming for 100% test coverage is not always a good idea and doesn't always make sense. Same with testing views and components that only render a UI
+:::
+## More tests
+
+For more complex logic and components, we recommend taking a look at this amazing project which provides a lot of examples and best practices for testing React Native apps using React Native Testing Library and Jest:
+
+[⚡️ React Native Testing](https://github.com/vanGalilea/react-native-testing/)
 
 
 
