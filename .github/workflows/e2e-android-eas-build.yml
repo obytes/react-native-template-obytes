@@ -1,39 +1,33 @@
-name: E2E Tests Android (Maestro + Github Action)
+name: E2E Tests EAS Build Android (Maestro + Github Action)
 
 on:
   workflow_dispatch:
-  pull_request:
-    branches: [main, master]
+    inputs:
+      apk-url:
+        type: string
+        description: 'EAS APK URL'
+        required: true
+        default: ''
 
 jobs:
-  generate-test-apk:
-    if: github.event_name != 'pull_request' || ( github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'android-test-github'))
-    name: Generate Test APK (Gradle)
+  download-eas-apk:
+    if: github.event_name != 'pull_request'  && github.event.inputs.apk-url != ''
+    name: Download Test APK From EAS Url (wget)
     runs-on: ubuntu-latest
 
     steps:
-      - name : 📦 Checkout project repo
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name : 📦 Setup Node + PNPM + install deps
-        uses: ./.github/actions/setup-node-pnpm-install
-
-      - name: 📦 Set Up JDK + Generate Test APK
-        uses: ./.github/actions/setup-jdk-generate-apk
-        with:
-          APP_ENV: staging
+      - name : 📦 Download EAS APK
+        run : wget ${{ github.event.inputs.apk-url }} -O ./app-release.apk
 
       - name: Upload Test APK
         uses: actions/upload-artifact@v3
         with:
           name: test-apk
-          path: ./android/app/build/outputs/apk/release/app-release.apk
+          path: ./app-release.apk
 
   test-android:
-    name: Run Android E2E Tests (Maestro + Github Action)
-    needs: generate-test-apk
+    name: E2E Tests EAS Build Android (Maestro + Github Action)
+    needs: download-eas-apk
     runs-on: macOS-latest
 
     steps:
