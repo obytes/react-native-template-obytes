@@ -20,3 +20,4 @@ jobs:
         uses: ./.github/actions/eas-build
         with:
           APP_ENV: production
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}

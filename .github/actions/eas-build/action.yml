@@ -21,6 +21,10 @@ inputs:
     description: 'run for IOS (one of): true, false'
     required: true
     default: 'false'
+  EXPO_TOKEN:
+    description: 'EXPO_TOKEN'
+    required: true
+    default: 'false'
 
 runs:
   using: 'composite'
@@ -29,7 +33,7 @@ runs:
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
-          token: ${{ secrets.EXPO_TOKEN }}
+          token: ${{ inputs.EXPO_TOKEN }}
 
       - name: ⚙️ Run Prebuild
         run: pnpm prebuild:${{ inputs.APP_ENV }}
