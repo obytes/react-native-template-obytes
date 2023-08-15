@@ -25,7 +25,7 @@ jobs:
         with:
           APP_ENV: staging
 
-      - name: Upload Text APK
+      - name: Upload Test APK
         uses: actions/upload-artifact@v3
         with:
           name: test-apk
