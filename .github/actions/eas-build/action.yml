@@ -41,10 +41,10 @@ runs:
 
       - name: 📱 Run Android Build
         if: ${{ inputs.ANDROID == 'true' }}
-        run: pnpm build:${{ inputs.APP_ENV }}:android --non-interactive  --auto-submit --no-wait --message "Build  ${{ inputs.APP_ENV }} ${{ inputs.VERSION }}"
+        run: pnpm build:${{ inputs.APP_ENV }}:android --non-interactive  --no-wait --message "Build  ${{ inputs.APP_ENV }} ${{ inputs.VERSION }}"
         shell: bash
 
       - name: 📱 Run IOS Build
         if: ${{ inputs.IOS == 'true' }}
-        run: pnpm build:${{ inputs.APP_ENV }}:ios --non-interactive --auto-submit --no-wait --message "Build ${{ inputs.APP_ENV }} ${{ inputs.VERSION }}"
+        run: pnpm build:${{ inputs.APP_ENV }}:ios --non-interactive  --no-wait --message "Build ${{ inputs.APP_ENV }} ${{ inputs.VERSION }}"
         shell: bash
