@@ -43,7 +43,7 @@
     ],
     "description": "Component"
   },
-  // https://snippet-generator.app/?description=useQuery+with+variables&tabtrigger=useqv&snippet=import+type+%7B+AxiosError+%7D+from+%27axios%27%3B%0Aimport+%7B+createQuery+%7D+from+%27react-query-kit%27%3B%0A%0Aimport+%7B+client+%7D+from+%27..%2Fcommon%27%3B%0A%0Atype+Variables+%3D+%7B%243%7D%3B%0Atype+Response+%3D%7B%244%7D%3B%0A%0Aexport+const+use%241+%3D+createQuery%3CResponse%2C+Variables%2C+AxiosError%3E%28%0A++%27%242%27%2C%0A++%28%7B+queryKey%3A+%5BprimaryKey%2C+variables%5D+%7D%29+%3D%3E+%7B%0A++++return+client%0A++++++.get%28%60%5C%24%7BprimaryKey%7D%2F%5C%24%7Bvariables.%24%7B5%7D%7D%60%29%0A++++++.then%28%28response%29+%3D%3E+response.data%29%3B%0A++%7D%0A%29%3B&mode=vscode
+  // https://snippet-generator.app/?description=useQuery+with+variables&tabtrigger=useqv&snippet=import+type+%7B+AxiosError+%7D+from+%27axios%27%3B%0Aimport+%7B+createQuery+%7D+from+%27react-query-kit%27%3B%0A%0Aimport+%7B+client+%7D+from+%27..%2Fcommon%27%3B%0A%0Atype+Variables+%3D+%7B%243%7D%3B%0Atype+Response+%3D%7B%244%7D%3B%0A%0Aexport+const+use%241+%3D+createQuery%3CResponse%2C+Variables%2C+AxiosError%3E%28%7B%0A++primaryKey%3A+%27%242%27%2C%0A++queryFn%3A+%28%7B+queryKey%3A+%5BprimaryKey%2C+variables%5D+%7D%29+%3D%3E+%7B%0A++++return+client%0A++++++.get%28%60%5C%24%7BprimaryKey%7D%2F%5C%24%7Bvariables.%24%7B5%7D%7D%60%29%0A++++++.then%28%28response%29+%3D%3E+response.data%29%3B%0A++%7D%2C%0A%7D%29%3B&mode=vscode
   "useQuery with variables": {
     "prefix": "useqv",
     "body": [
@@ -55,18 +55,18 @@
       "type Variables = {$3};",
       "type Response ={$4};",
       "",
-      "export const use$1 = createQuery<Response, Variables, AxiosError>(",
-      "  '$2',",
-      "  ({ queryKey: [primaryKey, variables] }) => {",
+      "export const use$1 = createQuery<Response, Variables, AxiosError>({",
+      "  primaryKey: '$2',",
+      "  queryFn: ({ queryKey: [primaryKey, variables] }) => {",
       "    return client",
       "      .get(`\\${primaryKey}/\\${variables.${5}}`)",
       "      .then((response) => response.data);",
-      "  }",
-      ");"
+      "  },",
+      "});"
     ],
     "description": "useQuery with variables"
   },
-  //https://snippet-generator.app/?description=useQuery&tabtrigger=useq&snippet=import+type+%7B+AxiosError+%7D+from+%27axios%27%3B%0Aimport+%7B+createQuery+%7D+from+%27react-query-kit%27%3B%0A%0Aimport+%7B+client+%7D+from+%27..%2Fcommon%27%3B%0A%0Atype+Response+%3D+%7B%243%7D%3B%0Atype+Variables+%3D+void%3B%0A%0Aexport+const+use%241+%3D+createQuery%3CResponse%2C+Variables%2C+AxiosError%3E%28%0A++%60%242%60%2C%0A++%28%7B+queryKey%3A+%5BprimaryKey%5D+%7D%29+%3D%3E+%7B%0A++++return+client.get%28%60%5C%24%7BprimaryKey%7D%60%29.then%28%28response%29+%3D%3E+response.data.posts%29%3B%0A++%7D%0A%29%3B&mode=vscode
+  //https://snippet-generator.app/?description=useQuery&tabtrigger=useq&snippet=import+type+%7B+AxiosError+%7D+from+%27axios%27%3B%0Aimport+%7B+createQuery+%7D+from+%27react-query-kit%27%3B%0A%0Aimport+%7B+client+%7D+from+%27..%2Fcommon%27%3B%0A%0Atype+Response+%3D+%7B%243%7D%3B%0Atype+Variables+%3D+void%3B%0A%0Aexport+const+use%241+%3D+createQuery%3CResponse%2C+Variables%2C+AxiosError%3E%28%7B%0A++primaryKey%3A+%60%242%60%2C%0A++queryFn%3A+%28%7B+queryKey%3A+%5BprimaryKey%5D+%7D%29+%3D%3E+%7B%0A++++return+client.get%28%60%5C%24%7BprimaryKey%7D%60%29.then%28%28response%29+%3D%3E+response.data.posts%29%3B%0A++%7D%0A%7D%29%3B&mode=vscode
   "useQuery": {
     "prefix": "useq",
     "body": [
@@ -78,12 +78,12 @@
       "type Response = {$3};",
       "type Variables = void;",
       "",
-      "export const use$1 = createQuery<Response, Variables, AxiosError>(",
-      "  `$2`,",
-      "  ({ queryKey: [primaryKey] }) => {",
+      "export const use$1 = createQuery<Response, Variables, AxiosError>({",
+      "  primaryKey: `$2`,",
+      "  queryFn: ({ queryKey: [primaryKey] }) => {",
       "    return client.get(`\\${primaryKey}`).then((response) => response.data.posts);",
       "  }",
-      ");"
+      "});"
     ],
     "description": "useQuery"
   },
@@ -99,14 +99,14 @@
       "type Variables = {$3};",
       "type Response = {$4};",
       "",
-      "export const use$1 = createMutation<Response, Variables, AxiosError>(",
-      "  async (variables) =>",
+      "export const use$1 = createMutation<Response, Variables, AxiosError>({",
+      "  mutationFn: async (variables) =>",
       "    client({",
       "      url: '$2',",
       "      method: 'POST',",
       "      data: variables,",
       "    }).then((response) => response.data)",
-      ");"
+      "});"
     ],
     "description": "useMutation "
   },

@@ -14,6 +14,7 @@
         "image": "latest"
       },
       "env": {
+        "EXPO_NO_DOTENV": "1",
         "APP_ENV": "production",
         "FLIPPER_DISABLE": "1"
       },
@@ -34,6 +35,7 @@
       },
       "env": {
         "APP_ENV": "staging",
+        "EXPO_NO_DOTENV": "1",
         "FLIPPER_DISABLE": "1"
       },
 
@@ -52,7 +54,8 @@
         "image": "latest"
       },
       "env": {
-        "APP_ENV": "development"
+        "APP_ENV": "development",
+        "EXPO_NO_DOTENV": "1"
       },
 
       "prebuildCommand": "prebuild --skip-dependency-update react",
@@ -69,7 +72,8 @@
         "image": "latest"
       },
       "env": {
-        "APP_ENV": "development"
+        "APP_ENV": "development",
+        "EXPO_NO_DOTENV": "1"
       },
       "node": "14.18.1",
       "prebuildCommand": "prebuild --skip-dependency-update react",
