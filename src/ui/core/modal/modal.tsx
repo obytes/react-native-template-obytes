@@ -5,7 +5,12 @@ import * as React from 'react';
 import { View } from '../view';
 import { renderBackdrop } from './modal-backdrop';
 import { ModalHeader } from './modal-header';
-import type { ModalProps } from './types';
+import type { ModalProps, ModalRef } from './types';
+
+export const useModalRef = () => {
+  const ref = React.useRef<BottomSheetModal>(null);
+  return ref;
+};
 
 export const Modal = React.forwardRef(
   (
@@ -15,18 +20,18 @@ export const Modal = React.forwardRef(
       detached = false,
       ...props
     }: ModalProps,
-    ref: React.ForwardedRef<BottomSheetModal>
+    ref: ModalRef
   ) => {
     const detachedProps = React.useMemo(
       () => getDetachedProps(detached),
       [detached]
     );
-    const bottomSheetRef = React.useRef<BottomSheetModal>(null);
+    const bottomSheetRef = useModalRef();
     const snapPoints = React.useMemo(() => _snapPoints, [_snapPoints]);
 
     const dismiss = React.useCallback(() => {
       bottomSheetRef.current?.dismiss();
-    }, []);
+    }, [bottomSheetRef]);
 
     React.useImperativeHandle(
       ref,

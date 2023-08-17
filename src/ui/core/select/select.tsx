@@ -1,9 +1,9 @@
-import type { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useColorScheme } from 'nativewind';
 import * as React from 'react';
 
 import colors from '@/ui/theme/colors';
 
+import { useModalRef } from '../modal';
 import { Text } from '../text';
 import { TouchableOpacity } from '../touchable-opacity';
 import { View } from '../view';
@@ -31,9 +31,15 @@ export const Select = (props: SelectProps) => {
     disabled = false,
     onSelect,
   } = props;
-  const optionsRef = React.useRef<BottomSheetModal>(null);
-  const open = React.useCallback(() => optionsRef.current?.present(), []);
-  const close = React.useCallback(() => optionsRef.current?.dismiss(), []);
+  const optionsRef = useModalRef();
+  const open = React.useCallback(
+    () => optionsRef.current?.present(),
+    [optionsRef]
+  );
+  const close = React.useCallback(
+    () => optionsRef.current?.dismiss(),
+    [optionsRef]
+  );
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
   const onSelectOption = React.useCallback(

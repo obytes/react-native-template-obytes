@@ -1,24 +1,26 @@
-import type { BottomSheetModal } from '@gorhom/bottom-sheet';
 import * as React from 'react';
 
 import { useSelectedLanguage } from '@/core';
 import { translate } from '@/core';
 import type { Language } from '@/core/i18n/resources';
 import type { Option } from '@/ui';
-import { Options } from '@/ui';
+import { Options, useModalRef } from '@/ui';
 
 import { Item } from './item';
 
 export const LanguageItem = () => {
   const { language, setLanguage } = useSelectedLanguage();
-  const optionsRef = React.useRef<BottomSheetModal>(null);
-  const open = React.useCallback(() => optionsRef.current?.present(), []);
+  const optionsRef = useModalRef();
+  const open = React.useCallback(
+    () => optionsRef.current?.present(),
+    [optionsRef]
+  );
   const onSelect = React.useCallback(
     (option: Option) => {
       setLanguage(option.value as Language);
       optionsRef.current?.dismiss();
     },
-    [setLanguage]
+    [setLanguage, optionsRef]
   );
 
   const langs = React.useMemo(
