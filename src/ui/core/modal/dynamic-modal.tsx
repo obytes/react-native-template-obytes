@@ -5,20 +5,15 @@ import {
 } from '@gorhom/bottom-sheet';
 import * as React from 'react';
 
-import { Modal } from './modal';
-import type { ModalProps } from './types';
-
-// can't accept children as function because we can't pass ref to function component
-type DynamicModalProps = Omit<ModalProps, 'children'> & {
-  children: React.ReactNode;
-};
+import { Modal, useModalRef } from './modal';
+import type { DynamicModalProps, ModalRef } from './types';
 
 export const DynamicModal = React.forwardRef(
   (
     { snapPoints = ['CONTENT_HEIGHT'], children, ...props }: DynamicModalProps,
-    ref: React.ForwardedRef<BottomSheetModal>
+    ref: ModalRef
   ) => {
-    const bottomSheetRef = React.useRef<BottomSheetModal>(null);
+    const bottomSheetRef = useModalRef();
     const {
       animatedHandleHeight,
       animatedSnapPoints,
