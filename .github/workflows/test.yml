@@ -25,7 +25,7 @@ jobs:
 
       - name: Jest Coverage Comment
         uses: MishaKav/jest-coverage-comment@main
-        if: github.event_name == 'pull_request'
+        if: (success() || failure()) && github.event_name == 'pull_request'
         with:
           coverage-summary-path: ./coverage/coverage-summary.json
           summary-title: '💯 Test Coverage'
@@ -36,6 +36,5 @@ jobs:
           coverage-title: 👀 Tests Details
           coverage-path: ./coverage/coverage.txt
           report-only-changed-files: true
-
 
 
