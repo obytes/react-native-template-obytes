@@ -28,6 +28,18 @@ export default defineConfig({
 					tag: 'meta',
 					attrs: { property: 'twitter:image', content: site + 'og.jpg?v=1' },
 				},
+        {
+          tag:'link',
+          attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        },
+        {
+          tag:'link',
+          attrs: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
+        },
+        {
+          tag:'link',
+          attrs: { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap' },
+        }
       ],
       sidebar: [
         {
@@ -142,8 +154,8 @@ export default defineConfig({
       ],
       customCss: [
         // Fontsource files for to regular and semi-bold font weights.
-        '@fontsource/ibm-plex-mono/500.css',
-        '@fontsource/ibm-plex-mono/600.css',
+        // '@fontsource/ibm-plex-mono/500.css',
+        // '@fontsource/ibm-plex-mono/600.css',
         './src/styles/custom.css',
       ],
       lastUpdated: true,
