@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 import expressiveCode from 'astro-expressive-code';
-const site = 'https://starlight.astro.build/';
+const site = 'https://starter.obytes.com/';
 
 // https://astro.build/config
 export default defineConfig({
@@ -52,23 +52,23 @@ export default defineConfig({
             // Each item here is one entry in the navigation menu.
             {
               label: 'Create New App',
-              link: '/get-started/create-new-app/',
+              link: '/getting-started/create-new-app/',
             },
             {
               label: 'Customize Your App',
-              link: '/get-started/customize-app/',
+              link: '/getting-started/customize-app/',
             },
             {
               label: 'Rules and Conventions',
-              link: '/get-started/rules-and-conventions/',
+              link: '/getting-started/rules-and-conventions/',
             },
             {
               label: 'Project Structure',
-              link: '/get-started/project-structure/',
+              link: '/getting-started/project-structure/',
             },
             {
               label: 'Environment Variables and Configurations',
-              link: '/get-started/environment-vars-config/',
+              link: '/getting-started/environment-vars-config/',
             },
           ],
         },
