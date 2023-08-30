@@ -39,6 +39,16 @@ export default defineConfig({
         {
           tag:'link',
           attrs: { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap' },
+        },
+        {
+          tag: 'script',
+          attrs: { src: 'https://cdn.jsdelivr.net/npm/@minimal-analytics/ga4/dist/index.js', async: true }
+        },{
+          tag: 'script',
+          content: ` window.minimalAnalytics = {
+            trackingId: 'G-GQ45JJD1JC',
+            autoTrack: true,
+          };`
         }
       ],
       sidebar: [

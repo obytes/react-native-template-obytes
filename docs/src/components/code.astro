@@ -12,7 +12,7 @@ interface Props {
 
 const { file, language, meta } = Astro.props;
 const fileNamePath = '../' + file;
-const fileEtension = file.split('.').pop();
+const fileEtension = file.split('.').pop() ?? 'js';
 const code = await fs.readFile(fileNamePath, 'utf-8');
 const ec = new ExpressiveCode({});
 
