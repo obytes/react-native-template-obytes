@@ -1,5 +1,5 @@
 :root {
-  --sl-font: 'IBM Plex Mono', monospace;
+  --sl-font: 'IBM Plex Mono', sans-serif;
 }
 
 /* Dark mode colors. */
@@ -62,6 +62,13 @@
 
 [data-page-title] {
   font-size: 3rem;
+}
+
+/* date page title onl 2.5rem on mobile devices */
+@media (max-width: 768px) {
+  [data-page-title] {
+    font-size: 2.5rem;
+  }
 }
 
 .card-grid > .card {
