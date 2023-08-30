@@ -1,16 +1,12 @@
 ---
-sidebar_position: 3
+title: Data Fetching
+description: Learn how to fetch data from a server using react-query and axios.
+head:
+  - tag: title
+    content: Data Fetching | React Native / Expo Starter
 ---
 
-import CodeBlock from '@theme/CodeBlock';
-import UsePosts from '!!raw-loader!../../../src/api/posts/use-posts.ts';
-import UsePost from '!!raw-loader!../../../src/api/posts/use-post.ts';
-import UseAddPost from '!!raw-loader!../../../src/api/posts/use-add-post.ts';
-import Feed from '!!raw-loader!../../../src/screens/feed/list';
-import Post from '!!raw-loader!../../../src/screens/feed/post';
-import AddPost from '!!raw-loader!../../../src/screens/feed/add-post';
-
-# Data Fetching
+import CodeBlock from '../../../components/code.astro';
 
 From the beginning of React, the community has been building a rich ecosystem of tools and libraries that help you build your applications. One of the most important parts of this ecosystem is the ability to fetch data from a server and display it in your application.
 
@@ -18,7 +14,7 @@ While there are numerous options available for fetching data in React and React 
 
 ## What is react-query?
 
-[React-query](https://tanstack.com/query/v4/docs/overview) It is a very powerful library that helps you manage your data fetching, caching, invalidating, and even implement optimistic UI in a very simple way.
+[React-query](https://tanstack.com/query/v4/docs/overview) It is a very powerful library that helps you manage your data fetching, caching, invalidating, and even implementing optimistic UI in a very simple way.
 
 `react-query` offers hooks that simplify the process of fetching and updating data in your app. You can use pre-built hooks like `useQuery` and `useMutation`, or create your own custom hooks based on them. This makes it easier for developers to manage data and build more efficient applications.
 
@@ -36,13 +32,11 @@ To make writing queries and mutation even easier we are using [react-query-kit](
 
 You recommend reading Those guides and check those resources to learn more about react-query:
 
-
 - [React-query](https://tanstack.com/query/v4/docs/overview)
 - [react-query-kit](https://github.com/liaoliao666/react-query-kit)
 - [Practical React Query](https://tkdodo.eu/blog/practical-react-query)
 
 :::
-
 
 ## Data Fetching Use Cases
 
@@ -64,19 +58,15 @@ Here are the steps to create the `usePosts` hook:
 2. Define the type for your `Response` and `Variables` if required, to ensure that you receive the correct data from the server. For instance, you could create a `Post` type for the posts.
 3. Use the `createQuery` function from `react-query-kit` library to create a query hook that will fetch the data from the server. We'll name it `usePosts` hook.
 
-
 Below is the complete code for the use-posts.ts file:
 
-<CodeBlock title="src/api/posts/use-posts.ts" language="tsx">
-  {UsePosts}
-</CodeBlock>
-
+<CodeBlock file="src/api/posts/use-posts.ts" />
 
 As you may notice in the code above using `createQuery` function is very simple. the `createQuery` function accept 3 params: `queryKey`, `queryFn` and `options`. read more about (createQuery)[https://github.com/liaoliao666/react-query-kit#createQuery]
 
 :::tip
-Use `useq` snippet to generate query in no time using vscode : [🔗](#create-api-hooks-with-vs-code-snippets)
-![useQuery snippet](./img/use-query.gif)
+Use `useq` snippet to generate query in no time using VSCode
+![use-query](https://github.com/obytes/react-native-template-obytes/assets/11137944/9acc189b-2425-491a-a644-02c51c6d405f)
 
 :::
 
@@ -86,10 +76,7 @@ Now that we have created our custom hook, we can use it in our app to display a 
 2. Import and use the usePosts hook we created earlier to fetch the list of posts.
 3. Use the fetched data to display a list of posts.
 
-
-<CodeBlock title="src/screens/feed/list.tsx" language="tsx">
-  {Feed}
-</CodeBlock>
+<CodeBlock file="src/screens/feed/list.tsx" />
 
 As you can see in the code above, we use the `usePosts` hook to fetch data and handle the loading state. This allows us to display a loading indicator while the data is being fetched, and then display the list of posts once the data is ready.
 
@@ -103,15 +90,11 @@ We can use the same steps we used earlier to create the `usePosts` hook. The onl
 
 Below is the complete code for the `use-post.ts` file:
 
-<CodeBlock title="src/api/posts/use-post.ts" language="tsx">
-  {UsePost}
-</CodeBlock>
+<CodeBlock file="src/api/posts/use-post.ts" />
 
 Now our hook is ready to be used in our post details screen:
 
-<CodeBlock title="src/screens/feed/post.tsx" language="tsx">
-  {Post}
-</CodeBlock>
+<CodeBlock file="src/screens/feed/post.tsx" />
 
 ### Add new post
 
@@ -120,21 +103,17 @@ To add a new post, we can use the `createMutation` function from the `react-quer
 Here are the steps to create the useAddPost hook:
 
 1. Create a new file called `use-add-post.ts` inside the `src/api/posts` folder.
-2. Define a type for your `Variables` and `Response`  to ensure that you are sending the correct data to the server.
+2. Define a type for your `Variables` and `Response` to ensure that you are sending the correct data to the server.
 3. Use the `createMutation` function from `react-query-kit` library to create a mutation hook that will send the data to the server. We'll name this hook `useAddPost`.
 
 Here is the complete code for the `use-add-post.ts` file:
 
-<CodeBlock title="src/api/posts/use-add-post.ts" language="tsx">
-  {UseAddPost}
-</CodeBlock>
+<CodeBlock file="src/api/posts/use-add-post.ts" />
 
 :::tip
-Use `usem` snippet to generate mutation in no time using vscode : [🔗](#create-api-hooks-with-vs-code-snippets)
-![useQuery snippet](./img/use-mutation.gif)
+Use `usem` snippet to generate mutation in no time using vscode
 
 :::
-
 
 Now that we have our mutation hook ready. Lets create a new screen called `AddPost` and use data from `useAddPost` hook to create a new post:
 
@@ -145,9 +124,7 @@ Exactly the same way we did in [form section](../ui-and-theme/Forms.mdx) while c
 3. Get `mutate` function from `useAddPost` hook and call it when the form is submitted
 4. You can use the `isLoading` state to display a loading indicator while the data is being sent to the server and then redirect the user to the feed screen on success.
 
-<CodeBlock title="src/screens/feed/add-post.tsx" language="tsx">
-  {AddPost}
-</CodeBlock>
+<CodeBlock file="src/screens/feed/add-post.tsx" />
 
 ## Create API Hooks with Vs Code Snippets
 
@@ -155,12 +132,11 @@ Maybe you mentioned that creating a new query or mutation hook looks the same ev
 
 - `useq` : Create a new query hook
 
-![useQuery snippet](./img/use-query.gif)
+![use-query](https://github.com/obytes/react-native-template-obytes/assets/11137944/9acc189b-2425-491a-a644-02c51c6d405f)
 
 - `useqp` : Create a new query hook with params
-
 
 - `useiq` : Create a new infinite query hook
 - `usem` : Create a new mutation hook
 
-![useMutation snippet](./img/use-mutation.gif)
+![use-mutation](https://github.com/obytes/react-native-template-obytes/assets/11137944/c322f827-b71d-4629-a337-eb7cd96d4125)
