@@ -2,16 +2,33 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 import expressiveCode from 'astro-expressive-code';
+const site = 'https://starlight.astro.build/';
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
     expressiveCode(),
     starlight({
-      title: 'Obytes Starter',
+      title: 'Obytes Starter | React Native Template',
+      description: `Your All-in-One Solution for Building Outstanding React Native/Expo Apps. From editor setup to store submission, we've got you covered!`,
+      logo: {
+				light: '/src/assets/logo-titled.svg',
+        dark: '/src/assets/logo-titled.svg',
+				replacesTitle: true,
+			},
       social: {
         github: 'https://github.com/obytes/react-native-template-obytes',
       },
+      head:[
+        {
+					tag: 'meta',
+					attrs: { property: 'og:image', content: site + 'og.png?v=1' },
+				},
+				{
+					tag: 'meta',
+					attrs: { property: 'twitter:image', content: site + 'og.jpg?v=1' },
+				},
+      ],
       sidebar: [
         {
           label: 'Overview',
@@ -71,8 +88,46 @@ export default defineConfig({
           items: [
             // Each item here is one entry in the navigation menu.
             {
+              label: 'Navigation',
+              link: '/guides/navigation/',
+            },
+            {
               label: 'Authentication',
               link: '/guides/authentication/',
+            },
+            {
+              label: 'Data Fetching',
+              link: '/guides/data-fetching/',
+            },
+            {
+              label: 'Internationalization',
+              link: '/guides/internationalization/',
+            },
+            {
+              label: 'Storage',
+              link: '/guides/storage/',
+            },
+            {
+              label: 'Upgrade Dependencies',
+              link: '/guides/upgrading-deps/',
+            },
+          ],
+        },
+        {
+          label: 'Testing',
+          items: [
+            // Each item here is one entry in the navigation menu.
+            {
+              label: 'Overview',
+              link: '/testing/overview/',
+            },
+            {
+              label: 'Unit Testing',
+              link: '/testing/unit-testing/',
+            },
+            {
+              label: 'E2E Testing',
+              link: '/testing/end-to-end-testing/',
             },
           ],
         },
@@ -87,11 +142,11 @@ export default defineConfig({
       ],
       customCss: [
         // Fontsource files for to regular and semi-bold font weights.
-        // '@fontsource/ibm-plex-mono/400.css',
         '@fontsource/ibm-plex-mono/500.css',
         '@fontsource/ibm-plex-mono/600.css',
         './src/styles/custom.css',
       ],
+      lastUpdated: true,
     }),
   ],
   // Process images with sharp: https://docs.astro.build/en/guides/assets/#using-sharp

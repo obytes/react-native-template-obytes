@@ -1,12 +1,12 @@
 ---
-sidebar_position: 3
+title: End-to-End Testing
+description: How to write end-to-end tests using Maestro
+head:
+  - tag: title
+    content: End-to-End Testing | React Native / Expo Starter
 ---
 
-
-import CodeBlock from '@theme/CodeBlock';
-import LoginTests from '!!raw-loader!../../../.maestro/auth/login-with-validation.yaml';
-
-# End-to-End Testing
+import CodeBlock from '../../../components/code.astro';
 
 Writing end-to-end tests is one of the best ways to ensure that your app is working as expected and simulate exactly how a user would interact with it. However, running those tests can be challenging and time-consuming due to their nature and the need to run them on a device or emulator.
 
@@ -15,7 +15,7 @@ The good news is that we have included [Maestro](https://www.mobile.dev/) the ea
 One of Maestro's best features is its user-friendly test writing capability. It's incredibly simple to write tests using the app, making it accessible to PMs, QAs, and even designers.
 
 :::tip
- Watch this talk by the amazing Henry Moulton for more details about Maestro and how it can help you write better tests: [Henry Moulton – React Native end-to-end testing with Maestro | App.js Conf 2023](https://www.youtube.com/watch?v=uoCzBdFCoqc)
+Watch this talk by the amazing Henry Moulton for more details about Maestro and how it can help you write better tests: [Henry Moulton – React Native end-to-end testing with Maestro | App.js Conf 2023](https://www.youtube.com/watch?v=uoCzBdFCoqc)
 
 :::
 
@@ -35,11 +35,9 @@ Here is a quick test we wrote for login screen using Maestro:
 
 Read more about how to write end-to-end test with Maestro [here](https://maestro.mobile.dev/)
 
-<CodeBlock language="yaml" title=".maestro/auth/login-with-validation">
-  {LoginTests}
-</CodeBlock>
+<CodeBlock file=".maestro/auth/login-with-validation.yaml" />
 
-to run the tests, run the following command:
+To run the tests, execute the following command:
 
 ```bash
 pnpm e2e-test
@@ -55,10 +53,10 @@ The starter comes with a bunch of GitHub actions that will help you run the test
 
 > for now we only support running tests on Android, we are working on adding support for iOS.
 
-* `e2e-test.yml` -  Triggered when a PR is labeled with `android-test-github` or run manually from the actions tab in GitHub.
-This action will generate a staging build for the app, set up the emulator, and run the tests using Maestro.
+- `e2e-test.yml` - Triggered when a PR is labeled with `android-test-github` or run manually from the actions tab in GitHub.
+  This action will generate a staging build for the app, set up the emulator, and run the tests using Maestro.
 
-* `e2e-test-maestro.yml` - Triggered when a PR is labeled with `android-test-maestro-cloud` or run manually from the actions tab in GitHub.
-This action will run the tests using Maestro Cloud. You will need to add your Maestro Cloud token to the secrets in GitHub.
+- `e2e-test-maestro.yml` - Triggered when a PR is labeled with `android-test-maestro-cloud` or run manually from the actions tab in GitHub.
+  This action will run the tests using Maestro Cloud. You will need to add your Maestro Cloud token to the secrets in GitHub.
 
-* `e2e-test-eas-build.yml` - To test a specific build from EAS, you can use this action. You will need to add your APK URL as an input to the action.
+- `e2e-test-eas-build.yml` - To test a specific build from EAS, you can use this action. You will need to add your APK URL as an input to the action.
