@@ -22,7 +22,7 @@ export default defineConfig({
       head:[
         {
 					tag: 'meta',
-					attrs: { property: 'og:image', content: site + 'og.png?v=1' },
+					attrs: { property: 'og:image', content: site + 'og.jpg?v=1' },
 				},
 				{
 					tag: 'meta',
