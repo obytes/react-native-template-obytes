@@ -54,15 +54,15 @@ When creating this starter kit, we had several guiding principles in mind::
 
 ## ✍️ Documentation
 
-- [Create new project ](https://starter.obytes.com/docs/getting-started/create-new-app)
-- [Rules and Conventions](https://starter.obytes.com/docs/getting-started/rules-and-convetions)
-- [Project structure](https://starter.obytes.com/docs/getting-started/project-structure)
-- [Environment vars and config](https://starter.obytes.com/docs/getting-started/environment-vars-config)
-- [UI and Theming](https://starter.obytes.com/docs/ui-and-theme/ui-theming)
-- [Components](https://starter.obytes.com/docs/ui-and-theme/components)
-- [Forms](https://starter.obytes.com/docs/ui-and-theme/Forms)
-- [Data fetching](https://starter.obytes.com/docs/guides/data-fetching)
-- [Contribute to starter](https://starter.obytes.com/docs/contribute)
+- [Create new project ](https://starter.obytes.com/getting-started/create-new-app/)
+- [Rules and Conventions](https://starter.obytes.com/getting-started/rules-and-conventions/)
+- [Project structure](https://starter.obytes.com/getting-started/project-structure)
+- [Environment vars and config](https://starter.obytes.com/getting-started/environment-vars-config)
+- [UI and Theming](https://starter.obytes.com/ui-and-theme/ui-theming)
+- [Components](https://starter.obytes.com/ui-and-theme/components)
+- [Forms](https://starter.obytes.com/ui-and-theme/forms/)
+- [Data fetching](https://starter.obytes.com/guides/data-fetching/)
+- [Contribute to starter](https://starter.obytes.com/how-to-contribute/)
 
 ## 😉 Why Expo?
 
