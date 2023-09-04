@@ -42,7 +42,7 @@ export const Foo = () => {
 };
 ```
 
-or as Text component comes with translation support, you can easily use it as follows:
+or as `Text` component comes with translation support, you can easily use it as follows:
 
 ```tsx
 import React from 'react';
@@ -54,7 +54,7 @@ export const Foo = () => {
 };
 ```
 
-- `useSetLanguage` hook: to change the current language. this hook return the selected language and a function to change the language.
+- `useSetLanguage` hook: to change the current language. This hook returns the selected language and a function to change the language.
 
 Additionally, the `useSetLanguage` hook will save the selected language in device storage using `MMKV` and will be used as the default language when the app is opened again As well as adding some extra config for RTL languages while updating the selected language.
 

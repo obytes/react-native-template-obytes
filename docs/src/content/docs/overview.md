@@ -31,13 +31,13 @@ When creating this starter kit, we had several guiding principles in mind::
 
 ## ⭐ key Features
 
-- ✅ The latest version of Expo SDK, along with the Custom Dev client, to give you access to a range of powerful features and tools.
+- ✅ The latest version of Expo SDK, along with the Custom Dev client gives you access to a range of powerful features and tools.
 - 🎉 [TypeScript](https://www.typescriptlang.org/) for type checking, to help you catch bugs and improve code quality.
 - 💅 A minimal UI kit built with [tailwindcss](https://www.nativewind.dev/), which provides a range of pre-defined classes for styling your app.
-- ⚙️ Support for multiple environment builds, including Production, Staging, and Development, using Expo configuration.
+- ⚙️ Support for multiple environments builds, including Production, Staging, and Development, using Expo configuration.
 - 🦊 Husky for Git Hooks, to automate your git hooks and enforce code standards.
 - 💡 A clean project structure with Absolute Imports, to make it easier to navigate and manage your code.
-- 🚫 Lint-staged for running linters and TypeScript checks on Git staged files, to ensure that your code is always up to standards.
+- 🚫 Lint-staged for running linter and TypeScript checks on Git staged files, to ensure that your code is always up to standards.
 - 🗂 VSCode recommended extensions, settings, and snippets to enhance the developer experience.
 - ☂️ Pre-installed [React Navigation](https://reactnavigation.org/) with examples, to provide a comprehensive navigation solution for your app.
 - 💫 An auth flow with [zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage solution to save sensitive data.

@@ -8,14 +8,13 @@ head:
 
 import CodeBlock from '../../../components/code.astro';
 
-
 The starter comes with a set of basic components and a simple design system based on Nativewind to help you get started and save you time.
 
-All those components can be found in the `src/ui/core` folder. Most of them are just wrappers around the React Native core components with `styled` function from Nativewind to make them ready for Tailwind CSS class Names.
+All those components can be found in the `src/ui/core` folder. Most of them are just wrappers around the React Native core components, using the `styled` function from Nativewind to prepare them for Tailwind CSS class names.
 
-Our philosophy is to keep the components as simple as possible and to avoid adding too much logic to them. This way, they are easier to reuse and to customize.
+Our philosophy is to keep the components as simple as possible and to avoid adding too much logic to them. This way, they are easier to reuse and customize.
 
-Based on your needs, you can either use them as they are or customize them to fit your needs as well as creating new ones based on the same approach.
+Based on your needs, you can either use them as they are or customize them to fit your needs. You can also create new ones based on the same approach.
 
 ```bash title="./src/ui/"
 .
@@ -50,10 +49,10 @@ Based on your needs, you can either use them as they are or customize them to fi
 
 Here is a simple example of more project specific component that uses some primitives components from the `ui` folder.
 
-<CodeBlock file="src/screens/feed/card.tsx"/>
+<CodeBlock file="src/screens/feed/card.tsx" />
 
 :::tip
-To save time creating new component or screens, we can just start typing `comp` and click enter to create a new component with the right structure.
+To save time when creating new components or screens, we can simply start typing `comp` and press Enter to generate a new component with the correct structure.
 
 ![Create component](https://github.com/obytes/react-native-template-obytes/assets/11137944/ca84555f-12b7-4048-98b8-3c8391bd9918)
 :::
@@ -62,7 +61,7 @@ To save time creating new component or screens, we can just start typing `comp` 
 
 The `View` component is a wrapper around the React Native `View` component with the `styled` function from Nativewind to accept Tailwind CSS class names.
 
-<CodeBlock  file="/src/ui/core/view.tsx" />
+<CodeBlock file="/src/ui/core/view.tsx" />
 
 **Props**
 
@@ -92,9 +91,9 @@ You can use `v` snippet to create a simple View with a default className
 
 The `TouchableOpacity` and `Pressable` components are wrappers around the React Native `TouchableOpacity` and `Pressable` components with the `styled` function from Nativewind to accept Tailwind CSS class names.
 
-<CodeBlock  file="src/ui/core/touchable-opacity.tsx" />
+<CodeBlock file="src/ui/core/touchable-opacity.tsx" />
 
-<CodeBlock  file="src/ui/core/pressable.tsx" />
+<CodeBlock file="src/ui/core/pressable.tsx" />
 
 **Props**
 
@@ -150,8 +149,7 @@ const MyComponent = () => {
 
 The `ActivityIndicator` component is a wrapper around the React Native `ActivityIndicator` component with the `styled` function from Nativewind to accept Tailwind CSS class names.
 
-<CodeBlock  file="src/ui/core/activity-indicator.tsx"/>
-
+<CodeBlock file="src/ui/core/activity-indicator.tsx" />
 
 **Props**
 
@@ -173,7 +171,7 @@ const MyComponent = () => {
 
 The `List` component is a wrapper around the `@shopify/flash-list` component with the `styled` function from Nativewind to accept Tailwind CSS class names as `contentContainerStyle`.
 
-<CodeBlock  file="src/ui/core/list/index.tsx"/>
+<CodeBlock file="src/ui/core/list/index.tsx" />
 
 **Props**
 
@@ -183,10 +181,10 @@ The `List` component is a wrapper around the `@shopify/flash-list` component wit
 <details>
   <summary>EmptyList</summary>
   <div>
-    We also provide a `EmptyList` component that you can use to display a
+    We also provide an `EmptyList` component that you can use to display a
     message when the list is empty. Feel free to customize it to fit your needs.
   </div>
-  <CodeBlock  file="src/ui/core/list/empty-list.tsx" />
+  <CodeBlock file="src/ui/core/list/empty-list.tsx" />
 </details>
 
 **Use Case**
@@ -237,10 +235,9 @@ const MyComponent = () => {
 
 ## Text
 
-The `Text` component comes with a set for variants based on a simple object configuration that you can easily customize.
-With this custom Text component you can use translation key as `tx` prop and it will automatically translate the text based on the current locale as week as supporting rtl language based on selected locale.
+The `Text` component comes with a set of variants based on a simple object configuration that you can easily customize. With this custom Text component, you can use the translation key as the `tx` prop, and it will automatically translate the text based on the current locale, as well as support right-to-left (RTL) languages based on the selected locale.
 
-<CodeBlock  file="src/ui/core/text.tsx" />
+<CodeBlock file="src/ui/core/text.tsx" />
 
 Make sure to update the `textVariants` object in `./src/ui/core/text.tsx` to fit your needs.
 
@@ -277,11 +274,11 @@ const MyComponent = () => {
 
 ## Button
 
-The starter comes with simple `Button` component that you can use to create a simple `TouchableOpacity` with a `Text` component inside. The `Button` support multiple variants `primary`, `secondary` and `outline` based on a simple object configuration to making updating and adding new variants easy.
+The starter comes with a simple `Button` component that you can use to create a basic `TouchableOpacity` with a `Text` component inside. The `Button` supports multiple variants: `primary`, `secondary`, and `outline`. These variants are based on a simple object configuration, making it easy to update and add new variants.
 
-Every variant must contain style for `container`, `indicator` and `text` keys. The `container` style will be applied to the `TouchableOpacity` and the `text` style will be applied to the `Text` component and the `indicator` style will be applied to the `ActivityIndicator` component when the `loading` prop is `true`.
+Every variant must contain styles for the `container`, `indicator`, and `text` keys. The `container` style will be applied to the `TouchableOpacity`, the `text` style will be applied to the `Text` component, and the `indicator` style will be applied to the `ActivityIndicator` component when the `loading` prop is set to `true`.
 
-<CodeBlock  file="src/ui/core/button.tsx" />
+<CodeBlock file="src/ui/core/button.tsx" />
 
 **Props**
 
@@ -321,14 +318,13 @@ const MyComponent = () => {
 
 ## Input
 
-We provide a simple `Input` component with a `Text` component for the label and a `TextInput` component for the input. This Input comes wit custom focus and error styling.
+We provide a simple `Input` component with a `Text` component for the label and a `TextInput` component for the input. This input comes with custom focus and error styling.
 
-You can use it as the same way you use the `TextInput` component from React Native but with extra props to customize the label and error styling.
+You can use it in the same way you use the `TextInput` component from React Native, but with additional props to customize the label and error styling.
 
-We tried to keep the `Input` component as simple as possible but you can add more functionality such as `onFocus` and `onBlur` or adding left and right icons to the input.
+We tried to keep the ` Input` component as simple as possible, but you can add more functionality, such as `onFocus`and`onBlur`, or adding left and right icons to the input.
 
-<CodeBlock  file="src/ui/core/input/input.tsx" />
-
+<CodeBlock file="src/ui/core/input/input.tsx" />
 
 **Props**
 
@@ -353,7 +349,7 @@ const MyComponent = () => {
 
 ## Controlled Input
 
-We provide a simple `ControlledInput` component that use the `Input` component under the hood but with a `useController` hook from `react-hook-form` to make it ready to use with `react-hook-form` library.
+We provide a simple `ControlledInput` component that uses the `Input` component under the hood but with a `useController` hook from `react-hook-form` to make it ready to use with `react-hook-form` library.
 
 Read more about Handling Forms [here](./forms).
 
@@ -365,7 +361,7 @@ We opt to use a bottom sheet instead of a dropdown to make it more flexible and 
 
 Feel free to update the component implementation to fit your need and as you keep the same Props signature for the `SelectInput` component the component will work with our form handling solution without any changes.
 
-<CodeBlock  file="src/ui/core/select/index.tsx" />
+<CodeBlock file="src/ui/core/select/index.tsx" />
 
 **Props**
 
@@ -409,6 +405,6 @@ const MyComponent = () => {
 
 ## Controlled Input
 
-We provide a simple `ControlledSelect` component that use the `Select` component under the hood but with a `useController` hook from `react-hook-form` to make it ready to use with `react-hook-form` library.
+We provide a simple `ControlledSelect` component that uses the `Select` component under the hood but with a `useController` hook from `react-hook-form` to make it ready to use with `react-hook-form` library.
 
 Read more about Handling Forms [here](./forms).

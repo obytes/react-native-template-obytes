@@ -8,30 +8,28 @@ head:
 
 import CodeBlock from '../../../components/code.astro';
 
-
-
 Forms are a common feature of any application. In this section, we will show you how you can handle form the right way with the starter.
 
 ## react-hook-form
 
 The starter uses [react-hook-form](https://react-hook-form.com/) to handle forms. It is a popular library that provides a lot of features out of the box. It is also very easy to use and integrate with React Native.
 
-Make sure check the [react-hook-form documentation](https://react-hook-form.com/) to learn more about how to use it.
+Make sure to check the [react-hook-form](https://react-hook-form.com/) documentation](https://react-hook-form.com/) to learn more about how to use it.
 
-As we mention in the components section of the documentation [here](./components), we create a set of controlled components that are only used with react-hook-form. The starter only provide two components: `ControlledInput` and `ControlledSelect` but you can easily create other components using the same approach.
+As we mention in the components section of the documentation [here](./components), we create a set of controlled components that are only used with react-hook-form. The starter only provides two components: `ControlledInput` and `ControlledSelect` but you can easily create other components using the same approach.
 
 Here is the complete code of our `ControlledInput` when we use `useController` hook from react-hook-form to handle form state and validation rules:
 
-<CodeBlock  file="src/ui/core/input/controlled-input.tsx" />
+<CodeBlock file="src/ui/core/input/controlled-input.tsx" />
 
 If you want to create your own controlled component, you just need to make sure your component props type extends from `InputControllerType` the same way we are using it with `ControlledInput`.
-Here is an other example of a Select input we create using the same approach as `ControlledInput`:
+Here is another example of a Select input we create using the same approach as `ControlledInput`:
 
-<CodeBlock  file="src/ui/core/select/controlled-select.tsx" />
+<CodeBlock file="src/ui/core/select/controlled-select.tsx" />
 
 ## Use Case
 
-Lets say you want to create a form that allows the user login to the application. You will need to create a screen that will contain the form with email and password as well as a button to submit the form. The form will need to be validated and the data will need to be sent to the backend. here is who you can do it:
+Let's say you want to create a form that allows the user to log in to the application. You will need to create a screen that contains the form with email and password fields, as well as a submit button. The form will need to be validated, and the data will need to be sent to the backend. Here's how you can do it:
 
 **Step 1: Create your schema validation **
 
@@ -50,7 +48,7 @@ type FormType = z.infer<typeof schema>;
 
 **Step 2: Create your form component**
 
-Now that you have your schema validation, you can easily create your login screen using react-hook-form and controlled components we already have.
+Now that you have your schema validation, you can easily create your login screen using react-hook-form and the controlled components we already have.
 Here is how you can create your login screen:
 
 ```tsx
@@ -111,22 +109,16 @@ Any Component with props that inherit from the `InputControllerType` can be used
 The template comes with [`react-native-avoid-softinput`](https://mateusz1913.github.io/react-native-avoid-softinput/) pre-installed and configured to handle the keyboard. You only need to use the `useSoftKeyboardEffect` hook on your screen, and you're good to go.
 
 ```tsx
-
 import React from 'react';
 import { useSoftKeyboardEffect } from '@/core/keyboard';
 import { LoginForm } from './login-form';
 
 export const Login = () => {
   useSoftKeyboardEffect();
-  return <LoginForm  />;
+  return <LoginForm />;
 };
-
 ```
-
-
-
 
 :::tip
 Note that the hook is not an all-in-one solution for all cases, and you might need more customization depending on your use case. So, please refer to the documentation [recipes pages](https://mateusz1913.github.io/react-native-avoid-softinput/docs/recipes/recipes-form) for more information.
 :::
-

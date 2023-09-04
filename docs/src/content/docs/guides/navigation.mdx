@@ -8,19 +8,19 @@ head:
 
 import CodeBlock from '../../../components/code.astro';
 
-[react-navigation](https://reactnavigation.org/) is the most popular navigation library for React Native. It is easy to use and provides a lot of features out of the box. It is also very customizable and extensible. It is a great choice for most apps now a day waiting for expo router to be stable and ready for production 😀 (looks promising 🔥).
+[react-navigation](https://reactnavigation.org/) is the most popular navigation library for React Native. It is easy to use and provides a lot of features out of the box. It is also highly customizable and extensible. It is a great choice for most apps nowadays, while waiting for Expo Router to become stable and ready for production. It looks promising! 🔥
 
 Probably nothing we can add here that doesn't exist in the official docs except that we are using native stack navigation instead of the default one.
 
-All the navigation related code is located in the `src/navigation` folder. we opted for this approach to keep the project structure clean and easy to navigate.
+All the navigation-related code is located in the `src/navigation` folder. We opted for this approach to keep the project structure clean and easy to navigate.
 
-One last think to mention is that we added a global declaration for `ReactNavigation` namespace to add Typescript support to `navigate` function from `useNavigation` hook.
+One last thing to mention is that we added a global declaration for the `ReactNavigation` namespace to add TypeScript support to the `navigate` function from the `useNavigation` hook.
 
 <CodeBlock file="src/navigation/types.tsx" />
 
-One ever you add a new stack navigator you need to add it to the `RootStackParamList` type as mentioned in the snippet above.
+Once you add a new stack navigator, you need to include it in the `RootStackParamList` type, as mentioned in the snippet above.
 
-The Demo app comes with different stack and tabs navigator. feel free to remove what is not working for you and add your own using the same approach as the existing ones and remember to add the the typing to the `RootStackParamList` type.
+The Demo app comes with a simple stack and tabs navigator. Feel free to remove what is not working for you and add your own using the same approach as the existing ones. Also, remember to add the typing to the `RootStackParamList` type.
 
 Here is a simple example of the feed stack navigator.
 

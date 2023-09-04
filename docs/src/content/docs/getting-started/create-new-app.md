@@ -42,7 +42,7 @@ Because we're using the Expo custom dev client to support native dependencies wi
 
 ## Open Project on VS Code
 
-VS code is the recommended editor for this starter, The starter comes with a list of recommended extensions,settings and project snippets that we think will improve your coding experience.
+VS code is the recommended editor for this starter, The starter comes with a list of recommended extensions, settings and project snippets that we think will improve your coding experience.
 
 Open the project on VS Code using the following command:
 
@@ -50,7 +50,7 @@ Open the project on VS Code using the following command:
 code .
 ```
 
-When you open the project on VS Code you will see a popup asking you to install the recommended extensions, the easy way is to install all recommended extensions by clicking on `Install All` button.
+When you open the project on VS Code you will see a popup asking you to install the recommended extensions, The easy way is to install all recommended extensions by clicking on `Install All` button.
 
 To ensure that your code is properly validated and formatted, we highly recommend installing all of the recommended extensions. However, if you're hesitant to install them all, we suggest at least installing the following extensions, as they are essential to our code validation and formatting on file save:
 

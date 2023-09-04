@@ -20,17 +20,17 @@ While there are numerous options available for fetching data in React and React 
 
 ## Using react-query-kit & axios
 
-As the starter is designed to save you time and effort, we already have installed react-query and axios and configured them for you.
+As the starter is designed to save you time and effort, we already have installed react-query and Axios and configured them for you.
 
 The `src/api` folder contains all the fetching logic, with a `common` sub-folder that holds a `client`, `queryClient`, and several utility functions specifically designed to work with `react-query`.
 
-Because we're using axios as the client, we can leverage all its advanced features, including interceptors, request cancellation, and more. For additional information on axios, you can check out their website [here](https://axios-http.com/).
+Because we're using Axios as the client, we can leverage all its advanced features, including interceptors, request cancellation, and more. For additional information on Axios, you can check out their website [here](https://axios-http.com/).
 
-To make writing queries and mutation even easier we are using [react-query-kit](https://github.com/liaoliao666/react-query-kit), a simple toolkit that make ReactQuery reusable and type safe with less boilerplate.
+To make writing queries and mutation even easier we are using [react-query-kit](https://github.com/liaoliao666/react-query-kit), a simple toolkit that makes ReactQuery reusable and type-safe with less boilerplate.
 
 :::tip
 
-You recommend reading Those guides and check those resources to learn more about react-query:
+You recommend reading Those guides and checking those resources to learn more about react-query:
 
 - [React-query](https://tanstack.com/query/v4/docs/overview)
 - [react-query-kit](https://github.com/liaoliao666/react-query-kit)
@@ -62,10 +62,10 @@ Below is the complete code for the use-posts.ts file:
 
 <CodeBlock file="src/api/posts/use-posts.ts" />
 
-As you may notice in the code above using `createQuery` function is very simple. the `createQuery` function accept 3 params: `queryKey`, `queryFn` and `options`. read more about (createQuery)[https://github.com/liaoliao666/react-query-kit#createQuery]
+the `createQuery` function accept an object with the following: `queryKey`, `queryFn` and `options`. Read more about (createQuery)[https://github.com/liaoliao666/react-query-kit#createQuery]
 
 :::tip
-Use `useq` snippet to generate query in no time using VSCode
+Use `useq` snippet to generate a query in no time using VSCode
 ![use-query](https://github.com/obytes/react-native-template-obytes/assets/11137944/9acc189b-2425-491a-a644-02c51c6d405f)
 
 :::
@@ -111,15 +111,15 @@ Here is the complete code for the `use-add-post.ts` file:
 <CodeBlock file="src/api/posts/use-add-post.ts" />
 
 :::tip
-Use `usem` snippet to generate mutation in no time using vscode
+Use `usem` snippet to generate mutation in no time using VSCode
 
 :::
 
-Now that we have our mutation hook ready. Lets create a new screen called `AddPost` and use data from `useAddPost` hook to create a new post:
+Now that we have our mutation hook ready. Let's create a new screen called `AddPost` and use data from `useAddPost` hook to create a new post:
 
 Exactly the same way we did in [form section](../ui-and-theme/Forms.mdx) while creating a login form, we will follow the same approach to create a from to create a new post.
 
-1. Create the schema for the new form using zod
+1. Create the schema for the new form using Zod
 2. Create the form using react-hook-form
 3. Get `mutate` function from `useAddPost` hook and call it when the form is submitted
 4. You can use the `isLoading` state to display a loading indicator while the data is being sent to the server and then redirect the user to the feed screen on success.

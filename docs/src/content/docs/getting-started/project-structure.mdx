@@ -8,14 +8,12 @@ head:
 
 import Code from '../../../components/code.astro';
 
-
-
 If you open the new project in VSCode you will see the following structure:
 
-```bash  title="Project Structure"
+```bash title="Project Structure"
 .
 ├── api ## any thing related to api calls and data fetching
-│   ├── common ##common api files such us axios client and  react query provider
+│   ├── common ##common api files such as axios client and  react query provider
 │   │   ├── api-provider.tsx
 │   │   ├── client.tsx
 │   │   ├── index.tsx
@@ -122,30 +120,30 @@ If you open the new project in VSCode you will see the following structure:
     └── utils.tsx
 ```
 
-- `ui`: This folder contains all the UI components and the theme configuration. we provide minimal components with a basic obytes theme. you can add you own components and theme configuration here.
+- `ui`: This folder contains all the UI components and the theme configuration. We provide minimal components with a basic `obytes` theme. You can add your own components and theme configuration here.
 
-- `core`: This folder contains the core files such as auth, localization, storage and more. This folder can be shared with other projects that why we are going only to find module that has nothing to do with project logic. This approach help us share code between projects and also update the starter with new features.
+- `core`: This folder contains the core files, such as authentication, localization, storage, and more. It can be shared with other projects. That's why we are only including modules that have nothing to do with project logic. This approach helps us share code between projects and also update the starter with new features.
 
-- `navigation`: This folder contains the navigation files such as stack, tab and drawer navigators. we provide a basic navigation structure for the demo app that you can modify to fit your needs.
+- `navigation`: This folder contains the navigation files such as stack, tab and drawer navigators. We provide a basic navigation structure for the demo app that you can modify to fit your needs.
 
-- `screens`: This folder contains the screens files. we provide a basic screens structure for the demo app that you can remove and add your own screens. If you need to create a specific component for a screen you can create a `components` folder inside the screen folder.
+- `screens`: This folder contains the screens files. We provide a basic screens structure for the demo app that you can remove and add your screens. If you need to create a specific component for a screen you can create a `components` folder inside the screen folder.
 
-- `api`: This folder contains the api files. we provide a basic api client and provider and you just need to create query and mutation for your modules. Check `posts` folder for inspiration on how to create a query and mutation.
+- `api`: This folder contains the API files. We provide a basic api client and provider and you just need to create query and mutation for your modules. Check `posts` folder for inspiration on how to create a query and mutation.
 
-- `translations`: This folder contains the translation resources files. you recommend using translation file even you are not supporting multiple languages as it will help you to support multiple languages in the future and also help you to find all the strings in one place.
+- `translations`: This folder contains the translation resources files. We recommend using translation files even if you are not supporting multiple languages as it will help you to support multiple languages in the future and also help you to find all the strings in one place.
 
 - `types`: This folder contains the global types.
 
 :::note
 The structure is very opinionated but we think it's
- the best way to structure a react native project. For sure you can change it as you like  based on your needs.
+the best way to structure a react native project. For sure you can change it as you like based on your needs.
 :::
 
 ## Importing files
 
-We use absolute imports to import files using Babel module resolver plugin and typescript path mapping. This approach help us to long relative paths and make the code more clean and readable.
+We use absolute imports to import files using the Babel module resolver plugin and TypeScript path mapping. This approach helps us avoid long relative paths and makes the code cleaner and more readable.
 
-Here is a simple example on how the Feed screen look like with absolute imports:
+Here is a simple example of how the Feed screen looks with absolute imports.
 
 ```tsx title="Feed Screen" {4-6} collapse={10-20}
 import { FlashList } from '@shopify/flash-list';
@@ -191,10 +189,10 @@ This approach is very useful when you are working on a large project with a lot 
 
 <details>
   <summary>⚙️ Babel configuration</summary>
-  <Code file='babel.config.js'  meta='ins={6-24}' />
+  <Code file="babel.config.js" meta="ins={6-24}" />
 </details>
 
 <details>
   <summary>⚙️ Typescript Config</summary>
-  <Code file='tsconfig.json' meta='ins={5-9}' />
+  <Code file="tsconfig.json" meta="ins={5-9}" />
 </details>
