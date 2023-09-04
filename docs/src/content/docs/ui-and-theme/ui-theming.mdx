@@ -8,104 +8,111 @@ head:
 
 import CodeBlock from '../../../components/code.astro';
 
-
 How we manage the UI and theming of the application.
 
-## Why [Tailwind CSS](https://tailwindcss.com/) ?
+## Why [Tailwind CSS](https://tailwindcss.com/)?
 
-For the past few years we tried multiple approach to style our react native apps,Stylesheet API, styled components, restyle and more.
+Over the past few years, we've tried multiple approaches to style our React Native apps: Stylesheet API, [styled-components](https://styled-components.com), and [Restyle](lhttps://github.com/Shopify/restyle), just to name a few.
 
-Right now we are confident that using Tailwind CSS with react native is the right solution specially after we try [Nativewind](https://nativewind.dev/).
+Right now we are confident that using Tailwind CSS with React Native is the right solution specifically after we tried [NativeWind](https://NativeWind.dev/).
 
-If you are familiar with Tailwind CSS on the web you will find it very easy to use and you can even copy past your styling from a web application and should work without issues with react native too with some minor adjustments of course.
+If you are familiar with Tailwind CSS on the web, you will find it very easy to use. You can even copy and paste your styling from a web application, and it should work without issues in React Native with some minor adjustments, of course.
 
-Last and not least, Tailwind CSS was a natural choice for us knowing that most of our team members are coming from a web background and they had the chance to work with Tailwind CSS before.
+Last but not least, Tailwind CSS was a natural choice for us, given that most of our team members come from a web background and have had the chance to work with Tailwind CSS before.
 
 :::tip
 
 If you are not familiar with Tailwind CSS, we recommend you to read the [Tailwind CSS documentation](https://tailwindcss.com/docs) first.
 
-We would also recommend playing with the [Tailwind CSS playground](https://play.tailwindcss.com/) to get a better understanding of how it works as well as practicing by building a simple web app with it before jumping into react native.
+We would also recommend experimenting with the [Tailwind CSS playground](https://play.tailwindcss.com/) to gain a better understanding of how it works. Additionally, consider practicing by building a simple web app with it before diving into React Native.
 
 :::
 
-## About Nativewind
+## About NativeWind
 
-Nativewind is a library that allows you to use Tailwind CSS with react native. Nativewind achieves this by pre-compiling the Tailwind CSS classes into react native stylesheets with a minimal runtime to selectively apply the styles.
+NativeWind is a library that allows you to use Tailwind CSS with React Native. NativeWind achieves this by precompiling the Tailwind CSS classes into React Native stylesheets with minimal runtime overhead to selectively apply the styles.
 
-Nativewind comes with different babel configuration options but we are using `compile only` configuration which means that you need to create your own component and warp them with `styled` component from Nativewind to use them with Tailwind class names.
+NativeWind comes with various Babel configuration options, but we are using the `compile only` configuration. This means that you need to create your own component and wrap it with the `styled` component from NativeWind to use Tailwind class names.
 
-This approach give us more control over the component we want to style as we don't want Nativewind babel plugin to transform all the components in our application.
+This approach gives us more control over the components we want to style, as we don't want the NativeWind Babel plugin to transform all the components in our application.
 
-For more details about Nativewind you can check their [documentation](https://www.nativewind.dev/overview/).
+For more details about NativeWind, you can check out their [documentation](https://www.nativewind.dev/overview/).
 
-Here is an example of how your component should look like:
+Here is an example of how your component should look:
 
-<CodeBlock file='src/screens/feed/card.tsx' />
+```jsx
+<CodeBlock file="src/screens/feed/card.tsx" />
+```
 
-You guess it right, all components imported from `@/ui` are wrapped with `styled` component from Nativewind and ready to accept Tailwind CSS class names. Enjoy 🥳
+Your guess it right, all components imported from `@/ui` are wrapped with `styled` component from NativeWind and ready to accept Tailwind CSS class names. Enjoy 🥳
 
 ## Configuration
 
-Nativewind is the same as Tailwind CSS, it comes with a default theme and colors that you can override by creating your own theme and colors.
+NativeWind is the same as Tailwind CSS; it comes with a default theme and colors that you can override by creating your own theme and colors.
 
-You need to understand that Nativewind is a library that is built on top of Tailwind CSS. Feel free to add any Tailwind CSS config that you want to use in your application such as updating colors, spacing, typography, etc.
+You need to understand that NativeWind is a library built on top of Tailwind CSS. Feel free to add any Tailwind CSS configuration that you want to use in your application, such as updating colors, spacing, typography, etc.
 
-We have created a `ui/theme` folder when you can finds our Custom colors that has been imported to `tailwind.config.js` and used as a theme for our demo application. You can add your own colors palette and use them in your component with Tailwind class names.
+We have created a `ui/theme` folder where you can find our custom colors that have been imported into `tailwind.config.js` and used as a theme for our demo application. You can add your own color palette and use it in your components with Tailwind class names.
 
 You can read more about how to [configure your project with Tailwind CSS](https://tailwindcss.com/docs/configuration).
 
 ## Dark Mode
 
-<video controls height="600" style='max-width:400px'>
-  <source src="https://github-production-user-asset-6210df.s3.amazonaws.com/11137944/238315572-37620367-b639-417e-a802-c48a3d7566ba.mp4" type="video/mp4"/>
+<video controls height="600" style="max-width:400px">
+  <source
+    src="https://github-production-user-asset-6210df.s3.amazonaws.com/11137944/238315572-37620367-b639-417e-a802-c48a3d7566ba.mp4"
+    type="video/mp4"
+  />
   Your browser does not support the video tag.
 </video>
 
 ### Why dark mode?
 
-Dark mode has gained significant traction in recent years and has become an expected feature to have.
-By applying dark mode, it makes it easier on the eyes in low-light environments and reduces eye strain, which means more time spent on your app.
+Dark mode has gained significant traction in recent years and has become an expected feature.
 
-This template comes with dark mode support out of the box, and it's very easy to customize the color scheme of your app. Thanks to [tailwindcss](https://tailwindcss.com/docs/dark-mode)
+By implementing dark mode, it enhances the user experience in low-light environments, reduces eye strain, and allows users to spend more time on your app.
 
+This template comes with built-in dark mode support, making it easy to customize your app's color scheme. This feature is made possible through tailwindcss.
 
 ### Implementation
 
-Since we're using [nativewind](https://www.nativewind.dev/) (which uses Tailwind CSS under the hood) and react-navigation we let them handle the application of theme ,and we just take care of the colors we want .
-We set the colors in `ui/theme/colors.js`  and we use them in our hook `useThemeConfig.tsx`  to get the theme object that we pass to react-navigation container. For more information check out [react-navigation](https://reactnavigation.org/docs/themes/)
+Certainly, here's an improved version of the sentence for better grammar:
 
+Certainly, here's a more comprehensible version of the sentence:
 
+By combining [NativeWind](https://www.nativewind.dev/) (Tailwind CSS under the hood) with react-navigation, we can entrust them with the responsibility of managing our theme. This allows us to concentrate solely on defining our desired colors, which are specified in `ui/theme/colors.js` and accessed via our `useThemeConfig.tsx` hook. This hook retrieves the theme object, which we then pass to the `react-navigation` container. For a more detailed understanding, please refer to the [react-navigation documentation](https://reactnavigation.org/docs/themes/).
+
+```jsx
 <CodeBlock file="src/navigation/use-theme-config.tsx" />
-
-
 <CodeBlock file="src/navigation/navigation-container.tsx" />
-
-
-### How We handle theme changing?
-
-We use the `loadSelectedTheme` function to load the theme from the storage if there's a theme saved in the storage, otherwise we let nativwind use the default theme (system).
-To set the selected theme, we use the `useSelectedTheme` hook, which  set the theme in the storage and update the color scheme of the app.
-
-
-<CodeBlock file="src/core/hooks/use-selected-theme.tsx" />
-
-### Add dark mode for each component
-
-To add the values for the light mode, you can simply write them directly in your component class. For the dark mode, you can use the **dark:** variant.
-
-``` tsx
-	<View className='... border-neutral-200 dark:border-yellow-700'>
-		....
-	</View>
 ```
-If you want to use the style prop, you can use the `useColorScheme` hook to get the current color scheme and use it to apply the desired style. However, **in most cases, you won't need it** as the dark: variant will do the job.
 
-``` tsx
-  import { useColorScheme } from 'nativewind';
+### How do we handle theme changes?
 
-  const colorScheme = useColorScheme();
-  const style = colorScheme === 'dark' ? { backgroundColor: 'black' } : { backgroundColor: 'white' };
+We employ the `loadSelectedTheme` function to retrieve the theme from storage if there's a previously saved theme; otherwise, we let NativeWind use the default system theme. To set the selected theme, we use the `useSelectedTheme` hook. This hook not only sets the theme in storage but also updates the color scheme of the app.
 
-  ```
-  For more details about dark mode you can check [tailwind](https://tailwindcss.com/docs/dark-mode)   and [nativewind](https://www.nativewind.dev/core-concepts/dark-mode)
+```jsx
+<CodeBlock file="src/core/hooks/use-selected-theme.tsx" />
+```
+
+### Adding dark mode to each component
+
+To incorporate values for light mode, you can simply define them directly in your component class. For dark mode, you can utilize the **dark:** variant.
+
+```tsx
+<View className="... border-neutral-200 dark:border-yellow-700">....</View>
+```
+
+If you prefer to use the style prop, you can employ the `useColorScheme` hook to retrieve the current color scheme and apply the desired style accordingly. However, **in most cases, you won't need it** as the dark: variant will suffice.
+
+```tsx
+import { useColorScheme } from 'NativeWind';
+
+const colorScheme = useColorScheme();
+const style =
+  colorScheme === 'dark'
+    ? { backgroundColor: 'black' }
+    : { backgroundColor: 'white' };
+```
+
+For more comprehensive information about dark mode, you can refer to the documentation for [Tailwind CSS](https://tailwindcss.com/docs/dark-mode) and [NativeWind](https://www.nativewind.dev/core-concepts/dark-mode).
