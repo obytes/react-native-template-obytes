@@ -1,4 +1,3 @@
-# Image Actions will run in the following scenarios:
 name: Compress images
 on:
   push:
@@ -6,10 +5,10 @@ on:
       - master
       - main
     paths:
-      - "**.jpg"
-      - "**.jpeg"
-      - "**.png"
-      - "**.webp"
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.png'
+      - '**.webp'
   workflow_dispatch:
 
 jobs:
@@ -26,12 +25,10 @@ jobs:
         uses: calibreapp/image-actions@main
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          # For non-Pull Requests, run in compressOnly mode and we'll PR after.
           compressOnly: true
           ignorePaths: 'node_modules/**,ios/**,android/**'
 
       - name: Create Pull Request
-        # If it's not a Pull Request then commit any changes as a new PR.
         if: steps.calibre.outputs.markdown != ''
         uses: peter-evans/create-pull-request@v3
         with:

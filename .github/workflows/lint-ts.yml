@@ -1,3 +1,15 @@
+# 🔗 Links:
+# Source file: https://github.com/obytes/react-native-template-obytes/blob/master/.github/workflows/lint-ts.yml
+
+# ✍️ Description:
+# This action is used to run eslint checks
+# Runs on pull requests and pushes to  the main/master branches
+# Based on the event type:
+#   - If it's a pull request, it will run eslint, then add the check to the PR as well as annotate the code with the errors and warnings.
+#   - If it's a push to main/master, it will run the type checking and fail if there are any errors.
+
+# 🚨 GTHUB SECRETS REQUIRED: NONE
+
 name: Lint TS (eslint, prettier)
 
 on:
@@ -12,12 +24,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name : 📦 Checkout project repo
+      - name: 📦 Checkout project repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name : 📦 Setup Node + PNPM + install deps
+      - name: 📦 Setup Node + PNPM + install deps
         uses: ./.github/actions/setup-node-pnpm-install
 
       - name: 🏃‍♂️ Run ESLint PR
