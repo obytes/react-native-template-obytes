@@ -1,6 +1,7 @@
 ---
 import { ExpressiveCode, ExpressiveCodeConfig } from 'expressive-code';
 import { toHtml } from 'hast-util-to-html';
+import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections';
 
 import fs from 'node:fs/promises';
 
@@ -14,7 +15,9 @@ const { file, language, meta } = Astro.props;
 const fileNamePath = '../' + file;
 const fileEtension = file.split('.').pop() ?? 'js';
 const code = await fs.readFile(fileNamePath, 'utf-8');
-const ec = new ExpressiveCode({});
+const ec = new ExpressiveCode({
+  plugins: [pluginCollapsibleSections()],
+});
 
 // Get base styles that should be included on the page
 // (they are independent of the rendered code blocks)
