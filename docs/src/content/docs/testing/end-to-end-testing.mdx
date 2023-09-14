@@ -43,9 +43,18 @@ To run the tests, execute the following command:
 pnpm e2e-test
 ```
 
+This will run the tests on the local emulator and here is a recording of the test from maestro dashboard:
+
+<video controls>
+  <source
+    src="https://github.com/obytes/react-native-template-obytes/assets/11137944/3b45de00-a369-436a-8faf-6ea1edbb44c3"
+    type="video/mp4"
+  ></source>
+</video>
+
 ## Running tests on CI
 
-Running tests on CI is very important to ensure that your code doesn't break when you push it to Github. However, running end-to-end tests is quite expensive and time-consuming. To test your app on CI we need first to build the app, setup the emulator, and then run the tests. This can take a lot of time and resources.
+Running tests on CI is very important to ensure that your code doesn't break when you push it to GitHub. However, running end-to-end tests is quite expensive and time-consuming. To test your app on CI, we need to first build the app, set up the emulator, and then run the tests. This process can consume a significant amount of time and resources.
 
 For this reason, we do not recommend running end-to-end tests on every pull request pushed to GitHub. Instead, we recommend running them for pull requests that contain `test-android` labels so that we can trigger the tests manually by adding the correct label whenever you feel the PR is ready to be tested.
 
@@ -53,10 +62,10 @@ The starter comes with a bunch of GitHub actions that will help you run the test
 
 > for now we only support running tests on Android, we are working on adding support for iOS.
 
-- `e2e-test.yml` - Triggered when a PR is labeled with `android-test-github` or run manually from the actions tab in GitHub.
+- `e2e-android.yml` - Triggered when a PR is labeled with `android-test-github` or run manually from the actions tab in GitHub.
   This action will generate a staging build for the app, set up the emulator, and run the tests using Maestro.
 
-- `e2e-test-maestro.yml` - Triggered when a PR is labeled with `android-test-maestro-cloud` or run manually from the actions tab in GitHub.
+- `e2e-android-maestro.yml` - Triggered when a PR is labeled with `android-test-maestro-cloud` or run manually from the actions tab in GitHub.
   This action will run the tests using Maestro Cloud. You will need to add your Maestro Cloud token to the secrets in GitHub.
 
-- `e2e-test-eas-build.yml` - To test a specific build from EAS, you can use this action. You will need to add your APK URL as an input to the action.
+- `e2e-android-eas-build.yml` - Accepts a EAS APK URL and runs the tests. This action is triggered manually from the actions tab in GitHub.

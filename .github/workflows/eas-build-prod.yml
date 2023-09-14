@@ -1,3 +1,16 @@
+# 🔗 Links:
+# Source file: https://github.com/obytes/react-native-template-obytes/blob/master/.github/workflows/eas-build-prod.yml
+# Starter releasing proccess: https://starter.obytes.com/ci-cd/app-releasing-process/
+
+# ✍️ Description:
+# This workflow is used to trigger a build on EAS for Prod environment.
+# Can be triggered manually from the actions tab.
+# This workflow will use ./actions/eas-build action to trigger the build on EAS with production env.
+
+# 🚨 GTHUB SECRETS REQUIRED:
+#         - EXPO_TOKEN: Expo token to authenticate with EAS
+#         - You can get it from https://expo.dev/settings/access-tokens
+
 name: EAS Production Build (Android & IOS) (EAS)
 
 on:
@@ -8,12 +21,12 @@ jobs:
     name: EAS Production Build (Android & IOS) (EAS)
     runs-on: ubuntu-latest
     steps:
-      - name : 📦 Checkout project repo
+      - name: 📦 Checkout project repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name : 📦 Setup Node + PNPM + install deps
+      - name: 📦 Setup Node + PNPM + install deps
         uses: ./.github/actions/setup-node-pnpm-install
 
       - name: ⏱️ EAS Build

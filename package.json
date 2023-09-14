@@ -24,7 +24,7 @@
     "build:production:ios": "cross-env APP_ENV=production EXPO_NO_DOTENV=1 eas build --profile production --platform ios",
     "build:production:android": "cross-env APP_ENV=production EXPO_NO_DOTENV=1 eas build --profile production --platform android ",
     "postinstall": "husky install",
-    "np-release": "cross-env SKIP_BRANCH_PROTECTION=true np --no-publish --no-cleanup",
+    "app-release": "cross-env SKIP_BRANCH_PROTECTION=true np --no-publish --no-cleanup --no-release-draft",
     "version": "pnpm run prebuild && git add .",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "type-check": "tsc  --noemit",
