@@ -1,3 +1,15 @@
+# 🔗 Links:
+# Source file: https://github.com/obytes/react-native-template-obytes/blob/master/.github/workflows/e2e-android.yml
+# End to end testing: https://starter.obytes.com/testing/end-to-end-testing/
+
+# ✍️ Description:
+# This workflow is used to run end-to-end tests on Android using Maestro Cloud.
+# As a first step, it will generate a test APK using the Gradle build and  then trigger  Maestro Cloud to run the tests on the generated APK.
+# This workflow will be triggered on pull requests (PRs) with the label "android-test-maestro-cloud" or can be manually triggered from the Actions tab.
+
+# 🚨 GTHUB SECRETS REQUIRED:
+# MAESTRO_CLOUD_API_KEY: API key for Maestro Cloud. You can get it from https://cloud.mobile.dev/ci-integration/github-actions#add-your-api-key-secret
+
 name: E2E Tests Android (Maestro Cloud)
 
 on:
@@ -12,12 +24,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name : 📦 Checkout project repo
+      - name: 📦 Checkout project repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name : 📦 Setup Node + PNPM + install deps
+      - name: 📦 Setup Node + PNPM + install deps
         uses: ./.github/actions/setup-node-pnpm-install
 
       - name: 📦 Set Up JDK + Generate Test APK

@@ -154,6 +154,24 @@ export default defineConfig({
           ],
         },
         {
+          label: 'CI/CD',
+          items: [
+            // Each item here is one entry in the navigation menu.
+            {
+              label: 'Overview',
+              link: '/ci-cd/overview/',
+            },
+            {
+              label: 'Releasing Process',
+              link: '/ci-cd/app-releasing-process/',
+            },
+            {
+              label: 'Workflows Reference',
+              link: '/ci-cd/workflows-references/',
+            },
+          ],
+        },
+        {
           label: 'How to contribute ?',
           link: '/how-to-contribute',
         },
