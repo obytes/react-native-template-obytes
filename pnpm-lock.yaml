@@ -45,11 +45,11 @@ dependencies:
     specifier: ~14.4.2
     version: 14.4.2(expo@49.0.6)
   expo-dev-client:
-    specifier: ~2.4.8
-    version: 2.4.8(expo@49.0.6)
+    specifier: ~2.4.10
+    version: 2.4.10(expo@49.0.6)
   expo-image:
-    specifier: ~1.3.2
-    version: 1.3.2(expo@49.0.6)
+    specifier: ~1.3.3
+    version: 1.3.3(expo@49.0.6)
   expo-localization:
     specifier: ~14.3.0
     version: 14.3.0(expo@49.0.6)
@@ -440,7 +440,7 @@ packages:
       debug: 4.3.4
       lodash.debounce: 4.0.8
       resolve: 1.22.1
-      semver: 6.3.0
+      semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
 
@@ -1974,7 +1974,7 @@ packages:
       babel-plugin-polyfill-corejs2: 0.3.3(@babel/core@7.21.0)
       babel-plugin-polyfill-corejs3: 0.6.0(@babel/core@7.21.0)
       babel-plugin-polyfill-regenerator: 0.4.1(@babel/core@7.21.0)
-      semver: 6.3.0
+      semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
 
@@ -5094,7 +5094,7 @@ packages:
       '@babel/compat-data': 7.21.0
       '@babel/core': 7.21.0
       '@babel/helper-define-polyfill-provider': 0.3.3(@babel/core@7.21.0)
-      semver: 6.3.0
+      semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
 
@@ -7082,26 +7082,26 @@ packages:
       - supports-color
     dev: false
 
-  /expo-dev-client@2.4.8(expo@49.0.6):
-    resolution: {integrity: sha512-1rcqSjEe5Wn08n5UwXhc2VS+6OKu4BSQBSu8+GgTq0l/2wY49v2d6E6KNprFQa3xlt7TRNm27f0lQS1t+BrsnA==}
+  /expo-dev-client@2.4.10(expo@49.0.6):
+    resolution: {integrity: sha512-45nyJAufsVRunKw2XOAn/RG0mG5PoV5eKFR4C9RpuUi0VvHKhdzeF5epRFrYR44zmhe3KwG4ggut5KB4YcsdeA==}
     peerDependencies:
       expo: '*'
     dependencies:
       expo: 49.0.6(@babel/core@7.21.0)
-      expo-dev-launcher: 2.4.10(expo@49.0.6)
-      expo-dev-menu: 3.1.10(expo@49.0.6)
+      expo-dev-launcher: 2.4.12(expo@49.0.6)
+      expo-dev-menu: 3.2.0(expo@49.0.6)
       expo-dev-menu-interface: 1.3.0(expo@49.0.6)
       expo-manifests: 0.7.1
       expo-updates-interface: 0.10.1(expo@49.0.6)
     dev: false
 
-  /expo-dev-launcher@2.4.10(expo@49.0.6):
-    resolution: {integrity: sha512-45d+IC+iAYEZFs42sNGi8gNGHkR9GwKe3BZd8aj1hFFcz+axiYTKdUvcvt4TTb+ouvUGYoJ480dio+9Hp4u2qA==}
+  /expo-dev-launcher@2.4.12(expo@49.0.6):
+    resolution: {integrity: sha512-r561CgR4fNIn5f4I16vxSD9b2Za3QCIfez0OwcRt90dY612tk1Ifkl5DQMLEL3Rm/maB7wfH3bXf0cZa5RGtog==}
     peerDependencies:
       expo: '*'
     dependencies:
       expo: 49.0.6(@babel/core@7.21.0)
-      expo-dev-menu: 3.1.10(expo@49.0.6)
+      expo-dev-menu: 3.2.0(expo@49.0.6)
       resolve-from: 5.0.0
       semver: 7.5.4
     dev: false
@@ -7114,8 +7114,8 @@ packages:
       expo: 49.0.6(@babel/core@7.21.0)
     dev: false
 
-  /expo-dev-menu@3.1.10(expo@49.0.6):
-    resolution: {integrity: sha512-3uRU0Cq35dwdN20HqOZl5yv6NS+Xb1WebMifASpT0q9P89M/s0IuewdLw/xL9NEYj4XI2uCGfI0Jy+UGISyizg==}
+  /expo-dev-menu@3.2.0(expo@49.0.6):
+    resolution: {integrity: sha512-oMhfNI2aU2HOVYLkFz3krj+L+GwJDHTPjnJWMBG5AsmWJDp70yFGZhSEjcNFG1ekscRndrvfdHlocKO6JTeQcw==}
     peerDependencies:
       expo: '*'
     dependencies:
@@ -7142,8 +7142,8 @@ packages:
       fontfaceobserver: 2.3.0
     dev: false
 
-  /expo-image@1.3.2(expo@49.0.6):
-    resolution: {integrity: sha512-5Dm6kPfAOptMpQSJZDaA1M+AGjRJT0b1eLjtWLLpf6Z7gG1SMAFPUNUKaQV4p9H57psqvloDNb5nPIjSdIA1HQ==}
+  /expo-image@1.3.3(expo@49.0.6):
+    resolution: {integrity: sha512-H/w/4XGPRrOv8PsBnoVrctLKtsLYhavrhTK/SkizF3F5u81aHItBACgV8HVrh1qzPXbP40hp/Oyua/ttz61zMQ==}
     peerDependencies:
       expo: '*'
     dependencies:
@@ -8598,7 +8598,7 @@ packages:
       '@babel/parser': 7.22.7
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: 3.2.0
-      semver: 6.3.0
+      semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -9794,7 +9794,7 @@ packages:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
     dependencies:
-      semver: 6.3.0
+      semver: 6.3.1
     dev: true
 
   /make-error@1.3.6:
@@ -11027,7 +11027,7 @@ packages:
       got: 9.6.0
       registry-auth-token: 4.2.2
       registry-url: 5.1.0
-      semver: 6.3.0
+      semver: 6.3.1
     dev: true
 
   /pako@1.0.11:
@@ -12286,7 +12286,7 @@ packages:
     resolution: {integrity: sha512-GX0Ix/CJcHyB8c4ykpHGIAvLyOwOobtM/8d+TQkAd81/bEjgPHrfba41Vpesr7jX/t8Uh+R3EX9eAS5be+jQYg==}
     engines: {node: '>=8'}
     dependencies:
-      semver: 6.3.0
+      semver: 6.3.1
     dev: true
 
   /semver@5.7.1:
