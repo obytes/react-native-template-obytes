@@ -5,7 +5,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import * as React from 'react';
 
-import { Modal, useModalRef } from './modal';
+import { Modal, useModal } from './modal';
 import type { DynamicModalProps, ModalRef } from './types';
 
 export const DynamicModal = React.forwardRef(
@@ -13,7 +13,7 @@ export const DynamicModal = React.forwardRef(
     { snapPoints = ['CONTENT_HEIGHT'], children, ...props }: DynamicModalProps,
     ref: ModalRef
   ) => {
-    const bottomSheetRef = useModalRef();
+    const modal = useModal();
     const {
       animatedHandleHeight,
       animatedSnapPoints,
@@ -23,13 +23,13 @@ export const DynamicModal = React.forwardRef(
 
     React.useImperativeHandle(
       ref,
-      () => (bottomSheetRef.current as BottomSheetModal) || null
+      () => (modal.ref.current as BottomSheetModal) || null
     );
 
     return (
       <Modal
         {...props}
-        ref={bottomSheetRef}
+        ref={modal.ref}
         snapPoints={animatedSnapPoints}
         handleHeight={animatedHandleHeight}
         contentHeight={animatedContentHeight}

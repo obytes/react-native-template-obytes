@@ -7,9 +7,15 @@ import { renderBackdrop } from './modal-backdrop';
 import { ModalHeader } from './modal-header';
 import type { ModalProps, ModalRef } from './types';
 
-export const useModalRef = () => {
+export const useModal = () => {
   const ref = React.useRef<BottomSheetModal>(null);
-  return ref;
+  const present = React.useCallback((data?: any) => {
+    ref.current?.present(data);
+  }, []);
+  const dismiss = React.useCallback(() => {
+    ref.current?.dismiss();
+  }, []);
+  return { ref, present, dismiss };
 };
 
 export const Modal = React.forwardRef(
@@ -26,33 +32,29 @@ export const Modal = React.forwardRef(
       () => getDetachedProps(detached),
       [detached]
     );
-    const bottomSheetRef = useModalRef();
+    const modal = useModal();
     const snapPoints = React.useMemo(() => _snapPoints, [_snapPoints]);
-
-    const dismiss = React.useCallback(() => {
-      bottomSheetRef.current?.dismiss();
-    }, [bottomSheetRef]);
 
     React.useImperativeHandle(
       ref,
-      () => (bottomSheetRef.current as BottomSheetModal) || null
+      () => (modal.ref.current as BottomSheetModal) || null
     );
 
     const renderHandleComponent = React.useCallback(
       () => (
         <>
           <View className="mt-2 h-1 w-12 self-center rounded-lg bg-gray-400 dark:bg-gray-700" />
-          <ModalHeader title={title} dismiss={dismiss} />
+          <ModalHeader title={title} dismiss={modal.dismiss} />
         </>
       ),
-      [title, dismiss]
+      [title, modal.dismiss]
     );
 
     return (
       <BottomSheetModal
         {...props}
         {...detachedProps}
-        ref={bottomSheetRef}
+        ref={modal.ref}
         index={0}
         snapPoints={snapPoints}
         backdropComponent={props.backdropComponent || renderBackdrop}

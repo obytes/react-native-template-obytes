@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import colors from '@/ui/theme/colors';
 
-import { useModalRef } from '../modal';
+import { useModal } from '../modal';
 import { Text } from '../text';
 import { TouchableOpacity } from '../touchable-opacity';
 import { View } from '../view';
@@ -31,23 +31,16 @@ export const Select = (props: SelectProps) => {
     disabled = false,
     onSelect,
   } = props;
-  const optionsRef = useModalRef();
-  const open = React.useCallback(
-    () => optionsRef.current?.present(),
-    [optionsRef]
-  );
-  const close = React.useCallback(
-    () => optionsRef.current?.dismiss(),
-    [optionsRef]
-  );
+  const modal = useModal();
+
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === 'dark';
   const onSelectOption = React.useCallback(
     (option: Option) => {
       onSelect?.(option.value);
-      close();
+      modal.dismiss();
     },
-    [close, onSelect]
+    [modal, onSelect]
   );
 
   const { borderColor, bgColor, valueColor, labelColor } = useColors(!!error);
@@ -68,7 +61,7 @@ export const Select = (props: SelectProps) => {
         <TouchableOpacity
           className={`mt-0 flex-row items-center justify-center border-[1px] py-3 px-2  ${borderColor} rounded-md ${bgColor} text-[16px]`}
           disabled={disabled}
-          onPress={open}
+          onPress={modal.present}
         >
           <View className="flex-1">
             <Text variant="md" className={valueColor}>
@@ -79,7 +72,7 @@ export const Select = (props: SelectProps) => {
         </TouchableOpacity>
         {error && <Text variant="error">{error}</Text>}
       </View>
-      <Options ref={optionsRef} options={options} onSelect={onSelectOption} />
+      <Options ref={modal.ref} options={options} onSelect={onSelectOption} />
     </>
   );
 };
