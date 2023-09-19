@@ -347,6 +347,53 @@ const MyComponent = () => {
 };
 ```
 
+## Modal
+
+We provide a simple `Modal` component using the `@gorhom/bottom-sheet` library to display a modal at the bottom of the screen.
+
+We opt to use a bottom sheet instead of a modal to make it more flexible and easy to use. as well as having full control over the logic and the UI.
+
+Based on your needs, you can use the `Modal` or `DynamicModal` if you don't have a fixed height for the modal content.
+
+<CodeBlock file="src/ui/core/modal/modal.tsx" />
+
+<CodeBlock file="src/ui/core/modal/dynamic-modal.tsx" />
+
+**Props**
+
+- All `@gorhom/bottom-sheet` Props are supported
+- `children` - Modal content
+- `title`: `string` - Modal title
+
+**Use Case**
+
+```tsx
+import * as React from 'react';
+import { Modal, useModal, View, Button, Text } from '@/ui';
+
+const MyComponent = () => {
+  const modal = useModal();
+  const dynamicModal = useModal();
+  return (
+    <View className="flex flex-col items-center justify-center">
+      <Button variant="primary" label="Show Modal" onPress={modal.present} />
+      <Modal ref={modal.ref} title="modal title" snapPoints={['60%']}>
+        <Text>Modal Content</Text>
+      </Modal>
+      <Button
+        variant="primary"
+        label="Show Modal"
+        onPress={dynamicModal.present}
+      />
+
+      <DynamicModal ref={dynamicModal.ref} title="Dynamic modal title">
+        <Text> Dynamic modal Content</Text>
+      </DynamicModal>
+    </View>
+  );
+};
+```
+
 ## Controlled Input
 
 We provide a simple `ControlledInput` component that uses the `Input` component under the hood but with a `useController` hook from `react-hook-form` to make it ready to use with `react-hook-form` library.
