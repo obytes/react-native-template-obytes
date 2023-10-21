@@ -17,7 +17,6 @@ export default defineConfig({
 				replacesTitle: true,
 			},
       components: {
-        // Override the default `SocialIcons` component.
         LastUpdated: './src/components/lastUpdated.astro',
       },
       social: {
@@ -185,9 +184,6 @@ export default defineConfig({
         },
       ],
       customCss: [
-        // Fontsource files for to regular and semi-bold font weights.
-        // '@fontsource/ibm-plex-mono/500.css',
-        // '@fontsource/ibm-plex-mono/600.css',
         './src/styles/custom.css',
       ],
       lastUpdated: true,
