@@ -17,7 +17,7 @@ export default defineConfig({
 				replacesTitle: true,
 			},
       components: {
-        LastUpdated: './src/components/lastUpdated.astro',
+        LastUpdated: './src/components/LastUpdated.astro',
       },
       social: {
         github: 'https://github.com/obytes/react-native-template-obytes',
