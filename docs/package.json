@@ -10,11 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.9.1",
+    "@astrojs/starlight": "^0.11.1",
     "@expressive-code/plugin-collapsible-sections": "^0.22.2",
     "@fontsource/ibm-plex-mono": "^5.0.8",
     "@fontsource/ibm-plex-serif": "^5.0.8",
-    "astro": "^3.0.12",
+    "astro": "^3.3.2",
     "astro-expressive-code": "^0.22.2",
     "expressive-code": "^0.22.2",
     "hast-util-to-html": "^9.0.0",

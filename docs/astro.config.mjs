@@ -16,6 +16,10 @@ export default defineConfig({
         dark: '/src/assets/logo-titled.svg',
 				replacesTitle: true,
 			},
+      components: {
+        // Override the default `SocialIcons` component.
+        LastUpdated: './src/components/lastUpdated.astro',
+      },
       social: {
         github: 'https://github.com/obytes/react-native-template-obytes',
       },
