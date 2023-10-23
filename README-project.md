@@ -13,7 +13,6 @@ Mobile App </h1>
 - [Git](https://git-scm.com/)
 - [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall), required only for macOS or Linux users
 - [Pnpm](https://pnpm.io/installation)
-- [Expo Cli](https://docs.expo.dev/workflow/expo-cli/)
 - [VS Code Editor](https://code.visualstudio.com/download) ⚠️ Make sure to install all recommended extension from `.vscode/extensions.json`
 
 ## 👋 Quick start
@@ -42,7 +41,7 @@ pnpm android
 
 ## ✍️ Documentation
 
-- [Rules and Conventions](https://starter.obytes.com/getting-started/rules-and-convetions)
+- [Rules and Conventions](https://starter.obytes.com/getting-started/rules-and-conventions/)
 - [Project structure](https://starter.obytes.com/getting-started/project-structure)
 - [Environment vars and config](https://starter.obytes.com/getting-started/environment-vars-config)
 - [UI and Theming](https://starter.obytes.com/ui-and-theme/ui-theming)

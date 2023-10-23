@@ -17,7 +17,6 @@ First make sure you have the following tools installed on your machine:
 - [Git](https://git-scm.com/)
 - [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall), required only for macOS or Linux users
 - [Pnpm](https://pnpm.io/installation)
-- [Expo Cli](https://docs.expo.dev/workflow/expo-cli/)
 - [VS Code Editor](https://code.visualstudio.com/download)
 
 ## Initializing a new project
