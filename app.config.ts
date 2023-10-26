@@ -16,7 +16,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   splash: {
     image: './assets/splash.png',
     resizeMode: 'cover',
-    backgroundColor: '#2A3D4C',
+    backgroundColor: '#2E3C4B',
   },
   updates: {
     fallbackToCacheTimeout: 0,
@@ -30,7 +30,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   android: {
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
-      backgroundColor: '#2A3D4C',
+      backgroundColor: '#2E3C4B',
     },
     package: Env.PACKAGE,
   },
@@ -51,7 +51,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     [
       'app-icon-badge',
       {
-        enabled: true,
+        enabled: Env.APP_ENV !== 'production',
         badges: [
           {
             text: Env.APP_ENV,

@@ -4,8 +4,6 @@ Mobile App </h1>
 
 > This Project is based on [Obytes starter](https://starter.obytes.com)
 
-## 🔗 Requirements
-
 ## Requirements
 
 - [React Native dev environment ](https://reactnative.dev/docs/environment-setup)

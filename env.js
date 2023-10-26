@@ -35,6 +35,7 @@ const BUNDLE_ID = 'com.obytes'; // ios bundle id
 const PACKAGE = 'com.obytes'; // android package name
 const NAME = 'ObytesApp'; // app name
 const EXPO_ACCOUNT_OWNER = 'obytes'; // expo account owner
+const EAS_PROJECT_ID = 'c3e1075b-6fe7-4686-aa49-35b46a229044'; // eas project id
 
 /**
  * We declare a function withEnvSuffix that will add a suffix to the variable name based on the APP_ENV
@@ -102,7 +103,7 @@ const _clientEnv = {
  */
 const _buildTimeEnv = {
   EXPO_ACCOUNT_OWNER,
-  EAS_PROJECT_ID: process.env.EAS_PROJECT_ID,
+  EAS_PROJECT_ID,
   // ADD YOUR ENV VARS HERE TOO
   SECRET_KEY: process.env.SECRET_KEY,
 };
