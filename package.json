@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@bacons/link-assets": "^1.1.0",
-    "@gorhom/bottom-sheet": "^4",
+    "@gorhom/bottom-sheet": "^4.5.1",
     "@hookform/resolvers": "^2.9.11",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
