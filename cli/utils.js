@@ -106,6 +106,7 @@ const showMoreDetails = () => {
     '\n\n\n',
     chalk('🔥 Your project is ready to go! \n\n'),
     chalk('📱 Run your project: \n\n'),
+    chalk(`   cd ${projectName}`),
     chalk('   IOS     :  pnpm ios \n'),
     chalk('   Android :  pnpm android \n\n'),
     chalk.bold('📚 Starter Documentation: https://starter.obytes.com \n')
