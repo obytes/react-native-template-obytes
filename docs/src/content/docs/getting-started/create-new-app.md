@@ -39,6 +39,15 @@ The command will create an expo app named `MyApp` and install all the dependenci
 Because we're using the Expo custom dev client to support native dependencies with the starter. The Expo Go app is not an option to consider here; instead, you need to create the app and install it on your simulator or device to start using it.
 :::
 
+:::note
+Adhere to Android's specific naming conventions as described in [the Android documentation](https://developer.android.com/build/configure-app-module).
+The name must satisfy the following rules:
+
+- It must have at least two segments (one or more dots).
+- Each segment must start with a letter.
+- All characters must be alphanumeric or an underscore [a-zA-Z0-9_].
+:::
+
 ## Open Project on VS Code
 
 VS code is the recommended editor for this starter, The starter comes with a list of recommended extensions, settings and project snippets that we think will improve your coding experience.
