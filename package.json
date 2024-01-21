@@ -102,7 +102,7 @@
     "eslint": "^8.56.0",
     "eslint-plugin-i18n-json": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "eslint-plugin-tailwindcss": "^3.14.0",
+    "eslint-plugin-tailwindcss": "^3.10.1",
     "eslint-plugin-unicorn": "^46.0.1",
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.3",
@@ -115,7 +115,7 @@
     "np": "^7.7.0",
     "prettier": "^2.8.8",
     "react-test-renderer": "^18.2.0",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^3.3.2",
     "ts-jest": "^29.1.1",
     "typescript": "^5.3.3"
   },
