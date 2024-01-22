@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@bacons/link-assets':
-    specifier: ^1.1.0
-    version: 1.1.0
   '@expo/metro-runtime':
     specifier: ^3.1.1
     version: 3.1.1(react-native@0.73.2)
@@ -50,6 +47,9 @@ dependencies:
   expo-dev-client:
     specifier: ~3.3.6
     version: 3.3.6(expo@50.0.2)
+  expo-font:
+    specifier: ~11.10.2
+    version: 11.10.2(expo@50.0.2)
   expo-image:
     specifier: ~1.10.4
     version: 1.10.4(expo@50.0.2)
@@ -1694,12 +1694,6 @@ packages:
       '@babel/helper-string-parser': 7.23.4
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
-
-  /@bacons/link-assets@1.1.0:
-    resolution: {integrity: sha512-prDE88rp3on2gL/L5pQmlgHMrPj5kMHN62zE3ty9pSA1xKeW3uj7PBl4Pn9tG/OVOIKYgdW7gQreZ9pUHDi7lA==}
-    dependencies:
-      mime: 3.0.0
-    dev: false
 
   /@bcoe/v8-coverage@0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
@@ -9620,12 +9614,6 @@ packages:
     resolution: {integrity: sha512-USPkMeET31rOMiarsBNIHZKLGgvKc/LrjofAnBlOttf5ajRvqiRA8QsenbcooctK6d6Ts6aqZXBA+XbkKthiQg==}
     engines: {node: '>=4.0.0'}
     hasBin: true
-
-  /mime@3.0.0:
-    resolution: {integrity: sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==}
-    engines: {node: '>=10.0.0'}
-    hasBin: true
-    dev: false
 
   /mimic-fn@1.2.0:
     resolution: {integrity: sha512-jf84uxzwiuiIVKiOLpfYk7N46TSy8ubTonmneY9vrpHNAnp0QBt2BxWV9dO3/j+BoVAb+a5G6YDPW3M5HOdMWQ==}
