@@ -37,7 +37,6 @@
     "e2e-test": "maestro test .maestro/ -e APP_ID=com.obytes.development"
   },
   "dependencies": {
-    "@bacons/link-assets": "^1.1.0",
     "@expo/metro-runtime": "^3.1.1",
     "@gorhom/bottom-sheet": "^4.6.0",
     "@hookform/resolvers": "^2.9.11",
@@ -52,6 +51,7 @@
     "expo-build-properties": "~0.11.0",
     "expo-constants": "~15.4.5",
     "expo-dev-client": "~3.3.6",
+    "expo-font": "~11.10.2",
     "expo-image": "~1.10.4",
     "expo-localization": "~14.8.3",
     "expo-splash-screen": "0.26.3",

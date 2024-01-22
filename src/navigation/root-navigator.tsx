@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SplashScreen from 'expo-splash-screen';
 import React, { useEffect } from 'react';
 
-import { useAuth } from '@/core';
+import { useAuth, useFontsLoader } from '@/core';
 import { useIsFirstTime } from '@/core/hooks';
 import { Onboarding } from '@/screens';
 
@@ -13,15 +13,18 @@ const Stack = createNativeStackNavigator();
 
 export const Root = () => {
   const status = useAuth.use.status();
+
+  const { fontsLoaded } = useFontsLoader();
+
   const [isFirstTime] = useIsFirstTime();
   const hideSplash = React.useCallback(async () => {
     await SplashScreen.hideAsync();
   }, []);
   useEffect(() => {
-    if (status !== 'idle') {
+    if (status !== 'idle' && fontsLoaded) {
       hideSplash();
     }
-  }, [hideSplash, status]);
+  }, [hideSplash, status, fontsLoaded]);
 
   return (
     <Stack.Navigator
