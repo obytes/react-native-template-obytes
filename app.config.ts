@@ -38,7 +38,12 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     favicon: './assets/favicon.png',
   },
   plugins: [
-    ['@bacons/link-assets', ['./assets/fonts/Inter.ttf']],
+    [
+      'expo-font',
+      {
+        fonts: ['./assets/fonts/Inter.ttf'],
+      },
+    ],
     'expo-localization',
     [
       'expo-build-properties',

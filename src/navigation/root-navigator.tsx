@@ -13,6 +13,7 @@ const Stack = createNativeStackNavigator();
 
 export const Root = () => {
   const status = useAuth.use.status();
+
   const [isFirstTime] = useIsFirstTime();
   const hideSplash = React.useCallback(async () => {
     await SplashScreen.hideAsync();
