@@ -2,6 +2,7 @@
   "name": "obytesapp",
   "version": "4.3.2",
   "private": true,
+  "main": "expo-router/entry",
   "scripts": {
     "start": "cross-env EXPO_NO_DOTENV=1 expo start",
     "prebuild": "cross-env EXPO_NO_DOTENV=1 pnpm expo prebuild",
@@ -53,7 +54,9 @@
     "expo-dev-client": "~3.3.6",
     "expo-font": "~11.10.2",
     "expo-image": "~1.10.4",
+    "expo-linking": "~6.2.2",
     "expo-localization": "~14.8.3",
+    "expo-router": "~3.4.5",
     "expo-splash-screen": "0.26.3",
     "expo-status-bar": "~1.11.1",
     "expo-system-ui": "~2.9.3",

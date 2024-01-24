@@ -79,6 +79,8 @@ PODS:
     - React-Core
   - ExpoFileSystem (16.0.4):
     - ExpoModulesCore
+  - ExpoHead (3.4.5):
+    - ExpoModulesCore
   - ExpoImage (1.10.4):
     - ExpoModulesCore
     - SDWebImage (~> 5.17.0)
@@ -1233,6 +1235,7 @@ DEPENDENCIES:
   - expo-dev-menu (from `../node_modules/expo-dev-menu`)
   - expo-dev-menu-interface (from `../node_modules/expo-dev-menu-interface/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
+  - ExpoHead (from `../node_modules/expo-router/ios`)
   - ExpoImage (from `../node_modules/expo-image/ios`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - ExpoLocalization (from `../node_modules/expo-localization/ios`)
@@ -1340,6 +1343,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-dev-menu-interface/ios"
   ExpoFileSystem:
     :path: "../node_modules/expo-file-system/ios"
+  ExpoHead:
+    :path: "../node_modules/expo-router/ios"
   ExpoImage:
     :path: "../node_modules/expo-image/ios"
   ExpoKeepAwake:
@@ -1479,6 +1484,7 @@ SPEC CHECKSUMS:
   expo-dev-menu: 2c26766f836f9ff51b889a245dcbabb604c1c5ea
   expo-dev-menu-interface: 7ba029c9d1a82ac22b9b584c00514860b060553e
   ExpoFileSystem: 39e454b8e7f2358ae2c8f8ec255fede4c3039493
+  ExpoHead: dda4dd22972750dd2baa5c0231b86dc6e10ddfd9
   ExpoImage: d8d1003394f96a42d7702ab07d33e7d3773bcaa3
   ExpoKeepAwake: 0f5cad99603a3268e50af9a6eb8b76d0d9ac956c
   ExpoLocalization: f5f5d71dc0c9514d3d77b2771144f6fed6398d04
@@ -1557,4 +1563,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ac55d8c0b92af1b0a5da5f8cb8448313ecc7948e
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1
