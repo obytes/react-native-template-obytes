@@ -7,7 +7,7 @@ type Props = {
 };
 export const Title = ({ text }: Props) => {
   return (
-    <View className="flex-row items-center justify-center pt-4 pb-2">
+    <View className="flex-row items-center justify-center pb-2 pt-4">
       <Text variant="lg" className="pr-2">
         {text}
       </Text>

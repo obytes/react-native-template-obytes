@@ -1,11 +1,12 @@
+import { useRouter } from 'expo-router';
 import React from 'react';
 
+import { Cover } from '@/components/cover';
 import { useIsFirstTime } from '@/core/hooks';
 import { Button, FocusAwareStatusBar, SafeAreaView, Text, View } from '@/ui';
-
-import { Cover } from './cover';
-export const Onboarding = () => {
+export default function Onboarding() {
   const [_, setIsFirstTime] = useIsFirstTime();
+  const router = useRouter();
   return (
     <View className="flex h-full items-center  justify-center">
       <FocusAwareStatusBar />
@@ -38,9 +39,10 @@ export const Onboarding = () => {
           label="Let's Get Started "
           onPress={() => {
             setIsFirstTime(false);
+            router.replace('/login');
           }}
         />
       </SafeAreaView>
     </View>
   );
-};
+}

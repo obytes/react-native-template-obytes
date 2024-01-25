@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Stack } from 'expo-router';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { showMessage } from 'react-native-flash-message';
@@ -14,7 +15,7 @@ const schema = z.object({
 
 type FormType = z.infer<typeof schema>;
 
-export const AddPost = () => {
+export default function AddPost() {
   const { control, handleSubmit } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
@@ -40,26 +41,34 @@ export const AddPost = () => {
     );
   };
   return (
-    <View className="flex-1 p-4 ">
-      <ControlledInput
-        name="title"
-        label="Title"
-        control={control}
-        testID="title"
+    <>
+      <Stack.Screen
+        options={{
+          title: 'Add Post',
+          headerBackTitle: 'Feed',
+        }}
       />
-      <ControlledInput
-        name="body"
-        label="Content"
-        control={control}
-        multiline
-        testID="body-input"
-      />
-      <Button
-        label="Add Post"
-        loading={isLoading}
-        onPress={handleSubmit(onSubmit)}
-        testID="add-post-button"
-      />
-    </View>
+      <View className="flex-1 p-4 ">
+        <ControlledInput
+          name="title"
+          label="Title"
+          control={control}
+          testID="title"
+        />
+        <ControlledInput
+          name="body"
+          label="Content"
+          control={control}
+          multiline
+          testID="body-input"
+        />
+        <Button
+          label="Add Post"
+          loading={isLoading}
+          onPress={handleSubmit(onSubmit)}
+          testID="add-post-button"
+        />
+      </View>
+    </>
   );
-};
+}

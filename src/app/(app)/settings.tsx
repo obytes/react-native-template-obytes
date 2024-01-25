@@ -1,19 +1,26 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { Env } from '@env';
 import { useColorScheme } from 'nativewind';
-import * as React from 'react';
 
-import { useAuth } from '@/core';
-import { translate } from '@/core';
-import { FocusAwareStatusBar, ScrollView, Text, View } from '@/ui';
-import { Github, Rate, Share, Support, Website } from '@/ui/icons';
-import colors from '@/ui/theme/colors';
+import { Item } from '@/components/settings/item';
+import { ItemsContainer } from '@/components/settings/items-container';
+import { LanguageItem } from '@/components/settings/language-item';
+import { ThemeItem } from '@/components/settings/theme-item';
+import { translate, useAuth } from '@/core';
+import {
+  colors,
+  FocusAwareStatusBar,
+  Github,
+  Rate,
+  ScrollView,
+  Share,
+  Support,
+  Text,
+  View,
+  Website,
+} from '@/ui';
 
-import { Item } from './item';
-import { ItemsContainer } from './items-container';
-import { LanguageItem } from './language-item';
-import { ThemeItem } from './theme-item';
-
-export const Settings = () => {
+export default function Settings() {
   const signOut = useAuth.use.signOut();
   const { colorScheme } = useColorScheme();
   const iconColor =
@@ -79,4 +86,4 @@ export const Settings = () => {
       </ScrollView>
     </>
   );
-};
+}

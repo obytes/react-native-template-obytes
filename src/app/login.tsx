@@ -1,19 +1,21 @@
-import React from 'react';
+/* eslint-disable react/react-in-jsx-scope */
+import { useRouter } from 'expo-router';
 
+import type { LoginFormProps } from '@/components/login-form';
+import { LoginForm } from '@/components/login-form';
 import { useAuth } from '@/core';
 import { useSoftKeyboardEffect } from '@/core/keyboard';
 import { FocusAwareStatusBar } from '@/ui';
 
-import type { LoginFormProps } from './login-form';
-import { LoginForm } from './login-form';
-
-export const Login = () => {
+export default function Login() {
+  const router = useRouter();
   const signIn = useAuth.use.signIn();
   useSoftKeyboardEffect();
 
   const onSubmit: LoginFormProps['onSubmit'] = (data) => {
     console.log(data);
     signIn({ access: 'access-token', refresh: 'refresh-token' });
+    router.push('/');
   };
   return (
     <>
@@ -21,4 +23,4 @@ export const Login = () => {
       <LoginForm onSubmit={onSubmit} />
     </>
   );
-};
+}

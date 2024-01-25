@@ -11,7 +11,7 @@ type Props = {
 export const ItemsContainer = ({ children, title }: Props) => {
   return (
     <>
-      {title && <Text variant="lg" className="pt-4 pb-2" tx={title} />}
+      {title && <Text variant="lg" className="pb-2 pt-4" tx={title} />}
       {
         <View className=" rounded-md border-[1px] border-neutral-200 dark:border-charcoal-700 dark:bg-charcoal-800">
           {children}

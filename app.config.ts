@@ -8,6 +8,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   name: Env.NAME,
   description: `${Env.NAME} Mobile App`,
   owner: Env.EXPO_ACCOUNT_OWNER,
+  scheme: Env.SCHEME,
   slug: 'obytesapp',
   version: Env.VERSION.toString(),
   orientation: 'portrait',
@@ -26,7 +27,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     supportsTablet: true,
     bundleIdentifier: Env.BUNDLE_ID,
   },
-
+  experiments: {
+    typedRoutes: true,
+  },
   android: {
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
@@ -36,6 +39,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   web: {
     favicon: './assets/favicon.png',
+    bundler: 'metro',
   },
   plugins: [
     [
@@ -45,6 +49,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       },
     ],
     'expo-localization',
+    'expo-router',
     [
       'expo-build-properties',
       {
