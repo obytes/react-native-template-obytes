@@ -14,8 +14,8 @@ export default function Post() {
 
   if (isLoading) {
     return (
-      <View className="flex-1  justify-center">
-        <Stack.Screen options={{ title: 'Post' }} />
+      <View className="flex-1 justify-center  p-3">
+        <Stack.Screen options={{ title: 'Post', headerBackTitle: 'Feed' }} />
         <FocusAwareStatusBar />
         <ActivityIndicator />
       </View>
@@ -23,8 +23,8 @@ export default function Post() {
   }
   if (isError) {
     return (
-      <View className="flex-1  justify-center">
-        <Stack.Screen options={{ title: 'Post' }} />
+      <View className="flex-1 justify-center p-3">
+        <Stack.Screen options={{ title: 'Post', headerBackTitle: 'Feed' }} />
         <FocusAwareStatusBar />
         <Text variant="md" className="text-center">
           Error loading post
@@ -34,8 +34,8 @@ export default function Post() {
   }
 
   return (
-    <View className="flex-1 ">
-      <Stack.Screen options={{ title: 'Post' }} />
+    <View className="flex-1 p-3 ">
+      <Stack.Screen options={{ title: 'Post', headerBackTitle: 'Feed' }} />
       <FocusAwareStatusBar />
       <Text variant="h2">{data.title}</Text>
       <Text variant="md">{data.body} </Text>

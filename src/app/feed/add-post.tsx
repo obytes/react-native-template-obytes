@@ -45,6 +45,7 @@ export default function AddPost() {
       <Stack.Screen
         options={{
           title: 'Add Post',
+          headerBackTitle: 'Feed',
         }}
       />
       <View className="flex-1 p-4 ">
