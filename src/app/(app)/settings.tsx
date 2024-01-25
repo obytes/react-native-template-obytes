@@ -20,7 +20,7 @@ import {
   Website,
 } from '@/ui';
 
-export default function TabTwoScreen() {
+export default function Settings() {
   const signOut = useAuth.use.signOut();
   const { colorScheme } = useColorScheme();
   const iconColor =

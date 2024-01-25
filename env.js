@@ -36,6 +36,7 @@ const PACKAGE = 'com.obytes'; // android package name
 const NAME = 'ObytesApp'; // app name
 const EXPO_ACCOUNT_OWNER = 'obytes'; // expo account owner
 const EAS_PROJECT_ID = 'c3e1075b-6fe7-4686-aa49-35b46a229044'; // eas project id
+const SCHEME = 'obytesApp'; // app scheme
 
 /**
  * We declare a function withEnvSuffix that will add a suffix to the variable name based on the APP_ENV
@@ -69,6 +70,7 @@ const withEnvSuffix = (name) => {
 const client = z.object({
   APP_ENV: z.enum(['development', 'staging', 'production']),
   NAME: z.string(),
+  SCHEME: z.string(),
   BUNDLE_ID: z.string(),
   PACKAGE: z.string(),
   VERSION: z.string(),
@@ -90,6 +92,7 @@ const buildTime = z.object({
 const _clientEnv = {
   APP_ENV,
   NAME: NAME,
+  SCHEME: SCHEME,
   BUNDLE_ID: withEnvSuffix(BUNDLE_ID),
   PACKAGE: withEnvSuffix(PACKAGE),
   VERSION: packageJSON.version,
