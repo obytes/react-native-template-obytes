@@ -7,7 +7,7 @@ import { useAuth } from '@/core';
 import { useSoftKeyboardEffect } from '@/core/keyboard';
 import { FocusAwareStatusBar } from '@/ui';
 
-export default function LoginScreen() {
+export default function Login() {
   const router = useRouter();
   const signIn = useAuth.use.signIn();
   useSoftKeyboardEffect();
