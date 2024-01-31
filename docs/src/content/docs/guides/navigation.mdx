@@ -1,29 +1,25 @@
 ---
-title: React Navigation
-description: How to use React Navigation in your app.
+title: Expo Router
+description: How to use Expo Router in your app.
 head:
   - tag: title
-    content: React Navigation | React Native / Expo Starter
+    content: Expo Router | React Native / Expo Starter
 ---
 
 import CodeBlock from '../../../components/code.astro';
 
-[react-navigation](https://reactnavigation.org/) is the most popular navigation library for React Native. It is easy to use and provides a lot of features out of the box. It is also highly customizable and extensible. It is a great choice for most apps nowadays, while waiting for Expo Router to become stable and ready for production. It looks promising! 🔥
+[expo-router](https://docs.expo.dev/router/introduction/) is a navigation library provided by Expo that simplifies the implementation of navigation in React Native applications. It is built on top of React Navigation, a widely used navigation library, and abstracts away much of the complexity involved in managing navigation state and transitions between screens.
 
-Probably nothing we can add here that doesn't exist in the official docs except that we are using native stack navigation instead of the default one.
+Navigation in Expo Router is expressed declaratively, utilizing components to define the flow of the application. This approach makes it intuitive for developers to structure their navigation hierarchy.
 
-All the navigation-related code is located in the `src/navigation` folder. We opted for this approach to keep the project structure clean and easy to navigate.
+Conventional React Native projects typically adopt a structure where a sole root component is commonly specified in either ./App.js or ./index.js. Within the context of Expo Router, an alternative approach is offered through the utilization of the Root Layout, located in `app/_layout.tsx` in our Demo. Thereby, the `_layout` section of our app handles the overall structure and navigation setup.
 
-One last thing to mention is that we added a global declaration for the `ReactNavigation` namespace to add TypeScript support to the `navigate` function from the `useNavigation` hook.
+<CodeBlock file="src/app/_layout.tsx" />
 
-<CodeBlock file="src/navigation/types.tsx" />
+The Demo app comes with a simple stack and tabs layout. Feel free to remove what is not working for you and add your own using the same approach as the existing ones.
 
-Once you add a new stack navigator, you need to include it in the `RootStackParamList` type, as mentioned in the snippet above.
+Here is a simple example of the tabs layout.
 
-The Demo app comes with a simple stack and tabs navigator. Feel free to remove what is not working for you and add your own using the same approach as the existing ones. Also, remember to add the typing to the `RootStackParamList` type.
+<CodeBlock file="src/app/(app)/_layout.tsx" />
 
-Here is a simple example of the feed stack navigator.
-
-<CodeBlock file="src/navigation/feed-navigator.tsx" />
-
-Make sure to check the official docs for more information and examples about [react-navigation](https://reactnavigation.org/).
+Make sure to check the official docs for more information and examples about [expo-router](https://docs.expo.dev/router/introduction/).
