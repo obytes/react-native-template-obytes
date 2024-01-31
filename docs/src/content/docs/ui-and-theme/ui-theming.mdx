@@ -40,7 +40,7 @@ For more details about Nativewind you can check their [documentation](https://ww
 
 Here is an example of how your component should look like:
 
-<CodeBlock file="src/screens/feed/card.tsx" />
+<CodeBlock file="src/components/card.tsx" />
 
 You guess it right, all components imported from `@/ui` are wrapped with `styled` component from Nativewind and ready to accept Tailwind CSS class names. Enjoy 🥳
 
@@ -73,12 +73,12 @@ This template comes with dark mode support out of the box, and it's very easy to
 
 ### Implementation
 
-Since we're using [nativewind](https://www.nativewind.dev/) (which uses Tailwind CSS under the hood) and react-navigation we let them handle the application of theme, and we just take care of the colors we want.
-We set the colors in `ui/theme/colors.js` and we use them in our hook `useThemeConfig.tsx` to get the theme object that we pass to react-navigation container. For more information check out [react-navigation](https://reactnavigation.org/docs/themes/)
+Since we're using [nativewind](https://www.nativewind.dev/) (which uses Tailwind CSS under the hood) and expo-router we let them handle the application of theme, and we just take care of the colors we want.
+We set the colors in `ui/theme/colors.js` and we use them in our hook `useThemeConfig.tsx` to get the theme object that we pass to ThemeProvider directly. For more information check out [expo-router](https://docs.expo.dev/router/appearance/)
 
-<CodeBlock file="src/navigation/use-theme-config.tsx" />
+<CodeBlock file="src/core/use-theme-config.tsx" />
 
-<CodeBlock file="src/navigation/navigation-container.tsx" />
+<CodeBlock file="src/app/_layout.tsx" />
 
 ### How do we handle theme changes?
 

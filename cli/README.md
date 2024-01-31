@@ -8,7 +8,7 @@
 
 ![expo](https://img.shields.io/github/package-json/dependency-version/obytes/react-native-template-obytes/expo?label=expo) ![GitHub Repo stars](https://img.shields.io/github/stars/obytes/react-native-template-obytes) ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/obytes/react-native-template-obytes) ![GitHub issues](https://img.shields.io/github/issues/obytes/react-native-template-obytes) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/obytes/react-native-template-obytes)
 
-📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo,TypeScript,tailwindcss, Husky, Lint-Staged, react-navigation, react-query, react-hook-form, I18n.
+📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo,TypeScript,tailwindcss, Husky, Lint-Staged, expo-router, react-query, react-hook-form, I18n.
 
 # 🚀 Quick start
 
@@ -52,7 +52,7 @@ When creating this starter kit, we had several guiding principles in mind::
 - 💡 A clean project structure with Absolute Imports, to make it easier to navigate and manage your code.
 - 🚫 Lint-staged for running linters and TypeScript checks on Git staged files, to ensure that your code is always up to standards.
 - 🗂 VSCode recommended extensions, settings, and snippets to enhance the developer experience.
-- ☂️ Pre-installed [React Navigation](https://reactnavigation.org/) with examples, to provide a comprehensive navigation solution for your app.
+- ☂️ Pre-installed [Expo Router](https://docs.expo.dev/router/introduction/) with examples, to provide a comprehensive navigation solution for your app.
 - 💫 An auth flow with [zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage solution to save sensitive data.
 - 🛠 A simple workflow for building, releasing, and distributing your app using [Github action](https://github.com/features/actions).
 - 🔥 [React Query](https://react-query.tanstack.com/) & [axios](https://github.com/axios/axios) and [axios](https://github.com/axios/axios) for fetching data, to help you build efficient and performant apps.
@@ -102,7 +102,7 @@ We value the feedback and contributions of our users, and we encourage you to le
 ## 💎 Libraries used
 
 - [Expo](https://docs.expo.io/)
-- [React Navigation](https://reactnavigation.org/)
+- [Expo Router](https://docs.expo.dev/router/introduction/)
 - [Nativewind](https://www.nativewind.dev/)
 - [Flash list](https://github.com/Shopify/flash-list)
 - [React Query](https://tanstack.com/query/v4)

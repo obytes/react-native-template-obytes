@@ -49,7 +49,7 @@ Based on your needs, you can either use them as they are or customize them to fi
 
 Here is a simple example of more project specific component that uses some primitives components from the `ui` folder.
 
-<CodeBlock file="src/screens/feed/card.tsx" />
+<CodeBlock file="src/components/card.tsx" />
 
 :::tip
 To save time when creating new components or screens, we can simply start typing `comp` and press Enter to generate a new component with the correct structure.
@@ -353,11 +353,9 @@ We provide a simple `Modal` component using the `@gorhom/bottom-sheet` library t
 
 We opt to use a bottom sheet instead of a modal to make it more flexible and easy to use. as well as having full control over the logic and the UI.
 
-Based on your needs, you can use the `Modal` or `DynamicModal` if you don't have a fixed height for the modal content.
+Based on your needs, you can use the `Modal` if you don't have a fixed height for the modal content.
 
 <CodeBlock file="src/ui/core/modal/modal.tsx" />
-
-<CodeBlock file="src/ui/core/modal/dynamic-modal.tsx" />
 
 **Props**
 
@@ -373,22 +371,13 @@ import { Modal, useModal, View, Button, Text } from '@/ui';
 
 const MyComponent = () => {
   const modal = useModal();
-  const dynamicModal = useModal();
+
   return (
     <View className="flex flex-col items-center justify-center">
       <Button variant="primary" label="Show Modal" onPress={modal.present} />
       <Modal ref={modal.ref} title="modal title" snapPoints={['60%']}>
         <Text>Modal Content</Text>
       </Modal>
-      <Button
-        variant="primary"
-        label="Show Modal"
-        onPress={dynamicModal.present}
-      />
-
-      <DynamicModal ref={dynamicModal.ref} title="Dynamic modal title">
-        <Text> Dynamic modal Content</Text>
-      </DynamicModal>
     </View>
   );
 };

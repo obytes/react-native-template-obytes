@@ -76,7 +76,7 @@ Now that we have created our custom hook, we can use it in our app to display a 
 2. Import and use the usePosts hook we created earlier to fetch the list of posts.
 3. Use the fetched data to display a list of posts.
 
-<CodeBlock file="src/screens/feed/list.tsx" />
+<CodeBlock file="src/app/(app)/index.tsx" />
 
 As you can see in the code above, we use the `usePosts` hook to fetch data and handle the loading state. This allows us to display a loading indicator while the data is being fetched, and then display the list of posts once the data is ready.
 
@@ -94,7 +94,7 @@ Below is the complete code for the `use-post.ts` file:
 
 Now our hook is ready to be used in our post details screen:
 
-<CodeBlock file="src/screens/feed/post.tsx" />
+<CodeBlock file="src/app/feed/[id].tsx" />
 
 ### Add new post
 
@@ -124,7 +124,7 @@ Exactly the same way we did in [form section](../ui-and-theme/Forms.mdx) while c
 3. Get `mutate` function from `useAddPost` hook and call it when the form is submitted
 4. You can use the `isLoading` state to display a loading indicator while the data is being sent to the server and then redirect the user to the feed screen on success.
 
-<CodeBlock file="src/screens/feed/add-post.tsx" />
+<CodeBlock file="src/app/feed/add-post.tsx" />
 
 ## Create API Hooks with Vs Code Snippets
 
