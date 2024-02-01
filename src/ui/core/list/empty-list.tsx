@@ -1,9 +1,8 @@
 import React from 'react';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 
 import { NoData } from '../../icons';
 import { Text } from '../text';
-import { View } from '../view';
 type Props = {
   isLoading: boolean;
 };

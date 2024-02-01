@@ -1,22 +1,20 @@
 import * as React from 'react';
 
 import { ButtonVariants } from '@/components/button-variants';
-import { ColorVariants } from '@/components/color-variants';
-import { InputVariants } from '@/components/input-variants';
-import { TextVariants } from '@/components/text-variants';
-import { FocusAwareStatusBar, ScrollView, View } from '@/ui';
+import { Typography } from '@/components/typography';
+import { FocusAwareStatusBar, SafeAreaView, ScrollView } from '@/ui';
 
 export default function Style() {
   return (
     <>
       <FocusAwareStatusBar />
       <ScrollView>
-        <View className="flex-1  px-4 pt-10">
-          <TextVariants />
-          <ColorVariants />
-          <InputVariants />
+        <SafeAreaView className="flex-1 px-4">
+          <Typography />
+          {/* <ColorVariants />
+          <InputVariants /> */}
           <ButtonVariants />
-        </View>
+        </SafeAreaView>
       </ScrollView>
     </>
   );

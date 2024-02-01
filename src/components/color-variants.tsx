@@ -21,9 +21,7 @@ const ColorVariant = ({ name }: { name: ColorName }) => {
   if (typeof colors[name] === 'string') return null;
   return (
     <View className="pt-2">
-      <Text variant="md" className="font-medium">
-        {name.toUpperCase()}
-      </Text>
+      <Text className="font-medium">{name.toUpperCase()}</Text>
       <View className=" flex-row flex-wrap content-between  justify-between  ">
         {Object.entries(colors[name]).map(([key, value]) => {
           return (
@@ -46,9 +44,9 @@ const ColorCard = ({ color, value }: { value: string; color: string }) => {
         style={{ backgroundColor: color }}
         className={`h-[42px] w-[42px] items-center justify-center rounded-full  border-[1px] border-neutral-200 dark:border-charcoal-700`}
       >
-        <Text variant="sm">{value}</Text>
+        <Text className="text-sm">{value}</Text>
       </View>
-      <Text variant="sm">{color}</Text>
+      <Text className="text-sm">{color}</Text>
     </View>
   );
 };

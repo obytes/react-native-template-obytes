@@ -12,6 +12,9 @@ import { useThemeConfig } from '@/core/use-theme-config';
 
 export { ErrorBoundary } from 'expo-router';
 
+// Import  global CSS file
+import '../../global.css';
+
 export const unstable_settings = {
   initialRouteName: '(app)',
 };

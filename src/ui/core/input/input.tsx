@@ -1,16 +1,44 @@
-import { styled, useColorScheme } from 'nativewind';
 import * as React from 'react';
 import type { TextInput, TextInputProps } from 'react-native';
-import { StyleSheet } from 'react-native';
+import { I18nManager, StyleSheet, View } from 'react-native';
 import { TextInput as NTextInput } from 'react-native';
-
-import { isRTL } from '@/core';
+import { tv } from 'tailwind-variants';
 
 import colors from '../../theme/colors';
 import { Text } from '../text';
-import { View } from '../view';
 
-const STextInput = styled(NTextInput);
+const inputTv = tv({
+  slots: {
+    container: 'mb-2',
+    label: 'text-grey-100 dark:text-charcoal-100 text-sm',
+    input:
+      'mt-0 border-[0.5px] font-jakarta text-base leading-5 font-[500] px-4 py-3 rounded-xl  bg-neutral-100 border-neutral-300 ',
+  },
+
+  variants: {
+    focused: {
+      true: {
+        input: 'border-neutral-400',
+      },
+    },
+    error: {
+      true: {
+        input: 'border-danger-600',
+        label: 'text-danger-600',
+      },
+    },
+    disabled: {
+      true: {
+        input: 'bg-neutral-200',
+      },
+    },
+  },
+  defaultVariants: {
+    focused: false,
+    error: false,
+    disabled: false,
+  },
+});
 
 export interface NInputProps extends TextInputProps {
   label?: string;
@@ -20,57 +48,37 @@ export interface NInputProps extends TextInputProps {
 
 export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
   const { label, error, ...inputProps } = props;
-  const { colorScheme } = useColorScheme();
-  const isDark = colorScheme === 'dark';
   const [isFocussed, setIsFocussed] = React.useState(false);
   const onBlur = React.useCallback(() => setIsFocussed(false), []);
   const onFocus = React.useCallback(() => setIsFocussed(true), []);
 
-  const borderColor = error
-    ? 'border-danger-600'
-    : isFocussed
-    ? isDark
-      ? 'border-white'
-      : 'border-neutral-600'
-    : isDark
-    ? 'border-charcoal-700'
-    : 'border-neutral-400';
+  const styles = React.useMemo(
+    () =>
+      inputTv({
+        error: Boolean(error),
+        focused: isFocussed,
+        disabled: Boolean(props.disabled),
+      }),
+    [error, isFocussed, props.disabled]
+  );
 
-  const bgColor = isDark
-    ? 'bg-charcoal-800'
-    : error
-    ? 'bg-danger-50'
-    : 'bg-neutral-200';
-  const textDirection = isRTL ? 'text-right' : 'text-left';
   return (
-    <View className="mb-4">
-      {label && (
-        <Text
-          variant="md"
-          className={
-            error
-              ? 'text-danger-600'
-              : isDark
-              ? 'text-charcoal-100'
-              : 'text-black'
-          }
-        >
-          {label}
-        </Text>
-      )}
-      <STextInput
-        testID="STextInput"
+    <View className={styles.container()}>
+      {label && <Text className={styles.label()}>{label}</Text>}
+      <NTextInput
+        testID="NTextInput"
         ref={ref}
         placeholderTextColor={colors.neutral[400]}
-        className={`mt-0 border-[1px] py-4 px-2  ${borderColor} rounded-md ${bgColor} text-[16px] ${textDirection} dark:text-charcoal-100`}
+        className={styles.input()}
         onBlur={onBlur}
         onFocus={onFocus}
         {...inputProps}
         style={StyleSheet.flatten([
-          { writingDirection: isRTL ? 'rtl' : 'ltr' },
+          { writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr' },
+          inputProps.style,
         ])}
       />
-      {error && <Text variant="error">{error}</Text>}
+      {error && <Text className="text-sm text-danger-400">{error}</Text>}
     </View>
   );
 });

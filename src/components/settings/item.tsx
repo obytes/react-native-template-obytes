@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import type { TxKeyPath } from '@/core';
-import { ArrowRight, Text, TouchableOpacity, View } from '@/ui';
+import { ArrowRight, Pressable, Text, View } from '@/ui';
 
 type ItemProps = {
   text: TxKeyPath;
@@ -12,26 +12,24 @@ type ItemProps = {
 
 export const Item = ({ text, value, icon, onPress }: ItemProps) => {
   const isPressable = onPress !== undefined;
-  const Container = isPressable ? TouchableOpacity : View;
   return (
-    <Container
+    <Pressable
       onPress={onPress}
+      pointerEvents={isPressable ? 'auto' : 'none'}
       className="flex-1 flex-row items-center justify-between px-4 py-2"
     >
       <View className="flex-row items-center">
         {icon && <View className="pr-2">{icon}</View>}
-        <Text variant="md" tx={text} />
+        <Text tx={text} />
       </View>
       <View className="flex-row items-center">
-        <Text variant="md" className="text-neutral-600 dark:text-white">
-          {value}
-        </Text>
+        <Text className="text-neutral-600 dark:text-white">{value}</Text>
         {isPressable && (
           <View className="pl-2">
             <ArrowRight />
           </View>
         )}
       </View>
-    </Container>
+    </Pressable>
   );
 };

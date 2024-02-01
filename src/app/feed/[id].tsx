@@ -26,9 +26,7 @@ export default function Post() {
       <View className="flex-1 justify-center p-3">
         <Stack.Screen options={{ title: 'Post', headerBackTitle: 'Feed' }} />
         <FocusAwareStatusBar />
-        <Text variant="md" className="text-center">
-          Error loading post
-        </Text>
+        <Text className="text-center">Error loading post</Text>
       </View>
     );
   }
@@ -37,8 +35,8 @@ export default function Post() {
     <View className="flex-1 p-3 ">
       <Stack.Screen options={{ title: 'Post', headerBackTitle: 'Feed' }} />
       <FocusAwareStatusBar />
-      <Text variant="h2">{data.title}</Text>
-      <Text variant="md">{data.body} </Text>
+      <Text className="text-xl">{data.title}</Text>
+      <Text>{data.body} </Text>
     </View>
   );
 }
