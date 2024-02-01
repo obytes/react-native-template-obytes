@@ -32,7 +32,7 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
   });
   return (
     <View className="flex-1 justify-center p-4">
-      <Text testID="form-title" variant="h1" className="pb-6 text-center">
+      <Text testID="form-title" className="pb-6 text-center text-2xl">
         Sign In
       </Text>
 
@@ -61,7 +61,6 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
         testID="login-button"
         label="Login"
         onPress={handleSubmit(onSubmit)}
-        variant="primary"
       />
     </View>
   );

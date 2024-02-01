@@ -14,12 +14,19 @@ interface ControlledSelectProps<T extends FieldValues>
 export function ControlledSelect<T extends FieldValues>(
   props: ControlledSelectProps<T>
 ) {
-  const { name, control, rules, ...selectProps } = props;
+  const { name, control, rules, onSelect: onNSelect, ...selectProps } = props;
 
   const { field, fieldState } = useController({ control, name, rules });
+  const onSelect = React.useCallback(
+    (value: string | number) => {
+      field.onChange(value);
+      onNSelect?.(value);
+    },
+    [field, onNSelect]
+  );
   return (
     <Select
-      onSelect={field.onChange}
+      onSelect={onSelect}
       value={field.value}
       error={fieldState.error?.message}
       {...selectProps}

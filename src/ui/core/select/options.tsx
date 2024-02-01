@@ -2,12 +2,11 @@ import type { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import { useColorScheme } from 'nativewind';
 import * as React from 'react';
-import { type PressableProps } from 'react-native';
+import { Pressable, type PressableProps } from 'react-native';
 
 import { colors } from '@/ui/theme';
 
 import { Modal } from '../modal';
-import { Pressable } from '../pressable';
 import { Text } from '../text';
 import { Check } from './icons';
 
@@ -71,13 +70,11 @@ const Option = React.memo(
   }) => {
     return (
       <Pressable
-        className="flex-row items-center border-b-[1px] border-neutral-300 bg-white py-2 px-3 dark:border-charcoal-700 dark:bg-charcoal-800"
+        className="flex-row items-center border-b-[1px] border-neutral-300 bg-white px-3 py-2 dark:border-charcoal-700 dark:bg-charcoal-800"
         {...props}
       >
-        <Text variant="md" className="flex-1 dark:text-charcoal-100 ">
-          {label}
-        </Text>
-        {selected && <Check fill="fill-black dark:fill-white" />}
+        <Text className="flex-1 dark:text-charcoal-100 ">{label}</Text>
+        {selected && <Check fill="#000" />}
       </Pressable>
     );
   }
