@@ -1,13 +1,19 @@
-export * from './activity-indicator';
 export * from './button';
 export * from './image';
 export * from './input';
 export * from './list';
 export * from './modal';
-export * from './pressable';
-export * from './scroll-view';
+export * from './progress-bar';
 export * from './select';
 export * from './select/options';
 export * from './text';
-export * from './touchable-opacity';
-export * from './view';
+
+// export base components from react-native
+export {
+  ActivityIndicator,
+  Pressable,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+export { SafeAreaView } from 'react-native-safe-area-context';

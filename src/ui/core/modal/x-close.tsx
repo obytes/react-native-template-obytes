@@ -1,4 +1,3 @@
-import { styled } from 'nativewind';
 import * as React from 'react';
 import type { SvgProps } from 'react-native-svg';
 import Svg, { Path } from 'react-native-svg';
@@ -12,6 +11,4 @@ const SvgComponent = ({ fill = '#001136', ...props }: SvgProps) => (
   </Svg>
 );
 
-export const XClose = styled(SvgComponent, {
-  classProps: ['fill'],
-});
+export const XClose = SvgComponent;
