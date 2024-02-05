@@ -8,17 +8,17 @@ PODS:
   - EXJSONUtils (0.12.3)
   - EXManifests (0.13.2):
     - ExpoModulesCore
-  - Expo (50.0.3):
+  - Expo (50.0.5):
     - ExpoModulesCore
-  - expo-dev-client (3.3.7):
+  - expo-dev-client (3.3.8):
     - EXManifests
     - expo-dev-launcher
     - expo-dev-menu
     - expo-dev-menu-interface
     - EXUpdatesInterface
-  - expo-dev-launcher (3.6.4):
+  - expo-dev-launcher (3.6.6):
     - EXManifests
-    - expo-dev-launcher/Main (= 3.6.4)
+    - expo-dev-launcher/Main (= 3.6.6)
     - expo-dev-menu
     - expo-dev-menu-interface
     - ExpoModulesCore
@@ -27,7 +27,7 @@ PODS:
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
     - React-RCTAppDelegate
-  - expo-dev-launcher/Main (3.6.4):
+  - expo-dev-launcher/Main (3.6.6):
     - EXManifests
     - expo-dev-launcher/Unsafe
     - expo-dev-menu
@@ -38,7 +38,7 @@ PODS:
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
     - React-RCTAppDelegate
-  - expo-dev-launcher/Unsafe (3.6.4):
+  - expo-dev-launcher/Unsafe (3.6.6):
     - EXManifests
     - expo-dev-menu
     - expo-dev-menu-interface
@@ -48,14 +48,14 @@ PODS:
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
     - React-RCTAppDelegate
-  - expo-dev-menu (4.5.4):
-    - expo-dev-menu/Main (= 4.5.4)
-    - expo-dev-menu/ReactNativeCompatibles (= 4.5.4)
+  - expo-dev-menu (4.5.5):
+    - expo-dev-menu/Main (= 4.5.5)
+    - expo-dev-menu/ReactNativeCompatibles (= 4.5.5)
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
   - expo-dev-menu-interface (1.7.2)
-  - expo-dev-menu/Main (4.5.4):
+  - expo-dev-menu/Main (4.5.5):
     - EXManifests
     - expo-dev-menu-interface
     - expo-dev-menu/Vendored
@@ -63,23 +63,23 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - expo-dev-menu/ReactNativeCompatibles (4.5.4):
+  - expo-dev-menu/ReactNativeCompatibles (4.5.5):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - expo-dev-menu/SafeAreaView (4.5.4):
+  - expo-dev-menu/SafeAreaView (4.5.5):
     - ExpoModulesCore
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - expo-dev-menu/Vendored (4.5.4):
+  - expo-dev-menu/Vendored (4.5.5):
     - expo-dev-menu/SafeAreaView
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
   - ExpoFileSystem (16.0.5):
     - ExpoModulesCore
-  - ExpoHead (3.4.5):
+  - ExpoHead (3.4.6):
     - ExpoModulesCore
   - ExpoImage (1.10.5):
     - ExpoModulesCore
@@ -1197,7 +1197,7 @@ PODS:
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
-  - RNReanimated (3.6.1):
+  - RNReanimated (3.6.2):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1478,13 +1478,13 @@ SPEC CHECKSUMS:
   EXFont: 21b9c760abd593ce8f0d5386b558ced76018506f
   EXJSONUtils: 5c42959e87be238b045ef37cc5268b16a6c0ad4a
   EXManifests: 5e8c29f36c716af768a4ea47ec05e1b89ab93091
-  Expo: 88b4aa68115bbb57c1a07cc30161c2352ab2fc25
-  expo-dev-client: 80a81d82fd401673ab11702ce9e54115a8852f3b
-  expo-dev-launcher: 448a2c920d487f3f04958fb32c00204f92d5b3ac
-  expo-dev-menu: 2c26766f836f9ff51b889a245dcbabb604c1c5ea
+  Expo: 49cded7844f2ec4ffb1cc3b86504853f26952935
+  expo-dev-client: 025dce84f48b04c60c3891547732f001f6aad777
+  expo-dev-launcher: 3cddfcd8e54748d0046af07dc8e4f58dbb045e93
+  expo-dev-menu: 8088833c320b616a312ffe438fbea5df276c010e
   expo-dev-menu-interface: 7ba029c9d1a82ac22b9b584c00514860b060553e
   ExpoFileSystem: 04795dd4d47e76eaf12e38c92091f77d794f9e7f
-  ExpoHead: dda4dd22972750dd2baa5c0231b86dc6e10ddfd9
+  ExpoHead: b4f7388cd19ef0513ec0c0329ec995c03024300d
   ExpoImage: 2b71f20472f293c1fbbf2400795b03d5bf8dd598
   ExpoKeepAwake: 0f5cad99603a3268e50af9a6eb8b76d0d9ac956c
   ExpoLocalization: f5f5d71dc0c9514d3d77b2771144f6fed6398d04
@@ -1551,7 +1551,7 @@ SPEC CHECKSUMS:
   ReactNativeAvoidSoftinput: b4ec4c8084c397a91800d21170a9949a263d288a
   RNFlashList: 4b4b6b093afc0df60ae08f9cbf6ccd4c836c667a
   RNGestureHandler: 25b969a1ffc806b9f9ad2e170d4a3b049c6af85e
-  RNReanimated: 57f436e7aa3d277fbfed05e003230b43428157c0
+  RNReanimated: 5589be82dc26b3f94738eb7c6b1f942787532b25
   RNScreens: b582cb834dc4133307562e930e8fa914b8c04ef2
   RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
   SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
