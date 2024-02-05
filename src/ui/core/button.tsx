@@ -6,15 +6,16 @@ import { tv } from 'tailwind-variants';
 
 const button = tv({
   slots: {
-    container: 'flex flex-row items-center justify-center rounded-md my-2',
+    container: 'flex flex-row items-center justify-center rounded-md my-2 px-4',
     label: 'text-base font-[600] font-jakarta',
-    indicator: 'text-black h-6',
+    indicator: 'text-white h-6',
   },
 
   variants: {
     variant: {
       default: {
-        container: 'bg-primary-10',
+        container: 'bg-black',
+        label: 'text-white',
       },
       secondary: {
         container: 'bg-primary-600',
@@ -32,8 +33,8 @@ const button = tv({
         indicator: 'text-white',
       },
       ghost: {
-        container: 'bg-white',
-        label: 'text-black',
+        container: 'bg-transparent',
+        label: 'text-black underline underline-offset-4',
         indicator: 'text-black',
       },
       link: {
@@ -52,8 +53,9 @@ const button = tv({
         label: 'text-xl',
       },
       sm: {
-        container: 'h-8 px-2',
+        container: 'h-8 px-3',
         label: 'text-sm',
+        indicator: 'h-2',
       },
       icon: { container: 'h-9 w-9' },
     },
@@ -85,6 +87,8 @@ type ButtonVariants = VariantProps<typeof button>;
 interface Props extends ButtonVariants, Omit<PressableProps, 'disabled'> {
   label?: string;
   loading?: boolean;
+  className?: string;
+  textClassName?: string;
 }
 
 export const Button = React.forwardRef<View, Props>(
@@ -95,6 +99,8 @@ export const Button = React.forwardRef<View, Props>(
       variant = 'default',
       disabled = false,
       size = 'default',
+      className = '',
+      textClassName = '',
       ...props
     },
     ref
@@ -106,14 +112,22 @@ export const Button = React.forwardRef<View, Props>(
     return (
       <Pressable
         disabled={disabled || loading}
-        className={styles.container()}
+        className={styles.container({ className })}
         {...props}
         ref={ref}
       >
-        {loading ? (
-          <ActivityIndicator size="small" className={styles.indicator()} />
+        {props.children ? (
+          props.children
         ) : (
-          <Text className={styles.label()}>{text}</Text>
+          <>
+            {loading ? (
+              <ActivityIndicator size="small" className={styles.indicator()} />
+            ) : (
+              <Text className={styles.label({ className: textClassName })}>
+                {text}
+              </Text>
+            )}
+          </>
         )}
       </Pressable>
     );
