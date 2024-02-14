@@ -30,9 +30,12 @@
 
 import type { BottomSheetModalProps } from '@gorhom/bottom-sheet';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import { useColorScheme } from 'nativewind';
 import * as React from 'react';
 import { Pressable, View } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
+
+import { colors } from '@/ui/theme';
 
 import { renderBackdrop } from './bottom-sheet';
 import { Text } from './text';
@@ -148,6 +151,10 @@ const ModalHeader = React.memo(({ title, dismiss }: ModalHeaderProps) => {
 });
 
 const CloseButton = ({ close }: { close: () => void }) => {
+  const { colorScheme } = useColorScheme();
+  const isDark = colorScheme === 'dark';
+  const buttonColor = isDark ? colors.charcoal[100] : colors.white;
+
   return (
     <Pressable
       onPress={close}
@@ -160,7 +167,7 @@ const CloseButton = ({ close }: { close: () => void }) => {
       <Svg width={24} height={24} fill="none" viewBox="0 0 24 24">
         <Path
           d="M18.707 6.707a1 1 0 0 0-1.414-1.414L12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 1 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293Z"
-          fill="dark:fille-charcoal-100 light:fill-white"
+          fill={buttonColor}
         />
       </Svg>
     </Pressable>
