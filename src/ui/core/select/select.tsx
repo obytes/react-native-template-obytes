@@ -29,7 +29,7 @@ const selectTv = tv({
     error: {
       true: {
         input: 'border-danger-600',
-        label: 'text-danger-600',
+        label: 'text-danger-600 dark:text-danger-600',
         inputValue: 'text-danger-600',
       },
     },
@@ -108,7 +108,11 @@ export const Select = (props: SelectProps) => {
           </View>
           <CaretDown color={isDark ? colors.white : colors.black} />
         </TouchableOpacity>
-        {error && <Text className="text-sm text-danger-300">{error}</Text>}
+        {error && (
+          <Text className="text-sm text-danger-300 dark:text-danger-600">
+            {error}
+          </Text>
+        )}
       </View>
       <Options ref={modal.ref} options={options} onSelect={onSelectOption} />
     </>

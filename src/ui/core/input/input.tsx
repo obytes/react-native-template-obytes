@@ -24,7 +24,7 @@ const inputTv = tv({
     error: {
       true: {
         input: 'border-danger-600',
-        label: 'text-danger-600',
+        label: 'text-danger-600 dark:text-danger-600',
       },
     },
     disabled: {
@@ -78,7 +78,11 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
           inputProps.style,
         ])}
       />
-      {error && <Text className="text-sm text-danger-400">{error}</Text>}
+      {error && (
+        <Text className="text-sm text-danger-400 dark:text-danger-600">
+          {error}
+        </Text>
+      )}
     </View>
   );
 });
