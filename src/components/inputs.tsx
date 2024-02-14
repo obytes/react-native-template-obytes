@@ -11,7 +11,7 @@ const options: Option[] = [
   { value: 'vanilla', label: 'Vanilla' },
 ];
 
-export const InputVariants = () => {
+export const Inputs = () => {
   const [value, setValue] = React.useState<string | number | undefined>();
   return (
     <>
