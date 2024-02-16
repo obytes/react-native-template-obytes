@@ -5,7 +5,6 @@ export * from './list';
 export * from './modal';
 export * from './progress-bar';
 export * from './select';
-export * from './select/options';
 export * from './text';
 
 // export base components from react-native
