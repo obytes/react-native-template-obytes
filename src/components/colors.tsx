@@ -6,23 +6,23 @@ import colors from '@/ui/theme/colors';
 import { Title } from './title';
 type ColorName = keyof typeof colors;
 
-export const ColorVariants = () => {
+export const Colors = () => {
   return (
     <>
       <Title text="Colors" />
       {(Object.keys(colors) as ColorName[]).map((name) => (
-        <ColorVariant name={name} key={name} />
+        <Color name={name} key={name} />
       ))}
     </>
   );
 };
 
-const ColorVariant = ({ name }: { name: ColorName }) => {
+const Color = ({ name }: { name: ColorName }) => {
   if (typeof colors[name] === 'string') return null;
   return (
     <View className="pt-2">
       <Text className="font-medium">{name.toUpperCase()}</Text>
-      <View className=" flex-row flex-wrap content-between  justify-between  ">
+      <View className="flex-row flex-wrap content-between justify-around ">
         {Object.entries(colors[name]).map(([key, value]) => {
           return (
             <ColorCard
@@ -39,7 +39,7 @@ const ColorVariant = ({ name }: { name: ColorName }) => {
 
 const ColorCard = ({ color, value }: { value: string; color: string }) => {
   return (
-    <View className="flex-[1/5] items-center justify-center py-1">
+    <View className="items-center justify-center py-1">
       <View
         style={{ backgroundColor: color }}
         className={`h-[42px] w-[42px] items-center justify-center rounded-full  border-[1px] border-neutral-200 dark:border-charcoal-700`}
