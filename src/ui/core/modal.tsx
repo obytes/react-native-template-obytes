@@ -28,13 +28,16 @@
  *
  */
 
-import type { BottomSheetModalProps } from '@gorhom/bottom-sheet';
-import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import type {
+  BottomSheetBackdropProps,
+  BottomSheetModalProps,
+} from '@gorhom/bottom-sheet';
+import { BottomSheetModal, useBottomSheet } from '@gorhom/bottom-sheet';
 import * as React from 'react';
 import { Pressable, View } from 'react-native';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { Path, Svg } from 'react-native-svg';
 
-import { renderBackdrop } from './bottom-sheet';
 import { Text } from './text';
 
 type ModalProps = BottomSheetModalProps & {
@@ -103,6 +106,29 @@ export const Modal = React.forwardRef(
       />
     );
   }
+);
+
+/**
+ * Custom Backdrop
+ */
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+
+const CustomBackdrop = ({ style }: BottomSheetBackdropProps) => {
+  const { close } = useBottomSheet();
+  return (
+    <AnimatedPressable
+      onPress={() => close()}
+      entering={FadeIn.duration(50)}
+      exiting={FadeOut.duration(20)}
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={[style, { backgroundColor: 'rgba(0, 0, 0, 0.4)' }]}
+    />
+  );
+};
+
+export const renderBackdrop = (props: BottomSheetBackdropProps) => (
+  <CustomBackdrop {...props} />
 );
 
 /**
