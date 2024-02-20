@@ -1,4 +1,5 @@
 import React, { forwardRef, useImperativeHandle } from 'react';
+import { View } from 'react-native';
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -7,7 +8,6 @@ import Animated, {
 } from 'react-native-reanimated';
 import { twMerge } from 'tailwind-merge';
 
-import { View } from '../core';
 type Props = {
   initialProgress?: number;
   className?: string;
