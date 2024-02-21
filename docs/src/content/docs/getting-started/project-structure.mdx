@@ -44,15 +44,15 @@ If you open the new project in VSCode you will see the following structure:
 │   │   ├── items-container.tsx
 │   │   ├── language-item.tsx
 │   │   └── theme-item.tsx
-│   ├── button-variants.tsx
+│   ├── buttons.tsx
 │   ├── card.tsx
-│   ├── color-variants.tsx
+│   ├── colors.tsx
 │   ├── cover.tsx
-│   ├── input-variants.tsx
+│   ├── inputs.tsx
 │   ├── login-form.test.tsx
 │   ├── login-form.tsx
-│   ├── text-variants.tsx
-│   └── title.tsx
+│   ├── title.tsx
+│   └── typography.tsx
 ├── core # core files such as auth, localization, storage and more
 │   ├── auth
 │   │   ├── index.tsx
@@ -81,20 +81,15 @@ If you open the new project in VSCode you will see the following structure:
 │   └── index.ts
 └── ui # ui components and theme configuration
     ├── core
-    │   ├── activity-indicator.tsx
-    │   ├── bottom-sheet
+    │   ├── list
     │   ├── button.tsx
     │   ├── image.tsx
     │   ├── index.tsx
-    │   ├── input
-    │   ├── list
-    │   ├── modal
-    │   ├── pressable.tsx
-    │   ├── scroll-view.tsx
-    │   ├── select
-    │   ├── text.tsx
-    │   ├── touchable-opacity.tsx
-    │   └── view.tsx
+    │   ├── input.tsx
+    │   ├── modal.tsx
+    │   ├── progress-bar.tsx
+    │   ├── select.tsx
+    │   └── text.tsx
     ├── error-handler
     │   ├── error-fallback.tsx
     │   └── index.tsx
@@ -138,45 +133,44 @@ import React from 'react';
 
 import type { Post } from '@/api';
 import { usePosts } from '@/api';
-import { EmptyList, SafeAreaView, Text, View } from '@/ui';
+import { EmptyList, FocusAwareStatusBar, Text, View } from '@/ui';
 
-import { Card } from './card';
+import { Card } from '@/components/card';
 
-export const Feed = () => {
-  const { data, isLoading } = usePosts();
-
+export default function Feed() {
+  const { data, isLoading, isError } = usePosts();
   const renderItem = React.useCallback(
     ({ item }: { item: Post }) => <Card {...item} />,
     []
   );
+
+  if (isError) {
+    return (
+      <View>
+        <Text> Error Loading data </Text>
+      </View>
+    );
+  }
   return (
-    <View className="flex-1 bg-white">
+    <View className="flex-1 ">
+      <FocusAwareStatusBar />
       <FlashList
         data={data}
         renderItem={renderItem}
         keyExtractor={(_, index) => `item-${index}`}
-        ListHeaderComponent={ListHeader}
         ListEmptyComponent={<EmptyList isLoading={isLoading} />}
         estimatedItemSize={300}
       />
     </View>
   );
-};
-
-const ListHeader = () => (
-  <SafeAreaView className="ml-4">
-    <Text variant="lg" className="font-bold">
-      Feed
-    </Text>
-  </SafeAreaView>
-);
+}
 ```
 
 This approach is very useful when you are working on a large project with a lot of files and folders and it can be done by updating the `babel.config.js` file and `tsconfig.json` file to the following:
 
 <details>
   <summary>⚙️ Babel configuration</summary>
-  <Code file="babel.config.js" meta="ins={6-24}" />
+  <Code file="babel.config.js" meta="ins={8-27}" />
 </details>
 
 <details>
