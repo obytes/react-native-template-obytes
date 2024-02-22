@@ -14,18 +14,18 @@ Forms are a common feature of any application. In this section, we will show you
 
 The starter uses [react-hook-form](https://react-hook-form.com/) to handle forms. It is a popular library that provides a lot of features out of the box. It is also very easy to use and integrate with React Native.
 
-Make sure to check the [react-hook-form](https://react-hook-form.com/) documentation](https://react-hook-form.com/) to learn more about how to use it.
+Make sure to check the [react-hook-form documentation](https://react-hook-form.com/) to learn more about how to use it.
 
-As we mention in the components section of the documentation [here](./components), we create a set of controlled components that are only used with react-hook-form. The starter only provides two components: `ControlledInput` and `ControlledSelect` but you can easily create other components using the same approach.
+As we mention in the components section of the documentation [here](../components/), we create a set of controlled components that are only used with react-hook-form. The starter only provides two components: `ControlledInput` and `ControlledSelect` but you can easily create other components using the same approach.
 
 Here is the complete code of our `ControlledInput` when we use `useController` hook from react-hook-form to handle form state and validation rules:
 
-<CodeBlock file="src/ui/core/input/controlled-input.tsx" />
+<CodeBlock file="src/ui/core/input.tsx" />
 
 If you want to create your own controlled component, you just need to make sure your component props type extends from `InputControllerType` the same way we are using it with `ControlledInput`.
 Here is another example of a Select input we create using the same approach as `ControlledInput`:
 
-<CodeBlock file="src/ui/core/select/controlled-select.tsx" />
+<CodeBlock file="src/ui/core/select.tsx" />
 
 ## Use Case
 
