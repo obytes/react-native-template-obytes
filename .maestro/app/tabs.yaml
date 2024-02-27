@@ -1,19 +1,19 @@
 appId: ${APP_ID}
 env:
-  Name: "User"
-  EMAIL: "user@test.com"
-  PASSWORD: "password"
+  Name: 'User'
+  EMAIL: 'user@test.com'
+  PASSWORD: 'password'
 ---
 - launchApp
 - runFlow: ../utils/onboarding-and-login.yaml
-- assertVisible: "Typography"
+- assertVisible: 'Feed'
 - assertVisible:
-    id: "FeedNavigator-tab"
+    id: 'style-tab'
 - tapOn:
-    id: "FeedNavigator-tab"
-- assertVisible: "Feed"
+    id: 'style-tab'
+- assertVisible: 'Typography'
 - tapOn:
-    id: "Settings-tab"
-- assertVisible: "Settings"
+    id: 'settings-tab'
+- assertVisible: 'Settings'
 - scroll
-- assertVisible: "Logout"
+- assertVisible: 'Logout'

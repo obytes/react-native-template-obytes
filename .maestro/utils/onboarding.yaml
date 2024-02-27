@@ -2,7 +2,7 @@ appId: ${APP_ID}
 tags:
   - util
 ---
-- assertVisible: "Obytes Starter"
+- assertVisible: 'Obytes Starter'
 - assertVisible: "Let's Get Started "
 - tapOn: "Let's Get Started "
-- assertVisible: "Sign In"
+- assertVisible: 'Sign In'
