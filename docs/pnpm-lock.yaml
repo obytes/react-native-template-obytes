@@ -11,6 +11,9 @@ dependencies:
   '@expressive-code/plugin-collapsible-sections':
     specifier: ^0.33.4
     version: 0.33.4
+  '@expressive-code/plugin-line-numbers':
+    specifier: ^0.33.4
+    version: 0.33.4
   '@fontsource/ibm-plex-mono':
     specifier: ^5.0.8
     version: 5.0.8
@@ -617,6 +620,13 @@ packages:
 
   /@expressive-code/plugin-frames@0.33.4:
     resolution: {integrity: sha512-6HE5f8dAPjzmhs7yZJHVyH+w/UwVpktjlTvrUumrytHo6hidGlkB5lptWJlSAd9JXzev5BQEb4xrqQ0xQqO5+A==}
+    dependencies:
+      '@expressive-code/core': 0.33.4
+      hastscript: 7.2.0
+    dev: false
+
+  /@expressive-code/plugin-line-numbers@0.33.4:
+    resolution: {integrity: sha512-+AIxeufcutV1+0sAtXsTEcma7uxKQK2F7qfQYWHYp0PW6QxLXkMYP7aGfuIFPsfovKEe+EmFKXKhEwYnraK7yQ==}
     dependencies:
       '@expressive-code/core': 0.33.4
       hastscript: 7.2.0

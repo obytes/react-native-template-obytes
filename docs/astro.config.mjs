@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 
 const site = 'https://starter.obytes.com/';
 
