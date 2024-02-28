@@ -1,58 +1,70 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-import expressiveCode from 'astro-expressive-code';
 const site = 'https://starter.obytes.com/';
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    expressiveCode(),
     starlight({
       title: 'Obytes Starter | React Native Template',
       description: `Your All-in-One Solution for Building Outstanding React Native/Expo Apps. From editor setup to store submission, we've got you covered!`,
+      expressiveCode: {
+        themes: ['dracula', 'solarized-light'],
+      },
       logo: {
-				light: '/src/assets/logo-titled.svg',
+        light: '/src/assets/logo-titled.svg',
         dark: '/src/assets/logo-titled.svg',
-				replacesTitle: true,
-			},
+        replacesTitle: true,
+      },
       components: {
         LastUpdated: './src/components/LastUpdated.astro',
       },
       social: {
         github: 'https://github.com/obytes/react-native-template-obytes',
       },
-      head:[
+      head: [
         {
-					tag: 'meta',
-					attrs: { property: 'og:image', content: site + 'og.jpg?v=1' },
-				},
-				{
-					tag: 'meta',
-					attrs: { property: 'twitter:image', content: site + 'og.jpg?v=1' },
-				},
+          tag: 'meta',
+          attrs: { property: 'og:image', content: site + 'og.jpg?v=1' },
+        },
         {
-          tag:'link',
+          tag: 'meta',
+          attrs: { property: 'twitter:image', content: site + 'og.jpg?v=1' },
+        },
+        {
+          tag: 'link',
           attrs: { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         },
         {
-          tag:'link',
-          attrs: { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: true },
+          tag: 'link',
+          attrs: {
+            rel: 'preconnect',
+            href: 'https://fonts.gstatic.com',
+            crossorigin: true,
+          },
         },
         {
-          tag:'link',
-          attrs: { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap' },
+          tag: 'link',
+          attrs: {
+            rel: 'stylesheet',
+            href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap',
+          },
         },
         {
           tag: 'script',
-          attrs: { src: 'https://cdn.jsdelivr.net/npm/@minimal-analytics/ga4/dist/index.js', async: true }
-        },{
+          attrs: {
+            src: 'https://cdn.jsdelivr.net/npm/@minimal-analytics/ga4/dist/index.js',
+            async: true,
+          },
+        },
+        {
           tag: 'script',
           content: ` window.minimalAnalytics = {
             trackingId: 'G-GQ45JJD1JC',
             autoTrack: true,
-          };`
-        }
+          };`,
+        },
       ],
       sidebar: [
         {
@@ -91,7 +103,7 @@ export default defineConfig({
           items: [
             // Each item here is one entry in the navigation menu.
             {
-              label: 'UI Theme',
+              label: 'UI & Theming',
               link: '/ui-and-theme/ui-theming/',
             },
             {
@@ -183,9 +195,7 @@ export default defineConfig({
           link: '/stay-updated',
         },
       ],
-      customCss: [
-        './src/styles/custom.css',
-      ],
+      customCss: ['./src/styles/custom.css'],
       lastUpdated: true,
     }),
   ],

@@ -29,22 +29,23 @@ When creating this starter kit, we had several guiding principles in mind::
 - **🧩 Minimal code and dependencies**: We aimed to keep the codebase and dependencies as small as possible.
 - **💪 Well-maintained third-party libraries**: We included only well-maintained and reliable third-party libraries, to provide stability and support for our projects.
 
-## ⭐ key Features
+## ⭐ Key Features
 
-- ✅ The latest version of Expo SDK, along with the Custom Dev client gives you access to a range of powerful features and tools.
+- ✅ The latest version of Expo SDK, Along with the Custom Dev client, you can leverage the best of the Expo ecosystem and maintain full control over your app.
 - 🎉 [TypeScript](https://www.typescriptlang.org/) for type checking, to help you catch bugs and improve code quality.
-- 💅 A minimal UI kit built with [tailwindcss](https://www.nativewind.dev/), which provides a range of pre-defined classes for styling your app.
+- 💅 A minimal UI kit built with [TailwindCSS](https://www.nativewind.dev/), With the most common components you should have in your app.
 - ⚙️ Support for multiple environments builds, including Production, Staging, and Development, using Expo configuration.
 - 🦊 Husky for Git Hooks, to automate your git hooks and enforce code standards.
 - 💡 A clean project structure with Absolute Imports, to make it easier to navigate and manage your code.
-- 🚫 Lint-staged for running linter and TypeScript checks on Git staged files, to ensure that your code is always up to standards.
+- 🚫 Lint-staged for running Eslint and TypeScript checks on Git staged files, to ensure that your code is always up to standards.
 - 🗂 VSCode recommended extensions, settings, and snippets to enhance the developer experience.
 - ☂️ Pre-installed [Expo Router](https://docs.expo.dev/router/introduction/) with examples, to provide a comprehensive navigation solution for your app.
-- 💫 An auth flow with [zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage solution to save sensitive data.
-- 🛠 A simple workflow for building, releasing, and distributing your app using [Github action](https://github.com/features/actions).
+- 💫 An auth flow with [Zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage solution to save sensitive data.
+- 🛠 +10 workflows for building, releasing, testing and distributing your app using [Github action](https://github.com/features/actions).
 - 🔥 [React Query](https://react-query.tanstack.com/) and [axios](https://github.com/axios/axios) for fetching data, to help you build efficient and performant apps.
 - 🧵 A good approach for handling forms with [react-hook-form](https://react-hook-form.com/) and [zod](https://github.com/colinhacks/zod) for validation + keyboard handling.
-- 🎯 Localization with [i18next](https://www.i18next.com/) , along with Eslint for validation.
+- 🎯 Localization with [i18next](https://www.i18next.com/), along with Eslint for validation.
+- Unit testing with [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) setup to help you write tests for your app.
 
 ## 😉 Why Expo?
 
@@ -89,11 +90,15 @@ We value the feedback and contributions of our users, and we encourage you to le
 - [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/)
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/)
 - [React Native Svg](https://github.com/software-mansion/react-native-svg)
-- [React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
-- [Expo Image](https://docs.expo.dev/versions/unversioned/sdk/image/#prefetchurls)
+- [ React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
+- [Expo Image](https://docs.expo.dev/versions/unversioned/sdk/image/)
 
 ## Contributors
 
 This starter is maintained by [Obytes mobile tribe team](https://www.obytes.com/team) and we welcome new contributors to join us in improving it. If you are interested in getting involved in the project, please don't hesitate to open an issue or submit a pull request.
 
 In addition to maintaining this starter kit, we are also available to work on custom projects and help you build your dream app. If you are looking for experienced and reliable developers to bring your app vision to life, please visit our website at [obytes.com/contact](https://www.obytes.com/contact) to get in touch with us. We would be happy to discuss your project in more detail and explore how we can help you achieve your goals.
+
+## ❓ FAQ
+
+If you have any questions about the starter and want answers, please check out the [Discussions](https://github.com/obytes/react-native-template-obytes/discussions) page.
