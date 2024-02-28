@@ -8,11 +8,11 @@
 
 ![expo](https://img.shields.io/github/package-json/dependency-version/obytes/react-native-template-obytes/expo?label=expo) ![react-native](https://img.shields.io/github/package-json/dependency-version/obytes/react-native-template-obytes/react-native?label=react-native) ![GitHub Repo stars](https://img.shields.io/github/stars/obytes/react-native-template-obytes) ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/obytes/react-native-template-obytes) ![GitHub issues](https://img.shields.io/github/issues/obytes/react-native-template-obytes) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/obytes/react-native-template-obytes)
 
-📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo,TypeScript,tailwindcss, Husky, Lint-Staged, expo-router, react-query, react-hook-form, I18n.
+📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo, TypeScript, TailwindCSS, Husky, Lint-Staged, expo-router, react-query, react-hook-form, I18n.
 
 # Overview
 
-As a team of experienced developers at Obytes Mobile Tribe, we have spent years refining our approach to building high-quality React Native applications. Our starter kit is based on the best practices and tools that we have found to be most effective in our own projects.
+As a team of experienced developers at Obytes Mobile Tribe, we have spent years refining our approach to building high-quality React Native applications. Our starter kit is based on the best practices and tools that we have found to be most effective in our projects.
 
 This starter kit has been thoroughly tested and proven successful in multiple projects over the past four years. It is regularly used by our team on a daily basis and has helped us deliver great results for our clients.
 
@@ -20,7 +20,7 @@ While our starter kit is heavily influenced by our own opinions and experiences,
 
 ## 🚀 Motivation
 
-Our goal with this starter kit was to streamline the process of building React Native apps, both for our own team and for our clients. We wanted to create a resource that would allow us to create high-quality apps faster and with less effort, while ensuring that all of our projects adhere to the same code standards and architectural principles.
+Our goal with this starter kit was to streamline the process of building React Native apps, both for our team and for our clients. We wanted to create a resource that would allow us to create high-quality apps faster and with less effort; while ensuring that all of our projects adhere to the same code standards and architectural principles.
 
 The benefits of using this starter kit are numerous. It helps our team easily switch between projects, as we can rely on a consistent foundation of code. It also allows us to focus on the business logic of each project rather than getting bogged down in boilerplate code. And, because it promotes consistency across projects, it makes it easier to maintain and scale our apps, as well as share code between teams.
 
@@ -35,22 +35,23 @@ When creating this starter kit, we had several guiding principles in mind::
 - **🧩 Minimal code and dependencies**: We aimed to keep the codebase and dependencies as small as possible.
 - **💪 Well-maintained third-party libraries**: We included only well-maintained and reliable third-party libraries, to provide stability and support for our projects.
 
-## ⭐ key Features
+## ⭐ Key Features
 
-- ✅ The latest version of Expo SDK, along with the Custom Dev client, to give you access to a range of powerful features and tools.
+- ✅ The latest version of Expo SDK, Along with the Custom Dev client, you can leverage the best of the Expo ecosystem and maintain full control over your app.
 - 🎉 [TypeScript](https://www.typescriptlang.org/) for type checking, to help you catch bugs and improve code quality.
-- 💅 A minimal UI kit built with [tailwindcss](https://www.nativewind.dev/), which provides a range of pre-defined classes for styling your app.
-- ⚙️ Support for multiple environment builds, including Production, Staging, and Development, using Expo configuration.
+- 💅 A minimal UI kit built with [TailwindCSS](https://www.nativewind.dev/), With the most common components you should have in your app.
+- ⚙️ Support for multiple environments builds, including Production, Staging, and Development, using Expo configuration.
 - 🦊 Husky for Git Hooks, to automate your git hooks and enforce code standards.
 - 💡 A clean project structure with Absolute Imports, to make it easier to navigate and manage your code.
-- 🚫 Lint-staged for running linters and TypeScript checks on Git staged files, to ensure that your code is always up to standards.
+- 🚫 Lint-staged for running Eslint and TypeScript checks on Git staged files, to ensure that your code is always up to standards.
 - 🗂 VSCode recommended extensions, settings, and snippets to enhance the developer experience.
 - ☂️ Pre-installed [Expo Router](https://docs.expo.dev/router/introduction/) with examples, to provide a comprehensive navigation solution for your app.
-- 💫 An auth flow with [zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage solution to save sensitive data.
-- 🛠 A simple workflow for building, releasing, and distributing your app using [Github action](https://github.com/features/actions).
+- 💫 An auth flow with [Zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage solution to save sensitive data.
+- 🛠 +10 workflows for building, releasing, testing and distributing your app using [Github action](https://github.com/features/actions).
 - 🔥 [React Query](https://react-query.tanstack.com/) and [axios](https://github.com/axios/axios) for fetching data, to help you build efficient and performant apps.
 - 🧵 A good approach for handling forms with [react-hook-form](https://react-hook-form.com/) and [zod](https://github.com/colinhacks/zod) for validation + keyboard handling.
-- 🎯 Localization with [i18next](https://www.i18next.com/) , along with Eslint for validation.
+- 🎯 Localization with [i18next](https://www.i18next.com/), along with Eslint for validation.
+- Unit testing with [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) setup to help you write tests for your app.
 
 ## ✍️ Documentation
 
