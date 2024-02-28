@@ -39,14 +39,12 @@ const Color = ({ name }: { name: ColorName }) => {
 
 const ColorCard = ({ color, value }: { value: string; color: string }) => {
   return (
-    <View className="items-center justify-center py-1">
+    <View>
       <View
+        className="h-14 w-8 rounded-sm"
         style={{ backgroundColor: color }}
-        className={`h-[42px] w-[42px] items-center justify-center rounded-full  border-[1px] border-neutral-200 dark:border-charcoal-700`}
-      >
-        <Text className="text-sm">{value}</Text>
-      </View>
-      <Text className="text-sm">{color}</Text>
+      />
+      <Text className="text-sm">{value}</Text>
     </View>
   );
 };
