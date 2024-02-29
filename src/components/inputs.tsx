@@ -26,7 +26,6 @@ export const Inputs = () => {
           options={options}
           value={value}
           onSelect={(option) => setValue(option)}
-          error="This is a message error"
         />
         <CheckboxExample />
         <RadioExample />
