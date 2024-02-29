@@ -1,10 +1,13 @@
 import { MotiView } from 'moti';
 import React, { useCallback } from 'react';
-import { Pressable, type PressableProps, View } from 'react-native';
+import {
+  I18nManager,
+  Pressable,
+  type PressableProps,
+  View,
+} from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-import { tv } from 'tailwind-variants';
 
-import { isRTL } from '@/core/i18n';
 import { colors } from '@/ui/theme';
 
 import { Text } from './text';
@@ -16,40 +19,15 @@ const THUMB_HEIGHT = 22;
 const THUMB_WIDTH = 22;
 const THUMB_OFFSET = 4;
 
-const checkboxTv = tv({
-  slots: {
-    color: '',
-    background: '',
-  },
-  variants: {
-    variant: {
-      default: {
-        color: colors.neutral[600],
-        background: 'bg-neutral-600',
-      },
-      primary: {
-        color: colors.primary[300],
-        background: 'bg-primary-300',
-      },
-      success: {
-        color: colors.success[400],
-        background: 'bg-success-300',
-      },
-    },
-  },
-});
-
 export interface RootProps extends Omit<PressableProps, 'onPress'> {
   onChange: (checked: boolean) => void;
   checked?: boolean;
   className?: string;
   accessibilityLabel: string;
-  colorScheme?: 'default' | 'primary' | 'success';
 }
 
 export type IconProps = {
   checked: boolean;
-  colorScheme?: 'default' | 'primary' | 'success';
 };
 
 export const Root = ({
@@ -93,26 +71,20 @@ const Label = ({ text, testID, className = '' }: LabelProps) => {
   );
 };
 
-export const CheckboxIcon = ({ checked = false, colorScheme }: IconProps) => {
-  const styles = React.useMemo(
-    () =>
-      checkboxTv({
-        variant: colorScheme || 'default',
-      }),
-    [colorScheme]
-  );
+export const CheckboxIcon = ({ checked = false }: IconProps) => {
+  const color = checked ? colors.primary[300] : colors.charcoal[400];
   return (
     <MotiView
       style={{
         height: SIZE,
         width: SIZE,
-        borderColor: styles.color(),
+        borderColor: color,
       }}
       className="items-center justify-center rounded-[5px] border-2"
       from={{ backgroundColor: 'transparent', borderColor: '#CCCFD6' }}
       animate={{
-        backgroundColor: checked ? styles.color() : 'transparent',
-        borderColor: styles.color(),
+        backgroundColor: checked ? color : 'transparent',
+        borderColor: color,
       }}
       transition={{ duration: 100, type: 'timing' }}
     >
@@ -144,12 +116,12 @@ const CheckboxBase = ({
   checked = false,
   testID,
   label,
-  colorScheme,
+
   ...props
 }: RootProps & { label?: string }) => {
   return (
     <CheckboxRoot checked={checked} testID={`${testID}`} {...props}>
-      <CheckboxIcon checked={checked} colorScheme={colorScheme} />
+      <CheckboxIcon checked={checked} />
       {label ? (
         <Label text={label} testID={`${testID}-label`} className="pr-2" />
       ) : null}
@@ -163,31 +135,25 @@ export const Checkbox = Object.assign(CheckboxBase, {
   Label,
 });
 
-export const RadioIcon = ({ checked = false, colorScheme }: IconProps) => {
-  const styles = React.useMemo(
-    () =>
-      checkboxTv({
-        variant: colorScheme || 'default',
-      }),
-    [colorScheme]
-  );
+export const RadioIcon = ({ checked = false }: IconProps) => {
+  const color = checked ? colors.primary[300] : colors.charcoal[400];
   return (
     <MotiView
       style={{
         height: SIZE,
         width: SIZE,
-        borderColor: styles.color(),
+        borderColor: color,
       }}
       className="items-center justify-center rounded-[20px] border-2 bg-transparent"
       from={{ borderColor: '#CCCFD6' }}
       animate={{
-        borderColor: styles.color(),
+        borderColor: color,
       }}
       transition={{ duration: 100, type: 'timing' }}
     >
       <MotiView
         className={`h-[10px] w-[10px] rounded-[10px] ${
-          checked && styles.background()
+          checked && 'bg-primary-300'
         } `}
         from={{ opacity: 0 }}
         animate={{ opacity: checked ? 1 : 0 }}
@@ -209,12 +175,11 @@ const RadioBase = ({
   checked = false,
   testID,
   label,
-  colorScheme,
   ...props
 }: RootProps & { label?: string }) => {
   return (
     <RadioRoot checked={checked} testID={`${testID}`} {...props}>
-      <RadioIcon checked={checked} colorScheme={colorScheme} />
+      <RadioIcon checked={checked} />
       {label ? <Label text={label} testID={`${testID}-label`} /> : null}
     </RadioRoot>
   );
@@ -226,18 +191,13 @@ export const Radio = Object.assign(RadioBase, {
   Label,
 });
 
-export const SwitchIcon = ({ checked = false, colorScheme }: IconProps) => {
+export const SwitchIcon = ({ checked = false }: IconProps) => {
   const translateX = checked
     ? THUMB_OFFSET
     : WIDTH - THUMB_WIDTH - THUMB_OFFSET;
-  const styles = React.useMemo(
-    () =>
-      checkboxTv({
-        variant: colorScheme || 'default',
-      }),
-    [colorScheme]
-  );
-  const backgroundColor = checked ? styles.color() : colors.charcoal[200];
+
+  const backgroundColor = checked ? colors.primary[300] : colors.charcoal[400];
+
   return (
     <View className="w-[50px] justify-center">
       <View className="overflow-hidden rounded-full">
@@ -260,7 +220,7 @@ export const SwitchIcon = ({ checked = false, colorScheme }: IconProps) => {
           right: 0,
         }}
         animate={{
-          translateX: isRTL ? translateX : -translateX,
+          translateX: I18nManager.isRTL ? translateX : -translateX,
         }}
         transition={{ overshootClamping: true }}
       />
@@ -279,12 +239,11 @@ const SwitchBase = ({
   checked = false,
   testID,
   label,
-  colorScheme,
   ...props
 }: RootProps & { label?: string }) => {
   return (
     <SwitchRoot checked={checked} testID={`${testID}`} {...props}>
-      <SwitchIcon checked={checked} colorScheme={colorScheme} />
+      <SwitchIcon checked={checked} />
       {label ? <Label text={label} testID={`${testID}-label`} /> : null}
     </SwitchRoot>
   );
