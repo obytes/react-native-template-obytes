@@ -21,7 +21,7 @@ import { Text } from './text';
 const selectTv = tv({
   slots: {
     container: 'mb-4',
-    label: 'text-grey-100 dark:text-neutral-100 text-sm',
+    label: 'text-grey-100 dark:text-neutral-100 text-lg mb-1',
     input:
       'mt-0 flex-row items-center justify-center border-[0.5px] border-grey-50 px-3 py-3  rounded-xl',
     inputValue: 'dark:text-neutral-100',

@@ -14,8 +14,8 @@ export default function Style() {
         <SafeAreaView className="flex-1 px-4">
           <Typography />
           <Colors />
-          <Inputs />
           <Buttons />
+          <Inputs />
         </SafeAreaView>
       </ScrollView>
     </>
