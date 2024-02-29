@@ -2,10 +2,15 @@ import * as React from 'react';
 import type { SvgProps } from 'react-native-svg';
 import Svg, { Path } from 'react-native-svg';
 
-export const CaretDown = ({ color = '#000', ...props }: SvgProps) => (
-  <Svg width={12} height={13} fill="none" {...props}>
+export const CaretDown = ({ ...props }: SvgProps) => (
+  <Svg
+    width={12}
+    height={13}
+    fill="none"
+    {...props}
+    className="stroke-black dark:stroke-white"
+  >
     <Path
-      stroke={color}
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={1.5}
