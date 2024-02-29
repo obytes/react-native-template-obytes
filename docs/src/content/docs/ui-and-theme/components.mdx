@@ -151,21 +151,22 @@ const MyComponent = () => {
 
 ## Button
 
-The starter comes with a simple `Button` component that you can use to create a basic `Pressable` with a `Text` component inside using Tailwind CSS classes and variant definitions. These variants are based on a simple object configuration, making it easy to update and add new variants.
-The `tv` function from `tailwind-variants` is used to create a function which generates a styling configuration object for the Button component, based on slot definitions, variant definitions, size variants, disabled variant, full width variant and default variants. Therefore, the `styles` variable defines the styles for the Button based on the provided props using the `button` function.
+The starter comes with a simple `Button` component that you can use to create a basic `Pressable` with a `Text` using Tailwind CSS classes and variant definitions. These variants' logic is based on the `tailwind-variants` package.
 
-Every variant must contain styles for the `container`, `indicator`, and `label` keys. The `container` style will be applied to the `Pressable`, the `label` style will be applied to the `Text` component, and the `indicator` style will be applied to the `ActivityIndicator` component when the `loading` prop is set to `true`.
+The `tv` function from `tailwind-variants` is used to create a function that generates a styling configuration object for the Button component based on slot definitions, variant, size , disabled status, full-width, and default variants. Consequently, the `styles` defines the styles for the Button based on the provided props using the `button` function.
+
+Each variant should include styles for the `container`, `indicator`, and `label` keys. The `container` style is for the `Pressable`, the `label` style is for the `Text` component, and the `indicator` style is for the `ActivityIndicator` component when the `loading` prop is `true`.
 
 <CodeBlock file="src/ui/core/button.tsx" />
 
 **Props**
 
-- All React Native Pressable Props are supported excepting 'disabled' prop which is handled separately as a variant in the `tv` configuration.
+- All React Native Pressable Props are supported.
 - `variant` - Button variant, one of `variant` objects keys (default: `default`)
 - `loading` - Show loading indicator (default: `false`)
 - `label` - Button label
 - `size` - Button size, one of variants `size` objects keys (default: `default`)
-- `className` - Tailwind CSS class names
+- `className` - Tailwind CSS class names to be applied to the Button's container
 - `textClassName` - Additional styling for the Button's label
 
 **Use Case**
@@ -230,6 +231,10 @@ We tried to keep the ` Input` component as simple as possible, but you can add m
 - `label` - Input label
 - `error` - Input error message
 
+We provide also a simple `ControlledInput` component that uses the `Input` component under the hood but with a `useController` hook from `react-hook-form` to make it ready to use with `react-hook-form` library.
+
+Read more about Handling Forms [here](../forms/).
+
 **Use Case**
 
 ```tsx
@@ -244,12 +249,6 @@ const MyComponent = () => {
   );
 };
 ```
-
-## Controlled Input
-
-We provide a simple `ControlledInput` component that uses the `Input` component under the hood but with a `useController` hook from `react-hook-form` to make it ready to use with `react-hook-form` library.
-
-Read more about Handling Forms [here](../forms/).
 
 ## Modal
 
@@ -289,13 +288,13 @@ const MyComponent = () => {
 
 ## Select
 
-We provide a simple `SelectInput` component using a bottom sheet with a simple List component to select an item from a list of items.
+We provide a simple `Select` component using a bottom sheet with a simple List component to select an item from a list of items.
 
 We opt to use a bottom sheet instead of a dropdown to make it more flexible and easy to use on both iOS and Android and also to minimize the number of dependencies in the starter.
 
 The component uses the `tv` function from Tailwind Variants to define styling slots and variants for different states such as error, and disabled. These styles are applied dynamically based on the component's state and props.
 
-Feel free to update the component implementation to fit your need and as you keep the same Props signature for the `SelectInput` component the component will work with our form handling solution without any changes.
+Feel free to update the component implementation to fit your need and as you keep the same Props signature for the `Select` component the component will work with our form handling solution without any changes.
 
 <CodeBlock file="src/ui/core/select.tsx" />
 
