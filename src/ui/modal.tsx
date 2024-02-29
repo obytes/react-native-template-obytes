@@ -184,7 +184,7 @@ const CloseButton = ({ close }: { close: () => void }) => {
       accessibilityHint="closes the modal"
     >
       <Svg
-        className="fill-charcoal-100 dark:fill-white"
+        className="fill-neutral-100 dark:fill-white"
         width={24}
         height={24}
         fill="none"

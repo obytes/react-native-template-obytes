@@ -1,13 +1,32 @@
-import * as React from 'react';
+import { FlashList as NFlashList } from '@shopify/flash-list';
+import React from 'react';
+import { ActivityIndicator, View } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 
+import { Text } from './text';
+type Props = {
+  isLoading: boolean;
+};
+
+export const List = NFlashList;
+
+export const EmptyList = React.memo(({ isLoading }: Props) => {
+  return (
+    <View className="min-h-[400px] flex-1 items-center justify-center">
+      {!isLoading ? (
+        <View>
+          <NoData />
+          <Text className="pt-4 text-center">Sorry! No data found</Text>
+        </View>
+      ) : (
+        <ActivityIndicator />
+      )}
+    </View>
+  );
+});
+
 export const NoData = () => (
-  <Svg
-    data-name="Layer 1"
-    width={200}
-    height={200}
-    viewBox="0 0 647.636 632.174"
-  >
+  <Svg width={200} height={200} viewBox="0 0 647.636 632.174">
     <Path
       d="M411.146 142.174h-174.51a15.018 15.018 0 0 0-15 15v387.85l-2 .61-42.81 13.11a8.007 8.007 0 0 1-9.99-5.31l-127.34-415.95a8.003 8.003 0 0 1 5.31-9.99l65.97-20.2 191.25-58.54 65.97-20.2a7.99 7.99 0 0 1 9.99 5.3l32.55 106.32Z"
       fill="#f2f2f2"
