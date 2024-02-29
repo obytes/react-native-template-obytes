@@ -7,18 +7,8 @@ import { ItemsContainer } from '@/components/settings/items-container';
 import { LanguageItem } from '@/components/settings/language-item';
 import { ThemeItem } from '@/components/settings/theme-item';
 import { translate, useAuth } from '@/core';
-import {
-  colors,
-  FocusAwareStatusBar,
-  Github,
-  Rate,
-  ScrollView,
-  Share,
-  Support,
-  Text,
-  View,
-  Website,
-} from '@/ui';
+import { colors, FocusAwareStatusBar, ScrollView, Text, View } from '@/ui';
+import { Github, Rate, Share, Support, Website } from '@/ui/icons';
 
 export default function Settings() {
   const signOut = useAuth.use.signOut();

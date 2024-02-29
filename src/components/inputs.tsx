@@ -2,7 +2,7 @@ import React from 'react';
 
 import type { Option } from '@/ui';
 import { Input, Select, View } from '@/ui';
-import { Checkbox, Radio, Switch } from '@/ui/core/checkbox';
+import { Checkbox, Radio, Switch } from '@/ui/checkbox';
 
 import { Title } from './title';
 

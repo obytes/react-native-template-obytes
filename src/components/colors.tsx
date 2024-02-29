@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Text, View } from '@/ui';
-import colors from '@/ui/theme/colors';
+import colors from '@/ui/colors';
 
 import { Title } from './title';
 type ColorName = keyof typeof colors;
@@ -39,9 +39,9 @@ const Color = ({ name }: { name: ColorName }) => {
 
 const ColorCard = ({ color, value }: { value: string; color: string }) => {
   return (
-    <View>
+    <View className="flex-1">
       <View
-        className="h-14 w-8 rounded-sm"
+        className="h-14 w-full rounded-sm"
         style={{ backgroundColor: color }}
       />
       <Text className="text-sm">{value}</Text>

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-import { colors } from '@/ui/theme';
+import colors from '@/ui/colors';
 
 import { Text } from './text';
 

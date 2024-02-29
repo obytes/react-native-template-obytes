@@ -3,13 +3,12 @@ import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
 
 import { useAuth, useIsFirstTime } from '@/core';
+import { Pressable, Text } from '@/ui';
 import {
   Feed as FeedIcon,
-  Pressable,
   Settings as SettingsIcon,
   Style as StyleIcon,
-  Text,
-} from '@/ui';
+} from '@/ui/icons';
 
 export default function TabLayout() {
   const status = useAuth.use.status();

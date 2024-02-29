@@ -2,7 +2,7 @@ import * as React from 'react';
 import type { SvgProps } from 'react-native-svg';
 import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
-import { colors } from '../theme';
+import colors from '../colors';
 
 export const Website = ({
   color = colors.neutral[500],
