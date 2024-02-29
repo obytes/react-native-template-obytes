@@ -31,6 +31,8 @@ require('dotenv').config({
  * for example: if the APP_ENV is staging, the bundle id will be com.obytes.staging
  */
 
+// TODO: Replace these values with your own
+
 const BUNDLE_ID = 'com.obytes'; // ios bundle id
 const PACKAGE = 'com.obytes'; // android package name
 const NAME = 'ObytesApp'; // app name
