@@ -147,8 +147,6 @@ export const Select = (props: SelectProps) => {
   } = props;
   const modal = useModal();
 
-  const { colorScheme } = useColorScheme();
-  const isDark = colorScheme === 'dark';
   const onSelectOption = React.useCallback(
     (option: Option) => {
       onSelect?.(option.value);
@@ -186,7 +184,7 @@ export const Select = (props: SelectProps) => {
           <View className="flex-1">
             <Text className={styles.inputValue()}>{textValue}</Text>
           </View>
-          <CaretDown color={isDark ? colors.white : colors.black} />
+          <CaretDown />
         </TouchableOpacity>
         {error && (
           <Text className="text-sm text-danger-300 dark:text-danger-600">
