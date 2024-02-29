@@ -33,7 +33,6 @@
     "test": "jest",
     "test:ci": "pnpm run test --coverage",
     "test:watch": "pnpm run test --watch",
-    "eas-build-pre-install": "./scripts/eas-pre-install",
     "install-maestro": "curl -Ls 'https://get.maestro.mobile.dev' | bash",
     "e2e-test": "maestro test .maestro/ -e APP_ID=com.obytes.development"
   },
