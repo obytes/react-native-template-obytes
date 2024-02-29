@@ -6,6 +6,7 @@
     "production": {
       "channel": "production",
       "distribution": "store",
+      "pnpm": "8.15.4",
       "ios": {
         "image": "latest"
       },
@@ -26,6 +27,7 @@
     "staging": {
       "channel": "staging",
       "distribution": "internal",
+      "pnpm": "8.15.4",
       "ios": {
         "image": "latest"
       },
@@ -47,6 +49,7 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
+      "pnpm": "8.15.4",
       "ios": {
         "image": "latest"
       },
@@ -75,7 +78,7 @@
         "APP_ENV": "development",
         "EXPO_NO_DOTENV": "1"
       },
-      "node": "14.18.1",
+      "pnpm": "8.15.4",
       "prebuildCommand": "prebuild --skip-dependency-update react",
       "cache": {
         "key": "eas-1"
