@@ -6,7 +6,9 @@ head:
     content: Fonts | React Native / Expo Starter
 ---
 
-With Expo, you can load fonts dynamically using the `expo-font` library. With this approach, you need to wait for the font to load before showing or hiding your splash screen.
+With Expo, you can load fonts dynamically using `useFont` hook from `expo-font` library. With this approach, you need to wait for the font to load before showing or hiding your splash screen.
+
+With the last version of `expo-font` introduced with Expo 50, you can use `expo-font` as a plugin in your `app.config.js` to load fonts natively.
 
 To add a custom font you only need to put the font file in the `assets/fonts` and update the expo config by adding the exact file path to the config like the following:
 
@@ -26,22 +28,23 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 });
 ```
 
-Next, Make sure to add your new font to Tailwind CSS config to use it with `classname`
+Next, Make sure to add your new font to Tailwind CSS config to use it with `className`
 
 ```js title="tailwind.config.js"
+const colors = require('./src/ui/theme/colors');
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
+  // NOTE: Update this to include the paths to all of your component files.
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   presets: [require('nativewind/preset')],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        inter: ['Inter'],
       },
+      colors,
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 };
