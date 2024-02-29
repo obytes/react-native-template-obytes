@@ -34,7 +34,7 @@ const button = tv({
       },
       ghost: {
         container: 'bg-transparent',
-        label: 'text-black underline underline-offset-4',
+        label: 'text-black underline',
         indicator: 'text-black',
       },
       link: {

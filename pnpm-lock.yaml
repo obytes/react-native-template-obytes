@@ -60,8 +60,8 @@ dependencies:
     specifier: ~14.8.3
     version: 14.8.3(expo@50.0.8)
   expo-router:
-    specifier: ~3.4.7
-    version: 3.4.7(@testing-library/jest-native@5.4.3)(expo-constants@15.4.5)(expo-linking@6.2.2)(expo-modules-autolinking@1.10.3)(expo-status-bar@1.11.1)(expo@50.0.8)(react-dom@18.2.0)(react-native-reanimated@3.6.2)(react-native-safe-area-context@4.8.2)(react-native-screens@3.29.0)(react-native@0.73.4)(react@18.2.0)
+    specifier: ~3.4.8
+    version: 3.4.8(@testing-library/jest-native@5.4.3)(expo-constants@15.4.5)(expo-linking@6.2.2)(expo-modules-autolinking@1.10.3)(expo-status-bar@1.11.1)(expo@50.0.8)(react-dom@18.2.0)(react-native-reanimated@3.6.2)(react-native-safe-area-context@4.8.2)(react-native-screens@3.29.0)(react-native@0.73.4)(react@18.2.0)
   expo-splash-screen:
     specifier: 0.26.4
     version: 0.26.4(expo-modules-autolinking@1.10.3)(expo@50.0.8)
@@ -6815,8 +6815,8 @@ packages:
       invariant: 2.2.4
     dev: false
 
-  /expo-router@3.4.7(@testing-library/jest-native@5.4.3)(expo-constants@15.4.5)(expo-linking@6.2.2)(expo-modules-autolinking@1.10.3)(expo-status-bar@1.11.1)(expo@50.0.8)(react-dom@18.2.0)(react-native-reanimated@3.6.2)(react-native-safe-area-context@4.8.2)(react-native-screens@3.29.0)(react-native@0.73.4)(react@18.2.0):
-    resolution: {integrity: sha512-B1VLols+ErUqWtRHi9j/sQhxxwlsM7AJN+jEkvrPIfvhG7qpb1Usq13893ORcHvz/UhSHeEc9nKh7qx9hS6urw==}
+  /expo-router@3.4.8(@testing-library/jest-native@5.4.3)(expo-constants@15.4.5)(expo-linking@6.2.2)(expo-modules-autolinking@1.10.3)(expo-status-bar@1.11.1)(expo@50.0.8)(react-dom@18.2.0)(react-native-reanimated@3.6.2)(react-native-safe-area-context@4.8.2)(react-native-screens@3.29.0)(react-native@0.73.4)(react@18.2.0):
+    resolution: {integrity: sha512-fOOAWHH4LSPjPFtIZbApxdTNU8xSS8qKvhZ7PfWNMfx9510J1R1Ce/nwENPzcRLHRuVofDsSAEBfi4kV03fJwg==}
     peerDependencies:
       '@react-navigation/drawer': ^6.5.8
       '@testing-library/jest-native': '*'
