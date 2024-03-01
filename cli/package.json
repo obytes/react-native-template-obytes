@@ -1,20 +1,24 @@
 {
   "name": "create-obytes-app",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Obytes expo starter cli",
   "homepage": "https://github.com/obytes/react-native-template-obytes",
   "repository": {
     "type": "git",
-    "url": "https://github.com/obytes/react-native-template-obytes"
+    "url": "git+https://github.com/obytes/react-native-template-obytes.git"
   },
   "main": "index.js",
   "scripts": {
     "start": "node ."
   },
-  "bin": "./index.js",
+  "bin": {
+    "create-obytes-app": "index.js"
+  },
   "files": [
     "index.js",
-    "utils.js"
+    "utils.js",
+    "clone-repo.js",
+    "setup-project.js"
   ],
   "dependencies": {
     "consola": "^3.2.3",

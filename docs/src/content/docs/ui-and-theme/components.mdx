@@ -16,27 +16,20 @@ Based on your needs, you can either use them as they are or customize them to fi
 
 ```bash title="./src/ui/"
 .
-├── core
-    │   ├── list
-    │   ├── button.tsx
-    │   ├── image.tsx
-    │   ├── index.tsx
-    │   ├── input.tsx
-    │   ├── modal.tsx
-    │   ├── progress-bar.tsx
-    │   ├── select.tsx
-    │   └── text.tsx
-    ├── error-handler
-    │   ├── error-fallback.tsx
-    │   └── index.tsx
+└── ui ## core ui and theme configuration
+    ├── button.tsx
+    ├── checkbox.tsx
+    ├── colors.js
     ├── focus-aware-status-bar.tsx
     ├── icons
+    ├── image.tsx
     ├── index.tsx
-    ├── screen.tsx
-    ├── theme
-    │   ├── colors.js
-    │   ├── constants.tsx
-    │   └── index.ts
+    ├── input.tsx
+    ├── list.tsx
+    ├── modal.tsx
+    ├── progress-bar.tsx
+    ├── select.tsx
+    ├── text.tsx
     └── utils.tsx
 ```
 
@@ -50,20 +43,13 @@ To save time when creating new components or screens, we can simply start typing
 
 The `List` component references the FlashList component from the `@shopify/flash-list` package.
 
-<CodeBlock file="src/ui/core/list/index.tsx" />
+<CodeBlock file="src/ui/list.tsx" />
 
 **Props**
 
 - All `@shopify/flash-list` Props are supported
 
-<details>
-  <summary>EmptyList</summary>
-  <div>
-    We also provide an `EmptyList` component that you can use to display a
-    message when the list is empty. Feel free to customize it to fit your needs.
-  </div>
-  <CodeBlock file="src/ui/core/list/empty-list.tsx" />
-</details>
+We also provide an `EmptyList` component that you can use to display a message when the list is empty. Feel free to customize it to fit your needs.
 
 **Use Case**
 
@@ -87,7 +73,7 @@ const MyComponent = () => {
 For the `Image` component, we use the `expo-image` library to provide a fast and performant image component. The `Image` component is a wrapper around the `Image` component from `expo-image` package with additional styling provided by `nativewind`.
 The `cssInterop` function from `nativewind` is used to apply styling and, in this way, the `className` property is applied to the `style` property of the `Image` component.
 
-<CodeBlock file="src/ui/core/image.tsx" />
+<CodeBlock file="src/ui/image.tsx" />
 
 **Props**
 
@@ -115,14 +101,11 @@ const MyComponent = () => {
 ## Text
 
 With this custom Text component, you can use the translation key as the `tx` prop, and it will automatically translate the text based on the current locale, as well as support right-to-left (RTL) languages based on the selected locale.
-Using the `twMerge` function for calculating the `textStyle` variable, we combine the Tailwind CSS utility classes specified in the `className` prop with some default styles. This allow us to style the `Text` component using Tailwind CSS classes in a easy way.
 
-<CodeBlock file="src/ui/core/text.tsx" />
+<CodeBlock file="src/ui/text.tsx" />
 
 :::tip
 You can also use the `t` snippet to create a simple Text with a default `className`.
-
-If you want more complex variants logic, we recommend using [`cva` package ](https://github.com/joe-bell/cva)
 :::
 
 **Props**
@@ -157,7 +140,7 @@ The `tv` function from `tailwind-variants` is used to create a function that gen
 
 Each variant should include styles for the `container`, `indicator`, and `label` keys. The `container` style is for the `Pressable`, the `label` style is for the `Text` component, and the `indicator` style is for the `ActivityIndicator` component when the `loading` prop is `true`.
 
-<CodeBlock file="src/ui/core/button.tsx" />
+<CodeBlock file="src/ui/button.tsx" />
 
 **Props**
 
@@ -171,47 +154,7 @@ Each variant should include styles for the `container`, `indicator`, and `label`
 
 **Use Case**
 
-```tsx
-import * as React from 'react';
-import { Button, View } from '@/ui';
-
-const MyComponent = () => {
-  return (
-    <View className="flex flex-col items-center justify-center">
-      <Button
-        label="Default"
-        onPress={() => console.log('Default Button Pressed')}
-      />
-      <Button
-        label="Default"
-        size="sm"
-        className="mx-2"
-        onPress={() => console.log('Small Default Button Pressed')}
-      />
-      <Button
-        variant="secondary"
-        label="Secondary"
-        onPress={() => console.log('Secondary Button Pressed')}
-      />
-      <Button
-        variant="outline"
-        label="Outline"
-        onPress={() => console.log('Outline Button Pressed')}
-      />
-      <Button
-        variant="destructive"
-        label="Destructive"
-        onPress={() => console.log('Destructive Button Pressed')}
-      />
-      <Button
-        variant="ghost"
-        label="Ghost"
-        onPress={() => console.log('Ghost Button Pressed')}
-      />
-    </View>
-  );
-};
-```
+<CodeBlock file="src/components/buttons.tsx" />
 
 ## Input
 
@@ -223,7 +166,7 @@ The component utilizes the tv function from Tailwind Variants to define styling 
 
 We tried to keep the ` Input` component as simple as possible, but you can add more functionality, such as `onFocus` and `onBlur`, or adding left and right icons to the input.
 
-<CodeBlock file="src/ui/core/input.tsx" />
+<CodeBlock file="src/ui/input.tsx" />
 
 **Props**
 
@@ -258,7 +201,7 @@ We opt to use a bottom sheet instead of a modal to make it more flexible and eas
 
 Based on your needs, you can use the `Modal` if you don't have a fixed height for the modal content.
 
-<CodeBlock file="src/ui/core/modal.tsx" />
+<CodeBlock file="src/ui/modal.tsx" />
 
 **Props**
 
@@ -296,7 +239,7 @@ The component uses the `tv` function from Tailwind Variants to define styling sl
 
 Feel free to update the component implementation to fit your need and as you keep the same Props signature for the `Select` component the component will work with our form handling solution without any changes.
 
-<CodeBlock file="src/ui/core/select.tsx" />
+<CodeBlock file="src/ui/select.tsx" />
 
 **Props**
 
