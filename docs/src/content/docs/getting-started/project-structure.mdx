@@ -11,95 +11,59 @@ import Code from '../../../components/code.astro';
 If you open the new project in VSCode you will see the following structure:
 
 ```bash title="Project Structure"
-.
+
 ├── api ## any thing related to api calls and data fetching
-│   ├── common ##common api files such as axios client and  react query provider
-│   │   ├── api-provider.tsx
-│   │   ├── client.tsx
-│   │   ├── index.tsx
-│   │   └── utils.tsx
-│   ├── index.tsx
-│   ├── posts ## query and mutation related to post
-│   │   ├── index.ts
-│   │   ├── types.ts
-│   │   ├── use-add-post.ts
-│   │   ├── use-post.ts
-│   │   └── use-posts.ts
-│   └── types.ts
+│   ├── common
+│   ├── index.tsx
+│   ├── posts
+│   └── types.ts
 ├── app ## app routes and layouts
-│   ├── (app)
-│   │   ├── _layout.tsx
-│   │   ├── index.tsx
-│   │   ├── settings.tsx
-│   │   └── style.tsx
-│   ├── feed
-│   │   ├── [id].tsx
-│   │   └── add_post.tsx
+│   ├── (app)
 │   ├── _layout.tsx
+│   ├── feed
 │   ├── login.tsx
-│   ├── onboarding.tsx
-├── components
-│   ├── settings
-│   │   ├── item.tsx
-│   │   ├── items-container.tsx
-│   │   ├── language-item.tsx
-│   │   └── theme-item.tsx
-│   ├── buttons.tsx
+│   └── onboarding.tsx
+├── components ## any reusable components
+│   ├── buttons.tsx
 │   ├── card.tsx
-│   ├── colors.tsx
-│   ├── cover.tsx
-│   ├── inputs.tsx
-│   ├── login-form.test.tsx
-│   ├── login-form.tsx
-│   ├── title.tsx
-│   └── typography.tsx
-├── core # core files such as auth, localization, storage and more
-│   ├── auth
-│   │   ├── index.tsx
-│   │   └── utils.tsx
-│   ├── env.js
-│   ├── hooks
-│   │   ├── index.tsx
-│   │   ├── use-is-first-time.tsx
-│   │   └── use-selected-theme.tsx
-│   ├── i18n
-│   │   ├── index.tsx
-│   │   ├── react-i18next.d.ts
-│   │   ├── resources.ts
-│   │   ├── types.ts
-│   │   └── utils.tsx
-│   ├── keyboard.ts
-│   ├── storage.tsx
-│   ├── test-utils.tsx
-│   ├── use-theme-config.tsx
-│   └── utils.ts
-├── translations # translation resources files
-│   ├── ar.json
-│   └── en.json
-├── types
-│   └── index.ts
-└── ui # ui components and theme configuration
-    ├── core
-    │   ├── list
-    │   ├── button.tsx
-    │   ├── image.tsx
-    │   ├── index.tsx
-    │   ├── input.tsx
-    │   ├── modal.tsx
-    │   ├── progress-bar.tsx
-    │   ├── select.tsx
-    │   └── text.tsx
-    ├── error-handler
-    │   ├── error-fallback.tsx
-    │   └── index.tsx
+│   ├── colors.tsx
+│   ├── cover.tsx
+│   ├── inputs.tsx
+│   ├── login-form.test.tsx
+│   ├── login-form.tsx
+│   ├── settings
+│   ├── title.tsx
+│   └── typography.tsx
+├── core ## core files such as auth, localization, storage and more
+│   ├── auth
+│   ├── env.js
+│   ├── hooks
+│   ├── i18n
+│   ├── index.tsx
+│   ├── keyboard.ts
+│   ├── storage.tsx
+│   ├── test-utils.tsx
+│   ├── use-theme-config.tsx
+│   └── utils.ts
+├── translations ## translation resources files
+│   ├── ar.json
+│   └── en.json
+├── types ## global types
+│   └── index.ts
+└── ui ## core ui and theme configuration
+    ├── button.tsx
+    ├── checkbox.tsx
+    ├── colors.js
     ├── focus-aware-status-bar.tsx
     ├── icons
+    ├── image.tsx
     ├── index.tsx
-    ├── screen.tsx
-    ├── theme
-    │   ├── colors.js
-    │   ├── constants.tsx
-    │   └── index.ts
+    ├── input.tsx
+    ├── list.tsx
+    ├── modal.tsx
+    ├── progress-bar.tsx
+    ├── select.tsx
+    ├── text.tsx
     └── utils.tsx
 ```
 
@@ -128,44 +92,7 @@ We use absolute imports to import files using the Babel module resolver plugin a
 
 Here is a simple example of how the Feed screen looks with absolute imports.
 
-```tsx title="Feed Screen" {4-6}
-import { FlashList } from '@shopify/flash-list';
-import React from 'react';
-
-import type { Post } from '@/api';
-import { usePosts } from '@/api';
-import { EmptyList, FocusAwareStatusBar, Text, View } from '@/ui';
-
-import { Card } from '@/components/card';
-
-export default function Feed() {
-  const { data, isLoading, isError } = usePosts();
-  const renderItem = React.useCallback(
-    ({ item }: { item: Post }) => <Card {...item} />,
-    []
-  );
-
-  if (isError) {
-    return (
-      <View>
-        <Text> Error Loading data </Text>
-      </View>
-    );
-  }
-  return (
-    <View className="flex-1 ">
-      <FocusAwareStatusBar />
-      <FlashList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(_, index) => `item-${index}`}
-        ListEmptyComponent={<EmptyList isLoading={isLoading} />}
-        estimatedItemSize={300}
-      />
-    </View>
-  );
-}
-```
+<Code file="src/app/(app)/index.tsx" meta="{4-7}" />
 
 This approach is very useful when you are working on a large project with a lot of files and folders and it can be done by updating the `babel.config.js` file and `tsconfig.json` file to the following:
 
