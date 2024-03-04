@@ -6,66 +6,68 @@ head:
     content: Project Structure | React Native / Expo Starter
 ---
 
+import { FileTree } from '@astrojs/starlight/components';
 import Code from '../../../components/code.astro';
 
 If you open the new project in VSCode you will see the following structure:
 
-```bash title="Project Structure"
+<FileTree>
 
-├── api ## any thing related to api calls and data fetching
-│   ├── common
-│   ├── index.tsx
-│   ├── posts
-│   └── types.ts
-├── app ## app routes and layouts
-│   ├── (app)
-│   ├── _layout.tsx
-│   ├── feed
-│   ├── login.tsx
-│   └── onboarding.tsx
-├── components ## any reusable components
-│   ├── buttons.tsx
-│   ├── card.tsx
-│   ├── colors.tsx
-│   ├── cover.tsx
-│   ├── inputs.tsx
-│   ├── login-form.test.tsx
-│   ├── login-form.tsx
-│   ├── settings
-│   ├── title.tsx
-│   └── typography.tsx
-├── core ## core files such as auth, localization, storage and more
-│   ├── auth
-│   ├── env.js
-│   ├── hooks
-│   ├── i18n
-│   ├── index.tsx
-│   ├── keyboard.ts
-│   ├── storage.tsx
-│   ├── test-utils.tsx
-│   ├── use-theme-config.tsx
-│   └── utils.ts
-├── translations ## translation resources files
-│   ├── ar.json
-│   └── en.json
-├── types ## global types
-│   └── index.ts
-└── ui ## core ui and theme configuration
-    ├── button.tsx
-    ├── checkbox.tsx
-    ├── colors.js
-    ├── focus-aware-status-bar.tsx
-    ├── icons
-    ├── image.tsx
-    ├── index.tsx
-    ├── input.tsx
-    ├── list.tsx
-    ├── modal.tsx
-    ├── progress-bar.tsx
-    ├── select.tsx
-    ├── text.tsx
-    └── utils.tsx
-```
+- api ## any thing related to api calls and data fetching
+  - common/
+  - index.tsx
+  - posts
+  - types.ts
+- app ## app routes and layouts
+  - (app)/
+  - \_layout.tsx
+  - feed/
+  - login.tsx
+  - onboarding.tsx
+- components ## any reusable components
+  - buttons.tsx
+  - card.tsx
+  - colors.tsx
+  - cover.tsx
+  - inputs.tsx
+  - login-form.test.tsx
+  - login-form.tsx
+  - settings/
+  - title.tsx
+  - typography.tsx
+- core ## core files such as auth, localization, storage and more
+  - auth
+  - env.js
+  - hooks
+  - i18n
+  - index.tsx
+  - keyboard.ts
+  - storage.tsx
+  - test-utils.tsx
+  - use-theme-config.tsx
+  - utils.ts
+- translations ## translation resources files
+  - ar.json
+  - en.json
+- types ## global types
+  - index.ts
+- ui ## core ui and theme configuration
+  - button.tsx
+  - checkbox.tsx
+  - colors.js
+  - focus-aware-status-bar.tsx
+  - icons
+  - image.tsx
+  - index.tsx
+  - input.tsx
+  - list.tsx
+  - modal.tsx
+  - progress-bar.tsx
+  - select.tsx
+  - text.tsx
+  - utils.tsx
+
+</FileTree>
 
 - `ui`: This folder contains all the UI components and the theme configuration. We provide minimal components with a basic `obytes` theme. You can add your own components and theme configuration here.
 

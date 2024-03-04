@@ -188,6 +188,10 @@ export default defineConfig({
           ],
         },
         {
+          label: 'CHANGELOG',
+          link: '/changelog',
+        },
+        {
           label: 'How to contribute ?',
           link: '/how-to-contribute',
         },

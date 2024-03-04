@@ -6,6 +6,7 @@ head:
     content: UI Components | React Native / Expo Starter
 ---
 
+import { FileTree } from '@astrojs/starlight/components';
 import CodeBlock from '../../../components/code.astro';
 
 The starter comes with a set of basic components and a simple design system based on Nativewind to help you get started and save you time.
@@ -14,24 +15,25 @@ All those components can be found in the `src/ui/core` folder. Our philosophy is
 
 Based on your needs, you can either use them as they are or customize them to fit your needs. You can also create new ones based on the same approach.
 
-```bash title="./src/ui/"
-.
-└── ui ## core ui and theme configuration
-    ├── button.tsx
-    ├── checkbox.tsx
-    ├── colors.js
-    ├── focus-aware-status-bar.tsx
-    ├── icons
-    ├── image.tsx
-    ├── index.tsx
-    ├── input.tsx
-    ├── list.tsx
-    ├── modal.tsx
-    ├── progress-bar.tsx
-    ├── select.tsx
-    ├── text.tsx
-    └── utils.tsx
-```
+<FileTree>
+
+- ui ## core ui and theme configuration
+  - button.tsx
+  - checkbox.tsx
+  - colors.js
+  - focus-aware-status-bar.tsx
+  - icons/
+  - image.tsx
+  - index.tsx
+  - input.tsx
+  - list.tsx
+  - modal.tsx
+  - progress-bar.tsx
+  - select.tsx
+  - text.tsx
+  - utils.tsx
+
+</FileTree>
 
 :::tip
 To save time when creating new components or screens, we can simply start typing `comp` and press Enter to generate a new component with the correct structure.
