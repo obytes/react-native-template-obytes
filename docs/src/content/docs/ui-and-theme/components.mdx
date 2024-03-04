@@ -288,3 +288,68 @@ const MyComponent = () => {
 We provide a simple `ControlledSelect` component that uses the `Select` component under the hood but with a `useController` hook from `react-hook-form` to make it ready to use with `react-hook-form` library.
 
 Read more about Handling Forms [here](../forms/).
+
+## Checkbox, Radio & Switch
+
+We provide a set of three simple and customizable components including a `Checkbox`, a `Radio` and a `Switch`, witch share the same components under the hood.
+
+The `Checkbox`, `Switch`, and `Radio` components are very similar as they share a common structure and are supposed to handle boolean values, their primary difference being the icon they display and the associated accessibility label. Each component accepts a range of props, allowing us to customize their appearance, behavior, and accessibility features.
+
+For handling common functionality like handling press events and accessibility states we have the `Root` component. It wraps its children in a `Pressable` component and passes along props.
+
+Animations are applied to the icons using the `MotiView` component from the `moti` library. These animations change the appearance of the icons based on their checked state.
+
+<CodeBlock file="src/ui/checkbox.tsx" />
+
+**Props**
+
+- All React Native Pressable Props are supported excluding `onPress` prop
+- `onChange` - (checked: boolean) => void;` - Callback function to handle component's state
+- `checked` - `boolean`- Determines the state of the component (default:`false`)
+- `label` - Component's label
+- `accessibilityLabel` - Component's accessibility label
+- `children` - Child components/elements
+- `className` - Tailwind CSS class names
+- `disabled`: `boolean` - Disable component (default: `false`)
+
+**Use Case**
+
+```tsx
+import { Checkbox } from '@/ui';
+
+const App = () => {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <Checkbox
+      checked={checked}
+      onChange={setChecked}
+      accessibilityLabel="accept terms of condition"
+      label="I accept terms and conditions"
+    />
+  );
+};
+```
+
+By default the component will render a label with the text you passed as label prop and clicking on the label will toggle the component as well.
+
+For rendering a custom Checkbox, you can use the `Checkbox.Root`, `Checkbox.Icon` and `Checkbox.Label` components.
+
+```tsx
+import { Checkbox } from '@/ui';
+
+const App = () => {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <Checkbox.Root
+      checked={checked}
+      onChange={setChecked}
+      accessibilityLabel="accept terms of condition"
+    >
+      <Checkbox.Icon checked={checked} />
+      <Checkbox.Label text="I agree to terms and conditions" />
+    </Checkbox.Root>
+  );
+};
+```
