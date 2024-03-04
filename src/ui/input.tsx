@@ -87,7 +87,11 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
 
   return (
     <View className={styles.container()}>
-      {label && <Text className={styles.label()}>{label}</Text>}
+      {label && (
+        <Text testID="input-label" className={styles.label()}>
+          {label}
+        </Text>
+      )}
       <NTextInput
         testID="NTextInput"
         ref={ref}
@@ -102,7 +106,10 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
         ])}
       />
       {error && (
-        <Text className="text-sm text-danger-400 dark:text-danger-600">
+        <Text
+          testID="input-error"
+          className="text-sm text-danger-400 dark:text-danger-600"
+        >
           {error}
         </Text>
       )}
