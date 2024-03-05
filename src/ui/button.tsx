@@ -101,6 +101,7 @@ export const Button = React.forwardRef<View, Props>(
       size = 'default',
       className = '',
       textClassName = '',
+      testID = 'button',
       ...props
     },
     ref
@@ -115,15 +116,23 @@ export const Button = React.forwardRef<View, Props>(
         className={styles.container({ className })}
         {...props}
         ref={ref}
+        testID={testID}
       >
         {props.children ? (
           props.children
         ) : (
           <>
             {loading ? (
-              <ActivityIndicator size="small" className={styles.indicator()} />
+              <ActivityIndicator
+                size="small"
+                className={styles.indicator()}
+                testID={`${testID}-activity-indicator`}
+              />
             ) : (
-              <Text className={styles.label({ className: textClassName })}>
+              <Text
+                testID={`${testID}-label`}
+                className={styles.label({ className: textClassName })}
+              >
                 {text}
               </Text>
             )}
