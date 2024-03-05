@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import type { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import { useColorScheme } from 'nativewind';
@@ -58,6 +59,7 @@ type OptionsProps = {
   options: Option[];
   onSelect: (option: Option) => void;
   value?: string | number;
+  testID?: string;
 };
 
 function keyExtractor(item: Option) {
@@ -65,7 +67,7 @@ function keyExtractor(item: Option) {
 }
 
 export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
-  ({ options, onSelect, value }, ref) => {
+  ({ options, onSelect, value, testID }, ref) => {
     const height = options.length * 70 + 100;
     const snapPoints = React.useMemo(() => [height], [height]);
     const { colorScheme } = useColorScheme();
@@ -77,9 +79,10 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
           label={item.label}
           selected={value === item.value}
           onPress={() => onSelect(item)}
+          testID={`${testID}-item-${item.value}`}
         />
       ),
-      [onSelect, value]
+      [onSelect, value, testID]
     );
 
     return (
@@ -95,6 +98,7 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
           data={options}
           keyExtractor={keyExtractor}
           renderItem={renderSelectItem}
+          testID={`${testID}-modal`}
         />
       </Modal>
     );
@@ -130,6 +134,7 @@ export interface SelectProps {
   options?: Option[];
   onSelect?: (value: string | number) => void;
   placeholder?: string;
+  testID?: string;
 }
 interface ControlledSelectProps<T extends FieldValues>
   extends SelectProps,
@@ -144,6 +149,7 @@ export const Select = (props: SelectProps) => {
     placeholder = 'select...',
     disabled = false,
     onSelect,
+    testID = 'select',
   } = props;
   const modal = useModal();
 
@@ -175,11 +181,16 @@ export const Select = (props: SelectProps) => {
   return (
     <>
       <View className={styles.container()}>
-        {label && <Text className={styles.label()}>{label}</Text>}
+        {label && (
+          <Text testID={`${testID}-label`} className={styles.label()}>
+            {label}
+          </Text>
+        )}
         <TouchableOpacity
           className={styles.input()}
           disabled={disabled}
           onPress={modal.present}
+          testID={testID}
         >
           <View className="flex-1">
             <Text className={styles.inputValue()}>{textValue}</Text>
@@ -187,12 +198,20 @@ export const Select = (props: SelectProps) => {
           <CaretDown />
         </TouchableOpacity>
         {error && (
-          <Text className="text-sm text-danger-300 dark:text-danger-600">
+          <Text
+            testID={`${testID}-error`}
+            className="text-sm text-danger-300 dark:text-danger-600"
+          >
             {error}
           </Text>
         )}
       </View>
-      <Options ref={modal.ref} options={options} onSelect={onSelectOption} />
+      <Options
+        testID={testID}
+        ref={modal.ref}
+        options={options}
+        onSelect={onSelectOption}
+      />
     </>
   );
 };
