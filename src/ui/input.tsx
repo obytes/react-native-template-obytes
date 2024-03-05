@@ -70,7 +70,7 @@ interface ControlledInputProps<T extends FieldValues>
     InputControllerType<T> {}
 
 export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
-  const { label, error, ...inputProps } = props;
+  const { label, error, testID = 'input', ...inputProps } = props;
   const [isFocussed, setIsFocussed] = React.useState(false);
   const onBlur = React.useCallback(() => setIsFocussed(false), []);
   const onFocus = React.useCallback(() => setIsFocussed(true), []);
@@ -88,12 +88,12 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
   return (
     <View className={styles.container()}>
       {label && (
-        <Text testID="input-label" className={styles.label()}>
+        <Text testID={`${testID}-label`} className={styles.label()}>
           {label}
         </Text>
       )}
       <NTextInput
-        testID="NTextInput"
+        testID={testID}
         ref={ref}
         placeholderTextColor={colors.neutral[400]}
         className={styles.input()}
@@ -107,7 +107,7 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
       />
       {error && (
         <Text
-          testID="input-error"
+          testID={`${testID}-error`}
           className="text-sm text-danger-400 dark:text-danger-600"
         >
           {error}

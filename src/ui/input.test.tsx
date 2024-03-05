@@ -8,34 +8,61 @@ afterEach(cleanup);
 
 describe('Input component ', () => {
   it('renders correctly ', () => {
-    const { getByTestId } = render(<Input />);
-    const input = getByTestId('NTextInput');
-    expect(input).toBeTruthy();
+    const { queryByTestId } = render(<Input testID="text-input" />);
+    expect(queryByTestId('text-input')).not.toBeNull();
+  });
+
+  it('should render the placeholder correctly ', () => {
+    const { queryByTestId, getByPlaceholderText } = render(
+      <Input testID="text-input" placeholder="Enter your username" />
+    );
+    expect(queryByTestId('text-input')).not.toBeNull();
+    expect(getByPlaceholderText('Enter your username')).toBeDefined();
   });
 
   it('should render the label correctly ', () => {
-    const label = 'Username';
-    const { getByText, getByTestId } = render(<Input label={label} />);
-
-    const labelElement = getByTestId('input-label');
-    expect(labelElement).toBeTruthy(); // Check if label element is found
-    expect(getByText(label)).toBeTruthy(); // Check if label text is found
+    const { queryByTestId } = render(
+      <Input testID="text-input" label="Username" />
+    );
+    expect(queryByTestId('text-input')).not.toBeNull();
+    expect(queryByTestId('text-input-label')).not.toBeNull();
+    expect(queryByTestId('text-input-label')?.props.children).toBe('Username');
   });
 
   it('should render the error message correctly ', () => {
-    const error = 'This is a message error';
-    const { getByTestId, getByText } = render(<Input error={error} />);
-
-    const errorElement = getByTestId('input-error');
-    expect(errorElement).toBeTruthy(); // Check if error element is found
-    expect(getByText(error)).toBeTruthy(); // Check if error message text is found
+    const { queryByTestId } = render(
+      <Input testID="text-input" error="This is an error message" />
+    );
+    expect(queryByTestId('text-input')).not.toBeNull();
+    expect(queryByTestId('text-input-error')).not.toBeNull();
+    expect(queryByTestId('text-input-error')?.props.children).toBe(
+      'This is an error message'
+    );
+  });
+  it('should render the label, error message & placeholder correctly ', () => {
+    const { queryByTestId, getByPlaceholderText } = render(
+      <Input
+        testID="text-input"
+        label="Username"
+        placeholder="Enter your username"
+        error="This is an error message"
+      />
+    );
+    expect(queryByTestId('text-input')).not.toBeNull();
+    expect(queryByTestId('text-input-label')).not.toBeNull();
+    expect(queryByTestId('text-input-label')?.props.children).toBe('Username');
+    expect(queryByTestId('text-input-error')).not.toBeNull();
+    expect(queryByTestId('text-input-error')?.props.children).toBe(
+      'This is an error message'
+    );
+    expect(getByPlaceholderText('Enter your username')).toBeDefined();
   });
 
   it('should trigger onFocus event correctly ', () => {
     const onFocus = jest.fn();
     const { getByTestId } = render(<Input onFocus={onFocus} />);
 
-    const input = getByTestId('NTextInput');
+    const input = getByTestId('input');
     fireEvent(input, 'focus');
     expect(onFocus).toHaveBeenCalledTimes(1);
   });
@@ -44,7 +71,7 @@ describe('Input component ', () => {
     const onBlur = jest.fn();
     const { getByTestId } = render(<Input onBlur={onBlur} />);
 
-    const input = getByTestId('NTextInput');
+    const input = getByTestId('input');
     fireEvent(input, 'blur');
     expect(onBlur).toHaveBeenCalledTimes(1);
   });
