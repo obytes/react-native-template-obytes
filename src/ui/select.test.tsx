@@ -24,7 +24,7 @@ describe('Select component ', () => {
         testID="test-select"
       />
     );
-    expect(queryByTestId('test-select')).not.toBeNull();
+    expect(queryByTestId('test-select-trigger')).not.toBeNull();
     expect(queryByTestId('test-select-label')).not.toBeNull();
   });
 
@@ -38,7 +38,7 @@ describe('Select component ', () => {
         testID="test-select"
       />
     );
-    expect(queryByTestId('test-select')).not.toBeNull();
+    expect(queryByTestId('test-select-trigger')).not.toBeNull();
     expect(queryByTestId('test-select-label')).not.toBeNull();
     expect(queryByTestId('test-select-label')?.props.children).toBe('Select');
   });
@@ -54,7 +54,7 @@ describe('Select component ', () => {
         error="Please select an option"
       />
     );
-    expect(queryByTestId('test-select')).not.toBeNull();
+    expect(queryByTestId('test-select-trigger')).not.toBeNull();
     expect(queryByTestId('test-select-error')).not.toBeNull();
     expect(queryByTestId('test-select-error')?.props.children).toBe(
       'Please select an option'
@@ -71,8 +71,8 @@ describe('Select component ', () => {
       />
     );
 
-    const selectComponent = getByTestId('test-select');
-    fireEvent.press(selectComponent);
+    const selectTrigger = getByTestId('test-select-trigger');
+    fireEvent.press(selectTrigger);
 
     await waitFor(() => {
       expect(getByTestId('test-select-item-chocolate')).not.toBeNull();

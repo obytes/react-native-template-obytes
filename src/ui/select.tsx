@@ -190,7 +190,7 @@ export const Select = (props: SelectProps) => {
           className={styles.input()}
           disabled={disabled}
           onPress={modal.present}
-          testID={testID}
+          testID={`${testID}-trigger`}
         >
           <View className="flex-1">
             <Text className={styles.inputValue()}>{textValue}</Text>
