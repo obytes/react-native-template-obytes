@@ -5,8 +5,8 @@ import { render } from '@testing-library/react-native';
 import type { ReactElement } from 'react';
 import React from 'react';
 
-const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
-  return (
+const createAppWrapper = () => {
+  return ({ children }: { children: React.ReactNode }) => (
     <BottomSheetModalProvider>
       <NavigationContainer>{children}</NavigationContainer>
     </BottomSheetModalProvider>
@@ -16,7 +16,10 @@ const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
 const customRender = (
   ui: ReactElement,
   options?: Omit<RenderOptions, 'wrapper'>
-) => render(ui, { wrapper: AllTheProviders, ...options });
+) => {
+  const Wrapper = createAppWrapper(); // make sure we have a new wrapper for each render
+  return render(ui, { wrapper: Wrapper, ...options });
+};
 
 export * from '@testing-library/react-native';
 export { customRender as render };
