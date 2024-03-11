@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react';
 
-import { cleanup, fireEvent, render, waitFor } from '@/core/test-utils';
+import { cleanup, fireEvent, render, screen, waitFor } from '@/core/test-utils';
 import type { Option } from '@/ui';
 
 import { Select } from './select';
@@ -16,7 +16,7 @@ describe('Select component ', () => {
   ];
   it('should render correctly ', () => {
     const onSelect = jest.fn();
-    const { queryByTestId } = render(
+    render(
       <Select
         label="Select options"
         options={options}
@@ -24,13 +24,13 @@ describe('Select component ', () => {
         testID="test-select"
       />
     );
-    expect(queryByTestId('test-select-trigger')).not.toBeNull();
-    expect(queryByTestId('test-select-label')).not.toBeNull();
+    expect(screen.queryByTestId('test-select-trigger')).not.toBeNull();
+    expect(screen.queryByTestId('test-select-label')).not.toBeNull();
   });
 
   it('should render the label correctly ', () => {
     const onSelect = jest.fn();
-    const { queryByTestId } = render(
+    render(
       <Select
         label="Select"
         options={options}
@@ -38,14 +38,16 @@ describe('Select component ', () => {
         testID="test-select"
       />
     );
-    expect(queryByTestId('test-select-trigger')).not.toBeNull();
-    expect(queryByTestId('test-select-label')).not.toBeNull();
-    expect(queryByTestId('test-select-label')?.props.children).toBe('Select');
+    expect(screen.queryByTestId('test-select-trigger')).not.toBeNull();
+    expect(screen.queryByTestId('test-select-label')).not.toBeNull();
+    expect(screen.queryByTestId('test-select-label')?.props.children).toBe(
+      'Select'
+    );
   });
 
   it('should render the error correctly ', () => {
     const onSelect = jest.fn();
-    const { queryByTestId } = render(
+    render(
       <Select
         label="Select"
         options={options}
@@ -54,15 +56,15 @@ describe('Select component ', () => {
         error="Please select an option"
       />
     );
-    expect(queryByTestId('test-select-trigger')).not.toBeNull();
-    expect(queryByTestId('test-select-error')).not.toBeNull();
-    expect(queryByTestId('test-select-error')?.props.children).toBe(
+    expect(screen.queryByTestId('test-select-trigger')).not.toBeNull();
+    expect(screen.queryByTestId('test-select-error')).not.toBeNull();
+    expect(screen.queryByTestId('test-select-error')?.props.children).toBe(
       'Please select an option'
     );
   });
 
   it('should open options modal on press', async () => {
-    const { getByTestId } = render(
+    render(
       <Select
         label="Select"
         options={options}
@@ -71,27 +73,27 @@ describe('Select component ', () => {
       />
     );
 
-    const selectTrigger = getByTestId('test-select-trigger');
+    const selectTrigger = screen.getByTestId('test-select-trigger');
     fireEvent.press(selectTrigger);
 
     await waitFor(() => {
-      expect(getByTestId('test-select-item-chocolate')).not.toBeNull();
-      expect(getByTestId('test-select-item-strawberry')).not.toBeNull();
-      expect(getByTestId('test-select-item-vanilla')).not.toBeNull();
+      expect(screen.getByTestId('test-select-item-chocolate')).not.toBeNull();
+      expect(screen.getByTestId('test-select-item-strawberry')).not.toBeNull();
+      expect(screen.getByTestId('test-select-item-vanilla')).not.toBeNull();
     });
   });
 
   it('should call onSelect on selecting an option', async () => {
     const onSelect = jest.fn();
 
-    const { getByTestId } = render(
+    render(
       <Select options={options} onSelect={onSelect} testID="test-select" />
     );
 
-    const optionModal = getByTestId('test-select-modal');
+    const optionModal = screen.getByTestId('test-select-modal');
     fireEvent(optionModal, 'onPresent');
 
-    const optionItem1 = getByTestId('test-select-item-chocolate');
+    const optionItem1 = screen.getByTestId('test-select-item-chocolate');
     fireEvent.press(optionItem1);
 
     await waitFor(() => {
