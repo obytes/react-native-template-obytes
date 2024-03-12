@@ -42,7 +42,6 @@ import { Text } from './text';
 
 type ModalProps = BottomSheetModalProps & {
   title?: string;
-  testID?: string;
 };
 
 type ModalRef = React.ForwardedRef<BottomSheetModal>;
@@ -50,7 +49,6 @@ type ModalRef = React.ForwardedRef<BottomSheetModal>;
 type ModalHeaderProps = {
   title?: string;
   dismiss: () => void;
-  testID?: string;
 };
 
 export const useModal = () => {
@@ -70,7 +68,6 @@ export const Modal = React.forwardRef(
       snapPoints: _snapPoints = ['60%'],
       title,
       detached = false,
-      testID = 'modal',
       ...props
     }: ModalProps,
     ref: ModalRef
@@ -91,14 +88,10 @@ export const Modal = React.forwardRef(
       () => (
         <>
           <View className="mb-6 mt-2 h-1 w-12 self-center rounded-lg bg-gray-400 dark:bg-gray-700" />
-          <ModalHeader
-            title={title}
-            dismiss={modal.dismiss}
-            testID={`${testID}-header`}
-          />
+          <ModalHeader title={title} dismiss={modal.dismiss} />
         </>
       ),
-      [title, modal.dismiss, testID]
+      [title, modal.dismiss]
     );
 
     return (
@@ -162,36 +155,25 @@ const getDetachedProps = (detached: boolean) => {
  * ModalHeader
  */
 
-const ModalHeader = React.memo(
-  ({ title, dismiss, testID }: ModalHeaderProps) => {
-    return (
-      <>
-        {title && (
-          <View className="flex-row px-2 py-4">
-            <View className="h-[24px] w-[24px]" />
-            <View className="flex-1">
-              <Text
-                className="text-center text-[16px] font-bold text-[#26313D] dark:text-white"
-                testID={`${testID}-title`}
-              >
-                {title}
-              </Text>
-            </View>
+const ModalHeader = React.memo(({ title, dismiss }: ModalHeaderProps) => {
+  return (
+    <>
+      {title && (
+        <View className="flex-row px-2 py-4">
+          <View className="h-[24px] w-[24px]" />
+          <View className="flex-1">
+            <Text className="text-center text-[16px] font-bold text-[#26313D] dark:text-white">
+              {title}
+            </Text>
           </View>
-        )}
-        <CloseButton close={dismiss} testID={`${testID}-close-button`} />
-      </>
-    );
-  }
-);
+        </View>
+      )}
+      <CloseButton close={dismiss} />
+    </>
+  );
+});
 
-const CloseButton = ({
-  close,
-  testID,
-}: {
-  close: () => void;
-  testID?: string;
-}) => {
+const CloseButton = ({ close }: { close: () => void }) => {
   return (
     <Pressable
       onPress={close}
@@ -200,7 +182,6 @@ const CloseButton = ({
       accessibilityLabel="close modal"
       accessibilityRole="button"
       accessibilityHint="closes the modal"
-      testID={testID}
     >
       <Svg
         className="fill-neutral-100 dark:fill-white"
