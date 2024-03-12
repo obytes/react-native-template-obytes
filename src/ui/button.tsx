@@ -100,8 +100,8 @@ export const Button = React.forwardRef<View, Props>(
       disabled = false,
       size = 'default',
       className = '',
+      testID,
       textClassName = '',
-      testID = 'button',
       ...props
     },
     ref
@@ -110,6 +110,7 @@ export const Button = React.forwardRef<View, Props>(
       () => button({ variant, disabled, size }),
       [variant, disabled, size]
     );
+
     return (
       <Pressable
         disabled={disabled || loading}
@@ -126,11 +127,11 @@ export const Button = React.forwardRef<View, Props>(
               <ActivityIndicator
                 size="small"
                 className={styles.indicator()}
-                testID={`${testID}-activity-indicator`}
+                testID={testID ? `${testID}-activity-indicator` : undefined}
               />
             ) : (
               <Text
-                testID={`${testID}-label`}
+                testID={testID ? `${testID}-label` : undefined}
                 className={styles.label({ className: textClassName })}
               >
                 {text}
