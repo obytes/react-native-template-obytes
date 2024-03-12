@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import React from 'react';
 
 import { cleanup, fireEvent, render, screen } from '@/core/test-utils';
@@ -72,5 +73,20 @@ describe('Input component ', () => {
     const input = screen.getByTestId('input');
     fireEvent(input, 'blur');
     expect(onBlur).toHaveBeenCalledTimes(1);
+  });
+  it('should trigger onChangeText event correctly', () => {
+    const onChangeText = jest.fn();
+    render(<Input onChangeText={onChangeText} />);
+
+    const input = screen.getByTestId('input');
+    fireEvent.changeText(input, 'test text');
+    expect(onChangeText).toHaveBeenCalledTimes(1);
+    expect(onChangeText).toHaveBeenCalledWith('test text');
+  });
+  it('should be disabled when disabled prop is true', () => {
+    render(<Input testID="text-input" disabled={true} />);
+
+    const input = screen.getByTestId('text-input');
+    expect(input.props.disabled).toBe(true);
   });
 });
