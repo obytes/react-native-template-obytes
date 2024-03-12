@@ -96,7 +96,7 @@ describe('Button component ', () => {
   it('should apply correct styles for label when is disabled', () => {
     render(<Button testID="test-button" label="Submit" disabled />);
     const button = screen.getByTestId('test-button');
-    console.log(button.props.children[0].props.children.props.className);
+
     const expectedStyle = 'font-[600] font-jakarta text-base text-neutral-600';
     const receivedStyle =
       button.props.children[0].props.children.props.className;
