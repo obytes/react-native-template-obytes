@@ -66,7 +66,7 @@ describe('Button component ', () => {
         variant="secondary"
       />
     );
-    expect(screen.getByTestId('button')).not.toBeNull();
+    expect(screen.getByTestId('button')).toBeOnTheScreen();
     fireEvent.press(screen.getByTestId('button'));
     expect(screen.getByTestId('button').props.accessibilityState.disabled).toBe(
       true

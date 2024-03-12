@@ -10,29 +10,33 @@ afterEach(cleanup);
 describe('Input component ', () => {
   it('renders correctly ', () => {
     render(<Input testID="text-input" />);
-    expect(screen.queryByTestId('text-input')).not.toBeNull();
+    const input = screen.getByTestId('text-input');
+    expect(input).toBeOnTheScreen();
+    expect(screen.getByTestId('text-input')).toBeOnTheScreen();
   });
 
   it('should render the placeholder correctly ', () => {
     render(<Input testID="text-input" placeholder="Enter your username" />);
-    expect(screen.queryByTestId('text-input')).not.toBeNull();
-    expect(screen.getByPlaceholderText('Enter your username')).toBeDefined();
+    expect(screen.getByTestId('text-input')).toBeOnTheScreen();
+    expect(
+      screen.getByPlaceholderText('Enter your username')
+    ).toBeOnTheScreen();
   });
 
   it('should render the label correctly ', () => {
     render(<Input testID="text-input" label="Username" />);
-    expect(screen.queryByTestId('text-input')).not.toBeNull();
-    expect(screen.queryByTestId('text-input-label')).not.toBeNull();
-    expect(screen.queryByTestId('text-input-label')?.props.children).toBe(
+    expect(screen.getByTestId('text-input')).toBeOnTheScreen();
+    expect(screen.getByTestId('text-input-label')).toBeOnTheScreen();
+    expect(screen.getByTestId('text-input-label')?.props.children).toBe(
       'Username'
     );
   });
 
   it('should render the error message correctly ', () => {
     render(<Input testID="text-input" error="This is an error message" />);
-    expect(screen.queryByTestId('text-input')).not.toBeNull();
-    expect(screen.queryByTestId('text-input-error')).not.toBeNull();
-    expect(screen.queryByTestId('text-input-error')?.props.children).toBe(
+    expect(screen.getByTestId('text-input')).toBeOnTheScreen();
+    expect(screen.getByTestId('text-input-error')).toBeOnTheScreen();
+    expect(screen.getByTestId('text-input-error')?.props.children).toBe(
       'This is an error message'
     );
   });
@@ -45,16 +49,18 @@ describe('Input component ', () => {
         error="This is an error message"
       />
     );
-    expect(screen.queryByTestId('text-input')).not.toBeNull();
-    expect(screen.queryByTestId('text-input-label')).not.toBeNull();
-    expect(screen.queryByTestId('text-input-label')?.props.children).toBe(
+    expect(screen.getByTestId('text-input')).toBeOnTheScreen();
+    expect(screen.getByTestId('text-input-label')).toBeOnTheScreen();
+    expect(screen.getByTestId('text-input-label')?.props.children).toBe(
       'Username'
     );
-    expect(screen.queryByTestId('text-input-error')).not.toBeNull();
-    expect(screen.queryByTestId('text-input-error')?.props.children).toBe(
+    expect(screen.getByTestId('text-input-error')).toBeOnTheScreen();
+    expect(screen.getByTestId('text-input-error')?.props.children).toBe(
       'This is an error message'
     );
-    expect(screen.getByPlaceholderText('Enter your username')).toBeDefined();
+    expect(
+      screen.getByPlaceholderText('Enter your username')
+    ).toBeOnTheScreen();
   });
 
   it('should trigger onFocus event correctly ', () => {

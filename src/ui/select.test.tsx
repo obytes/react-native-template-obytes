@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react';
 
-import { cleanup, fireEvent, render, screen, waitFor } from '@/core/test-utils';
+import { cleanup, fireEvent, render, screen } from '@/core/test-utils';
 import type { Option } from '@/ui';
 
 import { Select } from './select';
@@ -24,8 +24,8 @@ describe('Select component ', () => {
         testID="test-select"
       />
     );
-    expect(screen.queryByTestId('test-select-trigger')).not.toBeNull();
-    expect(screen.queryByTestId('test-select-label')).not.toBeNull();
+    expect(screen.getByTestId('test-select-trigger')).toBeOnTheScreen();
+    expect(screen.getByTestId('test-select-label')).toBeOnTheScreen();
   });
 
   it('should render the label correctly ', () => {
@@ -38,9 +38,9 @@ describe('Select component ', () => {
         testID="test-select"
       />
     );
-    expect(screen.queryByTestId('test-select-trigger')).not.toBeNull();
-    expect(screen.queryByTestId('test-select-label')).not.toBeNull();
-    expect(screen.queryByTestId('test-select-label')?.props.children).toBe(
+    expect(screen.getByTestId('test-select-trigger')).toBeOnTheScreen();
+    expect(screen.getByTestId('test-select-label')).toBeOnTheScreen();
+    expect(screen.getByTestId('test-select-label')?.props.children).toBe(
       'Select'
     );
   });
@@ -56,14 +56,14 @@ describe('Select component ', () => {
         error="Please select an option"
       />
     );
-    expect(screen.queryByTestId('test-select-trigger')).not.toBeNull();
-    expect(screen.queryByTestId('test-select-error')).not.toBeNull();
-    expect(screen.queryByTestId('test-select-error')?.props.children).toBe(
+    expect(screen.getByTestId('test-select-trigger')).toBeOnTheScreen();
+    expect(screen.getByTestId('test-select-error')).toBeOnTheScreen();
+    expect(screen.getByTestId('test-select-error')?.props.children).toBe(
       'Please select an option'
     );
   });
 
-  it('should open options modal on press', async () => {
+  it('should open options modal on press', () => {
     render(
       <Select
         label="Select"
@@ -76,14 +76,12 @@ describe('Select component ', () => {
     const selectTrigger = screen.getByTestId('test-select-trigger');
     fireEvent.press(selectTrigger);
 
-    await waitFor(() => {
-      expect(screen.getByTestId('test-select-item-chocolate')).not.toBeNull();
-      expect(screen.getByTestId('test-select-item-strawberry')).not.toBeNull();
-      expect(screen.getByTestId('test-select-item-vanilla')).not.toBeNull();
-    });
+    expect(screen.getByTestId('test-select-item-chocolate')).toBeOnTheScreen();
+    expect(screen.getByTestId('test-select-item-strawberry')).toBeOnTheScreen();
+    expect(screen.getByTestId('test-select-item-vanilla')).toBeOnTheScreen();
   });
 
-  it('should call onSelect on selecting an option', async () => {
+  it('should call onSelect on selecting an option', () => {
     const onSelect = jest.fn();
 
     render(
@@ -96,8 +94,6 @@ describe('Select component ', () => {
     const optionItem1 = screen.getByTestId('test-select-item-chocolate');
     fireEvent.press(optionItem1);
 
-    await waitFor(() => {
-      expect(onSelect).toHaveBeenCalledWith(options[0].value);
-    });
+    expect(onSelect).toHaveBeenCalledWith(options[0].value);
   });
 });
