@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import React from 'react';
 
 import { cleanup, fireEvent, render, screen, waitFor } from '@/core/test-utils';
@@ -49,6 +50,12 @@ describe('Button component ', () => {
     fireEvent.press(screen.getByTestId('test-button'));
     expect(onClick).toHaveBeenCalledTimes(0);
   });
+  it('should be disabled when disabled prop is true', () => {
+    render(<Button testID="test-button" disabled={true} />);
+    expect(
+      screen.getByTestId('test-button').props.accessibilityState.disabled
+    ).toBe(true);
+  });
   it("shouldn't call onClick when disabled", () => {
     const onClick = jest.fn();
     render(
@@ -66,5 +73,33 @@ describe('Button component ', () => {
       screen.getByTestId('test-button').props.accessibilityState.disabled
     ).toBe(true);
     expect(onClick).toHaveBeenCalledTimes(0);
+  });
+  it('should apply correct styles based on size prop', () => {
+    render(<Button testID="test-button" size="lg" />);
+    const button = screen.getByTestId('test-button');
+
+    const expectedStyle = 'font-[600] font-jakarta text-white text-xl';
+    const receivedStyle =
+      button.props.children[0].props.children.props.className;
+    expect(receivedStyle).toContain(expectedStyle);
+  });
+  it('should apply correct styles for label when variant is secondary', () => {
+    render(<Button testID="test-button" variant="secondary" label="Submit" />);
+    const button = screen.getByTestId('test-button');
+
+    const expectedStyle =
+      'font-[600] font-jakarta text-secondary-600 text-base';
+    const receivedStyle =
+      button.props.children[0].props.children.props.className;
+    expect(receivedStyle).toContain(expectedStyle);
+  });
+  it('should apply correct styles for label when is disabled', () => {
+    render(<Button testID="test-button" label="Submit" disabled />);
+    const button = screen.getByTestId('test-button');
+    console.log(button.props.children[0].props.children.props.className);
+    const expectedStyle = 'font-[600] font-jakarta text-base text-neutral-600';
+    const receivedStyle =
+      button.props.children[0].props.children.props.className;
+    expect(receivedStyle).toContain(expectedStyle);
   });
 });
