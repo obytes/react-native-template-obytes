@@ -9,7 +9,7 @@ afterEach(cleanup);
 
 describe('Button component ', () => {
   it('should render correctly ', () => {
-    render(<Button testID="button" />);
+    render(<Button testID="button" disabled={false} />);
     expect(screen.getByTestId('button')).toBeOnTheScreen();
   });
   it('should render the label correctly', () => {
@@ -22,7 +22,7 @@ describe('Button component ', () => {
     expect(screen.getByTestId('button')).toBeOnTheScreen();
     expect(screen.getByTestId('button-activity-indicator')).toBeOnTheScreen();
   });
-  it('should call onClick handler when clicked', async () => {
+  it('should call onClick handler when clicked', () => {
     const onClick = jest.fn();
     render(
       <Button testID="button" label="Click the button" onPress={onClick} />
@@ -43,17 +43,13 @@ describe('Button component ', () => {
     );
     expect(screen.getByTestId('button')).toBeOnTheScreen();
     expect(screen.getByTestId('button-activity-indicator')).toBeOnTheScreen();
-    expect(screen.getByTestId('button').props.accessibilityState.disabled).toBe(
-      true
-    );
+    expect(screen.getByTestId('button')).toBeDisabled();
     fireEvent.press(screen.getByTestId('button'));
     expect(onClick).toHaveBeenCalledTimes(0);
   });
   it('should be disabled when disabled prop is true', () => {
     render(<Button testID="button" disabled={true} />);
-    expect(screen.getByTestId('button').props.accessibilityState.disabled).toBe(
-      true
-    );
+    expect(screen.getByTestId('button')).toBeDisabled();
   });
   it("shouldn't call onClick when disabled", () => {
     const onClick = jest.fn();
@@ -68,9 +64,9 @@ describe('Button component ', () => {
     );
     expect(screen.getByTestId('button')).toBeOnTheScreen();
     fireEvent.press(screen.getByTestId('button'));
-    expect(screen.getByTestId('button').props.accessibilityState.disabled).toBe(
-      true
-    );
+
+    expect(screen.getByTestId('button')).toBeDisabled();
+
     expect(onClick).toHaveBeenCalledTimes(0);
   });
   it('should apply correct styles based on size prop', () => {

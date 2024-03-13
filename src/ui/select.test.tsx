@@ -40,7 +40,7 @@ describe('Select component ', () => {
     );
     expect(screen.getByTestId('select-trigger')).toBeOnTheScreen();
     expect(screen.getByTestId('select-label')).toBeOnTheScreen();
-    expect(screen.getByTestId('select-label')?.props.children).toBe('Select');
+    expect(screen.getByTestId('select-label')).toHaveTextContent('Select');
   });
 
   it('should render the error correctly ', () => {
@@ -56,7 +56,7 @@ describe('Select component ', () => {
     );
     expect(screen.getByTestId('select-trigger')).toBeOnTheScreen();
     expect(screen.getByTestId('select-error')).toBeOnTheScreen();
-    expect(screen.getByTestId('select-error')?.props.children).toBe(
+    expect(screen.getByTestId('select-error')).toHaveTextContent(
       'Please select an option'
     );
   });
