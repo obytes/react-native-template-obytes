@@ -79,7 +79,7 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
           label={item.label}
           selected={value === item.value}
           onPress={() => onSelect(item)}
-          testID={`${testID}-item-${item.value}`}
+          testID={testID ? `${testID}-item-${item.value}` : undefined}
         />
       ),
       [onSelect, value, testID]
@@ -98,7 +98,7 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
           data={options}
           keyExtractor={keyExtractor}
           renderItem={renderSelectItem}
-          testID={`${testID}-modal`}
+          testID={testID ? `${testID}-modal` : undefined}
         />
       </Modal>
     );
@@ -149,7 +149,7 @@ export const Select = (props: SelectProps) => {
     placeholder = 'select...',
     disabled = false,
     onSelect,
-    testID = 'select',
+    testID,
   } = props;
   const modal = useModal();
 
@@ -182,7 +182,10 @@ export const Select = (props: SelectProps) => {
     <>
       <View className={styles.container()}>
         {label && (
-          <Text testID={`${testID}-label`} className={styles.label()}>
+          <Text
+            testID={testID ? `${testID}-label` : undefined}
+            className={styles.label()}
+          >
             {label}
           </Text>
         )}
@@ -190,7 +193,7 @@ export const Select = (props: SelectProps) => {
           className={styles.input()}
           disabled={disabled}
           onPress={modal.present}
-          testID={`${testID}-trigger`}
+          testID={testID ? `${testID}-trigger` : undefined}
         >
           <View className="flex-1">
             <Text className={styles.inputValue()}>{textValue}</Text>
