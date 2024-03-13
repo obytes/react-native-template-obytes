@@ -9,53 +9,47 @@ afterEach(cleanup);
 
 describe('Input component ', () => {
   it('renders correctly ', () => {
-    render(<Input testID="text-input" />);
-    const input = screen.getByTestId('text-input');
-    expect(input).toBeOnTheScreen();
-    expect(screen.getByTestId('text-input')).toBeOnTheScreen();
+    render(<Input testID="input" />);
+    expect(screen.getByTestId('input')).toBeOnTheScreen();
   });
 
   it('should render the placeholder correctly ', () => {
-    render(<Input testID="text-input" placeholder="Enter your username" />);
-    expect(screen.getByTestId('text-input')).toBeOnTheScreen();
+    render(<Input testID="input" placeholder="Enter your username" />);
+    expect(screen.getByTestId('input')).toBeOnTheScreen();
     expect(
       screen.getByPlaceholderText('Enter your username')
     ).toBeOnTheScreen();
   });
 
   it('should render the label correctly ', () => {
-    render(<Input testID="text-input" label="Username" />);
-    expect(screen.getByTestId('text-input')).toBeOnTheScreen();
-    expect(screen.getByTestId('text-input-label')).toBeOnTheScreen();
-    expect(screen.getByTestId('text-input-label')?.props.children).toBe(
-      'Username'
-    );
+    render(<Input testID="input" label="Username" />);
+    expect(screen.getByTestId('input')).toBeOnTheScreen();
+    expect(screen.getByTestId('input-label')).toBeOnTheScreen();
+    expect(screen.getByTestId('input-label')?.props.children).toBe('Username');
   });
 
   it('should render the error message correctly ', () => {
-    render(<Input testID="text-input" error="This is an error message" />);
-    expect(screen.getByTestId('text-input')).toBeOnTheScreen();
-    expect(screen.getByTestId('text-input-error')).toBeOnTheScreen();
-    expect(screen.getByTestId('text-input-error')?.props.children).toBe(
+    render(<Input testID="input" error="This is an error message" />);
+    expect(screen.getByTestId('input')).toBeOnTheScreen();
+    expect(screen.getByTestId('input-error')).toBeOnTheScreen();
+    expect(screen.getByTestId('input-error')?.props.children).toBe(
       'This is an error message'
     );
   });
   it('should render the label, error message & placeholder correctly ', () => {
     render(
       <Input
-        testID="text-input"
+        testID="input"
         label="Username"
         placeholder="Enter your username"
         error="This is an error message"
       />
     );
-    expect(screen.getByTestId('text-input')).toBeOnTheScreen();
-    expect(screen.getByTestId('text-input-label')).toBeOnTheScreen();
-    expect(screen.getByTestId('text-input-label')?.props.children).toBe(
-      'Username'
-    );
-    expect(screen.getByTestId('text-input-error')).toBeOnTheScreen();
-    expect(screen.getByTestId('text-input-error')?.props.children).toBe(
+    expect(screen.getByTestId('input')).toBeOnTheScreen();
+    expect(screen.getByTestId('input-label')).toBeOnTheScreen();
+    expect(screen.getByTestId('input-label')?.props.children).toBe('Username');
+    expect(screen.getByTestId('input-error')).toBeOnTheScreen();
+    expect(screen.getByTestId('input-error')?.props.children).toBe(
       'This is an error message'
     );
     expect(
@@ -65,7 +59,7 @@ describe('Input component ', () => {
 
   it('should trigger onFocus event correctly ', () => {
     const onFocus = jest.fn();
-    render(<Input onFocus={onFocus} />);
+    render(<Input testID="input" onFocus={onFocus} />);
 
     const input = screen.getByTestId('input');
     fireEvent(input, 'focus');
@@ -74,7 +68,7 @@ describe('Input component ', () => {
 
   it('should trigger onBlur event correctly ', () => {
     const onBlur = jest.fn();
-    render(<Input onBlur={onBlur} />);
+    render(<Input testID="input" onBlur={onBlur} />);
 
     const input = screen.getByTestId('input');
     fireEvent(input, 'blur');
@@ -82,7 +76,7 @@ describe('Input component ', () => {
   });
   it('should trigger onChangeText event correctly', () => {
     const onChangeText = jest.fn();
-    render(<Input onChangeText={onChangeText} />);
+    render(<Input testID="input" onChangeText={onChangeText} />);
 
     const input = screen.getByTestId('input');
     fireEvent.changeText(input, 'test text');
@@ -90,9 +84,9 @@ describe('Input component ', () => {
     expect(onChangeText).toHaveBeenCalledWith('test text');
   });
   it('should be disabled when disabled prop is true', () => {
-    render(<Input testID="text-input" disabled={true} />);
+    render(<Input testID="input" disabled={true} />);
 
-    const input = screen.getByTestId('text-input');
+    const input = screen.getByTestId('input');
     expect(input.props.disabled).toBe(true);
   });
 });
