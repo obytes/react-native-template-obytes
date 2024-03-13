@@ -120,10 +120,14 @@ const CheckboxBase = ({
   ...props
 }: RootProps & { label?: string }) => {
   return (
-    <CheckboxRoot checked={checked} testID={`${testID}`} {...props}>
+    <CheckboxRoot checked={checked} testID={testID} {...props}>
       <CheckboxIcon checked={checked} />
       {label ? (
-        <Label text={label} testID={`${testID}-label`} className="pr-2" />
+        <Label
+          text={label}
+          testID={testID ? `${testID}-label` : undefined}
+          className="pr-2"
+        />
       ) : null}
     </CheckboxRoot>
   );
@@ -178,9 +182,11 @@ const RadioBase = ({
   ...props
 }: RootProps & { label?: string }) => {
   return (
-    <RadioRoot checked={checked} testID={`${testID}`} {...props}>
+    <RadioRoot checked={checked} testID={testID} {...props}>
       <RadioIcon checked={checked} />
-      {label ? <Label text={label} testID={`${testID}-label`} /> : null}
+      {label ? (
+        <Label text={label} testID={testID ? `${testID}-label` : undefined} />
+      ) : null}
     </RadioRoot>
   );
 };
@@ -242,9 +248,11 @@ const SwitchBase = ({
   ...props
 }: RootProps & { label?: string }) => {
   return (
-    <SwitchRoot checked={checked} testID={`${testID}`} {...props}>
+    <SwitchRoot checked={checked} testID={testID} {...props}>
       <SwitchIcon checked={checked} />
-      {label ? <Label text={label} testID={`${testID}-label`} /> : null}
+      {label ? (
+        <Label text={label} testID={testID ? `${testID}-label` : undefined} />
+      ) : null}
     </SwitchRoot>
   );
 };
