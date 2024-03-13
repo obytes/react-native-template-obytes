@@ -10,7 +10,7 @@ import { Checkbox, Radio, Switch } from './checkbox';
 afterEach(cleanup);
 
 describe('Checkbox, Radio & Switch components ', () => {
-  it('<Checkbox /> renders correctly and call on change on Press', async () => {
+  it('<Checkbox /> renders correctly and call on change on Press', () => {
     const mockOnChange = jest.fn((checked) => checked);
     render(
       <Checkbox
@@ -22,9 +22,9 @@ describe('Checkbox, Radio & Switch components ', () => {
     );
     expect(screen.getByTestId('checkbox')).toBeOnTheScreen();
     expect(screen.queryByTestId('checkbox-label')).not.toBeOnTheScreen();
-    expect(
-      screen.getByTestId('checkbox').props.accessibilityState.checked
-    ).toBe(false);
+    expect(screen.getByTestId('checkbox')).toBeEnabled();
+
+    expect(screen.getByTestId('checkbox')).not.toBeChecked();
     expect(screen.getByTestId('checkbox').props.accessibilityRole).toBe(
       'checkbox'
     );
@@ -37,7 +37,7 @@ describe('Checkbox, Radio & Switch components ', () => {
     expect(mockOnChange).toHaveBeenCalledWith(true);
   });
 
-  it("<CheckBox/> shouldn't change value while disabled", async () => {
+  it("<CheckBox/> shouldn't change value while disabled", () => {
     const mockOnChange = jest.fn((checked) => checked);
     render(
       <Checkbox
@@ -49,11 +49,11 @@ describe('Checkbox, Radio & Switch components ', () => {
       />
     );
     expect(screen.getByTestId('checkbox')).toBeOnTheScreen();
-
+    expect(screen.getByTestId('checkbox')).toBeDisabled();
     fireEvent.press(screen.getByTestId('checkbox'));
     expect(mockOnChange).toHaveBeenCalledTimes(0);
   });
-  it('<CheckBox/> Should render the correct label', async () => {
+  it('<CheckBox/> Should render the correct label', () => {
     const mockOnChange = jest.fn((checked) => checked);
     render(
       <Checkbox
@@ -73,18 +73,18 @@ describe('Checkbox, Radio & Switch components ', () => {
     expect(screen.getByTestId('checkbox').props.accessibilityRole).toBe(
       'checkbox'
     );
+
     expect(screen.getByTestId('checkbox').props.accessibilityLabel).toBe(
       'agree'
     );
-
-    expect(screen.getByTestId('checkbox-label')?.props.children).toBe(
+    expect(screen.getByTestId('checkbox-label')).toHaveTextContent(
       'I agree to terms and conditions'
     );
     fireEvent.press(screen.getByTestId('checkbox'));
     expect(mockOnChange).toHaveBeenCalledTimes(0);
   });
 
-  it('<Radio /> renders correctly and call on change on Press', async () => {
+  it('<Radio /> renders correctly and call on change on Press', () => {
     const mockOnChange = jest.fn((checked) => checked);
     render(
       <Radio
@@ -96,10 +96,8 @@ describe('Checkbox, Radio & Switch components ', () => {
     );
     expect(screen.getByTestId('radio')).toBeOnTheScreen();
     expect(screen.queryByTestId('radio-label')).not.toBeOnTheScreen();
-
-    expect(screen.getByTestId('radio').props.accessibilityState.checked).toBe(
-      false
-    );
+    expect(screen.getByTestId('radio')).toBeEnabled();
+    expect(screen.getByTestId('radio')).not.toBeChecked();
     expect(screen.getByTestId('radio').props.accessibilityRole).toBe('radio');
     expect(screen.getByTestId('radio').props.accessibilityLabel).toBe('agree');
     fireEvent.press(screen.getByTestId('radio'));
@@ -107,7 +105,7 @@ describe('Checkbox, Radio & Switch components ', () => {
     expect(mockOnChange).toHaveBeenCalledWith(true);
   });
 
-  it('<Radio /> should render the correct label', async () => {
+  it('<Radio /> should render the correct label', () => {
     const mockOnChange = jest.fn((checked) => checked);
     render(
       <Radio
@@ -120,7 +118,7 @@ describe('Checkbox, Radio & Switch components ', () => {
     );
     expect(screen.getByTestId('radio')).toBeOnTheScreen();
     expect(screen.getByTestId('radio-label')).toBeOnTheScreen();
-    expect(screen.getByTestId('radio-label')?.props.children).toBe(
+    expect(screen.getByTestId('radio-label')).toHaveTextContent(
       'I agree to terms and conditions'
     );
 
@@ -134,7 +132,7 @@ describe('Checkbox, Radio & Switch components ', () => {
     expect(mockOnChange).toHaveBeenCalledWith(true);
   });
 
-  it("<Radio/> shouldn't change value while disabled", async () => {
+  it("<Radio/> shouldn't change value while disabled", () => {
     const mockOnChange = jest.fn((checked) => checked);
     render(
       <Radio
@@ -146,12 +144,12 @@ describe('Checkbox, Radio & Switch components ', () => {
       />
     );
     expect(screen.getByTestId('radio')).toBeOnTheScreen();
-
+    expect(screen.getByTestId('radio')).toBeDisabled();
     fireEvent.press(screen.getByTestId('radio'));
     expect(mockOnChange).toHaveBeenCalledTimes(0);
   });
 
-  it('<Switch /> renders correctly and call on change on Press', async () => {
+  it('<Switch /> renders correctly and call on change on Press', () => {
     const mockOnChange = jest.fn((checked) => checked);
     render(
       <Switch
@@ -163,7 +161,7 @@ describe('Checkbox, Radio & Switch components ', () => {
     );
     expect(screen.getByTestId('switch')).toBeOnTheScreen();
     expect(screen.queryByTestId('switch-label')).not.toBeOnTheScreen();
-
+    expect(screen.getByTestId('switch')).toBeEnabled();
     expect(screen.getByTestId('switch').props.accessibilityState.checked).toBe(
       false
     );
@@ -174,7 +172,7 @@ describe('Checkbox, Radio & Switch components ', () => {
     expect(mockOnChange).toHaveBeenCalledWith(true);
   });
 
-  it('<Switch /> should render the correct label', async () => {
+  it('<Switch /> should render the correct label', () => {
     const mockOnChange = jest.fn((checked) => checked);
     render(
       <Switch
@@ -187,7 +185,7 @@ describe('Checkbox, Radio & Switch components ', () => {
     );
     expect(screen.getByTestId('switch')).toBeOnTheScreen();
     expect(screen.getByTestId('switch-label')).toBeOnTheScreen();
-    expect(screen.getByTestId('switch-label')?.props.children).toBe(
+    expect(screen.getByTestId('switch-label')).toHaveTextContent(
       'I agree to terms and conditions'
     );
     expect(screen.getByTestId('switch').props.accessibilityState.checked).toBe(
@@ -200,7 +198,7 @@ describe('Checkbox, Radio & Switch components ', () => {
     expect(mockOnChange).toHaveBeenCalledWith(true);
   });
 
-  it("<Switch/> shouldn't change value while disabled", async () => {
+  it("<Switch/> shouldn't change value while disabled", () => {
     const mockOnChange = jest.fn((checked) => checked);
     render(
       <Switch

@@ -24,15 +24,15 @@ describe('Input component ', () => {
   it('should render the label correctly ', () => {
     render(<Input testID="input" label="Username" />);
     expect(screen.getByTestId('input')).toBeOnTheScreen();
-    expect(screen.getByTestId('input-label')).toBeOnTheScreen();
-    expect(screen.getByTestId('input-label')?.props.children).toBe('Username');
+
+    expect(screen.getByTestId('input-label')).toHaveTextContent('Username');
   });
 
   it('should render the error message correctly ', () => {
     render(<Input testID="input" error="This is an error message" />);
     expect(screen.getByTestId('input')).toBeOnTheScreen();
-    expect(screen.getByTestId('input-error')).toBeOnTheScreen();
-    expect(screen.getByTestId('input-error')?.props.children).toBe(
+
+    expect(screen.getByTestId('input-error')).toHaveTextContent(
       'This is an error message'
     );
   });
@@ -46,10 +46,10 @@ describe('Input component ', () => {
       />
     );
     expect(screen.getByTestId('input')).toBeOnTheScreen();
-    expect(screen.getByTestId('input-label')).toBeOnTheScreen();
-    expect(screen.getByTestId('input-label')?.props.children).toBe('Username');
+
+    expect(screen.getByTestId('input-label')).toHaveTextContent('Username');
     expect(screen.getByTestId('input-error')).toBeOnTheScreen();
-    expect(screen.getByTestId('input-error')?.props.children).toBe(
+    expect(screen.getByTestId('input-error')).toHaveTextContent(
       'This is an error message'
     );
     expect(
