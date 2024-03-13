@@ -21,11 +21,11 @@ describe('Select component ', () => {
         label="Select options"
         options={options}
         onSelect={onSelect}
-        testID="test-select"
+        testID="select"
       />
     );
-    expect(screen.getByTestId('test-select-trigger')).toBeOnTheScreen();
-    expect(screen.getByTestId('test-select-label')).toBeOnTheScreen();
+    expect(screen.getByTestId('select-trigger')).toBeOnTheScreen();
+    expect(screen.getByTestId('select-label')).toBeOnTheScreen();
   });
 
   it('should render the label correctly ', () => {
@@ -35,14 +35,12 @@ describe('Select component ', () => {
         label="Select"
         options={options}
         onSelect={onSelect}
-        testID="test-select"
+        testID="select"
       />
     );
-    expect(screen.getByTestId('test-select-trigger')).toBeOnTheScreen();
-    expect(screen.getByTestId('test-select-label')).toBeOnTheScreen();
-    expect(screen.getByTestId('test-select-label')?.props.children).toBe(
-      'Select'
-    );
+    expect(screen.getByTestId('select-trigger')).toBeOnTheScreen();
+    expect(screen.getByTestId('select-label')).toBeOnTheScreen();
+    expect(screen.getByTestId('select-label')?.props.children).toBe('Select');
   });
 
   it('should render the error correctly ', () => {
@@ -52,13 +50,13 @@ describe('Select component ', () => {
         label="Select"
         options={options}
         onSelect={onSelect}
-        testID="test-select"
+        testID="select"
         error="Please select an option"
       />
     );
-    expect(screen.getByTestId('test-select-trigger')).toBeOnTheScreen();
-    expect(screen.getByTestId('test-select-error')).toBeOnTheScreen();
-    expect(screen.getByTestId('test-select-error')?.props.children).toBe(
+    expect(screen.getByTestId('select-trigger')).toBeOnTheScreen();
+    expect(screen.getByTestId('select-error')).toBeOnTheScreen();
+    expect(screen.getByTestId('select-error')?.props.children).toBe(
       'Please select an option'
     );
   });
@@ -68,30 +66,28 @@ describe('Select component ', () => {
       <Select
         label="Select"
         options={options}
-        testID="test-select"
+        testID="select"
         placeholder="Select an option"
       />
     );
 
-    const selectTrigger = screen.getByTestId('test-select-trigger');
+    const selectTrigger = screen.getByTestId('select-trigger');
     fireEvent.press(selectTrigger);
 
-    expect(screen.getByTestId('test-select-item-chocolate')).toBeOnTheScreen();
-    expect(screen.getByTestId('test-select-item-strawberry')).toBeOnTheScreen();
-    expect(screen.getByTestId('test-select-item-vanilla')).toBeOnTheScreen();
+    expect(screen.getByTestId('select-item-chocolate')).toBeOnTheScreen();
+    expect(screen.getByTestId('select-item-strawberry')).toBeOnTheScreen();
+    expect(screen.getByTestId('select-item-vanilla')).toBeOnTheScreen();
   });
 
   it('should call onSelect on selecting an option', () => {
     const onSelect = jest.fn();
 
-    render(
-      <Select options={options} onSelect={onSelect} testID="test-select" />
-    );
+    render(<Select options={options} onSelect={onSelect} testID="select" />);
 
-    const optionModal = screen.getByTestId('test-select-modal');
+    const optionModal = screen.getByTestId('select-modal');
     fireEvent(optionModal, 'onPresent');
 
-    const optionItem1 = screen.getByTestId('test-select-item-chocolate');
+    const optionItem1 = screen.getByTestId('select-item-chocolate');
     fireEvent.press(optionItem1);
 
     expect(onSelect).toHaveBeenCalledWith(options[0].value);
