@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react';
+import { I18nManager } from 'react-native';
 
 import { cleanup, fireEvent, render, screen } from '@/core/test-utils';
 
@@ -11,6 +12,21 @@ describe('Input component ', () => {
   it('renders correctly ', () => {
     render(<Input testID="input" />);
     expect(screen.getByTestId('input')).toBeOnTheScreen();
+  });
+  it('should use the right direction for rtl layout', () => {
+    I18nManager.isRTL = true;
+    render(<Input testID="input" />);
+    expect(screen.getByTestId('input')).toHaveStyle({
+      writingDirection: 'rtl',
+    });
+  });
+
+  it('should use the right direction for ltr layout', () => {
+    I18nManager.isRTL = false;
+    render(<Input testID="input" />);
+    expect(screen.getByTestId('input')).toHaveStyle({
+      writingDirection: 'ltr',
+    });
   });
 
   it('should render the placeholder correctly ', () => {

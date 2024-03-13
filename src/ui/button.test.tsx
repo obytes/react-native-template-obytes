@@ -1,5 +1,6 @@
 /* eslint-disable max-lines-per-function */
 import React from 'react';
+import { Text } from 'react-native';
 
 import { cleanup, fireEvent, render, screen } from '@/core/test-utils';
 
@@ -9,8 +10,16 @@ afterEach(cleanup);
 
 describe('Button component ', () => {
   it('should render correctly ', () => {
-    render(<Button testID="button" disabled={false} />);
+    render(<Button testID="button" />);
     expect(screen.getByTestId('button')).toBeOnTheScreen();
+  });
+  it('should render correctly if we add explicit child ', () => {
+    render(
+      <Button testID="button">
+        <Text> Custom child </Text>
+      </Button>
+    );
+    expect(screen.getByText('Custom child')).toBeOnTheScreen();
   });
   it('should render the label correctly', () => {
     render(<Button testID="button" label="Submit" />);
