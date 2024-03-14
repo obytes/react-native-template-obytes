@@ -8,7 +8,6 @@ export default function Post() {
   const local = useLocalSearchParams<{ id: string }>();
 
   const { data, isLoading, isError } = usePost({
-    //@ts-ignore
     variables: { id: local.id },
   });
 
