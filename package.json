@@ -86,6 +86,7 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
+    "@dev-plugins/react-navigation": "^0.0.5",
     "@babel/core": "^7.23.7",
     "@commitlint/cli": "^17.8.1",
     "@commitlint/config-conventional": "^17.8.1",
