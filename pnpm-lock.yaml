@@ -132,8 +132,8 @@ dependencies:
     specifier: ~0.19.10
     version: 0.19.10(react-dom@18.2.0)(react@18.2.0)
   react-query-kit:
-    specifier: ^1.5.2
-    version: 1.5.2(@tanstack/react-query@4.36.1)
+    specifier: ^3.2.0
+    version: 3.2.0(@tanstack/react-query@4.36.1)
   tailwind-variants:
     specifier: ^0.1.20
     version: 0.1.20(tailwindcss@3.3.2)
@@ -11523,10 +11523,10 @@ packages:
       - supports-color
       - utf-8-validate
 
-  /react-query-kit@1.5.2(@tanstack/react-query@4.36.1):
-    resolution: {integrity: sha512-bqaP+FGQ/ku1CitemEodwFcJuaM98NX3bL9kQ+/0CY7hcDIRm2bM15yslsQMiHetI4qS8B3L/euiwxq5BWu0xA==}
+  /react-query-kit@3.2.0(@tanstack/react-query@4.36.1):
+    resolution: {integrity: sha512-4EKF/XPt50rurdH0hPBjPinsFsPmsC6nvoMDCsyUjxJq+pdN+B8jiZ57aqshL6yhWhuPZrEpWOVKXhCFYEoG8Q==}
     peerDependencies:
-      '@tanstack/react-query': '*'
+      '@tanstack/react-query': ^4 || ^5
     peerDependenciesMeta:
       '@tanstack/react-query':
         optional: true
