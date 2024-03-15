@@ -8,7 +8,7 @@ type Variables = { id: string };
 type Response = Post;
 
 export const usePost = createQuery<Response, Variables, AxiosError>({
-  queryKey: ['posts'], // we recommend using endpoint base url as queryKey
+  queryKey: ['posts'],
   fetcher: (variables) => {
     return client
       .get(`posts/${variables.id}`)
