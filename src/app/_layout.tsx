@@ -1,7 +1,8 @@
 /* eslint-disable react/react-in-jsx-scope */
+import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ThemeProvider } from '@react-navigation/native';
-import { SplashScreen, Stack } from 'expo-router';
+import { SplashScreen, Stack, useNavigationContainerRef } from 'expo-router';
 import { StyleSheet } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -25,6 +26,8 @@ loadSelectedTheme();
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const navigationRef = useNavigationContainerRef();
+  useReactNavigationDevTools(navigationRef);
   return <RootLayoutNav />;
 }
 

@@ -8,10 +8,10 @@ type Variables = { id: string };
 type Response = Post;
 
 export const usePost = createQuery<Response, Variables, AxiosError>({
-  primaryKey: 'posts',
-  queryFn: ({ queryKey: [primaryKey, variables] }) => {
+  queryKey: ['posts'],
+  fetcher: (variables) => {
     return client
-      .get(`${primaryKey}/${variables.id}`)
+      .get(`posts/${variables.id}`)
       .then((response) => response.data);
   },
 });
