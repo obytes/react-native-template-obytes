@@ -68,7 +68,7 @@
     "react-error-boundary": "^3.1.4",
     "react-hook-form": "^7.49.3",
     "react-i18next": "^12.3.1",
-    "react-native": "0.73.4",
+    "react-native": "0.73.5",
     "react-native-avoid-softinput": "^4.0.2",
     "react-native-flash-message": "^0.4.2",
     "react-native-gesture-handler": "~2.14.1",
@@ -85,11 +85,11 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
-    "@dev-plugins/react-navigation": "^0.0.5",
-    "@dev-plugins/react-query": "^0.0.5",
     "@babel/core": "^7.23.7",
     "@commitlint/cli": "^17.8.1",
     "@commitlint/config-conventional": "^17.8.1",
+    "@dev-plugins/react-navigation": "^0.0.5",
+    "@dev-plugins/react-query": "^0.0.5",
     "@expo/config": "~8.5.4",
     "@react-native-community/eslint-config": "^3.2.0",
     "@testing-library/jest-dom": "^5.17.0",
