@@ -2,7 +2,7 @@ import type TranslateOptions from 'i18next';
 import i18n from 'i18next';
 import memoize from 'lodash.memoize';
 import { useCallback } from 'react';
-import { I18nManager, NativeModules } from 'react-native';
+import { I18nManager, NativeModules, Platform } from 'react-native';
 import { useMMKVString } from 'react-native-mmkv';
 import RNRestart from 'react-native-restart';
 
@@ -31,8 +31,12 @@ export const changeLanguage = (lang: Language) => {
   } else {
     I18nManager.forceRTL(false);
   }
-  if (__DEV__) NativeModules.DevSettings.reload();
-  else RNRestart.restart();
+  if (Platform.OS === 'ios' || Platform.OS === 'android') {
+    if (__DEV__) NativeModules.DevSettings.reload();
+    else RNRestart.restart();
+  } else if (Platform.OS === 'web') {
+    window.location.reload();
+  }
 };
 
 export const useSelectedLanguage = () => {
