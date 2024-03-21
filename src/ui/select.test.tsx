@@ -1,4 +1,6 @@
 /* eslint-disable max-lines-per-function */
+import '@shopify/flash-list/jestSetup';
+
 import React from 'react';
 
 import { cleanup, fireEvent, render, screen } from '@/core/test-utils';
