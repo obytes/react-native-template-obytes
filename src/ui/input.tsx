@@ -132,7 +132,7 @@ export function ControlledInput<T extends FieldValues>(
       ref={field.ref}
       autoCapitalize="none"
       onChangeText={field.onChange}
-      value={field.value as string}
+      value={(field.value as string) || ''}
       {...inputProps}
       error={fieldState.error?.message}
     />

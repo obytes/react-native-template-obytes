@@ -1,6 +1,5 @@
 /* eslint-disable max-lines-per-function */
-import type { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
+import { type BottomSheetModal } from '@gorhom/bottom-sheet';
 import { useColorScheme } from 'nativewind';
 import * as React from 'react';
 import type { FieldValues } from 'react-hook-form';
@@ -15,6 +14,7 @@ import colors from '@/ui/colors';
 import { CaretDown } from '@/ui/icons';
 
 import type { InputControllerType } from './input';
+import { List } from './list';
 import { useModal } from './modal';
 import { Modal } from './modal';
 import { Text } from './text';
@@ -94,11 +94,12 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
           backgroundColor: isDark ? colors.charcoal[800] : colors.white,
         }}
       >
-        <BottomSheetFlatList
+        <List
           data={options}
           keyExtractor={keyExtractor}
           renderItem={renderSelectItem}
           testID={testID ? `${testID}-modal` : undefined}
+          estimatedItemSize={52}
         />
       </Modal>
     );
