@@ -1,10 +1,14 @@
 /* eslint-disable max-lines-per-function */
-import { type BottomSheetModal } from '@gorhom/bottom-sheet';
+import {
+  BottomSheetFlatList,
+  type BottomSheetModal,
+} from '@gorhom/bottom-sheet';
+import { FlashList } from '@shopify/flash-list';
 import { useColorScheme } from 'nativewind';
 import * as React from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { useController } from 'react-hook-form';
-import { TouchableOpacity, View } from 'react-native';
+import { Platform, TouchableOpacity, View } from 'react-native';
 import { Pressable, type PressableProps } from 'react-native';
 import type { SvgProps } from 'react-native-svg';
 import Svg, { Path } from 'react-native-svg';
@@ -14,7 +18,6 @@ import colors from '@/ui/colors';
 import { CaretDown } from '@/ui/icons';
 
 import type { InputControllerType } from './input';
-import { List } from './list';
 import { useModal } from './modal';
 import { Modal } from './modal';
 import { Text } from './text';
@@ -72,6 +75,9 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
     const snapPoints = React.useMemo(() => [height], [height]);
     const { colorScheme } = useColorScheme();
     const isDark = colorScheme === 'dark';
+
+    const List = Platform.OS === 'web' ? FlashList : BottomSheetFlatList;
+
     const renderSelectItem = React.useCallback(
       ({ item }: { item: Option }) => (
         <Option

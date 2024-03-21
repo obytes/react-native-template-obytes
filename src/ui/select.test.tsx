@@ -1,5 +1,4 @@
 /* eslint-disable max-lines-per-function */
-import '@shopify/flash-list/jestSetup';
 
 import React from 'react';
 
