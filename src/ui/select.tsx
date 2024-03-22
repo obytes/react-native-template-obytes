@@ -56,6 +56,8 @@ const selectTv = tv({
   },
 });
 
+const List = Platform.OS === 'web' ? FlashList : BottomSheetFlatList;
+
 export type Option = { label: string; value: string | number };
 
 type OptionsProps = {
@@ -75,8 +77,6 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
     const snapPoints = React.useMemo(() => [height], [height]);
     const { colorScheme } = useColorScheme();
     const isDark = colorScheme === 'dark';
-
-    const List = Platform.OS === 'web' ? FlashList : BottomSheetFlatList;
 
     const renderSelectItem = React.useCallback(
       ({ item }: { item: Option }) => (
