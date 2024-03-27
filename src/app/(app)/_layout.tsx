@@ -67,8 +67,8 @@ export default function TabLayout() {
 const CreateNewPostLink = () => {
   return (
     <Link href="/feed/add-post" asChild>
-      <Pressable className="px-3">
-        <Text className="text-primary-300">Create</Text>
+      <Pressable>
+        <Text className="px-3 text-primary-300">Create</Text>
       </Pressable>
     </Link>
   );

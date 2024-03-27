@@ -10,8 +10,8 @@ export default function Style() {
   return (
     <>
       <FocusAwareStatusBar />
-      <ScrollView>
-        <SafeAreaView className="flex-1 px-4">
+      <ScrollView className="px-4">
+        <SafeAreaView className="flex-1">
           <Typography />
           <Colors />
           <Buttons />
