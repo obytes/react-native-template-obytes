@@ -27,7 +27,7 @@ const selectTv = tv({
     container: 'mb-4',
     label: 'text-grey-100 dark:text-neutral-100 text-lg mb-1',
     input:
-      'mt-0 flex-row items-center justify-center border-[0.5px] border-grey-50 px-3 py-3  rounded-xl',
+      'mt-0 flex-row items-center justify-center border-[0.5px] border-grey-50 px-3 py-3  rounded-xl dark:bg-neutral-800 dark:border-neutral-500',
     inputValue: 'dark:text-neutral-100',
   },
 
@@ -127,7 +127,7 @@ const Option = React.memo(
         {...props}
       >
         <Text className="flex-1 dark:text-neutral-100 ">{label}</Text>
-        {selected && <Check fill="#000" />}
+        {selected && <Check />}
       </Pressable>
     );
   }
@@ -250,11 +250,17 @@ export function ControlledSelect<T extends FieldValues>(
   );
 }
 
-const Check = ({ fill = '#000', ...props }: SvgProps) => (
-  <Svg width={25} height={24} fill="none" viewBox="0 0 25 24" {...props}>
+const Check = ({ ...props }: SvgProps) => (
+  <Svg
+    width={25}
+    height={24}
+    fill="none"
+    viewBox="0 0 25 24"
+    {...props}
+    className="stroke-black dark:stroke-white"
+  >
     <Path
       d="m20.256 6.75-10.5 10.5L4.506 12"
-      stroke={fill}
       strokeWidth={2.438}
       strokeLinecap="round"
       strokeLinejoin="round"
