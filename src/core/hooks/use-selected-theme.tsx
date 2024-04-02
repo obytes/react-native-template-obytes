@@ -1,4 +1,4 @@
-import { useColorScheme } from 'nativewind';
+import { colorScheme, useColorScheme } from 'nativewind';
 import React from 'react';
 import { useMMKVString } from 'react-native-mmkv';
 
@@ -33,6 +33,6 @@ export const loadSelectedTheme = () => {
   const theme = storage.getString(SELECTED_THEME);
   if (theme !== undefined) {
     console.log('theme', theme);
-    // setColorScheme.setColorScheme(theme as ColorSchemeType);
+    colorScheme.set(theme as ColorSchemeType);
   }
 };
