@@ -1,11 +1,14 @@
 /* eslint-disable max-lines-per-function */
-import type { BottomSheetModal } from '@gorhom/bottom-sheet';
-import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
+import {
+  BottomSheetFlatList,
+  type BottomSheetModal,
+} from '@gorhom/bottom-sheet';
+import { FlashList } from '@shopify/flash-list';
 import { useColorScheme } from 'nativewind';
 import * as React from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { useController } from 'react-hook-form';
-import { TouchableOpacity, View } from 'react-native';
+import { Platform, TouchableOpacity, View } from 'react-native';
 import { Pressable, type PressableProps } from 'react-native';
 import type { SvgProps } from 'react-native-svg';
 import Svg, { Path } from 'react-native-svg';
@@ -24,7 +27,7 @@ const selectTv = tv({
     container: 'mb-4',
     label: 'text-grey-100 dark:text-neutral-100 text-lg mb-1',
     input:
-      'mt-0 flex-row items-center justify-center border-[0.5px] border-grey-50 px-3 py-3  rounded-xl',
+      'mt-0 flex-row items-center justify-center border-[0.5px] border-grey-50 px-3 py-3  rounded-xl dark:bg-neutral-800 dark:border-neutral-500',
     inputValue: 'dark:text-neutral-100',
   },
 
@@ -53,6 +56,8 @@ const selectTv = tv({
   },
 });
 
+const List = Platform.OS === 'web' ? FlashList : BottomSheetFlatList;
+
 export type Option = { label: string; value: string | number };
 
 type OptionsProps = {
@@ -72,6 +77,7 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
     const snapPoints = React.useMemo(() => [height], [height]);
     const { colorScheme } = useColorScheme();
     const isDark = colorScheme === 'dark';
+
     const renderSelectItem = React.useCallback(
       ({ item }: { item: Option }) => (
         <Option
@@ -91,14 +97,15 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
         index={0}
         snapPoints={snapPoints}
         backgroundStyle={{
-          backgroundColor: isDark ? colors.charcoal[800] : colors.white,
+          backgroundColor: isDark ? colors.neutral[800] : colors.white,
         }}
       >
-        <BottomSheetFlatList
+        <List
           data={options}
           keyExtractor={keyExtractor}
           renderItem={renderSelectItem}
           testID={testID ? `${testID}-modal` : undefined}
+          estimatedItemSize={52}
         />
       </Modal>
     );
@@ -120,7 +127,7 @@ const Option = React.memo(
         {...props}
       >
         <Text className="flex-1 dark:text-neutral-100 ">{label}</Text>
-        {selected && <Check fill="#000" />}
+        {selected && <Check />}
       </Pressable>
     );
   }
@@ -243,11 +250,17 @@ export function ControlledSelect<T extends FieldValues>(
   );
 }
 
-const Check = ({ fill = '#000', ...props }: SvgProps) => (
-  <Svg width={25} height={24} fill="none" viewBox="0 0 25 24" {...props}>
+const Check = ({ ...props }: SvgProps) => (
+  <Svg
+    width={25}
+    height={24}
+    fill="none"
+    viewBox="0 0 25 24"
+    {...props}
+    className="stroke-black dark:stroke-white"
+  >
     <Path
       d="m20.256 6.75-10.5 10.5L4.506 12"
-      stroke={fill}
       strokeWidth={2.438}
       strokeLinecap="round"
       strokeLinejoin="round"
