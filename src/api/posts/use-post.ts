@@ -11,7 +11,7 @@ export const usePost = createQuery<Response, Variables, AxiosError>({
   queryKey: ['posts'],
   fetcher: (variables) => {
     return client
-      .get(`posts/${variables.id}`)
+      .get(`posts/test/${variables.id}`)
       .then((response) => response.data);
   },
 });
