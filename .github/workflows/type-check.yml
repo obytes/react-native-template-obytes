@@ -28,8 +28,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 📦 Setup Node + PNPM + install deps
-        uses: ./.github/actions/setup-node-pnpm-install
+      - name: 📦 Setup Node + BUN + install deps
+        uses: ./.github/actions/setup-node-bun-install
 
       - name: 📦 Install Reviewdog
         if: github.event_name == 'pull_request'
@@ -39,7 +39,7 @@ jobs:
         # we only need to add the reviewdog step if it's a pull request
         if: github.event_name == 'pull_request'
         run: |
-          pnpm type-check | reviewdog -name="tsc" -efm="%f(%l,%c): error TS%n: %m" -reporter="github-pr-review" -filter-mode="nofilter" -fail-on-error -tee
+          bun type-check | reviewdog -name="tsc" -efm="%f(%l,%c): error TS%n: %m" -reporter="github-pr-review" -filter-mode="nofilter" -fail-on-error -tee
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -47,4 +47,4 @@ jobs:
           🏃‍♂️ Run TypeScript Commit
           # If it's not a Pull Request then we just need to run the type-check
         if: github.event_name != 'pull_request'
-        run: pnpm type-check
+        run: bun type-check

@@ -33,8 +33,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 📦 Setup Node + PNPM + install deps
-        uses: ./.github/actions/setup-node-pnpm-install
+      - name: 📦 Setup Node + BUN + install deps
+        uses: ./.github/actions/setup-node-bun-install
 
       - name: ⏱️ EAS Build
         uses: ./.github/actions/eas-build

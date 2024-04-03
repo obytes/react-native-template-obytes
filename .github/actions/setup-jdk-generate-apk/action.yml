@@ -36,7 +36,7 @@ runs:
 
     - name: Generate Test APK
       run: |
-        pnpm prebuild:${{ inputs.APP_ENV }}
+        bun prebuild:${{ inputs.APP_ENV }}
         cd  android
         chmod +x ./gradlew
         ./gradlew assembleRelease --no-daemon

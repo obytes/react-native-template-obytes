@@ -29,11 +29,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 📦 Setup Node + PNPM + install deps
-        uses: ./.github/actions/setup-node-pnpm-install
+      - name: 📦 Setup Node + BUN + install deps
+        uses: ./.github/actions/setup-node-bun-install
 
       - name: 🏃‍♂️ Run Tests
-        run: pnpm run test:ci
+        run: bun run test:ci
 
       - name: Jest Coverage Comment
         uses: MishaKav/jest-coverage-comment@main
