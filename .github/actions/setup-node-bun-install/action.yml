@@ -25,6 +25,9 @@ runs:
     - uses: actions/cache@v2
       with:
         path: ~/.bun/install/cache
+        key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+        restore-keys: |
+          ${{ runner.os }}-bun-
 
     - name: 📦 Install Project Dependencies
       run: bun install --frozen-lockfile
