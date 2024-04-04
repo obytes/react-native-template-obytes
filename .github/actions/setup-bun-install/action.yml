@@ -5,30 +5,20 @@
 # ✍️ Description:
 # This is a composite action, which means it can be used in other actions.
 # It is used in almost all workflows to set up the environment and install dependencies.
-# Updating  the package manager or Node version here will be reflected in all workflows.
+# Updating the package manager version here will be reflected in all workflows.
 
 # 👀 Example usage:
-#       - name : 📦 Setup Node + BUN + install deps
-#         uses: ./.github/actions/setup-node-bun-install
+#       - name : 📦 Setup BUN + install deps
+#         uses: ./.github/actions/setup-bun-install
 
-name: 'Setup  Node + BUN + Install Dependencies'
-description: 'Setup  Node + BUN + Install Dependencies'
+name: 'Setup BUN + Install Dependencies'
+description: 'Setup BUN + Install Dependencies'
 runs:
   using: 'composite'
   steps:
     - uses: oven-sh/setup-bun@v1
       with:
         bun-version: latest
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 18
-    - uses: actions/cache@v2
-      with:
-        path: ~/.bun/install/cache
-        key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
-        restore-keys: |
-          ${{ runner.os }}-bun-
-
     - name: 📦 Install Project Dependencies
       run: bun install --frozen-lockfile
       shell: bash

@@ -28,8 +28,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 📦 Setup Node + BUN + install deps
-        uses: ./.github/actions/setup-node-bun-install
+      - name: 📦 Setup BUN + install deps
+        uses: ./.github/actions/setup-bun-install
 
       - name: 📦 Install Reviewdog
         if: github.event_name == 'pull_request'
