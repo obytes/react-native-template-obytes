@@ -34,7 +34,8 @@
     "test:ci": "bun run test --coverage",
     "test:watch": "bun run test --watch",
     "install-maestro": "curl -Ls 'https://get.maestro.mobile.dev' | bash",
-    "e2e-test": "maestro test .maestro/ -e APP_ID=com.obytes.development"
+    "e2e-test": "maestro test .maestro/ -e APP_ID=com.obytes.development",
+    "update-deps": "bunx npm-check-updates --root --format group -i"
   },
   "dependencies": {
     "@expo/metro-runtime": "^3.1.3",
