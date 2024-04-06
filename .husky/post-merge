@@ -13,6 +13,6 @@ fi
 
 echo 'You are up to date :)'
 
-echo 'If necessary, you can run pnpm prebuild to generate native code.'
+echo 'If necessary, you can run bun prebuild to generate native code.'
 
 exit 0
