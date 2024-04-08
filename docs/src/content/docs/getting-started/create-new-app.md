@@ -16,15 +16,15 @@ First make sure you have the following tools installed on your machine:
 - [Node.js LTS release](https://nodejs.org/en/)
 - [Git](https://git-scm.com/)
 - [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall), required only for macOS or Linux users
-- [Pnpm](https://pnpm.io/installation)
+- [Bun](https://bun.sh/docs/installation#installing)
 - [VS Code Editor](https://code.visualstudio.com/download)
 
 ## Initializing a new project
 
-First make sure you have `pnpm` installed on your machine, if not you can install it using the following command:
+First make sure you have `bun` installed on your machine, if not you can install it using the following command:
 
 ```bash
-npm install -g pnpm
+npm install -g bun
 ```
 
 Start your project using `create-obytes-app` command:
@@ -46,7 +46,7 @@ The name must satisfy the following rules:
 - It must have at least two segments (one or more dots).
 - Each segment must start with a letter.
 - All characters must be alphanumeric or an underscore [a-zA-Z0-9_].
-:::
+  :::
 
 ## Open Project on VS Code
 
@@ -89,8 +89,8 @@ If the installation was successful, the created app should be ready to use, and 
 
 ```bash
 # Run the app on iOS simulator
-pnpm ios
+bun ios
 
 # Run the app on Android simulator
-pnpm android
+bun android
 ```

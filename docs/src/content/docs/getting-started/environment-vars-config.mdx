@@ -69,10 +69,10 @@ const _buildTimeEnv = {
 NEW_ENV_VAR=my-new-var
 ```
 
-4. Make sure to run `pnpm prebuild` to load the new values.
+4. Make sure to run `bun prebuild` to load the new values.
 
 ```bash
-pnpm prebuild
+bun prebuild
 ```
 
 5. The new environment variable is now ready to use in your project. You can access it in your code using the `Env` object, like this:
@@ -92,7 +92,7 @@ Using `import { Env } from '@env';` will import the env from the `src/core/env.j
 6. Use `APP_ENV` to load the correct `.env` file :
 
 ```bash
-APP_ENV=production pnpm start -cc
+APP_ENV=production bun start -cc
 ```
 
 As mentioned earlier, `zod` is used to validate environment variables at runtime and build time. If there are any missing or invalid variables, you'll see an error message with information on what needs to be fixed. Here's an example error message:

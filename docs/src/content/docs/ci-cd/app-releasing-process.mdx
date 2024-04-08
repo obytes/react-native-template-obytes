@@ -42,16 +42,16 @@ A simple npm script that run np package that helps us to manage the version of t
 {
   "scripts": {
     "app-release": "cross-env SKIP_BRANCH_PROTECTION=true np --no-publish --no-cleanup --no-release-draft",
-    "version": "pnpm run prebuild && git add ."
+    "version": "bun run prebuild && git add ."
   }
 }
 ```
 
-If you run `pnpm run app-release`, it will ask you to choose the type of release (major, minor, patch). based on the type of release, it will update the version inside `package.json`.
+If you run `bun run app-release`, it will ask you to choose the type of release (major, minor, patch). based on the type of release, it will update the version inside `package.json`.
 
 As we use the version from package.json as app version inside `app-config.ts`, we just need to run the prebuild script to update App version inside the `ios` and `android` folders. The prebuild script will be executed automatically using a `version` script inside `package.json` that will handle the task for us. It will also add the changes to the commit that will be pushed to GitHub and create a new tag with the version number.
 
-So technically, we just need to run `pnpm run app-release` and it will handle the rest for us. from updating native app version to pushing a new tag to GitHub.
+So technically, we just need to run `bun run app-release` and it will handle the rest for us. from updating native app version to pushing a new tag to GitHub.
 
 ### GitHub actions and Expo EAS workflows
 
@@ -80,7 +80,7 @@ When then name of your organization is ready, you need to update the `EXPO_ACCOU
 **For QA release:**
 
 ```bash
-pnpm run prebuild:staging
+bun run prebuild:staging
 ```
 
 The above command will regenerate the iOS and Android folders based on the `staging` configuration.
@@ -92,8 +92,8 @@ You need to be logged in to EAS using `eas login` command before running this co
 :::
 
 ```bash
-pnpm run build:staging:ios
-pnpm run build:staging:android
+bun run build:staging:ios
+bun run build:staging:android
 ```
 
 The above commands will generate the required credentials for the build and store them in EAS servers so that we can use them later to trigger the build from GitHub actions.
@@ -101,9 +101,9 @@ The above commands will generate the required credentials for the build and stor
 **For production release:**
 
 ```bash
-pnpm run prebuild:production
-pnpm run build:production:ios
-pnpm run build:production:android
+bun run prebuild:production
+bun run build:production:ios
+bun run build:production:android
 ```
 
 In case you want to submit the app to the App Store and Google Play, you need to check eas submit configuration and follow the steps from [EAS docs](https://docs.expo.dev/submit/introduction/).
