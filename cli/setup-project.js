@@ -8,10 +8,10 @@ const initGit = async (projectName) => {
 };
 
 const installDeps = async (projectName) => {
-  await runCommand(`cd ${projectName} && bun install`, {
+  await runCommand(`cd ${projectName} && pnpm install`, {
     loading: 'Installing  project dependencies',
     success: 'Dependencies installed',
-    error: 'Failed to install dependencies, Make sure you have bun installed',
+    error: 'Failed to install dependencies, Make sure you have pnpm installed',
   });
 };
 

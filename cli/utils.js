@@ -33,8 +33,8 @@ const showMoreDetails = (projectName) => {
     'Your project is ready to go! \n\n\n',
     '🚀 To get started, run the following commands: \n\n',
     `   \`cd ${projectName}\` \n`,
-    '   IOS     :  `bun ios` \n',
-    '   Android :  `bun android` \n\n',
+    '   IOS     :  `pnpm ios` \n',
+    '   Android :  `pnpm android` \n\n',
     '📚 Starter Documentation: https://starter.obytes.com'
   );
 };

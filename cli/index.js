@@ -22,7 +22,7 @@ const createObytesApp = async () => {
   // setup the project: remove unnecessary files, update package.json infos, name and  set version to 0.0.1 + add initial version to osMetadata
   await setupProject(projectName);
 
-  // install project dependencies using bun
+  // install project dependencies using pnpm
   await installDeps(projectName);
 
   // show instructions to run the project + link to the documentation
