@@ -18,5 +18,6 @@
     "astro": "^4.4.9",
     "hast-util-to-html": "^9.0.0",
     "sharp": "^0.32.3"
-  }
+  },
+  "packageManager": "pnpm@8.6.5"
 }
