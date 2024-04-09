@@ -46,6 +46,11 @@ import { Icon } from '@astrojs/starlight/components';
     border: 1px solid var(--sl-color-accent-high);
     animation: slide-down 0.5s ease-in-out;
   }
+  @media screen and (max-width: 768px) {
+    .container{
+      display: none;
+    }
+  }
   .link {
     display: flex;
     padding: 0.5rem;
