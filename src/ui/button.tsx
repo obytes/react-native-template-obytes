@@ -6,9 +6,9 @@ import { tv } from 'tailwind-variants';
 
 const button = tv({
   slots: {
-    container: 'flex flex-row items-center justify-center rounded-md my-2 px-4',
-    label: 'text-base font-[600] font-jakarta',
-    indicator: 'text-white h-6',
+    container: 'my-2 flex flex-row items-center justify-center rounded-md px-4',
+    label: 'font-inter text-base font-semibold',
+    indicator: 'h-6 text-white',
   },
 
   variants: {
