@@ -16,9 +16,6 @@ export { ErrorBoundary } from 'expo-router';
 // Import  global CSS file
 import '../../global.css';
 
-import { cssInterop } from 'nativewind';
-import Svg from 'react-native-svg';
-
 export const unstable_settings = {
   initialRouteName: '(app)',
 };
@@ -27,13 +24,6 @@ hydrateAuth();
 loadSelectedTheme();
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
-
-//Apply cssInterop to Svg to resolve className string into style
-cssInterop(Svg, {
-  className: {
-    target: 'style',
-  },
-});
 
 export default function RootLayout() {
   const navigationRef = useNavigationContainerRef();
