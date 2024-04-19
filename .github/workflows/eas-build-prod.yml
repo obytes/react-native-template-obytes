@@ -1,6 +1,6 @@
 # 🔗 Links:
 # Source file: https://github.com/obytes/react-native-template-obytes/blob/master/.github/workflows/eas-build-prod.yml
-# Starter releasing proccess: https://starter.obytes.com/ci-cd/app-releasing-process/
+# Starter releasing process: https://starter.obytes.com/ci-cd/app-releasing-process/
 
 # ✍️ Description:
 # This workflow is used to trigger a build on EAS for Prod environment.
