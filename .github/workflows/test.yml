@@ -8,7 +8,7 @@
 #   - If it's a pull request, it will run the tests and post a comment with coverage details.
 #   - If it's a push to main/master, it will run the tests and add the check to the commit.
 
-# 🚨 GTHUB SECRETS REQUIRED: NONE
+# 🚨 GITHUB SECRETS REQUIRED: NONE
 
 name: Tests (jest)
 
