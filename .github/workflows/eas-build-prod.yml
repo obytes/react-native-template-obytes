@@ -7,7 +7,7 @@
 # Can be triggered manually from the actions tab.
 # This workflow will use ./actions/eas-build action to trigger the build on EAS with production env.
 
-# 🚨 GTHUB SECRETS REQUIRED:
+# 🚨 GITHUB SECRETS REQUIRED:
 #         - EXPO_TOKEN: Expo token to authenticate with EAS
 #         - You can get it from https://expo.dev/settings/access-tokens
 
