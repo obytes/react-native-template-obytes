@@ -1,22 +1,22 @@
 # 🔗 Links:
 # Source file: https://github.com/obytes/react-native-template-obytes/blob/master/.github/workflows/lint-ts.yml
-# Starter releasing proccess: https://starter.obytes.com/ci-cd/app-releasing-process/
+# Starter releasing process: https://starter.obytes.com/ci-cd/app-releasing-process/
 
 # ✍️ Description:
 # This workflow is used to create a new version of the app and push a new tag to the repo.
-# As this workflow will push code to the repo, we setup Github Bot as git user.
+# As this workflow will push code to the repo, we set up GitHub Bot as a Git user.
 # This Workflow need to be triggered manually from the Actions tab in the repo.
-#         1. Choose the your release type (patch, minor, major)
-#         2. The workflow will run np-release script which run the following steps:
+#         1. Choose your release type (patch, minor, major)
+#         2. The workflow will run the np-release script which runs the following steps:
 #             - Bump the version in package.json based on the release type using np
-#             - Run the prebuild the app to align the package.json version with the native code
+#             - Run the prebuild of the app to align the package.json version with the native code
 #             - Create a new tag with the new version
 #             - Push the new tag to the repo
 #
 
-# 🚨 GTHUB SECRETS REQUIRED:
-#         - GH_TOKEN: A Github token with write repo access.
-#           you can generate one from here: https://docs.github.com/en/enterprise-server@3.6/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+# 🚨 GITHUB SECRETS REQUIRED:
+#         - GH_TOKEN: A GitHub token with write repo access.
+#           You can generate one from here: https://docs.github.com/en/enterprise-server@3.6/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
 #           make sure to add it to the repo secrets with the name GH_TOKEN
 
 name: New App Version

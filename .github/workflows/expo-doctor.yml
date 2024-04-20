@@ -6,7 +6,7 @@
 # Can be triggered manually from the Actions tab in your project.
 # Runs Also on pull requests and pushes to the main/master branch, but only if the `package.json` or `pnpm-lock.yaml` files have been changed.
 
-# 🚨 GTHUB SECRETS REQUIRED: NONE
+# 🚨 GITHUB SECRETS REQUIRED: NONE
 
 name: Expo Doctor (expo)
 

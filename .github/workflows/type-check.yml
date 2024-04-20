@@ -8,7 +8,7 @@
 #   - If it's a pull request, it will run type checking, then add the check to the PR as well as annotate the code with the errors using reviewdog.
 #   - If it's a push to main/master, it will run the type checking and fail if there are any errors.
 
-# 🚨 GTHUB SECRETS REQUIRED: NONE
+# 🚨 GITHUB SECRETS REQUIRED: NONE
 
 name: Type Check (tsc)
 
@@ -36,7 +36,7 @@ jobs:
         uses: reviewdog/action-setup@v1
 
       - name: 🏃‍♂️ Run TypeScript PR # Reviewdog tsc errorformat: %f:%l:%c - error TS%n: %m
-        # we only need to add the reviewdog step if it's a pull request
+        # We only need to add the reviewdog step if it's a pull request
         if: github.event_name == 'pull_request'
         run: |
           pnpm type-check | reviewdog -name="tsc" -efm="%f(%l,%c): error TS%n: %m" -reporter="github-pr-review" -filter-mode="nofilter" -fail-on-error -tee

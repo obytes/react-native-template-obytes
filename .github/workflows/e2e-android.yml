@@ -1,6 +1,6 @@
 # 🔗 Links:
 # Source file: https://github.com/obytes/react-native-template-obytes/blob/master/.github/workflows/e2e-android.yml
-# End to end testing: https://starter.obytes.com/testing/end-to-end-testing/
+# End-to-end testing: https://starter.obytes.com/testing/end-to-end-testing/
 
 # ✍️ Description:
 # This workflow is used to run end-to-end tests on Android using Maestro.
@@ -10,7 +10,7 @@
 # This workflow will be triggered on pull requests (PRs) with the label "android-test-github" or can be manually triggered from the Actions tab.
 #
 
-# 🚨 GTHUB SECRETS REQUIRED: None
+# 🚨 GITHUB SECRETS REQUIRED: None
 
 name: E2E Tests Android (Maestro + Github Action)
 
@@ -57,7 +57,7 @@ jobs:
           fetch-depth: 0
 
       - name: 📦 Install Maestro
-        run: npm run install-maestro ## we use npm because we dont need to install deps again
+        run: npm run install-maestro ## We use npm because we don't need to install deps again
 
       - name: Download Test APK
         uses: actions/download-artifact@v3

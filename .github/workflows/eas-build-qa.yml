@@ -1,13 +1,13 @@
 # 🔗 Links:
 # Source file: https://github.com/obytes/react-native-template-obytes/blob/master/.github/workflows/eas-build-qa.yml
-# Starter releasing proccess: https://starter.obytes.com/ci-cd/app-releasing-process/
+# Starter releasing process: https://starter.obytes.com/ci-cd/app-releasing-process/
 
 # ✍️ Description:
-# This workflow is used to trigger a build on EAS for QA environment.
-# It will run on every Github  release published on the repo, or can be triggered manually from the actions tab.
+# This workflow is used to trigger a build on EAS for the QA environment.
+# It will run on every GitHub release published on the repo or can be triggered manually from the actions tab.
 # This workflow will use ./actions/eas-build action to trigger the build on EAS with staging env.
 
-# 🚨 GTHUB SECRETS REQUIRED:
+# 🚨 GITHUB SECRETS REQUIRED:
 #         - EXPO_TOKEN: Expo token to authenticate with EAS
 #         - You can get it from https://expo.dev/settings/access-tokens
 
