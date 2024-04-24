@@ -254,7 +254,7 @@ devDependencies:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   tailwindcss:
-    specifier: ^3.3.2
+    specifier: 3.3.2
     version: 3.3.2(ts-node@10.9.2)
   ts-jest:
     specifier: ^29.1.1

@@ -46,10 +46,7 @@ function RootLayoutNav() {
 function Providers({ children }: { children: React.ReactNode }) {
   const theme = useThemeConfig();
   return (
-    <GestureHandlerRootView
-      style={styles.container}
-      className={theme.dark ? `dark` : undefined}
-    >
+    <GestureHandlerRootView style={styles.container}>
       <ThemeProvider value={theme}>
         <APIProvider>
           <BottomSheetModalProvider>
