@@ -1,9 +1,10 @@
 import { colorScheme, useColorScheme } from 'nativewind';
 import React from 'react';
+import { Platform } from 'react-native';
 import { useMMKVString } from 'react-native-mmkv';
 
 import { storage } from '../storage';
-
+import { webStorage } from '../storage.web';
 const SELECTED_THEME = 'SELECTED_THEME';
 export type ColorSchemeType = 'light' | 'dark' | 'system';
 /**
@@ -30,7 +31,10 @@ export const useSelectedTheme = () => {
 };
 // to be used in the root file to load the selected theme from MMKV
 export const loadSelectedTheme = () => {
-  const theme = storage?.getString(SELECTED_THEME);
+  const theme =
+    Platform.OS === 'web'
+      ? webStorage?.getString(SELECTED_THEME)
+      : storage.getString(SELECTED_THEME);
   if (theme !== undefined) {
     console.log('theme', theme);
     colorScheme.set(theme as ColorSchemeType);

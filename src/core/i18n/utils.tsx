@@ -7,6 +7,7 @@ import { useMMKVString } from 'react-native-mmkv';
 import RNRestart from 'react-native-restart';
 
 import { storage } from '../storage';
+import { webStorage } from '../storage.web';
 import type { Language, resources } from './resources';
 import type { RecursiveKeyOf } from './types';
 
@@ -15,7 +16,10 @@ export type TxKeyPath = RecursiveKeyOf<DefaultLocale>;
 
 export const LOCAL = 'local';
 
-export const getLanguage = () => storage?.getString(LOCAL); // 'Marc' getItem<Language | undefined>(LOCAL);
+export const getLanguage = () =>
+  Platform?.OS === 'web'
+    ? webStorage?.getString(LOCAL)
+    : storage.getString(LOCAL); // 'Marc' getItem<Language | undefined>(LOCAL);
 
 export const translate = memoize(
   (key: TxKeyPath, options = undefined) =>
