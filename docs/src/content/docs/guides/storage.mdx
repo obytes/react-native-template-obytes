@@ -15,3 +15,10 @@ The starter comes with a simple storage module that uses [react-native-mmkv](htt
 <CodeBlock file="src/core/storage.tsx" />
 
 The `react-native-mmkv` library provides various features such as using hooks and adding encryption to stored data. Feel free to check the [official docs](https://github.com/mrousavy/react-native-mmkv) for more information.
+
+
+## MMKV dev tools plugin
+
+For managing and and monitoring the `react-native-mmkv` storage instance, we use the [MMKV dev tools plugin](https://github.com/expo/dev-plugins/tree/main/packages/react-native-mmkv), which offers us visibility into our storage in real-time.
+It gives the ability to inspect, add, edit and remove the data manually.
+To use it, in the terminal press `shift` + `m` and choose from the opened list of dev tools the MMKV plugin. The plugin's web interface will open and display the storage.

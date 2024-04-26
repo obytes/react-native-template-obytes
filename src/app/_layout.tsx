@@ -28,6 +28,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const navigationRef = useNavigationContainerRef();
   useReactNavigationDevTools(navigationRef);
+  useMMKVDevTools();
   return <RootLayoutNav />;
 }
 
