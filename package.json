@@ -88,6 +88,7 @@
     "@babel/core": "^7.23.7",
     "@commitlint/cli": "^17.8.1",
     "@commitlint/config-conventional": "^17.8.1",
+    "@dev-plugins/react-native-mmkv": "^0.0.1",
     "@dev-plugins/react-navigation": "^0.0.5",
     "@dev-plugins/react-query": "^0.0.5",
     "@expo/config": "~8.5.4",
