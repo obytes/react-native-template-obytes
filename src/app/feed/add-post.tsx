@@ -19,7 +19,7 @@ export default function AddPost() {
   const { control, handleSubmit } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
-  const { mutate: addPost, isLoading } = useAddPost();
+  const { mutate: addPost, isPending } = useAddPost();
 
   const onSubmit = (data: FormType) => {
     console.log(data);
@@ -64,7 +64,7 @@ export default function AddPost() {
         />
         <Button
           label="Add Post"
-          loading={isLoading}
+          loading={isPending}
           onPress={handleSubmit(onSubmit)}
           testID="add-post-button"
         />

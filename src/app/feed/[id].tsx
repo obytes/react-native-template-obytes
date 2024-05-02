@@ -7,12 +7,12 @@ import { ActivityIndicator, FocusAwareStatusBar, Text, View } from '@/ui';
 export default function Post() {
   const local = useLocalSearchParams<{ id: string }>();
 
-  const { data, isLoading, isError } = usePost({
+  const { data, isPending, isError } = usePost({
     //@ts-ignore
     variables: { id: local.id },
   });
 
-  if (isLoading) {
+  if (isPending) {
     return (
       <View className="flex-1 justify-center  p-3">
         <Stack.Screen options={{ title: 'Post', headerBackTitle: 'Feed' }} />
