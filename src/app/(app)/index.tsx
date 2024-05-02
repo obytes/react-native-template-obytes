@@ -7,7 +7,7 @@ import { Card } from '@/components/card';
 import { EmptyList, FocusAwareStatusBar, Text, View } from '@/ui';
 
 export default function Feed() {
-  const { data, isLoading, isError } = usePosts();
+  const { data, isPending, isError } = usePosts();
   const renderItem = React.useCallback(
     ({ item }: { item: Post }) => <Card {...item} />,
     []
@@ -27,7 +27,7 @@ export default function Feed() {
         data={data}
         renderItem={renderItem}
         keyExtractor={(_, index) => `item-${index}`}
-        ListEmptyComponent={<EmptyList isLoading={isLoading} />}
+        ListEmptyComponent={<EmptyList isLoading={isPending} />}
         estimatedItemSize={300}
       />
     </View>

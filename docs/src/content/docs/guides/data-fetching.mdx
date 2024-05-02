@@ -122,7 +122,7 @@ Exactly the same way we did in [form section](../ui-and-theme/Forms.mdx) while c
 1. Create the schema for the new form using Zod
 2. Create the form using react-hook-form
 3. Get `mutate` function from `useAddPost` hook and call it when the form is submitted
-4. You can use the `isLoading` state to display a loading indicator while the data is being sent to the server and then redirect the user to the feed screen on success.
+4. You can use the `isPending` state to display a loading indicator while the data is being sent to the server and then redirect the user to the feed screen on success.
 
 <CodeBlock file="src/app/feed/add-post.tsx" />
 
