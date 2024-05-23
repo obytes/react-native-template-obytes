@@ -22,6 +22,12 @@ git clone https://github.com/user/repo-name
 
 cd ./repo-name
 
+pnpm -v
+# expected: ~9.1.2
+
+# if need update pnpm:
+pnpm i -g pnpm
+
 pnpm install
 ```
 
