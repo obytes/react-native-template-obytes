@@ -86,12 +86,15 @@ export const CheckboxIcon = ({ checked = false }: IconProps) => {
         backgroundColor: checked ? color : 'transparent',
         borderColor: color,
       }}
-      transition={{ duration: 100, type: 'timing' }}
+      transition={{
+        backgroundColor: { type: 'timing', duration: 100 },
+        borderColor: { type: 'timing', duration: 100 },
+      }}
     >
       <MotiView
         from={{ opacity: 0 }}
         animate={{ opacity: checked ? 1 : 0 }}
-        transition={{ duration: 100, type: 'timing' }}
+        transition={{ opacity: { type: 'timing', duration: 100 } }}
       >
         <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <Path
@@ -153,7 +156,7 @@ export const RadioIcon = ({ checked = false }: IconProps) => {
       animate={{
         borderColor: color,
       }}
-      transition={{ duration: 100, type: 'timing' }}
+      transition={{ borderColor: { duration: 100, type: 'timing' } }}
     >
       <MotiView
         className={`h-[10px] w-[10px] rounded-[10px] ${
@@ -161,7 +164,7 @@ export const RadioIcon = ({ checked = false }: IconProps) => {
         } `}
         from={{ opacity: 0 }}
         animate={{ opacity: checked ? 1 : 0 }}
-        transition={{ duration: 50, type: 'timing' }}
+        transition={{ opacity: { duration: 50, type: 'timing' } }}
       />
     </MotiView>
   );
@@ -228,7 +231,7 @@ export const SwitchIcon = ({ checked = false }: IconProps) => {
         animate={{
           translateX: I18nManager.isRTL ? translateX : -translateX,
         }}
-        transition={{ overshootClamping: true }}
+        transition={{ translateX: { overshootClamping: true } }}
       />
     </View>
   );
