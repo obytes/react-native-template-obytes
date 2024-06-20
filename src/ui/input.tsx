@@ -105,6 +105,7 @@ export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
         {...inputProps}
         style={StyleSheet.flatten([
           { writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr' },
+          { textAlign: I18nManager.isRTL ? 'right' : 'left' },
           inputProps.style,
         ])}
       />
