@@ -1,3 +1,13 @@
+<!---
+❌❌❌
+WARNING!!!
+Make sure the base repository is `rootstrap/react-native-template` BEFORE creating the Pull Request.
+❌❌❌
+-->
+
+
+
+
 ## What does this do?
 
 <!---
