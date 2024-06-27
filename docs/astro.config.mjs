@@ -2,10 +2,13 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 
-const site = 'https://starter.obytes.com/';
+const site = 'https://rootstrap.github.io';
+const base = 'react-native-template';
 
 // https://astro.build/config
 export default defineConfig({
+  site,
+  base,
   integrations: [
     starlight({
       title: 'Obytes Starter | React Native Template',
