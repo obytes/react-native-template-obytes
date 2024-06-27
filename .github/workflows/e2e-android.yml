@@ -48,7 +48,7 @@ jobs:
   test-android:
     name: Run Android E2E Tests (Maestro + Github Action)
     needs: generate-test-apk
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: 📦 Checkout project repo
@@ -66,7 +66,7 @@ jobs:
           path: ${{ github.workspace }}
 
       - name: Gradle cache
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/actions/setup-gradle@v3
 
       - name: AVD cache
         uses: actions/cache@v3
@@ -77,28 +77,40 @@ jobs:
             ~/.android/adb*
           key: avd-cache
 
+      - name: Enable KVM group perms
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
       - name: create AVD and generate snapshot for caching
         if: steps.avd-cache.outputs.cache-hit != 'true'
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
+          arch: x86_64
+          api-level: 32
           force-avd-creation: false
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           cores: 2
           ram-size: 4096M
+          disk-size: 6000M
+          heap-size: 600M
           profile: Nexus 6
           script: echo "Generated AVD snapshot for caching."
 
       - name: Run tests with Maestro
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
+          arch: x86_64
+          api-level: 32
           force-avd-creation: false
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           disable-animations: false
           cores: 2
           ram-size: 4096M
+          disk-size: 6000M
+          heap-size: 600M
           profile: Nexus 6
           script: |
             adb install "${{ github.workspace }}/app-release.apk"

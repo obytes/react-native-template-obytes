@@ -1,22 +1,22 @@
 appId: ${APP_ID}
 env:
-  Name: "User"
-  EMAIL: "user@test.com"
-  PASSWORD: "password"
+  Name: 'User'
+  EMAIL: 'user@test.com'
+  PASSWORD: 'password'
 tags:
   - util
 ---
 - tapOn:
-    id: "name"
+    id: 'name'
 - inputText: ${Name}
 - tapOn:
-    id: "email-input"
+    id: 'email-input'
 - inputText: ${EMAIL}
-- runFlow: ../utils/hide-keyboard.yaml
+- hideKeyboard
 - tapOn:
-    id: "password-input"
+    id: 'password-input'
 - inputText: ${PASSWORD}
-- runFlow: ../utils/hide-keyboard.yaml
+- hideKeyboard
 - tapOn:
-    id: "login-button"
-- assertVisible: "Typography"
+    id: 'login-button'
+- assertVisible: 'Typography'
