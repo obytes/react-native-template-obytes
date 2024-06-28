@@ -24,6 +24,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check if Maestro Cloud API Key is set
+        run: |
+          if [ -z "${{ secrets.MAESTRO_CLOUD_API_KEY }}" ]; then
+            echo "You must provide a MAESTRO_CLOUD_API_KEY secret in this repo's secrets. Learn more: https://developers.maestro.io/api/key/"
+            exit 1
+          fi
+
       - name: 📦 Checkout project repo
         uses: actions/checkout@v3
         with:

@@ -14,22 +14,26 @@ env:
     id: 'login-button'
 - tapOn:
     id: 'login-button'
+- hideKeyboard
 - assertVisible: 'Email is required'
 - assertVisible: 'Password is required'
 - tapOn:
     id: 'name'
 - inputText: ${Name}
-- runFlow: ../utils/hide-keyboard.yaml
+- hideKeyboard
 - tapOn:
     id: 'email-input'
 - inputText: 'email'
+- hideKeyboard
 - assertVisible: 'Invalid email format'
+- tapOn:
+    id: 'email-input'
 - inputText: ${EMAIL}
-- runFlow: ../utils/hide-keyboard.yaml
+- hideKeyboard
 - tapOn:
     id: 'password-input'
 - inputText: ${PASSWORD}
-- runFlow: ../utils/hide-keyboard.yaml
+- hideKeyboard
 - tapOn:
     id: 'login-button'
 - assertVisible: 'Feed'

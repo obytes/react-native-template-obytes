@@ -15,7 +15,7 @@
 #         with:
 #           APP_ENV: 'staging'
 
-name: 'Setup  JDK + GRADLE + Generate APK'
+name: 'Setup JDK + GRADLE + Generate APK'
 description: 'Setup  JDK + GRADLE + Generate APK'
 inputs:
   APP_ENV:
@@ -30,9 +30,9 @@ runs:
       uses: actions/setup-java@v3
       with:
         distribution: 'zulu' # See 'Supported distributions' for available options
-        java-version: '11'
+        java-version: '17'
     - name: Setup Gradle
-      uses: gradle/gradle-build-action@v2
+      uses: gradle/actions/setup-gradle@v3
 
     - name: Generate Test APK
       run: |
