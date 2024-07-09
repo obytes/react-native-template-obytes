@@ -16,10 +16,10 @@ description: 'Setup  Node + PNPM + Install Dependencies'
 runs:
   using: 'composite'
   steps:
-    - uses: pnpm/action-setup@v2
-      with:
-        version: 8
-    - uses: actions/setup-node@v3
+    - uses: pnpm/action-setup@v4
+      name: Install pnpm
+    - uses: actions/setup-node@v4
+      name: Install Node.js
       with:
         node-version: 18
         cache: 'pnpm'
