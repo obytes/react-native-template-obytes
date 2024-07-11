@@ -16,12 +16,12 @@ description: 'Setup  Node + PNPM + Install Dependencies'
 runs:
   using: 'composite'
   steps:
-    - uses: pnpm/action-setup@v2
+    - uses: pnpm/action-setup@v4
       with:
-        version: 8
-    - uses: actions/setup-node@v3
+        run_install: false
+    - uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 20
         cache: 'pnpm'
 
     - name: 📦 Install Project Dependencies
