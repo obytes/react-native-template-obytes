@@ -5,9 +5,6 @@ Make sure the base repository is `rootstrap/react-native-template` BEFORE creati
 ❌❌❌
 -->
 
-
-
-
 ## What does this do?
 
 <!---
