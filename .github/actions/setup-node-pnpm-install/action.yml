@@ -18,10 +18,12 @@ runs:
   steps:
     - uses: pnpm/action-setup@v4
       name: Install pnpm
+      with:
+        run_install: false
     - uses: actions/setup-node@v4
       name: Install Node.js
       with:
-        node-version: 18
+        node-version: 20
         cache: 'pnpm'
 
     - name: 📦 Install Project Dependencies
