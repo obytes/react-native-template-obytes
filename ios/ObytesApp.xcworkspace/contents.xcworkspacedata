@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:ObytesApp.xcodeproj">
+      location = "group:/Users/juansimon/Projects/react-native-template/ios/ReactNativeTemplate.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
