@@ -11,9 +11,6 @@ on:
       - qa
       - development
 
-env:
-  SONAR_PROJECT: myapp-delete
-
 jobs:
   sonar:
     runs-on: ubuntu-latest
