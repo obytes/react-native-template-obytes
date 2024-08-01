@@ -1,4 +1,4 @@
-rootProject.name = 'ReactNativeTemplate'
+rootProject.name = 'react-native-template'
 
 dependencyResolutionManagement {
   versionCatalogs {
