@@ -27,10 +27,10 @@ First make sure you have `pnpm` installed on your machine, if not you can instal
 npm install -g pnpm
 ```
 
-Start your project using `create-obytes-app` command:
+Start your project using `create-rootstrap-rn-app` command:
 
 ```bash
-npx create-obytes-app@latest MyApp
+npx create-rootstrap-rn-app@latest MyApp
 ```
 
 The command will create an expo app named `MyApp` and install all the dependencies added by the starter.
@@ -46,7 +46,7 @@ The name must satisfy the following rules:
 - It must have at least two segments (one or more dots).
 - Each segment must start with a letter.
 - All characters must be alphanumeric or an underscore [a-zA-Z0-9_].
-:::
+  :::
 
 ## Open Project on VS Code
 

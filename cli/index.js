@@ -12,7 +12,7 @@ const createObytesApp = async () => {
   // check if project name is provided
   if (!projectName) {
     consola.error(
-      'Please provide a name for your project: `npx create-obytes-app@latest <project-name>`'
+      'Please provide a name for your project: `npx create-rootstrap-rn-app@latest <project-name>`'
     );
     process.exit(1);
   }
