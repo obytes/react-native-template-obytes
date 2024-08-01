@@ -24,6 +24,17 @@ Once you've completed the guide you'll be able to submit to the store your EAS b
 
 Follow the prompts to authenticate and select your Apple Developer account.
 
+When asked `What do you want to do?` select: `App Store Connect: Manage your API Key`.
+
+<img width="793" alt="Screenshot 2024-07-31 at 6 09 59 PM" src="https://github.com/user-attachments/assets/c0403c6d-b151-4d74-9458-2b6fadd6cbf3">
+
+
+In order to be able to Generate a new App Store Connect API Key it's important your user has the right permissions on the App Store Connect account. Make sure you have access to Cloud Managed Distribution Certificate, if you don't have this permission you'll get a `403 - Access forbidden response`.
+
+
+![Screenshot 2024-07-31 at 5 34 56 PM](https://github.com/user-attachments/assets/890e1199-b4c6-4aed-9582-3122d40ee66a)
+
+
 2. Build your app using Expo and EAS:
 
 `eas build --platform ios`
