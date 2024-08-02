@@ -9,7 +9,7 @@ const initGit = async (projectName) => {
 
 const installDeps = async (projectName) => {
   await runCommand(`cd ${projectName} && pnpm install`, {
-    loading: 'Installing  project dependencies',
+    loading: 'Installing project dependencies',
     success: 'Dependencies installed',
     error: 'Failed to install dependencies, Make sure you have pnpm installed',
   });
@@ -55,9 +55,9 @@ const updateProjectConfig = async (projectName) => {
     encoding: 'utf-8',
   });
   const replaced = contents
-    .replace(/ObytesApp/gi, projectName)
-    .replace(/com.obytes/gi, `com.${projectName.toLowerCase()}`)
-    .replace(/obytes/gi, 'expo-owner');
+    .replace(/RootstrapApp/gi, projectName)
+    .replace(/com.rootstrap/gi, `com.${projectName.toLowerCase()}`)
+    .replace(/rootstrap/gi, 'expo-owner');
 
   fs.writeFileSync(configPath, replaced, { spaces: 2 });
   const readmeFilePath = path.join(
