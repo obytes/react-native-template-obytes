@@ -13,7 +13,7 @@
 # 🚀 Quick start
 
 ```sh
-npx create-obytes-app@latest MyApp
+npx create-rootstrap-rn-app@latest MyApp
 
 ```
 
