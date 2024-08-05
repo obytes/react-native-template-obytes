@@ -83,13 +83,13 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.obytes.development'
+    namespace 'com.rs.mobile.development'
     defaultConfig {
-        applicationId 'com.obytes.development'
+        applicationId 'com.rs.mobile.development'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "6.1.0"
+        versionName "1.0.1"
     }
     signingConfigs {
         debug {

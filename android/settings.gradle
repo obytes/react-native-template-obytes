@@ -1,4 +1,4 @@
-rootProject.name = 'ObytesApp'
+rootProject.name = 'react-native-template'
 
 dependencyResolutionManagement {
   versionCatalogs {

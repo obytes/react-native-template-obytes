@@ -11,6 +11,10 @@ npm-debug.*
 web-build/
 yarn-error.log
 /coverage
+
+.env.**
+
+
 # macOS
 .DS_Store
 
