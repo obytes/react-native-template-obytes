@@ -45,6 +45,28 @@
         "key": "eas-1"
       }
     },
+    "qa": {
+      "channel": "qa",
+      "distribution": "internal",
+      "pnpm": "8.15.4",
+      "ios": {
+        "image": "latest"
+      },
+      "android": {
+        "buildType": "apk",
+        "image": "latest"
+      },
+      "env": {
+        "APP_ENV": "qa",
+        "EXPO_NO_DOTENV": "1",
+        "FLIPPER_DISABLE": "1"
+      },
+
+      "prebuildCommand": "prebuild --skip-dependency-update react",
+      "cache": {
+        "key": "eas-1"
+      }
+    },
     "development": {
       "developmentClient": true,
       "distribution": "internal",
