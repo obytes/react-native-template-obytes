@@ -26,7 +26,7 @@
     },
     "staging": {
       "channel": "staging",
-      "distribution": "internal",
+      "distribution": "store",
       "pnpm": "8.15.4",
       "ios": {
         "image": "latest"
