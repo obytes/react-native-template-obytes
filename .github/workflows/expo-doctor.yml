@@ -28,6 +28,13 @@ jobs:
     name: Expo Doctor (expo)
     runs-on: ubuntu-latest
 
+    env:
+      # Add your other environment variables here, e.g.:
+      API_URL: https://dummyjson.com/
+      SECRET_KEY: my-secret-key
+      VAR_NUMBER: 10
+      VAR_BOOL: true
+
     steps:
       - name: 📦 Checkout project repo
         uses: actions/checkout@v3
