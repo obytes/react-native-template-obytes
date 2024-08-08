@@ -40,7 +40,6 @@
         "EXPO_NO_DOTENV": "1",
         "FLIPPER_DISABLE": "1"
       },
-
       "prebuildCommand": "prebuild --skip-dependency-update react",
       "cache": {
         "key": "eas-1"
@@ -60,7 +59,6 @@
         "APP_ENV": "development",
         "EXPO_NO_DOTENV": "1"
       },
-
       "prebuildCommand": "prebuild --skip-dependency-update react",
       "cache": {
         "key": "eas-1"
