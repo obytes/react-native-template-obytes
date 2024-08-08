@@ -1,7 +1,0 @@
-{
-  "expo.jsEngine": "hermes",
-  "EX_DEV_CLIENT_NETWORK_INSPECTOR": "true",
-  "apple.extraPods": "[]",
-  "apple.ccacheEnabled": "false",
-  "apple.privacyManifestAggregationEnabled": "true"
-}
