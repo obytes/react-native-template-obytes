@@ -20,8 +20,6 @@ const removeFiles = async (projectName) => {
   const FILES_TO_REMOVE = [
     '.git',
     'README.md',
-    'ios',
-    'android',
     'docs',
     'cli',
     'LICENSE',
