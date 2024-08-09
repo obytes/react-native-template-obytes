@@ -1,6 +1,6 @@
 {
   "name": "create-rootstrap-rn-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rootstrap expo starter cli",
   "homepage": "https://github.com/rootstrap/react-native-template",
   "repository": {
@@ -9,7 +9,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "prepack": "cross-env cp ../README.md README.md",
+    "postpack": "cross-env rm README.md"
   },
   "bin": {
     "create-rootstrap-rn-app": "index.js"
@@ -35,5 +37,8 @@
     "cli",
     "obytes",
     "rootstrap"
-  ]
+  ],
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
 }
