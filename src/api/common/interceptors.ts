@@ -5,7 +5,9 @@ import { toCamelCase, toSnakeCase } from './utils';
 
 export default function interceptors() {
   client.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-    config.data = toSnakeCase(config.data);
+    if (config.data) {
+      config.data = toSnakeCase(config.data);
+    }
     return config;
   });
 
