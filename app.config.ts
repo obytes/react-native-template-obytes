@@ -51,14 +51,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     'expo-localization',
     'expo-router',
     [
-      'expo-build-properties',
-      {
-        android: {
-          kotlinVersion: '1.7.22', // this is for softinput package
-        },
-      },
-    ],
-    [
       'app-icon-badge',
       {
         enabled: Env.APP_ENV !== 'production',

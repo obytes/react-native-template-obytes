@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
+import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import * as z from 'zod';
 
 import { Button, ControlledInput, Text, View } from '@/ui';
@@ -31,37 +32,43 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
     resolver: zodResolver(schema),
   });
   return (
-    <View className="flex-1 justify-center p-4">
-      <Text testID="form-title" className="pb-6 text-center text-2xl">
-        Sign In
-      </Text>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior="padding"
+      keyboardVerticalOffset={10}
+    >
+      <View className="flex-1 justify-center p-4">
+        <Text testID="form-title" className="pb-6 text-center text-2xl">
+          Sign In
+        </Text>
 
-      <ControlledInput
-        testID="name"
-        control={control}
-        name="name"
-        label="Name"
-      />
+        <ControlledInput
+          testID="name"
+          control={control}
+          name="name"
+          label="Name"
+        />
 
-      <ControlledInput
-        testID="email-input"
-        control={control}
-        name="email"
-        label="Email"
-      />
-      <ControlledInput
-        testID="password-input"
-        control={control}
-        name="password"
-        label="Password"
-        placeholder="***"
-        secureTextEntry={true}
-      />
-      <Button
-        testID="login-button"
-        label="Login"
-        onPress={handleSubmit(onSubmit)}
-      />
-    </View>
+        <ControlledInput
+          testID="email-input"
+          control={control}
+          name="email"
+          label="Email"
+        />
+        <ControlledInput
+          testID="password-input"
+          control={control}
+          name="password"
+          label="Password"
+          placeholder="***"
+          secureTextEntry={true}
+        />
+        <Button
+          testID="login-button"
+          label="Login"
+          onPress={handleSubmit(onSubmit)}
+        />
+      </View>
+    </KeyboardAvoidingView>
   );
 };
