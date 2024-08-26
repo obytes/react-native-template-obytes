@@ -2,7 +2,7 @@ import React from 'react';
 
 import type { ColorSchemeType } from '@/core';
 import { translate, useSelectedTheme } from '@/core';
-import type { Option } from '@/ui';
+import type { OptionType } from '@/ui';
 import { Options, useModal } from '@/ui';
 
 import { Item } from './item';
@@ -12,7 +12,7 @@ export const ThemeItem = () => {
   const modal = useModal();
 
   const onSelect = React.useCallback(
-    (option: Option) => {
+    (option: OptionType) => {
       setSelectedTheme(option.value as ColorSchemeType);
       modal.dismiss();
     },
