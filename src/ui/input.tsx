@@ -53,16 +53,18 @@ export interface NInputProps extends TextInputProps {
   error?: string;
 }
 
-type TRule = Omit<
-  RegisterOptions,
-  'valueAsNumber' | 'valueAsDate' | 'setValueAs'
->;
+type TRule<T extends FieldValues> =
+  | Omit<
+      RegisterOptions<T>,
+      'disabled' | 'valueAsNumber' | 'valueAsDate' | 'setValueAs'
+    >
+  | undefined;
 
-export type RuleType<T> = { [name in keyof T]: TRule };
+export type RuleType<T extends FieldValues> = { [name in keyof T]: TRule<T> };
 export type InputControllerType<T extends FieldValues> = {
   name: Path<T>;
   control: Control<T>;
-  rules?: TRule;
+  rules?: RuleType<T>;
 };
 
 interface ControlledInputProps<T extends FieldValues>
