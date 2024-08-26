@@ -1,10 +1,9 @@
 // Import  global CSS file
 import '../../global.css';
 
-import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ThemeProvider } from '@react-navigation/native';
-import { SplashScreen, Stack, useNavigationContainerRef } from 'expo-router';
+import { SplashScreen, Stack } from 'expo-router';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
@@ -27,12 +26,6 @@ loadSelectedTheme();
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const navigationRef = useNavigationContainerRef();
-  useReactNavigationDevTools(navigationRef);
-  return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
   return (
     <Providers>
       <Stack>

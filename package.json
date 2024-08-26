@@ -85,7 +85,6 @@
     "@babel/core": "^7.24.5",
     "@commitlint/cli": "^17.8.1",
     "@commitlint/config-conventional": "^17.8.1",
-    "@dev-plugins/react-navigation": "^0.0.6",
     "@dev-plugins/react-query": "^0.0.6",
     "@expo/config": "~9.0.2",
     "@testing-library/jest-dom": "^5.17.0",
@@ -119,7 +118,6 @@
     "metro-babel-register": "^0.73.10",
     "np": "^7.7.0",
     "prettier": "^3.3.3",
-    "react-test-renderer": "^18.3.1",
     "tailwindcss": "3.3.2",
     "ts-jest": "^29.1.2",
     "typescript": "^5.3.3"
