@@ -51,8 +51,8 @@ importers:
         specifier: ~12.0.9
         version: 12.0.9(expo@51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
       expo-image:
-        specifier: ~1.12.14
-        version: 1.12.14(expo@51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
+        specifier: ~1.12.15
+        version: 1.12.15(expo@51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
       expo-linking:
         specifier: ~6.3.1
         version: 6.3.1(expo@51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
@@ -72,8 +72,8 @@ importers:
         specifier: ~3.0.7
         version: 3.0.7(expo@51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
       expo-updates:
-        specifier: ~0.25.21
-        version: 0.25.22(expo@51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
+        specifier: ~0.25.24
+        version: 0.25.24(expo@51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5)))
       i18next:
         specifier: ^22.5.1
         version: 22.5.1
@@ -3598,8 +3598,8 @@ packages:
     peerDependencies:
       expo: '*'
 
-  expo-image@1.12.14:
-    resolution: {integrity: sha512-sPjinoPngbJeWPRzMiEx/iDgGytCywSrY0IDaoGBRc0gIxU9L7XtFkCWnm3OG0bZtZyU4PFiSswNVkL2zCQG8w==}
+  expo-image@1.12.15:
+    resolution: {integrity: sha512-rjvnNSaFnrmlugDESTaYJhgdqRLn+M5vu0lD5NGNd2LkxGG5HrRV3gSzeyQQ68XRhrDN8eJvkcKujPKJUTMraw==}
     peerDependencies:
       expo: '*'
 
@@ -3672,8 +3672,8 @@ packages:
     peerDependencies:
       expo: '*'
 
-  expo-updates@0.25.22:
-    resolution: {integrity: sha512-ebu+wPnISzJ/H70CFAJAybS4ZZrACxRbgr9SMqOI/h84CwXGmdxzLmgxoNhy5q/Fa1u7JBmSr6x9a7psBDT4Cw==}
+  expo-updates@0.25.24:
+    resolution: {integrity: sha512-juqdOUvaMfu6zeUg3fTk6ciLw4QK+0HXNR0+X41BVOFilNmlTFQZ6LyRGJAZJP7HQs2bHR5d/btAXkejtIqVXw==}
     hasBin: true
     peerDependencies:
       expo: '*'
@@ -12079,7 +12079,7 @@ snapshots:
       expo: 51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))
       fontfaceobserver: 2.3.0
 
-  expo-image@1.12.14(expo@51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))):
+  expo-image@1.12.15(expo@51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))):
     dependencies:
       expo: 51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))
 
@@ -12176,7 +12176,7 @@ snapshots:
     dependencies:
       expo: 51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))
 
-  expo-updates@0.25.22(expo@51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))):
+  expo-updates@0.25.24(expo@51.0.31(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))):
     dependencies:
       '@expo/code-signing-certificates': 0.0.5
       '@expo/config': 9.0.3
