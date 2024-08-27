@@ -33,7 +33,7 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
   });
   return (
     <KeyboardAvoidingView
-      style={{ flex: 1 }}
+      className="flex-1"
       behavior="padding"
       keyboardVerticalOffset={10}
     >
