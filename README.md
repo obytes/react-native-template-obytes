@@ -93,6 +93,21 @@ If you want to stay up to date with the latest developments in our starter kit, 
 
 We value the feedback and contributions of our users, and we encourage you to let us know if you have any suggestions for improving our starter kit. We are always looking for ways to make it even more effective and useful for our community. So, please do not hesitate to reach out and share your thoughts with us.
 
+## Add RS GPT Review Bot
+
+You can add a GPT Review Bot to your app by following these steps:
+
+- You need to have an OpenAI API key.
+- Save your OpenAI API key as a Secret in your repository.
+- Create a new workflow in folder .github/workflows that will be triggered on issues, pull requests, and comments.
+- You can see examples of workflows in the [rs-gpt-review](https://github.com/rootstrap/rs-gpt-review) repository.
+
+#### Notes:
+
+The bot will be triggered on issues, pull requests and comments, you can modify your PULL_REQUEST_TEMPLATE.md to tag the review bot and trigger the workflow every time a pull request is created.
+
+Check this [file](https://github.com/rootstrap/rs-gpt-review/blob/main/.github/workflows/main.yml) for more examples.
+
 <!-- add a gif image here  -->
 
 ## 💎 Libraries used
