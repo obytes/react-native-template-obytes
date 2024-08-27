@@ -35,6 +35,8 @@ jobs:
   release:
     name: Create New Version and push new tag
     runs-on: ubuntu-latest
+    environment:
+      name: CLI
     permissions:
       contents: write
     steps:
