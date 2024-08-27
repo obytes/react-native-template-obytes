@@ -1,4 +1,9 @@
-const { execShellCommand, runCommand } = require('./utils.js');
+const {
+  execShellCommand,
+  runCommand,
+  UPSTREAM_REPOSITORY,
+  TEMPLATE_REPOSITORY,
+} = require('./utils.js');
 const { consola } = require('consola');
 const fs = require('fs-extra');
 const path = require('path');
@@ -15,15 +20,9 @@ const installDeps = async (projectName) => {
   });
 };
 
-// remove unnecessary files, such us .git, ios, android, docs, cli, LICENSE
-const removeFiles = async (projectName) => {
-  const FILES_TO_REMOVE = [
-    '.git',
-    'README.md',
-    'docs',
-    'cli',
-    'LICENSE',
-  ];
+// remove unnecessary files and directories
+const removeFiles = (projectName) => {
+  const FILES_TO_REMOVE = ['.git', 'README.md', 'docs', 'cli', 'LICENSE'];
 
   FILES_TO_REMOVE.forEach((file) => {
     fs.removeSync(path.join(process.cwd(), `${projectName}/${file}`));
@@ -58,14 +57,36 @@ const updateProjectConfig = async (projectName) => {
     .replace(/rootstrap/gi, 'expo-owner');
 
   fs.writeFileSync(configPath, replaced, { spaces: 2 });
-  const readmeFilePath = path.join(
+};
+
+const updateGitHubWorkflows = (projectName) => {
+  const upstreamToPRWorkflowPath = path.join(
     process.cwd(),
-    `${projectName}/README-project.md`
+    `${projectName}/.github/workflows/upstream-to-pr.yml`
   );
-  fs.renameSync(
-    readmeFilePath,
-    path.join(process.cwd(), `${projectName}/README.md`)
-  );
+  const contents = fs.readFileSync(upstreamToPRWorkflowPath, {
+    encoding: 'utf-8',
+  });
+
+  const replaced = contents.replace(UPSTREAM_REPOSITORY, TEMPLATE_REPOSITORY);
+
+  fs.writeFileSync(upstreamToPRWorkflowPath, replaced, { spaces: 2 });
+};
+
+const renameFiles = (projectName) => {
+  const FILES_TO_RENAME = [
+    {
+      oldFileName: 'README-project.md',
+      newFileName: 'README.md',
+    },
+  ];
+
+  FILES_TO_RENAME.forEach(({ oldFileName, newFileName }) => {
+    fs.renameSync(
+      path.join(process.cwd(), `${projectName}/${oldFileName}`),
+      path.join(process.cwd(), `${projectName}/${newFileName}`)
+    );
+  });
 };
 
 const setupProject = async (projectName) => {
@@ -75,6 +96,8 @@ const setupProject = async (projectName) => {
     await initGit(projectName);
     updatePackageInfos(projectName);
     updateProjectConfig(projectName);
+    updateGitHubWorkflows(projectName);
+    renameFiles(projectName);
     consola.success(`Clean up and setup your project 🧹`);
   } catch (error) {
     consola.error(`Failed to clean up project folder`, error);
