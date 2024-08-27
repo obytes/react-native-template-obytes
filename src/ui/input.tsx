@@ -6,7 +6,7 @@ import type {
   RegisterOptions,
 } from 'react-hook-form';
 import { useController } from 'react-hook-form';
-import type { TextInput, TextInputProps } from 'react-native';
+import type { TextInputProps } from 'react-native';
 import { I18nManager, StyleSheet, View } from 'react-native';
 import { TextInput as NTextInput } from 'react-native';
 import { tv } from 'tailwind-variants';
@@ -71,7 +71,7 @@ interface ControlledInputProps<T extends FieldValues>
   extends NInputProps,
     InputControllerType<T> {}
 
-export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
+export const Input = React.forwardRef<NTextInput, NInputProps>((props, ref) => {
   const { label, error, testID, ...inputProps } = props;
   const [isFocussed, setIsFocussed] = React.useState(false);
   const onBlur = React.useCallback(() => setIsFocussed(false), []);
