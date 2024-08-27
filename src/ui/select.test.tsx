@@ -3,14 +3,14 @@
 import React from 'react';
 
 import { cleanup, fireEvent, render, screen } from '@/core/test-utils';
-import type { Option } from '@/ui';
+import type { OptionType } from '@/ui';
 
 import { Select } from './select';
 
 afterEach(cleanup);
 
 describe('Select component ', () => {
-  const options: Option[] = [
+  const options: OptionType[] = [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },
     { value: 'vanilla', label: 'Vanilla' },

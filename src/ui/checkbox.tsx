@@ -219,8 +219,7 @@ export const SwitchIcon = ({ checked = false }: IconProps) => {
         />
       </View>
       <MotiView
-        // eslint-disable-next-line react-native/no-inline-styles
-        style={{
+       style={{
           height: THUMB_HEIGHT,
           width: THUMB_WIDTH,
           position: 'absolute',

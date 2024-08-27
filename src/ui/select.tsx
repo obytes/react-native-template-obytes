@@ -25,9 +25,9 @@ import { Text } from './text';
 const selectTv = tv({
   slots: {
     container: 'mb-4',
-    label: 'text-grey-100 dark:text-neutral-100 text-lg mb-1',
+    label: 'text-grey-100 mb-1 text-lg dark:text-neutral-100',
     input:
-      'mt-0 flex-row items-center justify-center border-[0.5px] border-grey-50 px-3 py-3  rounded-xl dark:bg-neutral-800 dark:border-neutral-500',
+      'border-grey-50 mt-0 flex-row items-center justify-center rounded-xl border-[0.5px] p-3  dark:border-neutral-500 dark:bg-neutral-800',
     inputValue: 'dark:text-neutral-100',
   },
 
@@ -58,16 +58,16 @@ const selectTv = tv({
 
 const List = Platform.OS === 'web' ? FlashList : BottomSheetFlatList;
 
-export type Option = { label: string; value: string | number };
+export type OptionType = { label: string; value: string | number };
 
 type OptionsProps = {
-  options: Option[];
-  onSelect: (option: Option) => void;
+  options: OptionType[];
+  onSelect: (option: OptionType) => void;
   value?: string | number;
   testID?: string;
 };
 
-function keyExtractor(item: Option) {
+function keyExtractor(item: OptionType) {
   return `select-item-${item.value}`;
 }
 
@@ -79,7 +79,7 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
     const isDark = colorScheme === 'dark';
 
     const renderSelectItem = React.useCallback(
-      ({ item }: { item: Option }) => (
+      ({ item }: { item: OptionType }) => (
         <Option
           key={`select-item-${item.value}`}
           label={item.label}
@@ -123,7 +123,7 @@ const Option = React.memo(
   }) => {
     return (
       <Pressable
-        className="flex-row items-center border-b-[1px] border-neutral-300 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-800"
+        className="flex-row items-center border-b border-neutral-300 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-800"
         {...props}
       >
         <Text className="flex-1 dark:text-neutral-100 ">{label}</Text>
@@ -138,7 +138,7 @@ export interface SelectProps {
   label?: string;
   disabled?: boolean;
   error?: string;
-  options?: Option[];
+  options?: OptionType[];
   onSelect?: (value: string | number) => void;
   placeholder?: string;
   testID?: string;
@@ -161,7 +161,7 @@ export const Select = (props: SelectProps) => {
   const modal = useModal();
 
   const onSelectOption = React.useCallback(
-    (option: Option) => {
+    (option: OptionType) => {
       onSelect?.(option.value);
       modal.dismiss();
     },
