@@ -40,4 +40,5 @@ jobs:
             -Dsonar.projectKey=${{ secrets.SONAR_PROJECT }}
             -Dsonar.sonar.sourceEncoding=UTF-8
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-            -Dsonar.coverage.exclusions=**/storage/**,**/**.config.js,**/*.test.ts,**/*.test.tsx,**/*.spec.ts,**/*.spec.tsx,**/icons/**,**/docs/**,**/cli/**,**/__mocks__/**,**/android/**,**/ios/**,env.js
+            -Dsonar.coverage.exclusions=**/node_modules/**,**/storage/**,**/**.config.js,**/*.test.ts,**/*.test.tsx,**/*.spec.ts,**/*.spec.tsx,**/icons/**,**/docs/**,**/cli/**,**/android/**,**/ios/**,env.js
+            -Dsonar.exclusions=,**/__mocks__/**
