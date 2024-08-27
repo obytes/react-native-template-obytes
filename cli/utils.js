@@ -33,9 +33,9 @@ const showMoreDetails = (projectName) => {
     'Your project is ready to go! \n\n\n',
     '🚀 To get started, run the following commands: \n\n',
     `   \`cd ${projectName}\` \n`,
-    '   IOS     :  `pnpm ios` \n',
+    '   iOS     :  `pnpm ios` \n',
     '   Android :  `pnpm android` \n\n',
-    '📚 Starter Documentation: https://starter.obytes.com'
+    '📚 Template Documentation: https://rootstrap.github.io/react-native-template'
   );
 };
 

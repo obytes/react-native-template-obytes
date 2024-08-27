@@ -4,15 +4,17 @@ const { consola } = require('consola');
 const { showMoreDetails } = require('./utils.js');
 const { cloneLastTemplateRelease } = require('./clone-repo.js');
 const { setupProject, installDeps } = require('./setup-project.js');
+const pkg = require('./package.json');
 
-const createObytesApp = async () => {
-  consola.box('Obytes Starter\nPerfect React Native App Kickstart 🚀!');
+const { name: packageName } = pkg;
+const createRootstrapApp = async () => {
+  consola.box("Rootstrap's React Native Template\nPerfect React Native App Kickstart 🚀!");
   // get project name from command line
   const projectName = process.argv[2];
   // check if project name is provided
   if (!projectName) {
     consola.error(
-      'Please provide a name for your project: `npx create-obytes-app@latest <project-name>`'
+      `Please provide a name for your project: \`npx ${packageName}@latest <project-name>\``
     );
     process.exit(1);
   }
@@ -29,4 +31,4 @@ const createObytesApp = async () => {
   showMoreDetails(projectName);
 };
 
-createObytesApp();
+createRootstrapApp();

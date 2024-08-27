@@ -1,6 +1,6 @@
 {
-  "name": "obytesapp",
-  "version": "6.2.0",
+  "name": "react-native-template",
+  "version": "1.0.1",
   "private": true,
   "main": "expo-router/entry",
   "scripts": {
@@ -23,6 +23,8 @@
     "build:development:android": "cross-env APP_ENV=development EXPO_NO_DOTENV=1 eas build --profile development --platform android ",
     "build:staging:ios": "cross-env APP_ENV=staging EXPO_NO_DOTENV=1 eas build --profile staging --platform ios",
     "build:staging:android": "cross-env APP_ENV=staging EXPO_NO_DOTENV=1 eas build --profile staging --platform android ",
+    "build:staging:ios:local": "cross-env APP_ENV=staging sh -c './scripts/set-env.sh EXPO_NO_DOTENV=1 eas build --profile staging --platform ios --local'",
+    "build:staging:android:local": "cross-env APP_ENV=staging sh -c './scripts/set-env.sh EXPO_NO_DOTENV=1 eas build --profile staging --platform android --local'",
     "build:production:ios": "cross-env APP_ENV=production EXPO_NO_DOTENV=1 eas build --profile production --platform ios",
     "build:production:android": "cross-env APP_ENV=production EXPO_NO_DOTENV=1 eas build --profile production --platform android ",
     "postinstall": "husky install",
@@ -59,6 +61,7 @@
     "expo-splash-screen": "0.27.5",
     "expo-status-bar": "~1.12.1",
     "expo-system-ui": "~3.0.7",
+    "expo-updates": "~0.25.21",
     "i18next": "^22.5.1",
     "lodash.memoize": "^4.1.2",
     "moti": "^0.28.1",

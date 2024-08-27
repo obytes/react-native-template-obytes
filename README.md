@@ -1,14 +1,16 @@
 <p align="center">
-    <img alt="React Native Template Obytes" src="https://github.com/obytes/react-native-template-obytes/assets/11137944/a8163d23-897a-4efe-91ce-b9bf7348c18f" width="200" />
+    <img alt="Rootstrap's React Native Template" src="https://github.com/obytes/react-native-template-obytes/assets/11137944/a8163d23-897a-4efe-91ce-b9bf7348c18f" width="200" />
 </p>
 
 <h1 align="center">
-  React Native Template Obytes
+  Rootstrap's React Native Template
 </h1>
 
-![expo](https://img.shields.io/github/package-json/dependency-version/obytes/react-native-template-obytes/expo?label=expo) ![react-native](https://img.shields.io/github/package-json/dependency-version/obytes/react-native-template-obytes/react-native?label=react-native) ![GitHub Repo stars](https://img.shields.io/github/stars/obytes/react-native-template-obytes) ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/obytes/react-native-template-obytes) ![GitHub issues](https://img.shields.io/github/issues/obytes/react-native-template-obytes) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/obytes/react-native-template-obytes)
+![expo](https://img.shields.io/github/package-json/dependency-version/rootstrap/react-native-template/expo?label=expo) ![react-native](https://img.shields.io/github/package-json/dependency-version/rootstrap/react-native-template/react-native?label=react-native) ![GitHub Repo stars](https://img.shields.io/github/stars/rootstrap/react-native-template) ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/rootstrap/react-native-template) ![GitHub issues](https://img.shields.io/github/issues/rootstrap/react-native-template) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/rootstrap/react-native-template)
 
 📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo, TypeScript, TailwindCSS, Husky, Lint-Staged, expo-router, react-query, react-hook-form, I18n.
+
+Based on [Obytes Starter](https://github.com/obytes/react-native-template-obytes).
 
 # Overview
 
@@ -37,16 +39,16 @@ When creating this starter kit, we had several guiding principles in mind::
 
 ## ⭐ Key Features
 
-- ✅ The latest version of Expo SDK, Along with the Custom Dev client, you can leverage the best of the Expo ecosystem and maintain full control over your app.
+- ✅ The latest version of Expo SDK, along with the Custom Dev client: you can leverage the best of the Expo ecosystem and maintain full control over your app.
 - 🎉 [TypeScript](https://www.typescriptlang.org/) for type checking, to help you catch bugs and improve code quality.
-- 💅 A minimal UI kit built with [TailwindCSS](https://www.nativewind.dev/), With the most common components you should have in your app.
-- ⚙️ Support for multiple environments builds, including Production, Staging, and Development, using Expo configuration.
+- 💅 A minimal UI kit built with [NativeWind](https://www.nativewind.dev/), which provides a range of pre-defined classes for styling your app.
+- ⚙️ Support for multiple environment builds, including Production, Staging, and Development, using Expo configuration.
 - 🦊 Husky for Git Hooks, to automate your git hooks and enforce code standards.
 - 💡 A clean project structure with Absolute Imports, to make it easier to navigate and manage your code.
-- 🚫 Lint-staged for running Eslint and TypeScript checks on Git staged files, to ensure that your code is always up to standards.
+- 🚫 Lint-staged for running ESLint and TypeScript checks on Git staged files, to ensure that your code is always up to standards.
 - 🗂 VSCode recommended extensions, settings, and snippets to enhance the developer experience.
 - ☂️ Pre-installed [Expo Router](https://docs.expo.dev/router/introduction/) with examples, to provide a comprehensive navigation solution for your app.
-- 💫 An auth flow with [Zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage solution to save sensitive data.
+- 💫 An auth flow with [zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage solution to save sensitive data.
 - 🛠 +10 workflows for building, releasing, testing and distributing your app using [Github action](https://github.com/features/actions).
 - 🔥 [React Query](https://react-query.tanstack.com/) and [axios](https://github.com/axios/axios) for fetching data, to help you build efficient and performant apps.
 - 🧵 A good approach for handling forms with [react-hook-form](https://react-hook-form.com/) and [zod](https://github.com/colinhacks/zod) for validation + keyboard handling.
@@ -55,15 +57,15 @@ When creating this starter kit, we had several guiding principles in mind::
 
 ## ✍️ Documentation
 
-- [Create new project ](https://starter.obytes.com/getting-started/create-new-app/)
-- [Rules and Conventions](https://starter.obytes.com/getting-started/rules-and-conventions/)
-- [Project structure](https://starter.obytes.com/getting-started/project-structure)
-- [Environment vars and config](https://starter.obytes.com/getting-started/environment-vars-config)
-- [UI and Theming](https://starter.obytes.com/ui-and-theme/ui-theming)
-- [Components](https://starter.obytes.com/ui-and-theme/components)
-- [Forms](https://starter.obytes.com/ui-and-theme/forms/)
-- [Data fetching](https://starter.obytes.com/guides/data-fetching/)
-- [Contribute to starter](https://starter.obytes.com/how-to-contribute/)
+- [Create new project ](https://rootstrap.github.io/react-native-template/getting-started/create-new-app/)
+- [Rules and Conventions](https://rootstrap.github.io/react-native-template/getting-started/rules-and-conventions/)
+- [Project structure](https://rootstrap.github.io/react-native-template/getting-started/project-structure/)
+- [Environment vars and config](https://rootstrap.github.io/react-native-template/getting-started/environment-vars-config/)
+- [UI and Theming](https://rootstrap.github.io/react-native-template/ui-and-theme/ui-theming/)
+- [Components](https://rootstrap.github.io/react-native-template/ui-and-theme/components/)
+- [Forms](https://rootstrap.github.io/react-native-template/ui-and-theme/forms/)
+- [Data fetching](https://rootstrap.github.io/react-native-template/guides/data-fetching/)
+- [Contribute to starter](https://rootstrap.github.io/react-native-template/how-to-contribute/)
 
 ## 😉 Why Expo?
 
@@ -108,7 +110,7 @@ We value the feedback and contributions of our users, and we encourage you to le
 - [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/)
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/)
 - [React Native Svg](https://github.com/software-mansion/react-native-svg)
-- [ React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
+- [React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
 - [Expo Image](https://docs.expo.dev/versions/unversioned/sdk/image/)
 
 ## Contributors

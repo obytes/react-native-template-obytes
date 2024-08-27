@@ -37,6 +37,14 @@ To run the app on Android
 pnpm android
 ```
 
+To build your app locally you can run any of the build scripts with --local.
+
+`pnpm build:development:ios --local`
+
+### SonarQube setup
+
+SonarQube is an open-source platform for continuous inspection of code quality. It performs automatic reviews to detect bugs, code smells, and security vulnerabilities. Rootstrap has a SonarQube instance to improve the quality of the software we develop. On each PR, a GitHub Action is triggered to perform the analysis. To set up SonarQube correctly, you need to add the `SONAR_TOKEN`, `SONAR_URL`, and `SONAR_PROJECT` secrets to the repository. Additionally, you must select the quality gate named `ReactNativeTemplate` for your project on SonarQube. In case you're using this project outside Rootstrap and you're not planning to use SonarQube the sonar scanner [workflow](.github/workflows/sonar.yml) should be deleted.
+
 ## ✍️ Documentation
 
 - [Rules and Conventions](https://starter.obytes.com/getting-started/rules-and-conventions/)
@@ -47,3 +55,4 @@ pnpm android
 - [Forms](https://starter.obytes.com/ui-and-theme/Forms)
 - [Data fetching](https://starter.obytes.com/guides/data-fetching)
 - [Contribute to starter](https://starter.obytes.com/how-to-contribute/)
+- [Distribute using EAS](/EAS.md)
