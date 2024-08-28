@@ -23,11 +23,17 @@ const APP_ENV =
 
 const isEASBuild = process.env.EAS_BUILD === 'true';
 
+const LOCAL_BUILD_SCRIPT_PATTERNS = ['--local', 'eas-cli-local-build-plugin'];
+const isLocalBuild = LOCAL_BUILD_SCRIPT_PATTERNS.some((pattern) =>
+  process.env.npm_lifecycle_script?.includes(pattern)
+);
+
 const ENVIRONMENT_DEPENDANT_SCRIPTS = [
   'expo start',
   'expo prebuild',
   'eas build',
   'expo run',
+  'eas-cli-local-build-plugin',
 ];
 
 const scriptIsEnvironmentDependant = ENVIRONMENT_DEPENDANT_SCRIPTS.some(
@@ -35,7 +41,8 @@ const scriptIsEnvironmentDependant = ENVIRONMENT_DEPENDANT_SCRIPTS.some(
 );
 
 // Check if the environment file has to be validated for the current running script and build method
-const shouldValidateEnv = isEASBuild && scriptIsEnvironmentDependant;
+const shouldValidateEnv =
+  (isEASBuild || isLocalBuild) && scriptIsEnvironmentDependant;
 
 const easEnvironmentFileVariable = `ENVIRONMENT_FILE_${APP_ENV.toUpperCase()}`;
 const easEnvironmentFilePath = process.env[easEnvironmentFileVariable];
@@ -181,8 +188,13 @@ if (shouldValidateEnv) {
       parsedWholeEnv.error.flatten().fieldErrors,
 
       `\n❌ Missing variables in \x1b[1m\x1b[4m\x1b[31m${envFile}\x1b[0m file. Make sure all required variables are defined in the \x1b[1m\x1b[4m\x1b[31m${envFile}\x1b[0m file.`,
-      `\n💡 Tip: If you recently updated the \x1b[1m\x1b[4m\x1b[31m${envFile}\x1b[0m file and the error still persists, try restarting the server with the -cc flag to clear the cache.`,
     ];
+
+    if (isLocalBuild) {
+      messages.push(
+        `\n💡 Tip: If you recently updated the \x1b[1m\x1b[4m\x1b[31m${envFile}\x1b[0m file and the error still persists, try restarting the server with the -cc flag to clear the cache.`
+      );
+    }
 
     if (isEASBuild) {
       messages.push(
