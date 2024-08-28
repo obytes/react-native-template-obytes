@@ -1,6 +1,6 @@
 /*
  * Env file to load and validate env variables
- * Be cautious; this file should not be imported into your source folder.
+ * Be cautious; this file should not be imported into your source folder. TODO: Add an eslint rule to prevent this.
  * We split the env variables into two parts:
  * 1. Client variables: These variables are used in the client-side code (src folder).
  * 2. Build-time variables: These variables are used in the build process (app.config.ts file).
@@ -16,7 +16,23 @@ const z = require('zod');
 
 const packageJSON = require('./package.json');
 const path = require('path');
-const APP_ENV = process.env.APP_ENV ?? 'development';
+
+const APP_ENV =
+  /** @type {z.infer<typeof clientEnvSchema>['APP_ENV']} */
+  (process.env.APP_ENV) ?? 'development';
+
+const ENVIRONMENT_DEPENDANT_SCRIPTS = [
+  'expo start',
+  'expo prebuild',
+  'eas build',
+  'expo run',
+];
+
+// Check if the environment file has to be validated for the current running script
+const shouldValidateEnv = ENVIRONMENT_DEPENDANT_SCRIPTS.some((script) =>
+  process.env.npm_lifecycle_script?.includes(script)
+);
+
 const envPath = path.resolve(__dirname, `.env.${APP_ENV}`);
 
 require('dotenv').config({
@@ -47,9 +63,8 @@ const SCHEME = 'RootstrapApp'; // app scheme
  * @returns  {string}
  */
 
-const withEnvSuffix = (name) => {
-  return APP_ENV === 'production' ? name : `${name}.${APP_ENV}`;
-};
+const withEnvSuffix = (name) =>
+  APP_ENV === 'production' ? name : `${name}.${APP_ENV}`;
 
 /**
  * 2nd part: Define your env variables schema
@@ -69,7 +84,14 @@ const withEnvSuffix = (name) => {
  *
  */
 
-const client = z.object({
+const parseString = (/** @type {string | undefined} */ value) =>
+  value === '' ? undefined : value;
+const parseNumber = (/** @type {string | undefined} */ value) =>
+  value ? Number(value) : undefined;
+const parseBoolean = (/** @type {string | undefined} */ value) =>
+  value ? value === 'true' : undefined;
+
+const clientEnvSchema = z.object({
   APP_ENV: z.enum(['development', 'staging', 'production']),
   NAME: z.string(),
   SCHEME: z.string(),
@@ -83,7 +105,7 @@ const client = z.object({
   VAR_BOOL: z.boolean(),
 });
 
-const buildTime = z.object({
+const buildTimeEnvSchema = z.object({
   EXPO_ACCOUNT_OWNER: z.string(),
   EAS_PROJECT_ID: z.string(),
   // ADD YOUR BUILD TIME ENV VARS HERE
@@ -91,30 +113,30 @@ const buildTime = z.object({
 });
 
 /**
- * @type {Record<keyof z.infer<typeof client> , unknown>}
+ * @type {Partial<z.infer<typeof clientEnvSchema>>}
  */
 const _clientEnv = {
   APP_ENV,
-  NAME: NAME,
-  SCHEME: SCHEME,
+  NAME,
+  SCHEME,
   BUNDLE_ID: withEnvSuffix(BUNDLE_ID),
   PACKAGE: withEnvSuffix(PACKAGE),
   VERSION: packageJSON.version,
 
   // ADD YOUR ENV VARS HERE TOO
-  API_URL: process.env.API_URL,
-  VAR_NUMBER: Number(process.env.VAR_NUMBER),
-  VAR_BOOL: process.env.VAR_BOOL === 'true',
+  API_URL: parseString(process.env.API_URL),
+  VAR_NUMBER: parseNumber(process.env.VAR_NUMBER),
+  VAR_BOOL: parseBoolean(process.env.VAR_BOOL),
 };
 
 /**
- * @type {Record<keyof z.infer<typeof buildTime> , unknown>}
+ * @type {Record<keyof z.infer<typeof buildTimeEnvSchema> , unknown>}
  */
 const _buildTimeEnv = {
   EXPO_ACCOUNT_OWNER,
   EAS_PROJECT_ID,
   // ADD YOUR ENV VARS HERE TOO
-  SECRET_KEY: process.env.SECRET_KEY,
+  SECRET_KEY: parseString(process.env.SECRET_KEY),
 };
 
 /**
@@ -123,29 +145,48 @@ const _buildTimeEnv = {
  * If the validation fails we throw an error and log the error to the console with a detailed message about missed variables
  * If the validation passes we export the merged and parsed env variables to be used in the app.config.ts file as well as a ClientEnv object to be used in the client-side code
  **/
-const _env = {
+
+const _wholeEnv = {
   ..._clientEnv,
   ..._buildTimeEnv,
 };
+const wholeEnvSchema = buildTimeEnvSchema.merge(clientEnvSchema);
 
-const merged = buildTime.merge(client);
-const parsed = merged.safeParse(_env);
+/**
+ * @type {z.infer<typeof wholeEnvSchema>}
+ */
+let Env;
 
-if (parsed.success === false) {
-  console.error(
-    '❌ Invalid environment variables:',
-    parsed.error.flatten().fieldErrors,
+/**
+ * @type {z.infer<typeof clientEnvSchema>}
+ */
+let ClientEnv;
 
-    `\n❌ Missing variables in .env.${APP_ENV} file, Make sure all required variables are defined in the .env.${APP_ENV} file.`,
-    `\n💡 Tip: If you recently updated the .env.${APP_ENV} file and the error still persists, try restarting the server with the -cc flag to clear the cache.`
-  );
-  throw new Error(
-    'Invalid environment variables, Check terminal for more details '
-  );
+if (shouldValidateEnv) {
+  const parsedWholeEnv = wholeEnvSchema.safeParse(_wholeEnv);
+
+  if (parsedWholeEnv.success === false) {
+    console.error(
+      '❌ Invalid environment variables:',
+      parsedWholeEnv.error.flatten().fieldErrors,
+
+      `\n❌ Missing variables in \x1b[1m\x1b[4m\x1b[31m.env.${APP_ENV}\x1b[0m file, Make sure all required variables are defined in the \x1b[1m\x1b[4m\x1b[31m.env.${APP_ENV}\x1b[0m file.`,
+      `\n💡 Tip: If you recently updated the .env.${APP_ENV} file and the error still persists, try restarting the server with the -cc flag to clear the cache.`
+    );
+    throw new Error(
+      'Invalid environment variables, Check terminal for more details '
+    );
+  }
+
+  Env = parsedWholeEnv.data;
+  ClientEnv = clientEnvSchema.parse(_clientEnv);
+} else {
+  // Don't worry about TypeScript here; if we don't need to validate the env variables is because we aren't using them
+  //@ts-ignore
+  Env = _wholeEnv;
+  //@ts-ignore
+  ClientEnv = _clientEnv;
 }
-
-const Env = parsed.data;
-const ClientEnv = client.parse(_clientEnv);
 
 module.exports = {
   Env,
