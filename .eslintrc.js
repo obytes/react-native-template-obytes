@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  extends: ['expo','plugin:tailwindcss/recommended', 'prettier'],
+  extends: ['expo', 'plugin:tailwindcss/recommended', 'prettier'],
   plugins: [
     'unicorn',
     '@typescript-eslint',
@@ -27,13 +27,16 @@ module.exports = {
     'react/destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
     'react/require-default-props': 'off', // Allow non-defined react props as undefined
     '@typescript-eslint/comma-dangle': 'off', // Avoid conflict rule between Eslint and Prettier
-    '@typescript-eslint/consistent-type-imports': ['warn', {
+    '@typescript-eslint/consistent-type-imports': [
+      'warn',
+      {
         prefer: 'type-imports',
         fixStyle: 'inline-type-imports',
         disallowTypeAnnotations: true,
       },
     ], // Ensure `import type` is used when it's necessary
     'import/prefer-default-export': 'off', // Named export is easier to refactor automatically
+    'import/no-cycle': ['error', { maxDepth: '∞' }],
     'tailwindcss/classnames-order': [
       'warn',
       {
