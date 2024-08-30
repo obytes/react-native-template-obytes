@@ -21,6 +21,8 @@ const APP_ENV =
   /** @type {z.infer<typeof clientEnvSchema>['APP_ENV']} */
   (process.env.APP_ENV) ?? 'development';
 
+const isEASBuild = process.env.EAS_BUILD === 'true';
+
 const ENVIRONMENT_DEPENDANT_SCRIPTS = [
   'expo start',
   'expo prebuild',
@@ -28,12 +30,18 @@ const ENVIRONMENT_DEPENDANT_SCRIPTS = [
   'expo run',
 ];
 
-// Check if the environment file has to be validated for the current running script
-const shouldValidateEnv = ENVIRONMENT_DEPENDANT_SCRIPTS.some((script) =>
-  process.env.npm_lifecycle_script?.includes(script)
+const scriptIsEnvironmentDependant = ENVIRONMENT_DEPENDANT_SCRIPTS.some(
+  (script) => process.env.npm_lifecycle_script?.includes(script)
 );
 
-const envPath = path.resolve(__dirname, `.env.${APP_ENV}`);
+// Check if the environment file has to be validated for the current running script and build method
+const shouldValidateEnv = isEASBuild && scriptIsEnvironmentDependant;
+
+const easEnvironmentFileVariable = `ENVIRONMENT_FILE_${APP_ENV.toUpperCase()}`;
+const easEnvironmentFilePath = process.env[easEnvironmentFileVariable];
+const localEnvironmentFilePath = path.resolve(__dirname, `.env.${APP_ENV}`);
+
+const envPath = isEASBuild ? easEnvironmentFilePath : localEnvironmentFilePath;
 
 require('dotenv').config({
   path: envPath,
@@ -166,13 +174,24 @@ if (shouldValidateEnv) {
   const parsedWholeEnv = wholeEnvSchema.safeParse(_wholeEnv);
 
   if (parsedWholeEnv.success === false) {
-    console.error(
+    const envFile = isEASBuild ? easEnvironmentFileVariable : `.env.${APP_ENV}`;
+
+    const messages = [
       '❌ Invalid environment variables:',
       parsedWholeEnv.error.flatten().fieldErrors,
 
-      `\n❌ Missing variables in \x1b[1m\x1b[4m\x1b[31m.env.${APP_ENV}\x1b[0m file, Make sure all required variables are defined in the \x1b[1m\x1b[4m\x1b[31m.env.${APP_ENV}\x1b[0m file.`,
-      `\n💡 Tip: If you recently updated the .env.${APP_ENV} file and the error still persists, try restarting the server with the -cc flag to clear the cache.`
-    );
+      `\n❌ Missing variables in \x1b[1m\x1b[4m\x1b[31m${envFile}\x1b[0m file. Make sure all required variables are defined in the \x1b[1m\x1b[4m\x1b[31m${envFile}\x1b[0m file.`,
+      `\n💡 Tip: If you recently updated the \x1b[1m\x1b[4m\x1b[31m${envFile}\x1b[0m file and the error still persists, try restarting the server with the -cc flag to clear the cache.`,
+    ];
+
+    if (isEASBuild) {
+      messages.push(
+        `\n☁️ For \x1b[1m\x1b[32mEAS Build\x1b[0m deployments, ensure the secret\x1b[1m\x1b[4m\x1b[31m${easEnvironmentFileVariable} \x1b[0m is defined in Project Secrets and has the proper environment file attached.`
+      );
+    }
+
+    console.error(...messages);
+
     throw new Error(
       'Invalid environment variables, Check terminal for more details '
     );
