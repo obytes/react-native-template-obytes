@@ -28,13 +28,6 @@ jobs:
     name: Expo Doctor (expo)
     runs-on: ubuntu-latest
 
-    env:
-      # Add your other environment variables here, e.g.:
-      API_URL: https://dummyjson.com/
-      SECRET_KEY: my-secret-key
-      VAR_NUMBER: 10
-      VAR_BOOL: true
-
     steps:
       - name: 📦 Checkout project repo
         uses: actions/checkout@v3
@@ -43,9 +36,6 @@ jobs:
 
       - name: 📦 Setup Node + PNPM + install deps
         uses: ./.github/actions/setup-node-pnpm-install
-
-      - name: Run prebuild
-        run: pnpm run prebuild ## we only need to run this to generate the badged icon in `.expo` folder
 
       - name: 🚑 Run Doctor Checks
         run: rm -rf ios android && pnpm run doctor ## apprently the new update of expo will break if you already have ios and android folders in your project as they will show up a eas warning
