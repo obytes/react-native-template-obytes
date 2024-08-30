@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Rootstrap's React Native Template" src="assets/RootstrapIcon.jpg" width="200" />
+    <img alt="Rootstrap's React Native Template" src="https://github.com/user-attachments/assets/2015cb3f-64ab-4ccd-b85f-ca77f73686eb" width="200" />
 </p>
 
 <h1 align="center">
