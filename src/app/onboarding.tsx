@@ -15,7 +15,7 @@ export default function Onboarding() {
       </View>
       <View className="justify-end ">
         <Text className="my-3 text-center text-5xl font-bold">
-          Obytes Starter
+          React Native Template
         </Text>
         <Text className="mb-2 text-center text-lg text-gray-600">
           The right way to build your mobile app

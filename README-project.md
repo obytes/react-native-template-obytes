@@ -1,12 +1,12 @@
 <h1 align="center">
-  <img alt="logo" src="./assets/icon.png" width="124px" style="border-radius:10px"/><br/>
+  <img alt="logo" src="./assets/RootstrapIcon.jpg" width="124px" style="border-radius:10px"/><br/>
 Mobile App </h1>
 
-> This Project is based on [Obytes starter](https://starter.obytes.com)
+> This Project is based on [Rootstrap React Native Template](https://github.com/rootstrap/react-native-template)
 
 ## Requirements
 
-- [React Native dev environment ](https://reactnative.dev/docs/environment-setup)
+- [React Native dev environment](https://reactnative.dev/docs/environment-setup)
 - [Node.js LTS release](https://nodejs.org/en/)
 - [Git](https://git-scm.com/)
 - [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall), required only for macOS or Linux users
