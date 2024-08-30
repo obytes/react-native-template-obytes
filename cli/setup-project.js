@@ -43,6 +43,12 @@ const updatePackageInfos = async (projectName) => {
     type: 'git',
     url: 'git+https://github.com/user/repo-name.git',
   };
+
+  const appReleaseScript = packageJson.scripts['app-release'];
+  packageJson.scripts['app-release'] = appReleaseScript.replace(
+    'template',
+    projectName
+  );
   fs.writeJsonSync(packageJsonPath, packageJson, { spaces: 2 });
 };
 
@@ -60,17 +66,54 @@ const updateProjectConfig = async (projectName) => {
 };
 
 const updateGitHubWorkflows = (projectName) => {
-  const upstreamToPRWorkflowPath = path.join(
-    process.cwd(),
-    `${projectName}/.github/workflows/upstream-to-pr.yml`
-  );
-  const contents = fs.readFileSync(upstreamToPRWorkflowPath, {
-    encoding: 'utf-8',
+  const WORKFLOW_FILES = [
+    {
+      fileName: '.github/workflows/upstream-to-pr.yml',
+      replacements: [
+        {
+          searchValue: UPSTREAM_REPOSITORY,
+          replaceValue: TEMPLATE_REPOSITORY,
+        },
+      ],
+    },
+    {
+      fileName: '.github/workflows/new-template-version.yml',
+      replacements: [
+        {
+          searchValue: 'new version of the template',
+          replaceValue: 'new version of the app',
+        },
+        {
+          searchValue: 'New Template Version',
+          replaceValue: `New ${projectName} Version`,
+        },
+        {
+          searchValue: 'Run Template release',
+          replaceValue: 'Run App release',
+        },
+        {
+          searchValue: /^\s*environment:\s*\n\s*name:\s*template\s*\n/m,
+          replaceValue: '',
+        },
+      ],
+    },
+  ];
+
+  WORKFLOW_FILES.forEach(({ fileName, replacements }) => {
+    const workflowPath = path.join(process.cwd(), `${projectName}/${fileName}`);
+
+    const contents = fs.readFileSync(workflowPath, {
+      encoding: 'utf-8',
+    });
+
+    let replaced = contents;
+
+    replacements.forEach(({ searchValue, replaceValue }) => {
+      replaced = replaced.replace(searchValue, replaceValue);
+    });
+
+    fs.writeFileSync(workflowPath, replaced, { spaces: 2 });
   });
-
-  const replaced = contents.replace(UPSTREAM_REPOSITORY, TEMPLATE_REPOSITORY);
-
-  fs.writeFileSync(upstreamToPRWorkflowPath, replaced, { spaces: 2 });
 };
 
 const renameFiles = (projectName) => {
@@ -78,6 +121,10 @@ const renameFiles = (projectName) => {
     {
       oldFileName: 'README-project.md',
       newFileName: 'README.md',
+    },
+    {
+      oldFileName: '.github/workflows/new-template-version.yml',
+      newFileName: '.github/workflows/new-app-version.yml',
     },
   ];
 

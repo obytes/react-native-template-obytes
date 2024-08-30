@@ -3,7 +3,7 @@
 # Starter releasing process: https://starter.obytes.com/ci-cd/app-releasing-process/
 
 # ✍️ Description:
-# This workflow is used to create a new version of the app and push a new tag to the repo.
+# This workflow is used to create a new version of the template and push a new tag to the repo.
 # As this workflow will push code to the repo, we set up GitHub Bot as a Git user.
 # This Workflow need to be triggered manually from the Actions tab in the repo.
 #         1. Choose your release type (patch, minor, major)
@@ -20,7 +20,7 @@
 #           make sure to add it to the repo secrets with the name GH_TOKEN
 #           Attention: Not to be confused with the GITHUB_TOKEN, this is a different token with different permissions.
 
-name: New App Version
+name: New Template Version
 
 on:
   workflow_dispatch:
@@ -39,6 +39,8 @@ jobs:
   release:
     name: Create New Version and push new tag
     runs-on: ubuntu-latest
+    environment:
+      name: template
     permissions:
       contents: write
     steps:
@@ -61,6 +63,6 @@ jobs:
       - name: 📦 Setup Node + PNPM + install deps
         uses: ./.github/actions/setup-node-pnpm-install
 
-      - name: 🏃‍♂️ Run App release
+      - name: 🏃‍♂️ Run Template release
         run: |
           pnpm app-release ${{ github.event.inputs.release-type }}
