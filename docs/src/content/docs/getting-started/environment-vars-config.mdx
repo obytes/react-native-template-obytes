@@ -69,6 +69,10 @@ const _buildTimeEnv = {
 NEW_ENV_VAR=my-new-var
 ```
 
+::: note
+if you are not pushing env files to your repo(recomended), please make sure to check the [App releasing process](/ci-cd/app-releasing-process/#github-action-and-env-variables) to see how to create the env file on the fly before the prebuild script in the github actions.
+:::
+
 4. Make sure to run `pnpm prebuild` to load the new values.
 
 ```bash
