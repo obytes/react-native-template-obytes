@@ -2,6 +2,9 @@
 const { exec } = require('child_process');
 const { consola } = require('consola');
 
+const UPSTREAM_REPOSITORY = "obytes/react-native-template-obytes";
+const TEMPLATE_REPOSITORY = "rootstrap/react-native-template";
+
 const execShellCommand = (cmd) => {
   return new Promise((resolve, reject) => {
     exec(cmd, (error, stdout, stderr) => {
@@ -43,4 +46,6 @@ module.exports = {
   runCommand,
   showMoreDetails,
   execShellCommand,
+  UPSTREAM_REPOSITORY,
+  TEMPLATE_REPOSITORY,
 };
