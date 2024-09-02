@@ -36,7 +36,7 @@ Let's say you want to create a form that allows the user to log in to the applic
 The right way to validate a form is to create a schema validation. You can use any library you want but we recommend using zod as you can easily infer the types from the schema. Here is how you can create a schema validation for the login form:
 
 ```tsx
-import * as z from 'zod';
+import z from 'zod';
 
 const schema = z.object({
   email: z.string().email(),
@@ -55,7 +55,7 @@ Here is how you can create your login screen:
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+import z from 'zod';
 
 import { useAuth } from '@/core';
 import { Button, ControlledInput, View } from '@/ui';
