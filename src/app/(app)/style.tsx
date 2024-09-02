@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Buttons } from '@/components/buttons';
 import { Colors } from '@/components/colors';

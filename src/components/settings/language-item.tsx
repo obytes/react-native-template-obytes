@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { useSelectedLanguage } from '@/core';
 import { translate } from '@/core';
