@@ -1,6 +1,6 @@
 {
   "onboarding": {
-    "message": "Welcome to obytes app site"
+    "message": "Welcome to rootstrap app site"
   },
   "settings": {
     "about": "About",
@@ -29,5 +29,5 @@
     "version": "Version",
     "website": "Website"
   },
-  "welcome": "Welcome to obytes app site"
+  "welcome": "Welcome to rootstrap app site"
 }
