@@ -39,6 +39,8 @@ export const changeLanguage = (lang: Language) => {
     }
   } else if (Platform.OS === 'web') {
     window.location.reload();
+  } else {
+    throw new Error('Unexpected value for Platform.OS');
   }
 };
 
