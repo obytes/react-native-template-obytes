@@ -128,7 +128,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/obytes/react-native-template-obytes.git"
+    "url": "git+https://github.com/rootstrap/react-native-template.git"
   },
   "packageManager": "pnpm@9.8.0"
 }
