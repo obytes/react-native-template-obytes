@@ -10,6 +10,9 @@ import { Select } from './select';
 afterEach(cleanup);
 
 describe('Select component ', () => {
+  const SELECT_TRIGGER = 'select-trigger';
+  const SELECT_LABEL = 'select-label';
+  const SELECT_ERROR = 'select-error';
   const options: Option[] = [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },
@@ -25,8 +28,8 @@ describe('Select component ', () => {
         testID="select"
       />
     );
-    expect(screen.getByTestId('select-trigger')).toBeOnTheScreen();
-    expect(screen.getByTestId('select-label')).toBeOnTheScreen();
+    expect(screen.getByTestId(SELECT_TRIGGER)).toBeOnTheScreen();
+    expect(screen.getByTestId(SELECT_LABEL)).toBeOnTheScreen();
   });
 
   it('should render the label correctly ', () => {
@@ -39,9 +42,9 @@ describe('Select component ', () => {
         testID="select"
       />
     );
-    expect(screen.getByTestId('select-trigger')).toBeOnTheScreen();
-    expect(screen.getByTestId('select-label')).toBeOnTheScreen();
-    expect(screen.getByTestId('select-label')).toHaveTextContent('Select');
+    expect(screen.getByTestId(SELECT_TRIGGER)).toBeOnTheScreen();
+    expect(screen.getByTestId(SELECT_LABEL)).toBeOnTheScreen();
+    expect(screen.getByTestId(SELECT_LABEL)).toHaveTextContent('Select');
   });
 
   it('should render the error correctly ', () => {
@@ -55,9 +58,9 @@ describe('Select component ', () => {
         error="Please select an option"
       />
     );
-    expect(screen.getByTestId('select-trigger')).toBeOnTheScreen();
-    expect(screen.getByTestId('select-error')).toBeOnTheScreen();
-    expect(screen.getByTestId('select-error')).toHaveTextContent(
+    expect(screen.getByTestId(SELECT_TRIGGER)).toBeOnTheScreen();
+    expect(screen.getByTestId(SELECT_ERROR)).toBeOnTheScreen();
+    expect(screen.getByTestId(SELECT_ERROR)).toHaveTextContent(
       'Please select an option'
     );
   });
@@ -72,7 +75,7 @@ describe('Select component ', () => {
       />
     );
 
-    const selectTrigger = screen.getByTestId('select-trigger');
+    const selectTrigger = screen.getByTestId(SELECT_TRIGGER);
     fireEvent.press(selectTrigger);
 
     expect(screen.getByTestId('select-item-chocolate')).toBeOnTheScreen();
