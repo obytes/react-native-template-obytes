@@ -28,9 +28,9 @@ export function getUrlParameters(
   if (url === null) {
     return null;
   }
-  let regex = /[?&]([^=#]+)=([^&#]*)/g,
-    params = {},
-    match;
+  const regex = /[?&]([^=#]+)=([^&#]*)/g;
+  const params = {};
+  let match;
   while ((match = regex.exec(url))) {
     if (match[1] !== null) {
       //@ts-ignore
