@@ -19,6 +19,7 @@ module.exports = {
         ignore: ['/android', '/ios'],
       },
     ],
+    curly: [2, 'all'],
   },
   overrides: [
     // Configuration for TypeScript files
@@ -72,6 +73,7 @@ module.exports = {
             caughtErrorsIgnorePattern: '^_',
           },
         ],
+        curly: [2, 'all'],
       },
     },
     // Configuration for  translations files (i18next)
@@ -106,6 +108,7 @@ module.exports = {
             endOfLine: 'auto',
           },
         ],
+        curly: [2, 'all'],
       },
     },
     {

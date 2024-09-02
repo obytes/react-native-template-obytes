@@ -18,7 +18,9 @@ export const Colors = () => {
 };
 
 const Color = ({ name }: { name: ColorName }) => {
-  if (typeof colors[name] === 'string') return null;
+  if (typeof colors[name] === 'string') {
+    return null;
+  }
   return (
     <View className="pt-2">
       <Text className="font-medium">{name.toUpperCase()}</Text>
