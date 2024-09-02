@@ -20,6 +20,12 @@ module.exports = {
       },
     ],
     curly: [2, 'all'],
+    'prefer-const': [
+      'error',
+      {
+        destructuring: 'any',
+      },
+    ],
   },
   overrides: [
     // Configuration for TypeScript files
