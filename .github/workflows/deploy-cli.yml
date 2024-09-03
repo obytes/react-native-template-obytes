@@ -38,6 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: CLI
+      url: https://www.npmjs.com/package/create-rootstrap-rn-app/v/${{ env.NEW_VERSION }}
     permissions:
       contents: write
     steps:
@@ -64,14 +65,14 @@ jobs:
       - name: 📦 Bump release version
         run: |
           cd cli
-          echo "NEW_VERSION=$(npm --no-git-tag-version version $RELEASE_TYPE)" >> $GITHUB_ENV
+          echo "NEW_VERSION=$(npm --no-git-tag-version --tag-version-prefix= version $RELEASE_TYPE)" >> $GITHUB_ENV
           echo "RELEASE_TAG=latest" >> $GITHUB_ENV
         env:
           RELEASE_TYPE: ${{ github.event.inputs.release-type }}
       - name: Commit package.json changes
         run: |
           git add "cli/package.json"
-          git commit -m "build(cli): release CLI ${{ env.NEW_VERSION }}"
+          git commit -m "build(cli): release CLI v${{ env.NEW_VERSION }}"
       - name: 🔑 Set publishing config
         run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
         env:

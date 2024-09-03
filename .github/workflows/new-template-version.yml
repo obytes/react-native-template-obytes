@@ -41,6 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: template
+      url: https://github.com/rootstrap/react-native-template/releases/tag/v${{ env.NEW_VERSION }}
     permissions:
       contents: write
     steps:
@@ -66,3 +67,7 @@ jobs:
       - name: 🏃‍♂️ Run Template release
         run: |
           pnpm app-release ${{ github.event.inputs.release-type }}
+
+      - name: 📝 Get new package version
+        run: |
+          echo "NEW_VERSION=$(awk -F'"' '/"version": ".+"/{ print $4; exit; }' package.json)" >> $GITHUB_ENV

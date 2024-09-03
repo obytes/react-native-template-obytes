@@ -92,7 +92,7 @@ const updateGitHubWorkflows = (projectName) => {
           replaceValue: 'Run App release',
         },
         {
-          searchValue: /^\s*environment:\s*\n\s*name:\s*template\s*\n/m,
+          searchValue: /^\s*environment:\s*\n\s*name:\s*template\s*\n\s*url:\s*.+\s*\n/m,
           replaceValue: '',
         },
       ],
