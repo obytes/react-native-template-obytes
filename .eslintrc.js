@@ -19,6 +19,13 @@ module.exports = {
         ignore: ['/android', '/ios'],
       },
     ],
+    curly: [2, 'all'],
+    'prefer-const': [
+      'error',
+      {
+        destructuring: 'any',
+      },
+    ],
   },
   overrides: [
     // Configuration for TypeScript files
@@ -39,6 +46,8 @@ module.exports = {
         project: './tsconfig.json',
       },
       rules: {
+        'react/react-in-jsx-scope': 'off',
+        'react/jsx-uses-react': 'off',
         'prettier/prettier': [
           'error',
           {
@@ -72,6 +81,19 @@ module.exports = {
             caughtErrorsIgnorePattern: '^_',
           },
         ],
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: [
+              {
+                name: 'react',
+                importNames: ['default'],
+                message: 'No need to import React',
+              },
+            ],
+          },
+        ],
+        curly: [2, 'all'],
       },
     },
     // Configuration for  translations files (i18next)
@@ -106,6 +128,7 @@ module.exports = {
             endOfLine: 'auto',
           },
         ],
+        curly: [2, 'all'],
       },
     },
     {

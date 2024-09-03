@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { cleanup, fireEvent, render, screen, waitFor } from '@/core/test-utils';
 
 import type { LoginFormProps } from './login-form';

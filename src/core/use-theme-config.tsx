@@ -7,7 +7,7 @@ import { useColorScheme } from 'nativewind';
 
 import colors from '@/ui/colors';
 
-const DarkTheme: Theme = {
+export const DarkTheme: Theme = {
   ..._DarkTheme,
   colors: {
     ..._DarkTheme.colors,
@@ -19,7 +19,7 @@ const DarkTheme: Theme = {
   },
 };
 
-const LightTheme: Theme = {
+export const LightTheme: Theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
@@ -31,7 +31,9 @@ const LightTheme: Theme = {
 export function useThemeConfig() {
   const { colorScheme } = useColorScheme();
 
-  if (colorScheme === 'dark') return DarkTheme;
+  if (colorScheme === 'dark') {
+    return DarkTheme;
+  }
 
   return LightTheme;
 }

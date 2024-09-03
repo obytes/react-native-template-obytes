@@ -1,5 +1,4 @@
 import { useRouter } from 'expo-router';
-import React from 'react';
 
 import type { LoginFormProps } from '@/components/login-form';
 import { LoginForm } from '@/components/login-form';

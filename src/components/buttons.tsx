@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Button, View } from '@/ui';
 
 import { Title } from './title';

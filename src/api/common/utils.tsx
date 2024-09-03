@@ -28,15 +28,11 @@ export function getUrlParameters(
   if (url === null) {
     return null;
   }
-  let regex = /[?&]([^=#]+)=([^&#]*)/g,
-    params = {},
-    match;
-  while ((match = regex.exec(url))) {
-    if (match[1] !== null) {
-      //@ts-ignore
-      params[match[1]] = match[2];
-    }
-  }
+  const urlObj = new URL(url);
+  const params: { [key: string]: string } = {};
+  urlObj.searchParams.forEach((value, key) => {
+    params[key] = value;
+  });
   return params;
 }
 

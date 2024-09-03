@@ -1,5 +1,5 @@
 import { colorScheme, useColorScheme } from 'nativewind';
-import React from 'react';
+import { useCallback } from 'react';
 import { useMMKVString } from 'react-native-mmkv';
 
 import { storage } from '../storage';
@@ -17,7 +17,7 @@ export const useSelectedTheme = () => {
   const { colorScheme: _color, setColorScheme } = useColorScheme();
   const [theme, _setTheme] = useMMKVString(SELECTED_THEME, storage);
 
-  const setSelectedTheme = React.useCallback(
+  const setSelectedTheme = useCallback(
     (t: ColorSchemeType) => {
       setColorScheme(t);
       _setTheme(t);

@@ -1,4 +1,4 @@
-import { toCamelCase, toSnakeCase } from './utils';
+import { getUrlParameters, toCamelCase, toSnakeCase } from './utils';
 
 describe('utils', () => {
   describe('toCamelCase', () => {
@@ -55,5 +55,34 @@ describe('utils', () => {
       };
       expect(toSnakeCase(obj)).toEqual(expected);
     });
+  });
+});
+
+describe('getUrlParameters', () => {
+  it('should return null for a null URL', () => {
+    const result = getUrlParameters(null);
+    expect(result).toBeNull();
+  });
+
+  it('should return an empty object for a URL with no parameters', () => {
+    const result = getUrlParameters('https://example.com');
+    expect(result).toEqual({});
+  });
+
+  it('should return an object with a single key-value pair for a URL with one parameter', () => {
+    const result = getUrlParameters('https://example.com?name=John');
+    expect(result).toEqual({ name: 'John' });
+  });
+
+  it('should return an object with multiple key-value pairs for a URL with multiple parameters', () => {
+    const result = getUrlParameters('https://example.com?name=John&age=30');
+    expect(result).toEqual({ name: 'John', age: '30' });
+  });
+
+  it('should handle special characters in the URL parameters', () => {
+    const result = getUrlParameters(
+      'https://example.com?name=John%20Doe&city=New%20York'
+    );
+    expect(result).toEqual({ name: 'John Doe', city: 'New York' });
   });
 });

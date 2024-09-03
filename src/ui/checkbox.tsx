@@ -1,5 +1,5 @@
 import { MotiView } from 'moti';
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import {
   I18nManager,
   Pressable,

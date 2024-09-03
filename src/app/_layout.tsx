@@ -17,8 +17,6 @@ export { ErrorBoundary } from 'expo-router';
 // Import  global CSS file
 import '../../global.css';
 
-import React from 'react';
-
 export const unstable_settings = {
   initialRouteName: '(app)',
 };
