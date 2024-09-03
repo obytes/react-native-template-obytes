@@ -1,4 +1,4 @@
-import React from 'react';
+import { useCallback, useMemo } from 'react';
 
 import type { ColorSchemeType } from '@/core';
 import { translate, useSelectedTheme } from '@/core';
@@ -11,7 +11,7 @@ export const ThemeItem = () => {
   const { selectedTheme, setSelectedTheme } = useSelectedTheme();
   const modal = useModal();
 
-  const onSelect = React.useCallback(
+  const onSelect = useCallback(
     (option: Option) => {
       setSelectedTheme(option.value as ColorSchemeType);
       modal.dismiss();
@@ -19,7 +19,7 @@ export const ThemeItem = () => {
     [setSelectedTheme, modal]
   );
 
-  const themes = React.useMemo(
+  const themes = useMemo(
     () => [
       { label: `${translate('settings.theme.dark')} 🌙`, value: 'dark' },
       { label: `${translate('settings.theme.light')} 🌞`, value: 'light' },
@@ -28,7 +28,7 @@ export const ThemeItem = () => {
     []
   );
 
-  const theme = React.useMemo(
+  const theme = useMemo(
     () => themes.find((t) => t.value === selectedTheme),
     [selectedTheme, themes]
   );

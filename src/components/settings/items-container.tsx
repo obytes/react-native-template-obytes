@@ -1,5 +1,3 @@
-import React from 'react';
-
 import type { TxKeyPath } from '@/core';
 import { Text, View } from '@/ui';
 

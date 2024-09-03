@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef, useCallback, useMemo, useState } from 'react';
 import type {
   Control,
   FieldValues,
@@ -69,13 +69,13 @@ interface ControlledInputProps<T extends FieldValues>
   extends NInputProps,
     InputControllerType<T> {}
 
-export const Input = React.forwardRef<TextInput, NInputProps>((props, ref) => {
+export const Input = forwardRef<TextInput, NInputProps>((props, ref) => {
   const { label, error, testID, ...inputProps } = props;
-  const [isFocussed, setIsFocussed] = React.useState(false);
-  const onBlur = React.useCallback(() => setIsFocussed(false), []);
-  const onFocus = React.useCallback(() => setIsFocussed(true), []);
+  const [isFocussed, setIsFocussed] = useState(false);
+  const onBlur = useCallback(() => setIsFocussed(false), []);
+  const onFocus = useCallback(() => setIsFocussed(true), []);
 
-  const styles = React.useMemo(
+  const styles = useMemo(
     () =>
       inputTv({
         error: Boolean(error),

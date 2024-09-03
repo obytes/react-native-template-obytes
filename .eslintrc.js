@@ -46,6 +46,8 @@ module.exports = {
         project: './tsconfig.json',
       },
       rules: {
+        'react/react-in-jsx-scope': 'off',
+        'react/jsx-uses-react': 'off',
         'prettier/prettier': [
           'error',
           {
@@ -77,6 +79,18 @@ module.exports = {
             argsIgnorePattern: '^_',
             varsIgnorePattern: '^_',
             caughtErrorsIgnorePattern: '^_',
+          },
+        ],
+        'no-restricted-imports': [
+          'error',
+          {
+            paths: [
+              {
+                name: 'react',
+                importNames: ['default'],
+                message: 'No need to import React',
+              },
+            ],
           },
         ],
         curly: [2, 'all'],

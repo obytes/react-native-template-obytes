@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Buttons } from '@/components/buttons';
 import { Colors } from '@/components/colors';
 import { Inputs } from '@/components/inputs';

@@ -5,7 +5,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import { FlashList } from '@shopify/flash-list';
 import { useColorScheme } from 'nativewind';
-import React from 'react';
+import { forwardRef, memo, useCallback, useMemo } from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { useController } from 'react-hook-form';
 import { Platform, TouchableOpacity, View } from 'react-native';
@@ -71,14 +71,14 @@ function keyExtractor(item: Option) {
   return `select-item-${item.value}`;
 }
 
-export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
+export const Options = forwardRef<BottomSheetModal, OptionsProps>(
   ({ options, onSelect, value, testID }, ref) => {
     const height = options.length * 70 + 100;
-    const snapPoints = React.useMemo(() => [height], [height]);
+    const snapPoints = useMemo(() => [height], [height]);
     const { colorScheme } = useColorScheme();
     const isDark = colorScheme === 'dark';
 
-    const renderSelectItem = React.useCallback(
+    const renderSelectItem = useCallback(
       ({ item }: { item: Option }) => (
         <Option
           key={`select-item-${item.value}`}
@@ -112,7 +112,7 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
   }
 );
 
-const Option = React.memo(
+const Option = memo(
   ({
     label,
     selected = false,
@@ -160,7 +160,7 @@ export const Select = (props: SelectProps) => {
   } = props;
   const modal = useModal();
 
-  const onSelectOption = React.useCallback(
+  const onSelectOption = useCallback(
     (option: Option) => {
       onSelect?.(option.value);
       modal.dismiss();
@@ -168,7 +168,7 @@ export const Select = (props: SelectProps) => {
     [modal, onSelect]
   );
 
-  const styles = React.useMemo(
+  const styles = useMemo(
     () =>
       selectTv({
         error: Boolean(error),
@@ -177,7 +177,7 @@ export const Select = (props: SelectProps) => {
     [error, disabled]
   );
 
-  const textValue = React.useMemo(
+  const textValue = useMemo(
     () =>
       value !== undefined
         ? options?.filter((t) => t.value === value)?.[0]?.label ?? placeholder
@@ -233,7 +233,7 @@ export function ControlledSelect<T extends FieldValues>(
   const { name, control, rules, onSelect: onNSelect, ...selectProps } = props;
 
   const { field, fieldState } = useController({ control, name, rules });
-  const onSelect = React.useCallback(
+  const onSelect = useCallback(
     (value: string | number) => {
       field.onChange(value);
       onNSelect?.(value);

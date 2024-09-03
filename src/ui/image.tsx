@@ -1,8 +1,6 @@
 import type { ImageProps } from 'expo-image';
 import { Image as NImage } from 'expo-image';
 import { cssInterop } from 'nativewind';
-import React from 'react';
-
 export type ImgProps = ImageProps & {
   className?: string;
 };

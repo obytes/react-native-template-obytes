@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Text, View } from '@/ui';
 import colors from '@/ui/colors';
 

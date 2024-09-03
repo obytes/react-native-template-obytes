@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef, useMemo } from 'react';
 import type { PressableProps, View } from 'react-native';
 import { ActivityIndicator, Pressable, Text } from 'react-native';
 import type { VariantProps } from 'tailwind-variants';
@@ -92,7 +92,7 @@ interface Props extends ButtonVariants, Omit<PressableProps, 'disabled'> {
   textClassName?: string;
 }
 
-export const Button = React.forwardRef<View, Props>(
+export const Button = forwardRef<View, Props>(
   (
     {
       label: text,
@@ -107,7 +107,7 @@ export const Button = React.forwardRef<View, Props>(
     },
     ref
   ) => {
-    const styles = React.useMemo(
+    const styles = useMemo(
       () => button({ variant, disabled, size }),
       [variant, disabled, size]
     );

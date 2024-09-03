@@ -1,5 +1,4 @@
 import { useRouter } from 'expo-router';
-import React from 'react';
 
 import { Cover } from '@/components/cover';
 import { useIsFirstTime } from '@/core/hooks';

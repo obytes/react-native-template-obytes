@@ -1,5 +1,4 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
-import React from 'react';
 
 import { usePost } from '@/api';
 import { ActivityIndicator, FocusAwareStatusBar, Text, View } from '@/ui';
