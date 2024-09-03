@@ -6,11 +6,4 @@ head:
     content: Obytes Starter ChangeLog | React Native / Expo Starter
 ---
 
-## V5.0.0
-
-- Upgrade to Expo 50
-- Switch to `expo-router` for navigation
-- Upgrade to NativeWind 4.0
-- Refactor `ui` and update common components to use NativeWind 4.0 with `tailwind-variants`
-- Add checkbox, radio, and switch components
-- Improve eas setup with PNPM
+For complete changelog, please check the [GitHub releases](https://github.com/obytes/react-native-template-obytes/releases) page.
