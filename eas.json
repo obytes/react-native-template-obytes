@@ -47,7 +47,7 @@
     },
     "qa": {
       "channel": "qa",
-      "distribution": "internal",
+      "distribution": "store",
       "pnpm": "8.15.4",
       "ios": {
         "image": "latest"
