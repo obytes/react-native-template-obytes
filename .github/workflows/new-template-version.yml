@@ -71,3 +71,10 @@ jobs:
       - name: 📝 Get new package version
         run: |
           echo "NEW_VERSION=$(awk -F'"' '/"version": ".+"/{ print $4; exit; }' package.json)" >> $GITHUB_ENV
+
+      - name: 🏃‍♂️Create A Github Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: v${{ env.NEW_VERSION }}
+          generateReleaseNotes: true
+          draft: false
