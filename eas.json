@@ -79,10 +79,7 @@
       },
       "env": {
         "APP_ENV": "development",
-        "EXPO_NO_DOTENV": "1",
-        "API_URL": "https://dummy.com",
-        "VAR_NUMBER": "1",
-        "VAR_BOOL": "true"
+        "EXPO_NO_DOTENV": "1"
       },
       "prebuildCommand": "prebuild --skip-dependency-update react",
       "cache": {
