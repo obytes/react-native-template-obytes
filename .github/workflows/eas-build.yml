@@ -1,0 +1,75 @@
+# 🔗 Links:
+# Source file: https://github.com/rootstrap/react-native-template/blob/master/.github/actions/eas-build/action.yml
+# EAS Build docs: https://docs.expo.dev/eas-update/github-actions/
+
+# ✍️ Description:
+# This is a composite action, which means it can be used in other actions.
+# This action is used to trigger an EAS Build for a specific environment (development, staging, production).
+# This action accepts those inputs:
+#        `APP_ENV`, which is used to generate an APK for a specific environment (development, staging, production). We use staging by default.
+#        `AUTO_SUBMIT`, false by default, set to true if you want to automatically submit your build to stores.
+#        `EXPO_TOKEN`, required, access token for your Expo account. https://expo.dev/settings/access-tokens
+#        `VERSION`, required, version of the app to build. used as the build message.
+#        `ANDROID`, true by default, set to true if you don't want to trigger build for Android.
+#        `IOS`, false by default, set to true if you  want to trigger build for IOS.
+
+# Before triggering the build, we run a pre-build script to generate the necessary native folders based on the APP_ENV.
+# Based on the ANDROID and IOS inputs, we trigger the build for the corresponding platform with the corresponding flags.
+
+# 👀 Example usage:
+#      - name: ⏱️ EAS Build
+#        uses: ./.github/actions/eas-build
+#        with:
+#          environment: staging
+#          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+#          VERSION: ${{ github.event.release.tag_name }}
+#          IOS: false
+
+name: 'Setup EAS Build + Trigger Build'
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: 'environment (one of): development, staging, production'
+        required: true
+        default: 'staging'
+        options:
+          - development
+          - staging
+          - production
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for EXPO_TOKEN
+        run: |
+          if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+            echo "You must provide an EXPO_TOKEN secret linked to this project's Expo account in this repo's secrets. Learn more: https://docs.expo.dev/eas-update/github-actions"
+            exit 1
+          fi
+
+      - name: 📦 Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: 📦 Checkout project repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 📦 Setup Node + PNPM + install deps
+        uses: ./.github/actions/setup-node-pnpm-install
+
+      - name: ⚙️ Run Prebuild
+        run: pnpm prebuild:${{ inputs.environment }}
+
+      - name: 📱 Run Android Build
+        run: pnpm build:${{ inputs.environment }}:android --non-interactive --no-wait --message "Build ${{ inputs.environment }}"
+
+      - name: 📱 Run IOS Build
+        run: pnpm build:${{ inputs.environment }}:ios --non-interactive --no-wait --message "Build ${{ inputs.environment }}"

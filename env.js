@@ -107,7 +107,7 @@ const parseBoolean = (/** @type {string | undefined} */ value) =>
   value ? value === 'true' : undefined;
 
 const clientEnvSchema = z.object({
-  APP_ENV: z.enum(['development', 'staging', 'production']),
+  APP_ENV: z.enum(['development', 'production', 'qa', 'staging']),
   NAME: z.string(),
   SCHEME: z.string(),
   BUNDLE_ID: z.string(),
