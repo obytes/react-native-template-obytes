@@ -59,8 +59,6 @@ The starter comes with a set of GitHub workflows that use EXPO EAS to build and 
 
 - `new-app-version.yml` : A workflow that run `app-release` script in order to update the app version and push a new tag to GitHub.
 
-- `new-github-release.yml` : A workflow that is triggered whenever a new tag is pushed to GitHub. It will create a new GitHub release based on the tag name with the correct changelog.
-
 - `eas-build-qa.yml` : A workflow that is triggered whenever a new release is created on GitHub. It will build the app using EXPO EAS and based on the config it will distribute.
 
 - `eas-build-prod.yml` : A workflow that is triggered manually whenever we want to push a new release to the App Store and Google Play. It will build the app using EXPO EAS and based on the config it will distribute.
