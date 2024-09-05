@@ -23,17 +23,23 @@ const APP_ENV =
 
 const isEASBuild = process.env.EAS_BUILD === 'true';
 
-const LOCAL_BUILD_SCRIPT_PATTERNS = ['--local', 'eas-cli-local-build-plugin'];
+const LOCAL_BUILD_SCRIPT_PATTERNS = [
+  '--local',
+  'eas-cli-local-build-plugin',
+  'expo export',
+];
 const isLocalBuild = LOCAL_BUILD_SCRIPT_PATTERNS.some((pattern) =>
   process.env.npm_lifecycle_script?.includes(pattern)
 );
 
+const EXPO_RUN_COMMANDS = ['expo start', 'expo run'];
+
 const ENVIRONMENT_DEPENDANT_SCRIPTS = [
-  'expo start',
+  ...EXPO_RUN_COMMANDS,
   'expo prebuild',
   'eas build',
-  'expo run',
   'eas-cli-local-build-plugin',
+  'expo export',
 ];
 
 const scriptIsEnvironmentDependant = ENVIRONMENT_DEPENDANT_SCRIPTS.some(
@@ -42,17 +48,11 @@ const scriptIsEnvironmentDependant = ENVIRONMENT_DEPENDANT_SCRIPTS.some(
 
 // Check if the environment file has to be validated for the current running script and build method
 const isBuilding = isEASBuild || isLocalBuild;
-const isRunning = process.env.npm_lifecycle_script?.includes('expo run');
+const isRunning = EXPO_RUN_COMMANDS.some((script) =>
+  process.env.npm_lifecycle_script?.includes(script)
+);
 const shouldValidateEnv =
   (isBuilding && scriptIsEnvironmentDependant) || isRunning;
-
-console.log({
-  npm_lifecycle_script: process.env.npm_lifecycle_script,
-  scriptIsEnvironmentDependant,
-  isLocalBuild,
-  isEASBuild,
-  shouldValidateEnv,
-});
 
 const easEnvironmentFileVariable = `ENVIRONMENT_FILE_${APP_ENV.toUpperCase()}`;
 const easEnvironmentFilePath = process.env[easEnvironmentFileVariable];
