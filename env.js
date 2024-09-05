@@ -41,8 +41,18 @@ const scriptIsEnvironmentDependant = ENVIRONMENT_DEPENDANT_SCRIPTS.some(
 );
 
 // Check if the environment file has to be validated for the current running script and build method
+const isBuilding = isEASBuild || isLocalBuild;
+const isRunning = process.env.npm_lifecycle_script?.includes('expo run');
 const shouldValidateEnv =
-  (isEASBuild || isLocalBuild) && scriptIsEnvironmentDependant;
+  (isBuilding && scriptIsEnvironmentDependant) || isRunning;
+
+console.log({
+  npm_lifecycle_script: process.env.npm_lifecycle_script,
+  scriptIsEnvironmentDependant,
+  isLocalBuild,
+  isEASBuild,
+  shouldValidateEnv,
+});
 
 const easEnvironmentFileVariable = `ENVIRONMENT_FILE_${APP_ENV.toUpperCase()}`;
 const easEnvironmentFilePath = process.env[easEnvironmentFileVariable];
