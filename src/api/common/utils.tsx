@@ -6,7 +6,7 @@ import type {
 import type { PaginateQuery } from '../types';
 
 type KeyParams = {
-  [key: string]: any;
+  [key: string]: unknown;
 };
 export const DEFAULT_LIMIT = 10;
 
@@ -46,7 +46,7 @@ export const getNextPageParam: GetPreviousPageParamFunction<
   PaginateQuery<unknown>
 > = (page) => getUrlParameters(page.next)?.offset ?? null;
 
-type GenericObject = { [key: string]: any };
+type GenericObject = { [key: string]: unknown };
 
 export const toCamelCase = (obj: GenericObject): GenericObject => {
   const newObj: GenericObject = {};
