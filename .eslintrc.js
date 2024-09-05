@@ -2,8 +2,12 @@ const path = require('path');
 
 module.exports = {
   // Configuration for JavaScript files
-  extends: ['@react-native-community', 'plugin:prettier/recommended'],
-  plugins: ['unicorn'],
+  extends: [
+    '@react-native-community',
+    'plugin:prettier/recommended',
+    'plugin:sonarjs/recommended-legacy',
+  ],
+  plugins: ['unicorn', 'sonarjs'],
   rules: {
     'prettier/prettier': [
       'error',

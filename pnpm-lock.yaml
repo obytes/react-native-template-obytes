@@ -213,6 +213,9 @@ importers:
       eslint-plugin-simple-import-sort:
         specifier: ^10.0.0
         version: 10.0.0(eslint@8.57.0)
+      eslint-plugin-sonarjs:
+        specifier: ^1.0.4
+        version: 1.0.4(eslint@8.57.0)
       eslint-plugin-tailwindcss:
         specifier: ^3.15.2
         version: 3.15.2(tailwindcss@3.3.2(ts-node@10.9.2(@types/node@20.12.12)(typescript@5.3.3)))
@@ -3435,6 +3438,12 @@ packages:
     resolution: {integrity: sha512-AeTvO9UCMSNzIHRkg8S6c3RPy5YEwKWSQPx3DYghLedo2ZQxowPFLGDN1AZ2evfg6r6mjBSZSLxLFsWSu3acsw==}
     peerDependencies:
       eslint: '>=5.0.0'
+
+  eslint-plugin-sonarjs@1.0.4:
+    resolution: {integrity: sha512-jF0eGCUsq/HzMub4ExAyD8x1oEgjOyB9XVytYGyWgSFvdiJQJp6IuP7RmtauCf06o6N/kZErh+zW4b10y1WZ+Q==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      eslint: ^8.0.0 || ^9.0.0
 
   eslint-plugin-tailwindcss@3.15.2:
     resolution: {integrity: sha512-+HJfWcyP5B/e8r8qVSaTbf2i4+HsESJJsue66qFHRstV11CNTfdaDD9zkCVA1pm2EplBZ/BSJ3Htfzvb4YTVKw==}
@@ -11840,6 +11849,10 @@ snapshots:
       string.prototype.matchall: 4.0.11
 
   eslint-plugin-simple-import-sort@10.0.0(eslint@8.57.0):
+    dependencies:
+      eslint: 8.57.0
+
+  eslint-plugin-sonarjs@1.0.4(eslint@8.57.0):
     dependencies:
       eslint: 8.57.0
 
