@@ -11,21 +11,21 @@ export default defineConfig({
   base,
   integrations: [
     starlight({
-      title: 'Obytes Starter | React Native Template',
+      title: 'Rootstrap React Native Template',
       description: `Your All-in-One Solution for Building Outstanding React Native/Expo Apps. From editor setup to store submission, we've got you covered!`,
       expressiveCode: {
         themes: ['dracula', 'solarized-light'],
       },
       logo: {
-        light: '/src/assets/logo-titled.svg',
-        dark: '/src/assets/logo-titled.svg',
+        light: '/src/assets/rootstrap-black.svg',
+        dark: '/src/assets/rootstrap-white.svg',
         replacesTitle: true,
       },
       components: {
         LastUpdated: './src/components/LastUpdated.astro',
       },
       social: {
-        github: 'https://github.com/obytes/react-native-template-obytes',
+        github: 'https://github.com/rootstrap/react-native-template',
       },
       head: [
         {
@@ -52,7 +52,7 @@ export default defineConfig({
           tag: 'link',
           attrs: {
             rel: 'stylesheet',
-            href: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&display=swap',
+            href: 'https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap',
           },
         },
         {
@@ -61,13 +61,6 @@ export default defineConfig({
             src: 'https://cdn.jsdelivr.net/npm/@minimal-analytics/ga4/dist/index.js',
             async: true,
           },
-        },
-        {
-          tag: 'script',
-          content: ` window.minimalAnalytics = {
-            trackingId: 'G-GQ45JJD1JC',
-            autoTrack: true,
-          };`,
         },
       ],
       sidebar: [
@@ -101,7 +94,6 @@ export default defineConfig({
             },
           ],
         },
-
         {
           label: 'UI Components & Theming',
           items: [
