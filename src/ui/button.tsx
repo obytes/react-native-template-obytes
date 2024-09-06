@@ -4,6 +4,7 @@ import { ActivityIndicator, Pressable, Text } from 'react-native';
 import type { VariantProps } from 'tailwind-variants';
 import { tv } from 'tailwind-variants';
 
+const TEXT_WHITE = 'text-white';
 const button = tv({
   slots: {
     container: 'my-2 flex flex-row items-center justify-center rounded-md px-4',
@@ -21,7 +22,7 @@ const button = tv({
       secondary: {
         container: 'bg-primary-600',
         label: 'text-secondary-600',
-        indicator: 'text-white',
+        indicator: TEXT_WHITE,
       },
       outline: {
         container: 'border border-neutral-400',
@@ -30,8 +31,8 @@ const button = tv({
       },
       destructive: {
         container: 'bg-red-600',
-        label: 'text-white',
-        indicator: 'text-white',
+        label: TEXT_WHITE,
+        indicator: TEXT_WHITE,
       },
       ghost: {
         container: 'bg-transparent',

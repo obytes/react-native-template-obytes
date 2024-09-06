@@ -116,6 +116,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-i18n-json": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-sonarjs": "^1.0.4",
     "eslint-plugin-tailwindcss": "^3.15.2",
     "eslint-plugin-testing-library": "^6.2.2",
     "eslint-plugin-unicorn": "^46.0.1",
