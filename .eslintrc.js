@@ -9,6 +9,7 @@ module.exports = {
   ],
   plugins: ['unicorn', 'sonarjs'],
   rules: {
+    '@typescript-eslint/no-explicit-any': 'error',
     'prettier/prettier': [
       'error',
       {

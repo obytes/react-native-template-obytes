@@ -13,7 +13,7 @@ const validate = (message = '') => {
       'Interpolation error. See: https://www.i18next.com/misc/json-format'
     );
   }
-  if (message.includes('$t(') && !/\$t\([\w]+:\w+(?:\.\w+)*\)/g.test(message)) {
+  if (message.includes('$t(') && !/\$t\(\w+:\w+(?:\.\w+)*\)/g.test(message)) {
     throw new SyntaxError(
       'Nesting error. See: https://www.i18next.com/misc/json-format'
     );

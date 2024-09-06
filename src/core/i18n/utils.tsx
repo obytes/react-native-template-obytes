@@ -51,11 +51,11 @@ export const useSelectedLanguage = () => {
     (lang: Language) => {
       setLang(lang);
       if (lang !== undefined) {
-        changeLanguage(lang as Language);
+        changeLanguage(lang);
       }
     },
     [setLang]
   );
 
-  return { language: language as Language, setLanguage };
+  return { language: language, setLanguage };
 };
