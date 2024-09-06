@@ -72,7 +72,6 @@ import { Icon } from '@astrojs/starlight/components';
     color: var(--sl-color-accent-high);
   }
   .star-count{
-    text-align: right;
     font-weight: 700;
     min-width: 20px;
     color: transparent;
@@ -91,7 +90,7 @@ import { Icon } from '@astrojs/starlight/components';
     if (starCountElement) {
       starCountElement.classList.add("spinner");
 
-      fetch("https://api.github.com/repos/rootstrap/react-native-template")
+      fetch("https://api.github.com/repos/obytes/react-native-template-obytes")
         .then((response) => response.json())
         .then((data) => {
           starCountElement.classList.remove("spinner");
@@ -109,7 +108,7 @@ import { Icon } from '@astrojs/starlight/components';
 <a
   target="_blank"
   rel="noreferrer noopener"
-  href="https://github.com/rootstrap/react-native-template"
+  href="https://github.com/obytes/react-native-template-obytes"
   class="link">
   <span
     id="star-count"
