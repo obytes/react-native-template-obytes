@@ -152,6 +152,16 @@ export default defineConfig({
           ],
         },
         {
+          label: 'Recipes',
+          items: [
+            // Each item here is one entry in the navigation menu.
+            {
+              label: 'Sentry Setup',
+              link: '/recipes/sentry-setup/',
+            },
+          ],
+        },
+        {
           label: 'Testing',
           items: [
             // Each item here is one entry in the navigation menu.
