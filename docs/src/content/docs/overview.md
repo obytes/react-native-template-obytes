@@ -6,11 +6,7 @@ head:
     content: Overview | React Native / Expo Starter
 ---
 
-As a team of experienced developers at Obytes Mobile Tribe, we have spent years refining our approach to building high-quality React Native applications. Our starter kit is based on the best practices and tools that we have found to be most effective in our own projects.
-
-This starter kit has been thoroughly tested and proven successful in multiple projects over the past four years. It is regularly used by our team on a daily basis and has helped us deliver great results for our clients.
-
-While our starter kit is heavily influenced by our own opinions and experiences, we have carefully selected the included solutions to address common challenges and meet the needs of the majority of use cases. We believe it offers a streamlined and efficient approach to building React Native apps, and we are confident that it can help others achieve their project goals as well.
+Welcome to the Obytes Mobile Tribe's Expo / React Native Starter Kit!
 
 ## 🚀 Motivation
 
@@ -31,39 +27,52 @@ When creating this starter kit, we had several guiding principles in mind::
 
 ## ⭐ Key Features
 
-- ✅ The latest version of Expo SDK, Along with the Custom Dev client, you can leverage the best of the Expo ecosystem and maintain full control over your app.
-- 🎉 [TypeScript](https://www.typescriptlang.org/) for type checking, to help you catch bugs and improve code quality.
-- 💅 A minimal UI kit built with [TailwindCSS](https://www.nativewind.dev/), With the most common components you should have in your app.
-- ⚙️ Support for multiple environments builds, including Production, Staging, and Development, using Expo configuration.
-- 🦊 Husky for Git Hooks, to automate your git hooks and enforce code standards.
-- 💡 A clean project structure with Absolute Imports, to make it easier to navigate and manage your code.
-- 🚫 Lint-staged for running Eslint and TypeScript checks on Git staged files, to ensure that your code is always up to standards.
-- 🗂 VSCode recommended extensions, settings, and snippets to enhance the developer experience.
-- ☂️ Pre-installed [Expo Router](https://docs.expo.dev/router/introduction/) with examples, to provide a comprehensive navigation solution for your app.
-- 💫 An auth flow with [Zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage solution to save sensitive data.
-- 🛠 +10 workflows for building, releasing, testing and distributing your app using [Github action](https://github.com/features/actions).
-- 🔥 [React Query](https://react-query.tanstack.com/) and [axios](https://github.com/axios/axios) for fetching data, to help you build efficient and performant apps.
-- 🧵 A good approach for handling forms with [react-hook-form](https://react-hook-form.com/) and [zod](https://github.com/colinhacks/zod) for validation + keyboard handling.
-- 🎯 Localization with [i18next](https://www.i18next.com/), along with Eslint for validation.
-- Unit testing with [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) setup to help you write tests for your app.
+- ✅ Latest Expo SDK with Custom Dev Client: Leverage the best of the Expo ecosystem while maintaining full control over your app.
+- 🎉 [TypeScript](https://www.typescriptlang.org/) for enhanced code quality and bug prevention through static type checking.
+- 💅 Minimal UI kit built with [TailwindCSS](https://www.nativewind.dev/), featuring common components essential for your app.
+- ⚙️ Multi-environment build support (Production, Staging, Development) using Expo configuration.
+- 🦊 Husky for Git Hooks: Automate your git hooks and enforce code standards.
+- 💡 Clean project structure with Absolute Imports for easier code navigation and management.
+- 🚫 Lint-staged: Run Eslint and TypeScript checks on Git staged files to maintain code quality.
+- 🗂 VSCode recommended extensions, settings, and snippets for an enhanced developer experience.
+- ☂️ Pre-installed [Expo Router](https://docs.expo.dev/router/introduction/) with examples for comprehensive app navigation.
+- 💫 Auth flow implementation using [Zustand](https://github.com/pmndrs/zustand) for state management and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) for secure data storage.
+- 🛠 10+ [Github Actions](https://github.com/features/actions) workflows for building, releasing, testing, and distributing your app.
+- 🔥 [React Query](https://react-query.tanstack.com/) and [axios](https://github.com/axios/axios) for efficient data fetching and state management.
+- 🧵 Robust form handling with [react-hook-form](https://react-hook-form.com/) and [zod](https://github.com/colinhacks/zod) for validation, plus keyboard handling.
+- 🎯 Localization support with [i18next](https://www.i18next.com/), including Eslint for validation.
+- 🧪 Unit testing setup with [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
+- 🔍 E2E testing capabilities with [Maestro](https://maestro.mobile.dev/) for comprehensive app testing.
 
-## 😉 Why Expo?
+## 🤔 Is this starter for me?
 
-Expo is a powerful tool for building React Native apps, offering a range of features and benefits that can help developers create high-quality apps more efficiently. One question we often receive from the community is why we choose to use Expo instead of the React Native CLI.
+Yes 😀
 
-In the past, our team used the React Native CLI for our starter kit. However, we found that using Expo presented several advantages. In particular, the introduction of the Custom dev client feature allowed us to take advantage of the Expo ecosystem and utilize native libraries without the need for ejecting the app. This has greatly simplified our development process and enabled us to focus on the business logic of our projects.
+This starter kit is designed to benefit a wide range of React Native developers, from beginners to experienced professionals. Here's why it might be a good fit for you:
 
-Additionally, we have found that using Expo has made it easier to upgrade our apps to new versions, eliminating the issues we previously encountered when using the React Native CLI.
+1. **For beginners:** It provides a solid foundation with best practices and common solutions, helping you learn industry-standard approaches to React Native development.
 
-Overall, we believe that Expo offers numerous benefits for building React Native apps and is a valuable tool for any developer. The real question may be, **why not use Expo?**
+2. **For experienced developers:** It offers a well-structured, production-ready setup that can save you time and effort in project initialization and configuration.
 
-## 🤔 Is this starter for you?
+3. **For teams:** It ensures consistency across projects and team members, making it easier to onboard new developers and maintain code quality.
 
-If you are planning to build a React Native app and are looking for a strong foundation, well-designed architecture, and a positive developer experience, then this starter kit is an excellent resource to consider. It offers a comprehensive set of best practices and tools that have been tested and proven effective in multiple projects.
+4. **For explorers:** Even if you prefer not to use starter kits, this project can serve as a valuable reference. You can explore the codebase, documentation, and architectural decisions to gain insights and potentially adopt specific solutions for your own projects.
 
-Even if you are not sure that using a starter kit is the right choice for your project, you can still benefit from this resource. You can explore the starter kit and draw inspiration from the solutions it provides for common challenges faced by React Native developers. This can be a helpful way to discover good practices and find effective solutions for your own app development process.
+5. **For learners:** The starter kit incorporates up-to-date libraries and patterns, offering an opportunity to familiarize yourself with current best practices in the React Native ecosystem.
 
-Overall, whether you choose to use this starter kit as is or simply take some ideas from it, we believe it offers valuable insights and resources for anyone looking to build a high-quality React Native app.
+6. **For AI-assisted development:** This starter kit works well with AI coding tools. It provides a solid structure and best practices that can guide AI-generated code. This helps ensure that AI assistance leads to high-quality, maintainable code that fits well within your project.
+
+Remember, you don't have to use the entire starter kit as-is. Feel free to cherry-pick ideas, configurations, or code snippets that align with your project needs. Whether you're building a new app from scratch or looking to improve your existing development process, this starter kit can provide valuable insights and practical solutions.
+
+## 😉 Why Expo and not React Native CLI?
+
+We have been using Expo as our main framework since the introduction of [Continuous Native Generation (CNG)](https://docs.expo.dev/workflow/continuous-native-generation/) concept and we are happy with the experience.
+
+I think this question is not valid anymore specially after the last React conference when the core react native team recommended using Expo for new projects.
+
+> "As of today, the only recommended community framework for React Native is Expo. Folks at Expo have been investing in the React Native ecosystem since the early days of React Native and as of today, we believe the developer experience offered by Expo is best in class." React native core team
+
+Still hesitating? Check out this [article](https://reactnative.dev/blog/2024/06/25/use-a-framework-to-build-react-native-apps) or this [video](https://www.youtube.com/watch?v=lifGTznLBcw), maybe this one [video](https://www.youtube.com/watch?v=ek_IdGC0G80) too.
 
 ## 🧑‍💻 Stay up to date
 
@@ -90,8 +99,14 @@ We value the feedback and contributions of our users, and we encourage you to le
 - [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/)
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/)
 - [React Native Svg](https://github.com/software-mansion/react-native-svg)
-- [ React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
+- [React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
 - [Expo Image](https://docs.expo.dev/versions/unversioned/sdk/image/)
+- [React Native Keyboard Controller](https://github.com/kirillzyusko/react-native-keyboard-controller)
+- [Moti](https://moti.fyi/)
+- [React Native Safe Area Context](https://github.com/th3rdwave/react-native-safe-area-context)
+- [React Native Screens](https://github.com/software-mansion/react-native-screens)
+- [Tailwind Variants](https://www.tailwind-variants.org/)
+- [Zod](https://zod.dev/)
 
 ## Contributors
 
