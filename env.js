@@ -55,8 +55,6 @@ const isRunning = EXPO_RUN_COMMANDS.some((script) =>
 const shouldValidateEnv =
   (isBuilding && scriptIsEnvironmentDependant) || isRunning;
 
-const easEnvironmentFileVariable = `ENVIRONMENT_FILE_${APP_ENV.toUpperCase()}`;
-
 const environmentFiles = {
   development: process.env.ENVIRONMENT_FILE_DEVELOPMENT,
   qa: process.env.ENVIRONMENT_FILE_QA,
@@ -200,7 +198,7 @@ if (shouldValidateEnv) {
   const parsedWholeEnv = wholeEnvSchema.safeParse(_wholeEnv);
 
   if (parsedWholeEnv.success === false) {
-    const envFile = isEASBuild ? easEnvironmentFileVariable : `.env.${APP_ENV}`;
+    const envFile = isEASBuild ? environmentFiles[APP_ENV] : `.env.${APP_ENV}`;
 
     const messages = [
       '❌ Invalid environment variables:',
@@ -217,7 +215,7 @@ if (shouldValidateEnv) {
 
     if (isEASBuild) {
       messages.push(
-        `\n☁️ For \x1b[1m\x1b[32mEAS Build\x1b[0m deployments, ensure the secret\x1b[1m\x1b[4m\x1b[31m${easEnvironmentFileVariable} \x1b[0m is defined in Project Secrets and has the proper environment file attached.`
+        `\n☁️ For \x1b[1m\x1b[32mEAS Build\x1b[0m deployments, ensure the secret\x1b[1m\x1b[4m\x1b[31m${environmentFiles[APP_ENV]} \x1b[0m is defined in Project Secrets and has the proper environment file attached.`
       );
     }
 
