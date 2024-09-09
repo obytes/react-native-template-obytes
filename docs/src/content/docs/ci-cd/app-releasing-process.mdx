@@ -114,31 +114,6 @@ All github workflows are already ready to be used in the starter. You just need 
 
 - EXPO_TOKEN: Expo token to authenticate with EAS. You can get generate yours [here](https://expo.dev/settings/access-tokens)
 
-### Github action and env variables
-
-For simplicity, we assume that all your environment variables are already added to your env files and have been pushed to your repository.
-
-If you prefer not to push env files (recommended), you need to add all your environment variables to GitHub secrets. Then, use `create-envfile` action to create the env file on the fly before the prebuild script.
-
-```yaml
-## .github/workflows/eas-build-prod.yml
-
-- name: Create envfile
-  uses: SpicyPizza/create-envfile@v2.0
-  with:
-    envkey_DEBUG: false
-    envkey_SECRET_KEY: ${{ secrets.PRODUCTION_SECRET_KEY }}
-    file_name: .env.production
-
-- name: ⏱️ EAS Build
-  uses: ./.github/actions/eas-build
-  with:
-    APP_ENV: production
-    EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-```
-
-This action will create a new env file `.env.production` with the `DEBUG` and `SECRET_KEY` variables you added to the action. so make sure to include all your env variables to the action.
-
 ## Create new release
 
 For QA release, Go to your GitHub repo actions tab and run `new-app-version` workflow with the your desired release type.
