@@ -6,6 +6,13 @@ To be able to use Expo Application Services to upload your app to App Store and 
 
 To be able to trigger the eas-build github action you will have to add the `EXPO_TOKEN` secret to the repo settings. This secret is a required access token for your Expo account. https://expo.dev/settings/access-tokens
 
+You will also have to upload your envfiles to EAS secrets:
+
+`eas secret:create --scope project --name ENVIRONMENT_FILE_PRODUCTION --value .env.production --type file`
+`eas secret:create --scope project --name ENVIRONMENT_FILE_STAGING --value .env.staging --type file`
+
+Each one per environment you'll want to build, it's on [env.js](env.js) that the process looks for the right envfile depending on where the build is being run and the chosen environment.
+
 ### Submit to Google Play Store
 
 The first submission of the app needs to be performed manually. Learn more: https://expo.fyi/first-android-submission. Only after having a valid version submitted you can submit automatically using EAS.
