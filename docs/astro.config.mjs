@@ -191,6 +191,10 @@ export default defineConfig({
           ],
         },
         {
+          label: 'Libraries Recommendation',
+          link: '/libraries-recommendation',
+        },
+        {
           label: 'CHANGELOG',
           link: '/changelog',
         },

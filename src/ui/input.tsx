@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useMemo, useState } from 'react';
+import React, { forwardRef, useCallback, useMemo, useState } from 'react';
 import type {
   Control,
   FieldValues,
@@ -6,9 +6,8 @@ import type {
   RegisterOptions,
 } from 'react-hook-form';
 import { useController } from 'react-hook-form';
-import type { TextInput, TextInputProps } from 'react-native';
-import { I18nManager, StyleSheet, View } from 'react-native';
-import { TextInput as NTextInput } from 'react-native';
+import type { TextInputProps } from 'react-native';
+import { I18nManager, StyleSheet, TextInput as NTextInput,View } from 'react-native';
 import { tv } from 'tailwind-variants';
 
 import colors from './colors';
@@ -53,23 +52,25 @@ export interface NInputProps extends TextInputProps {
   error?: string;
 }
 
-type TRule = Omit<
-  RegisterOptions,
-  'valueAsNumber' | 'valueAsDate' | 'setValueAs'
->;
+type TRule<T extends FieldValues> =
+  | Omit<
+      RegisterOptions<T>,
+      'disabled' | 'valueAsNumber' | 'valueAsDate' | 'setValueAs'
+    >
+  | undefined;
 
-export type RuleType<T> = { [name in keyof T]: TRule };
+export type RuleType<T extends FieldValues> = { [name in keyof T]: TRule<T> };
 export type InputControllerType<T extends FieldValues> = {
   name: Path<T>;
   control: Control<T>;
-  rules?: TRule;
+  rules?: RuleType<T>;
 };
 
 interface ControlledInputProps<T extends FieldValues>
   extends NInputProps,
     InputControllerType<T> {}
 
-export const Input = forwardRef<TextInput, NInputProps>((props, ref) => {
+export const Input = forwardRef<NTextInput, NInputProps>((props, ref) => {
   const { label, error, testID, ...inputProps } = props;
   const [isFocussed, setIsFocussed] = useState(false);
   const onBlur = useCallback(() => setIsFocussed(false), []);

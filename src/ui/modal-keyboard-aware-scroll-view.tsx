@@ -18,10 +18,9 @@ import {
   createBottomSheetScrollableComponent,
   SCROLLABLE_TYPE,
 } from '@gorhom/bottom-sheet';
-import type { BottomSheetScrollViewProps } from '@gorhom/bottom-sheet/src/components/bottomSheetScrollable/types';
+import { type BottomSheetScrollViewProps } from '@gorhom/bottom-sheet/src/components/bottomSheetScrollable/types';
 import { memo } from 'react';
-import type { KeyboardAwareScrollViewProps } from 'react-native-keyboard-controller';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
+import { KeyboardAwareScrollView, type KeyboardAwareScrollViewProps } from 'react-native-keyboard-controller';
 import Reanimated from 'react-native-reanimated';
 
 const AnimatedScrollView =

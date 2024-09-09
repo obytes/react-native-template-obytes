@@ -58,16 +58,16 @@ const selectTv = tv({
 
 const List = Platform.OS === 'web' ? FlashList : BottomSheetFlatList;
 
-export type Option = { label: string; value: string | number };
+export type OptionType = { label: string; value: string | number };
 
 type OptionsProps = {
-  options: Option[];
-  onSelect: (option: Option) => void;
+  options: OptionType[];
+  onSelect: (option: OptionType) => void;
   value?: string | number;
   testID?: string;
 };
 
-function keyExtractor(item: Option) {
+function keyExtractor(item: OptionType) {
   return `select-item-${item.value}`;
 }
 
@@ -79,7 +79,7 @@ export const Options = forwardRef<BottomSheetModal, OptionsProps>(
     const isDark = colorScheme === 'dark';
 
     const renderSelectItem = useCallback(
-      ({ item }: { item: Option }) => (
+      ({ item }: { item: OptionType }) => (
         <Option
           key={`select-item-${item.value}`}
           label={item.label}
@@ -138,7 +138,7 @@ export interface SelectProps {
   label?: string;
   disabled?: boolean;
   error?: string;
-  options?: Option[];
+  options?: OptionType[];
   onSelect?: (value: string | number) => void;
   placeholder?: string;
   testID?: string;
@@ -161,7 +161,7 @@ export const Select = (props: SelectProps) => {
   const modal = useModal();
 
   const onSelectOption = useCallback(
-    (option: Option) => {
+    (option: OptionType) => {
       onSelect?.(option.value);
       modal.dismiss();
     },

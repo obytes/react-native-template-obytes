@@ -3,26 +3,66 @@ const path = require('path');
 module.exports = {
   // Configuration for JavaScript files
   extends: [
-    '@react-native-community',
-    'plugin:prettier/recommended',
-    'plugin:sonarjs/recommended-legacy',
+    'expo', 
+    'plugin:tailwindcss/recommended', 
+    'prettier'
   ],
-  plugins: ['unicorn', 'sonarjs'],
+  plugins: [
+    'unicorn', 
+    '@typescript-eslint',
+    'unused-imports',
+    'tailwindcss',
+    'simple-import-sort',
+    'sonarjs'
+  ],
+  parserOptions: {
+    project: './tsconfig.json',
+  },
   rules: {
     '@typescript-eslint/no-explicit-any': 'error',
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        endOfLine: 'auto',
-      },
-    ],
     'unicorn/filename-case': [
       'error',
       {
         case: 'kebabCase',
         ignore: ['/android', '/ios'],
       },
+    ],
+    'max-params': ['error', 3], // Limit the number of parameters in a function to use object instead
+    'max-lines-per-function': ['error', 70],
+    'react/display-name': 'off',
+    'react/no-inline-styles': 'off',
+    'react/destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
+    'react/require-default-props': 'off', // Allow non-defined react props as undefined
+    '@typescript-eslint/comma-dangle': 'off', // Avoid conflict rule between Eslint and Prettier
+    '@typescript-eslint/consistent-type-imports': [
+      'warn',
+      {
+        prefer: 'type-imports',
+        fixStyle: 'inline-type-imports',
+        disallowTypeAnnotations: true,
+      },
+    ], // Ensure `import type` is used when it's necessary
+    'import/prefer-default-export': 'off', // Named export is easier to refactor automatically
+    'import/no-cycle': ['error', { maxDepth: '∞' }],
+    'tailwindcss/classnames-order': [
+      'warn',
+      {
+        officialSorting: true,
+      },
+    ], // Follow the same ordering as the official plugin `prettier-plugin-tailwindcss`
+    'simple-import-sort/imports': 'error', // Import configuration for `eslint-plugin-simple-import-sort`
+    'simple-import-sort/exports': 'error', // Export configuration for `eslint-plugin-simple-import-sort`
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/array-type': 'off',
+    'tailwindcss/no-custom-classname': 'off',
+    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      }
     ],
     curly: [2, 'all'],
     'prefer-const': [
@@ -31,76 +71,9 @@ module.exports = {
         destructuring: 'any',
       },
     ],
+    'object-shorthand': 'error'
   },
   overrides: [
-    // Configuration for TypeScript files
-    {
-      files: ['**/*.ts', '**/*.tsx', '**/*.js'],
-      plugins: [
-        '@typescript-eslint',
-        'unused-imports',
-        'tailwindcss',
-        'simple-import-sort',
-      ],
-      extends: [
-        'plugin:tailwindcss/recommended',
-        '@react-native-community',
-        'plugin:prettier/recommended',
-      ],
-      parserOptions: {
-        project: './tsconfig.json',
-      },
-      rules: {
-        'react/react-in-jsx-scope': 'off',
-        'react/jsx-uses-react': 'off',
-        'prettier/prettier': [
-          'error',
-          {
-            singleQuote: true,
-            endOfLine: 'auto',
-          },
-        ],
-        'max-params': ['error', 3], // Limit the number of parameters in a function to use object instead
-        'max-lines-per-function': ['error', 70],
-        'react/destructuring-assignment': 'off', // Vscode doesn't support automatically destructuring, it's a pain to add a new variable
-        'react/require-default-props': 'off', // Allow non-defined react props as undefined
-        '@typescript-eslint/comma-dangle': 'off', // Avoid conflict rule between Eslint and Prettier
-        '@typescript-eslint/consistent-type-imports': 'error', // Ensure `import type` is used when it's necessary
-        'import/prefer-default-export': 'off', // Named export is easier to refactor automatically
-        'tailwindcss/classnames-order': [
-          'warn',
-          {
-            officialSorting: true,
-          },
-        ], // Follow the same ordering as the official plugin `prettier-plugin-tailwindcss`
-        'simple-import-sort/imports': 'error', // Import configuration for `eslint-plugin-simple-import-sort`
-        'simple-import-sort/exports': 'error', // Export configuration for `eslint-plugin-simple-import-sort`
-        '@typescript-eslint/no-unused-vars': 'off',
-        'tailwindcss/no-custom-classname': 'off',
-        'unused-imports/no-unused-imports': 'error',
-        'unused-imports/no-unused-vars': [
-          'error',
-          {
-            argsIgnorePattern: '^_',
-            varsIgnorePattern: '^_',
-            caughtErrorsIgnorePattern: '^_',
-          },
-        ],
-        'no-restricted-imports': [
-          'error',
-          {
-            paths: [
-              {
-                name: 'react',
-                importNames: ['default'],
-                message: 'No need to import React',
-              },
-            ],
-          },
-        ],
-        curly: [2, 'all'],
-      },
-    },
     // Configuration for  translations files (i18next)
     {
       files: ['src/translations/*.json'],

@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 
 import { cleanup, fireEvent, render, screen } from '@/core/test-utils';
-import type { Option } from '@/ui';
+import type { OptionType } from '@/ui';
 
 import { Select } from './select';
 
@@ -11,7 +11,7 @@ describe('Select component ', () => {
   const SELECT_TRIGGER = 'select-trigger';
   const SELECT_LABEL = 'select-label';
   const SELECT_ERROR = 'select-error';
-  const options: Option[] = [
+  const options: OptionType[] = [
     { value: 'chocolate', label: 'Chocolate' },
     { value: 'strawberry', label: 'Strawberry' },
     { value: 'vanilla', label: 'Vanilla' },
