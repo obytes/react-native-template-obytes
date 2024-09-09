@@ -203,6 +203,11 @@ export default defineConfig({
           link: '/libraries-recommendation',
         },
         {
+          label: 'FAQ',
+          link: '/faq',
+          badge: 'new',
+        },
+        {
           label: 'CHANGELOG',
           link: '/changelog',
         },
