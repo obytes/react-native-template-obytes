@@ -1,0 +1,44 @@
+name: SonarQube analysis
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - main
+      - master
+      - staging
+      - qa
+      - development
+
+jobs:
+  sonar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Checkout project repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: 📦 Setup Node + PNPM + install deps
+        uses: ./.github/actions/setup-node-pnpm-install
+
+      - name: Run Tests
+        run: export NODE_OPTIONS=--experimental-vm-modules && pnpm test:ci
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_URL }}
+        with:
+          args: >
+            -Dsonar.sonar.sources=./src 
+            -Dsonar.qualitygate.wait=true
+            -Dsonar.projectBaseDir=.
+            -Dsonar.verbose=false
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT }}
+            -Dsonar.sonar.sourceEncoding=UTF-8
+            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+            -Dsonar.coverage.exclusions=**/node_modules/**,**/storage/**,**/**.config.js,**/*.test.ts,**/*.test.tsx,**/*.spec.ts,**/*.spec.tsx,**/icons/**,**/docs/**,**/cli/**,**/android/**,**/ios/**,env.js
+            -Dsonar.exclusions=**/docs/**,**/__mocks__/**

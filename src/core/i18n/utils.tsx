@@ -32,10 +32,15 @@ export const changeLanguage = (lang: Language) => {
     I18nManager.forceRTL(false);
   }
   if (Platform.OS === 'ios' || Platform.OS === 'android') {
-    if (__DEV__) NativeModules.DevSettings.reload();
-    else RNRestart.restart();
+    if (__DEV__) {
+      NativeModules.DevSettings.reload();
+    } else {
+      RNRestart.restart();
+    }
   } else if (Platform.OS === 'web') {
     window.location.reload();
+  } else {
+    throw new Error('Unexpected value for Platform.OS');
   }
 };
 
@@ -45,10 +50,12 @@ export const useSelectedLanguage = () => {
   const setLanguage = useCallback(
     (lang: Language) => {
       setLang(lang);
-      if (lang !== undefined) changeLanguage(lang as Language);
+      if (lang !== undefined) {
+        changeLanguage(lang);
+      }
     },
     [setLang]
   );
 
-  return { language: language as Language, setLanguage };
+  return { language: language, setLanguage };
 };

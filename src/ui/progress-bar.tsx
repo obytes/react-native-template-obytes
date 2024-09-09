@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle } from 'react';
+import { forwardRef, useImperativeHandle } from 'react';
 import { View } from 'react-native';
 import Animated, {
   Easing,
@@ -43,8 +43,11 @@ export const ProgressBar = forwardRef<ProgressBarRef, Props>(
       };
     });
     return (
-      <View className={twMerge(` bg-[#EAEAEA]`, className)}>
-        <Animated.View style={style} />
+      <View
+        testID={'progress-bar-container'}
+        className={twMerge(` bg-[#EAEAEA]`, className)}
+      >
+        <Animated.View testID={'progress-bar'} style={style} />
       </View>
     );
   }

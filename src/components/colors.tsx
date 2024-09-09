@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Text, View } from '@/ui';
 import colors from '@/ui/colors';
 
@@ -18,9 +16,11 @@ export const Colors = () => {
 };
 
 const Color = ({ name }: { name: ColorName }) => {
-  if (typeof colors[name] === 'string') return null;
+  if (typeof colors[name] === 'string') {
+    return null;
+  }
   return (
-    <View className="pt-2">
+    <View className="pt-2" testID={`color-list-${name}`}>
       <Text className="font-medium">{name.toUpperCase()}</Text>
       <View className="flex-row flex-wrap content-between justify-around ">
         {Object.entries(colors[name]).map(([key, value]) => {

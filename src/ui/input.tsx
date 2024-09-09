@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { forwardRef, useCallback, useMemo, useState } from 'react';
 import type {
   Control,
   FieldValues,
@@ -7,8 +7,7 @@ import type {
 } from 'react-hook-form';
 import { useController } from 'react-hook-form';
 import type { TextInputProps } from 'react-native';
-import { I18nManager, StyleSheet, View } from 'react-native';
-import { TextInput as NTextInput } from 'react-native';
+import { I18nManager, StyleSheet, TextInput as NTextInput,View } from 'react-native';
 import { tv } from 'tailwind-variants';
 
 import colors from './colors';
@@ -71,13 +70,13 @@ interface ControlledInputProps<T extends FieldValues>
   extends NInputProps,
     InputControllerType<T> {}
 
-export const Input = React.forwardRef<NTextInput, NInputProps>((props, ref) => {
+export const Input = forwardRef<NTextInput, NInputProps>((props, ref) => {
   const { label, error, testID, ...inputProps } = props;
-  const [isFocussed, setIsFocussed] = React.useState(false);
-  const onBlur = React.useCallback(() => setIsFocussed(false), []);
-  const onFocus = React.useCallback(() => setIsFocussed(true), []);
+  const [isFocussed, setIsFocussed] = useState(false);
+  const onBlur = useCallback(() => setIsFocussed(false), []);
+  const onFocus = useCallback(() => setIsFocussed(true), []);
 
-  const styles = React.useMemo(
+  const styles = useMemo(
     () =>
       inputTv({
         error: Boolean(error),

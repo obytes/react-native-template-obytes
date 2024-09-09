@@ -1,4 +1,4 @@
-import React from 'react';
+import { useMemo } from 'react';
 import type { TextProps, TextStyle } from 'react-native';
 import { I18nManager, StyleSheet, Text as NNText } from 'react-native';
 import { twMerge } from 'tailwind-merge';
@@ -18,7 +18,7 @@ export const Text = ({
   children,
   ...props
 }: Props) => {
-  const textStyle = React.useMemo(
+  const textStyle = useMemo(
     () =>
       twMerge(
         'text-base text-black  dark:text-white  font-inter font-normal',
@@ -27,7 +27,7 @@ export const Text = ({
     [className]
   );
 
-  const nStyle = React.useMemo(
+  const nStyle = useMemo(
     () =>
       StyleSheet.flatten([
         {

@@ -1,18 +1,25 @@
 const path = require('path');
 
 module.exports = {
-  extends: ['expo', 'plugin:tailwindcss/recommended', 'prettier'],
+  // Configuration for JavaScript files
+  extends: [
+    'expo', 
+    'plugin:tailwindcss/recommended', 
+    'prettier'
+  ],
   plugins: [
-    'unicorn',
+    'unicorn', 
     '@typescript-eslint',
     'unused-imports',
     'tailwindcss',
     'simple-import-sort',
+    'sonarjs'
   ],
   parserOptions: {
     project: './tsconfig.json',
   },
   rules: {
+    '@typescript-eslint/no-explicit-any': 'error',
     'unicorn/filename-case': [
       'error',
       {
@@ -46,6 +53,7 @@ module.exports = {
     'simple-import-sort/imports': 'error', // Import configuration for `eslint-plugin-simple-import-sort`
     'simple-import-sort/exports': 'error', // Export configuration for `eslint-plugin-simple-import-sort`
     '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/array-type': 'off',
     'tailwindcss/no-custom-classname': 'off',
     'unused-imports/no-unused-imports': 'error',
     'unused-imports/no-unused-vars': [
@@ -54,6 +62,13 @@ module.exports = {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
         caughtErrorsIgnorePattern: '^_',
+      }
+    ],
+    curly: [2, 'all'],
+    'prefer-const': [
+      'error',
+      {
+        destructuring: 'any',
       },
     ],
   },
@@ -90,6 +105,7 @@ module.exports = {
             endOfLine: 'auto',
           },
         ],
+        curly: [2, 'all'],
       },
     },
     {

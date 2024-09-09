@@ -33,7 +33,15 @@ import type {
   BottomSheetModalProps,
 } from '@gorhom/bottom-sheet';
 import { BottomSheetModal, useBottomSheet } from '@gorhom/bottom-sheet';
-import * as React from 'react';
+import type { ForwardedRef } from 'react';
+import {
+  forwardRef,
+  memo,
+  useCallback,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+} from 'react';
 import { Pressable, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { Path, Svg } from 'react-native-svg';
@@ -44,7 +52,7 @@ type ModalProps = BottomSheetModalProps & {
   title?: string;
 };
 
-type ModalRef = React.ForwardedRef<BottomSheetModal>;
+type ModalRef = ForwardedRef<BottomSheetModal>;
 
 type ModalHeaderProps = {
   title?: string;
@@ -52,17 +60,17 @@ type ModalHeaderProps = {
 };
 
 export const useModal = () => {
-  const ref = React.useRef<BottomSheetModal>(null);
-  const present = React.useCallback((data?: any) => {
+  const ref = useRef<BottomSheetModal>(null);
+  const present = useCallback((data?: unknown) => {
     ref.current?.present(data);
   }, []);
-  const dismiss = React.useCallback(() => {
+  const dismiss = useCallback(() => {
     ref.current?.dismiss();
   }, []);
   return { ref, present, dismiss };
 };
 
-export const Modal = React.forwardRef(
+export const Modal = forwardRef(
   (
     {
       snapPoints: _snapPoints = ['60%'],
@@ -72,19 +80,16 @@ export const Modal = React.forwardRef(
     }: ModalProps,
     ref: ModalRef
   ) => {
-    const detachedProps = React.useMemo(
-      () => getDetachedProps(detached),
-      [detached]
-    );
+    const detachedProps = useMemo(() => getDetachedProps(detached), [detached]);
     const modal = useModal();
-    const snapPoints = React.useMemo(() => _snapPoints, [_snapPoints]);
+    const snapPoints = useMemo(() => _snapPoints, [_snapPoints]);
 
-    React.useImperativeHandle(
+    useImperativeHandle(
       ref,
       () => (modal.ref.current as BottomSheetModal) || null
     );
 
-    const renderHandleComponent = React.useCallback(
+    const renderHandleComponent = useCallback(
       () => (
         <>
           <View className="mb-8 mt-2 h-1 w-12 self-center rounded-lg bg-gray-400 dark:bg-gray-700" />
@@ -154,7 +159,7 @@ const getDetachedProps = (detached: boolean) => {
  * ModalHeader
  */
 
-const ModalHeader = React.memo(({ title, dismiss }: ModalHeaderProps) => {
+const ModalHeader = memo(({ title, dismiss }: ModalHeaderProps) => {
   return (
     <>
       {title && (

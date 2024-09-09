@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Text, View } from '@/ui';
 
 type Props = {

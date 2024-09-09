@@ -1,0 +1,86 @@
+# 🔗 Links:
+# Source file: https://github.com/rootstrap/react-native-template/blob/master/.github/workflows/new-cli-version.yml
+
+# ✍️ Description:
+# This workflow is used to create a new version of the CLI and publish it to the npm registry.
+# As this workflow will push code to the repo, we set up GitHub Bot as a Git user.
+# This Workflow need to be triggered manually from the Actions tab in the repo.
+#         1. Choose your release type (patch, minor, major)
+#         2. The workflow will run the np-release script which runs the following steps:
+#             - Bump the version in package.json based on the release type using np
+#             - Build & publish the CLI to the npm registry
+#
+
+# 🚨 GITHUB SECRETS REQUIRED:
+#         - NPM_TOKEN: A NPM Access Token with Publish access.
+#         - GH_TOKEN: A GitHub token with write repo access.
+#           You can generate one from here: https://github.com/settings/tokens
+#           make sure to add it to the repo secrets with the name GH_TOKEN
+#           Attention: Not to be confused with the GITHUB_TOKEN, this is a different token with different permissions.
+
+name: Deploy CLI to NPM Registry
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-type:
+        type: choice
+        description: 'Release type (one of): patch, minor, major'
+        required: true
+        default: 'patch'
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: CLI
+      url: https://www.npmjs.com/package/create-rootstrap-rn-app/v/${{ env.NEW_VERSION }}
+    permissions:
+      contents: write
+    steps:
+      - name: 🔍 GH_TOKEN
+        if: env.GH_TOKEN == ''
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: echo "GH_TOKEN=${GH_TOKEN}" >> $GITHUB_ENV
+      - name: 📦 Checkout project repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_TOKEN }}
+      - name: 📝 Git User Setup
+        run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+      - name: 📦 Setup Node + PNPM
+        uses: ./.github/actions/setup-node-pnpm-install
+      - name: 📦 Install CLI Dependencies
+        run: |
+          cd cli
+          pnpm install --frozen-lockfile
+      - name: 📦 Bump release version
+        run: |
+          cd cli
+          echo "NEW_VERSION=$(npm --no-git-tag-version --tag-version-prefix= version $RELEASE_TYPE)" >> $GITHUB_ENV
+          echo "RELEASE_TAG=latest" >> $GITHUB_ENV
+        env:
+          RELEASE_TYPE: ${{ github.event.inputs.release-type }}
+      - name: Commit package.json changes
+        run: |
+          git add "cli/package.json"
+          git commit -m "build(cli): release CLI v${{ env.NEW_VERSION }}"
+      - name: 🔑 Set publishing config
+        run: pnpm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: 📦 Publish to NPM registry
+        run: |
+          cd cli
+          pnpm publish --verbose --tag ${{ env.RELEASE_TAG }}
+      - name: 🔗 Push changes to repository
+        run: |
+          git push origin && git push --tags

@@ -1,0 +1,22 @@
+name: ⤵️ Check upstream for changes
+
+on:
+  schedule:
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+    inputs: {}
+
+jobs:
+  autoupdate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_TOKEN }}
+
+      - uses: fopina/upstream-to-pr@v1
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          upstream-repository: https://github.com/obytes/react-native-template-obytes
+          upstream-branch: master
