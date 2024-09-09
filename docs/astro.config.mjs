@@ -158,6 +158,7 @@ export default defineConfig({
             {
               label: 'Sentry Setup',
               link: '/recipes/sentry-setup/',
+              badge: 'new',
             },
           ],
         },
