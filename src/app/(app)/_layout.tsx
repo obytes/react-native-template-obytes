@@ -9,6 +9,7 @@ import {
   Settings as SettingsIcon,
   Style as StyleIcon,
 } from '@/ui/icons';
+import { bottomNavTabs } from '@/core/routers';
 
 export default function TabLayout() {
   const status = useAuth.use.status();
@@ -32,34 +33,16 @@ export default function TabLayout() {
   }
   return (
     <Tabs>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Feed',
-          tabBarIcon: ({ color }) => <FeedIcon color={color} />,
-          headerRight: () => <CreateNewPostLink />,
-          tabBarTestID: 'feed-tab',
-        }}
-      />
-
-      <Tabs.Screen
-        name="style"
-        options={{
-          title: 'Style',
-          headerShown: false,
-          tabBarIcon: ({ color }) => <StyleIcon color={color} />,
-          tabBarTestID: 'style-tab',
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: 'Settings',
-          headerShown: false,
-          tabBarIcon: ({ color }) => <SettingsIcon color={color} />,
-          tabBarTestID: 'settings-tab',
-        }}
-      />
+      {bottomNavTabs.map((tab) => (
+        <Tabs.Screen
+          key={tab.name}
+          name={tab.name}
+          options={{
+            ...tab.options,
+            headerRight: tab.name === 'index' ? CreateNewPostLink : undefined,
+          }}
+        />
+      ))}
     </Tabs>
   );
 }
