@@ -231,3 +231,51 @@ describe('Checkbox, Radio & Switch components ', () => {
     expect(screen.queryByTestId(SWITCH_LABEL)).not.toBeOnTheScreen();
   });
 });
+
+it('<Checkbox /> renders as checked when checked prop is true', () => {
+  const mockOnChange = jest.fn((checked) => checked);
+  render(
+    <Checkbox
+      testID="checkbox"
+      onChange={mockOnChange}
+      checked={true}
+      accessibilityLabel="agree"
+      accessibilityHint="toggle Agree"
+    />
+  );
+  expect(screen.getByTestId('checkbox')).toBeChecked();
+  fireEvent.press(screen.getByTestId('checkbox'));
+  expect(mockOnChange).toHaveBeenCalledWith(false); // Checkbox should toggle to unchecked
+});
+
+it('<Radio /> renders as checked when checked prop is true', () => {
+  const mockOnChange = jest.fn((checked) => checked);
+  render(
+    <Radio
+      testID="radio"
+      onChange={mockOnChange}
+      checked={true}
+      accessibilityLabel="agree"
+      accessibilityHint="toggle Agree"
+    />
+  );
+  expect(screen.getByTestId('radio')).toBeChecked();
+  fireEvent.press(screen.getByTestId('radio'));
+  expect(mockOnChange).toHaveBeenCalledWith(false); // Radio should toggle to unchecked
+});
+
+it('<Switch /> renders as checked when checked prop is true', () => {
+  const mockOnChange = jest.fn((checked) => checked);
+  render(
+    <Switch
+      testID="switch"
+      onChange={mockOnChange}
+      checked={true}
+      accessibilityLabel="agree"
+      accessibilityHint="toggle Agree"
+    />
+  );
+  expect(screen.getByTestId('switch').props.accessibilityState.checked).toBe(true);
+  fireEvent.press(screen.getByTestId('switch'));
+  expect(mockOnChange).toHaveBeenCalledWith(false); // Switch should toggle to unchecked
+});
