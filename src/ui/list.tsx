@@ -10,8 +10,7 @@ type Props = {
 
 export const List = NFlashList;
 
-export const EmptyList = memo(({ isLoading }: Props) => {
-  return (
+export const EmptyList = memo(({ isLoading }: Props) => (
     <View className="min-h-[400px] flex-1 items-center justify-center">
       {!isLoading ? (
         <View>
@@ -22,8 +21,7 @@ export const EmptyList = memo(({ isLoading }: Props) => {
         <ActivityIndicator />
       )}
     </View>
-  );
-});
+  ));
 
 export const NoData = () => (
   <Svg width={200} height={200} viewBox="0 0 647.636 632.174">

@@ -13,8 +13,7 @@ const images = [
   'https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?auto=format&fit=crop&w=800&q=80',
 ];
 
-export const Card = ({ title, body, id }: Props) => {
-  return (
+export const Card = ({ title, body, id }: Props) => (
     <Link href={`/feed/${id}`} asChild>
       <Pressable>
         <View className="m-2 overflow-hidden rounded-xl  border border-neutral-300 bg-white  dark:bg-neutral-900">
@@ -36,4 +35,3 @@ export const Card = ({ title, body, id }: Props) => {
       </Pressable>
     </Link>
   );
-};

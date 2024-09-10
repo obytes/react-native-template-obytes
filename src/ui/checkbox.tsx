@@ -31,7 +31,7 @@ export type IconProps = {
 };
 
 export const Root = ({
-  checked = false,
+  checked,
   children,
   onChange,
   disabled,
@@ -63,15 +63,13 @@ type LabelProps = {
   testID?: string;
 };
 
-const Label = ({ text, testID, className = '' }: LabelProps) => {
-  return (
+const Label = ({ text, testID, className = '' }: LabelProps) => (
     <Text testID={testID} className={` ${className} pl-2`}>
       {text}
     </Text>
   );
-};
 
-export const CheckboxIcon = ({ checked = false }: IconProps) => {
+export const CheckboxIcon = ({ checked }: IconProps) => {
   const color = checked ? colors.primary[300] : colors.charcoal[400];
   return (
     <MotiView
@@ -107,13 +105,11 @@ export const CheckboxIcon = ({ checked = false }: IconProps) => {
   );
 };
 
-const CheckboxRoot = ({ checked = false, children, ...props }: RootProps) => {
-  return (
+const CheckboxRoot = ({ checked, children, ...props }: RootProps) => (
     <Root checked={checked} accessibilityRole="checkbox" {...props}>
       {children}
     </Root>
   );
-};
 
 const CheckboxBase = ({
   checked = false,
@@ -121,8 +117,7 @@ const CheckboxBase = ({
   label,
 
   ...props
-}: RootProps & { label?: string }) => {
-  return (
+}: RootProps & { label?: string }) => (
     <CheckboxRoot checked={checked} testID={testID} {...props}>
       <CheckboxIcon checked={checked} />
       {label ? (
@@ -134,7 +129,6 @@ const CheckboxBase = ({
       ) : null}
     </CheckboxRoot>
   );
-};
 
 export const Checkbox = Object.assign(CheckboxBase, {
   Icon: CheckboxIcon,
@@ -142,7 +136,7 @@ export const Checkbox = Object.assign(CheckboxBase, {
   Label,
 });
 
-export const RadioIcon = ({ checked = false }: IconProps) => {
+export const RadioIcon = ({ checked }: IconProps) => {
   const color = checked ? colors.primary[300] : colors.charcoal[400];
   return (
     <MotiView
@@ -170,21 +164,18 @@ export const RadioIcon = ({ checked = false }: IconProps) => {
   );
 };
 
-const RadioRoot = ({ checked = false, children, ...props }: RootProps) => {
-  return (
+const RadioRoot = ({ checked, children, ...props }: RootProps) => (
     <Root checked={checked} accessibilityRole="radio" {...props}>
       {children}
     </Root>
   );
-};
 
 const RadioBase = ({
   checked = false,
   testID,
   label,
   ...props
-}: RootProps & { label?: string }) => {
-  return (
+}: RootProps & { label?: string }) => (
     <RadioRoot checked={checked} testID={testID} {...props}>
       <RadioIcon checked={checked} />
       {label ? (
@@ -192,7 +183,6 @@ const RadioBase = ({
       ) : null}
     </RadioRoot>
   );
-};
 
 export const Radio = Object.assign(RadioBase, {
   Icon: RadioIcon,
@@ -200,7 +190,7 @@ export const Radio = Object.assign(RadioBase, {
   Label,
 });
 
-export const SwitchIcon = ({ checked = false }: IconProps) => {
+export const SwitchIcon = ({ checked }: IconProps) => {
   const translateX = checked
     ? THUMB_OFFSET
     : WIDTH - THUMB_WIDTH - THUMB_OFFSET;
@@ -235,21 +225,18 @@ export const SwitchIcon = ({ checked = false }: IconProps) => {
     </View>
   );
 };
-const SwitchRoot = ({ checked = false, children, ...props }: RootProps) => {
-  return (
+const SwitchRoot = ({ checked, children, ...props }: RootProps) => (
     <Root checked={checked} accessibilityRole="switch" {...props}>
       {children}
     </Root>
   );
-};
 
 const SwitchBase = ({
   checked = false,
   testID,
   label,
   ...props
-}: RootProps & { label?: string }) => {
-  return (
+}: RootProps & { label?: string }) => (
     <SwitchRoot checked={checked} testID={testID} {...props}>
       <SwitchIcon checked={checked} />
       {label ? (
@@ -257,7 +244,6 @@ const SwitchBase = ({
       ) : null}
     </SwitchRoot>
   );
-};
 
 export const Switch = Object.assign(SwitchBase, {
   Icon: SwitchIcon,

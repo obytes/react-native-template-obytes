@@ -35,9 +35,7 @@ export const extractError = (data: unknown): string => {
     return data;
   }
   if (Array.isArray(data)) {
-    const messages = data.map((item) => {
-      return `  ${extractError(item)}`;
-    });
+    const messages = data.map((item) => `  ${extractError(item)}`);
 
     return `${messages.join('')}`;
   }

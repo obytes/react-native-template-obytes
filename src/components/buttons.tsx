@@ -2,8 +2,7 @@ import { Button, View } from '@/ui';
 
 import { Title } from './title';
 
-export const Buttons = () => {
-  return (
+export const Buttons = () => (
     <>
       <Title text="Buttons" />
       <View>
@@ -47,4 +46,3 @@ export const Buttons = () => {
       </View>
     </>
   );
-};

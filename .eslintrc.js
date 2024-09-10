@@ -71,7 +71,8 @@ module.exports = {
         destructuring: 'any',
       },
     ],
-    'object-shorthand': 'error'
+    'object-shorthand': 'error',
+    'arrow-body-style': ["error", "as-needed"]
   },
   overrides: [
     // Configuration for  translations files (i18next)

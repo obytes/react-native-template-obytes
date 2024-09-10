@@ -6,8 +6,7 @@ type Props = {
   title?: TxKeyPath;
 };
 
-export const ItemsContainer = ({ children, title }: Props) => {
-  return (
+export const ItemsContainer = ({ children, title }: Props) => (
     <>
       {title && <Text className="pb-2 pt-4 text-lg" tx={title} />}
       {
@@ -17,4 +16,3 @@ export const ItemsContainer = ({ children, title }: Props) => {
       }
     </>
   );
-};

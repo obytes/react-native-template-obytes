@@ -22,26 +22,22 @@ export const ProgressBar = forwardRef<ProgressBarRef, Props>(
     const progress = useSharedValue<number>(initialProgress ?? 0);
     useImperativeHandle(
       ref,
-      () => {
-        return {
+      () => ({
           setProgress: (value: number) => {
             progress.value = withTiming(value, {
               duration: 250,
               easing: Easing.inOut(Easing.quad),
             });
           },
-        };
-      },
+        }),
       [progress]
     );
 
-    const style = useAnimatedStyle(() => {
-      return {
+    const style = useAnimatedStyle(() => ({
         width: `${progress.value}%`,
         backgroundColor: '#000',
         height: 2,
-      };
-    });
+      }));
     return (
       <View
         testID={'progress-bar-container'}

@@ -7,11 +7,12 @@ import { Checkbox, Radio, Switch } from './checkbox';
 
 afterEach(cleanup);
 
-describe('Checkbox, Radio & Switch components ', () => {
+const AGREE_TERMS = 'I agree to terms and conditions';
+
+describe('Checkbox component ', () => {
   const CHECKBOX_LABEL = 'checkbox-label';
-  const AGREE_TERMS = 'I agree to terms and conditions';
-  const RADIO_LABEL = 'radio-label';
-  const SWITCH_LABEL = 'switch-label';
+
+
   it('<Checkbox /> renders correctly and call on change on Press', () => {
     const mockOnChange = jest.fn((checked) => checked);
     render(
@@ -84,6 +85,33 @@ describe('Checkbox, Radio & Switch components ', () => {
     expect(mockOnChange).toHaveBeenCalledTimes(0);
   });
 
+  it('<Checkbox /> should not render label when empty or not provided', () => {
+    const mockOnChange = jest.fn((checked) => checked);
+    render(<Checkbox testID="checkbox" label="" onChange={mockOnChange}
+      accessibilityLabel="agree"/>);
+    expect(screen.queryByTestId(CHECKBOX_LABEL)).not.toBeOnTheScreen();
+  });
+
+  it('<Checkbox /> renders as checked when checked prop is true', () => {
+    const mockOnChange = jest.fn((checked) => checked);
+    render(
+      <Checkbox
+        testID="checkbox"
+        onChange={mockOnChange}
+        checked={true}
+        accessibilityLabel="agree"
+        accessibilityHint="toggle Agree"
+      />
+    );
+    expect(screen.getByTestId('checkbox')).toBeChecked();
+    fireEvent.press(screen.getByTestId('checkbox'));
+    expect(mockOnChange).toHaveBeenCalledWith(false); // Checkbox should toggle to unchecked
+  });
+});
+
+describe('Radio component ', () => {
+  const RADIO_LABEL = 'radio-label';
+
   it('<Radio /> renders correctly and call on change on Press', () => {
     const mockOnChange = jest.fn((checked) => checked);
     render(
@@ -147,6 +175,33 @@ describe('Checkbox, Radio & Switch components ', () => {
     expect(mockOnChange).toHaveBeenCalledTimes(0);
   });
 
+  it('<Radio /> should not render label when empty or not provided', () => {
+    const mockOnChange = jest.fn((checked) => checked);
+    render(<Radio testID="radio" label="" onChange={mockOnChange}
+      accessibilityLabel="agree"/>);
+    expect(screen.queryByTestId(RADIO_LABEL)).not.toBeOnTheScreen();
+  });
+
+  it('<Radio /> renders as checked when checked prop is true', () => {
+    const mockOnChange = jest.fn((checked) => checked);
+    render(
+      <Radio
+        testID="radio"
+        onChange={mockOnChange}
+        checked={true}
+        accessibilityLabel="agree"
+        accessibilityHint="toggle Agree"
+      />
+    );
+    expect(screen.getByTestId('radio')).toBeChecked();
+    fireEvent.press(screen.getByTestId('radio'));
+    expect(mockOnChange).toHaveBeenCalledWith(false); // Radio should toggle to unchecked
+  });
+})
+
+describe('Switch component ', () => {
+  const SWITCH_LABEL = 'switch-label';
+
   it('<Switch /> renders correctly and call on change on Press', () => {
     const mockOnChange = jest.fn((checked) => checked);
     render(
@@ -209,4 +264,27 @@ describe('Checkbox, Radio & Switch components ', () => {
     fireEvent.press(screen.getByTestId('switch'));
     expect(mockOnChange).toHaveBeenCalledTimes(0);
   });
-});
+  
+  it('<Switch /> should not render label when empty or not provided', () => {
+    const mockOnChange = jest.fn((checked) => checked);
+    render(<Switch testID="switch" label="" onChange={mockOnChange}
+      accessibilityLabel="agree"/>);
+    expect(screen.queryByTestId(SWITCH_LABEL)).not.toBeOnTheScreen();
+  });
+
+  it('<Switch /> renders as checked when checked prop is true', () => {
+    const mockOnChange = jest.fn((checked) => checked);
+    render(
+      <Switch
+        testID="switch"
+        onChange={mockOnChange}
+        checked={true}
+        accessibilityLabel="agree"
+        accessibilityHint="toggle Agree"
+      />
+    );
+    expect(screen.getByTestId('switch').props.accessibilityState.checked).toBe(true);
+    fireEvent.press(screen.getByTestId('switch'));
+    expect(mockOnChange).toHaveBeenCalledWith(false); // Switch should toggle to unchecked
+  });
+})
