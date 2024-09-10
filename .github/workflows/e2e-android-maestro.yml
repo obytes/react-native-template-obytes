@@ -1,6 +1,6 @@
 # 🔗 Links:
 # Source file: https://github.com/rootstrap/react-native-template/blob/master/.github/workflows/e2e-android.yml
-# End-to-end testing: https://starter.obytes.com/testing/end-to-end-testing/
+# End-to-end testing: https://rootstrap.github.io/react-native-template/testing/end-to-end-testing/
 
 # ✍️ Description:
 # This workflow is used to run end-to-end tests on Android using Maestro Cloud.

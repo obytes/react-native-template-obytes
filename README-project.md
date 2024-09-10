@@ -47,12 +47,12 @@ SonarQube is an open-source platform for continuous inspection of code quality. 
 
 ## ✍️ Documentation
 
-- [Rules and Conventions](https://starter.obytes.com/getting-started/rules-and-conventions/)
-- [Project structure](https://starter.obytes.com/getting-started/project-structure)
-- [Environment vars and config](https://starter.obytes.com/getting-started/environment-vars-config)
-- [UI and Theming](https://starter.obytes.com/ui-and-theme/ui-theming)
-- [Components](https://starter.obytes.com/ui-and-theme/components)
-- [Forms](https://starter.obytes.com/ui-and-theme/Forms)
-- [Data fetching](https://starter.obytes.com/guides/data-fetching)
-- [Contribute to starter](https://starter.obytes.com/how-to-contribute/)
+- [Rules and Conventions](https://rootstrap.github.io/react-native-template/getting-started/rules-and-conventions/)
+- [Project structure](https://rootstrap.github.io/react-native-template/getting-started/project-structure)
+- [Environment vars and config](https://rootstrap.github.io/react-native-template/getting-started/environment-vars-config)
+- [UI and Theming](https://rootstrap.github.io/react-native-template/ui-and-theme/ui-theming)
+- [Components](https://rootstrap.github.io/react-native-template/ui-and-theme/components)
+- [Forms](https://rootstrap.github.io/react-native-template/ui-and-theme/forms/)
+- [Data fetching](https://rootstrap.github.io/react-native-template/guides/data-fetching)
+- [Contribute to starter](https://rootstrap.github.io/react-native-template/how-to-contribute/)
 - [Distribute using EAS](/EAS.md)
