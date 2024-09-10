@@ -26,7 +26,15 @@ const installDependencies = async (projectName) => {
 };
 
 const removeUnrelatedFiles = () => {
-  projectFilesManager.removeFiles(['.git', 'README.md', 'docs', 'cli', 'LICENSE']);
+  projectFilesManager.removeFiles([
+    '.git',
+    'README.md',
+    'docs',
+    '.github/workflows/deploy-docs.yml',
+    'cli',
+    '.github/workflows/deploy-cli.yml',
+    'LICENSE',
+  ]);
 };
 
 // Update package.json infos, name and  set version to 0.0.1 + add initial version to osMetadata
