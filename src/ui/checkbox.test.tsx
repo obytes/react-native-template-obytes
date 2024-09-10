@@ -209,4 +209,25 @@ describe('Checkbox, Radio & Switch components ', () => {
     fireEvent.press(screen.getByTestId('switch'));
     expect(mockOnChange).toHaveBeenCalledTimes(0);
   });
+
+  it('<Checkbox /> should not render label when empty or not provided', () => {
+    const mockOnChange = jest.fn((checked) => checked);
+    render(<Checkbox testID="checkbox" label="" onChange={mockOnChange}
+      accessibilityLabel="agree"/>);
+    expect(screen.queryByTestId(CHECKBOX_LABEL)).not.toBeOnTheScreen();
+  });
+  
+  it('<Radio /> should not render label when empty or not provided', () => {
+    const mockOnChange = jest.fn((checked) => checked);
+    render(<Radio testID="radio" label="" onChange={mockOnChange}
+      accessibilityLabel="agree"/>);
+    expect(screen.queryByTestId(RADIO_LABEL)).not.toBeOnTheScreen();
+  });
+  
+  it('<Switch /> should not render label when empty or not provided', () => {
+    const mockOnChange = jest.fn((checked) => checked);
+    render(<Switch testID="switch" label="" onChange={mockOnChange}
+      accessibilityLabel="agree"/>);
+    expect(screen.queryByTestId(SWITCH_LABEL)).not.toBeOnTheScreen();
+  });
 });
