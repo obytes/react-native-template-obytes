@@ -72,7 +72,8 @@ module.exports = {
       },
     ],
     'object-shorthand': 'error',
-    'arrow-body-style': ["error", "as-needed"]
+    'arrow-body-style': ["error", "as-needed"],
+    'guard-for-in': 'error'
   },
   overrides: [
     // Configuration for  translations files (i18next)
