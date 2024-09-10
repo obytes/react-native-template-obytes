@@ -31,7 +31,7 @@ export type IconProps = {
 };
 
 export const Root = ({
-  checked = false,
+  checked,
   children,
   onChange,
   disabled,
@@ -69,7 +69,7 @@ const Label = ({ text, testID, className = '' }: LabelProps) => (
     </Text>
   );
 
-export const CheckboxIcon = ({ checked = false }: IconProps) => {
+export const CheckboxIcon = ({ checked }: IconProps) => {
   const color = checked ? colors.primary[300] : colors.charcoal[400];
   return (
     <MotiView
@@ -105,7 +105,7 @@ export const CheckboxIcon = ({ checked = false }: IconProps) => {
   );
 };
 
-const CheckboxRoot = ({ checked = false, children, ...props }: RootProps) => (
+const CheckboxRoot = ({ checked, children, ...props }: RootProps) => (
     <Root checked={checked} accessibilityRole="checkbox" {...props}>
       {children}
     </Root>
@@ -136,7 +136,7 @@ export const Checkbox = Object.assign(CheckboxBase, {
   Label,
 });
 
-export const RadioIcon = ({ checked = false }: IconProps) => {
+export const RadioIcon = ({ checked }: IconProps) => {
   const color = checked ? colors.primary[300] : colors.charcoal[400];
   return (
     <MotiView
@@ -164,7 +164,7 @@ export const RadioIcon = ({ checked = false }: IconProps) => {
   );
 };
 
-const RadioRoot = ({ checked = false, children, ...props }: RootProps) => (
+const RadioRoot = ({ checked, children, ...props }: RootProps) => (
     <Root checked={checked} accessibilityRole="radio" {...props}>
       {children}
     </Root>
@@ -190,7 +190,7 @@ export const Radio = Object.assign(RadioBase, {
   Label,
 });
 
-export const SwitchIcon = ({ checked = false }: IconProps) => {
+export const SwitchIcon = ({ checked }: IconProps) => {
   const translateX = checked
     ? THUMB_OFFSET
     : WIDTH - THUMB_WIDTH - THUMB_OFFSET;
@@ -225,7 +225,7 @@ export const SwitchIcon = ({ checked = false }: IconProps) => {
     </View>
   );
 };
-const SwitchRoot = ({ checked = false, children, ...props }: RootProps) => (
+const SwitchRoot = ({ checked, children, ...props }: RootProps) => (
     <Root checked={checked} accessibilityRole="switch" {...props}>
       {children}
     </Root>
