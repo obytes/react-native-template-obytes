@@ -123,6 +123,19 @@ const updateGitHubWorkflows = (projectName) => {
       newFileName: '.github/workflows/new-app-version.yml',
     },
   ]);
+
+  // Update Pull Request Template
+  projectFilesManager.replaceFilesContent([
+    {
+      fileName: '.github/PULL_REQUEST_TEMPLATE.md',
+      replacements: [
+        {
+          searchValue: /^[\s\S]*?(?=## What does this do\?)/,
+          replaceValue: '',
+        },
+      ],
+    },
+  ]);
 };
 
 const updateProjectReadme = () => {
