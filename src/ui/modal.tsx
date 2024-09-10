@@ -159,8 +159,7 @@ const getDetachedProps = (detached: boolean) => {
  * ModalHeader
  */
 
-const ModalHeader = memo(({ title, dismiss }: ModalHeaderProps) => {
-  return (
+const ModalHeader = memo(({ title, dismiss }: ModalHeaderProps) => (
     <>
       {title && (
         <View className="flex-row px-2 py-4">
@@ -174,11 +173,9 @@ const ModalHeader = memo(({ title, dismiss }: ModalHeaderProps) => {
       )}
       <CloseButton close={dismiss} />
     </>
-  );
-});
+  ));
 
-const CloseButton = ({ close }: { close: () => void }) => {
-  return (
+const CloseButton = ({ close }: { close: () => void }) => (
     <Pressable
       onPress={close}
       className="absolute right-3 top-3 h-[24px] w-[24px] items-center justify-center "
@@ -198,4 +195,3 @@ const CloseButton = ({ close }: { close: () => void }) => {
       </Svg>
     </Pressable>
   );
-};

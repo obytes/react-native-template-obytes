@@ -16,8 +16,6 @@ export default function interceptors() {
       response.data = toCamelCase(response.data);
       return response;
     },
-    (error: AxiosError) => {
-      return Promise.reject(error);
-    }
+    (error: AxiosError) => Promise.reject(error)
   );
 }

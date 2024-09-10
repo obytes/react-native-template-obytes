@@ -120,8 +120,7 @@ const Option = memo(
   }: PressableProps & {
     selected?: boolean;
     label: string;
-  }) => {
-    return (
+  }) => (
       <Pressable
         className="flex-row items-center border-b border-neutral-300 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-800"
         {...props}
@@ -129,8 +128,7 @@ const Option = memo(
         <Text className="flex-1 dark:text-neutral-100 ">{label}</Text>
         {selected && <Check />}
       </Pressable>
-    );
-  }
+    )
 );
 
 export interface SelectProps {

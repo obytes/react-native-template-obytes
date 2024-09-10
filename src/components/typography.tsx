@@ -2,8 +2,7 @@ import { Text, View } from '@/ui';
 
 import { Title } from './title';
 
-export const Typography = () => {
-  return (
+export const Typography = () => (
     <>
       <Title text="Typography" />
       <View className="mb-4 flex-col">
@@ -22,4 +21,3 @@ export const Typography = () => {
       </View>
     </>
   );
-};
