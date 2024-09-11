@@ -78,6 +78,15 @@ const updateProjectConfig = async (projectName) => {
         },
       ],
     },
+    {
+      fileName: 'app.config.ts',
+      replacements: [
+        {
+          searchValue: "slug: 'reactnativetemplate'",
+          replaceValue: `slug: '${projectName.toLowerCase()}'`,
+        },
+      ],
+    },
   ]);
 };
 
@@ -138,11 +147,23 @@ const updateGitHubWorkflows = (projectName) => {
   ]);
 };
 
-const updateProjectReadme = () => {
+const updateProjectReadme = (projectName) => {
   projectFilesManager.renameFiles([
     {
       oldFileName: 'README-project.md',
       newFileName: 'README.md',
+    },
+  ]);
+
+  projectFilesManager.replaceFilesContent([
+    {
+      fileName: 'README.md',
+      replacements: [
+        {
+          searchValue: 'Mobile App',
+          replaceValue: projectName,
+        },
+      ],
     },
   ]);
 };
@@ -158,7 +179,7 @@ const setupProject = async (projectName) => {
     updatePackageJson(projectName);
     updateProjectConfig(projectName);
     updateGitHubWorkflows(projectName);
-    updateProjectReadme();
+    updateProjectReadme(projectName);
     consola.success(`Clean up and setup your project 🧹`);
   } catch (error) {
     consola.error(`Failed to clean up project folder`, error);
