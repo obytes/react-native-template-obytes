@@ -2,8 +2,8 @@
 name: Deploy docs to GitHub Pages
 
 on:
-  push:
-    branches: [main, master]
+  release:
+    types: [published]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
