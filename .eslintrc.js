@@ -5,20 +5,27 @@ module.exports = {
   extends: [
     'expo', 
     'plugin:tailwindcss/recommended', 
-    'prettier'
+    'prettier',
+    'eslint:recommended'
   ],
+  env: {
+    'jest/globals': true,
+    'node': true
+  },
   plugins: [
     'unicorn', 
     '@typescript-eslint',
     'unused-imports',
     'tailwindcss',
     'simple-import-sort',
-    'sonarjs'
+    'sonarjs',
+    'jest'
   ],
   parserOptions: {
     project: './tsconfig.json',
   },
   rules: {
+    'import/no-duplicates': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
     'unicorn/filename-case': [
       'error',
@@ -73,6 +80,7 @@ module.exports = {
     ],
     'object-shorthand': 'error',
     'arrow-body-style': ["error", "as-needed"],
+    'no-console': ['error', {allow: ['error']}],
     'guard-for-in': 'error'
   },
   overrides: [

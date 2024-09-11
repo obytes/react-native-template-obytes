@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
 import type { OptionType } from '@/ui';
-import { Input, Select, View } from '@/ui';
-import { Checkbox, Radio, Switch } from '@/ui';
+import { Checkbox, Input, Radio, Select, Switch, View } from '@/ui';
 
 import { Title } from './title';
 

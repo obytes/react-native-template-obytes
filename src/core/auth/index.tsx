@@ -1,8 +1,7 @@
 import { create } from 'zustand';
 
 import { createSelectors } from '../utils';
-import type { TokenType } from './utils';
-import { getToken, removeToken, setToken } from './utils';
+import { getToken, removeToken, setToken, type TokenType } from './utils';
 
 interface AuthState {
   token: TokenType | null;
@@ -31,7 +30,7 @@ const _useAuth = create<AuthState>((set, get) => ({
       } else {
         get().signOut();
       }
-    } catch (e) {
+    } catch (_) {
       // catch error here
       // Maybe sign_out user!
     }

@@ -4,7 +4,7 @@ import { Cover } from '@/components/cover';
 import { useIsFirstTime } from '@/core/hooks';
 import { Button, FocusAwareStatusBar, SafeAreaView, Text, View } from '@/ui';
 export default function Onboarding() {
-  const [_, setIsFirstTime] = useIsFirstTime();
+  const [, setIsFirstTime] = useIsFirstTime();
   const router = useRouter();
   return (
     <View className="flex h-full items-center  justify-center">

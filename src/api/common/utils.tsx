@@ -51,7 +51,7 @@ type GenericObject = { [key: string]: unknown };
 export const toCamelCase = (obj: GenericObject): GenericObject => {
   const newObj: GenericObject = {};
   for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
+    if (Object.hasOwn(obj,key)) {
       if (key.includes('_')) {
         const newKey = key.replace(/_([a-z])/g, (g) => g[1].toUpperCase());
         newObj[newKey] = obj[key];
@@ -66,7 +66,7 @@ export const toCamelCase = (obj: GenericObject): GenericObject => {
 export const toSnakeCase = (obj: GenericObject): GenericObject => {
   const newObj: GenericObject = {};
   for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
+    if (Object.hasOwn(obj,key)) {
       let newKey = key.match(/([A-Z])/g)
         ? key
             .match(/([A-Z])/g)!
