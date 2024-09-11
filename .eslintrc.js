@@ -19,6 +19,7 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
+    'import/no-duplicates': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
     'unicorn/filename-case': [
       'error',
