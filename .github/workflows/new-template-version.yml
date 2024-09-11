@@ -1,6 +1,6 @@
 # 🔗 Links:
 # Source file: https://github.com/rootstrap/react-native-template/blob/master/.github/workflows/lint-ts.yml
-# Starter releasing process: https://starter.obytes.com/ci-cd/app-releasing-process/
+# Starter releasing process: https://rootstrap.github.io/react-native-template/ci-cd/app-releasing-process/
 
 # ✍️ Description:
 # This workflow is used to create a new version of the template and push a new tag to the repo.

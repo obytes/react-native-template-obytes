@@ -16,7 +16,7 @@ const getLatestRelease = async () => {
   }
 };
 
-const cloneLastTemplateRelease = async (projectName) => {
+const cloneLatestTemplateRelease = async (projectName) => {
   consola.start('Extracting last release number 👀');
   const latest_release = await getLatestRelease();
   consola.info(`Using Rootstrap's Template ${latest_release}`);
@@ -31,5 +31,5 @@ const cloneLastTemplateRelease = async (projectName) => {
 };
 
 module.exports = {
-  cloneLastTemplateRelease,
+  cloneLatestTemplateRelease,
 };

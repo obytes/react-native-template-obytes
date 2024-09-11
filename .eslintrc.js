@@ -80,7 +80,8 @@ module.exports = {
     ],
     'object-shorthand': 'error',
     'arrow-body-style': ["error", "as-needed"],
-    'no-console': ['error', {allow: ['error']}]
+    'no-console': ['error', {allow: ['error']}],
+    'guard-for-in': 'error'
   },
   overrides: [
     // Configuration for  translations files (i18next)
