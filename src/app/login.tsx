@@ -10,6 +10,7 @@ export default function Login() {
   const signIn = useAuth.use.signIn();
 
   const onSubmit: LoginFormProps['onSubmit'] = (data) => {
+    // eslint-disable-next-line no-console
     console.log(data);
     signIn({ access: 'access-token', refresh: 'refresh-token' });
     router.push('/');

@@ -219,6 +219,7 @@ if (shouldValidateEnv) {
       );
     }
 
+    console.error(...messages);
     throw new Error(
       'Invalid environment variables, Check terminal for more details '
     );
