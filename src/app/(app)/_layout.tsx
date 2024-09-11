@@ -17,10 +17,11 @@ export default function TabLayout() {
     await SplashScreen.hideAsync();
   }, []);
   useEffect(() => {
+    const TIMEOUT = 1000
     if (status !== 'idle') {
       setTimeout(() => {
         hideSplash();
-      }, 1000);
+      }, TIMEOUT);
     }
   }, [hideSplash, status]);
 

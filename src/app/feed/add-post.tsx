@@ -7,9 +7,11 @@ import { z } from 'zod';
 import { useAddPost } from '@/api';
 import { Button, ControlledInput, showErrorMessage, View } from '@/ui';
 
+const TITLE_MIN_CHARS = 10
+const BODY_MIN_CHARS = 120
 const schema = z.object({
-  title: z.string().min(10),
-  body: z.string().min(120),
+  title: z.string().min(TITLE_MIN_CHARS),
+  body: z.string().min(BODY_MIN_CHARS),
 });
 
 type FormType = z.infer<typeof schema>;

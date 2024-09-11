@@ -12,7 +12,7 @@ const execShellCommand = (cmd) => {
         console.warn(error);
         reject(error);
       }
-      resolve(stdout ? stdout : stderr);
+      resolve(stdout || stderr);
     });
   });
 };

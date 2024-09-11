@@ -13,8 +13,8 @@ export const showError = (error: AxiosError) => {
   const description = extractError(error?.response?.data).trimEnd();
 
   showMessage({
-    message: 'Error',
     description,
+    message: 'Error',
     type: 'danger',
     duration: 4000,
     icon: 'danger',

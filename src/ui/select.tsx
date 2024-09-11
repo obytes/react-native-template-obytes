@@ -8,8 +8,7 @@ import { useColorScheme } from 'nativewind';
 import { forwardRef, memo, useCallback, useMemo } from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { useController } from 'react-hook-form';
-import { Platform, TouchableOpacity, View } from 'react-native';
-import { Pressable, type PressableProps } from 'react-native';
+import { Platform, Pressable, type PressableProps,TouchableOpacity, View  } from 'react-native';
 import type { SvgProps } from 'react-native-svg';
 import Svg, { Path } from 'react-native-svg';
 import { tv } from 'tailwind-variants';
@@ -72,7 +71,9 @@ function keyExtractor(item: OptionType) {
 
 export const Options = forwardRef<BottomSheetModal, OptionsProps>(
   ({ options, onSelect, value, testID }, ref) => {
-    const height = options.length * 70 + 100;
+    const HEIGHT_MARGIN = 100
+    const OPTION_HEIGHT = 70
+    const height = options.length * OPTION_HEIGHT + HEIGHT_MARGIN;
     const snapPoints = useMemo(() => [height], [height]);
     const { colorScheme } = useColorScheme();
     const isDark = colorScheme === 'dark';
