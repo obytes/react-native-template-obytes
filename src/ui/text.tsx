@@ -27,14 +27,14 @@ export const Text = ({
     [className]
   );
 
-  const nStyle = useMemo(
+  const nStyle: TextStyle = useMemo(
     () =>
       StyleSheet.flatten([
         {
           writingDirection: I18nManager.isRTL ? 'rtl' : 'ltr',
         },
         style,
-      ]) as TextStyle,
+      ]),
     [style]
   );
   return (

@@ -6,6 +6,7 @@ import z from 'zod';
 
 import { Button, ControlledInput, Text, View } from '@/ui';
 
+const MIN_CHARS = 6
 const schema = z.object({
   name: z.string().optional(),
   email: z
@@ -17,7 +18,7 @@ const schema = z.object({
     .string({
       required_error: 'Password is required',
     })
-    .min(6, 'Password must be at least 6 characters'),
+    .min(MIN_CHARS, 'Password must be at least 6 characters'),
 });
 
 export type FormType = z.infer<typeof schema>;

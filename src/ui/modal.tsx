@@ -106,7 +106,7 @@ export const Modal = forwardRef(
         ref={modal.ref}
         index={0}
         snapPoints={snapPoints}
-        backdropComponent={props.backdropComponent || renderBackdrop}
+        backdropComponent={props.backdropComponent ?? renderBackdrop}
         handleComponent={renderHandleComponent}
       />
     );
@@ -121,11 +121,13 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 const CustomBackdrop = ({ style }: BottomSheetBackdropProps) => {
   const { close } = useBottomSheet();
+  const FADE_IN_DURATION = 50
+  const FADE_OUT_DURATION = 20
   return (
     <AnimatedPressable
       onPress={() => close()}
-      entering={FadeIn.duration(50)}
-      exiting={FadeOut.duration(20)}
+      entering={FadeIn.duration(FADE_IN_DURATION)}
+      exiting={FadeOut.duration(FADE_OUT_DURATION)}
       style={[style, { backgroundColor: 'rgba(0, 0, 0, 0.4)' }]}
     />
   );

@@ -21,9 +21,21 @@ module.exports = {
     'sonarjs',
     'jest'
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
   },
+  ignorePatterns: [
+    "node_modules",
+    "*.config.js",
+    "docs",
+    "cli",
+    "android",
+    "ios",
+    "lint-staged.config.js",
+    "i18next-syntax-validation.js",
+    ".eslintrc.js"
+  ],
   rules: {
     'import/no-duplicates': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
@@ -42,7 +54,7 @@ module.exports = {
     'react/require-default-props': 'off', // Allow non-defined react props as undefined
     '@typescript-eslint/comma-dangle': 'off', // Avoid conflict rule between Eslint and Prettier
     '@typescript-eslint/consistent-type-imports': [
-      'warn',
+      'error',
       {
         prefer: 'type-imports',
         fixStyle: 'inline-type-imports',
@@ -81,7 +93,14 @@ module.exports = {
     'object-shorthand': 'error',
     'arrow-body-style': ["error", "as-needed"],
     'no-console': ['error', {allow: ['error']}],
-    'guard-for-in': 'error'
+    'guard-for-in': 'error',
+    '@typescript-eslint/no-magic-numbers': ["error",
+       { ignoreArrayIndexes: true, 
+        ignoreEnums: true,
+        ignore: [-1, 0, 1]
+      }
+    ],
+    '@typescript-eslint/prefer-nullish-coalescing': "error"
   },
   overrides: [
     // Configuration for  translations files (i18next)
