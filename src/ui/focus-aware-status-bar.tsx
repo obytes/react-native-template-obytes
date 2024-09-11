@@ -1,5 +1,6 @@
 import { useIsFocused } from '@react-navigation/native';
 import { useColorScheme } from 'nativewind';
+import React from 'react';
 import { StatusBar } from 'react-native';
 
 type Props = React.ComponentProps<typeof StatusBar>;

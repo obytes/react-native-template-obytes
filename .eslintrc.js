@@ -5,15 +5,21 @@ module.exports = {
   extends: [
     'expo', 
     'plugin:tailwindcss/recommended', 
-    'prettier'
+    'prettier',
+    'eslint:recommended'
   ],
+  env: {
+    'jest/globals': true,
+    'node': true
+  },
   plugins: [
     'unicorn', 
     '@typescript-eslint',
     'unused-imports',
     'tailwindcss',
     'simple-import-sort',
-    'sonarjs'
+    'sonarjs',
+    'jest'
   ],
   parserOptions: {
     project: './tsconfig.json',
