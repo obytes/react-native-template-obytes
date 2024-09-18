@@ -34,7 +34,7 @@ pnpm test ## tests
 pnpm prebuild --clean ## clean ios and android build folders and regenerate them
 pnpm ios ## run ios build
 pnpm android ## run android build
-pnpm start --clear ## start the server
+pnpm start -c ## start the server
 ```
 
 :::info
@@ -81,7 +81,7 @@ pnpm test ## tests
 pnpm prebuild --clean ## clean ios and android build folders and regenerate them
 pnpm ios ## run ios build
 pnpm android ## run android build
-pnpm start --clear ## start the server
+pnpm start -c ## start the server
 ```
 
 Unfortunately, there is no magic trick here in case you have any issues while running your checks, Fixing those errors may require some manual effort. You can start by reading the error message and identifying any relevant packages that may be causing the issue. Check the changelog of those packages to see if there have been any recent updates that might have introduced breaking changes. This will help you to pinpoint the root cause of the issue and take the necessary steps to resolve it.
@@ -147,7 +147,7 @@ pnpm test ## tests
 pnpm prebuild --clean ## clean ios and Android build folders and regenerate them
 pnpm ios ## run ios build
 pnpm android ## run android build
-pnpm start --clear ## start the server
+pnpm start -c ## start the server
 ```
 
 If you are lucky enough and everything works as expected without any issues, you can now update the rest of the dependencies.
