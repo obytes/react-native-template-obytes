@@ -47,6 +47,8 @@ As you may notice from the code, we are importing a bunch of things from the `@/
 You can update this file to add any other providers you need to wrap your components with as well as any other utility functions you need to use in your tests.
 
 <CodeBlock file="src/core/test-utils.tsx" />
+
+use `setup` function in case you need to test interactions with the component. It returns a user (userEvent) object that you can use to interact with the component.
 :::
 
 Now that we have our test file ready, let's run it and see what happens. To run the test, run the following command:
@@ -73,3 +75,5 @@ Aiming for 100% test coverage is not always a good idea and doesn't always make 
 For more complex logic and components, we recommend taking a look at this amazing project which provides a lot of examples and best practices for testing React Native apps using React Native Testing Library and Jest:
 
 [⚡️ React Native Testing](https://github.com/vanGalilea/react-native-testing/)
+
+[React Native Testing Library Cookbook](https://callstack.github.io/react-native-testing-library/cookbook/index)
