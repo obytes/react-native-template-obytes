@@ -2,7 +2,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 
-import { cleanup, fireEvent, render, screen } from '@/core/test-utils';
+import { cleanup, render, screen, setup } from '@/core/test-utils';
 
 import { Button } from './button';
 
@@ -17,7 +17,7 @@ describe('Button component ', () => {
     render(
       <Button testID="button">
         <Text> Custom child </Text>
-      </Button>
+      </Button>,
     );
     expect(screen.getByText('Custom child')).toBeOnTheScreen();
   });
@@ -31,48 +31,48 @@ describe('Button component ', () => {
     expect(screen.getByTestId('button')).toBeOnTheScreen();
     expect(screen.getByTestId('button-activity-indicator')).toBeOnTheScreen();
   });
-  it('should call onClick handler when clicked', () => {
+  it('should call onClick handler when clicked', async () => {
     const onClick = jest.fn();
-    render(
-      <Button testID="button" label="Click the button" onPress={onClick} />
+    const { user } = setup(
+      <Button testID="button" label="Click the button" onPress={onClick} />,
     );
     expect(screen.getByTestId('button')).toBeOnTheScreen();
-    fireEvent.press(screen.getByTestId('button'));
+    await user.press(screen.getByTestId('button'));
     expect(onClick).toHaveBeenCalledTimes(1);
   });
-  it('should be disabled when loading', () => {
+  it('should be disabled when loading', async () => {
     const onClick = jest.fn();
-    render(
+    const { user } = setup(
       <Button
         testID="button"
         loading={true}
         label="Click the button"
         onPress={onClick}
-      />
+      />,
     );
     expect(screen.getByTestId('button')).toBeOnTheScreen();
     expect(screen.getByTestId('button-activity-indicator')).toBeOnTheScreen();
     expect(screen.getByTestId('button')).toBeDisabled();
-    fireEvent.press(screen.getByTestId('button'));
+    await user.press(screen.getByTestId('button'));
     expect(onClick).toHaveBeenCalledTimes(0);
   });
   it('should be disabled when disabled prop is true', () => {
     render(<Button testID="button" disabled={true} />);
     expect(screen.getByTestId('button')).toBeDisabled();
   });
-  it("shouldn't call onClick when disabled", () => {
+  it("shouldn't call onClick when disabled", async () => {
     const onClick = jest.fn();
-    render(
+    const { user } = setup(
       <Button
         testID="button"
         label="Click the button"
         disabled={true}
         onPress={onClick}
         variant="secondary"
-      />
+      />,
     );
     expect(screen.getByTestId('button')).toBeOnTheScreen();
-    fireEvent.press(screen.getByTestId('button'));
+    await user.press(screen.getByTestId('button'));
 
     expect(screen.getByTestId('button')).toBeDisabled();
 
