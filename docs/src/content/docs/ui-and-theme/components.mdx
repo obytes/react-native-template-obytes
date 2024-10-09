@@ -249,19 +249,20 @@ Feel free to update the component implementation to fit your need and as you kee
 - `error`: `string` - Input error message
 - `options` : array of `{ label: string; value: string | number }` - List of items to select from
 - `value` : `string | number` - Selected item value
-- `onSelect`: `(option: Option) => void;` - Callback function to handle item selection
+- `onSelect`: `(option:  string | number ) => void`- Callback function to handle item selection
 - `placeholder`: `string`- Placeholder text
 - `disabled`: `boolean` - Disable select input (default: `false`)
+
 
 **Use Case**
 
 ```tsx
 import * as React from 'react';
 
-import type { Option } from '@/ui';
+import type { OptionType } from '@/ui'
 import { SelectInput, View } from '@/ui';
 
-const options: Option[] = [
+const options: OptionType[] = [
   { value: 'chocolate', label: 'Chocolate' },
   { value: 'strawberry', label: 'Strawberry' },
   { value: 'vanilla', label: 'Vanilla' },
@@ -276,7 +277,7 @@ const MyComponent = () => {
         error="Select is required"
         options={options}
         value={value}
-        onSelect={(option) => setValue(option.value)}
+        onSelect={(option) => setValue(option)}
       />
     </View>
   );
