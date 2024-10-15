@@ -48,7 +48,7 @@ When creating this starter kit, we had several guiding principles in mind::
 - 🧪 Unit testing setup with [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 - 🔍 E2E testing capabilities with [Maestro](https://maestro.mobile.dev/) for comprehensive app testing.
 
-## 🤔 Is this starter for me?
+## Is this starter for me?
 
 Yes 😀
 
@@ -60,19 +60,19 @@ This starter kit is designed to benefit a wide range of React Native developers,
 
 3. **For teams:** It ensures consistency across projects and team members, making it easier to onboard new developers and maintain code quality.
 
-4. **For explorers:** Even if you prefer not to use starter kits, this project can serve as a valuable reference. You can explore the codebase, documentation, and architectural decisions to gain insights and potentially adopt specific solutions for your own projects.
+4. **For explorers:** Even if you prefer not to use starter kits, this project can serve as a valuable reference. You can explore the codebase, documentation, and architectural decisions to gain insights and potentially adopt specific solutions for your projects.
 
-5. **For learners:** The starter kit incorporates up-to-date libraries and patterns, offering an opportunity to familiarize yourself with current best practices in the React Native ecosystem.
+5. **For learners:** The starter kit incorporates up-to-date libraries and patterns, allowing you to familiarize yourself with current best practices in the React Native ecosystem.
 
 6. **For AI-assisted development:** This starter kit works well with AI coding tools. It provides a solid structure and best practices that can guide AI-generated code. This helps ensure that AI assistance leads to high-quality, maintainable code that fits well within your project.
 
 Remember, you don't have to use the entire starter kit as-is. Feel free to cherry-pick ideas, configurations, or code snippets that align with your project needs. Whether you're building a new app from scratch or looking to improve your existing development process, this starter kit can provide valuable insights and practical solutions.
 
-## 😉 Why Expo and not React Native CLI?
+## Why Expo and not React Native CLI?
 
 We have been using Expo as our main framework since the introduction of [Continuous Native Generation (CNG)](https://docs.expo.dev/workflow/continuous-native-generation/) concept and we are happy with the experience.
 
-I think this question is not valid anymore specially after the last React conference when the core react native team recommended using Expo for new projects.
+I think this question is not valid anymore, especially after the last React conference when the core React native team recommended using Expo for new projects.
 
 > "As of today, the only recommended community framework for React Native is Expo. Folks at Expo have been investing in the React Native ecosystem since the early days of React Native and as of today, we believe the developer experience offered by Expo is best in class." React native core team
 
