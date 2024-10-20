@@ -3,10 +3,6 @@ title: Obytes Starter | React Native/Expo starter
 description: "Your All-in-One Solution for Building Outstanding React Native/Expo Apps. From editor setup to store submission, we've got you covered!"
 template: splash
 lastUpdated: false
-banner:
-  content: |
-    🌟 Loving our starter? Share your success story! Your feedback fuels our passion.
-    <a href="https://starter.obytes.com/reviews">Drop a review</a> and inspire others! 🚀
 hero:
   title: Perfect React Native App Kickstart 🚀!
   tagline: "Your All-in-One Solution for Building Outstanding React Native/Expo Apps. From editor setup to store submission, we've got you covered!"
@@ -20,11 +16,13 @@ hero:
     - text: View on GitHub
       link: https://github.com/obytes/react-native-template-obytes
       icon: external
+      variant: secondary
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 import GithubStar from '../../components/GithubStar.astro';
 import About from '../../components/about.astro';
+import Reviews from '../../components/reviews.astro';
 
 <GithubStar />
 
@@ -77,10 +75,12 @@ import About from '../../components/about.astro';
 	</Card>
 </CardGrid>
 
+<Reviews />
+
 <About title="Built with ❤️ by">
 
 In addition to maintaining this starter kit, we provide expertise in custom projects and app development. If you're looking for experienced and reliable developers to bring your app vision to life, reach out to us. Let's discuss your project and explore how we can help you achieve your goals.
 
-[Contact us](https://obytes.com/contact)
+[Work with us](https://obytes.com/contact)
 
 </About>
