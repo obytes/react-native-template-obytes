@@ -221,6 +221,7 @@ export const Select = (props: SelectProps) => {
         ref={modal.ref}
         options={options}
         onSelect={onSelectOption}
+        value={value}
       />
     </>
   );
