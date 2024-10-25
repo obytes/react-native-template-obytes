@@ -22,6 +22,10 @@ jobs:
   type-check:
     name: Type Check (tsc)
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
     steps:
       - name: 📦 Checkout project repo
         uses: actions/checkout@v3

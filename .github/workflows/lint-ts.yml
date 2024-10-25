@@ -22,6 +22,9 @@ jobs:
   lint:
     name: Lint TS (eslint, prettier)
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
 
     steps:
       - name: 📦 Checkout project repo
