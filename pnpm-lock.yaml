@@ -24,8 +24,8 @@ importers:
         specifier: ^5.52.1
         version: 5.52.2(react@18.2.0)
       app-icon-badge:
-        specifier: ^0.0.15
-        version: 0.0.15
+        specifier: ^0.1.1
+        version: 0.1.1
       axios:
         specifier: ^1.7.5
         version: 1.7.5
@@ -2321,8 +2321,8 @@ packages:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
 
-  app-icon-badge@0.0.15:
-    resolution: {integrity: sha512-k4973RJKXvvoJRYnNFh1mg0NoA6czIHaxzL9557JxsCwSJVaqoZg2lMCgFC+3cOMiKzwQmBK41Ec2kM7RJkefg==}
+  app-icon-badge@0.1.1:
+    resolution: {integrity: sha512-fW9+8wfvuCyeZRkW23n6U6TIrB3OTPhvOWPTpCtwcMlQvGo58DIAvLiXwJn73vIUs5mLu7noZyzZXGVkSjjamQ==}
     hasBin: true
 
   appdirsjs@1.2.7:
@@ -10688,8 +10688,9 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
-  app-icon-badge@0.0.15:
+  app-icon-badge@0.1.1:
     dependencies:
+      '@expo/config-plugins': 8.0.10
       color-convert: 2.0.1
       commander: 11.1.0
       delta-e: 0.0.8
@@ -10697,6 +10698,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
       - encoding
+      - supports-color
 
   appdirsjs@1.2.7: {}
 
