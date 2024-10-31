@@ -6,14 +6,9 @@ import z from 'zod';
 
 import { Button, ControlledInput, Text, View } from '@/ui';
 
-const MIN_CHARS = 6
+const MIN_CHARS = 6;
 const schema = z.object({
-  name: z.string().optional(),
-  email: z
-    .string({
-      required_error: 'Email is required',
-    })
-    .email('Invalid email format'),
+  username: z.string(),
   password: z
     .string({
       required_error: 'Password is required',
@@ -43,17 +38,10 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
         </Text>
 
         <ControlledInput
-          testID="name"
+          testID="username"
           control={control}
-          name="name"
-          label="Name"
-        />
-
-        <ControlledInput
-          testID="email-input"
-          control={control}
-          name="email"
-          label="Email"
+          name="username"
+          label="Username"
         />
         <ControlledInput
           testID="password-input"

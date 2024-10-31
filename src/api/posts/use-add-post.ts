@@ -1,7 +1,9 @@
 import type { AxiosError } from 'axios';
+import axios from 'axios';
 import { createMutation } from 'react-query-kit';
 
-import { client } from '../common';
+import { Env } from '@/core/env';
+
 import type { Post } from './types';
 
 type Variables = { title: string; body: string; userId: number };
@@ -9,9 +11,12 @@ type Response = Post;
 
 export const useAddPost = createMutation<Response, Variables, AxiosError>({
   mutationFn: async (variables) =>
-    client({
-      url: 'posts/add',
+    axios({
+      url: `${Env.API_URL}posts/add`,
       method: 'POST',
       data: variables,
+      headers: {
+        'Content-Type': 'application/json',
+      },
     }).then((response) => response.data),
 });

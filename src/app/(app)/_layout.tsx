@@ -8,6 +8,7 @@ import {
   Feed as FeedIcon,
   Settings as SettingsIcon,
   Style as StyleIcon,
+  Support as SupportIcon,
 } from '@/ui/icons';
 
 export default function TabLayout() {
@@ -17,7 +18,7 @@ export default function TabLayout() {
     await SplashScreen.hideAsync();
   }, []);
   useEffect(() => {
-    const TIMEOUT = 1000
+    const TIMEOUT = 1000;
     if (status !== 'idle') {
       setTimeout(() => {
         hideSplash();
@@ -42,7 +43,15 @@ export default function TabLayout() {
           tabBarTestID: 'feed-tab',
         }}
       />
-
+      <Tabs.Screen
+        name="carts"
+        options={{
+          title: 'Carts',
+          headerShown: true,
+          tabBarIcon: ({ color }) => <SupportIcon color={color} />,
+          tabBarTestID: 'carts-tab',
+        }}
+      />
       <Tabs.Screen
         name="style"
         options={{
@@ -66,9 +75,9 @@ export default function TabLayout() {
 }
 
 const CreateNewPostLink = () => (
-    <Link href="/feed/add-post" asChild>
-      <Pressable>
-        <Text className="px-3 text-primary-300">Create</Text>
-      </Pressable>
-    </Link>
-  );
+  <Link href="/feed/add-post" asChild>
+    <Pressable>
+      <Text className="px-3 text-primary-300">Create</Text>
+    </Pressable>
+  </Link>
+);
