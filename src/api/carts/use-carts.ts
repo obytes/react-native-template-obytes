@@ -15,11 +15,12 @@ const getCarts = async ({
   limit = DEFAULT_LIMIT,
   offset = DEFAULT_OFFSET,
 }: Variables) => {
-  const params = new URLSearchParams({
-    limit: limit.toString(),
-    offset: offset.toString(),
-  }).toString();
-  const { data } = await client.get(`carts?${params}`);
+  const { data } = await client.get('carts', {
+    params: {
+      limit,
+      offset,
+    },
+  });
   return { data, offset: Number(offset), limit: Number(limit) };
 };
 

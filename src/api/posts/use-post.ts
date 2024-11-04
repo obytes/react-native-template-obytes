@@ -10,12 +10,14 @@ import type { Post } from './types';
 type Variables = { id: string };
 type Response = Post;
 
+const getPosts = async (variables: Variables) => {
+  const { data } = await client.get(`posts/${variables.id}`);
+  return data;
+};
+
 export const usePost = createQuery<Response, Variables, AxiosError>({
-  // old queryKey: ['posts', 1],
-  // ...queryFactory.posts.get(1), // this translates to ['posts', 1]
   ...queryFactory.posts.detail(1), // this translates to ['posts', 1]
-  fetcher: (variables) =>
-    client.get(`posts/${variables.id}`).then((response) => response.data),
+  fetcher: getPosts,
 });
 
 export const usePostComments = (postId: number) =>
