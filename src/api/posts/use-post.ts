@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
 import type { AxiosError } from 'axios';
 import { createQuery } from 'react-query-kit';
 
@@ -16,12 +15,6 @@ const getPosts = async (variables: Variables) => {
 };
 
 export const usePost = createQuery<Response, Variables, AxiosError>({
-  ...queryFactory.posts.detail(1), // this translates to ['posts', 1]
+  ...queryFactory.posts.detail(1),
   fetcher: getPosts,
 });
-
-export const usePostComments = (postId: number) =>
-  useQuery({
-    ...queryFactory.posts.detail(postId)._ctx.comments,
-    enabled: !!postId,
-  });

@@ -35,8 +35,6 @@ export default function AddPost() {
             message: 'Post added successfully',
             type: 'success',
           });
-          // react-query-kit has the getKey method this will require to import the query function everywhere needed
-          // queryClient.invalidateQueries(usePosts.getKey());
           queryClient.invalidateQueries({
             queryKey: queryFactory.posts.list({}).queryKey,
           });

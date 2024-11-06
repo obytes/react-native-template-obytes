@@ -14,7 +14,9 @@ export default function Post() {
   const {
     data: { comments } = { comments: [] },
     isLoading: isLoadingComments,
-  } = usePostComments(data?.id!);
+  } = usePostComments({
+    variables: { id: data?.id! },
+  });
 
   if (isPending) {
     return (
