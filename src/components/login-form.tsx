@@ -8,7 +8,10 @@ import { Button, ControlledInput, Text, View } from '@/ui';
 
 const MIN_CHARS = 6;
 const schema = z.object({
-  username: z.string(),
+  username: z.string({
+    required_error: 'Username is required',
+  }),
+  email: z.string().email('Invalid email format').optional(),
   password: z
     .string({
       required_error: 'Password is required',
@@ -38,7 +41,13 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
         </Text>
 
         <ControlledInput
-          testID="username"
+          testID="email-input"
+          control={control}
+          name="email"
+          label="Email (optional)"
+        />
+        <ControlledInput
+          testID="username-input"
           control={control}
           name="username"
           label="Username"

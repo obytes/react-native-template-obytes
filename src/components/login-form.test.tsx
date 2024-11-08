@@ -18,9 +18,9 @@ describe('LoginForm Form ', () => {
     render(<LoginForm />);
 
     const button = screen.getByTestId(LOGIN_BUTTON);
-    expect(screen.queryByText(/Email is required/i)).not.toBeOnTheScreen();
+    expect(screen.queryByText(/Username is required/i)).not.toBeOnTheScreen();
     fireEvent.press(button);
-    expect(await screen.findByText(/Email is required/i)).toBeOnTheScreen();
+    expect(await screen.findByText(/Username is required/i)).toBeOnTheScreen();
     expect(screen.getByText(/Password is required/i)).toBeOnTheScreen();
   });
 
@@ -29,13 +29,15 @@ describe('LoginForm Form ', () => {
 
     const button = screen.getByTestId(LOGIN_BUTTON);
     const emailInput = screen.getByTestId('email-input');
+    const usernameInput = screen.getByTestId('username-input');
     const passwordInput = screen.getByTestId('password-input');
 
-    fireEvent.changeText(emailInput, 'yyyyy');
+    fireEvent.changeText(emailInput, 'yyyy');
+    fireEvent.changeText(usernameInput, '  ');
     fireEvent.changeText(passwordInput, 'test');
     fireEvent.press(button);
 
-    expect(screen.queryByText(/Email is required/i)).not.toBeOnTheScreen();
+    expect(screen.queryByText(/Username is required/i)).not.toBeOnTheScreen();
     expect(await screen.findByText(/Invalid Email Format/i)).toBeOnTheScreen();
   });
 
@@ -43,10 +45,10 @@ describe('LoginForm Form ', () => {
     render(<LoginForm onSubmit={onSubmitMock} />);
 
     const button = screen.getByTestId(LOGIN_BUTTON);
-    const emailInput = screen.getByTestId('email-input');
+    const emailInput = screen.getByTestId('username-input');
     const passwordInput = screen.getByTestId('password-input');
 
-    fireEvent.changeText(emailInput, 'youssef@gmail.com');
+    fireEvent.changeText(emailInput, 'youssef');
     fireEvent.changeText(passwordInput, 'password');
     fireEvent.press(button);
     await waitFor(() => {
@@ -55,10 +57,11 @@ describe('LoginForm Form ', () => {
     // undefined because we don't use second argument of the  SubmitHandler
     expect(onSubmitMock).toHaveBeenCalledWith(
       {
-        email: 'youssef@gmail.com',
+        email: undefined,
+        username: 'youssef',
         password: 'password',
       },
-      undefined
+      undefined,
     );
   });
 });
