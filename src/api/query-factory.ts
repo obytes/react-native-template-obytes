@@ -4,9 +4,12 @@ import {
 } from '@lukemorales/query-key-factory';
 
 import { cartKeys } from './carts/query-keys';
-
+type Filters = {
+  limit?: number;
+  offset?: number;
+};
 export const postKeys = createQueryKeys('posts', {
-  list: (filters) => [filters],
+  list: (filters: Filters) => [filters],
   detail: (id) => ({
     queryKey: [id],
     contextQueries: {
@@ -17,4 +20,9 @@ export const postKeys = createQueryKeys('posts', {
   }),
 });
 
-export const queryFactory = mergeQueryKeys(postKeys, cartKeys);
+const productsKeys = createQueryKeys('products', {
+  list: (filters) => [filters],
+  detail: (id) => [id],
+});
+
+export const queryFactory = mergeQueryKeys(postKeys, cartKeys, productsKeys);

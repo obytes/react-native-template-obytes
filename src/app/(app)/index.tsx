@@ -8,9 +8,10 @@ import { EmptyList, FocusAwareStatusBar, Text, View } from '@/ui';
 
 export default function Feed() {
   const { data, isPending, isError } = usePosts();
+
   const renderItem = useCallback(
     ({ item }: { item: Post }) => <Card {...item} />,
-    []
+    [],
   );
 
   if (isError) {
