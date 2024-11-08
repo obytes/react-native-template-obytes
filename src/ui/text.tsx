@@ -8,7 +8,7 @@ import { translate } from '@/core/i18n';
 
 interface Props extends TextProps {
   className?: string;
-  tx?: TxKeyPath | { key: TxKeyPath; params: { [key: string]: any } };
+  tx?: TxKeyPath | { key: TxKeyPath; options: { [key: string]: string } };
 }
 
 export const Text = ({
@@ -42,7 +42,7 @@ export const Text = ({
       {tx
         ? typeof tx === 'string'
           ? translate(tx)
-          : translate(tx.key, tx.params)
+          : translate(tx.key, tx.options)
         : children}
     </NNText>
   );
