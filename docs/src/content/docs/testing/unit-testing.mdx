@@ -41,7 +41,7 @@ First, let's create a new file called `login-form.test.tsx` in the `src/screens/
 
 <CodeBlock file="./src/components/login-form.test.tsx" />
 
-As you may notice from the code, we are importing a bunch of things from the `@/core/test-utils` directory. This is a simple file that exports everything from the `@testing-library/react-native` library and overrides the `render` function to wrap the component with the providers we need. This way, we don't have to import the providers in every test file.
+As you may notice from the code, we are importing a bunch of things from the `@/lib/test-utils` directory. This is a simple file that exports everything from the `@testing-library/react-native` library and overrides the `render` function to wrap the component with the providers we need. This way, we don't have to import the providers in every test file.
 
 :::tip
 You can update this file to add any other providers you need to wrap your components with as well as any other utility functions you need to use in your tests.
