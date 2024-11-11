@@ -12,12 +12,12 @@ The starter comes with a basic internationalization setup. It uses [expo-localiz
 
 ## Adding a new language
 
-Mainly the demo app supports two languages: English and Arabic (RTL). You can add more languages by adding the translation files in the `src/translations` folder and adding the language code to the `src/core/i18n/resources.ts` file.
+Mainly the demo app supports two languages: English and Arabic (RTL). You can add more languages by adding the translation files in the `src/translations` folder and adding the language code to the `src/lib/i18n/resources.ts` file.
 
-<CodeBlock file="src/core/i18n/resources.ts" />
+<CodeBlock file="src/lib/i18n/resources.ts" />
 
 :::tip
-Anything related to internationalization should be found in the `src/core/i18n` folder.
+Anything related to internationalization should be found in the `src/lib/i18n` folder.
 :::
 
 ## Using translations in your app
@@ -30,7 +30,7 @@ The i18n core module provides a set of utility functions to help you use transla
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Text } from '@/ui';
+import { Text } from '@/components/ui';
 
 export const Foo = () => {
   const { t } = useTranslation();
@@ -47,7 +47,7 @@ or as `Text` component comes with translation support, you can easily use it as 
 ```tsx
 import React from 'react';
 
-import { Text } from '@/ui';
+import { Text } from '@/components/ui';
 
 export const Foo = () => {
   return <Text className="text-center" tx="settings.language" />;
@@ -58,7 +58,7 @@ export const Foo = () => {
 
 Additionally, the `useSetLanguage` hook will save the selected language in device storage using `MMKV` and will be used as the default language when the app is opened again As well as adding some extra config for RTL languages while updating the selected language.
 
-<CodeBlock file="src/core/i18n/utils.tsx" />
+<CodeBlock file="src/lib/i18n/utils.tsx" />
 
 ## Robust translation
 

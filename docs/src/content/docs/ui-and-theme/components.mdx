@@ -11,7 +11,7 @@ import CodeBlock from '../../../components/code.astro';
 
 The starter comes with a set of basic components and a simple design system based on Nativewind to help you get started and save you time.
 
-All those components can be found in the `src/ui/core` folder. Our philosophy is to keep the components as simple as possible and to avoid adding too much logic to them. This way, they are easier to reuse and customize.
+All those components can be found in the `src/components/ui` folder. Our philosophy is to keep the components as simple as possible and to avoid adding too much logic to them. This way, they are easier to reuse and customize.
 
 Based on your needs, you can either use them as they are or customize them to fit your needs. You can also create new ones based on the same approach.
 
@@ -57,7 +57,7 @@ We also provide an `EmptyList` component that you can use to display a message w
 
 ```tsx
 import * as React from 'react';
-import { List, EmptyList, Text } from '@/ui';
+import { List, EmptyList, Text } from '@/components/ui';
 
 const MyComponent = () => {
   return (
@@ -86,7 +86,7 @@ The `cssInterop` function from `nativewind` is used to apply styling and, in thi
 
 ```tsx
 import * as React from 'react';
-import { Image } from '@/ui';
+import { Image } from '@/components/ui';
 
 const MyComponent = () => {
   return (
@@ -184,7 +184,7 @@ Read more about Handling Forms [here](../forms/).
 
 ```tsx
 import * as React from 'react';
-import { Input, View } from '@/ui';
+import { Input, View } from '@/components/ui';
 
 const MyComponent = () => {
   return (
@@ -215,7 +215,7 @@ Based on your needs, you can use the `Modal` if you don't have a fixed height fo
 
 ```tsx
 import * as React from 'react';
-import { Modal, useModal, View, Button, Text } from '@/ui';
+import { Modal, useModal, View, Button, Text } from '@/components/ui';
 
 const MyComponent = () => {
   const modal = useModal();
@@ -258,8 +258,8 @@ Feel free to update the component implementation to fit your need and as you kee
 ```tsx
 import * as React from 'react';
 
-import type { Option } from '@/ui';
-import { SelectInput, View } from '@/ui';
+import type { Option } from '@/components/ui';
+import { SelectInput, View } from '@/components/ui';
 
 const options: Option[] = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -315,7 +315,7 @@ Animations are applied to the icons using the `MotiView` component from the `mot
 **Use Case**
 
 ```tsx
-import { Checkbox } from '@/ui';
+import { Checkbox } from '@/components/ui';
 
 const App = () => {
   const [checked, setChecked] = useState(false);
@@ -336,7 +336,7 @@ By default the component will render a label with the text you passed as label p
 For rendering a custom Checkbox, you can use the `Checkbox.Root`, `Checkbox.Icon`, and `Checkbox.Label` components.
 
 ```tsx
-import { Checkbox } from '@/ui';
+import { Checkbox } from '@/components/ui';
 
 const App = () => {
   const [checked, setChecked] = useState(false);
