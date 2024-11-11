@@ -45,7 +45,7 @@ To save time when creating new components or screens, we can simply start typing
 
 The `List` component references the FlashList component from the `@shopify/flash-list` package.
 
-<CodeBlock file="src/ui/list.tsx" />
+<CodeBlock file="src/components/ui/list.tsx" />
 
 **Props**
 
@@ -75,7 +75,7 @@ const MyComponent = () => {
 For the `Image` component, we use the `expo-image` library to provide a fast and performant image component. The `Image` component is a wrapper around the `Image` component from `expo-image` package with additional styling provided by `nativewind`.
 The `cssInterop` function from `nativewind` is used to apply styling and, in this way, the `className` property is applied to the `style` property of the `Image` component.
 
-<CodeBlock file="src/ui/image.tsx" />
+<CodeBlock file="src/components/ui/image.tsx" />
 
 **Props**
 
@@ -104,7 +104,7 @@ const MyComponent = () => {
 
 With this custom Text component, you can use the translation key as the `tx` prop, and it will automatically translate the text based on the current locale, as well as support right-to-left (RTL) languages based on the selected locale.
 
-<CodeBlock file="src/ui/text.tsx" />
+<CodeBlock file="src/components/ui/text.tsx" />
 
 :::tip
 You can also use the `t` snippet to create a simple Text with a default `className`.
@@ -142,7 +142,7 @@ The `tv` function from `tailwind-variants` is used to create a function that gen
 
 Each variant should include styles for the `container`, `indicator`, and `label` keys. The `container` style is for the `Pressable`, the `label` style is for the `Text` component, and the `indicator` style is for the `ActivityIndicator` component when the `loading` prop is `true`.
 
-<CodeBlock file="src/ui/button.tsx" />
+<CodeBlock file="src/components/ui/button.tsx" />
 
 **Props**
 
@@ -168,7 +168,7 @@ The component utilizes the tv function from Tailwind Variants to define styling 
 
 We tried to keep the ` Input` component as simple as possible, but you can add more functionality, such as `onFocus` and `onBlur`, or adding left and right icons to the input.
 
-<CodeBlock file="src/ui/input.tsx" />
+<CodeBlock file="src/components/ui/input.tsx" />
 
 **Props**
 
@@ -203,7 +203,7 @@ We opt to use a bottom sheet instead of a modal to make it more flexible and eas
 
 Based on your needs, you can use the `Modal` if you don't have a fixed height for the modal content.
 
-<CodeBlock file="src/ui/modal.tsx" />
+<CodeBlock file="src/components/ui/modal.tsx" />
 
 **Props**
 
@@ -241,7 +241,7 @@ The component uses the `tv` function from Tailwind Variants to define styling sl
 
 Feel free to update the component implementation to fit your need and as you keep the same Props signature for the `Select` component the component will work with our form handling solution without any changes.
 
-<CodeBlock file="src/ui/select.tsx" />
+<CodeBlock file="src/components/ui/select.tsx" />
 
 **Props**
 
@@ -299,7 +299,7 @@ For handling common functionality like handling press events and accessibility s
 
 Animations are applied to the icons using the `MotiView` component from the `moti` library. These animations change the appearance of the icons based on their checked state.
 
-<CodeBlock file="src/ui/checkbox.tsx" />
+<CodeBlock file="src/components/ui/checkbox.tsx" />
 
 **Props**
 
