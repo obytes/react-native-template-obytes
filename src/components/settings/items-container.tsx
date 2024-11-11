@@ -1,7 +1,7 @@
 import React from 'react';
 
-import type { TxKeyPath } from '@/core';
-import { Text, View } from '@/ui';
+import { Text, View } from '@/components/ui';
+import type { TxKeyPath } from '@/lib';
 
 type Props = {
   children: React.ReactNode;

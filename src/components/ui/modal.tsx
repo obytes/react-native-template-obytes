@@ -159,7 +159,7 @@ const ModalHeader = React.memo(({ title, dismiss }: ModalHeaderProps) => {
     <>
       {title && (
         <View className="flex-row px-2 py-4">
-          <View className="h-[24px] w-[24px]" />
+          <View className="size-[24px]" />
           <View className="flex-1">
             <Text className="text-center text-[16px] font-bold text-[#26313D] dark:text-white">
               {title}
@@ -176,7 +176,7 @@ const CloseButton = ({ close }: { close: () => void }) => {
   return (
     <Pressable
       onPress={close}
-      className="absolute right-3 top-3 h-[24px] w-[24px] items-center justify-center "
+      className="absolute right-3 top-3 size-[24px] items-center justify-center "
       hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
       accessibilityLabel="close modal"
       accessibilityRole="button"

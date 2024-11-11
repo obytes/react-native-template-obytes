@@ -6,9 +6,15 @@ import { Item } from '@/components/settings/item';
 import { ItemsContainer } from '@/components/settings/items-container';
 import { LanguageItem } from '@/components/settings/language-item';
 import { ThemeItem } from '@/components/settings/theme-item';
-import { translate, useAuth } from '@/core';
-import { colors, FocusAwareStatusBar, ScrollView, Text, View } from '@/ui';
-import { Github, Rate, Share, Support, Website } from '@/ui/icons';
+import {
+  colors,
+  FocusAwareStatusBar,
+  ScrollView,
+  Text,
+  View,
+} from '@/components/ui';
+import { Github, Rate, Share, Support, Website } from '@/components/ui/icons';
+import { translate, useAuth } from '@/lib';
 
 export default function Settings() {
   const signOut = useAuth.use.signOut();

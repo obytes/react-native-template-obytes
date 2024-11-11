@@ -3,8 +3,8 @@ import type { TextProps, TextStyle } from 'react-native';
 import { I18nManager, StyleSheet, Text as NNText } from 'react-native';
 import { twMerge } from 'tailwind-merge';
 
-import type { TxKeyPath } from '@/core/i18n';
-import { translate } from '@/core/i18n';
+import type { TxKeyPath } from '@/lib/i18n';
+import { translate } from '@/lib/i18n';
 
 interface Props extends TextProps {
   className?: string;
@@ -22,9 +22,9 @@ export const Text = ({
     () =>
       twMerge(
         'text-base text-black  dark:text-white  font-inter font-normal',
-        className
+        className,
       ),
-    [className]
+    [className],
   );
 
   const nStyle = React.useMemo(
@@ -35,7 +35,7 @@ export const Text = ({
         },
         style,
       ]) as TextStyle,
-    [style]
+    [style],
   );
   return (
     <NNText className={textStyle} style={nStyle} {...props}>

@@ -6,7 +6,12 @@ import { showMessage } from 'react-native-flash-message';
 import { z } from 'zod';
 
 import { useAddPost } from '@/api';
-import { Button, ControlledInput, showErrorMessage, View } from '@/ui';
+import {
+  Button,
+  ControlledInput,
+  showErrorMessage,
+  View,
+} from '@/components/ui';
 
 const schema = z.object({
   title: z.string().min(10),
@@ -37,7 +42,7 @@ export default function AddPost() {
         onError: () => {
           showErrorMessage('Error adding post');
         },
-      }
+      },
     );
   };
   return (

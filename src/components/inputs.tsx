@@ -1,8 +1,8 @@
 import React from 'react';
 
-import type { OptionType } from '@/ui';
-import { Input, Select, View } from '@/ui';
-import { Checkbox, Radio, Switch } from '@/ui';
+import type { OptionType } from '@/components/ui';
+import { Input, Select, View } from '@/components/ui';
+import { Checkbox, Radio, Switch } from '@/components/ui';
 
 import { Title } from './title';
 

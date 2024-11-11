@@ -2,13 +2,13 @@
 import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
 
-import { useAuth, useIsFirstTime } from '@/core';
-import { Pressable, Text } from '@/ui';
+import { Pressable, Text } from '@/components/ui';
 import {
   Feed as FeedIcon,
   Settings as SettingsIcon,
   Style as StyleIcon,
-} from '@/ui/icons';
+} from '@/components/ui/icons';
+import { useAuth, useIsFirstTime } from '@/lib';
 
 export default function TabLayout() {
   const status = useAuth.use.status();
@@ -68,7 +68,7 @@ const CreateNewPostLink = () => {
   return (
     <Link href="/feed/add-post" asChild>
       <Pressable>
-        <Text className="px-3 text-primary-300">Create</Text>
+        <Text className="text-primary-300 px-3">Create</Text>
       </Pressable>
     </Link>
   );
