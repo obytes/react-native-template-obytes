@@ -210,7 +210,7 @@ export const Select = (props: SelectProps) => {
         {error && (
           <Text
             testID={`${testID}-error`}
-            className="text-danger-300 dark:text-danger-600 text-sm"
+            className="text-sm text-danger-300 dark:text-danger-600"
           >
             {error}
           </Text>

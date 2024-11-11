@@ -68,7 +68,7 @@ const CreateNewPostLink = () => {
   return (
     <Link href="/feed/add-post" asChild>
       <Pressable>
-        <Text className="text-primary-300 px-3">Create</Text>
+        <Text className="px-3 text-primary-300">Create</Text>
       </Pressable>
     </Link>
   );
