@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Text, View } from '@/ui';
+import { Text, View } from '@/components/ui';
 
 type Props = {
   text: string;

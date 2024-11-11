@@ -58,7 +58,7 @@ const button = tv({
         label: 'text-sm',
         indicator: 'h-2',
       },
-      icon: { container: 'h-9 w-9' },
+      icon: { container: 'size-9' },
     },
     disabled: {
       true: {
@@ -105,11 +105,11 @@ export const Button = React.forwardRef<View, Props>(
       textClassName = '',
       ...props
     },
-    ref
+    ref,
   ) => {
     const styles = React.useMemo(
       () => button({ variant, disabled, size }),
-      [variant, disabled, size]
+      [variant, disabled, size],
     );
 
     return (
@@ -142,5 +142,5 @@ export const Button = React.forwardRef<View, Props>(
         )}
       </Pressable>
     );
-  }
+  },
 );

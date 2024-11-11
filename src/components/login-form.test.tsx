@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { cleanup, screen, setup, waitFor } from '@/core/test-utils';
+import { cleanup, screen, setup, waitFor } from '@/lib/test-utils';
 
 import type { LoginFormProps } from './login-form';
 import { LoginForm } from './login-form';

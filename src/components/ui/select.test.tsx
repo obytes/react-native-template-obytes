@@ -2,8 +2,8 @@
 
 import React from 'react';
 
-import { cleanup, render, screen, setup } from '@/core/test-utils';
-import type { OptionType } from '@/ui';
+import type { OptionType } from '@/components/ui';
+import { cleanup, render, screen, setup } from '@/lib/test-utils';
 
 import { Select } from './select';
 

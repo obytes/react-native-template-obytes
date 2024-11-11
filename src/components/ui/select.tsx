@@ -14,8 +14,8 @@ import type { SvgProps } from 'react-native-svg';
 import Svg, { Path } from 'react-native-svg';
 import { tv } from 'tailwind-variants';
 
-import colors from '@/ui/colors';
-import { CaretDown } from '@/ui/icons';
+import colors from '@/components/ui/colors';
+import { CaretDown } from '@/components/ui/icons';
 
 import type { InputControllerType } from './input';
 import { useModal } from './modal';
@@ -210,7 +210,7 @@ export const Select = (props: SelectProps) => {
         {error && (
           <Text
             testID={`${testID}-error`}
-            className="text-sm text-danger-300 dark:text-danger-600"
+            className="text-danger-300 dark:text-danger-600 text-sm"
           >
             {error}
           </Text>
