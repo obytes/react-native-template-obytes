@@ -42,10 +42,10 @@ The store is composed of 2 states and 3 actions:
 
 ## Use Authentication store
 
-You guessed it, you only need to import the store from `@/core` and use it in your component or even call store actions from outside React.
+You guessed it, you only need to import the store from `@/lib` and use it in your component or even call store actions from outside React.
 
 ```tsx
-import { useAuth, hydrate } from '@/core';
+import { useAuth, hydrate } from '@/lib';
 
 hydrate(); // call this when the application is started to check if the user is authenticated or not
 
