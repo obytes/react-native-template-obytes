@@ -10,7 +10,7 @@ import Code from '../../../components/code.astro';
 
 Managing environment variables in your project is an essential task, but it can also be challenging. That's why we have included a complete setup for environment variables in this project. This setup comes with validation and type-checking using the `zod` library.
 
-All the code related to environment variables is located in the `env.js` and `src/core/env.js` files. The `env.js` read the `APP_ENV` variable and loads the correct `.env` file, then defines the `zod` schema for the environment variables for client and build-time, parses the `_env` object, and returns the parsed object, or throws errors in case of invalid or missing variables.
+All the code related to environment variables is located in the `env.js` and `src/lib/env.js` files. The `env.js` read the `APP_ENV` variable and loads the correct `.env` file, then defines the `zod` schema for the environment variables for client and build-time, parses the `_env` object, and returns the parsed object, or throws errors in case of invalid or missing variables.
 
 To increase security, we are splitting environment variables into two parts:
 
@@ -90,7 +90,7 @@ export const client = axios.create({
 ```
 
 :::note[Important]
-Using `import { Env } from '@env';` will import the env from the `src/core/env.js` file, which export client only env vars.
+Using `import { Env } from '@env';` will import the env from the `src/lib/env.js` file, which export client only env vars.
 :::
 
 6. Use `APP_ENV` to load the correct `.env` file :
@@ -147,7 +147,7 @@ Now it's as easy as importing `Env` , `ClientEnv` and `withEnvSuffix` from the `
 
 Here, we added a separate file to export all variables that have already been passed in the `extra` property to the client side. We added a little bit of magic to make it type-safe and easy to use.
 
-<Code file="src/core/env.js" />
+<Code file="src/lib/env.js" />
 
 Now the environment variables are ready to use in your project. You can access them in your code by importing `Env` from `@env` and using it like this:
 

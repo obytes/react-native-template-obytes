@@ -25,6 +25,21 @@ If you open the new project in VSCode you will see the following structure:
   - login.tsx
   - onboarding.tsx
 - components ## any reusable components
+  - ui ## core ui and theme configuration
+    - button.tsx
+    - checkbox.tsx
+    - colors.js
+    - focus-aware-status-bar.tsx
+    - icons
+    - image.tsx
+    - index.tsx
+    - input.tsx
+    - list.tsx
+    - modal.tsx
+    - progress-bar.tsx
+    - select.tsx
+    - text.tsx
+    - utils.tsx
   - buttons.tsx
   - card.tsx
   - colors.tsx
@@ -35,7 +50,7 @@ If you open the new project in VSCode you will see the following structure:
   - settings/
   - title.tsx
   - typography.tsx
-- core ## core files such as auth, localization, storage and more
+- lib ## core files such as auth, localization, storage and more
   - auth
   - env.js
   - hooks
@@ -51,29 +66,14 @@ If you open the new project in VSCode you will see the following structure:
   - en.json
 - types ## global types
   - index.ts
-- ui ## core ui and theme configuration
-  - button.tsx
-  - checkbox.tsx
-  - colors.js
-  - focus-aware-status-bar.tsx
-  - icons
-  - image.tsx
-  - index.tsx
-  - input.tsx
-  - list.tsx
-  - modal.tsx
-  - progress-bar.tsx
-  - select.tsx
-  - text.tsx
-  - utils.tsx
 
 </FileTree>
 
-- `ui`: This folder contains all the UI components and the theme configuration. We provide minimal components with a basic `obytes` theme. You can add your own components and theme configuration here.
+- `components/ui`: This folder contains all the UI components and the theme configuration. We provide minimal components with a basic `obytes` theme. You can add your own components and theme configuration here.
 
-- `components`: This folder contains the components of the app. mainly components used inside the app folder. The only difference between `ui` and `components` is that `ui` is more generic and can be used in any project, while `components` are more specific to the project.
+- `components`: This folder contains the components of the app. mainly components used inside the app folder.
 
-- `core`: This folder contains the core files, such as authentication, localization, storage, and more. It can be shared with other projects. That's why we are only including modules that have nothing to do with project logic. This approach helps us share code between projects and also update the starter with new features.
+- `lib`: This folder contains the core files, such as authentication, localization, storage, and more. It can be shared with other projects. That's why we are only including modules that have nothing to do with project logic. This approach helps us share code between projects and also update the starter with new features.
 
 - `app`: This folder contains the routes of the app, along with its layout routes such as stack and tab navigation structures. We provide a basic navigation structure for the demo app that you can modify to fit your needs.
 

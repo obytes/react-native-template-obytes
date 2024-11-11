@@ -132,9 +132,9 @@ The starter kit did not come with Sentry pre-configured, but it's very easy to s
    ```
 
 8. Now you are ready to initialize Sentry in your app.
-   Create a new file `src/core/sentry.ts` and add the following code:
+   Create a new file `src/lib/sentry.ts` and add the following code:
 
-   ```tsx title='src/core/sentry.ts'
+   ```tsx title='src/lib/sentry.ts'
    import { useNavigationContainerRef } from 'expo-router';
    import { useEffect } from 'react';
    import * as Sentry from '@sentry/react-native';

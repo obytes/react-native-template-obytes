@@ -72,7 +72,7 @@ This template comes with dark mode support out of the box, and it's very easy to
 Since we're using [nativewind](https://www.nativewind.dev/) (which uses Tailwind CSS under the hood) and expo-router we let them handle the application of theme, and we just take care of the colors we want.
 We set the colors in `ui/theme/colors.js` and we use them in our hook `useThemeConfig.tsx` to get the theme object that we pass to ThemeProvider directly. For more information check out [expo-router](https://docs.expo.dev/router/appearance/)
 
-<CodeBlock file="src/core/use-theme-config.tsx" />
+<CodeBlock file="src/lib/use-theme-config.tsx" />
 
 <CodeBlock file="src/app/_layout.tsx" />
 
@@ -81,7 +81,7 @@ We set the colors in `ui/theme/colors.js` and we use them in our hook `useThemeC
 We use the `loadSelectedTheme` function to load the theme from the storage if there's a theme saved in the storage, otherwise, we let nativwind use the default theme (system).
 To set the selected theme, we use the `useSelectedTheme` hook, which sets the theme in the storage and updates the color scheme of the app.
 
-<CodeBlock file="src/core/hooks/use-selected-theme.tsx" />
+<CodeBlock file="src/lib/hooks/use-selected-theme.tsx" />
 
 ### Add dark mode for each component
 
