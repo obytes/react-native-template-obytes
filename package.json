@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "^4.0.0",
-    "@gorhom/bottom-sheet": "4.6.3",
+    "@gorhom/bottom-sheet": "^5.0.5",
     "@hookform/resolvers": "^3.9.0",
     "@shopify/flash-list": "1.7.1",
     "@tanstack/react-query": "^5.52.1",
@@ -72,7 +72,7 @@
     "react-native-flash-message": "^0.4.2",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-keyboard-controller": "^1.13.2",
-    "react-native-mmkv": "~2.12.2",
+    "react-native-mmkv": "~3.1.0",
     "react-native-reanimated": "~3.16.1",
     "react-native-restart": "0.0.27",
     "react-native-safe-area-context": "4.12.0",
