@@ -102,6 +102,7 @@ export const Modal = React.forwardRef(
         index={0}
         snapPoints={snapPoints}
         backdropComponent={props.backdropComponent || renderBackdrop}
+        enableDynamicSizing={false}
         handleComponent={renderHandleComponent}
       />
     );
