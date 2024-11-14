@@ -1,12 +1,12 @@
 {
   "cli": {
-    "version": ">= 0.57.0"
+    "version": ">= 3.8.1"
   },
   "build": {
     "production": {
       "channel": "production",
       "distribution": "store",
-      "pnpm": "8.15.4",
+      "pnpm": "9.12.3",
       "ios": {
         "image": "latest"
       },
@@ -18,16 +18,12 @@
         "EXPO_NO_DOTENV": "1",
         "APP_ENV": "production",
         "FLIPPER_DISABLE": "1"
-      },
-      "prebuildCommand": "prebuild --skip-dependency-update react",
-      "cache": {
-        "key": "eas-1"
       }
     },
     "staging": {
       "channel": "staging",
       "distribution": "internal",
-      "pnpm": "8.15.4",
+      "pnpm": "9.12.3",
       "ios": {
         "image": "latest"
       },
@@ -39,17 +35,12 @@
         "APP_ENV": "staging",
         "EXPO_NO_DOTENV": "1",
         "FLIPPER_DISABLE": "1"
-      },
-
-      "prebuildCommand": "prebuild --skip-dependency-update react",
-      "cache": {
-        "key": "eas-1"
       }
     },
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "pnpm": "8.15.4",
+      "pnpm": "9.12.3",
       "ios": {
         "image": "latest"
       },
@@ -59,14 +50,10 @@
       "env": {
         "APP_ENV": "development",
         "EXPO_NO_DOTENV": "1"
-      },
-
-      "prebuildCommand": "prebuild --skip-dependency-update react",
-      "cache": {
-        "key": "eas-1"
       }
     },
     "simulator": {
+      "pnpm": "9.12.3",
       "ios": {
         "simulator": true,
         "image": "latest"
@@ -77,11 +64,6 @@
       "env": {
         "APP_ENV": "development",
         "EXPO_NO_DOTENV": "1"
-      },
-      "pnpm": "8.15.4",
-      "prebuildCommand": "prebuild --skip-dependency-update react",
-      "cache": {
-        "key": "eas-1"
       }
     }
   },
