@@ -1,6 +1,6 @@
 {
   "name": "obytesapp",
-  "version": "6.5.0",
+  "version": "7.0.0",
   "private": true,
   "main": "expo-router/entry",
   "scripts": {
