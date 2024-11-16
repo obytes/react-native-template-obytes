@@ -27,6 +27,8 @@ jobs:
   doctor:
     name: Expo Doctor (expo)
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
 
     steps:
       - name: 📦 Checkout project repo
@@ -38,7 +40,17 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm-install
 
       - name: Run prebuild
-        run: pnpm run prebuild ## we only need to run this to generate the badged icon in `.expo` folder
+        run: pnpm run prebuild
 
       - name: 🚑 Run Doctor Checks
-        run: rm -rf ios android && pnpm run doctor ## apprently the new update of expo will break if you already have ios and android folders in your project as they will show up a eas warning
+        run: |
+          chmod +x .github/scripts/expo-doctor.sh
+          rm -rf ios android
+          .github/scripts/expo-doctor.sh
+
+      - name: Add doctor report as comment on PR
+        if: github.event_name == 'pull_request' && always()
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: expo-doctor
+          path: .expo/expo-doctor.md
