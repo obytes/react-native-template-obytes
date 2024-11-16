@@ -11,13 +11,12 @@ output_file=".expo/expo-doctor.md"
   if [ $exit_code -eq 0 ]; then
     echo "✅ **Good news!** We ran Expo Doctor for this PR and everything looks good, Great job!" > "$output_file"
   else
-    echo "❌ **Action Required:** We ran Expo Doctor for this PR and found some issues that need to be addressed. Please review the complete report below." > "$output_file"
+    echo "❌ **Action Required:**  We ran Expo Doctor for this PR and found some issues that need to be addressed. Please review the complete report below 👇" > "$output_file"
+    echo >> "$output_file"  # Add blank line
+    echo "\`\`\`shell" >> "$output_file"
+    echo "$output" >> "$output_file"
+    echo "\`\`\`" >> "$output_file"
   fi
-
-  echo >> "$output_file"  # Add blank line
-  echo "\`\`\`shell" >> "$output_file"
-  echo "$output" >> "$output_file"
-  echo "\`\`\`" >> "$output_file"
 }
 
 # Show original output in terminal
