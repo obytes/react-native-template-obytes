@@ -48,7 +48,7 @@
     "@tanstack/react-query": "^5.52.1",
     "app-icon-badge": "^0.1.2",
     "axios": "^1.7.5",
-    "expo": "~52.0.6",
+    "expo": "~52.0.7",
     "expo-constants": "~17.0.3",
     "expo-dev-client": "~5.0.1",
     "expo-font": "~13.0.1",
