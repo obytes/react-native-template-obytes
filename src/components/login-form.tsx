@@ -38,9 +38,19 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
       keyboardVerticalOffset={10}
     >
       <View className="flex-1 justify-center p-4">
-        <Text testID="form-title" className="pb-6 text-center text-2xl">
-          Sign In
-        </Text>
+        <View className="items-center justify-center">
+          <Text
+            testID="form-title"
+            className="pb-6 text-center text-4xl font-bold"
+          >
+            Sign In
+          </Text>
+
+          <Text className="mb-6 max-w-xs text-center text-gray-500">
+            Welcome! 👋 This is a demo login screen! Feel free to use any email
+            and password to sign in and try it out.
+          </Text>
+        </View>
 
         <ControlledInput
           testID="name"
