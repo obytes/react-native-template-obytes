@@ -114,7 +114,7 @@ dependencies:
     specifier: 4.12.0
     version: 4.12.0(react-native@0.76.2)(react@18.3.1)
   react-native-screens:
-    specifier: ^4.1.0
+    specifier: ^4.0.0
     version: 4.1.0(react-native@0.76.2)(react@18.3.1)
   react-native-svg:
     specifier: ~15.8.0
