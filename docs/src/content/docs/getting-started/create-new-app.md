@@ -36,7 +36,7 @@ npx create-obytes-app@latest MyApp
 The command will create an expo app named `MyApp` and install all the dependencies added by the starter.
 
 :::note
-Because we're using the Expo custom dev client to support native dependencies with the starter. The Expo Go app is not an option to consider here; instead, you need to create the app and install it on your simulator or device to start using it.
+Because we're using the Expo custom dev client to support native dependencies with the starter, The Expo Go app is not an option to consider here. Instead, you need to create the app and install it on your simulator or device to start using it.
 :::
 
 :::note
