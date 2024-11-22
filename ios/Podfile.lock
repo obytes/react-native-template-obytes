@@ -6,7 +6,7 @@ PODS:
   - EXJSONUtils (0.14.0)
   - EXManifests (0.15.4):
     - ExpoModulesCore
-  - Expo (52.0.8):
+  - Expo (52.0.9):
     - ExpoModulesCore
   - expo-dev-client (5.0.3):
     - EXManifests
@@ -258,7 +258,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - ExpoSplashScreen (0.29.11):
+  - ExpoSplashScreen (0.29.12):
     - ExpoModulesCore
   - ExpoSystemUI (4.0.3):
     - ExpoModulesCore
@@ -2413,7 +2413,7 @@ SPEC CHECKSUMS:
   EXConstants: dd2fe64c6cdb1383b694c309a63028a8e9f2be6d
   EXJSONUtils: 01fc7492b66c234e395dcffdd5f53439c5c29c93
   EXManifests: f30a0c5d3d6cad8db9c01bab579e0aa0df5d3cb2
-  Expo: c3e32beff4379726ad2e94068563fa03ae7109b0
+  Expo: 332ffb9c3dccfc1a228791227efb8b2a7c6b3a4c
   expo-dev-client: 84a7f4a302387b57388d053900b56611b28b65ee
   expo-dev-launcher: c454a423307d527de0f0016cca0aed6773a798ff
   expo-dev-menu: 30ffa4e9e93551c093d40725e81635e86b19c511
@@ -2427,7 +2427,7 @@ SPEC CHECKSUMS:
   ExpoLinking: a8332a219379ba80f8e612d5a5de4a3da446886e
   ExpoLocalization: 8e37268a715b82b36fbb5e361efd5fe65a39c208
   ExpoModulesCore: 28ce5c3193da2ff32648d023a282f65131ade10a
-  ExpoSplashScreen: a1c1b3a9648ab738be13fb109c42a85b32e08e5a
+  ExpoSplashScreen: 4802fc92fbe9de97ac6cc2b2237992a3efa6b44c
   ExpoSystemUI: d8fb1abd91c7283d8ead3df77ed0575b85f1bb42
   EXUpdatesInterface: 1dcebac98ac5dad4289e6ff2bd5616822e894397
   FBLazyVector: bc70dcb22ad30ce734a7cce7210791dc737e230f
@@ -2505,8 +2505,8 @@ SPEC CHECKSUMS:
   SDWebImageAVIFCoder: 00310d246aab3232ce77f1d8f0076f8c4b021d90
   SDWebImageSVGCoder: 15a300a97ec1c8ac958f009c02220ac0402e936c
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  Yoga: c5b0e913b5b3b4cde588227c1402e747797061f3
+  Yoga: 96872ee462cfc43866ad013c8160d4ff6b85709b
 
 PODFILE CHECKSUM: 4e446f593dc2f359aeae4bc90ec7aa86f8d16301
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2
