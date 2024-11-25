@@ -80,6 +80,13 @@ const reviews: Review[] = [
       ))
     }
   </div>
+  <a
+    href="https://github.com/obytes/react-native-template-obytes/discussions/357"
+    class="add-review-link"
+    target="_blank"
+  >
+    Love the template? Let us know ⭐️
+  </a>
 </section>
 
 <style>
@@ -105,7 +112,7 @@ const reviews: Review[] = [
   .review-grid {
     display: grid;
     gap: 1.5rem;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
   }
 
   .review-footer {
@@ -140,6 +147,7 @@ const reviews: Review[] = [
     flex-direction: column;
     display: flex;
     height: 100%;
+    width: 100%;
     position: relative;
   }
 
@@ -163,5 +171,19 @@ const reviews: Review[] = [
     width: 68px;
     height: 68px;
     opacity: 0.2;
+  }
+
+  .add-review-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    margin: 2rem auto 0;
+    color: var(--sl-color-text-accent);
+    font-size: 0.9rem;
+  }
+
+  .add-review-link:hover {
+    text-decoration: underline;
   }
 </style>
