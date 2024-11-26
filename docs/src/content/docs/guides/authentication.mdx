@@ -34,7 +34,7 @@ The store is composed of 2 states and 3 actions:
 
   For the Demo app `useToken` is a simple object that contains the `accessToken` and the `refreshToken`. You can add more fields if you update the `TokenType` type in `src/lib/auth/utils.ts`.
 
-- `signIn`: TThe function performs user sign-in. It accepts a token as a parameter, sets the token state, stores it locally, and updates the status to `signIn`.
+- `signIn`: The function performs user sign-in. It accepts a token as a parameter, sets the token state, stores it locally, and updates the status to `signIn`.
 
 - `signOut`: The action to sign out the user. It sets the token state to `null` and removes it from the storage as well as setting the status to `signOut`.
 
