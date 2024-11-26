@@ -37,13 +37,13 @@ const removeUnrelatedFiles = () => {
   ]);
 };
 
-// Update package.json infos, name and  set version to 0.0.1 + add initial version to osMetadata
+// Update package.json infos, name and set version to 0.0.1 + add initial version to rsMetadata
 const updatePackageJson = async (projectName) => {
   const packageJsonPath =
     projectFilesManager.getAbsoluteFilePath('package.json');
 
   const packageJson = fs.readJsonSync(packageJsonPath);
-  packageJson.osMetadata = { initVersion: packageJson.version };
+  packageJson.rsMetadata = { templateVersion: packageJson.version };
   packageJson.version = '0.0.1';
   packageJson.name = projectName?.toLowerCase();
   packageJson.repository = {
@@ -54,7 +54,7 @@ const updatePackageJson = async (projectName) => {
   const appReleaseScript = packageJson.scripts['app-release'];
   packageJson.scripts['app-release'] = appReleaseScript.replace(
     'template',
-    projectName
+    projectName,
   );
   fs.writeJsonSync(packageJsonPath, packageJson, { spaces: 2 });
 };
@@ -143,6 +143,17 @@ const updateGitHubWorkflows = (projectName) => {
           replaceValue: '',
         },
       ],
+    },
+  ]);
+
+  // Remove upstream update workflow, intended to be used only in the template repository
+  projectFilesManager.removeFiles(['.github/workflows/upstream-to-pr.yml']);
+
+  // Enable sync with template workflow
+  projectFilesManager.renameFiles([
+    {
+      oldFileName: '.github/project-workflows/sync-with-template.yml',
+      newFileName: '.github/workflows/sync-with-template.yml',
     },
   ]);
 };

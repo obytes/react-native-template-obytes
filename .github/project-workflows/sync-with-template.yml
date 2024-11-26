@@ -1,0 +1,168 @@
+# 🔗 Links:
+# Source file: https://github.com/rootstrap/react-native-template/blob/master/.github/project-workflows/sync-with-template.yml
+
+# ✍️ Description:
+# This workflow is used to keep the project up to date with the latest version of the template.
+
+# 🚨 GITHUB SECRETS REQUIRED:
+# - UPDATE_FROM_TEMPLATE_PAT: A fine-grained Personal Access Token.
+#                             This token is used to access the project repository and create the Pull Request.
+#                             You can generate one from here: https://github.com/settings/tokens?type=beta
+#                             Set the Repository access to "Only select repositories" and select the project repository.
+#                             Set the following Repo permissions:
+#                                 - Contents: Read & write (to commit and push the update branch to the project repository)
+#                                 - Metadata: Read-only (mandatory by GitHub)
+#                                 - Pull requests: Read & write (to create the Pull Request in the project repository)
+#                                 - Workflows: Read and write (to create, update and delete workflows in the project repository)
+#                             Make sure to add it to the repo secrets with the name UPDATE_FROM_TEMPLATE_PAT:
+#                                 - Go to Repository Settings > Secrets and variables > Actions > New repository secret
+#                                   - Name: UPDATE_FROM_TEMPLATE_PAT
+#                                   - Value: The Personal Access Token you created
+
+# ℹ️ Environment variables:
+# - TEMPLATE_REPOSITORY: Repository to sync with
+# - DIFF_EXCLUDED_ROUTES: List of files or directories to exclude from the diff.
+#                         Any changes in these files or directories will be ignored
+#                         and won't be incorporated to the Pull Request.
+
+name: 🔄 Sync with template
+
+on:
+  schedule:
+    - cron: '0 12 * * *' # Everyday at 12:00 UTC
+  workflow_dispatch:
+
+env:
+  TEMPLATE_REPOSITORY: rootstrap/react-native-template
+  DIFF_EXCLUDED_ROUTES: |
+    cli
+    docs
+    ios
+    android
+    .github/workflows/deploy-docs.yml
+    .github/workflows/new-template-version.yml
+    .github/workflows/upstream-to-pr.yml
+    README-project.md
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: read
+
+    steps:
+      - name: Check if Personal Access Token exists
+        env:
+          PAT: ${{ secrets.UPDATE_FROM_TEMPLATE_PAT }}
+        if: env.PAT == ''
+        run: |
+          echo "UPDATE_FROM_TEMPLATE_PAT secret not found. Please create a fine-grained Personal Access Token following the instructions in the workflow file."
+          exit 1
+      - name: Checkout project repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          path: project
+          token: ${{ secrets.UPDATE_FROM_TEMPLATE_PAT }}
+      - name: Get template version used in project from package.json
+        run: |
+          echo "PROJECT_TEMPLATE_VERSION=v$(jq -r 'if has("rsMetadata") then .rsMetadata.templateVersion else .osMetadata.initVersion end' project/package.json | sed 's/^.*@//')" >> $GITHUB_ENV
+      - name: Get latest release of template from GitHub
+        run: |
+          echo "TEMPLATE_LATEST_VERSION=$(curl -s https://api.github.com/repos/${{ env.TEMPLATE_REPOSITORY }}/releases/latest | jq '.tag_name' | sed 's/\"//g')" >> $GITHUB_ENV
+      - name: Check if the template is up to date
+        run: |
+          if [[ $TEMPLATE_LATEST_VERSION == $PROJECT_TEMPLATE_VERSION ]]; then
+              echo "Template is up to date"
+              cd project
+              gh run cancel ${{ github.run_id }}
+              gh run watch ${{ github.run_id }}
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check if branch already exists
+        run: |
+          cd project
+          git fetch origin
+          BRANCH_NAME=update-template-${{ env.TEMPLATE_LATEST_VERSION }}
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+          git branch -r | grep -q "origin/$BRANCH_NAME" && echo "BRANCH_EXISTS=true" >> $GITHUB_ENV || echo "BRANCH_EXISTS=false" >> $GITHUB_ENV
+      - name: Check if PR already exists
+        run: |
+          cd project
+          prs=$(gh pr list \
+              --head "$BRANCH_NAME" \
+              --json title \
+              --jq 'length')
+          if ((prs > 0)); then
+              echo "PR_EXISTS=true" >> $GITHUB_ENV
+          else
+              echo "PR_EXISTS=false" >> $GITHUB_ENV
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.UPDATE_FROM_TEMPLATE_PAT }}
+      - name: Install dependencies
+        if: ${{ env.BRANCH_EXISTS == 'false' }}
+        run: |
+          sudo apt install wiggle
+      - name: Checkout latest release of template
+        if: ${{ env.BRANCH_EXISTS == 'false' }}
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ env.TEMPLATE_REPOSITORY }}
+          ref: ${{ env.TEMPLATE_LATEST_VERSION }}
+          fetch-depth: 0
+          path: react-native-template
+      - name: Get diff between latest release and used release
+        if: ${{ env.BRANCH_EXISTS == 'false' }}
+        run: |
+          EXCLUDED_ROUTES=""
+          for route in $DIFF_EXCLUDED_ROUTES; do
+            EXCLUDED_ROUTES="$EXCLUDED_ROUTES ':(exclude)$route'"
+          done
+          cd react-native-template
+          git diff ${{ env.PROJECT_TEMPLATE_VERSION }} -- . $(echo $EXCLUDED_ROUTES | xargs) > ../update.patch
+      - name: Update template version in package.json
+        if: ${{ env.BRANCH_EXISTS == 'false' }}
+        run: |
+          cd project
+          jq 'del(.osMetadata)' package.json > tmp.json && mv tmp.json package.json
+          PLAIN_VERSION=${TEMPLATE_LATEST_VERSION#v}
+          jq --arg version $PLAIN_VERSION '.rsMetadata.templateVersion = $version' package.json > tmp.json && mv tmp.json package.json
+      - name: Apply diff to project repository
+        if: ${{ env.BRANCH_EXISTS == 'false' }}
+        run: |
+          cd project
+          git apply --reject ../update.patch
+        continue-on-error: true
+      - name: Solve conflicts with wiggle
+        if: ${{ env.BRANCH_EXISTS == 'false' }}
+        run: |
+          cd project
+          find . -iname '*.rej' -exec sh -c 'printf "%s\n" "${0%.*}"' {} ';'  | xargs -I _ wiggle --replace --merge _ _.rej
+        continue-on-error: true
+      - name: Remove wiggle's backup and .rej files
+        if: ${{ env.BRANCH_EXISTS == 'false' }}
+        run: |
+          cd project
+          find . -not -path './.git/*' -type f -name '*.porig' -delete
+          find . -not -path './.git/*' -type f -name '*.rej' -delete
+      - name: Commit and push changes to the update branch
+        if: ${{ env.BRANCH_EXISTS == 'false' }}
+        run: |
+          cd project
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git checkout -b ${{ env.BRANCH_NAME }}
+          git add .
+          git commit -m "chore: update template to ${{ env.TEMPLATE_LATEST_VERSION }}"
+          git push origin ${{ env.BRANCH_NAME }}
+          echo "BRANCH_EXISTS=true" >> $GITHUB_ENV
+      - name: 🎉 Create PR with changes
+        if: ${{ env.BRANCH_EXISTS == 'true' && env.PR_EXISTS == 'false' }}
+        run: |
+          cd project
+          gh pr create --title "chore: update template to ${{ env.TEMPLATE_LATEST_VERSION }}" --body "Integrating latest changes from [rootstrap/react-native-template@${{ env.TEMPLATE_LATEST_VERSION }}](https://github.com/rootstrap/react-native-template/releases/tag/${{ env.TEMPLATE_LATEST_VERSION }})" --head ${{ env.BRANCH_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.UPDATE_FROM_TEMPLATE_PAT }}
