@@ -1,57 +1,109 @@
-## Distribute using Expo Application Services
+# Distribute using Expo Application Services
 
-To be able to use Expo Application Services to upload your app to App Store and Google Play Store there are some configurations that need to be done on your side.
+To use Expo Application Services (EAS) to build and upload your app to the App Store and Google Play Store, there are some configurations that need to be set up on your side.
 
-### Build from github actions
+## Application build process
 
-To be able to trigger the eas-build github action you will have to add the `EXPO_TOKEN` secret to the repo settings. This secret is a required access token for your Expo account. https://expo.dev/settings/access-tokens
+### Building with EAS
 
-You will also have to upload your envfiles to EAS secrets:
+You will need to upload each environment file as a **file-type** EAS secret:
 
-`eas secret:create --scope project --name ENVIRONMENT_FILE_PRODUCTION --value .env.production --type file`
-`eas secret:create --scope project --name ENVIRONMENT_FILE_STAGING --value .env.staging --type file`
+- For the Development environment:
+  - `eas secret:create --scope project --name ENVIRONMENT_FILE_DEVELOPMENT --value .env.development --type file`
+- For the QA environment:
+  - `eas secret:create --scope project --name ENVIRONMENT_FILE_QA --value .env.qa --type file`
+- For the Staging environment:
+  - `eas secret:create --scope project --name ENVIRONMENT_FILE_STAGING --value .env.staging --type file`
+- For the Production environment:
+  - `eas secret:create --scope project --name ENVIRONMENT_FILE_PRODUCTION --value .env.production --type file`
 
-Each one per environment you'll want to build, it's on [env.js](env.js) that the process looks for the right envfile depending on where the build is being run and the chosen environment.
+Then, there are two ways to start a build process using EAS:
 
-### Submit to Google Play Store
+a. Running the `eas build` command in your terminal for the required environment:
 
-The first submission of the app needs to be performed manually. Learn more: https://expo.fyi/first-android-submission. Only after having a valid version submitted you can submit automatically using EAS.
+- For the Development environment:
+  - `pnpm build:development:android` and `pnpm build:development:ios`
+- For the QA environment:
+  - `pnpm build:qa:android` and `pnpm build:qa:ios`
+- For the Staging environment:
+  - `pnpm build:staging:android` and `pnpm build:staging:ios`
+- For the Production environment:
+  - `pnpm build:production:android` and `pnpm build:production:ios`
 
-To submit an app to google play store you will have to follow the steps in [Uploading a Google Service Account Key for Play Store Submissions with EAS](https://github.com/expo/fyi/blob/main/creating-google-service-account.md) guide, its super detailed and should not take you much time.
+b. Manually triggering the [EAS Build workflow](.github/workflows/eas-build.yml) from the repository's Actions tab.
 
-Once you've completed the guide you'll be able to submit to the store your EAS builds using the following command:
+For the workflow to work properly, you will need to add the `EXPO_TOKEN` secret in the repository settings. This secret is a required access token for your Expo account. To generate a new token, follow the steps in the official [Expo documentation](https://expo.dev/settings/access-tokens).
 
-`eas submit --platform android`
+After you've added the secrets, you can trigger the build by manually running the [EAS Build workflow](.github/workflows/eas-build.yml) from the repository's Actions tab.
 
-### Submit to AppStore
+### Building locally
 
-1. Ensure your credentials are configured correctly in EAS. You can do this by running the following command in your terminal:
+You can also run a local build by executing the following commands:
 
-`eas credentials`
+- For the Development environment:
+  - `pnpm build:development:android --local` and `pnpm build:development:ios --local`
+- For the QA environment:
+  - `pnpm build:qa:android --local` and `pnpm build:qa:ios --local`
+- For the Staging environment:
+  - `pnpm build:staging:android --local` and `pnpm build:staging:ios --local`
+- For the Production environment:
+  - `pnpm build:production:android --local` and `pnpm build:production:ios --local`
+
+The only prerequisite is to have the corresponding environment file in the root folder of the project (`.env.development`, `.env.qa`, `.env.staging` or `.env.production`).
+
+## Application Distribution Process
+
+### Submit to the Google Play Store
+
+The first submission of the app needs to be done manually. To learn more about why this is required, refer to the [official Expo documentation](https://expo.fyi/first-android-submission).
+
+To submit an app to the Google Play Store, follow the steps in the [Uploading a Google Service Account Key for Play Store Submissions with EAS](https://github.com/expo/fyi/blob/main/creating-google-service-account.md) guide. It is detailed and should not take much time.
+
+Once you've completed the guide, you'll be able to submit your EAS builds to the Google Play Store using the following commands:
+
+- For the Development environment:
+  - `pnpm submit:development:mobile --platform android`
+- For the QA environment:
+  - `pnpm submit:qa:mobile --platform android`
+- For the Staging environment:
+  - `pnpm submit:staging:mobile --platform android`
+- For the Production environment:
+  - `pnpm submit:production:mobile --platform android`
+
+### Submit to the App Store
+
+First, ensure your credentials are configured correctly in EAS. Do this by running the following commands in your terminal:
+
+- For the Development environment:
+  - `pnpm credentials:development:ios`
+- For the QA environment:
+  - `pnpm credentials:qa:ios`
+- For the Staging environment:
+  - `pnpm credentials:staging:ios`
+- For the Production environment:
+  - `pnpm credentials:production:ios`
 
 Follow the prompts to authenticate and select your Apple Developer account.
 
-When asked `What do you want to do?` select: `App Store Connect: Manage your API Key`.
+When asked, "What do you want to do?", select: `App Store Connect: Manage your API Key`.
 
 <img width="793" alt="Screenshot 2024-07-31 at 6 09 59 PM" src="https://github.com/user-attachments/assets/c0403c6d-b151-4d74-9458-2b6fadd6cbf3">
 
-In order to be able to Generate a new App Store Connect API Key it's important your user has the right permissions on the App Store Connect account. Make sure you have access to Cloud Managed Distribution Certificate, if you don't have this permission you'll get a `403 - Access forbidden response`.
+To generate a new App Store Connect API Key, ensure your user has the necessary permissions on the App Store Connect account. Verify that you have access to the Cloud Managed Distribution Certificate. Without this permission, you'll receive a `403 - Access forbidden response` error message.
 
 ![Screenshot 2024-07-31 at 5 34 56 PM](https://github.com/user-attachments/assets/890e1199-b4c6-4aed-9582-3122d40ee66a)
 
-2. Build your app using Expo and EAS:
+Once you've configured the credentials in EAS, you'll be able to submit your builds to the App Store using the following commands:
 
-`eas build --platform ios`
-
-This command initiates the build process for iOS using Expo Application Services.
-
-3. Submit Your Build to the App Store
-   Once your build is complete, you can submit it to the App Store using the following command:
-
-`eas submit --platform ios`
-
-This command will handle the submission of your build to the App Store using the credentials and configuration you provided.
+- For the Development environment:
+  - `pnpm submit:development:mobile --platform ios`
+- For the QA environment:
+  - `pnpm submit:qa:mobile --platform ios`
+- For the Staging environment:
+  - `pnpm submit:staging:mobile --platform ios`
+- For the Production environment:
+  - `pnpm submit:production:mobile --platform ios`
 
 ### Additional Resources
 
-For more detailed instructions on setting up your Apple Developer account, certificates, and provisioning profiles, refer to the [EAS Submits](https://docs.expo.dev/submit/introduction/) docs.
+For more detailed instructions on setting up your Apple Developer account, certificates, and provisioning profiles, refer to the [EAS Submit](https://docs.expo.dev/submit/introduction/) documentation.

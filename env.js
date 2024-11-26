@@ -116,10 +116,13 @@ const withEnvSuffix = (name) =>
  *
  */
 
+// eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
 const parseString = (/** @type {string | undefined} */ value) =>
   value === '' ? undefined : value;
+// eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
 const parseNumber = (/** @type {string | undefined} */ value) =>
   value ? Number(value) : undefined;
+// eslint-disable-next-line no-unused-vars, unused-imports/no-unused-vars
 const parseBoolean = (/** @type {string | undefined} */ value) =>
   value ? value === 'true' : undefined;
 
