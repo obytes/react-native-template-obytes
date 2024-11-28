@@ -94,15 +94,6 @@ const updateGitHubWorkflows = (projectName) => {
   // Update useful workflows
   projectFilesManager.replaceFilesContent([
     {
-      fileName: '.github/workflows/upstream-to-pr.yml',
-      replacements: [
-        {
-          searchValue: UPSTREAM_REPOSITORY,
-          replaceValue: TEMPLATE_REPOSITORY,
-        },
-      ],
-    },
-    {
       fileName: '.github/workflows/new-template-version.yml',
       replacements: [
         {
@@ -146,8 +137,8 @@ const updateGitHubWorkflows = (projectName) => {
     },
   ]);
 
-  // Remove upstream update workflow, intended to be used only in the template repository
-  projectFilesManager.removeFiles(['.github/workflows/upstream-to-pr.yml']);
+  // Remove upstream sync workflow, intended to be used only in the template repository
+  projectFilesManager.removeFiles(['.github/workflows/sync-with-upstream.yml']);
 
   // Enable sync with template workflow
   projectFilesManager.renameFiles([
