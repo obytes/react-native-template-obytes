@@ -8,7 +8,7 @@ import { useColorScheme } from 'nativewind';
 import { forwardRef, memo, useCallback, useMemo } from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { useController } from 'react-hook-form';
-import { Platform, Pressable, type PressableProps,TouchableOpacity, View  } from 'react-native';
+import { Platform, Pressable, type PressableProps, View } from 'react-native';
 import type { SvgProps } from 'react-native-svg';
 import Svg, { Path } from 'react-native-svg';
 import { tv } from 'tailwind-variants';
@@ -71,8 +71,8 @@ function keyExtractor(item: OptionType) {
 
 export const Options = forwardRef<BottomSheetModal, OptionsProps>(
   ({ options, onSelect, value, testID }, ref) => {
-    const HEIGHT_MARGIN = 100
-    const OPTION_HEIGHT = 70
+    const HEIGHT_MARGIN = 100;
+    const OPTION_HEIGHT = 70;
     const height = options.length * OPTION_HEIGHT + HEIGHT_MARGIN;
     const snapPoints = useMemo(() => [height], [height]);
     const { colorScheme } = useColorScheme();
@@ -88,7 +88,7 @@ export const Options = forwardRef<BottomSheetModal, OptionsProps>(
           testID={testID ? `${testID}-item-${item.value}` : undefined}
         />
       ),
-      [onSelect, value, testID]
+      [onSelect, value, testID],
     );
 
     return (
@@ -109,7 +109,7 @@ export const Options = forwardRef<BottomSheetModal, OptionsProps>(
         />
       </Modal>
     );
-  }
+  },
 );
 
 const Option = memo(
@@ -121,14 +121,14 @@ const Option = memo(
     selected?: boolean;
     label: string;
   }) => (
-      <Pressable
-        className="flex-row items-center border-b border-neutral-300 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-800"
-        {...props}
-      >
-        <Text className="flex-1 dark:text-neutral-100 ">{label}</Text>
-        {selected && <Check />}
-      </Pressable>
-    )
+    <Pressable
+      className="flex-row items-center border-b border-neutral-300 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-800"
+      {...props}
+    >
+      <Text className="flex-1 dark:text-neutral-100 ">{label}</Text>
+      {selected && <Check />}
+    </Pressable>
+  ),
 );
 
 export interface SelectProps {
@@ -163,7 +163,7 @@ export const Select = (props: SelectProps) => {
       onSelect?.(option.value);
       modal.dismiss();
     },
-    [modal, onSelect]
+    [modal, onSelect],
   );
 
   const styles = useMemo(
@@ -172,15 +172,15 @@ export const Select = (props: SelectProps) => {
         error: Boolean(error),
         disabled,
       }),
-    [error, disabled]
+    [error, disabled],
   );
 
   const textValue = useMemo(
     () =>
       value !== undefined
-        ? options?.filter((t) => t.value === value)?.[0]?.label ?? placeholder
+        ? (options?.filter((t) => t.value === value)?.[0]?.label ?? placeholder)
         : placeholder,
-    [value, options, placeholder]
+    [value, options, placeholder],
   );
 
   return (
@@ -194,7 +194,7 @@ export const Select = (props: SelectProps) => {
             {label}
           </Text>
         )}
-        <TouchableOpacity
+        <Pressable
           className={styles.input()}
           disabled={disabled}
           onPress={modal.present}
@@ -204,7 +204,7 @@ export const Select = (props: SelectProps) => {
             <Text className={styles.inputValue()}>{textValue}</Text>
           </View>
           <CaretDown />
-        </TouchableOpacity>
+        </Pressable>
         {error && (
           <Text
             testID={`${testID}-error`}
@@ -226,7 +226,7 @@ export const Select = (props: SelectProps) => {
 
 // only used with react-hook-form
 export function ControlledSelect<T extends FieldValues>(
-  props: ControlledSelectProps<T>
+  props: ControlledSelectProps<T>,
 ) {
   const { name, control, rules, onSelect: onNSelect, ...selectProps } = props;
 
@@ -236,7 +236,7 @@ export function ControlledSelect<T extends FieldValues>(
       field.onChange(value);
       onNSelect?.(value);
     },
-    [field, onNSelect]
+    [field, onNSelect],
   );
   return (
     <Select

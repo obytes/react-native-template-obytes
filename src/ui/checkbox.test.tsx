@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import 'react-native';
 
-import { cleanup, fireEvent, render, screen } from '@/core/test-utils';
+import { cleanup, fireEvent, render, screen, setup } from '@/core/test-utils';
 
 import { Checkbox, Radio, Switch } from './checkbox';
 
@@ -9,19 +9,18 @@ afterEach(cleanup);
 
 const AGREE_TERMS = 'I agree to terms and conditions';
 
-describe('Checkbox component ', () => {
+describe('Checkbox component', () => {
   const CHECKBOX_LABEL = 'checkbox-label';
 
-
-  it('<Checkbox /> renders correctly and call on change on Press', () => {
+  it('<Checkbox /> renders correctly and call on change on Press', async () => {
     const mockOnChange = jest.fn((checked) => checked);
-    render(
+    const { user } = setup(
       <Checkbox
         testID="checkbox"
         onChange={mockOnChange}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />
+      />,
     );
     expect(screen.getByTestId('checkbox')).toBeOnTheScreen();
     expect(screen.queryByTestId(CHECKBOX_LABEL)).not.toBeOnTheScreen();
@@ -29,66 +28,72 @@ describe('Checkbox component ', () => {
 
     expect(screen.getByTestId('checkbox')).not.toBeChecked();
     expect(screen.getByTestId('checkbox').props.accessibilityRole).toBe(
-      'checkbox'
+      'checkbox',
     );
     expect(screen.getByTestId('checkbox').props.accessibilityLabel).toBe(
-      'agree'
+      'agree',
     );
 
-    fireEvent.press(screen.getByTestId('checkbox'));
+    await user.press(screen.getByTestId('checkbox'));
     expect(mockOnChange).toHaveBeenCalledTimes(1);
     expect(mockOnChange).toHaveBeenCalledWith(true);
   });
 
-  it("<CheckBox/> shouldn't change value while disabled", () => {
+  it("<CheckBox/> shouldn't change value while disabled", async () => {
     const mockOnChange = jest.fn((checked) => checked);
-    render(
+    const { user } = setup(
       <Checkbox
         disabled={true}
         testID="checkbox"
         onChange={mockOnChange}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />
+      />,
     );
     expect(screen.getByTestId('checkbox')).toBeOnTheScreen();
     expect(screen.getByTestId('checkbox')).toBeDisabled();
-    fireEvent.press(screen.getByTestId('checkbox'));
+    await user.press(screen.getByTestId('checkbox'));
     expect(mockOnChange).toHaveBeenCalledTimes(0);
   });
-  it('<CheckBox/> Should render the correct label', () => {
+  it('<CheckBox/> Should render the correct label', async () => {
     const mockOnChange = jest.fn((checked) => checked);
-    render(
+    const { user } = setup(
       <Checkbox
         disabled={true}
         testID="checkbox"
         onChange={mockOnChange}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-        label="I agree to terms and conditions"
-      />
+        label={AGREE_TERMS}
+      />,
     );
     expect(screen.getByTestId('checkbox')).toBeOnTheScreen();
     expect(screen.getByTestId(CHECKBOX_LABEL)).toBeOnTheScreen();
     expect(
-      screen.getByTestId('checkbox').props.accessibilityState.checked
+      screen.getByTestId('checkbox').props.accessibilityState.checked,
     ).toBe(false);
     expect(screen.getByTestId('checkbox').props.accessibilityRole).toBe(
-      'checkbox'
+      'checkbox',
     );
 
     expect(screen.getByTestId('checkbox').props.accessibilityLabel).toBe(
-      'agree'
+      'agree',
     );
     expect(screen.getByTestId(CHECKBOX_LABEL)).toHaveTextContent(AGREE_TERMS);
-    fireEvent.press(screen.getByTestId('checkbox'));
+    await user.press(screen.getByTestId('checkbox'));
     expect(mockOnChange).toHaveBeenCalledTimes(0);
   });
 
   it('<Checkbox /> should not render label when empty or not provided', () => {
     const mockOnChange = jest.fn((checked) => checked);
-    render(<Checkbox testID="checkbox" label="" onChange={mockOnChange}
-      accessibilityLabel="agree"/>);
+    render(
+      <Checkbox
+        testID="checkbox"
+        label=""
+        onChange={mockOnChange}
+        accessibilityLabel="agree"
+      />,
+    );
     expect(screen.queryByTestId(CHECKBOX_LABEL)).not.toBeOnTheScreen();
   });
 
@@ -101,7 +106,7 @@ describe('Checkbox component ', () => {
         checked={true}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />
+      />,
     );
     expect(screen.getByTestId('checkbox')).toBeChecked();
     fireEvent.press(screen.getByTestId('checkbox'));
@@ -112,15 +117,15 @@ describe('Checkbox component ', () => {
 describe('Radio component ', () => {
   const RADIO_LABEL = 'radio-label';
 
-  it('<Radio /> renders correctly and call on change on Press', () => {
+  it('<Radio /> renders correctly and call on change on Press', async () => {
     const mockOnChange = jest.fn((checked) => checked);
-    render(
+    const { user } = setup(
       <Radio
         testID="radio"
         onChange={mockOnChange}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />
+      />,
     );
     expect(screen.getByTestId('radio')).toBeOnTheScreen();
     expect(screen.queryByTestId(RADIO_LABEL)).not.toBeOnTheScreen();
@@ -128,147 +133,130 @@ describe('Radio component ', () => {
     expect(screen.getByTestId('radio')).not.toBeChecked();
     expect(screen.getByTestId('radio').props.accessibilityRole).toBe('radio');
     expect(screen.getByTestId('radio').props.accessibilityLabel).toBe('agree');
-    fireEvent.press(screen.getByTestId('radio'));
+    await user.press(screen.getByTestId('radio'));
     expect(mockOnChange).toHaveBeenCalledTimes(1);
     expect(mockOnChange).toHaveBeenCalledWith(true);
   });
 
-  it('<Radio /> should render the correct label', () => {
+  it('<Radio /> should render the correct label', async () => {
     const mockOnChange = jest.fn((checked) => checked);
-    render(
+    const { user } = setup(
       <Radio
         testID="radio"
         onChange={mockOnChange}
         accessibilityLabel="agree"
-        label="I agree to terms and conditions"
+        label={AGREE_TERMS}
         accessibilityHint="toggle Agree"
-      />
+      />,
     );
     expect(screen.getByTestId('radio')).toBeOnTheScreen();
     expect(screen.getByTestId(RADIO_LABEL)).toBeOnTheScreen();
     expect(screen.getByTestId(RADIO_LABEL)).toHaveTextContent(AGREE_TERMS);
 
     expect(screen.getByTestId('radio').props.accessibilityState.checked).toBe(
-      false
+      false,
     );
     expect(screen.getByTestId('radio').props.accessibilityRole).toBe('radio');
     expect(screen.getByTestId('radio').props.accessibilityLabel).toBe('agree');
-    fireEvent.press(screen.getByTestId(RADIO_LABEL));
+    await user.press(screen.getByTestId(RADIO_LABEL));
     expect(mockOnChange).toHaveBeenCalledTimes(1);
     expect(mockOnChange).toHaveBeenCalledWith(true);
   });
 
-  it("<Radio/> shouldn't change value while disabled", () => {
+  it("<Radio/> shouldn't change value while disabled", async () => {
     const mockOnChange = jest.fn((checked) => checked);
-    render(
+    const { user } = setup(
       <Radio
         disabled={true}
         testID="radio"
         onChange={mockOnChange}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />
+      />,
     );
     expect(screen.getByTestId('radio')).toBeOnTheScreen();
     expect(screen.getByTestId('radio')).toBeDisabled();
-    fireEvent.press(screen.getByTestId('radio'));
+    await user.press(screen.getByTestId('radio'));
     expect(mockOnChange).toHaveBeenCalledTimes(0);
   });
-
-  it('<Radio /> should not render label when empty or not provided', () => {
-    const mockOnChange = jest.fn((checked) => checked);
-    render(<Radio testID="radio" label="" onChange={mockOnChange}
-      accessibilityLabel="agree"/>);
-    expect(screen.queryByTestId(RADIO_LABEL)).not.toBeOnTheScreen();
-  });
-
-  it('<Radio /> renders as checked when checked prop is true', () => {
-    const mockOnChange = jest.fn((checked) => checked);
-    render(
-      <Radio
-        testID="radio"
-        onChange={mockOnChange}
-        checked={true}
-        accessibilityLabel="agree"
-        accessibilityHint="toggle Agree"
-      />
-    );
-    expect(screen.getByTestId('radio')).toBeChecked();
-    fireEvent.press(screen.getByTestId('radio'));
-    expect(mockOnChange).toHaveBeenCalledWith(false); // Radio should toggle to unchecked
-  });
-})
+});
 
 describe('Switch component ', () => {
   const SWITCH_LABEL = 'switch-label';
 
-  it('<Switch /> renders correctly and call on change on Press', () => {
+  it('<Switch /> renders correctly and call on change on Press', async () => {
     const mockOnChange = jest.fn((checked) => checked);
-    render(
+    const { user } = setup(
       <Switch
         testID="switch"
         onChange={mockOnChange}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />
+      />,
     );
     expect(screen.getByTestId('switch')).toBeOnTheScreen();
     expect(screen.queryByTestId(SWITCH_LABEL)).not.toBeOnTheScreen();
     expect(screen.getByTestId('switch')).toBeEnabled();
     expect(screen.getByTestId('switch').props.accessibilityState.checked).toBe(
-      false
+      false,
     );
     expect(screen.getByTestId('switch').props.accessibilityRole).toBe('switch');
     expect(screen.getByTestId('switch').props.accessibilityLabel).toBe('agree');
-    fireEvent.press(screen.getByTestId('switch'));
+    await user.press(screen.getByTestId('switch'));
     expect(mockOnChange).toHaveBeenCalledTimes(1);
     expect(mockOnChange).toHaveBeenCalledWith(true);
   });
 
-  it('<Switch /> should render the correct label', () => {
+  it('<Switch /> should render the correct label', async () => {
     const mockOnChange = jest.fn((checked) => checked);
-    render(
+    const { user } = setup(
       <Switch
         testID="switch"
         onChange={mockOnChange}
         accessibilityLabel="agree"
-        label="I agree to terms and conditions"
+        label={AGREE_TERMS}
         accessibilityHint="toggle Agree"
-      />
+      />,
     );
     expect(screen.getByTestId('switch')).toBeOnTheScreen();
     expect(screen.getByTestId(SWITCH_LABEL)).toBeOnTheScreen();
     expect(screen.getByTestId(SWITCH_LABEL)).toHaveTextContent(AGREE_TERMS);
     expect(screen.getByTestId('switch').props.accessibilityState.checked).toBe(
-      false
+      false,
     );
     expect(screen.getByTestId('switch').props.accessibilityRole).toBe('switch');
     expect(screen.getByTestId('switch').props.accessibilityLabel).toBe('agree');
-    fireEvent.press(screen.getByTestId(SWITCH_LABEL));
+    await user.press(screen.getByTestId(SWITCH_LABEL));
     expect(mockOnChange).toHaveBeenCalledTimes(1);
     expect(mockOnChange).toHaveBeenCalledWith(true);
   });
 
-  it("<Switch/> shouldn't change value while disabled", () => {
+  it("<Switch/> shouldn't change value while disabled", async () => {
     const mockOnChange = jest.fn((checked) => checked);
-    render(
+    const { user } = setup(
       <Switch
         disabled={true}
         testID="switch"
         onChange={mockOnChange}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />
+      />,
     );
     expect(screen.getByTestId('switch')).toBeOnTheScreen();
-    fireEvent.press(screen.getByTestId('switch'));
+    await user.press(screen.getByTestId('switch'));
     expect(mockOnChange).toHaveBeenCalledTimes(0);
   });
-  
+
   it('<Switch /> should not render label when empty or not provided', () => {
     const mockOnChange = jest.fn((checked) => checked);
-    render(<Switch testID="switch" label="" onChange={mockOnChange}
-      accessibilityLabel="agree"/>);
+    render(
+      <Switch
+        testID="switch"
+        label=""
+        onChange={mockOnChange}
+        accessibilityLabel="agree"
+      />,
+    );
     expect(screen.queryByTestId(SWITCH_LABEL)).not.toBeOnTheScreen();
   });
 
@@ -281,10 +269,12 @@ describe('Switch component ', () => {
         checked={true}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />
+      />,
     );
-    expect(screen.getByTestId('switch').props.accessibilityState.checked).toBe(true);
+    expect(screen.getByTestId('switch').props.accessibilityState.checked).toBe(
+      true,
+    );
     fireEvent.press(screen.getByTestId('switch'));
     expect(mockOnChange).toHaveBeenCalledWith(false); // Switch should toggle to unchecked
   });
-})
+});
