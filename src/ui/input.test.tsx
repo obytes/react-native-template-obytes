@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import { I18nManager } from 'react-native';
 
-import { cleanup, fireEvent, render, screen } from '@/core/test-utils';
+import { cleanup, render, screen, setup } from '@/core/test-utils';
 
 import { Input } from './input';
 
@@ -33,7 +33,7 @@ describe('Input component ', () => {
     render(<Input testID="input" placeholder="Enter your username" />);
     expect(screen.getByTestId('input')).toBeOnTheScreen();
     expect(
-      screen.getByPlaceholderText('Enter your username')
+      screen.getByPlaceholderText('Enter your username'),
     ).toBeOnTheScreen();
   });
 
@@ -49,7 +49,7 @@ describe('Input component ', () => {
     expect(screen.getByTestId('input')).toBeOnTheScreen();
 
     expect(screen.getByTestId(INPUT_ERROR)).toHaveTextContent(
-      'This is an error message'
+      'This is an error message',
     );
   });
   it('should render the label, error message & placeholder correctly ', () => {
@@ -59,45 +59,48 @@ describe('Input component ', () => {
         label="Username"
         placeholder="Enter your username"
         error="This is an error message"
-      />
+      />,
     );
     expect(screen.getByTestId('input')).toBeOnTheScreen();
 
     expect(screen.getByTestId('input-label')).toHaveTextContent('Username');
     expect(screen.getByTestId(INPUT_ERROR)).toBeOnTheScreen();
     expect(screen.getByTestId(INPUT_ERROR)).toHaveTextContent(
-      'This is an error message'
+      'This is an error message',
     );
     expect(
-      screen.getByPlaceholderText('Enter your username')
+      screen.getByPlaceholderText('Enter your username'),
     ).toBeOnTheScreen();
   });
 
-  it('should trigger onFocus event correctly ', () => {
+  it('should trigger onFocus event correctly ', async () => {
     const onFocus = jest.fn();
-    render(<Input testID="input" onFocus={onFocus} />);
+    const { user } = setup(<Input testID="input" onFocus={onFocus} />);
 
     const input = screen.getByTestId('input');
-    fireEvent(input, 'focus');
+    await user.type(input, 'test text');
     expect(onFocus).toHaveBeenCalledTimes(1);
   });
 
-  it('should trigger onBlur event correctly ', () => {
+  it('should trigger onBlur event correctly ', async () => {
     const onBlur = jest.fn();
-    render(<Input testID="input" onBlur={onBlur} />);
+    const { user } = setup(<Input testID="input" onBlur={onBlur} />);
 
     const input = screen.getByTestId('input');
-    fireEvent(input, 'blur');
+    await user.type(input, 'test text');
     expect(onBlur).toHaveBeenCalledTimes(1);
   });
-  it('should trigger onChangeText event correctly', () => {
+  it('should trigger onChangeText event correctly', async () => {
     const onChangeText = jest.fn();
-    render(<Input testID="input" onChangeText={onChangeText} />);
+    const { user } = setup(
+      <Input testID="input" onChangeText={onChangeText} />,
+    );
 
     const input = screen.getByTestId('input');
-    fireEvent.changeText(input, 'test text');
-    expect(onChangeText).toHaveBeenCalledTimes(1);
-    expect(onChangeText).toHaveBeenCalledWith('test text');
+    await user.type(input, '123456789');
+    const PRESSED_KEYS_COUNT = 9;
+    expect(onChangeText).toHaveBeenCalledTimes(PRESSED_KEYS_COUNT); // every character is a change event
+    expect(onChangeText).toHaveBeenCalledWith('123456789');
   });
   it('should be disabled when disabled prop is true', () => {
     render(<Input testID="input" disabled={true} />);

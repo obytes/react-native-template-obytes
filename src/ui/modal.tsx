@@ -78,7 +78,7 @@ export const Modal = forwardRef(
       detached = false,
       ...props
     }: ModalProps,
-    ref: ModalRef
+    ref: ModalRef,
   ) => {
     const detachedProps = useMemo(() => getDetachedProps(detached), [detached]);
     const modal = useModal();
@@ -86,7 +86,7 @@ export const Modal = forwardRef(
 
     useImperativeHandle(
       ref,
-      () => (modal.ref.current as BottomSheetModal) || null
+      () => (modal.ref.current as BottomSheetModal) || null,
     );
 
     const renderHandleComponent = useCallback(
@@ -96,7 +96,7 @@ export const Modal = forwardRef(
           <ModalHeader title={title} dismiss={modal.dismiss} />
         </>
       ),
-      [title, modal.dismiss]
+      [title, modal.dismiss],
     );
 
     return (
@@ -110,7 +110,7 @@ export const Modal = forwardRef(
         handleComponent={renderHandleComponent}
       />
     );
-  }
+  },
 );
 
 /**
@@ -121,8 +121,8 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 const CustomBackdrop = ({ style }: BottomSheetBackdropProps) => {
   const { close } = useBottomSheet();
-  const FADE_IN_DURATION = 50
-  const FADE_OUT_DURATION = 20
+  const FADE_IN_DURATION = 50;
+  const FADE_OUT_DURATION = 20;
   return (
     <AnimatedPressable
       onPress={() => close()}
@@ -162,38 +162,38 @@ const getDetachedProps = (detached: boolean) => {
  */
 
 const ModalHeader = memo(({ title, dismiss }: ModalHeaderProps) => (
-    <>
-      {title && (
-        <View className="flex-row px-2 py-4">
-          <View className="h-[24px] w-[24px]" />
-          <View className="flex-1">
-            <Text className="text-center text-[16px] font-bold text-[#26313D] dark:text-white">
-              {title}
-            </Text>
-          </View>
+  <>
+    {title && (
+      <View className="flex-row px-2 py-4">
+        <View className="h-[24px] w-[24px]" />
+        <View className="flex-1">
+          <Text className="text-center text-[16px] font-bold text-[#26313D] dark:text-white">
+            {title}
+          </Text>
         </View>
-      )}
-      <CloseButton close={dismiss} />
-    </>
-  ));
+      </View>
+    )}
+    <CloseButton close={dismiss} />
+  </>
+));
 
 const CloseButton = ({ close }: { close: () => void }) => (
-    <Pressable
-      onPress={close}
-      className="absolute right-3 top-3 h-[24px] w-[24px] items-center justify-center "
-      hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
-      accessibilityLabel="close modal"
-      accessibilityRole="button"
-      accessibilityHint="closes the modal"
+  <Pressable
+    onPress={close}
+    className="absolute right-3 top-3 h-[24px] w-[24px] items-center justify-center "
+    hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
+    accessibilityLabel="close modal"
+    accessibilityRole="button"
+    accessibilityHint="closes the modal"
+  >
+    <Svg
+      className="fill-neutral-300 dark:fill-white"
+      width={24}
+      height={24}
+      fill="none"
+      viewBox="0 0 24 24"
     >
-      <Svg
-        className="fill-neutral-300 dark:fill-white"
-        width={24}
-        height={24}
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <Path d="M18.707 6.707a1 1 0 0 0-1.414-1.414L12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 1 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293Z" />
-      </Svg>
-    </Pressable>
-  );
+      <Path d="M18.707 6.707a1 1 0 0 0-1.414-1.414L12 10.586 6.707 5.293a1 1 0 0 0-1.414 1.414L10.586 12l-5.293 5.293a1 1 0 1 0 1.414 1.414L12 13.414l5.293 5.293a1 1 0 0 0 1.414-1.414L13.414 12l5.293-5.293Z" />
+    </Svg>
+  </Pressable>
+);
