@@ -83,8 +83,7 @@ describe('Button component ', () => {
     // TODO: should be fixed to use haveStyle instead of comparing the class name
     const expectedStyle =
       'font-inter font-semibold text-white dark:text-black text-xl';
-    const receivedStyle =
-      button.props.children[0].props.children.props.className;
+    const receivedStyle = button.props.children[0].props.className;
     expect(receivedStyle).toContain(expectedStyle);
   });
   it('should apply correct styles for label when variant is secondary', () => {
@@ -93,8 +92,7 @@ describe('Button component ', () => {
 
     const expectedStyle =
       'font-inter font-semibold text-secondary-600 text-base';
-    const receivedStyle =
-      button.props.children[0].props.children.props.className;
+    const receivedStyle = button.props.children[0].props.className;
     expect(receivedStyle).toContain(expectedStyle);
   });
   it('should apply correct styles for label when is disabled', () => {
@@ -103,8 +101,7 @@ describe('Button component ', () => {
 
     const expectedStyle =
       'font-inter font-semibold text-base text-neutral-600 dark:text-neutral-600';
-    const receivedStyle =
-      button.props.children[0].props.children.props.className;
+    const receivedStyle = button.props.children[0].props.className;
     expect(receivedStyle).toContain(expectedStyle);
   });
 });
