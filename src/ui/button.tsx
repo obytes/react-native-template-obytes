@@ -106,12 +106,36 @@ export const Button = forwardRef<View, Props>(
       textClassName = '',
       ...props
     },
-    ref
+    ref,
   ) => {
     const styles = useMemo(
       () => button({ variant, disabled, size }),
-      [variant, disabled, size]
+      [variant, disabled, size],
     );
+
+    const renderContent = () => {
+      if (props?.children) {
+        return props.children;
+      }
+
+      if (loading) {
+        return (
+          <ActivityIndicator
+            size="small"
+            className={styles.indicator()}
+            testID={testID ? `${testID}-activity-indicator` : undefined}
+          />
+        );
+      }
+      return (
+        <Text
+          testID={testID ? `${testID}-label` : undefined}
+          className={styles.label({ className: textClassName })}
+        >
+          {text}
+        </Text>
+      );
+    };
 
     return (
       <Pressable
@@ -121,27 +145,8 @@ export const Button = forwardRef<View, Props>(
         ref={ref}
         testID={testID}
       >
-        {props.children ? (
-          props.children
-        ) : (
-          <>
-            {loading ? (
-              <ActivityIndicator
-                size="small"
-                className={styles.indicator()}
-                testID={testID ? `${testID}-activity-indicator` : undefined}
-              />
-            ) : (
-              <Text
-                testID={testID ? `${testID}-label` : undefined}
-                className={styles.label({ className: textClassName })}
-              >
-                {text}
-              </Text>
-            )}
-          </>
-        )}
+        {renderContent()}
       </Pressable>
     );
-  }
+  },
 );
