@@ -11,7 +11,7 @@ import CodeBlock from '../../../components/code.astro';
 :::note
 Please note that this guide is intended for updating your project dependencies only, and it does not ensure that your project will be in sync with the latest version of the starter.
 
-To take advantage of the latest improvements in the starter project, you will need to compare your `osMetadata.initVersion` with the latest release on GitHub, and manually apply any necessary changes to your project.
+To take advantage of the latest improvements in the Template project, you will need to compare your `rsMetadata.templateVersion` with the latest release on GitHub, and manually apply any necessary changes to your project.
 :::
 
 ## Easy way 🚀
@@ -20,7 +20,7 @@ Upgrading a React Native project to the latest version can be a challenging task
 
 To update most of the dependencies that come with the starter, you can follow these simple steps:
 
-First, go to GitHub and compare your `osMetadata.initVersion` in your `package.json` with the latest release. Check if the `package.json` has been updated. Then, copy the new dependencies and devDependencies versions and paste them into your package.json file.
+First, go to GitHub and compare your `rsMetadata.templateVersion` in your `package.json` with the latest release. Check if the `package.json` has been updated. Then, copy the new dependencies and devDependencies versions and paste them into your package.json file.
 
 Finally, run the following commands to make sur everything is working as expected:
 
@@ -31,14 +31,14 @@ pnpm run doctor ## check for any issues with the dependencies you added to your 
 pnpm lint ## linting
 pnpm type-check ## type checking
 pnpm test ## tests
-pnpm prebuild -clean ## clean ios and android build folders and regenerate them
+pnpm prebuild --clean ## clean ios and android build folders and regenerate them
 pnpm ios ## run ios build
 pnpm android ## run android build
-pnpm start --cc ## start the server
+pnpm start -c ## start the server
 ```
 
 :::info
-If your starter version does not have the `osMetadata.initVersion` property, don't worry. Simply follow the steps in the rest of this guide to upgrade your project.
+If your Template version does not have the `rsMetadata.templateVersion` property, don't worry. Simply follow the steps in the rest of this guide to upgrade your project.
 
 Moreover, if you have added new dependencies to your project (which is common for most projects), the remaining sections of this guide will also assist you in upgrading your project's dependencies."
 :::
@@ -50,7 +50,7 @@ Visit the npm package registry [here](https://www.npmjs.com/package/expo) to ens
 Once you have confirmed that you have the latest version, open your terminal and enter the following command:
 
 ```bash
-pnpm add expo@lastVersion
+pnpm add expo@latest
 ## pnpm add expo@48.0.5 for example
 ```
 
@@ -78,10 +78,10 @@ pnpm install ## install new dependencies
 pnpm lint ## linting
 pnpm type-check ## type checking
 pnpm test ## tests
-pnpm prebuild -clean ## clean ios and android build folders and regenerate them
+pnpm prebuild --clean ## clean ios and android build folders and regenerate them
 pnpm ios ## run ios build
 pnpm android ## run android build
-pnpm start --cc ## start the server
+pnpm start -c ## start the server
 ```
 
 Unfortunately, there is no magic trick here in case you have any issues while running your checks, Fixing those errors may require some manual effort. You can start by reading the error message and identifying any relevant packages that may be causing the issue. Check the changelog of those packages to see if there have been any recent updates that might have introduced breaking changes. This will help you to pinpoint the root cause of the issue and take the necessary steps to resolve it.
@@ -144,10 +144,10 @@ pnpm install ## install new dependencies
 pnpm lint ## linting
 pnpm type-check ## type checking
 pnpm test ## tests
-pnpm prebuild -clean ## clean ios and Android build folders and regenerate them
+pnpm prebuild --clean ## clean ios and Android build folders and regenerate them
 pnpm ios ## run ios build
 pnpm android ## run android build
-pnpm start --cc ## start the server
+pnpm start -c ## start the server
 ```
 
 If you are lucky enough and everything works as expected without any issues, you can now update the rest of the dependencies.

@@ -12,7 +12,7 @@ Releasing your app to the App Store and Google Play or even to your QA team for 
 
 Doing this in a weekly basis requires automating the process as much as possible to gain time and avoid a lot of manual work.
 
-To make this process as easy as possible, we use Github action and expo eas to build and release our app to the App Store and Google Play.
+To make this process as easy as possible, we use Github action and Expo EAS to build and release our app to the App Store and Google Play Store.
 
 ## The Philosophy
 
@@ -67,52 +67,7 @@ In conclusion, when you want to release a new QA version, manually execute `new-
 
 ## Setup Release Process to your app
 
-To setup the release process to your app, you need to follow these steps:
-
-### Run Build Locally
-
-First, make sure to create an [Expo](expo.dev) account then create a new organization for your project.
-
-When then name of your organization is ready, you need to update the `EXPO_ACCOUNT_OWNER` variable in `env.js` file with the name of your organization.
-
-**For QA release:**
-
-```bash
-pnpm run prebuild:staging
-```
-
-The above command will regenerate the iOS and Android folders based on the `staging` configuration.
-
-Then run the following command to build the app using EAS:
-
-:::caution
-You need to be logged in to EAS using `eas login` command before running this command. check [step 1 and 2 from EAS docs](https://docs.expo.dev/build/setup/) for more details.
-:::
-
-```bash
-pnpm run build:staging:ios
-pnpm run build:staging:android
-```
-
-The above commands will generate the required credentials for the build and store them in EAS servers so that we can use them later to trigger the build from GitHub actions.
-
-**For production release:**
-
-```bash
-pnpm run prebuild:production
-pnpm run build:production:ios
-pnpm run build:production:android
-```
-
-In case you want to submit the app to the App Store and Google Play, you need to check eas submit configuration and follow the steps from [EAS docs](https://docs.expo.dev/submit/introduction/).
-
-### Setup GitHub Actions
-
-All github workflows are already ready to be used in the starter. You just need to add the required secrets to your GitHub repo:
-
-- GH_TOKEN: A [Github token](https://github.com/settings/tokens) with access to your repo.
-
-- EXPO_TOKEN: Expo token to authenticate with EAS. You can get generate yours [here](https://expo.dev/settings/access-tokens)
+To setup the release process for your app, you need to follow the steps from our [EAS instructions file](https://github.com/rootstrap/react-native-template/blob/master/EAS.md).
 
 ## Create new release
 
