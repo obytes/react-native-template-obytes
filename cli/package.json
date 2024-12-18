@@ -19,6 +19,7 @@
   "files": [
     "index.js",
     "utils.js",
+    "project-files-manager.js",
     "clone-repo.js",
     "setup-project.js"
   ],
