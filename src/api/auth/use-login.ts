@@ -32,6 +32,6 @@ const login = async (variables: Variables) => {
   return data;
 };
 
-export const useLogin = createMutation<Response, Variables, Error>({
+export const useLogin = createMutation<Response, Variables>({
   mutationFn: (variables) => login(variables),
 });

@@ -52,7 +52,7 @@ const ProductRow = ({ product }: { product: Product }) => (
     <Image
       source={{ uri: product.thumbnail }}
       className="h-16 w-16 rounded"
-      resizeMode="cover"
+      contentFit="cover"
     />
     <View className="ml-4 flex-1">
       <Text className="font-medium">{product.title}</Text>
