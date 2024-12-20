@@ -135,33 +135,30 @@ The starter kit did not come with Sentry pre-configured, but it's very easy to s
    Create a new file `src/lib/sentry.ts` and add the following code:
 
    ```tsx title='src/lib/sentry.ts'
+   import { Env } from '@env';
+   import * as Sentry from '@sentry/react-native';
    import { useNavigationContainerRef } from 'expo-router';
    import { useEffect } from 'react';
-   import * as Sentry from '@sentry/react-native';
-   import { Env } from '@env';
 
-   const routingInstrumentation = new Sentry.ReactNavigationInstrumentation();
+   const navigationIntegration = Sentry.reactNavigationIntegration({
+     enableTimeToInitialDisplay: true,
+   });
 
    export const initSentry = () => {
-     Sentry.init({
-       dsn: Env.SENTRY_DSN,
-       // debug: Env.APP_ENV === 'development',
-       integrations: [
-         new Sentry.ReactNativeTracing({
-           routingInstrumentation,
-           enableNativeFramesTracking: true,
-           // ...
-         }),
-       ],
-     });
+     if (!__DEV__) {
+       Sentry.init({
+         dsn: Env.SENTRY_DSN,
+         integrations: [navigationIntegration],
+       });
+     }
    };
 
    export const useSentryNavigationConfig = () => {
      const navigationRef = useNavigationContainerRef();
 
      useEffect(() => {
-       if (navigationRef) {
-         routingInstrumentation.registerNavigationContainer(navigationRef);
+       if (navigationRef && !__DEV__) {
+         navigationIntegration.registerNavigationContainer(navigationRef);
        }
      }, [navigationRef]);
    };

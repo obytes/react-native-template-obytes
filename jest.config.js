@@ -1,8 +1,6 @@
 module.exports = {
   preset: 'jest-expo',
-  setupFilesAfterEnv: [
-    '<rootDir>/jest-setup.ts',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
@@ -15,7 +13,7 @@ module.exports = {
   ],
   moduleFileExtensions: ['js', 'ts', 'tsx'],
   transformIgnorePatterns: [
-    `node_modules/(?!(?:.pnpm/)?((jest-)?react-native|@react-native(-community)?|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg))`,
+    `node_modules/(?!(?:.pnpm/)?((jest-)?react-native|@react-native(-community)?|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|@sentry/.*|native-base|react-native-svg))`,
   ],
   coverageReporters: ['json-summary', ['text', { file: 'coverage.txt' }]],
   reporters: [
