@@ -3,12 +3,12 @@ import React from 'react';
 
 import { Cover } from '@/components/cover';
 import {
-  Button,
   FocusAwareStatusBar,
   SafeAreaView,
-  Text,
   View,
 } from '@/components/ui';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Text } from "@/components/ui/text";
 import { useIsFirstTime } from '@/lib/hooks';
 export default function Onboarding() {
   const [_, setIsFirstTime] = useIsFirstTime();
@@ -41,13 +41,12 @@ export default function Onboarding() {
         </Text>
       </View>
       <SafeAreaView className="mt-6">
-        <Button
-          label="Let's Get Started "
-          onPress={() => {
+        <Button size="md" variant="solid" action="primary" onPress={() => {
             setIsFirstTime(false);
             router.replace('/login');
-          }}
-        />
+          }}>
+          <ButtonText>Let's Get Started </ButtonText>
+        </Button>
       </SafeAreaView>
     </View>
   );

@@ -42,6 +42,8 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "^4.0.0",
+    "@gluestack-ui/button": "^1.0.8",
+    "@gluestack-ui/icon": "^0.1.25",
     "@gluestack-ui/nativewind-utils": "^1.0.26",
     "@gluestack-ui/overlay": "^0.1.16",
     "@gluestack-ui/toast": "^1.0.8",

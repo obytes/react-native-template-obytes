@@ -3,16 +3,16 @@ import { Stack } from 'expo-router';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { showMessage } from 'react-native-flash-message';
+import colors from "tailwindcss/colors";
 import { z } from 'zod';
 
 import { useAddPost } from '@/api';
 import {
-  Button,
   ControlledInput,
   showErrorMessage,
   View,
 } from '@/components/ui';
-
+import { Button, ButtonSpinner,ButtonText } from '@/components/ui/button';
 const schema = z.object({
   title: z.string().min(10),
   body: z.string().min(120),
@@ -67,12 +67,12 @@ export default function AddPost() {
           multiline
           testID="body-input"
         />
-        <Button
-          label="Add Post"
-          loading={isPending}
+        <Button size="md" variant="solid" action="primary"
           onPress={handleSubmit(onSubmit)}
-          testID="add-post-button"
-        />
+          testID="add-post-button">
+          { isPending && <ButtonSpinner color={colors.gray[400]} /> }
+          <ButtonText>Add Post</ButtonText>
+        </Button>
       </View>
     </>
   );
