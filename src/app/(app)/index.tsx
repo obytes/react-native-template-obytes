@@ -10,7 +10,7 @@ export default function Feed() {
   const { data, isPending, isError } = usePosts();
   const renderItem = React.useCallback(
     ({ item }: { item: Post }) => <Card {...item} />,
-    [],
+    []
   );
 
   if (isError) {

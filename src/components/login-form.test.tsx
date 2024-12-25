@@ -59,7 +59,7 @@ describe('LoginForm Form ', () => {
         email: 'youssef@gmail.com',
         password: 'password',
       },
-      expect.objectContaining({}),
+      expect.objectContaining({})
     );
   });
 });

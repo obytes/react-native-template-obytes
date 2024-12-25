@@ -22,9 +22,9 @@ export const Text = ({
     () =>
       twMerge(
         'text-base text-black  dark:text-white  font-inter font-normal',
-        className,
+        className
       ),
-    [className],
+    [className]
   );
 
   const nStyle = React.useMemo(
@@ -35,7 +35,7 @@ export const Text = ({
         },
         style,
       ]) as TextStyle,
-    [style],
+    [style]
   );
   return (
     <NNText className={textStyle} style={nStyle} {...props}>

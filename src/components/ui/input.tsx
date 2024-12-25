@@ -84,7 +84,7 @@ export const Input = React.forwardRef<NTextInput, NInputProps>((props, ref) => {
         focused: isFocussed,
         disabled: Boolean(props.disabled),
       }),
-    [error, isFocussed, props.disabled],
+    [error, isFocussed, props.disabled]
   );
 
   return (
@@ -125,7 +125,7 @@ export const Input = React.forwardRef<NTextInput, NInputProps>((props, ref) => {
 
 // only used with react-hook-form
 export function ControlledInput<T extends FieldValues>(
-  props: ControlledInputProps<T>,
+  props: ControlledInputProps<T>
 ) {
   const { name, control, rules, ...inputProps } = props;
 

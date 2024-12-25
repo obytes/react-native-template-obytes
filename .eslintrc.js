@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   extends: ['expo', 'plugin:tailwindcss/recommended', 'prettier'],
   plugins: [
+    'prettier',
     'unicorn',
     '@typescript-eslint',
     'unused-imports',
@@ -14,6 +15,7 @@ module.exports = {
     project: './tsconfig.json',
   },
   rules: {
+    'prettier/prettier': 'warn',
     'unicorn/filename-case': [
       'error',
       {

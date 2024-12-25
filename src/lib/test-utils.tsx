@@ -17,7 +17,7 @@ const createAppWrapper = () => {
 
 const customRender = (
   ui: ReactElement,
-  options?: Omit<RenderOptions, 'wrapper'>,
+  options?: Omit<RenderOptions, 'wrapper'>
 ) => {
   const Wrapper = createAppWrapper(); // make sure we have a new wrapper for each render
   return render(ui, { wrapper: Wrapper, ...options });
@@ -26,7 +26,7 @@ const customRender = (
 // use this if you want to test user events
 export const setup = (
   ui: ReactElement,
-  options?: Omit<RenderOptions, 'wrapper'>,
+  options?: Omit<RenderOptions, 'wrapper'>
 ) => {
   const Wrapper = createAppWrapper();
   return {

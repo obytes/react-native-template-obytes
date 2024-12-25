@@ -22,7 +22,7 @@ export const useSelectedTheme = () => {
       setColorScheme(t);
       _setTheme(t);
     },
-    [setColorScheme, _setTheme],
+    [setColorScheme, _setTheme]
   );
 
   const selectedTheme = (theme ?? 'system') as ColorSchemeType;

@@ -17,7 +17,7 @@ describe('Button component ', () => {
     render(
       <Button testID="button">
         <Text> Custom child </Text>
-      </Button>,
+      </Button>
     );
     expect(screen.getByText('Custom child')).toBeOnTheScreen();
   });
@@ -34,7 +34,7 @@ describe('Button component ', () => {
   it('should call onClick handler when clicked', async () => {
     const onClick = jest.fn();
     const { user } = setup(
-      <Button testID="button" label="Click the button" onPress={onClick} />,
+      <Button testID="button" label="Click the button" onPress={onClick} />
     );
     expect(screen.getByTestId('button')).toBeOnTheScreen();
     await user.press(screen.getByTestId('button'));
@@ -48,7 +48,7 @@ describe('Button component ', () => {
         loading={true}
         label="Click the button"
         onPress={onClick}
-      />,
+      />
     );
     expect(screen.getByTestId('button')).toBeOnTheScreen();
     expect(screen.getByTestId('button-activity-indicator')).toBeOnTheScreen();
@@ -69,7 +69,7 @@ describe('Button component ', () => {
         disabled={true}
         onPress={onClick}
         variant="secondary"
-      />,
+      />
     );
     expect(screen.getByTestId('button')).toBeOnTheScreen();
     await user.press(screen.getByTestId('button'));

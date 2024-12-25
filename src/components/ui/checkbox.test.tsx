@@ -18,7 +18,7 @@ describe('Checkbox, Radio & Switch components ', () => {
         onChange={mockOnChange}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />,
+      />
     );
     expect(screen.getByTestId('checkbox')).toBeOnTheScreen();
     expect(screen.queryByTestId('checkbox-label')).not.toBeOnTheScreen();
@@ -26,10 +26,10 @@ describe('Checkbox, Radio & Switch components ', () => {
 
     expect(screen.getByTestId('checkbox')).not.toBeChecked();
     expect(screen.getByTestId('checkbox').props.accessibilityRole).toBe(
-      'checkbox',
+      'checkbox'
     );
     expect(screen.getByTestId('checkbox').props.accessibilityLabel).toBe(
-      'agree',
+      'agree'
     );
 
     await user.press(screen.getByTestId('checkbox'));
@@ -46,7 +46,7 @@ describe('Checkbox, Radio & Switch components ', () => {
         onChange={mockOnChange}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />,
+      />
     );
     expect(screen.getByTestId('checkbox')).toBeOnTheScreen();
     expect(screen.getByTestId('checkbox')).toBeDisabled();
@@ -63,22 +63,22 @@ describe('Checkbox, Radio & Switch components ', () => {
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
         label="I agree to terms and conditions"
-      />,
+      />
     );
     expect(screen.getByTestId('checkbox')).toBeOnTheScreen();
     expect(screen.getByTestId('checkbox-label')).toBeOnTheScreen();
     expect(
-      screen.getByTestId('checkbox').props.accessibilityState.checked,
+      screen.getByTestId('checkbox').props.accessibilityState.checked
     ).toBe(false);
     expect(screen.getByTestId('checkbox').props.accessibilityRole).toBe(
-      'checkbox',
+      'checkbox'
     );
 
     expect(screen.getByTestId('checkbox').props.accessibilityLabel).toBe(
-      'agree',
+      'agree'
     );
     expect(screen.getByTestId('checkbox-label')).toHaveTextContent(
-      'I agree to terms and conditions',
+      'I agree to terms and conditions'
     );
     await user.press(screen.getByTestId('checkbox'));
     expect(mockOnChange).toHaveBeenCalledTimes(0);
@@ -92,7 +92,7 @@ describe('Checkbox, Radio & Switch components ', () => {
         onChange={mockOnChange}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />,
+      />
     );
     expect(screen.getByTestId('radio')).toBeOnTheScreen();
     expect(screen.queryByTestId('radio-label')).not.toBeOnTheScreen();
@@ -114,16 +114,16 @@ describe('Checkbox, Radio & Switch components ', () => {
         accessibilityLabel="agree"
         label="I agree to terms and conditions"
         accessibilityHint="toggle Agree"
-      />,
+      />
     );
     expect(screen.getByTestId('radio')).toBeOnTheScreen();
     expect(screen.getByTestId('radio-label')).toBeOnTheScreen();
     expect(screen.getByTestId('radio-label')).toHaveTextContent(
-      'I agree to terms and conditions',
+      'I agree to terms and conditions'
     );
 
     expect(screen.getByTestId('radio').props.accessibilityState.checked).toBe(
-      false,
+      false
     );
     expect(screen.getByTestId('radio').props.accessibilityRole).toBe('radio');
     expect(screen.getByTestId('radio').props.accessibilityLabel).toBe('agree');
@@ -141,7 +141,7 @@ describe('Checkbox, Radio & Switch components ', () => {
         onChange={mockOnChange}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />,
+      />
     );
     expect(screen.getByTestId('radio')).toBeOnTheScreen();
     expect(screen.getByTestId('radio')).toBeDisabled();
@@ -157,13 +157,13 @@ describe('Checkbox, Radio & Switch components ', () => {
         onChange={mockOnChange}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />,
+      />
     );
     expect(screen.getByTestId('switch')).toBeOnTheScreen();
     expect(screen.queryByTestId('switch-label')).not.toBeOnTheScreen();
     expect(screen.getByTestId('switch')).toBeEnabled();
     expect(screen.getByTestId('switch').props.accessibilityState.checked).toBe(
-      false,
+      false
     );
     expect(screen.getByTestId('switch').props.accessibilityRole).toBe('switch');
     expect(screen.getByTestId('switch').props.accessibilityLabel).toBe('agree');
@@ -181,15 +181,15 @@ describe('Checkbox, Radio & Switch components ', () => {
         accessibilityLabel="agree"
         label="I agree to terms and conditions"
         accessibilityHint="toggle Agree"
-      />,
+      />
     );
     expect(screen.getByTestId('switch')).toBeOnTheScreen();
     expect(screen.getByTestId('switch-label')).toBeOnTheScreen();
     expect(screen.getByTestId('switch-label')).toHaveTextContent(
-      'I agree to terms and conditions',
+      'I agree to terms and conditions'
     );
     expect(screen.getByTestId('switch').props.accessibilityState.checked).toBe(
-      false,
+      false
     );
     expect(screen.getByTestId('switch').props.accessibilityRole).toBe('switch');
     expect(screen.getByTestId('switch').props.accessibilityLabel).toBe('agree');
@@ -207,7 +207,7 @@ describe('Checkbox, Radio & Switch components ', () => {
         onChange={mockOnChange}
         accessibilityLabel="agree"
         accessibilityHint="toggle Agree"
-      />,
+      />
     );
     expect(screen.getByTestId('switch')).toBeOnTheScreen();
     await user.press(screen.getByTestId('switch'));

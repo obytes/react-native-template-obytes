@@ -42,7 +42,7 @@ export default function AddPost() {
         onError: () => {
           showErrorMessage('Error adding post');
         },
-      },
+      }
     );
   };
   return (
