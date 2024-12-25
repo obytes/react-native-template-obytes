@@ -28,6 +28,7 @@ jobs:
     name: Expo Doctor (expo)
     runs-on: ubuntu-latest
     permissions:
+      contents: read
       pull-requests: write
 
     steps:
