@@ -42,6 +42,8 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
 
         <ControlledInput
           testID="email-input"
+          autoCapitalize="none"
+          autoComplete="email"
           control={control}
           name="email"
           label="Email (optional)"

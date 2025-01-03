@@ -1,4 +1,20 @@
 {
+  "auth": {
+    "sign-in": {
+      "forgotPasswordButton": "Forgot Password"
+    }
+  },
+  "forgotPassword": {
+    "buttonLabel": "Send Reset Instructions",
+    "description": "Enter your email address below and we'll send you instructions to reset your password.",
+    "emailInvalidFormatFormError": "Invalid email format",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "errorMessage": "There was an error sending the instructions. Please try again.",
+    "instructions": "You'll receive an email with a link to reset your password. Please check your inbox.",
+    "successMessage": "Instructions to reset your password have been sent to your email.",
+    "title": "Forgot your password?"
+  },
   "onboarding": {
     "message": "Welcome to rootstrap app site"
   },

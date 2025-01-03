@@ -1,13 +1,15 @@
 import { useRouter } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 import { showMessage } from 'react-native-flash-message';
 
 import { useLogin } from '@/api/auth/use-login';
 import type { LoginFormProps } from '@/components/login-form';
 import { LoginForm } from '@/components/login-form';
 import { useAuth } from '@/core';
-import { FocusAwareStatusBar } from '@/ui';
+import { Button, FocusAwareStatusBar } from '@/ui';
 
 export default function Login() {
+  const { t } = useTranslation();
   const router = useRouter();
   const signIn = useAuth.use.signIn();
   const { mutate: login } = useLogin({
@@ -21,10 +23,20 @@ export default function Login() {
   const onSubmit: LoginFormProps['onSubmit'] = (data) => {
     login(data);
   };
+
+  const navigateToForgotPasswordScreen = () => {
+    router.push('/forgot-password');
+  };
   return (
     <>
       <FocusAwareStatusBar />
       <LoginForm onSubmit={onSubmit} />
+      <Button
+        testID="login-button"
+        variant="link"
+        label={t('auth.sign-in.forgotPasswordButton')}
+        onPress={navigateToForgotPasswordScreen}
+      />
     </>
   );
 }
