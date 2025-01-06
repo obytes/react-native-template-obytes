@@ -1,12 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { View } from 'moti';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import { z } from 'zod';
 
 import { translate } from '@/core';
-import { Button, ControlledInput, Text } from '@/ui';
+import { Button, ControlledInput, Text, View } from '@/ui';
 
 const schema = z.object({
   email: z
