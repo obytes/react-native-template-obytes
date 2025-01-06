@@ -16,9 +16,11 @@ const schema = z.object({
 
 export type FormType = z.infer<typeof schema>;
 
-export const ForgotPasswordForm = (props: {
+export type ForgotPasswordFormProps = {
   onSubmit: (data: FormType) => void;
-}) => {
+};
+
+export const ForgotPasswordForm = (props: ForgotPasswordFormProps) => {
   const { t } = useTranslation();
   const { handleSubmit, control } = useForm<{
     email: string;
