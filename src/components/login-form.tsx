@@ -8,7 +8,9 @@ import { Button, ControlledInput, Text, View } from '@/ui';
 
 const MIN_CHARS = 6;
 const schema = z.object({
-  email: z.string().email('Invalid email format'),
+  email: z
+    .string({ required_error: 'Email is required' })
+    .email('Invalid email format'),
   password: z
     .string({
       required_error: 'Password is required',
