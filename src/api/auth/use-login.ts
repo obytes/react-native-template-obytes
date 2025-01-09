@@ -3,8 +3,7 @@ import { createMutation } from 'react-query-kit';
 import { client } from '../common';
 
 type Variables = {
-  email?: string; // optional because API doesn't require email
-  username: string;
+  email: string;
   password: string;
   expiresInMins?: number;
 };
@@ -19,11 +18,13 @@ type Response = {
 
 const login = async (variables: Variables) => {
   const { data } = await client({
-    url: 'auth/login',
+    url: '/v1/users/sign_in',
     method: 'POST',
     data: {
-      username: variables.username,
-      password: variables.password,
+      user: {
+        email: variables.email,
+        password: variables.password,
+      },
     },
     headers: {
       'Content-Type': 'application/json',
