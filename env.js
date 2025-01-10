@@ -30,7 +30,7 @@ const LOCAL_BUILD_SCRIPT_PATTERNS = [
   'expo export',
 ];
 const isLocalBuild = LOCAL_BUILD_SCRIPT_PATTERNS.some((pattern) =>
-  process.env.npm_lifecycle_script?.includes(pattern)
+  process.env.npm_lifecycle_script?.includes(pattern),
 );
 
 const EXPO_RUN_COMMANDS = ['expo start', 'expo run'];
@@ -44,13 +44,13 @@ const ENVIRONMENT_DEPENDANT_SCRIPTS = [
 ];
 
 const scriptIsEnvironmentDependant = ENVIRONMENT_DEPENDANT_SCRIPTS.some(
-  (script) => process.env.npm_lifecycle_script?.includes(script)
+  (script) => process.env.npm_lifecycle_script?.includes(script),
 );
 
 // Check if the environment file has to be validated for the current running script and build method
 const isBuilding = isEASBuild || isLocalBuild;
 const isRunning = EXPO_RUN_COMMANDS.some((script) =>
-  process.env.npm_lifecycle_script?.includes(script)
+  process.env.npm_lifecycle_script?.includes(script),
 );
 const shouldValidateEnv =
   (isBuilding && scriptIsEnvironmentDependant) || isRunning;
@@ -138,6 +138,8 @@ const clientEnvSchema = z.object({
   API_URL: z.string(),
   VAR_NUMBER: z.number(),
   VAR_BOOL: z.boolean(),
+  TERMS_AND_CONDITIONS_URL: z.string(),
+  WEBSITE_URL: z.string(),
 });
 
 const buildTimeEnvSchema = z.object({
@@ -162,6 +164,8 @@ const _clientEnv = {
   API_URL: parseString(process.env.API_URL),
   VAR_NUMBER: parseNumber(process.env.VAR_NUMBER),
   VAR_BOOL: parseBoolean(process.env.VAR_BOOL),
+  WEBSITE_URL: parseString(process.env.WEBSITE_URL),
+  TERMS_AND_CONDITIONS_URL: parseString(process.env.TERMS_AND_CONDITIONS_URL),
 };
 
 /**
@@ -212,19 +216,19 @@ if (shouldValidateEnv) {
 
     if (isLocalBuild) {
       messages.push(
-        `\n💡 Tip: If you recently updated the \x1b[1m\x1b[4m\x1b[31m${envFile}\x1b[0m file and the error still persists, try restarting the server with the -cc flag to clear the cache.`
+        `\n💡 Tip: If you recently updated the \x1b[1m\x1b[4m\x1b[31m${envFile}\x1b[0m file and the error still persists, try restarting the server with the -cc flag to clear the cache.`,
       );
     }
 
     if (isEASBuild) {
       messages.push(
-        `\n☁️ For \x1b[1m\x1b[32mEAS Build\x1b[0m deployments, ensure the secret\x1b[1m\x1b[4m\x1b[31m${environmentFiles[APP_ENV]} \x1b[0m is defined in Project Secrets and has the proper environment file attached.`
+        `\n☁️ For \x1b[1m\x1b[32mEAS Build\x1b[0m deployments, ensure the secret\x1b[1m\x1b[4m\x1b[31m${environmentFiles[APP_ENV]} \x1b[0m is defined in Project Secrets and has the proper environment file attached.`,
       );
     }
 
     console.error(...messages);
     throw new Error(
-      'Invalid environment variables, Check terminal for more details '
+      'Invalid environment variables, Check terminal for more details ',
     );
   }
 

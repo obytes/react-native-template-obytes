@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { translate, useSelectedLanguage } from '@/core';
 import type { Language } from '@/core/i18n/resources';

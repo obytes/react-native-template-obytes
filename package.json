@@ -103,6 +103,7 @@
     "react-native-screens": "~3.31.1",
     "react-native-svg": "~15.2.0",
     "react-native-web": "~0.19.12",
+    "react-native-webview": "13.8.6",
     "react-query-kit": "^3.3.0",
     "tailwind-variants": "^0.2.1",
     "zod": "^3.23.8",
