@@ -3,38 +3,39 @@ const path = require('path');
 module.exports = {
   // Configuration for JavaScript files
   extends: [
-    'expo', 
-    'plugin:tailwindcss/recommended', 
+    'expo',
+    'plugin:tailwindcss/recommended',
     'prettier',
-    'eslint:recommended'
+    'eslint:recommended',
+    'plugin:@tanstack/query/recommended',
   ],
   env: {
     'jest/globals': true,
-    'node': true
+    node: true,
   },
   plugins: [
-    'unicorn', 
+    'unicorn',
     '@typescript-eslint',
     'unused-imports',
     'tailwindcss',
     'simple-import-sort',
     'sonarjs',
-    'jest'
+    'jest',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
   },
   ignorePatterns: [
-    "node_modules",
-    "*.config.js",
-    "docs",
-    "cli",
-    "android",
-    "ios",
-    "lint-staged.config.js",
-    "i18next-syntax-validation.js",
-    ".eslintrc.js"
+    'node_modules',
+    '*.config.js',
+    'docs',
+    'cli',
+    'android',
+    'ios',
+    'lint-staged.config.js',
+    'i18next-syntax-validation.js',
+    '.eslintrc.js',
   ],
   rules: {
     'import/no-duplicates': 'error',
@@ -81,7 +82,7 @@ module.exports = {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
         caughtErrorsIgnorePattern: '^_',
-      }
+      },
     ],
     curly: [2, 'all'],
     'prefer-const': [
@@ -91,16 +92,20 @@ module.exports = {
       },
     ],
     'object-shorthand': 'error',
-    'arrow-body-style': ["error", "as-needed"],
-    'no-console': ['error', {allow: ['error']}],
+    'arrow-body-style': ['error', 'as-needed'],
+    'no-console': ['error', { allow: ['error'] }],
     'guard-for-in': 'error',
-    '@typescript-eslint/no-magic-numbers': ["error",
-       { ignoreArrayIndexes: true, 
-        ignoreEnums: true,
-        ignore: [-1, 0, 1]
-      }
+    '@typescript-eslint/no-magic-numbers': [
+      'error',
+      { ignoreArrayIndexes: true, ignoreEnums: true, ignore: [-1, 0, 1] },
     ],
-    '@typescript-eslint/prefer-nullish-coalescing': "error"
+    '@typescript-eslint/prefer-nullish-coalescing': 'error',
+    'react/jsx-fragments': ['error', 'syntax'],
+    'react/jsx-no-useless-fragment': 'error',
+    'react/no-children-prop': ['error', { allowFunctions: true }],
+    'no-nested-ternary': 'error',
+    'no-unneeded-ternary': 'error',
+    'prefer-template': 'error',
   },
   overrides: [
     // Configuration for  translations files (i18next)
