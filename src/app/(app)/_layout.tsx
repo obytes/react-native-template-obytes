@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
 import { useCallback, useEffect } from 'react';
 
@@ -8,7 +7,6 @@ import {
   Feed as FeedIcon,
   Settings as SettingsIcon,
   Style as StyleIcon,
-  Support as SupportIcon,
 } from '@/ui/icons';
 
 export default function TabLayout() {
@@ -30,7 +28,7 @@ export default function TabLayout() {
     return <Redirect href="/onboarding" />;
   }
   if (status === 'signOut') {
-    return <Redirect href="/login" />;
+    return <Redirect href="/sign-in" />;
   }
   return (
     <Tabs>
@@ -41,15 +39,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <FeedIcon color={color} />,
           headerRight: () => <CreateNewPostLink />,
           tabBarTestID: 'feed-tab',
-        }}
-      />
-      <Tabs.Screen
-        name="carts"
-        options={{
-          title: 'Carts',
-          headerShown: true,
-          tabBarIcon: ({ color }) => <SupportIcon color={color} />,
-          tabBarTestID: 'carts-tab',
         }}
       />
       <Tabs.Screen

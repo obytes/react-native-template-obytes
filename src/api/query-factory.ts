@@ -3,7 +3,6 @@ import {
   mergeQueryKeys,
 } from '@lukemorales/query-key-factory';
 
-import { cartKeys } from './carts/query-keys';
 type Filters = {
   limit?: number;
   offset?: number;
@@ -25,4 +24,4 @@ const productsKeys = createQueryKeys('products', {
   detail: (id) => [id],
 });
 
-export const queryFactory = mergeQueryKeys(postKeys, cartKeys, productsKeys);
+export const queryFactory = mergeQueryKeys(postKeys, productsKeys);

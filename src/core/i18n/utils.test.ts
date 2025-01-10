@@ -1,11 +1,10 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import ar from '../../translations/ar.json';
 import en from '../../translations/en.json';
 import { storage } from '../storage';
 import type { TxKeyPath } from './utils';
-import { changeLanguage, getLanguage, translate } from './utils';
+import { getLanguage, translate } from './utils';
 
 jest.mock('../storage', () => ({
   storage: {
@@ -26,7 +25,7 @@ i18n.use(initReactI18next).init({
     escapeValue: false,
   },
 
-  resources: { en: { translationsNS: en }, ar: { translationsNS: ar } },
+  resources: { en: { translationsNS: en } },
 });
 
 describe('getLanguage', () => {
@@ -40,12 +39,8 @@ describe('getLanguage', () => {
 describe('translate', () => {
   it('should return translated string', () => {
     const key: TxKeyPath = 'onboarding.message';
-    let options = { lang: 'en' };
+    const options = { lang: 'en' };
     const translatedString = translate(key, options);
     expect(translatedString).toBe('Welcome to rootstrap app site');
-    changeLanguage('ar');
-    options = { lang: 'ar' };
-    const translatedStringArab = translate(key, options);
-    expect(translatedStringArab).toBe('مرحبا بكم في موقع تطبيق rootstrap');
   });
 });
