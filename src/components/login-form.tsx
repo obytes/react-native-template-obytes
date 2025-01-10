@@ -8,10 +8,9 @@ import { Button, ControlledInput, Text, View } from '@/ui';
 
 const MIN_CHARS = 6;
 const schema = z.object({
-  username: z.string({
-    required_error: 'Username is required',
-  }),
-  email: z.string().email('Invalid email format').optional(),
+  email: z
+    .string({ required_error: 'Email is required' })
+    .email('Invalid email format'),
   password: z
     .string({
       required_error: 'Password is required',
@@ -46,13 +45,7 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
           autoComplete="email"
           control={control}
           name="email"
-          label="Email (optional)"
-        />
-        <ControlledInput
-          testID="username-input"
-          control={control}
-          name="username"
-          label="Username"
+          label="Email"
         />
         <ControlledInput
           testID="password-input"
