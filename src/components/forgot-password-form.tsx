@@ -62,7 +62,6 @@ export const ForgotPasswordForm = (props: ForgotPasswordFormProps) => {
             testID="send-email-button"
             label={t('forgotPassword.buttonLabel')}
             onPress={handleSubmit(onSubmit)}
-            className=""
           />
         </View>
       </View>
