@@ -138,7 +138,7 @@ const clientEnvSchema = z.object({
   API_URL: z.string(),
   VAR_NUMBER: z.number(),
   VAR_BOOL: z.boolean(),
-  TERMS_AND_CONDITIONS_URL: z.string(),
+  TERMS_OF_SERVICE_URL: z.string(),
   WEBSITE_URL: z.string(),
 });
 
@@ -165,7 +165,7 @@ const _clientEnv = {
   VAR_NUMBER: parseNumber(process.env.VAR_NUMBER),
   VAR_BOOL: parseBoolean(process.env.VAR_BOOL),
   WEBSITE_URL: parseString(process.env.WEBSITE_URL),
-  TERMS_AND_CONDITIONS_URL: parseString(process.env.TERMS_AND_CONDITIONS_URL),
+  TERMS_OF_SERVICE_URL: parseString(process.env.TERMS_OF_SERVICE_URL),
 };
 
 /**

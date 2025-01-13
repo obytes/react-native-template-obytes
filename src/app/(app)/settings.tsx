@@ -1,5 +1,5 @@
 import { Env } from '@env';
-import { router } from 'expo-router';
+import { Link } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React from 'react';
 
@@ -32,25 +32,33 @@ export default function Settings() {
           </ItemsContainer>
 
           <ItemsContainer title="settings.links">
-            <Item
-              text="settings.terms"
-              onPress={() => {
-                const url = encodeURIComponent(Env.TERMS_AND_CONDITIONS_URL);
-                const title = encodeURIComponent('Terms & Conditions');
-
-                router.push(`/www?url=${url}&title=${title}`);
+            <Link
+              asChild
+              href={{
+                pathname: '/www',
+                params: {
+                  url: Env.TERMS_OF_SERVICE_URL,
+                  title: translate('settings.terms'),
+                },
               }}
-            />
-            <Item
-              text="settings.website"
-              icon={<Website color={iconColor} />}
-              onPress={() => {
-                const url = encodeURIComponent(Env.WEBSITE_URL);
-                const title = encodeURIComponent('Website');
-
-                router.push(`/www?url=${url}&title=${title}`);
+            >
+              <Item text="settings.terms" />
+            </Link>
+            <Link
+              asChild
+              href={{
+                pathname: '/www',
+                params: {
+                  url: Env.WEBSITE_URL,
+                  title: translate('settings.website'),
+                },
               }}
-            />
+            >
+              <Item
+                text="settings.website"
+                icon={<Website color={iconColor} />}
+              />
+            </Link>
           </ItemsContainer>
 
           <ItemsContainer title="settings.about">

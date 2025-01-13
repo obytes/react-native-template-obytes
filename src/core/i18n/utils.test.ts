@@ -38,7 +38,7 @@ describe('getLanguage', () => {
 
 describe('translate', () => {
   it('should return translated string', () => {
-    const key: TxKeyPath = 'onboarding.message';
+    const key: TxKeyPath = 'onboarding.title';
     const options = { lang: 'en' };
     const translatedString = translate(key, options);
     expect(translatedString).toBe('Welcome to rootstrap app site');

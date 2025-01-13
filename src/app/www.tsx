@@ -1,6 +1,6 @@
 import { useLocalSearchParams, useNavigation, useRouter } from 'expo-router';
 import React, { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 import { Text } from '@/ui';
@@ -20,39 +20,19 @@ export default function WWW() {
 
   if (!url || typeof url !== 'string') {
     return (
-      <View style={styles.errorContainer}>
-        <Text style={styles.errorText}>Invalid URL</Text>
+      <View className="flex-1 items-center justify-center bg-white">
+        <Text className="text-lg text-red-500">Invalid URL</Text>
       </View>
     );
   }
 
   return (
-    <View style={styles.container}>
+    <View className="flex-1 bg-white">
       <WebView
         source={{ uri: url }}
-        style={styles.webview}
+        className="flex-1"
         onError={() => router.back()}
       />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-  webview: {
-    flex: 1,
-  },
-  errorContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
-  errorText: {
-    color: 'red',
-    fontSize: 16,
-  },
-});
