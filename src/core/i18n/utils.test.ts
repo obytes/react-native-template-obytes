@@ -41,6 +41,6 @@ describe('translate', () => {
     const key: TxKeyPath = 'onboarding.title';
     const options = { lang: 'en' };
     const translatedString = translate(key, options);
-    expect(translatedString).toBe('Welcome to rootstrap app site');
+    expect(translatedString).toBe('React Native Template');
   });
 });
