@@ -53,5 +53,8 @@
     "version": "Version",
     "website": "Website"
   },
-  "welcome": "Welcome to rootstrap app site"
+  "welcome": "Welcome to rootstrap app site",
+  "www": {
+    "invalidUrl": "Invalid Url"
+  }
 }

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
+import { translate } from '@/core';
 import { Text } from '@/ui';
 
 export default function WWW() {
@@ -21,7 +22,9 @@ export default function WWW() {
   if (!url || typeof url !== 'string') {
     return (
       <View className="flex-1 items-center justify-center bg-white">
-        <Text className="text-lg text-red-500">Invalid URL</Text>
+        <Text className="text-lg text-red-500">
+          {translate('www.invalidUrl')}
+        </Text>
       </View>
     );
   }
