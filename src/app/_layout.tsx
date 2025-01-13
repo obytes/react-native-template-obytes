@@ -35,6 +35,13 @@ export default function RootLayout() {
         <Stack.Screen name="onboarding" options={{ headerShown: false }} />
         <Stack.Screen name="forgot-password" />
         <Stack.Screen name="sign-in" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="www"
+          options={{
+            presentation: 'modal',
+            title: '', // Title will be overridden by the screen itself
+          }}
+        />
       </Stack>
     </Providers>
   );

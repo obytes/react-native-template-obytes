@@ -16,7 +16,15 @@
     "title": "Forgot your password?"
   },
   "onboarding": {
-    "message": "Welcome to rootstrap app site"
+    "button_label": "Let's Get Started",
+    "features": {
+      "developer_experience": "🥷 Developer experience + Productivity",
+      "minimal_code": "🧩 Minimal code and dependencies",
+      "production_ready": "🚀 Production-ready",
+      "well_maintained_libraries": "💪 Well maintained third-party libraries"
+    },
+    "subtitle": "The right way to build your mobile app",
+    "title": "React Native Template"
   },
   "settings": {
     "about": "About",
@@ -45,5 +53,8 @@
     "version": "Version",
     "website": "Website"
   },
-  "welcome": "Welcome to rootstrap app site"
+  "welcome": "Welcome to rootstrap app site",
+  "www": {
+    "invalidUrl": "Invalid Url"
+  }
 }
