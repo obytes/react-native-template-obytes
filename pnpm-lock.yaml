@@ -32,6 +32,9 @@ importers:
       axios:
         specifier: ^1.7.5
         version: 1.7.5
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
       expo:
         specifier: ~51.0.39
         version: 51.0.39(@babel/core@7.25.2)(@babel/preset-env@7.25.4(@babel/core@7.25.2))
