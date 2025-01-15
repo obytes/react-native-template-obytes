@@ -21,13 +21,7 @@ const login = async (variables: Variables) => {
     url: '/v1/users/sign_in',
     method: 'POST',
     data: {
-      user: {
-        email: variables.email,
-        password: variables.password,
-      },
-    },
-    headers: {
-      'Content-Type': 'application/json',
+      user: variables,
     },
   });
   return data;

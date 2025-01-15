@@ -36,6 +36,10 @@ export default function RootLayout() {
         <Stack.Screen name="forgot-password" />
         <Stack.Screen name="sign-in" options={{ headerShown: false }} />
         <Stack.Screen
+          name="sign-up"
+          options={{ headerBackTitleVisible: false }}
+        />
+        <Stack.Screen
           name="www"
           options={{
             presentation: 'modal',
