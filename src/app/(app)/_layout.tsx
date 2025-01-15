@@ -1,7 +1,8 @@
 import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
 import { useCallback, useEffect } from 'react';
 
-import { useAuth, useIsFirstTime } from '@/core';
+import { useAuth } from '@/components/providers/auth';
+import { useIsFirstTime } from '@/core';
 import { Pressable, Text } from '@/ui';
 import {
   Feed as FeedIcon,
@@ -10,24 +11,25 @@ import {
 } from '@/ui/icons';
 
 export default function TabLayout() {
-  const status = useAuth.use.status();
+  const { isAuthenticated, ready } = useAuth();
   const [isFirstTime] = useIsFirstTime();
   const hideSplash = useCallback(async () => {
     await SplashScreen.hideAsync();
   }, []);
+
   useEffect(() => {
     const TIMEOUT = 1000;
-    if (status !== 'idle') {
+    if (!ready) {
       setTimeout(() => {
         hideSplash();
       }, TIMEOUT);
     }
-  }, [hideSplash, status]);
+  }, [hideSplash, ready]);
 
   if (isFirstTime) {
     return <Redirect href="/onboarding" />;
   }
-  if (status === 'signOut') {
+  if (!isAuthenticated && ready) {
     return <Redirect href="/sign-in" />;
   }
   return (
@@ -45,7 +47,6 @@ export default function TabLayout() {
         name="style"
         options={{
           title: 'Style',
-          headerShown: false,
           tabBarIcon: ({ color }) => <StyleIcon color={color} />,
           tabBarTestID: 'style-tab',
         }}
@@ -54,7 +55,6 @@ export default function TabLayout() {
         name="settings"
         options={{
           title: 'Settings',
-          headerShown: false,
           tabBarIcon: ({ color }) => <SettingsIcon color={color} />,
           tabBarTestID: 'settings-tab',
         }}

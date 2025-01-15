@@ -12,6 +12,7 @@ import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import { APIProvider } from '@/api';
 import interceptors from '@/api/common/interceptors';
+import { AuthProvider } from '@/components/providers/auth';
 import { hydrateAuth, loadSelectedTheme } from '@/core';
 import { useThemeConfig } from '@/core/use-theme-config';
 
@@ -61,10 +62,12 @@ function Providers({ children }: { children: React.ReactNode }) {
       <KeyboardProvider>
         <ThemeProvider value={theme}>
           <APIProvider>
-            <BottomSheetModalProvider>
-              {children}
-              <FlashMessage position="top" />
-            </BottomSheetModalProvider>
+            <AuthProvider>
+              <BottomSheetModalProvider>
+                {children}
+                <FlashMessage position="top" />
+              </BottomSheetModalProvider>
+            </AuthProvider>
           </APIProvider>
         </ThemeProvider>
       </KeyboardProvider>

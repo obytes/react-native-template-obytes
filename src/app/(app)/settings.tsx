@@ -3,16 +3,17 @@ import { Link } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React from 'react';
 
+import { useAuth } from '@/components/providers/auth';
 import { Item } from '@/components/settings/item';
 import { ItemsContainer } from '@/components/settings/items-container';
 import { LanguageItem } from '@/components/settings/language-item';
 import { ThemeItem } from '@/components/settings/theme-item';
-import { translate, useAuth } from '@/core';
+import { translate } from '@/core';
 import { colors, FocusAwareStatusBar, ScrollView, Text, View } from '@/ui';
 import { Website } from '@/ui/icons';
 
 export default function Settings() {
-  const signOut = useAuth.use.signOut();
+  const { logout } = useAuth();
   const { colorScheme } = useColorScheme();
   const iconColor =
     colorScheme === 'dark' ? colors.neutral[400] : colors.neutral[500];
@@ -67,7 +68,7 @@ export default function Settings() {
 
           <View className="my-8">
             <ItemsContainer>
-              <Item text="settings.logout" onPress={signOut} />
+              <Item text="settings.logout" onPress={logout} />
             </ItemsContainer>
           </View>
         </View>
