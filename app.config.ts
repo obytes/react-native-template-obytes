@@ -21,7 +21,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   updates: {
     fallbackToCacheTimeout: 0,
-    url: 'https://u.expo.dev/72fdf440-59f1-493d-96e3-4afad8d7a045',
+    url: `https://u.expo.dev/${Env.EAS_PROJECT_ID}`,
   },
   runtimeVersion: {
     policy: 'appVersion',
@@ -52,6 +52,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         fonts: ['./assets/fonts/Inter.ttf'],
       },
     ],
+    'expo-dev-client',
     'expo-localization',
     'expo-router',
     [
