@@ -80,7 +80,9 @@ client.interceptors.response.use(
     const userId = response.headers[HEADER_KEYS.USER_ID] || '';
 
     const expiration = response.headers[HEADER_KEYS.EXPIRY]
-      ? dayjs.unix(parseInt(response.headers[HEADER_KEYS.EXPIRY])).toISOString()
+      ? dayjs
+          .unix(parseInt(response.headers[HEADER_KEYS.EXPIRY], 10))
+          .toISOString()
       : dayjs().add(1, 'hour').toISOString();
 
     if (accessToken && refreshToken && userId && expiration) {
