@@ -9,7 +9,8 @@ import React, {
 import { MMKV } from 'react-native-mmkv';
 
 import { client } from '@/api';
-import { storage } from '@/core/storage';
+
+const unauthorizedHttpStatusCode = 401;
 
 const storageKey = 'auth-storage';
 
@@ -125,10 +126,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const logout = () => {
-    storage.delete(HEADER_KEYS.ACCESS_TOKEN);
-    storage.delete(HEADER_KEYS.REFRESH_TOKEN);
-    storage.delete(HEADER_KEYS.USER_ID);
-    storage.delete(HEADER_KEYS.EXPIRY);
+    authStorage.delete(HEADER_KEYS.ACCESS_TOKEN);
+    authStorage.delete(HEADER_KEYS.REFRESH_TOKEN);
+    authStorage.delete(HEADER_KEYS.USER_ID);
+    authStorage.delete(HEADER_KEYS.EXPIRY);
     setToken(null);
   };
 
@@ -136,6 +137,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     checkToken();
     const requestInterceptor = client.interceptors.response.use(
       (config) => {
+        if (config.status === unauthorizedHttpStatusCode) {
+          logout();
+        }
         checkToken();
         return config;
       },

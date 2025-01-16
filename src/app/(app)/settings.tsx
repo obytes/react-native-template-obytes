@@ -1,8 +1,10 @@
+/* eslint-disable max-lines-per-function */
 import { Env } from '@env';
 import { Link } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React from 'react';
 
+import { useUser } from '@/api/auth/use-user';
 import { useAuth } from '@/components/providers/auth';
 import { Item } from '@/components/settings/item';
 import { ItemsContainer } from '@/components/settings/items-container';
@@ -13,6 +15,7 @@ import { colors, FocusAwareStatusBar, ScrollView, Text, View } from '@/ui';
 import { Website } from '@/ui/icons';
 
 export default function Settings() {
+  const { data: userData } = useUser();
   const { logout } = useAuth();
   const { colorScheme } = useColorScheme();
   const iconColor =
@@ -23,10 +26,17 @@ export default function Settings() {
       <FocusAwareStatusBar />
 
       <ScrollView>
-        <View className="flex-1 px-4 pt-16 ">
+        <View className="flex-1 gap-2 p-4">
           <Text className="text-xl font-bold">
             {translate('settings.title')}
           </Text>
+          <ItemsContainer title="settings.account.title">
+            <Item text={'settings.account.name'} value={userData?.name ?? ''} />
+            <Item
+              text={'settings.account.email'}
+              value={userData?.email ?? ''}
+            />
+          </ItemsContainer>
           <ItemsContainer title="settings.generale">
             <LanguageItem />
             <ThemeItem />
