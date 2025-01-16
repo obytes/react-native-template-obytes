@@ -10,12 +10,16 @@ type Response = {
   message: string;
 };
 
+// Should be replaced with the app's web url.
+const redirectUrl = 'https://example.com';
+
 const sendForgotPasswordInstructions = async (variables: Variables) => {
   const { data } = await client({
-    url: 'auth/forgot-password', // Dummy endpoint for forgot password
+    url: '/v1/users/password', // Dummy endpoint for forgot password
     method: 'POST',
     data: {
       email: variables.email,
+      redirect_url: redirectUrl,
     },
     headers: {
       'Content-Type': 'application/json',
