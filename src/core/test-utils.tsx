@@ -6,7 +6,14 @@ import type { RenderOptions } from '@testing-library/react-native';
 import { render, userEvent } from '@testing-library/react-native';
 import type { ReactElement } from 'react';
 import React from 'react';
-const createAppWrapper = () => ({ children }: { children: React.ReactNode }) => (
+
+jest.mock('@dev-plugins/react-query', () => ({
+  useReactQueryDevTools: jest.fn(),
+}));
+
+const createAppWrapper =
+  () =>
+  ({ children }: { children: React.ReactNode }) => (
     <BottomSheetModalProvider>
       <NavigationContainer>{children}</NavigationContainer>
     </BottomSheetModalProvider>

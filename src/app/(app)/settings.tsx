@@ -1,5 +1,4 @@
 /* eslint-disable max-lines-per-function */
-import { Env } from '@env';
 import { Link } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React from 'react';
@@ -11,6 +10,7 @@ import { ItemsContainer } from '@/components/settings/items-container';
 import { LanguageItem } from '@/components/settings/language-item';
 import { ThemeItem } from '@/components/settings/theme-item';
 import { translate } from '@/core';
+import { Env } from '@/core/env';
 import { colors, FocusAwareStatusBar, ScrollView, Text, View } from '@/ui';
 import { Website } from '@/ui/icons';
 
@@ -24,7 +24,6 @@ export default function Settings() {
   return (
     <>
       <FocusAwareStatusBar />
-
       <ScrollView>
         <View className="flex-1 gap-2 p-4">
           <Text className="text-xl font-bold">

@@ -18,11 +18,8 @@ export default function TabLayout() {
   }, []);
 
   useEffect(() => {
-    const TIMEOUT = 1000;
     if (!ready) {
-      setTimeout(() => {
-        hideSplash();
-      }, TIMEOUT);
+      hideSplash();
     }
   }, [hideSplash, ready]);
 

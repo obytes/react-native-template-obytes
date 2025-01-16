@@ -45,6 +45,13 @@ export const getTokenDetails = () => ({
   expiration: authStorage.getString(HEADER_KEYS.EXPIRY) ?? '',
 });
 
+export const clearTokens = () => {
+  authStorage.delete(HEADER_KEYS.ACCESS_TOKEN);
+  authStorage.delete(HEADER_KEYS.REFRESH_TOKEN);
+  authStorage.delete(HEADER_KEYS.USER_ID);
+  authStorage.delete(HEADER_KEYS.EXPIRY);
+};
+
 // Request interceptor to add Authorization header
 client.interceptors.request.use(
   (config) => {
@@ -126,15 +133,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const logout = () => {
-    authStorage.delete(HEADER_KEYS.ACCESS_TOKEN);
-    authStorage.delete(HEADER_KEYS.REFRESH_TOKEN);
-    authStorage.delete(HEADER_KEYS.USER_ID);
-    authStorage.delete(HEADER_KEYS.EXPIRY);
+    clearTokens();
     setToken(null);
   };
 
   useEffect(() => {
-    checkToken();
+    try {
+      checkToken();
+    } catch {
+      setReady(true);
+    }
     const requestInterceptor = client.interceptors.response.use(
       (config) => {
         if (config.status === unauthorizedHttpStatusCode) {
@@ -147,7 +155,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     );
 
     return () => {
-      // Clean up the interceptor when the component unmounts
       client.interceptors.request.eject(requestInterceptor);
     };
   }, [checkToken]);
