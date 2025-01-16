@@ -9,26 +9,26 @@ import { Button, ControlledInput, Text, View } from '@/ui';
 const MIN_PASSWORD_LENGTH = 6;
 
 const passwordSchema = z
-  .string({ required_error: translate('auth.sign_up.error.passwordRequired') })
-  .min(MIN_PASSWORD_LENGTH, translate('auth.sign_up.error.shortPassword'));
+  .string({ required_error: translate('auth.signUp.error.passwordRequired') })
+  .min(MIN_PASSWORD_LENGTH, translate('auth.signUp.error.shortPassword'));
 
 const schema = z
   .object({
     email: z
-      .string({ required_error: translate('auth.sign_up.error.emailRequired') })
-      .email(translate('auth.sign_up.error.emailInvalid')),
+      .string({ required_error: translate('auth.signUp.error.emailRequired') })
+      .email(translate('auth.signUp.error.emailInvalid')),
     name: z.string({
-      required_error: translate('auth.sign_up.error.nameRequired'),
+      required_error: translate('auth.signUp.error.nameRequired'),
     }),
     password: passwordSchema,
     passwordConfirmation: z.string({
       required_error: translate(
-        'auth.sign_up.error.passwordConfirmationRequired',
+        'auth.signUp.error.passwordConfirmationRequired',
       ),
     }),
   })
   .refine((data) => data.password === data.passwordConfirmation, {
-    message: translate('auth.sign_up.error.passwordsDoNotMatch'),
+    message: translate('auth.signUp.error.passwordsDoNotMatch'),
     path: ['passwordConfirmation'],
   });
 
@@ -55,7 +55,7 @@ export const SignUpForm = ({
     >
       <View className="flex-1 justify-center gap-4 p-4">
         <Text testID="form-title" className="text-center text-2xl">
-          {translate('auth.sign_up.title')}
+          {translate('auth.signUp.title')}
         </Text>
         <View>
           <ControlledInput
@@ -64,19 +64,19 @@ export const SignUpForm = ({
             autoComplete="email"
             control={control}
             name="email"
-            label={translate('auth.sign_up.fields.email')}
+            label={translate('auth.signUp.fields.email')}
           />
           <ControlledInput
             testID="name-input"
             control={control}
             name="name"
-            label={translate('auth.sign_up.fields.name')}
+            label={translate('auth.signUp.fields.name')}
           />
           <ControlledInput
             testID="password-input"
             control={control}
             name="password"
-            label={translate('auth.sign_up.fields.password')}
+            label={translate('auth.signUp.fields.password')}
             placeholder="***"
             secureTextEntry={true}
           />
@@ -84,14 +84,14 @@ export const SignUpForm = ({
             testID="password-confirmation-input"
             control={control}
             name="passwordConfirmation"
-            label={translate('auth.sign_up.fields.password')}
+            label={translate('auth.signUp.fields.password')}
             placeholder="***"
             secureTextEntry={true}
           />
 
           <Button
             testID="sign-up-button"
-            label={translate('auth.sign_up.signUpButton')}
+            label={translate('auth.signUp.signUpButton')}
             onPress={handleSubmit(onSubmit)}
             loading={isPending}
             disabled={isPending}
