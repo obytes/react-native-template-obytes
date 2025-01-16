@@ -3,27 +3,32 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import { KeyboardAvoidingView } from 'react-native';
 import z from 'zod';
 
-import { Button, ControlledInput,Text, View } from '@/ui';
+import { translate } from '@/core';
+import { Button, ControlledInput, Text, View } from '@/ui';
 
 const MIN_PASSWORD_LENGTH = 6;
 
 const passwordSchema = z
-  .string({ required_error: 'Password is required' })
-  .min(MIN_PASSWORD_LENGTH, 'Password must be at least 6 characters');
+  .string({ required_error: translate('auth.sign_up.error.passwordRequired') })
+  .min(MIN_PASSWORD_LENGTH, translate('auth.sign_up.error.shortPassword'));
 
 const schema = z
   .object({
     email: z
-      .string({ required_error: 'Email is required' })
-      .email('Invalid email format'),
-    name: z.string({ required_error: 'Name is required' }),
+      .string({ required_error: translate('auth.sign_up.error.emailRequired') })
+      .email(translate('auth.sign_up.error.emailInvalid')),
+    name: z.string({
+      required_error: translate('auth.sign_up.error.nameRequired'),
+    }),
     password: passwordSchema,
     passwordConfirmation: z.string({
-      required_error: 'Password confirmation is required',
+      required_error: translate(
+        'auth.sign_up.error.passwordConfirmationRequired',
+      ),
     }),
   })
   .refine((data) => data.password === data.passwordConfirmation, {
-    message: 'Passwords do not match',
+    message: translate('auth.sign_up.error.passwordsDoNotMatch'),
     path: ['passwordConfirmation'],
   });
 
@@ -48,49 +53,50 @@ export const SignUpForm = ({
       behavior="padding"
       keyboardVerticalOffset={10}
     >
-      <View className="flex-1 justify-center p-4">
-        <Text testID="form-title" className="pb-6 text-center text-2xl">
-          Sign Up
+      <View className="flex-1 justify-center gap-4 p-4">
+        <Text testID="form-title" className="text-center text-2xl">
+          {translate('auth.sign_up.title')}
         </Text>
+        <View>
+          <ControlledInput
+            testID="email-input"
+            autoCapitalize="none"
+            autoComplete="email"
+            control={control}
+            name="email"
+            label={translate('auth.sign_up.fields.email')}
+          />
+          <ControlledInput
+            testID="name-input"
+            control={control}
+            name="name"
+            label={translate('auth.sign_up.fields.name')}
+          />
+          <ControlledInput
+            testID="password-input"
+            control={control}
+            name="password"
+            label={translate('auth.sign_up.fields.password')}
+            placeholder="***"
+            secureTextEntry={true}
+          />
+          <ControlledInput
+            testID="password-confirmation-input"
+            control={control}
+            name="passwordConfirmation"
+            label={translate('auth.sign_up.fields.password')}
+            placeholder="***"
+            secureTextEntry={true}
+          />
 
-        <ControlledInput
-          testID="email-input"
-          autoCapitalize="none"
-          autoComplete="email"
-          control={control}
-          name="email"
-          label="Email"
-        />
-        <ControlledInput
-          testID="name-input"
-          control={control}
-          name="name"
-          label="Name"
-        />
-        <ControlledInput
-          testID="password-input"
-          control={control}
-          name="password"
-          label="Password"
-          placeholder="***"
-          secureTextEntry={true}
-        />
-        <ControlledInput
-          testID="password-confirmation-input"
-          control={control}
-          name="passwordConfirmation"
-          label="Password Confirmation"
-          placeholder="***"
-          secureTextEntry={true}
-        />
-
-        <Button
-          testID="sign-up-button"
-          label="Sign Up"
-          onPress={handleSubmit(onSubmit)}
-          loading={isPending}
-          disabled={isPending}
-        />
+          <Button
+            testID="sign-up-button"
+            label={translate('auth.sign_up.signUpButton')}
+            onPress={handleSubmit(onSubmit)}
+            loading={isPending}
+            disabled={isPending}
+          />
+        </View>
       </View>
     </KeyboardAvoidingView>
   );

@@ -2,6 +2,27 @@
   "auth": {
     "sign-in": {
       "forgotPasswordButton": "Forgot Password"
+    },
+    "sign_up": {
+      "already_have_an_account": "Already have an account? ",
+      "error": {
+        "emailInvalid": "Invalid email format",
+        "emailRequired": "Email is required",
+        "nameRequired": "Name is required",
+        "passwordConfirmationRequired": "Password is required",
+        "passwordRequired": "Password is required",
+        "passwordsDoNotMatch": "Passwords do not match",
+        "shortPassword": "Password must be at least 6 characters"
+      },
+      "fields": {
+        "email": "Email",
+        "name": "Name",
+        "password": "Password",
+        "passwordConfirmation": "Password confirmation"
+      },
+      "signInButton": "Sign in",
+      "signUpButton": "Sign Up",
+      "title": "Create an account"
     }
   },
   "forgotPassword": {
