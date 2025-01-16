@@ -4,6 +4,7 @@ import React, {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 import { MMKV } from 'react-native-mmkv';
@@ -161,19 +162,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       client.interceptors.request.eject(requestInterceptor);
     };
   }, [checkToken]);
-  return (
-    <AuthContext.Provider
-      value={{
-        token,
-        isAuthenticated: !!token,
-        loading,
-        ready,
-        logout,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
+
+  const values = useMemo(
+    () => ({
+      token,
+      isAuthenticated: !!token,
+      loading,
+      ready,
+      logout,
+    }),
+    [loading, ready, token],
   );
+  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = (): AuthContextProps => {
