@@ -53,13 +53,13 @@ export const LoginForm = ({
             autoComplete="email"
             control={control}
             name="email"
-            label={translate('auth.signIn.title')}
+            label={translate('auth.signIn.fields.email')}
           />
           <ControlledInput
             testID="password-input"
             control={control}
             name="password"
-            label={translate('auth.signIn.validation.passwordRequired')}
+            label={translate('auth.signIn.fields.password')}
             placeholder="***"
             secureTextEntry={true}
           />
