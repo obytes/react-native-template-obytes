@@ -61,6 +61,7 @@ client.interceptors.request.use(
     if (dayjs().isAfter(dayjs(expiration))) {
       // TODO
       // Handle token refresh logic
+      clearTokens();
     }
 
     if (accessToken) {
