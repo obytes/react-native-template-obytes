@@ -50,6 +50,12 @@ const TestComponent = () => {
   );
 };
 
+const mockedAccessToken = 'access-token';
+const mockedValidToken = 'valid-token';
+const mockedRefreshToken = 'refresh-token';
+const mockedExpiryDate = '2025-01-17T00:00:00Z';
+const mockedUserId = 'user-id';
+
 describe('Auth Utilities', () => {
   afterEach(() => {
     clearTokens();
@@ -57,27 +63,27 @@ describe('Auth Utilities', () => {
 
   it('stores tokens correctly', () => {
     storeTokens({
-      accessToken: 'access-token',
-      refreshToken: 'refresh-token',
-      userId: 'user-id',
-      expiration: '2025-01-17T00:00:00Z',
+      accessToken: mockedAccessToken,
+      refreshToken: mockedRefreshToken,
+      userId: mockedUserId,
+      expiration: mockedExpiryDate,
     });
 
     const tokens = getTokenDetails();
     expect(tokens).toEqual({
-      accessToken: 'access-token',
-      refreshToken: 'refresh-token',
-      userId: 'user-id',
-      expiration: '2025-01-17T00:00:00Z',
+      accessToken: mockedAccessToken,
+      refreshToken: mockedRefreshToken,
+      userId: mockedUserId,
+      expiration: mockedExpiryDate,
     });
   });
 
   it('clears tokens correctly', () => {
     storeTokens({
-      accessToken: 'access-token',
-      refreshToken: 'refresh-token',
-      userId: 'user-id',
-      expiration: '2025-01-17T00:00:00Z',
+      accessToken: mockedAccessToken,
+      refreshToken: mockedRefreshToken,
+      userId: mockedUserId,
+      expiration: mockedExpiryDate,
     });
     clearTokens();
 
@@ -108,9 +114,9 @@ describe('AuthProvider', () => {
 
   it('handles token state correctly', async () => {
     storeTokens({
-      accessToken: 'valid-token',
-      refreshToken: 'refresh-token',
-      userId: 'user-id',
+      accessToken: mockedValidToken,
+      refreshToken: mockedRefreshToken,
+      userId: mockedUserId,
       expiration: dayjs().add(1, 'hour').toISOString(),
     });
 
@@ -153,9 +159,9 @@ describe('TestComponent', () => {
   it('renders correctly and handles logout', async () => {
     // Set initial tokens
     storeTokens({
-      accessToken: 'valid-token',
-      refreshToken: 'refresh-token',
-      userId: 'user-id',
+      accessToken: mockedValidToken,
+      refreshToken: mockedRefreshToken,
+      userId: mockedUserId,
       expiration: dayjs().add(1, 'hour').toISOString(),
     });
 
