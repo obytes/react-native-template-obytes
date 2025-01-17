@@ -2,9 +2,11 @@
 import { Link } from 'expo-router';
 import { useColorScheme } from 'nativewind';
 import React from 'react';
+import { showMessage } from 'react-native-flash-message';
 
-import { useUser } from '@/api/auth/use-user';
+import { useDeleteUser, useUser } from '@/api/auth/use-user';
 import { useAuth } from '@/components/providers/auth';
+import { DeleteAccountItem } from '@/components/settings/delete-account-item';
 import { Item } from '@/components/settings/item';
 import { ItemsContainer } from '@/components/settings/items-container';
 import { LanguageItem } from '@/components/settings/language-item';
@@ -15,11 +17,24 @@ import { colors, FocusAwareStatusBar, ScrollView, Text, View } from '@/ui';
 import { Website } from '@/ui/icons';
 
 export default function Settings() {
-  const { data: userData } = useUser();
   const { logout } = useAuth();
+  const { data: userData } = useUser();
+  const { mutateAsync: deleteUserAsync } = useDeleteUser({
+    onSuccess: () => {
+      logout();
+    },
+    onError: (error) => showMessage({ message: error.message, type: 'danger' }),
+  });
   const { colorScheme } = useColorScheme();
   const iconColor =
     colorScheme === 'dark' ? colors.neutral[400] : colors.neutral[500];
+
+  const handleDeleteUser = async () => {
+    if (!userData?.email) {
+      return;
+    }
+    await deleteUserAsync({ email: userData?.email });
+  };
 
   return (
     <>
@@ -77,6 +92,7 @@ export default function Settings() {
 
           <View className="my-8">
             <ItemsContainer>
+              <DeleteAccountItem onDelete={handleDeleteUser} />
               <Item text="settings.logout" onPress={logout} />
             </ItemsContainer>
           </View>

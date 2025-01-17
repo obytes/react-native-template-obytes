@@ -72,6 +72,13 @@
     },
     "app_name": "App Name",
     "arabic": "Arabic",
+    "deleteAccount": {
+      "cancel": "Cancel",
+      "confirmMessage": "Are you sure you want to delete your account? This action cannot be undone.",
+      "confirmTitle": "Confirm Delete",
+      "delete": "Delete",
+      "title": "Delete account"
+    },
     "english": "English",
     "generale": "General",
     "github": "Github",
@@ -83,7 +90,7 @@
     "rate": "Rate",
     "share": "Share",
     "support": "Support",
-    "support_us": "Support Us",
+    "supportUs": "Support Us",
     "terms": "Terms of Service",
     "theme": {
       "dark": "Dark",
