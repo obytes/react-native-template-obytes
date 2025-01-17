@@ -65,6 +65,11 @@
   },
   "settings": {
     "about": "About",
+    "account": {
+      "email": "Email",
+      "name": "Name",
+      "title": "Account"
+    },
     "app_name": "App Name",
     "arabic": "Arabic",
     "english": "English",
