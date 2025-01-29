@@ -1,14 +1,17 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
+import starlightLlmsTxt from 'starlight-llms-txt';
 
 const site = 'https://starter.obytes.com/';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://starter.obytes.com/',
   integrations: [
     starlight({
       title: 'Obytes Starter | React Native Template',
+      plugins: [starlightLlmsTxt()],
       description: `Your All-in-One Solution for Building Outstanding React Native/Expo Apps. From editor setup to store submission, we've got you covered!`,
       expressiveCode: {
         themes: ['dracula', 'solarized-light'],
