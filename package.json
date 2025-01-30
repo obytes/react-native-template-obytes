@@ -41,6 +41,9 @@
     "e2e-test": "maestro test .maestro/ -e APP_ID=com.obytes.development"
   },
   "dependencies": {
+    "@clerk/clerk-expo": "^2.7.1",
+    "@clerk/clerk-react": "^5.22.8",
+    "@clerk/types": "^4.44.2",
     "@expo/metro-runtime": "^4.0.1",
     "@gorhom/bottom-sheet": "^5.0.5",
     "@hookform/resolvers": "^3.9.0",
@@ -56,6 +59,7 @@
     "expo-linking": "~7.0.4",
     "expo-localization": "~16.0.1",
     "expo-router": "~4.0.17",
+    "expo-secure-store": "^14.0.1",
     "expo-splash-screen": "~0.29.21",
     "expo-status-bar": "~2.0.1",
     "expo-system-ui": "~4.0.7",
