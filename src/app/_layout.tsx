@@ -1,8 +1,11 @@
 // Import  global CSS file
 import '../../global.css';
 
+import { ClerkProvider, SignedOut } from '@clerk/clerk-expo';
+import { SignedIn, SignInButton, UserButton } from '@clerk/clerk-react';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ThemeProvider } from '@react-navigation/native';
+import { tokenCache } from 'cache';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import React from 'react';
@@ -31,6 +34,12 @@ SplashScreen.setOptions({
   fade: true,
 });
 
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
+
+if (!publishableKey) {
+  throw new Error('Add EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY to your .env file');
+}
+
 export default function RootLayout() {
   return (
     <Providers>
@@ -52,12 +61,23 @@ function Providers({ children }: { children: React.ReactNode }) {
     >
       <KeyboardProvider>
         <ThemeProvider value={theme}>
-          <APIProvider>
-            <BottomSheetModalProvider>
-              {children}
-              <FlashMessage position="top" />
-            </BottomSheetModalProvider>
-          </APIProvider>
+          <ClerkProvider
+            tokenCache={tokenCache}
+            publishableKey={publishableKey}
+          >
+            <APIProvider>
+              <SignedOut>
+                <SignInButton />
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+              <BottomSheetModalProvider>
+                {children}
+                <FlashMessage position="top" />
+              </BottomSheetModalProvider>
+            </APIProvider>
+          </ClerkProvider>
         </ThemeProvider>
       </KeyboardProvider>
     </GestureHandlerRootView>
