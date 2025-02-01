@@ -1,29 +1,35 @@
+import { requireAuth } from '@clerk/express';
 import { PrismaClient } from '@prisma/client';
 import { type Request, type Response, Router } from 'express';
 
-import { requireOwnership } from '../middleware/auth';
+import { canAccess } from './getAuth';
 
 const router = Router();
 const prisma = new PrismaClient();
 
 // Get all todos (only for the authenticated user)
-router.get('/', async (req: Request, res: Response) => {
+router.get('/', requireAuth, async (req: Request, res: Response) => {
+  console.log('GET /api/todos');
+  // const auth = canAccess(req);
   try {
-    const todos = await prisma.todoItem.findMany({
-      where: {
-        userId: req.auth.userId,
-      },
-      include: {
-        user: {
-          select: {
-            id: true,
-            firstName: true,
-            lastName: true,
-            email: true,
-          },
-        },
-      },
-    });
+    const todos = await prisma.todoItem
+      .findMany
+      //   {
+      //   where: {
+      //     userId: auth.userId || undefined,
+      //   },
+      //   include: {
+      //     user: {
+      //       select: {
+      //         id: true,
+      //         firstName: true,
+      //         lastName: true,
+      //         email: true,
+      //       },
+      //     },
+      //   },
+      // }
+      ();
     res.json(todos);
   } catch (error) {
     res.status(500).json({ error: 'Error fetching todos' });
@@ -31,12 +37,13 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 // Get todo by ID (with ownership check)
-router.get('/:id', requireOwnership, async (req: Request, res: Response) => {
+router.get('/:id', async (req: Request, res: Response) => {
+  const auth = canAccess(req);
   try {
     const todo = await prisma.todoItem.findUnique({
       where: {
         id: req.params.id,
-        userId: req.auth.userId, // Ensure the todo belongs to the user
+        userId: auth.userId || undefined,
       },
       include: {
         user: {
@@ -60,18 +67,10 @@ router.get('/:id', requireOwnership, async (req: Request, res: Response) => {
 
 // Get todos by user ID
 router.get('/user/:userId', async (req: Request, res: Response) => {
+  const auth = canAccess(req);
   try {
     const todos = await prisma.todoItem.findMany({
-      where: { userId: Number(req.params.userId) },
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            email: true,
-          },
-        },
-      },
+      where: { userId: auth.userId || undefined },
     });
     res.json(todos);
   } catch (error) {
@@ -81,6 +80,7 @@ router.get('/user/:userId', async (req: Request, res: Response) => {
 
 // Create todo (automatically assign to authenticated user)
 router.post('/', async (req: Request, res: Response) => {
+  const options = req.body as unknown as any;
   try {
     const { title, description, dueDate } = req.body;
     const todo = await prisma.todoItem.create({
@@ -88,7 +88,7 @@ router.post('/', async (req: Request, res: Response) => {
         title,
         description,
         dueDate: dueDate ? new Date(dueDate) : null,
-        userId: req.auth.userId, // Use the authenticated user's ID
+        userId: options.userId,
       },
       include: {
         user: {
@@ -108,13 +108,17 @@ router.post('/', async (req: Request, res: Response) => {
 });
 
 // Update todo (with ownership check)
-router.put('/:id', requireOwnership, async (req: Request, res: Response) => {
+router.put('/:id', async (req: Request, res: Response) => {
+  const auth = canAccess(req);
+  if (!auth.userId) {
+    return res.status(403).json({ error: 'Unauthorized' });
+  }
   try {
     const { title, description, completed, dueDate } = req.body;
     const todo = await prisma.todoItem.update({
       where: {
         id: req.params.id,
-        userId: req.auth.userId, // Ensure the todo belongs to the user
+        userId: auth.userId, // Ensure the todo belongs to the user
       },
       data: {
         title,
@@ -140,12 +144,16 @@ router.put('/:id', requireOwnership, async (req: Request, res: Response) => {
 });
 
 // Delete todo (with ownership check)
-router.delete('/:id', requireOwnership, async (req: Request, res: Response) => {
+router.delete('/:id', async (req: Request, res: Response) => {
+  const auth = canAccess(req);
+  if (!auth.userId) {
+    return res.status(403).json({ error: 'Unauthorized' });
+  }
   try {
     await prisma.todoItem.delete({
       where: {
         id: req.params.id,
-        userId: req.auth.userId, // Ensure the todo belongs to the user
+        userId: auth.userId, // Ensure the todo belongs to the user
       },
     });
     res.status(204).send();

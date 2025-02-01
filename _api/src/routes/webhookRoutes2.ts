@@ -1,4 +1,4 @@
-import { type UserJSON } from '@clerk/nextjs/server';
+import { type UserJSON } from '@clerk/express';
 import { type Request, type Response, Router } from 'express';
 import { Webhook } from 'svix';
 
@@ -21,7 +21,7 @@ const router = Router();
 // };
 
 type WebhookEvent = {
-  data: UserJSON;
+  data: any;
   object: string;
   type: string;
 };

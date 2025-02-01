@@ -12,7 +12,7 @@
     "db:studio": "prisma studio",
     "db:format": "prisma format",
     "db:reset": "prisma migrate reset",
-    "ci:build": "npm run db:generate && npm run db:push && npm install && npm run build"
+    "ci:build": "npm run db:generate && npm run db:push && pnpm install && npm run build"
   },
   "keywords": [],
   "author": "",

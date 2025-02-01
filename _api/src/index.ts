@@ -1,10 +1,9 @@
+import { clerkMiddleware } from '@clerk/express';
 import { PrismaClient } from '@prisma/client';
 import dotenv from 'dotenv';
 import express, { type Express, type Request, type Response } from 'express';
 
-import { requireAuth } from './middleware/auth';
 import todoRoutes from './routes/todoRoutes';
-import userRoutes from './routes/userRoutes';
 import webhookRoutes from './routes/webhookRoutes2';
 
 dotenv.config();
@@ -14,15 +13,15 @@ const prisma = new PrismaClient();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(clerkMiddleware());
 
 // Routes
-app.use('/api/users', requireAuth, userRoutes);
-app.use('/api/todos', requireAuth, todoRoutes);
+app.use('/api/todos', todoRoutes);
 app.use('/api/webhooks/clerk', webhookRoutes);
 
 // Health check route
 app.get('/health', (req: Request, res: Response) => {
-  res.json({ status: 'OK' });
+  res.json({ status: 'OK 23454' });
 });
 
 // Global error handler
