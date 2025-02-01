@@ -21,3 +21,4 @@ expo-env.d.ts
 # @end expo-cli
 .env.development
 _api/.env
+.env.development
