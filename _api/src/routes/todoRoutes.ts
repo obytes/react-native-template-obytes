@@ -1,22 +1,28 @@
-import { Router, Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { type Request, type Response, Router } from 'express';
+
+import { requireOwnership } from '../middleware/auth';
 
 const router = Router();
 const prisma = new PrismaClient();
 
-// Get all todos
+// Get all todos (only for the authenticated user)
 router.get('/', async (req: Request, res: Response) => {
   try {
     const todos = await prisma.todoItem.findMany({
+      where: {
+        userId: req.auth.userId,
+      },
       include: {
         user: {
           select: {
             id: true,
-            name: true,
-            email: true
-          }
-        }
-      }
+            firstName: true,
+            lastName: true,
+            email: true,
+          },
+        },
+      },
     });
     res.json(todos);
   } catch (error) {
@@ -24,20 +30,24 @@ router.get('/', async (req: Request, res: Response) => {
   }
 });
 
-// Get todo by ID
-router.get('/:id', async (req: Request, res: Response) => {
+// Get todo by ID (with ownership check)
+router.get('/:id', requireOwnership, async (req: Request, res: Response) => {
   try {
     const todo = await prisma.todoItem.findUnique({
-      where: { id: Number(req.params.id) },
+      where: {
+        id: req.params.id,
+        userId: req.auth.userId, // Ensure the todo belongs to the user
+      },
       include: {
         user: {
           select: {
             id: true,
-            name: true,
-            email: true
-          }
-        }
-      }
+            firstName: true,
+            lastName: true,
+            email: true,
+          },
+        },
+      },
     });
     if (!todo) {
       return res.status(404).json({ error: 'Todo not found' });
@@ -58,10 +68,10 @@ router.get('/user/:userId', async (req: Request, res: Response) => {
           select: {
             id: true,
             name: true,
-            email: true
-          }
-        }
-      }
+            email: true,
+          },
+        },
+      },
     });
     res.json(todos);
   } catch (error) {
@@ -69,26 +79,27 @@ router.get('/user/:userId', async (req: Request, res: Response) => {
   }
 });
 
-// Create todo
+// Create todo (automatically assign to authenticated user)
 router.post('/', async (req: Request, res: Response) => {
   try {
-    const { title, description, dueDate, userId } = req.body;
+    const { title, description, dueDate } = req.body;
     const todo = await prisma.todoItem.create({
       data: {
         title,
         description,
         dueDate: dueDate ? new Date(dueDate) : null,
-        userId: Number(userId)
+        userId: req.auth.userId, // Use the authenticated user's ID
       },
       include: {
         user: {
           select: {
             id: true,
-            name: true,
-            email: true
-          }
-        }
-      }
+            firstName: true,
+            lastName: true,
+            email: true,
+          },
+        },
+      },
     });
     res.status(201).json(todo);
   } catch (error) {
@@ -96,27 +107,31 @@ router.post('/', async (req: Request, res: Response) => {
   }
 });
 
-// Update todo
-router.put('/:id', async (req: Request, res: Response) => {
+// Update todo (with ownership check)
+router.put('/:id', requireOwnership, async (req: Request, res: Response) => {
   try {
     const { title, description, completed, dueDate } = req.body;
     const todo = await prisma.todoItem.update({
-      where: { id: Number(req.params.id) },
+      where: {
+        id: req.params.id,
+        userId: req.auth.userId, // Ensure the todo belongs to the user
+      },
       data: {
         title,
         description,
         completed,
-        dueDate: dueDate ? new Date(dueDate) : null
+        dueDate: dueDate ? new Date(dueDate) : null,
       },
       include: {
         user: {
           select: {
             id: true,
-            name: true,
-            email: true
-          }
-        }
-      }
+            firstName: true,
+            lastName: true,
+            email: true,
+          },
+        },
+      },
     });
     res.json(todo);
   } catch (error) {
@@ -124,11 +139,14 @@ router.put('/:id', async (req: Request, res: Response) => {
   }
 });
 
-// Delete todo
-router.delete('/:id', async (req: Request, res: Response) => {
+// Delete todo (with ownership check)
+router.delete('/:id', requireOwnership, async (req: Request, res: Response) => {
   try {
     await prisma.todoItem.delete({
-      where: { id: Number(req.params.id) }
+      where: {
+        id: req.params.id,
+        userId: req.auth.userId, // Ensure the todo belongs to the user
+      },
     });
     res.status(204).send();
   } catch (error) {
@@ -136,4 +154,4 @@ router.delete('/:id', async (req: Request, res: Response) => {
   }
 });
 
-export default router; 
+export default router;

@@ -1,5 +1,7 @@
-import { Router, Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
+import { type Request, type Response, Router } from 'express';
+
+import { requireOwnership } from '../middleware/auth';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -14,11 +16,26 @@ router.get('/', async (req: Request, res: Response) => {
   }
 });
 
-// Get user by ID
-router.get('/:id', async (req: Request, res: Response) => {
+// Get authenticated user's profile
+router.get('/me', async (req: Request, res: Response) => {
   try {
     const user = await prisma.user.findUnique({
-      where: { id: Number(req.params.id) },
+      where: { id: req.auth.userId },
+    });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching user' });
+  }
+});
+
+// Get user by ID (with ownership check)
+router.get('/:id', requireOwnership, async (req: Request, res: Response) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: req.params.id },
     });
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
@@ -42,13 +59,13 @@ router.post('/', async (req: Request, res: Response) => {
   }
 });
 
-// Update user
-router.put('/:id', async (req: Request, res: Response) => {
+// Update user (with ownership check)
+router.put('/:id', requireOwnership, async (req: Request, res: Response) => {
   try {
-    const { email, name } = req.body;
+    const { firstName, lastName } = req.body;
     const user = await prisma.user.update({
-      where: { id: Number(req.params.id) },
-      data: { email, name },
+      where: { id: req.params.id },
+      data: { firstName, lastName },
     });
     res.json(user);
   } catch (error) {
@@ -68,4 +85,4 @@ router.delete('/:id', async (req: Request, res: Response) => {
   }
 });
 
-export default router; 
+export default router;
