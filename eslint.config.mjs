@@ -6,6 +6,7 @@ import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import reactNativePlugin from 'eslint-plugin-react-native';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import testingLibraryPlugin from 'eslint-plugin-testing-library';
 import unicorn from 'eslint-plugin-unicorn';
 import unusedImports from 'eslint-plugin-unused-imports';
 import path from 'path';
@@ -111,6 +112,17 @@ export default [
           endOfLine: 'auto',
         },
       ],
+    },
+  },
+  // Testing Library configuration
+  {
+    files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+    plugins: {
+      'testing-library': testingLibraryPlugin,
+    },
+    rules: {
+      ...testingLibraryPlugin.configs.react.rules,
+      // Add any custom testing rules here
     },
   },
 ];
