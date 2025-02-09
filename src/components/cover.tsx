@@ -1,4 +1,4 @@
-/* eslint-disable max-lines-per-function */
+ 
 import * as React from 'react';
 import type { SvgProps } from 'react-native-svg';
 import Svg, { Circle, Path, Polygon } from 'react-native-svg';

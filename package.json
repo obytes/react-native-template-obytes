@@ -31,6 +31,7 @@
     "app-release": "cross-env SKIP_BRANCH_PROTECTION=true np --no-publish --no-cleanup --no-release-draft",
     "version": "pnpm run prebuild && git add .",
     "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "type-check": "tsc  --noemit",
     "lint:translations": "eslint ./src/translations/ --fix",
     "test": "jest",

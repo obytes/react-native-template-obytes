@@ -15,7 +15,6 @@ export default [
       sourceType: 'module',
       parser: typescriptEslintParser,
       parserOptions: {
-        project: './tsconfig.json', // Path to your tsconfig
         ecmaFeatures: { jsx: true },
       },
     },

@@ -1,4 +1,4 @@
-/* eslint-disable react/react-in-jsx-scope */
+ 
 import { Env } from '@env';
 import { useColorScheme } from 'nativewind';
 

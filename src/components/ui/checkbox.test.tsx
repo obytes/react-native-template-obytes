@@ -1,4 +1,4 @@
-/* eslint-disable max-lines-per-function */
+ 
 import 'react-native';
 
 import React from 'react';
