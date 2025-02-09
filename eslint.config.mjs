@@ -1,11 +1,14 @@
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
 import typescriptEslintParser from '@typescript-eslint/parser';
+import eslintPluginI18nJson from 'eslint-plugin-i18n-json';
+import jsonPlugin from 'eslint-plugin-json';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import reactNativePlugin from 'eslint-plugin-react-native';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import unicorn from 'eslint-plugin-unicorn';
 import unusedImports from 'eslint-plugin-unused-imports';
+import path from 'path';
 
 export default [
   {
@@ -69,6 +72,45 @@ export default [
       react: {
         version: 'detect',
       },
+    },
+  },
+  {
+    // JSON configuration
+    files: ['**/*.json'],
+    processor: jsonPlugin.processors['.json'],
+    plugins: {
+      json: jsonPlugin,
+      'i18n-json': eslintPluginI18nJson,
+    },
+    rules: {
+      ...jsonPlugin.configs.recommended.rules,
+      'i18n-json/valid-message-syntax': [
+        2,
+        {
+          syntax: path.resolve('./scripts/i18next-syntax-validation.js'),
+        },
+      ],
+      'i18n-json/valid-json': 2,
+      'i18n-json/sorted-keys': [
+        2,
+        {
+          order: 'asc',
+          indentSpaces: 2,
+        },
+      ],
+      'i18n-json/identical-keys': [
+        2,
+        {
+          filePath: path.resolve('./src/translations/en.json'),
+        },
+      ],
+      'prettier/prettier': [
+        0,
+        {
+          singleQuote: true,
+          endOfLine: 'auto',
+        },
+      ],
     },
   },
 ];
