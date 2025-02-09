@@ -1,3 +1,5 @@
+import path from 'node:path';
+
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
 import typescriptEslintParser from '@typescript-eslint/parser';
 import eslintPluginI18nJson from 'eslint-plugin-i18n-json';
@@ -9,11 +11,11 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import testingLibraryPlugin from 'eslint-plugin-testing-library';
 import unicorn from 'eslint-plugin-unicorn';
 import unusedImports from 'eslint-plugin-unused-imports';
-import path from 'path';
 
 export default [
   {
     files: ['**/*.{js,jsx,mjs,cjs,ts,tsx}'],
+    ignores: ['.expo/**/*'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
