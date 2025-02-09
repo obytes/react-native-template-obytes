@@ -217,14 +217,7 @@ export const SwitchIcon = ({ checked = false }: IconProps) => {
         />
       </View>
       <MotiView
-        style={{
-          height: THUMB_HEIGHT,
-          width: THUMB_WIDTH,
-          position: 'absolute',
-          backgroundColor: 'white',
-          borderRadius: 13,
-          right: 0,
-        }}
+        className={`h-[${THUMB_HEIGHT}] w-[${THUMB_WIDTH}] absolute bg-white rounded-[13px] right-0`}
         animate={{
           translateX: I18nManager.isRTL ? translateX : -translateX,
         }}
