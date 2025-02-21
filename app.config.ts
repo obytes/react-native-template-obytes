@@ -26,7 +26,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   description: `${Env.NAME} Mobile App`,
   owner: Env.EXPO_ACCOUNT_OWNER,
   scheme: Env.SCHEME,
-  slug: 'obytesapp',
+  slug: 'obytesapp-a6crzmabcctcqpptx8oh9',
   version: Env.VERSION.toString(),
   orientation: 'portrait',
   icon: './assets/icon.png',
