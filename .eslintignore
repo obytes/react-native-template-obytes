@@ -8,3 +8,5 @@ ios/
 .expo-shared
 docs/
 cli/
+**/gluestack-ui-provider/*
+*.d.ts
