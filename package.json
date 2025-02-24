@@ -10,7 +10,7 @@
     "ios": "cross-env EXPO_NO_DOTENV=1 expo run:ios",
     "web": "cross-env EXPO_NO_DOTENV=1 expo start --web",
     "xcode": "xed -b ios",
-    "doctor": "npx expo-doctor@latest",
+    "expo-doctor": "npx expo-doctor@latest",
     "preinstall": "npx only-allow pnpm",
     "start:staging": "cross-env APP_ENV=staging pnpm run start",
     "prebuild:staging": "cross-env APP_ENV=staging pnpm run prebuild",
@@ -42,6 +42,9 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "^4.0.1",
+    "@gluestack-ui/nativewind-utils": "^1.0.26",
+    "@gluestack-ui/overlay": "^0.1.20",
+    "@gluestack-ui/toast": "^1.0.9",
     "@gorhom/bottom-sheet": "^5.0.5",
     "@hookform/resolvers": "^3.9.0",
     "@shopify/flash-list": "1.7.3",

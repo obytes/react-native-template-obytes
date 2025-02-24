@@ -1,12 +1,12 @@
 PODS:
   - boost (1.84.0)
   - DoubleConversion (1.1.6)
-  - EXConstants (17.0.6):
+  - EXConstants (17.0.7):
     - ExpoModulesCore
   - EXJSONUtils (0.14.0)
   - EXManifests (0.15.5):
     - ExpoModulesCore
-  - Expo (52.0.35):
+  - Expo (52.0.37):
     - ExpoModulesCore
   - expo-dev-client (5.0.12):
     - EXManifests
@@ -215,21 +215,21 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - ExpoAsset (11.0.3):
+  - ExpoAsset (11.0.4):
     - ExpoModulesCore
-  - ExpoFileSystem (18.0.10):
+  - ExpoFileSystem (18.0.11):
     - ExpoModulesCore
-  - ExpoFont (13.0.3):
+  - ExpoFont (13.0.4):
     - ExpoModulesCore
   - ExpoHead (4.0.17):
     - ExpoModulesCore
-  - ExpoImage (2.0.5):
+  - ExpoImage (2.0.6):
     - ExpoModulesCore
     - libavif/libdav1d
     - SDWebImage (~> 5.19.1)
     - SDWebImageAVIFCoder (~> 0.11.0)
     - SDWebImageSVGCoder (~> 1.7.0)
-  - ExpoKeepAwake (14.0.2):
+  - ExpoKeepAwake (14.0.3):
     - ExpoModulesCore
   - ExpoLinking (7.0.5):
     - ExpoModulesCore
@@ -2410,20 +2410,20 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   boost: 1dca942403ed9342f98334bf4c3621f011aa7946
   DoubleConversion: f16ae600a246532c4020132d54af21d0ddb2a385
-  EXConstants: f5c27bfa40ba650257535ab958f4f5876ee93edd
+  EXConstants: 30c43b9ca8391c31bab9cc45c97f16eddcf11042
   EXJSONUtils: 01fc7492b66c234e395dcffdd5f53439c5c29c93
   EXManifests: 15142dee1be3ea1cd0039feddef3888c3f0bb057
-  Expo: 24e21e782c2858eae363d3597ea945751e5af078
+  Expo: 63515728b6f238842dc95702eb0fb385f00d7c5a
   expo-dev-client: 6f30fa7fbf4aa6cb5765b983da2411bf63f665bb
   expo-dev-launcher: f37027e55535ac28df696da95e2b222e7333ecd7
   expo-dev-menu: 9adf097a707609148baa3002e87ae5860f27615e
   expo-dev-menu-interface: 00dc42302a72722fdecec3fa048de84a9133bcc4
-  ExpoAsset: 715ce37a36951fee71c32773b3be50f2285e2fbe
-  ExpoFileSystem: 5df53001901f76b493bd5deb75ac506871cc9b2e
-  ExpoFont: 38656978c2a4022fb7e0c43e4968d66340f5e2f3
+  ExpoAsset: 4033893dfb333b444bf45e951351254137b658d5
+  ExpoFileSystem: 2d804c73034c0d65eb2a640e0a77627033b69edc
+  ExpoFont: f354e926f8feae5e831ec8087f36652b44a0b188
   ExpoHead: 5d1c5c20e3933db5d9ca349424cb3b9a4a84b706
-  ExpoImage: 5d5e8b6dac825198fa38295b7da8d405657d0a2f
-  ExpoKeepAwake: 62ff49bbc3bff90d8ee28329190f9ba371bf88e7
+  ExpoImage: c6d1f54445f38766650052aedf5396a74bb96fff
+  ExpoKeepAwake: b0171a73665bfcefcfcc311742a72a956e6aa680
   ExpoLinking: 8d12bee174ba0cdf31239706578e29e74a417402
   ExpoLocalization: 7776ea3bdb112125390745bbaf919b734b2ad1c7
   ExpoModulesCore: 7f5e59799b89e5fad1d7cc6070744c1003ca320f

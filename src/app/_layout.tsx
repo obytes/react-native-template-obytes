@@ -12,7 +12,8 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 
 import { APIProvider } from '@/api';
-import { hydrateAuth, loadSelectedTheme } from '@/lib';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { hydrateAuth, loadSelectedTheme, useSelectedTheme } from '@/lib';
 import { useThemeConfig } from '@/lib/use-theme-config';
 
 export { ErrorBoundary } from 'expo-router';
@@ -45,6 +46,8 @@ export default function RootLayout() {
 
 function Providers({ children }: { children: React.ReactNode }) {
   const theme = useThemeConfig();
+  const { selectedTheme } = useSelectedTheme();
+
   return (
     <GestureHandlerRootView
       style={styles.container}
@@ -52,12 +55,14 @@ function Providers({ children }: { children: React.ReactNode }) {
     >
       <KeyboardProvider>
         <ThemeProvider value={theme}>
-          <APIProvider>
-            <BottomSheetModalProvider>
-              {children}
-              <FlashMessage position="top" />
-            </BottomSheetModalProvider>
-          </APIProvider>
+          <GluestackUIProvider mode={selectedTheme}>
+            <APIProvider>
+              <BottomSheetModalProvider>
+                {children}
+                <FlashMessage position="top" />
+              </BottomSheetModalProvider>
+            </APIProvider>
+          </GluestackUIProvider>
         </ThemeProvider>
       </KeyboardProvider>
     </GestureHandlerRootView>
