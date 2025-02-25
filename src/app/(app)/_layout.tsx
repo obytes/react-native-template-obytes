@@ -1,13 +1,14 @@
 /* eslint-disable react/no-unstable-nested-components */
+import { MaterialIcons } from '@expo/vector-icons';
 import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
 
 import { Pressable, Text } from '@/components/ui';
-import {
-  Feed as FeedIcon,
-  Settings as SettingsIcon,
-  Style as StyleIcon,
-} from '@/components/ui/icons';
+// import {
+//   Feed as FeedIcon,
+//   Settings as SettingsIcon,
+//   Style as StyleIcon,
+// } from '@/components/ui/icons';
 import { useAuth, useIsFirstTime } from '@/lib';
 
 export default function TabLayout() {
@@ -36,7 +37,9 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Feed',
-          tabBarIcon: ({ color }) => <FeedIcon color={color} />,
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="home" size={28} color={color} />
+          ),
           headerRight: () => <CreateNewPostLink />,
           tabBarButtonTestID: 'feed-tab',
         }}
@@ -47,7 +50,9 @@ export default function TabLayout() {
         options={{
           title: 'Style',
           headerShown: false,
-          tabBarIcon: ({ color }) => <StyleIcon color={color} />,
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="palette" size={28} color={color} />
+          ),
           tabBarButtonTestID: 'style-tab',
         }}
       />
@@ -56,7 +61,9 @@ export default function TabLayout() {
         options={{
           title: 'Settings',
           headerShown: false,
-          tabBarIcon: ({ color }) => <SettingsIcon color={color} />,
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="settings" size={28} color={color} />
+          ),
           tabBarButtonTestID: 'settings-tab',
         }}
       />
