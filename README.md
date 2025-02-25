@@ -8,7 +8,7 @@
 
 ![expo](https://img.shields.io/github/package-json/dependency-version/obytes/react-native-template-obytes/expo?label=expo) ![react-native](https://img.shields.io/github/package-json/dependency-version/obytes/react-native-template-obytes/react-native?label=react-native) ![GitHub Repo stars](https://img.shields.io/github/stars/obytes/react-native-template-obytes) ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/obytes/react-native-template-obytes) ![GitHub issues](https://img.shields.io/github/issues/obytes/react-native-template-obytes) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/obytes/react-native-template-obytes)
 
-📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo, TypeScript, TailwindCSS, Husky, Lint-Staged, expo-router, react-query, react-hook-form, I18n.
+📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo, TypeScript, TailwindCSS, gluestack-ui v2, Expo Vector Icons, Husky, Lint-Staged, expo-router, react-query, react-hook-form, I18n.
 
 > Welcome to the Obytes Mobile Tribe's Expo / React Native Starter Kit!
 
@@ -34,6 +34,8 @@ When creating this starter kit, we had several guiding principles in mind::
 - ✅ Latest Expo SDK with Custom Dev Client: Leverage the best of the Expo ecosystem while maintaining full control over your app.
 - 🎉 [TypeScript](https://www.typescriptlang.org/) for enhanced code quality and bug prevention through static type checking.
 - 💅 Minimal UI kit built with [TailwindCSS](https://www.nativewind.dev/), featuring common components essential for your app.
+- 🥞 gluestack-ui v2 offers customizable, beautifully designed components for your projects.
+- 🌐 Expo Vector Icons is a popular icon set through an icon font such as FontAwesome, MaterialIcons, Glyphicons, or Ionicons, or choose PNGs from The Noun Project.
 - ⚙️ Multi-environment build support (Production, Staging, Development) using Expo configuration.
 - 🦊 Husky for Git Hooks: Automate your git hooks and enforce code standards.
 - 💡 Clean project structure with Absolute Imports for easier code navigation and management.
@@ -93,6 +95,9 @@ We value the feedback and contributions of our users, and we encourage you to le
 - [Expo](https://docs.expo.io/)
 - [Expo Router](https://docs.expo.dev/router/introduction/)
 - [Nativewind](https://www.nativewind.dev/v4/overview)
+- [gluestack-ui v2](https://gluestack.io)
+- [Material Icons](https://fonts.google.com/icons)
+- [Expo Vector Icons](https://docs.expo.dev/guides/icons)
 - [Flash list](https://github.com/Shopify/flash-list)
 - [React Query](https://tanstack.com/query/v4)
 - [Axios](https://axios-http.com/docs/intro)
