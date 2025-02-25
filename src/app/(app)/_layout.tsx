@@ -4,11 +4,6 @@ import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
 
 import { Pressable, Text } from '@/components/ui';
-// import {
-//   Feed as FeedIcon,
-//   Settings as SettingsIcon,
-//   Style as StyleIcon,
-// } from '@/components/ui/icons';
 import { useAuth, useIsFirstTime } from '@/lib';
 
 export default function TabLayout() {
