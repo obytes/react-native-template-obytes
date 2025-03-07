@@ -30,5 +30,7 @@
   "i18n-ally.disabled": false, // make sure to disable i18n-ally in your global setting and only enable it for such projects
   "tailwindCSS.experimental.classRegex": [
     ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
-  ]
+  ],
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.updateBuildConfiguration": "automatic"
 }
