@@ -135,7 +135,7 @@
     "type": "git",
     "url": "git+https://github.com/obytes/react-native-template-obytes.git"
   },
-  "packageManager": "pnpm@9.12.3",
+  "packageManager": "pnpm@10.8.0",
   "expo": {
     "doctor": {
       "reactNativeDirectoryCheck": {
