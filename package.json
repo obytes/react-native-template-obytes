@@ -44,7 +44,7 @@
     "@expo/metro-runtime": "^5.0.4",
     "@gorhom/bottom-sheet": "^5.0.5",
     "@hookform/resolvers": "^3.9.0",
-    "@shopify/flash-list": "1.7.3",
+    "@shopify/flash-list": "1.8.2",
     "@tanstack/react-query": "^5.52.1",
     "app-icon-badge": "^0.1.2",
     "axios": "^1.7.5",

@@ -18,8 +18,8 @@ importers:
         specifier: ^3.9.0
         version: 3.9.0(react-hook-form@7.53.0(react@19.0.0))
       '@shopify/flash-list':
-        specifier: 1.7.3
-        version: 1.7.3(@babel/runtime@7.26.0)(react-native@0.79.3(@babel/core@7.26.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+        specifier: 1.8.2
+        version: 1.8.2(@babel/runtime@7.26.0)(react-native@0.79.3(@babel/core@7.26.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       '@tanstack/react-query':
         specifier: ^5.52.1
         version: 5.52.1(react@19.0.0)
@@ -1568,8 +1568,8 @@ packages:
       zen-observable:
         optional: true
 
-  '@shopify/flash-list@1.7.3':
-    resolution: {integrity: sha512-RLhNptm02aqpqZvjj9pJPcU+EVYxOAJhPRCmDOaUbUP86+636w+plsbjpBPSYGvPZhPj56RtZ9FBlvolPeEmYA==}
+  '@shopify/flash-list@1.8.2':
+    resolution: {integrity: sha512-CJRkaMkwbDJtOyO9RgjXIXDKgIpgXPt2fncK7zcNvTPbvZHWnXcnS7Avl+TzAtvpPThV+fl3oxjnOYpszMil2A==}
     peerDependencies:
       '@babel/runtime': '*'
       react: '*'
@@ -5885,8 +5885,8 @@ packages:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
 
-  recyclerlistview@4.2.1:
-    resolution: {integrity: sha512-NtVYjofwgUCt1rEsTp6jHQg/47TWjnO92TU2kTVgJ9wsc/ely4HnizHHa+f/dI7qaw4+zcSogElrLjhMltN2/g==}
+  recyclerlistview@4.2.3:
+    resolution: {integrity: sha512-STR/wj/FyT8EMsBzzhZ1l2goYirMkIgfV3gYEPxI3Kf3lOnu6f7Dryhyw7/IkQrgX5xtTcDrZMqytvteH9rL3g==}
     peerDependencies:
       react: '>= 15.2.1'
       react-native: '>= 0.30.0'
@@ -9022,12 +9022,12 @@ snapshots:
     transitivePeerDependencies:
       - zenObservable
 
-  '@shopify/flash-list@1.7.3(@babel/runtime@7.26.0)(react-native@0.79.3(@babel/core@7.26.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)':
+  '@shopify/flash-list@1.8.2(@babel/runtime@7.26.0)(react-native@0.79.3(@babel/core@7.26.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.0
       react: 19.0.0
       react-native: 0.79.3(@babel/core@7.26.0)(@types/react@19.0.14)(react@19.0.0)
-      recyclerlistview: 4.2.1(react-native@0.79.3(@babel/core@7.26.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+      recyclerlistview: 4.2.3(react-native@0.79.3(@babel/core@7.26.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       tslib: 2.8.1
 
   '@sinclair/typebox@0.27.8': {}
@@ -14201,7 +14201,7 @@ snapshots:
     dependencies:
       picomatch: 2.3.1
 
-  recyclerlistview@4.2.1(react-native@0.79.3(@babel/core@7.26.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0):
+  recyclerlistview@4.2.3(react-native@0.79.3(@babel/core@7.26.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0):
     dependencies:
       lodash.debounce: 4.0.8
       prop-types: 15.8.1
@@ -15328,7 +15328,7 @@ snapshots:
       '@webassemblyjs/ast': 1.14.1
       '@webassemblyjs/wasm-edit': 1.14.1
       '@webassemblyjs/wasm-parser': 1.14.1
-      acorn: 8.14.0
+      acorn: 8.15.0
       browserslist: 4.25.0
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.17.1
