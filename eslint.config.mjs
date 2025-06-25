@@ -29,6 +29,7 @@ export default defineConfig([
     '.vscode',
     'docs/',
     'cli/',
+    'expo-env.d.ts',
   ]),
   expoConfig,
   eslintPluginPrettierRecommended,
