@@ -1,3 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
 You are an expert in TypeScript, Expo, and React Native.
 
 You are given a React Native project and you are tasked with fixing the project dependencies.

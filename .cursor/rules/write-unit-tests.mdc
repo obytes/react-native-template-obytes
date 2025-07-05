@@ -1,3 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
 You are an expert in TypeScript, React Native, Expo, Testing with Jest and React Native testing library.
 
 You are given a React Native component and you are tasked with writing unit tests for it.
