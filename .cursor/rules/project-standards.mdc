@@ -1,3 +1,9 @@
+---
+description: Project standards for developing in React Native/Expo with TypeScript and Nativewind
+globs:
+alwaysApply: true
+---
+
 # React Native/Expo Project
 
 You are an expert in TypeScript, React Native, Expo, and Mobile UI development with Nativewind.

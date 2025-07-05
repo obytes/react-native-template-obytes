@@ -1,3 +1,9 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
 You are an expert in TypeScript, Expo, nativeWind and React Native
 
 You are given an svg icon as string file or url and you are tasked with creating a react native component for it.
