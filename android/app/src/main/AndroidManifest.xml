@@ -26,6 +26,7 @@
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="obytesApp"/>
         <data android:scheme="exp+obytesapp"/>
+        <data android:scheme="expo-bolierPlate"/>
       </intent-filter>
     </activity>
   </application>

@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Stack } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { showMessage } from 'react-native-flash-message';
@@ -25,9 +25,9 @@ export default function AddPost() {
     resolver: zodResolver(schema),
   });
   const { mutate: addPost, isPending } = useAddPost();
+  const navigation = useNavigation();
 
   const onSubmit = (data: FormType) => {
-    console.log(data);
     addPost(
       { ...data, userId: 1 },
       {
@@ -36,8 +36,7 @@ export default function AddPost() {
             message: 'Post added successfully',
             type: 'success',
           });
-          // here you can navigate to the post list and refresh the list data
-          //queryClient.invalidateQueries(usePosts.getKey());
+          navigation.goBack();
         },
         onError: () => {
           showErrorMessage('Error adding post');
@@ -46,34 +45,26 @@ export default function AddPost() {
     );
   };
   return (
-    <>
-      <Stack.Screen
-        options={{
-          title: 'Add Post',
-          headerBackTitle: 'Feed',
-        }}
+    <View className="flex-1 p-4 ">
+      <ControlledInput
+        name="title"
+        label="Title"
+        control={control}
+        testID="title"
       />
-      <View className="flex-1 p-4 ">
-        <ControlledInput
-          name="title"
-          label="Title"
-          control={control}
-          testID="title"
-        />
-        <ControlledInput
-          name="body"
-          label="Content"
-          control={control}
-          multiline
-          testID="body-input"
-        />
-        <Button
-          label="Add Post"
-          loading={isPending}
-          onPress={handleSubmit(onSubmit)}
-          testID="add-post-button"
-        />
-      </View>
-    </>
+      <ControlledInput
+        name="body"
+        label="Content"
+        control={control}
+        multiline
+        testID="body-input"
+      />
+      <Button
+        label="Add Post"
+        loading={isPending}
+        onPress={handleSubmit(onSubmit)}
+        testID="add-post-button"
+      />
+    </View>
   );
 }

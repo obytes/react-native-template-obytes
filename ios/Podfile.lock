@@ -276,8 +276,6 @@ PODS:
     - ExpoModulesCore
   - ExpoFont (13.3.1):
     - ExpoModulesCore
-  - ExpoHead (5.1.0):
-    - ExpoModulesCore
   - ExpoImage (2.3.0):
     - ExpoModulesCore
     - libavif/libdav1d
@@ -2443,7 +2441,6 @@ DEPENDENCIES:
   - ExpoCrypto (from `../node_modules/expo-crypto/ios`)
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
   - ExpoFont (from `../node_modules/expo-font/ios`)
-  - ExpoHead (from `../node_modules/expo-router/ios`)
   - ExpoImage (from `../node_modules/expo-image/ios`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - ExpoLinking (from `../node_modules/expo-linking/ios`)
@@ -2572,8 +2569,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-file-system/ios"
   ExpoFont:
     :path: "../node_modules/expo-font/ios"
-  ExpoHead:
-    :path: "../node_modules/expo-router/ios"
   ExpoImage:
     :path: "../node_modules/expo-image/ios"
   ExpoKeepAwake:
@@ -2761,7 +2756,6 @@ SPEC CHECKSUMS:
   ExpoCrypto: fcb6a8a08d1929f346cb95eb05a8f7818627177a
   ExpoFileSystem: 3a98ca2a6f13674ecfd97327d1b44a8ace444cbd
   ExpoFont: 312c73403bbd4f98e1d6a5330641a56292583cd2
-  ExpoHead: 777572a222b83d81c1f9aa6fb20e8fc0a80f851f
   ExpoImage: 23fd11d3f2c4b04dc0b5e97fb41e9ead278bd0c8
   ExpoKeepAwake: e8dedc115d9f6f24b153ccd2d1d8efcdfd68a527
   ExpoLinking: 5d151d4a497d7e375308602f0a89b4e8acf7b5f8
