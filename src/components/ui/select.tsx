@@ -3,7 +3,7 @@ import {
   BottomSheetFlatList,
   type BottomSheetModal,
 } from '@gorhom/bottom-sheet';
-import { FlashList } from '@shopify/flash-list';
+import { LegendList } from '@legendapp/list';
 import { useColorScheme } from 'nativewind';
 import * as React from 'react';
 import type { FieldValues } from 'react-hook-form';
@@ -56,7 +56,7 @@ const selectTv = tv({
   },
 });
 
-const List = Platform.OS === 'web' ? FlashList : BottomSheetFlatList;
+const List = Platform.OS === 'web' ? LegendList : BottomSheetFlatList;
 
 export type OptionType = { label: string; value: string | number };
 

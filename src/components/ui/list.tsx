@@ -1,4 +1,4 @@
-import { FlashList as NFlashList } from '@shopify/flash-list';
+import { LegendList } from '@legendapp/list';
 import React from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
@@ -8,7 +8,7 @@ type Props = {
   isLoading: boolean;
 };
 
-export const List = NFlashList;
+export const List = LegendList;
 
 export const EmptyList = React.memo(({ isLoading }: Props) => {
   return (

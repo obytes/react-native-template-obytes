@@ -104,7 +104,7 @@ We value the feedback and contributions of our users, and we encourage you to le
 - [Expo](https://docs.expo.io/)
 - [Expo Router](https://docs.expo.dev/router/introduction/)
 - [Nativewind](https://www.nativewind.dev/)
-- [Flash list](https://github.com/Shopify/flash-list)
+- [Legend List](https://github.com/LegendApp/legend-list)
 - [React Query](https://tanstack.com/query/v4)
 - [Axios](https://axios-http.com/docs/intro)
 - [React Hook Form](https://react-hook-form.com/)
