@@ -47,6 +47,10 @@ The name must satisfy the following rules:
 - Each segment must start with a letter.
 - All characters must be alphanumeric or an underscore [a-zA-Z0-9_].
   :::
+  
+:::note
+Do not chose an app name containing the string "obytes" or setup script will replace it with "expo-owner"
+:::
 
 ## Open Project on Cursor or VS Code
 
