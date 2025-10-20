@@ -1,7 +1,5 @@
 {
-  "onboarding": {
-    "message": "Welcome to obytes app site"
-  },
+  "onboarding": { "message": "Welcome to Safiri app site" },
   "settings": {
     "about": "About",
     "app_name": "App Name",
@@ -29,5 +27,5 @@
     "version": "Version",
     "website": "Website"
   },
-  "welcome": "Welcome to obytes app site"
+  "welcome": "Welcome to Safiri app site"
 }

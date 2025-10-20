@@ -56,6 +56,7 @@ describe('LoginForm Form ', () => {
     // expect.objectContaining({}) because we don't want to test the target event we are receiving from the onSubmit function
     expect(onSubmitMock).toHaveBeenCalledWith(
       {
+        name: '',
         email: 'youssef@gmail.com',
         password: 'password',
       },

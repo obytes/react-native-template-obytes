@@ -9,15 +9,10 @@ import { Button, ControlledInput, Text, View } from '@/components/ui';
 
 const schema = z.object({
   name: z.string().optional(),
-  email: z
-    .string({
-      required_error: 'Email is required',
-    })
-    .email('Invalid email format'),
+  email: z.email({ message: 'Invalid email format' }),
   password: z
-    .string({
-      required_error: 'Password is required',
-    })
+    .string()
+    .min(1, { message: 'Password is required' })
     .min(6, 'Password must be at least 6 characters'),
 });
 
@@ -30,6 +25,11 @@ export type LoginFormProps = {
 export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
   const { handleSubmit, control } = useForm<FormType>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
   });
   return (
     <KeyboardAvoidingView

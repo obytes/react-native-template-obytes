@@ -1,7 +1,5 @@
 {
-  "onboarding": {
-    "message": "مرحبا بكم في موقع تطبيق obytes"
-  },
+  "onboarding": { "message": "مرحبا بكم في موقع تطبيق safiri" },
   "settings": {
     "about": "حول التطبيق ",
     "app_name": "اسم التطبيق",

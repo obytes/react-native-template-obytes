@@ -3,10 +3,7 @@
   "compilerOptions": {
     "strict": true,
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@env": ["./src/lib/env.js"]
-    },
+    "paths": { "@/*": ["./src/*"], "@env": ["./src/lib/env.js"] },
     "esModuleInterop": true,
     "checkJs": true
   },
