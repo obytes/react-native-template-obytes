@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "ObytesApp.app"
-               BlueprintName = "ObytesApp"
-               ReferencedContainer = "container:ObytesApp.xcodeproj">
+               BuildableName = "Safiri.app"
+               BlueprintName = "Safiri"
+               ReferencedContainer = "container:Safiri.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ObytesAppTests.xctest"
-               BlueprintName = "ObytesAppTests"
-               ReferencedContainer = "container:ObytesApp.xcodeproj">
+               BuildableName = "SafiriTests.xctest"
+               BlueprintName = "SafiriTests"
+               ReferencedContainer = "container:Safiri.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ObytesApp.app"
-            BlueprintName = "ObytesApp"
-            ReferencedContainer = "container:ObytesApp.xcodeproj">
+            BuildableName = "Safiri.app"
+            BlueprintName = "Safiri"
+            ReferencedContainer = "container:Safiri.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "ObytesApp.app"
-            BlueprintName = "ObytesApp"
-            ReferencedContainer = "container:ObytesApp.xcodeproj">
+            BuildableName = "Safiri.app"
+            BlueprintName = "Safiri"
+            ReferencedContainer = "container:Safiri.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

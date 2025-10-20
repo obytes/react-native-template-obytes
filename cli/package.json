@@ -1,11 +1,11 @@
 {
-  "name": "create-obytes-app",
+  "name": "create-safiri-app",
   "version": "1.7.1",
-  "description": "Obytes expo starter cli",
-  "homepage": "https://github.com/obytes/react-native-template-obytes",
+  "description": "Safiri expo starter cli (forked from Obytes)",
+  "homepage": "https://github.com/SafiriApps/react-native-template",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/obytes/react-native-template-obytes.git"
+    "url": "git+https://github.com/SafiriApps/react-native-template.git"
   },
   "main": "index.js",
   "scripts": {

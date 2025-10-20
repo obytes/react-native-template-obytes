@@ -7,7 +7,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>ObytesApp</string>
+    <string>Safiri</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -27,14 +27,14 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>obytesApp</string>
-          <string>com.obytes.development</string>
+          <string>safiri</string>
+          <string>com.itule.development</string>
         </array>
       </dict>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>exp+obytesapp</string>
+          <string>exp+appsafiri</string>
         </array>
       </dict>
     </array>
@@ -57,6 +57,8 @@
     <array>
       <string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>
     </array>
+    <key>RCTNewArchEnabled</key>
+    <true/>
     <key>UIAppFonts</key>
     <array>
       <string>Inter.ttf</string>
