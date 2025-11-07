@@ -121,7 +121,7 @@ If you take a look at the `env.js` file, you will notice that the file is split 
 
 **In the first part** We load the correct `.env` file based on the `APP_ENV` variable using `dotenv` package. If the `APP_ENV` variable is not defined, we default to `development`.
 
-we define some static variables for the app such as the app name, bundle Id and package. While these variables can be added to the `.env` files, we recommend keeping them in the `env.js` file as they are not meant to change. To handle different app variants, you can add suffixes to these variables using the `withEnvSuffix` function.
+We define some static variables for the app such as the app name, bundle Id and package. While these variables can be added to the `.env` files, we recommend keeping them in the `env.js` file as they are not meant to change. To handle different app variants, you can add suffixes to these variables using the `withEnvSuffix` function.
 
 **In the second part**, we define the `zod` schema for the environment variables.
 
