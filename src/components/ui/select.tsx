@@ -1,14 +1,14 @@
 /* eslint-disable max-lines-per-function */
 import {
-  BottomSheetFlatList,
   type BottomSheetModal,
+  useBottomSheetScrollableCreator,
 } from '@gorhom/bottom-sheet';
 import { FlashList } from '@shopify/flash-list';
 import { useColorScheme } from 'nativewind';
 import * as React from 'react';
 import type { FieldValues } from 'react-hook-form';
 import { useController } from 'react-hook-form';
-import { Platform, View } from 'react-native';
+import { View } from 'react-native';
 import { Pressable, type PressableProps } from 'react-native';
 import type { SvgProps } from 'react-native-svg';
 import Svg, { Path } from 'react-native-svg';
@@ -18,8 +18,7 @@ import colors from '@/components/ui/colors';
 import { CaretDown } from '@/components/ui/icons';
 
 import type { InputControllerType } from './input';
-import { useModal } from './modal';
-import { Modal } from './modal';
+import { Modal, useModal } from './modal';
 import { Text } from './text';
 
 const selectTv = tv({
@@ -56,8 +55,6 @@ const selectTv = tv({
   },
 });
 
-const List = Platform.OS === 'web' ? FlashList : BottomSheetFlatList;
-
 export type OptionType = { label: string; value: string | number };
 
 type OptionsProps = {
@@ -91,6 +88,8 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
       [onSelect, value, testID]
     );
 
+    const BottomSheetScrollable = useBottomSheetScrollableCreator();
+
     return (
       <Modal
         ref={ref}
@@ -100,12 +99,12 @@ export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
           backgroundColor: isDark ? colors.neutral[800] : colors.white,
         }}
       >
-        <List
+        <FlashList
           data={options}
           keyExtractor={keyExtractor}
           renderItem={renderSelectItem}
           testID={testID ? `${testID}-modal` : undefined}
-          estimatedItemSize={52}
+          renderScrollComponent={BottomSheetScrollable}
         />
       </Modal>
     );

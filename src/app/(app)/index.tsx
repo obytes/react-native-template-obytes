@@ -28,7 +28,6 @@ export default function Feed() {
         renderItem={renderItem}
         keyExtractor={(_, index) => `item-${index}`}
         ListEmptyComponent={<EmptyList isLoading={isPending} />}
-        estimatedItemSize={300}
       />
     </View>
   );
