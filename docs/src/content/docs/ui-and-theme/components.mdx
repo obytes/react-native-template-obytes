@@ -73,7 +73,7 @@ const MyComponent = () => {
 ## Image
 
 For the `Image` component, we use the `expo-image` library to provide a fast and performant image component. The `Image` component is a wrapper around the `Image` component from `expo-image` package with additional styling provided by `nativewind`.
-The `cssInterop` function from `nativewind` is used to apply styling and, in this way, the `className` property is applied to the `style` property of the `Image` component.
+The `withUniwind` function from `uniwind` is used to apply styling and, in this way, the `className` property is applied to the `style` property of the `Image` component.
 
 <CodeBlock file="src/components/ui/image.tsx" />
 
@@ -91,7 +91,7 @@ import { Image } from '@/components/ui';
 const MyComponent = () => {
   return (
     <Image
-      className="w-32 h-32"
+      className="h-32 w-32"
       source={{
         uri: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36',
       }}

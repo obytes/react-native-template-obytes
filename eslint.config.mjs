@@ -7,7 +7,6 @@ import i18nJsonPlugin from 'eslint-plugin-i18n-json';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import reactCompiler from 'eslint-plugin-react-compiler';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
-import tailwind from 'eslint-plugin-tailwindcss';
 import testingLibrary from 'eslint-plugin-testing-library';
 // eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member, import/namespace
 import eslintPluginUnicorn from 'eslint-plugin-unicorn';
@@ -33,7 +32,6 @@ export default defineConfig([
   ]),
   expoConfig,
   eslintPluginPrettierRecommended,
-  ...tailwind.configs['flat/recommended'],
   reactCompiler.configs.recommended,
   {
     plugins: {
@@ -44,13 +42,6 @@ export default defineConfig([
     rules: {
       'max-params': ['error', 3],
       'max-lines-per-function': ['error', 70],
-      'tailwindcss/classnames-order': [
-        'warn',
-        {
-          officialSorting: true,
-        },
-      ],
-      'tailwindcss/no-custom-classname': 'off',
       'react/display-name': 'off',
       'react/no-inline-styles': 'off',
       'react/destructuring-assignment': 'off',

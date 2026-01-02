@@ -2,8 +2,8 @@ import React from 'react';
 
 import type { OptionType } from '@/components/ui';
 import { Options, useModal } from '@/components/ui';
-import type { ColorSchemeType } from '@/lib';
 import { translate, useSelectedTheme } from '@/lib';
+import { type ThemeName } from '@/lib/contexts/app-theme-context';
 
 import { Item } from './item';
 
@@ -13,7 +13,7 @@ export const ThemeItem = () => {
 
   const onSelect = React.useCallback(
     (option: OptionType) => {
-      setSelectedTheme(option.value as ColorSchemeType);
+      setSelectedTheme(option.value as ThemeName);
       modal.dismiss();
     },
     [setSelectedTheme, modal]
@@ -23,7 +23,6 @@ export const ThemeItem = () => {
     () => [
       { label: `${translate('settings.theme.dark')} 🌙`, value: 'dark' },
       { label: `${translate('settings.theme.light')} 🌞`, value: 'light' },
-      { label: `${translate('settings.theme.system')} ⚙️`, value: 'system' },
     ],
     []
   );

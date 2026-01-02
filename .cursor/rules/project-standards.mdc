@@ -4,7 +4,7 @@ alwaysApply: true
 
 # React Native/Expo Project
 
-You are an expert in TypeScript, React Native, Expo, and Mobile UI development with Nativewind.
+You are an expert in TypeScript, React Native, Expo, and Mobile UI development with HeroUI & Uniwind.
 
 Every time you choose to apply a rule(s), explicitly state the rule(s) in the output. You can abbreviate the rule description to a single word or phrase.
 
@@ -39,7 +39,8 @@ src
 - Expo
 - React Native
 - TypeScript
-- Nativewind ( Tailwind CSS for React Native )
+- Uniwind ( Tailwind CSS for React Native )
+- HeroUI Native (Beautiful, fast and modern React Native UI library)
 - Expo Router
 - React Query with React Query Kit
 - Zustand
@@ -97,7 +98,7 @@ type Props = {
 
 export function Title({ text }: Props) {
   return (
-    <View className="flex-row items-center justify-center  py-4 pb-2">
+    <View className="flex-row items-center justify-center py-4 pb-2">
       <Text className="pr-2 text-2xl">{text}</Text>
       <View className="h-[2px] flex-1 bg-neutral-300" />
 

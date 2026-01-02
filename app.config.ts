@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 import type { ConfigContext, ExpoConfig } from '@expo/config';
 import type { AppIconBadgeConfig } from 'app-icon-badge/types';
 
@@ -45,6 +44,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   experiments: {
     typedRoutes: true,
+    reactCompiler: true,
   },
   android: {
     adaptiveIcon: {
@@ -52,6 +52,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#2E3C4B',
     },
     package: Env.PACKAGE,
+    edgeToEdgeEnabled: true,
+    predictiveBackGestureEnabled: false,
   },
   web: {
     favicon: './assets/favicon.png',
@@ -66,12 +68,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         imageWidth: 150,
       },
     ],
-    [
-      'expo-font',
-      {
-        fonts: ['./assets/fonts/Inter.ttf'],
-      },
-    ],
+    ['expo-font'],
     'expo-localization',
     'expo-router',
     ['app-icon-badge', appIconBadgeConfig],

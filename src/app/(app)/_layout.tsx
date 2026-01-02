@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
 import React, { useCallback, useEffect } from 'react';
 
@@ -68,7 +67,7 @@ const CreateNewPostLink = () => {
   return (
     <Link href="/feed/add-post" asChild>
       <Pressable>
-        <Text className="px-3 text-primary-300">Create</Text>
+        <Text className="text-primary-300 px-3">Create</Text>
       </Pressable>
     </Link>
   );

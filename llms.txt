@@ -1,0 +1,27 @@
+# Project: 
+
+## Canonical AI Documentation (SOURCE OF TRUTH)
+The following documentation MUST be consulted when working on this project:
+
+- Uniwind (styling system):
+  https://docs.uniwind.dev/llms-full.txt
+
+- HeroUI Native (UI components):
+  https://v3.heroui.com/native/llms-full.txt
+
+## Technology Stack
+- React Native
+- TypeScript
+- Uniwind for styling
+- HeroUI Native for UI components
+
+## AI Agent Instructions
+- Use HeroUI Native components whenever possible
+- Use Uniwind exclusively for styling
+- Do NOT recreate components already provided by HeroUI Native
+- Do NOT use web-only HeroUI components
+- Follow documented APIs only (no hallucinated props)
+
+## Conflict Resolution
+- If component structure and styling conflict, follow HeroUI Native component behavior and Uniwind styling conventions
+

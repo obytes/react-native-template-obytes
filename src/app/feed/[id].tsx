@@ -19,7 +19,7 @@ export default function Post() {
 
   if (isPending) {
     return (
-      <View className="flex-1 justify-center  p-3">
+      <View className="flex-1 justify-center p-3">
         <Stack.Screen options={{ title: 'Post', headerBackTitle: 'Feed' }} />
         <FocusAwareStatusBar />
         <ActivityIndicator />
@@ -37,7 +37,7 @@ export default function Post() {
   }
 
   return (
-    <View className="flex-1 p-3 ">
+    <View className="flex-1 p-3">
       <Stack.Screen options={{ title: 'Post', headerBackTitle: 'Feed' }} />
       <FocusAwareStatusBar />
       <Text className="text-xl">{data.title}</Text>

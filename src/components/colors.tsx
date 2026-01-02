@@ -22,7 +22,7 @@ const Color = ({ name }: { name: ColorName }) => {
   return (
     <View className="pt-2">
       <Text className="font-medium">{name.toUpperCase()}</Text>
-      <View className="flex-row flex-wrap content-between justify-around ">
+      <View className="flex-row flex-wrap content-between justify-around">
         {Object.entries(colors[name]).map(([key, value]) => {
           return (
             <ColorCard

@@ -1,13 +1,13 @@
 import type { ImageProps } from 'expo-image';
 import { Image as NImage } from 'expo-image';
-import { cssInterop } from 'nativewind';
 import * as React from 'react';
+import { withUniwind } from 'uniwind';
 
 export type ImgProps = ImageProps & {
   className?: string;
 };
 
-cssInterop(NImage, { className: 'style' });
+withUniwind(NImage);
 
 export const Image = ({
   style,

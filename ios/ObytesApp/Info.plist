@@ -59,10 +59,6 @@
     </array>
     <key>RCTNewArchEnabled</key>
     <true/>
-    <key>UIAppFonts</key>
-    <array>
-      <string>Inter.ttf</string>
-    </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>
     <key>UIRequiredDeviceCapabilities</key>

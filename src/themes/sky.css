@@ -1,13 +1,6 @@
-@import "tailwindcss";
-@import "uniwind";
-
-@import "heroui-native/styles";
-
-/* @import "./themes/sky.css"; */
-
 @layer theme {
   :root {
-    @variant light {
+    @variant sky-light {
       /* Base Colors - Airy, serene sky blue */
       --background: oklch(0.998 0.008 230);
       --foreground: oklch(0.24 0.045 230);
@@ -55,7 +48,7 @@
       --link: oklch(0.6 0.13 235);
     }
 
-    @variant dark {
+    @variant sky-dark {
       /* Base Colors - Deep twilight blue */
       --background: oklch(0.15 0.042 240);
       --foreground: oklch(0.95 0.008 240);
@@ -104,6 +97,3 @@
     }
   }
 }
-
-/* Path to the heroui-native lib inside node_modules from the root of your project */
-@source './node_modules/heroui-native/lib';

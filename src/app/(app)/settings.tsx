@@ -1,5 +1,4 @@
 import { Env } from '@env';
-import { useColorScheme } from 'nativewind';
 
 import { Item } from '@/components/settings/item';
 import { ItemsContainer } from '@/components/settings/items-container';
@@ -14,18 +13,21 @@ import {
 } from '@/components/ui';
 import { Github, Rate, Share, Support, Website } from '@/components/ui/icons';
 import { translate, useAuth } from '@/lib';
+import { useAppTheme } from '@/lib/contexts/app-theme-context';
 
 export default function Settings() {
   const signOut = useAuth.use.signOut();
-  const { colorScheme } = useColorScheme();
+  const { currentTheme } = useAppTheme();
+
   const iconColor =
-    colorScheme === 'dark' ? colors.neutral[400] : colors.neutral[500];
+    currentTheme === 'dark' ? colors.neutral[400] : colors.neutral[500];
+
   return (
     <>
       <FocusAwareStatusBar />
 
       <ScrollView>
-        <View className="flex-1 px-4 pt-16 ">
+        <View className="flex-1 px-4 pt-16">
           <Text className="text-xl font-bold">
             {translate('settings.title')}
           </Text>

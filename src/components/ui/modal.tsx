@@ -87,7 +87,7 @@ export const Modal = React.forwardRef(
     const renderHandleComponent = React.useCallback(
       () => (
         <>
-          <View className="mb-8 mt-2 h-1 w-12 self-center rounded-lg bg-gray-400 dark:bg-gray-700" />
+          <View className="mt-2 mb-8 h-1 w-12 self-center rounded-lg bg-gray-400 dark:bg-gray-700" />
           <ModalHeader title={title} dismiss={modal.dismiss} />
         </>
       ),
@@ -177,7 +177,7 @@ const CloseButton = ({ close }: { close: () => void }) => {
   return (
     <Pressable
       onPress={close}
-      className="absolute right-3 top-3 size-[24px] items-center justify-center "
+      className="absolute top-3 right-3 size-[24px] items-center justify-center"
       hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
       accessibilityLabel="close modal"
       accessibilityRole="button"

@@ -9,7 +9,7 @@ export const Buttons = () => {
     <>
       <Title text="Buttons" />
       <View>
-        <View className="flex-row  flex-wrap">
+        <View className="flex-row flex-wrap">
           <Button label="small" size="sm" className="mr-2" />
           <Button
             label="small"

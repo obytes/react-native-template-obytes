@@ -33,7 +33,7 @@ When creating this starter kit, we had several guiding principles in mind::
 
 - ✅ Latest Expo SDK with Custom Dev Client: Leverage the best of the Expo ecosystem while maintaining full control over your app.
 - 🎉 [TypeScript](https://www.typescriptlang.org/) for enhanced code quality and bug prevention through static type checking.
-- 💅 Minimal UI kit built with [TailwindCSS](https://www.nativewind.dev/), featuring common components essential for your app.
+- 💅 Minimal UI kit built with [TailwindCSS](https://docs.uniwind.dev/), featuring common components essential for your app.
 - ⚙️ Multi-environment build support (Production, Staging, Development) using Expo configuration.
 - 🦊 Husky for Git Hooks: Automate your git hooks and enforce code standards.
 - 💡 Clean project structure with Absolute Imports for easier code navigation and management.
@@ -92,7 +92,8 @@ We value the feedback and contributions of our users, and we encourage you to le
 
 - [Expo](https://docs.expo.io/)
 - [Expo Router](https://docs.expo.dev/router/introduction/)
-- [Nativewind](https://www.nativewind.dev/v4/overview)
+- [Uniwind](https://docs.uniwind.dev/)
+- [HeroUI Native](https://v3.heroui.com/docs/native/getting-started)
 - [Flash list](https://github.com/Shopify/flash-list)
 - [React Query](https://tanstack.com/query/v4)
 - [Axios](https://axios-http.com/docs/intro)
@@ -111,6 +112,10 @@ We value the feedback and contributions of our users, and we encourage you to le
 - [React Native Screens](https://github.com/software-mansion/react-native-screens)
 - [Tailwind Variants](https://www.tailwind-variants.org/)
 - [Zod](https://zod.dev/)
+
+## AI Configuration
+
+This repository includes a root `llms.txt` file that defines canonical documentation for AI tools.
 
 ## Contributors
 
