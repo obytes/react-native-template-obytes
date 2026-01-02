@@ -7,7 +7,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
-    <string>ObytesApp</string>
+    <string>AtlasApp</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -27,14 +27,14 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>obytesApp</string>
-          <string>com.obytes.development</string>
+          <string>atlasApp</string>
+          <string>com.atlas.development</string>
         </array>
       </dict>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>exp+obytesapp</string>
+          <string>exp+atlasapp</string>
         </array>
       </dict>
     </array>

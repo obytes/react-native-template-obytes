@@ -1,16 +1,16 @@
 <p align="center">
-    <img alt="React Native Template Obytes" src="https://github.com/obytes/react-native-template-obytes/assets/11137944/a8163d23-897a-4efe-91ce-b9bf7348c18f" width="200" />
+    <img alt="React Native Template Atlas" src="https://github.com/leanhtuan1994/react-native-template-atlas/assets/11137944/a8163d23-897a-4efe-91ce-b9bf7348c18f" width="200" />
 </p>
 
 <h1 align="center">
-  React Native Template Obytes
+  React Native Template Atlas
 </h1>
 
-![expo](https://img.shields.io/github/package-json/dependency-version/obytes/react-native-template-obytes/expo?label=expo) ![react-native](https://img.shields.io/github/package-json/dependency-version/obytes/react-native-template-obytes/react-native?label=react-native) ![GitHub Repo stars](https://img.shields.io/github/stars/obytes/react-native-template-obytes) ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/obytes/react-native-template-obytes) ![GitHub issues](https://img.shields.io/github/issues/obytes/react-native-template-obytes) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/obytes/react-native-template-obytes)
+![expo](https://img.shields.io/github/package-json/dependency-version/leanhtuan1994/react-native-template-atlas/expo?label=expo) ![react-native](https://img.shields.io/github/package-json/dependency-version/leanhtuan1994/react-native-template-atlas/react-native?label=react-native) ![GitHub Repo stars](https://img.shields.io/github/stars/leanhtuan1994/react-native-template-atlas) ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/leanhtuan1994/react-native-template-atlas) ![GitHub issues](https://img.shields.io/github/issues/leanhtuan1994/react-native-template-atlas) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/leanhtuan1994/react-native-template-atlas)
 
 📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo, TypeScript, TailwindCSS, Husky, Lint-Staged, expo-router, react-query, react-hook-form, I18n.
 
-> Welcome to the Obytes Mobile Tribe's Expo / React Native Starter Kit!
+> Welcome to the Atlas's Expo / React Native Starter Kit!
 
 ## 🚀 Motivation
 
@@ -119,9 +119,9 @@ This repository includes a root `llms.txt` file that defines canonical documenta
 
 ## Contributors
 
-This starter is maintained by [Obytes mobile tribe team](https://www.obytes.com/team) and we welcome new contributors to join us in improving it. If you are interested in getting involved in the project, please don't hesitate to open an issue or submit a pull request.
+This starter is maintained by [Atlas mobile tribe team](https://leanhtuan1994.github.io/team) and we welcome new contributors to join us in improving it. If you are interested in getting involved in the project, please don't hesitate to open an issue or submit a pull request.
 
-In addition to maintaining this starter kit, we are also available to work on custom projects and help you build your dream app. If you are looking for experienced and reliable developers to bring your app vision to life, please visit our website at [obytes.com/contact](https://www.obytes.com/contact) to get in touch with us. We would be happy to discuss your project in more detail and explore how we can help you achieve your goals.
+In addition to maintaining this starter kit, we are also available to work on custom projects and help you build your dream app. If you are looking for experienced and reliable developers to bring your app vision to life, please visit our website at [leanhtuan1994.github.io](https://leanhtuan1994.github.io/contact) to get in touch with us. We would be happy to discuss your project in more detail and explore how we can help you achieve your goals.
 
 ## 🔥 How to contribute?
 
@@ -136,7 +136,7 @@ We value the input and contributions of our community and look forward to workin
 
 ## ❓ FAQ
 
-If you have any questions about the starter and want answers, please check out the [Discussions](https://github.com/obytes/react-native-template-obytes/discussions) page.
+If you have any questions about the starter and want answers, please check out the [Discussions](https://github.com/leanhtuan1994/react-native-template-atlas/discussions) page.
 
 ## 🔖 License
 

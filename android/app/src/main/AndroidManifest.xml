@@ -24,8 +24,8 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="obytesApp"/>
-        <data android:scheme="exp+obytesapp"/>
+        <data android:scheme="atlasApp"/>
+        <data android:scheme="exp+atlasapp"/>
       </intent-filter>
     </activity>
   </application>

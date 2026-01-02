@@ -7,7 +7,7 @@ env:
 - launchApp
 - runFlow:
     when:
-      visible: 'Obytes Starter'
+      visible: 'Atlas Starter'
     file: ../utils/onboarding.yaml
 - assertVisible: 'Sign In'
 - assertVisible:

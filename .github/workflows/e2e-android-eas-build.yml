@@ -1,5 +1,5 @@
 # 🔗 Links:
-# Source file: https://github.com/obytes/react-native-template-obytes/blob/master/.github/workflows/e2e-android-eas-build.yml
+# Source file: https://github.com/leanhtuan1994/react-native-template-atlas/blob/master/.github/workflows/e2e-android-eas-build.yml
 # End-to-end testing: https://starter.obytes.com/testing/end-to-end-testing/
 
 # ✍️ Description:
@@ -94,7 +94,7 @@ jobs:
           profile: Nexus 6
           script: |
             adb install "${{ github.workspace }}/app-release.apk"
-            $HOME/.maestro/bin/maestro test .maestro/ --env=APP_ID=com.obytes.staging  --format junit
+            $HOME/.maestro/bin/maestro test .maestro/ --env=APP_ID=com.atlas.staging  --format junit
 
       - name: Upload artifacts
         if: always()

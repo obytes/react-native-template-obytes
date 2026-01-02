@@ -1,18 +1,18 @@
 {
-  "name": "create-obytes-app",
+  "name": "create-atlas-app",
   "version": "1.7.1",
-  "description": "Obytes expo starter cli",
-  "homepage": "https://github.com/obytes/react-native-template-obytes",
+  "description": "Atlas expo starter cli",
+  "homepage": "https://github.com/leanhtuan1994/react-native-template-atlas",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/obytes/react-native-template-obytes.git"
+    "url": "git+https://github.com/leanhtuan1994/react-native-template-atlas.git"
   },
   "main": "index.js",
   "scripts": {
     "start": "node ."
   },
   "bin": {
-    "create-obytes-app": "index.js"
+    "create-atlas-app": "index.js"
   },
   "files": [
     "index.js",
@@ -33,6 +33,6 @@
     "react-native-boilerplate",
     "expo-boilerplate",
     "cli",
-    "obytes"
+    "atlas"
   ]
 }

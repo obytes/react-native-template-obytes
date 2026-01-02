@@ -3,14 +3,14 @@ import starlight from '@astrojs/starlight';
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 import starlightLlmsTxt from 'starlight-llms-txt';
 
-const site = 'https://starter.obytes.com/';
+const site = 'https://leanhtuan1994.github.io/react-native-template-atlas/';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://starter.obytes.com/',
+  site: 'https://leanhtuan1994.github.io/react-native-template-atlas/',
   integrations: [
     starlight({
-      title: 'Obytes Starter | React Native Template',
+      title: 'Atlas Starter | React Native Template',
       plugins: [starlightLlmsTxt()],
       description: `Your All-in-One Solution for Building Outstanding React Native/Expo Apps. From editor setup to store submission, we've got you covered!`,
       expressiveCode: {
@@ -25,7 +25,7 @@ export default defineConfig({
         LastUpdated: './src/components/LastUpdated.astro',
       },
       social: {
-        github: 'https://github.com/obytes/react-native-template-obytes',
+        github: 'https://github.com/leanhtuan1994/react-native-template-atlas',
       },
       head: [
         {

@@ -10,26 +10,26 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
 		4F00BE37A1F70A2293350BC1 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10DA435537A3FEE43AE7B95C /* ExpoModulesProvider.swift */; };
-		5CAD746CC321FE4347C1371E /* libPods-ObytesApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FE0DF07F8F9E6C898763EA /* libPods-ObytesApp.a */; };
+		5CAD746CC321FE4347C1371E /* libPods-AtlasApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FE0DF07F8F9E6C898763EA /* libPods-AtlasApp.a */; };
 		A862DD9D79AA099A6E65049A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = DB53F4A338730AF625BEECEE /* PrivacyInfo.xcprivacy */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		10DA435537A3FEE43AE7B95C /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-ObytesApp/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* ObytesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ObytesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ObytesApp/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ObytesApp/Info.plist; sourceTree = "<group>"; };
-		2FE34D7C098949AE5012666D /* Pods-ObytesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObytesApp.release.xcconfig"; path = "Target Support Files/Pods-ObytesApp/Pods-ObytesApp.release.xcconfig"; sourceTree = "<group>"; };
-		49FE0DF07F8F9E6C898763EA /* libPods-ObytesApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ObytesApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = ObytesApp/SplashScreen.storyboard; sourceTree = "<group>"; };
+		10DA435537A3FEE43AE7B95C /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-AtlasApp/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* AtlasApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtlasApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = AtlasApp/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AtlasApp/Info.plist; sourceTree = "<group>"; };
+		2FE34D7C098949AE5012666D /* Pods-AtlasApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AtlasApp.release.xcconfig"; path = "Target Support Files/Pods-AtlasApp/Pods-AtlasApp.release.xcconfig"; sourceTree = "<group>"; };
+		49FE0DF07F8F9E6C898763EA /* libPods-AtlasApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AtlasApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = AtlasApp/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		C6D7E740CE15747B3F29DB69 /* Pods-ObytesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObytesApp.debug.xcconfig"; path = "Target Support Files/Pods-ObytesApp/Pods-ObytesApp.debug.xcconfig"; sourceTree = "<group>"; };
-		DB53F4A338730AF625BEECEE /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = ObytesApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		C6D7E740CE15747B3F29DB69 /* Pods-AtlasApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AtlasApp.debug.xcconfig"; path = "Target Support Files/Pods-AtlasApp/Pods-AtlasApp.debug.xcconfig"; sourceTree = "<group>"; };
+		DB53F4A338730AF625BEECEE /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = AtlasApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ObytesApp/AppDelegate.swift; sourceTree = "<group>"; };
-		F11748442D0722820044C1D9 /* ObytesApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ObytesApp-Bridging-Header.h"; path = "ObytesApp/ObytesApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AtlasApp/AppDelegate.swift; sourceTree = "<group>"; };
+		F11748442D0722820044C1D9 /* AtlasApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "AtlasApp-Bridging-Header.h"; path = "AtlasApp/AtlasApp-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,32 +37,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CAD746CC321FE4347C1371E /* libPods-ObytesApp.a in Frameworks */,
+				5CAD746CC321FE4347C1371E /* libPods-AtlasApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		13B07FAE1A68108700A75B9A /* ObytesApp */ = {
+		13B07FAE1A68108700A75B9A /* AtlasApp */ = {
 			isa = PBXGroup;
 			children = (
 				F11748412D0307B40044C1D9 /* AppDelegate.swift */,
-				F11748442D0722820044C1D9 /* ObytesApp-Bridging-Header.h */,
+				F11748442D0722820044C1D9 /* AtlasApp-Bridging-Header.h */,
 				BB2F792B24A3F905000567C9 /* Supporting */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
 				DB53F4A338730AF625BEECEE /* PrivacyInfo.xcprivacy */,
 			);
-			name = ObytesApp;
+			name = AtlasApp;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				49FE0DF07F8F9E6C898763EA /* libPods-ObytesApp.a */,
+				49FE0DF07F8F9E6C898763EA /* libPods-AtlasApp.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -77,7 +77,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* ObytesApp */,
+				13B07FAE1A68108700A75B9A /* AtlasApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
@@ -92,7 +92,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* ObytesApp.app */,
+				13B07F961A680F5B00A75B9A /* AtlasApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,8 +100,8 @@
 		976D8CD2060409AC68165BD7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C6D7E740CE15747B3F29DB69 /* Pods-ObytesApp.debug.xcconfig */,
-				2FE34D7C098949AE5012666D /* Pods-ObytesApp.release.xcconfig */,
+				C6D7E740CE15747B3F29DB69 /* Pods-AtlasApp.debug.xcconfig */,
+				2FE34D7C098949AE5012666D /* Pods-AtlasApp.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -110,17 +110,17 @@
 		9D86527C8B79C7B42EBEFFA3 /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				A872369BB8A97D1EB53337BC /* ObytesApp */,
+				A872369BB8A97D1EB53337BC /* AtlasApp */,
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
-		A872369BB8A97D1EB53337BC /* ObytesApp */ = {
+		A872369BB8A97D1EB53337BC /* AtlasApp */ = {
 			isa = PBXGroup;
 			children = (
 				10DA435537A3FEE43AE7B95C /* ExpoModulesProvider.swift */,
 			);
-			name = ObytesApp;
+			name = AtlasApp;
 			sourceTree = "<group>";
 		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
@@ -129,15 +129,15 @@
 				BB2F792C24A3F905000567C9 /* Expo.plist */,
 			);
 			name = Supporting;
-			path = ObytesApp/Supporting;
+			path = AtlasApp/Supporting;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		13B07F861A680F5B00A75B9A /* ObytesApp */ = {
+		13B07F861A680F5B00A75B9A /* AtlasApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ObytesApp" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AtlasApp" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
 				F96624B32FC1F9337FA762CB /* [Expo] Configure project */,
@@ -152,9 +152,9 @@
 			);
 			dependencies = (
 			);
-			name = ObytesApp;
-			productName = ObytesApp;
-			productReference = 13B07F961A680F5B00A75B9A /* ObytesApp.app */;
+			name = AtlasApp;
+			productName = AtlasApp;
+			productReference = 13B07F961A680F5B00A75B9A /* AtlasApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -170,7 +170,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ObytesApp" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "AtlasApp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -183,7 +183,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* ObytesApp */,
+				13B07F861A680F5B00A75B9A /* AtlasApp */,
 			);
 		};
 /* End PBXProject section */
@@ -235,7 +235,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ObytesApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AtlasApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -248,7 +248,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ObytesApp/Pods-ObytesApp-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-AtlasApp/Pods-AtlasApp-frameworks.sh",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/React-Core-prebuilt/React.framework/React",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ReactNativeDependencies/ReactNativeDependencies.framework/ReactNativeDependencies",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
@@ -261,7 +261,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ObytesApp/Pods-ObytesApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AtlasApp/Pods-AtlasApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
@@ -270,7 +270,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ObytesApp/Pods-ObytesApp-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-AtlasApp/Pods-AtlasApp-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/ExpoConstants_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoFileSystem/ExpoFileSystem_privacy.bundle",
@@ -299,7 +299,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ObytesApp/Pods-ObytesApp-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AtlasApp/Pods-AtlasApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F96624B32FC1F9337FA762CB /* [Expo] Configure project */ = {
@@ -313,18 +313,18 @@
 			inputPaths = (
 				"$(SRCROOT)/.xcode.env",
 				"$(SRCROOT)/.xcode.env.local",
-				"$(SRCROOT)/ObytesApp/ObytesApp.entitlements",
-				"$(SRCROOT)/Pods/Target Support Files/Pods-ObytesApp/expo-configure-project.sh",
+				"$(SRCROOT)/AtlasApp/AtlasApp.entitlements",
+				"$(SRCROOT)/Pods/Target Support Files/Pods-AtlasApp/expo-configure-project.sh",
 			);
 			name = "[Expo] Configure project";
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(SRCROOT)/Pods/Target Support Files/Pods-ObytesApp/ExpoModulesProvider.swift",
+				"$(SRCROOT)/Pods/Target Support Files/Pods-AtlasApp/ExpoModulesProvider.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-ObytesApp/expo-configure-project.sh\"\n";
+			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-AtlasApp/expo-configure-project.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -343,18 +343,18 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C6D7E740CE15747B3F29DB69 /* Pods-ObytesApp.debug.xcconfig */;
+			baseConfigurationReference = C6D7E740CE15747B3F29DB69 /* Pods-AtlasApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ObytesApp/ObytesApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AtlasApp/AtlasApp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"FB_SONARKIT_ENABLED=1",
 				);
-				INFOPLIST_FILE = ObytesApp/Info.plist;
+				INFOPLIST_FILE = AtlasApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -367,9 +367,9 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.obytes.development;
-				PRODUCT_NAME = ObytesApp;
-				SWIFT_OBJC_BRIDGING_HEADER = "ObytesApp/ObytesApp-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = com.atlas.development;
+				PRODUCT_NAME = AtlasApp;
+				SWIFT_OBJC_BRIDGING_HEADER = "AtlasApp/AtlasApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -379,13 +379,13 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2FE34D7C098949AE5012666D /* Pods-ObytesApp.release.xcconfig */;
+			baseConfigurationReference = 2FE34D7C098949AE5012666D /* Pods-AtlasApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = ObytesApp/ObytesApp.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AtlasApp/AtlasApp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = ObytesApp/Info.plist;
+				INFOPLIST_FILE = AtlasApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -398,9 +398,9 @@
 					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
-				PRODUCT_BUNDLE_IDENTIFIER = com.obytes.development;
-				PRODUCT_NAME = ObytesApp;
-				SWIFT_OBJC_BRIDGING_HEADER = "ObytesApp/ObytesApp-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = com.atlas.development;
+				PRODUCT_NAME = AtlasApp;
+				SWIFT_OBJC_BRIDGING_HEADER = "AtlasApp/AtlasApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -528,7 +528,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ObytesApp" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AtlasApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -537,7 +537,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ObytesApp" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "AtlasApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

@@ -1,4 +1,4 @@
-package com.obytes.development
+package com.atlas.development
 
 import android.app.Application
 import android.content.res.Configuration
