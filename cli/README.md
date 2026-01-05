@@ -13,7 +13,7 @@
 # 🚀 Quick start
 
 ```sh
-npx create-atlas-app@latest MyApp
+npx create-atlas-rn-app@latest MyApp
 
 ```
 

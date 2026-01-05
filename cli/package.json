@@ -1,5 +1,5 @@
 {
-  "name": "create-atlas-app",
+  "name": "create-atlas-rn-app",
   "version": "1.7.1",
   "description": "Atlas expo starter cli",
   "homepage": "https://github.com/leanhtuan1994/react-native-template-atlas",
@@ -12,7 +12,7 @@
     "start": "node ."
   },
   "bin": {
-    "create-atlas-app": "index.js"
+    "create-atlas-rn-app": "index.js"
   },
   "files": [
     "index.js",

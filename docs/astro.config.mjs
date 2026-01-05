@@ -24,9 +24,13 @@ export default defineConfig({
       components: {
         LastUpdated: './src/components/LastUpdated.astro',
       },
-      social: {
-        github: 'https://github.com/leanhtuan1994/react-native-template-atlas',
-      },
+      social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/leanhtuan1994/react-native-template-atlas'
+        },
+      ],
       head: [
         {
           tag: 'meta',
@@ -232,6 +236,10 @@ export default defineConfig({
       lastUpdated: true,
     }),
   ],
+  // Disable built-in syntax highlighting since we use Expressive Code
+  markdown: {
+    syntaxHighlight: false,
+  },
   // Process images with sharp: https://docs.astro.build/en/guides/assets/#using-sharp
   image: {
     service: {
