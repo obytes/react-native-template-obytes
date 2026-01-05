@@ -8,6 +8,7 @@ const site = 'https://leanhtuan1994.github.io/react-native-template-atlas/';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://leanhtuan1994.github.io/react-native-template-atlas/',
+  base: '/react-native-template-atlas',
   integrations: [
     starlight({
       title: 'Atlas Starter | React Native Template',
