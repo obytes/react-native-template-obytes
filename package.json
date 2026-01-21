@@ -73,7 +73,6 @@
     "react-native-edge-to-edge": "^1.6.0",
     "react-native-flash-message": "^0.4.2",
     "react-native-gesture-handler": "~2.24.0",
-    "react-native-keyboard-controller": "^1.17.4",
     "react-native-mmkv": "~3.1.0",
     "react-native-reanimated": "~3.17.5",
     "react-native-restart": "0.0.27",

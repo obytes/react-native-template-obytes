@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
-import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
+import { KeyboardAvoidingView, Platform } from 'react-native';
 import * as z from 'zod';
 
 import { Button, ControlledInput, Text, View } from '@/components/ui';
@@ -34,7 +34,7 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior="padding"
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={10}
     >
       <View className="flex-1 justify-center p-4">
