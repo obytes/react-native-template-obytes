@@ -11,12 +11,12 @@ const schema = z.object({
   name: z.string().optional(),
   email: z
     .string({
-      required_error: 'Email is required',
+      message: 'Email is required',
     })
     .email('Invalid email format'),
   password: z
     .string({
-      required_error: 'Password is required',
+      message: 'Password is required',
     })
     .min(6, 'Password must be at least 6 characters'),
 });
