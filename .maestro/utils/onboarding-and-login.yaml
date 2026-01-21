@@ -4,7 +4,7 @@ tags:
 ---
 - runFlow:
     when:
-      visible: "Obytes Starter"
+      visible: Obytes Starter
     file: onboarding.yaml
 - runFlow:
     when:

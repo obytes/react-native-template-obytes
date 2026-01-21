@@ -1,15 +1,15 @@
-import React from 'react';
+import type { LoginFormProps } from './login-form';
+
+import * as React from 'react';
 
 import { cleanup, screen, setup, waitFor } from '@/lib/test-utils';
-
-import type { LoginFormProps } from './login-form';
 import { LoginForm } from './login-form';
 
 afterEach(cleanup);
 
 const onSubmitMock: jest.Mock<LoginFormProps['onSubmit']> = jest.fn();
 
-describe('LoginForm Form ', () => {
+describe('loginForm Form ', () => {
   it('renders correctly', async () => {
     setup(<LoginForm />);
     expect(await screen.findByTestId('form-title')).toBeOnTheScreen();
@@ -40,7 +40,7 @@ describe('LoginForm Form ', () => {
     expect(screen.queryByText(/Email is required/i)).not.toBeOnTheScreen();
   });
 
-  it('Should call LoginForm with correct values when values are valid', async () => {
+  it('should call LoginForm with correct values when values are valid', async () => {
     const { user } = setup(<LoginForm onSubmit={onSubmitMock} />);
 
     const button = screen.getByTestId('login-button');
@@ -59,7 +59,7 @@ describe('LoginForm Form ', () => {
         email: 'youssef@gmail.com',
         password: 'password',
       },
-      expect.objectContaining({})
+      expect.objectContaining({}),
     );
   });
 });

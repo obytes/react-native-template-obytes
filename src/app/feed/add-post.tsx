@@ -37,12 +37,12 @@ export default function AddPost() {
             type: 'success',
           });
           // here you can navigate to the post list and refresh the list data
-          //queryClient.invalidateQueries(usePosts.getKey());
+          // queryClient.invalidateQueries(usePosts.getKey());
         },
         onError: () => {
           showErrorMessage('Error adding post');
         },
-      }
+      },
     );
   };
   return (

@@ -5,6 +5,7 @@ import { I18nManager } from 'react-native';
 
 import { resources } from './resources';
 import { getLanguage } from './utils';
+
 export * from './utils';
 
 i18n.use(initReactI18next).init({

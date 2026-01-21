@@ -28,7 +28,7 @@ on:
         type: choice
         description: 'Release type (one of): patch, minor, major'
         required: true
-        default: 'patch'
+        default: patch
         options:
           - patch
           - minor

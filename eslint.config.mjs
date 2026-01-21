@@ -1,96 +1,87 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { defineConfig, globalIgnores } from 'eslint/config';
-import expoConfig from 'eslint-config-expo/flat.js';
+import antfu from '@antfu/eslint-config';
 import i18nJsonPlugin from 'eslint-plugin-i18n-json';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import reactCompiler from 'eslint-plugin-react-compiler';
-import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import tailwind from 'eslint-plugin-tailwindcss';
 import testingLibrary from 'eslint-plugin-testing-library';
-// eslint-disable-next-line import/no-named-as-default, import/no-named-as-default-member, import/namespace
-import eslintPluginUnicorn from 'eslint-plugin-unicorn';
-import unusedImports from 'eslint-plugin-unused-imports';
-import { configs, parser } from 'typescript-eslint';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export default defineConfig([
-  globalIgnores([
-    'dist/*',
-    'node_modules',
-    '__tests__/',
-    'coverage',
-    '.expo',
-    '.expo-shared',
-    'android',
-    'ios',
-    '.vscode',
-    'docs/',
-    'cli/',
-    'expo-env.d.ts',
-  ]),
-  expoConfig,
-  eslintPluginPrettierRecommended,
-  ...tailwind.configs['flat/recommended'],
-  reactCompiler.configs.recommended,
+export default antfu(
   {
-    plugins: {
-      'simple-import-sort': simpleImportSort,
-      unicorn: eslintPluginUnicorn,
-      'unused-imports': unusedImports,
+    // Enable React and TypeScript support
+    react: true,
+    typescript: true,
+
+    // Disable JSON processing for translation files (handled by i18n-json plugin)
+    jsonc: false,
+
+    // Use ESLint Stylistic for formatting
+    stylistic: {
+      indent: 2,
+      quotes: 'single',
+      semi: true,
     },
+
+    // Global ignores
+    ignores: [
+      'dist/*',
+      'node_modules',
+      '__tests__/',
+      'coverage',
+      '.expo',
+      '.expo-shared',
+      'android',
+      'ios',
+      '.vscode',
+      'docs/',
+      'cli/',
+      'expo-env.d.ts',
+    ],
+  },
+
+  // Custom rules
+  {
     rules: {
       'max-params': ['error', 3],
       'max-lines-per-function': ['error', 70],
-      'tailwindcss/classnames-order': [
-        'warn',
-        {
-          officialSorting: true,
-        },
-      ],
-      'tailwindcss/no-custom-classname': 'off',
       'react/display-name': 'off',
       'react/no-inline-styles': 'off',
       'react/destructuring-assignment': 'off',
       'react/require-default-props': 'off',
+      'react-refresh/only-export-components': 'off', // Too strict for React Native
       'unicorn/filename-case': [
         'error',
         {
           case: 'kebabCase',
-          ignore: ['/android', '/ios'],
+          ignore: [
+            '/android',
+            '/ios',
+            'README.md',
+            'README-project.md',
+            'ISSUE_TEMPLATE.md',
+            'PULL_REQUEST_TEMPLATE.md',
+          ],
         },
       ],
-      'simple-import-sort/imports': 'error',
-      'simple-import-sort/exports': 'error',
-      'unused-imports/no-unused-imports': 'error',
-      'unused-imports/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_',
-        },
-      ],
-      'import/prefer-default-export': 'off',
-      'import/no-cycle': ['error', { maxDepth: '∞' }],
-      'prettier/prettier': ['error', { ignores: ['expo-env.d.ts'] }],
+      'node/prefer-global/process': 'off', // process is commonly used in React Native configs
+      'ts/no-require-imports': 'off', // Sometimes needed for mocks
+      'ts/no-use-before-define': 'off', // Allow forward references in React components
+      'no-console': 'off', // Console is useful for debugging
+      'no-cond-assign': 'off', // Allow assignment in conditions when intentional
+      'regexp/no-super-linear-backtracking': 'off', // Relax regex performance rules
+      'regexp/no-unused-capturing-group': 'off', // Allow unused capturing groups
     },
   },
+
+  // TypeScript-specific rules
   {
     files: ['**/*.ts', '**/*.tsx'],
-    languageOptions: {
-      parser: parser,
-      parserOptions: {
-        project: './tsconfig.json',
-        sourceType: 'module',
-      },
-    },
     rules: {
-      ...configs.recommended.rules,
-      '@typescript-eslint/comma-dangle': 'off',
-      '@typescript-eslint/consistent-type-imports': [
+      'ts/consistent-type-definitions': ['error', 'type'], // Prefer type over interface
+      'ts/consistent-type-imports': [
         'warn',
         {
           prefer: 'type-imports',
@@ -100,6 +91,28 @@ export default defineConfig([
       ],
     },
   },
+
+  // TailwindCSS plugin
+  ...tailwind.configs['flat/recommended'].map(config => ({
+    ...config,
+    rules: {
+      ...config.rules,
+      'tailwindcss/classnames-order': ['warn', { officialSorting: true }],
+      'tailwindcss/no-custom-classname': 'off',
+    },
+  })),
+
+  // React Compiler plugin
+  {
+    plugins: {
+      'react-compiler': reactCompiler,
+    },
+    rules: {
+      'react-compiler/react-compiler': 'error',
+    },
+  },
+
+  // i18n JSON validation
   {
     files: ['src/translations/*.json'],
     plugins: { 'i18n-json': i18nJsonPlugin },
@@ -114,33 +127,25 @@ export default defineConfig([
         {
           syntax: path.resolve(
             __dirname,
-            './scripts/i18next-syntax-validation.js'
+            './scripts/i18next-syntax-validation.js',
           ),
         },
       ],
       'i18n-json/valid-json': 2,
-      'i18n-json/sorted-keys': [
-        2,
-        {
-          order: 'asc',
-          indentSpaces: 2,
-        },
-      ],
+      'i18n-json/sorted-keys': [2, { order: 'asc', indentSpaces: 2 }],
       'i18n-json/identical-keys': [
         2,
-        {
-          filePath: path.resolve(__dirname, './src/translations/en.json'),
-        },
+        { filePath: path.resolve(__dirname, './src/translations/en.json') },
       ],
-      'prettier/prettier': [
-        0,
-        {
-          singleQuote: true,
-          endOfLine: 'auto',
-        },
-      ],
+      // Disable conflicting rules for i18n JSON files
+      'style/semi': 'off',
+      'style/comma-dangle': 'off',
+      'style/quotes': 'off',
+      'unused-imports/no-unused-vars': 'off',
     },
   },
+
+  // Testing Library rules
   {
     files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
     plugins: { 'testing-library': testingLibrary },
@@ -148,4 +153,4 @@ export default defineConfig([
       ...testingLibrary.configs.react.rules,
     },
   },
-]);
+);

@@ -2,6 +2,11 @@
   "name": "obytesapp",
   "version": "8.0.0",
   "private": true,
+  "packageManager": "pnpm@10.12.3",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/obytes/react-native-template-obytes.git"
+  },
   "main": "expo-router/entry",
   "scripts": {
     "start": "cross-env EXPO_NO_DOTENV=1 expo start",
@@ -30,9 +35,10 @@
     "prepare": "husky",
     "app-release": "cross-env SKIP_BRANCH_PROTECTION=true np --no-publish --no-cleanup --no-release-draft",
     "version": "pnpm run prebuild && git add .",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "type-check": "tsc  --noemit",
-    "lint:translations": "eslint ./src/translations/ --fix --ext .json  ",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "type-check": "tsc --noemit",
+    "lint:translations": "eslint ./src/translations/ --fix --ext .json",
     "test": "jest",
     "check-all": "pnpm run lint && pnpm run type-check && pnpm run lint:translations && pnpm run test",
     "test:ci": "pnpm run test --coverage",
@@ -88,12 +94,12 @@
     "zustand": "^5.0.5"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^7.2.0",
     "@babel/core": "^7.26.0",
     "@commitlint/cli": "^19.2.2",
     "@commitlint/config-conventional": "^19.2.2",
     "@dev-plugins/react-query": "^0.0.7",
-    "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.28.0",
+    "@eslint-react/eslint-plugin": "^2.7.2",
     "@expo/config": "~11.0.10",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react-native": "^12.7.2",
@@ -102,24 +108,19 @@
     "@types/jest": "^29.5.12",
     "@types/lodash.memoize": "^4.1.9",
     "@types/react": "~19.0.14",
-    "@typescript-eslint/eslint-plugin": "^8.34.0",
-    "@typescript-eslint/parser": "^8.34.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
-    "eslint": "^9.28.0",
-    "eslint-config-expo": "^9.2.0",
-    "eslint-config-prettier": "^10.1.5",
+    "eslint": "^9.39.2",
     "eslint-import-resolver-typescript": "^4.4.3",
     "eslint-plugin-i18n-json": "^4.0.1",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-prettier": "^5.4.1",
     "eslint-plugin-react-compiler": "19.1.0-rc.2",
-    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.26",
     "eslint-plugin-tailwindcss": "^3.18.0",
     "eslint-plugin-testing-library": "^7.5.2",
     "eslint-plugin-unicorn": "^59.0.1",
-    "eslint-plugin-unused-imports": "^4.1.4",
     "husky": "^9.1.5",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
@@ -127,17 +128,10 @@
     "jest-junit": "^16.0.0",
     "lint-staged": "^15.2.9",
     "np": "^10.0.7",
-    "prettier": "^3.3.3",
     "tailwindcss": "3.4.4",
     "ts-jest": "^29.1.2",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.34.0"
+    "typescript": "^5.8.3"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/obytes/react-native-template-obytes.git"
-  },
-  "packageManager": "pnpm@10.12.3",
   "expo": {
     "doctor": {
       "reactNativeDirectoryCheck": {

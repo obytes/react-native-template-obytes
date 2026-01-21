@@ -1,30 +1,30 @@
-import React from 'react';
 import type { TextProps, TextStyle } from 'react-native';
-import { I18nManager, StyleSheet, Text as NNText } from 'react-native';
-import { twMerge } from 'tailwind-merge';
-
 import type { TxKeyPath } from '@/lib/i18n';
+import * as React from 'react';
+import { I18nManager, Text as NNText, StyleSheet } from 'react-native';
+
+import { twMerge } from 'tailwind-merge';
 import { translate } from '@/lib/i18n';
 
-interface Props extends TextProps {
+type Props = {
   className?: string;
   tx?: TxKeyPath;
-}
+} & TextProps;
 
-export const Text = ({
+export function Text({
   className = '',
   style,
   tx,
   children,
   ...props
-}: Props) => {
+}: Props) {
   const textStyle = React.useMemo(
     () =>
       twMerge(
         'text-base text-black  dark:text-white  font-inter font-normal',
-        className
+        className,
       ),
-    [className]
+    [className],
   );
 
   const nStyle = React.useMemo(
@@ -35,11 +35,11 @@ export const Text = ({
         },
         style,
       ]) as TextStyle,
-    [style]
+    [style],
   );
   return (
     <NNText className={textStyle} style={nStyle} {...props}>
       {tx ? translate(tx) : children}
     </NNText>
   );
-};
+}

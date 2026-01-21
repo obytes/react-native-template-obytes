@@ -48,9 +48,10 @@ Follow the following steps one by one:
 Here is an example of how a unit tests should look like:
 
 ```tsx
-import React from 'react';
+import * as React from 'react';
 
 import { cleanup, screen, setup, waitFor } from '@/lib/test-utils';
+
 afterEach(cleanup);
 
 const onSubmitMock: jest.Mock<LoginFormProps['onSubmit']> = jest.fn();

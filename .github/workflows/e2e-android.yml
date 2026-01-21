@@ -57,7 +57,7 @@ jobs:
           fetch-depth: 0
 
       - name: 📦 Install Maestro
-        run: npm run install-maestro ## We use npm because we don't need to install deps again
+        run: npm run install-maestro # # We use npm because we don't need to install deps again
 
       - name: Download Test APK
         uses: actions/download-artifact@v3

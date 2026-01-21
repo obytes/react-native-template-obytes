@@ -1,6 +1,6 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
 import type { SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import * as z from 'zod';
@@ -27,7 +27,7 @@ export type LoginFormProps = {
   onSubmit?: SubmitHandler<FormType>;
 };
 
-export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
+export function LoginForm({ onSubmit = () => {} }: LoginFormProps) {
   const { handleSubmit, control } = useForm<FormType>({
     resolver: zodResolver(schema),
   });
@@ -81,4 +81,4 @@ export const LoginForm = ({ onSubmit = () => {} }: LoginFormProps) => {
       </View>
     </KeyboardAvoidingView>
   );
-};
+}

@@ -16,17 +16,17 @@ on:
       - main
       - master
     paths:
-      - 'package.json'
-      - 'pnpm-lock.yaml'
+      - package.json
+      - pnpm-lock.yaml
   pull_request:
     paths:
-      - 'package.json'
-      - 'pnpm-lock.yaml'
+      - package.json
+      - pnpm-lock.yaml
 
 permissions:
   contents: read
   pull-requests: write
-  
+
 jobs:
   doctor:
     name: Expo Doctor (expo)

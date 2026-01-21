@@ -13,7 +13,6 @@ export default function Post() {
   const local = useLocalSearchParams<{ id: string }>();
 
   const { data, isPending, isError } = usePost({
-    //@ts-ignore
     variables: { id: local.id },
   });
 
@@ -41,7 +40,10 @@ export default function Post() {
       <Stack.Screen options={{ title: 'Post', headerBackTitle: 'Feed' }} />
       <FocusAwareStatusBar />
       <Text className="text-xl">{data.title}</Text>
-      <Text>{data.body} </Text>
+      <Text>
+        {data.body}
+        {' '}
+      </Text>
     </View>
   );
 }

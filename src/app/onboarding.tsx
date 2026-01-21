@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import React from 'react';
+import * as React from 'react';
 
 import { Cover } from '@/components/cover';
 import {
@@ -10,6 +10,7 @@ import {
   View,
 } from '@/components/ui';
 import { useIsFirstTime } from '@/lib/hooks';
+
 export default function Onboarding() {
   const [_, setIsFirstTime] = useIsFirstTime();
   const router = useRouter();
@@ -28,7 +29,8 @@ export default function Onboarding() {
         </Text>
 
         <Text className="my-1 pt-6 text-left text-lg">
-          🚀 Production-ready{' '}
+          🚀 Production-ready
+          {' '}
         </Text>
         <Text className="my-1 text-left text-lg">
           🥷 Developer experience + Productivity

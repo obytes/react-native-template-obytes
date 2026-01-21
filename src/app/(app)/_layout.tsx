@@ -1,6 +1,6 @@
-/* eslint-disable react/no-unstable-nested-components */
 import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
-import React, { useCallback, useEffect } from 'react';
+import * as React from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { Pressable, Text } from '@/components/ui';
 import {
@@ -64,7 +64,7 @@ export default function TabLayout() {
   );
 }
 
-const CreateNewPostLink = () => {
+function CreateNewPostLink() {
   return (
     <Link href="/feed/add-post" asChild>
       <Pressable>
@@ -72,4 +72,4 @@ const CreateNewPostLink = () => {
       </Pressable>
     </Link>
   );
-};
+}

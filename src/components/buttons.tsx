@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 
 import { Button, View } from '@/components/ui';
 
 import { Title } from './title';
 
-export const Buttons = () => {
+export function Buttons() {
   return (
     <>
       <Title text="Buttons" />
@@ -49,4 +49,4 @@ export const Buttons = () => {
       </View>
     </>
   );
-};
+}

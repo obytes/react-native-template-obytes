@@ -1,25 +1,25 @@
 /* eslint-disable max-lines-per-function */
+import type { BottomSheetModal } from '@gorhom/bottom-sheet';
+import type { FieldValues } from 'react-hook-form';
+import type { PressableProps } from 'react-native';
+import type { SvgProps } from 'react-native-svg';
+import type { InputControllerType } from './input';
 import {
   BottomSheetFlatList,
-  type BottomSheetModal,
+
 } from '@gorhom/bottom-sheet';
 import { FlashList } from '@shopify/flash-list';
 import { useColorScheme } from 'nativewind';
 import * as React from 'react';
-import type { FieldValues } from 'react-hook-form';
 import { useController } from 'react-hook-form';
-import { Platform, View } from 'react-native';
-import { Pressable, type PressableProps } from 'react-native';
-import type { SvgProps } from 'react-native-svg';
+import { Platform, Pressable, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
+
 import { tv } from 'tailwind-variants';
-
 import colors from '@/components/ui/colors';
-import { CaretDown } from '@/components/ui/icons';
 
-import type { InputControllerType } from './input';
-import { useModal } from './modal';
-import { Modal } from './modal';
+import { CaretDown } from '@/components/ui/icons';
+import { Modal, useModal } from './modal';
 import { Text } from './text';
 
 const selectTv = tv({
@@ -71,46 +71,44 @@ function keyExtractor(item: OptionType) {
   return `select-item-${item.value}`;
 }
 
-export const Options = React.forwardRef<BottomSheetModal, OptionsProps>(
-  ({ options, onSelect, value, testID }, ref) => {
-    const height = options.length * 70 + 100;
-    const snapPoints = React.useMemo(() => [height], [height]);
-    const { colorScheme } = useColorScheme();
-    const isDark = colorScheme === 'dark';
+export function Options({ ref, options, onSelect, value, testID }: OptionsProps & { ref?: React.RefObject<BottomSheetModal | null> }) {
+  const height = options.length * 70 + 100;
+  const snapPoints = React.useMemo(() => [height], [height]);
+  const { colorScheme } = useColorScheme();
+  const isDark = colorScheme === 'dark';
 
-    const renderSelectItem = React.useCallback(
-      ({ item }: { item: OptionType }) => (
-        <Option
-          key={`select-item-${item.value}`}
-          label={item.label}
-          selected={value === item.value}
-          onPress={() => onSelect(item)}
-          testID={testID ? `${testID}-item-${item.value}` : undefined}
-        />
-      ),
-      [onSelect, value, testID]
-    );
+  const renderSelectItem = React.useCallback(
+    ({ item }: { item: OptionType }) => (
+      <Option
+        key={`select-item-${item.value}`}
+        label={item.label}
+        selected={value === item.value}
+        onPress={() => onSelect(item)}
+        testID={testID ? `${testID}-item-${item.value}` : undefined}
+      />
+    ),
+    [onSelect, value, testID],
+  );
 
-    return (
-      <Modal
-        ref={ref}
-        index={0}
-        snapPoints={snapPoints}
-        backgroundStyle={{
-          backgroundColor: isDark ? colors.neutral[800] : colors.white,
-        }}
-      >
-        <List
-          data={options}
-          keyExtractor={keyExtractor}
-          renderItem={renderSelectItem}
-          testID={testID ? `${testID}-modal` : undefined}
-          estimatedItemSize={52}
-        />
-      </Modal>
-    );
-  }
-);
+  return (
+    <Modal
+      ref={ref}
+      index={0}
+      snapPoints={snapPoints}
+      backgroundStyle={{
+        backgroundColor: isDark ? colors.neutral[800] : colors.white,
+      }}
+    >
+      <List
+        data={options}
+        keyExtractor={keyExtractor}
+        renderItem={renderSelectItem}
+        testID={testID ? `${testID}-modal` : undefined}
+        estimatedItemSize={52}
+      />
+    </Modal>
+  );
+}
 
 const Option = React.memo(
   ({
@@ -130,10 +128,10 @@ const Option = React.memo(
         {selected && <Check />}
       </Pressable>
     );
-  }
+  },
 );
 
-export interface SelectProps {
+export type SelectProps = {
   value?: string | number;
   label?: string;
   disabled?: boolean;
@@ -142,12 +140,10 @@ export interface SelectProps {
   onSelect?: (value: string | number) => void;
   placeholder?: string;
   testID?: string;
-}
-interface ControlledSelectProps<T extends FieldValues>
-  extends SelectProps,
-    InputControllerType<T> {}
+};
+type ControlledSelectProps<T extends FieldValues> = {} & SelectProps & InputControllerType<T>;
 
-export const Select = (props: SelectProps) => {
+export function Select(props: SelectProps) {
   const {
     label,
     value,
@@ -165,7 +161,7 @@ export const Select = (props: SelectProps) => {
       onSelect?.(option.value);
       modal.dismiss();
     },
-    [modal, onSelect]
+    [modal, onSelect],
   );
 
   const styles = React.useMemo(
@@ -174,15 +170,15 @@ export const Select = (props: SelectProps) => {
         error: Boolean(error),
         disabled,
       }),
-    [error, disabled]
+    [error, disabled],
   );
 
   const textValue = React.useMemo(
     () =>
       value !== undefined
-        ? (options?.filter((t) => t.value === value)?.[0]?.label ?? placeholder)
+        ? (options?.filter(t => t.value === value)?.[0]?.label ?? placeholder)
         : placeholder,
-    [value, options, placeholder]
+    [value, options, placeholder],
   );
 
   return (
@@ -224,11 +220,11 @@ export const Select = (props: SelectProps) => {
       />
     </>
   );
-};
+}
 
 // only used with react-hook-form
 export function ControlledSelect<T extends FieldValues>(
-  props: ControlledSelectProps<T>
+  props: ControlledSelectProps<T>,
 ) {
   const { name, control, rules, onSelect: onNSelect, ...selectProps } = props;
 
@@ -238,7 +234,7 @@ export function ControlledSelect<T extends FieldValues>(
       field.onChange(value);
       onNSelect?.(value);
     },
-    [field, onNSelect]
+    [field, onNSelect],
   );
   return (
     <Select
@@ -250,20 +246,22 @@ export function ControlledSelect<T extends FieldValues>(
   );
 }
 
-const Check = ({ ...props }: SvgProps) => (
-  <Svg
-    width={25}
-    height={24}
-    fill="none"
-    viewBox="0 0 25 24"
-    {...props}
-    className="stroke-black dark:stroke-white"
-  >
-    <Path
-      d="m20.256 6.75-10.5 10.5L4.506 12"
-      strokeWidth={2.438}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </Svg>
-);
+function Check({ ...props }: SvgProps) {
+  return (
+    <Svg
+      width={25}
+      height={24}
+      fill="none"
+      viewBox="0 0 25 24"
+      {...props}
+      className="stroke-black dark:stroke-white"
+    >
+      <Path
+        d="m20.256 6.75-10.5 10.5L4.506 12"
+        strokeWidth={2.438}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}

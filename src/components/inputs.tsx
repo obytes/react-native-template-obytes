@@ -1,8 +1,7 @@
-import React from 'react';
-
 import type { OptionType } from '@/components/ui';
-import { Input, Select, View } from '@/components/ui';
-import { Checkbox, Radio, Switch } from '@/components/ui';
+
+import * as React from 'react';
+import { Checkbox, Input, Radio, Select, Switch, View } from '@/components/ui';
 
 import { Title } from './title';
 
@@ -12,7 +11,7 @@ const options: OptionType[] = [
   { value: 'vanilla', label: 'Vanilla' },
 ];
 
-export const Inputs = () => {
+export function Inputs() {
   const [value, setValue] = React.useState<string | number | undefined>();
   return (
     <>
@@ -25,7 +24,7 @@ export const Inputs = () => {
           label="Select"
           options={options}
           value={value}
-          onSelect={(option) => setValue(option)}
+          onSelect={option => setValue(option)}
         />
         <CheckboxExample />
         <RadioExample />
@@ -33,9 +32,9 @@ export const Inputs = () => {
       </View>
     </>
   );
-};
+}
 
-const CheckboxExample = () => {
+function CheckboxExample() {
   const [checked, setChecked] = React.useState(false);
   return (
     <Checkbox.Root
@@ -48,9 +47,9 @@ const CheckboxExample = () => {
       <Checkbox.Label text="checkbox" />
     </Checkbox.Root>
   );
-};
+}
 
-const RadioExample = () => {
+function RadioExample() {
   const [selected, setSelected] = React.useState(false);
   return (
     <Radio.Root
@@ -63,9 +62,9 @@ const RadioExample = () => {
       <Radio.Label text="radio button" />
     </Radio.Root>
   );
-};
+}
 
-const SwitchExample = () => {
+function SwitchExample() {
   const [active, setActive] = React.useState(false);
   return (
     <Switch.Root
@@ -78,4 +77,4 @@ const SwitchExample = () => {
       <Switch.Label text="switch" />
     </Switch.Root>
   );
-};
+}

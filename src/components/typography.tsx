@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 
 import { Text, View } from '@/components/ui';
 
 import { Title } from './title';
 
-export const Typography = () => {
+export function Typography() {
   return (
     <>
       <Title text="Typography" />
@@ -24,4 +24,4 @@ export const Typography = () => {
       </View>
     </>
   );
-};
+}

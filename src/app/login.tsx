@@ -1,7 +1,7 @@
-import { useRouter } from 'expo-router';
-import React from 'react';
-
 import type { LoginFormProps } from '@/components/login-form';
+import { useRouter } from 'expo-router';
+
+import * as React from 'react';
 import { LoginForm } from '@/components/login-form';
 import { FocusAwareStatusBar } from '@/components/ui';
 import { useAuth } from '@/lib';
