@@ -13,7 +13,7 @@ import { APIProvider } from '@/api';
 import { hydrateAuth, loadSelectedTheme } from '@/lib';
 import { useThemeConfig } from '@/lib/use-theme-config';
 // Import  global CSS file
-import '../../global.css';
+import '../global.css';
 
 export { ErrorBoundary } from 'expo-router';
 

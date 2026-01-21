@@ -21,7 +21,7 @@ export function Text({
   const textStyle = React.useMemo(
     () =>
       twMerge(
-        'text-base text-black  dark:text-white  font-inter font-normal',
+        'font-inter text-base font-normal text-black dark:text-white',
         className,
       ),
     [className],

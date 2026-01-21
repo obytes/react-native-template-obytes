@@ -2,9 +2,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import antfu from '@antfu/eslint-config';
+import betterTailwindcss from 'eslint-plugin-better-tailwindcss';
 import i18nJsonPlugin from 'eslint-plugin-i18n-json';
 import reactCompiler from 'eslint-plugin-react-compiler';
-import tailwind from 'eslint-plugin-tailwindcss';
 import testingLibrary from 'eslint-plugin-testing-library';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -82,6 +82,7 @@ export default antfu(
     files: ['**/*.ts', '**/*.tsx'],
     rules: {
       'ts/consistent-type-definitions': ['error', 'type'], // Prefer type over interface
+      'react-hooks/refs': 'off', // Allow useRef without exhaustive-deps
       'ts/consistent-type-imports': [
         'warn',
         {
@@ -93,15 +94,22 @@ export default antfu(
     },
   },
 
-  // TailwindCSS plugin
-  ...tailwind.configs['flat/recommended'].map(config => ({
-    ...config,
-    rules: {
-      ...config.rules,
-      'tailwindcss/classnames-order': ['warn', { officialSorting: true }],
-      'tailwindcss/no-custom-classname': 'off',
+  // Better TailwindCSS plugin
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    ...betterTailwindcss.configs.recommended,
+    settings: {
+      'better-tailwindcss': {
+        entryPoint: path.resolve(__dirname, './src/global.css'),
+      },
     },
-  })),
+    rules: {
+      ...betterTailwindcss.configs.recommended.rules,
+      'better-tailwindcss/no-unnecessary-whitespace': 'warn',
+      'better-tailwindcss/no-unknown-classes': 'warn',
+      'better-tailwindcss/enforce-consistent-line-wrapping': 'off', // Can be too strict for some cases
+    },
+  },
 
   // React Compiler plugin
   {

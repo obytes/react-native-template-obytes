@@ -18,7 +18,7 @@ const inputTv = tv({
     container: 'mb-2',
     label: 'text-grey-100 mb-1 text-lg dark:text-neutral-100',
     input:
-      'mt-0 rounded-xl border-[0.5px] border-neutral-300 bg-neutral-100 px-4 py-3 font-inter text-base  font-medium leading-5 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white',
+      'font-inter mt-0 rounded-xl border-[0.5px] border-neutral-300 bg-neutral-100 px-4 py-3 text-base/5 font-medium dark:border-neutral-700 dark:bg-neutral-800 dark:text-white',
   },
 
   variants: {
@@ -74,15 +74,11 @@ export function Input({ ref, ...props }: NInputProps & { ref?: React.Ref<NTextIn
   const onBlur = React.useCallback(() => setIsFocussed(false), []);
   const onFocus = React.useCallback(() => setIsFocussed(true), []);
 
-  const styles = React.useMemo(
-    () =>
-      inputTv({
-        error: Boolean(error),
-        focused: isFocussed,
-        disabled: Boolean(props.disabled),
-      }),
-    [error, isFocussed, props.disabled],
-  );
+  const styles = inputTv({
+    error: Boolean(error),
+    focused: isFocussed,
+    disabled: Boolean(props.disabled),
+  });
 
   return (
     <View className={styles.container()}>

@@ -53,7 +53,7 @@ export default function AddPost() {
           headerBackTitle: 'Feed',
         }}
       />
-      <View className="flex-1 p-4 ">
+      <View className="flex-1 p-4">
         <ControlledInput
           name="title"
           label="Title"

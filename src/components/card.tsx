@@ -2,6 +2,7 @@ import type { Post } from '@/api';
 
 import { Link } from 'expo-router';
 import * as React from 'react';
+
 import { Image, Pressable, Text, View } from '@/components/ui';
 
 const images = [
@@ -18,17 +19,18 @@ export function Card({ title, body, id }: Props) {
   return (
     <Link href={`/feed/${id}`} asChild>
       <Pressable>
-        <View className="m-2 overflow-hidden rounded-xl  border border-neutral-300 bg-white  dark:bg-neutral-900">
+        <View className="m-2 overflow-hidden rounded-xl border border-neutral-300 bg-white dark:bg-neutral-900">
           <Image
             className="h-56 w-full overflow-hidden rounded-t-xl"
             contentFit="cover"
             source={{
+              // eslint-disable-next-line react-hooks/purity
               uri: images[Math.floor(Math.random() * images.length)],
             }}
           />
 
           <View className="p-2">
-            <Text className="py-3 text-2xl ">{title}</Text>
+            <Text className="py-3 text-2xl">{title}</Text>
             <Text numberOfLines={3} className="leading-snug text-gray-600">
               {body}
             </Text>

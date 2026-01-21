@@ -9,13 +9,13 @@ import {
 
 } from '@gorhom/bottom-sheet';
 import { FlashList } from '@shopify/flash-list';
-import { useColorScheme } from 'nativewind';
 import * as React from 'react';
 import { useController } from 'react-hook-form';
 import { Platform, Pressable, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
-
 import { tv } from 'tailwind-variants';
+
+import { useUniwind } from 'uniwind';
 import colors from '@/components/ui/colors';
 
 import { CaretDown } from '@/components/ui/icons';
@@ -27,7 +27,7 @@ const selectTv = tv({
     container: 'mb-4',
     label: 'text-grey-100 mb-1 text-lg dark:text-neutral-100',
     input:
-      'border-grey-50 mt-0 flex-row items-center justify-center rounded-xl border-[0.5px] p-3  dark:border-neutral-500 dark:bg-neutral-800',
+      'border-grey-50 mt-0 flex-row items-center justify-center rounded-xl border-[0.5px] p-3 dark:border-neutral-500 dark:bg-neutral-800',
     inputValue: 'dark:text-neutral-100',
   },
 
@@ -74,8 +74,8 @@ function keyExtractor(item: OptionType) {
 export function Options({ ref, options, onSelect, value, testID }: OptionsProps & { ref?: React.RefObject<BottomSheetModal | null> }) {
   const height = options.length * 70 + 100;
   const snapPoints = React.useMemo(() => [height], [height]);
-  const { colorScheme } = useColorScheme();
-  const isDark = colorScheme === 'dark';
+  const { theme } = useUniwind();
+  const isDark = theme === 'dark';
 
   const renderSelectItem = React.useCallback(
     ({ item }: { item: OptionType }) => (
@@ -124,7 +124,7 @@ const Option = React.memo(
         className="flex-row items-center border-b border-neutral-300 bg-white px-3 py-2 dark:border-neutral-700 dark:bg-neutral-800"
         {...props}
       >
-        <Text className="flex-1 dark:text-neutral-100 ">{label}</Text>
+        <Text className="flex-1 dark:text-neutral-100">{label}</Text>
         {selected && <Check />}
       </Pressable>
     );
