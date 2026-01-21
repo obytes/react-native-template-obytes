@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { Text, View } from '@/components/ui';
 import colors from '@/components/ui/colors';
 
