@@ -95,7 +95,7 @@ jest.mock('react-native-mmkv', () => ({
   })),
 }));
 
-// react-hook form setup for testing
+// Global window object setup for React Native testing
 // @ts-expect-error
 global.window = {};
 

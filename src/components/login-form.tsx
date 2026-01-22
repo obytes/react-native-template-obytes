@@ -1,11 +1,11 @@
-import type { SubmitHandler } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from '@tanstack/react-form';
+
 import * as React from 'react';
-import { useForm } from 'react-hook-form';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import * as z from 'zod';
 
-import { Button, ControlledInput, Text, View } from '@/components/ui';
+import { Button, Input, Text, View } from '@/components/ui';
+import { getFieldError } from '@/lib/form-utils';
 
 const schema = z.object({
   name: z.string().optional(),
@@ -13,24 +13,39 @@ const schema = z.object({
     .string({
       message: 'Email is required',
     })
+    .min(1, 'Email is required')
     .email('Invalid email format'),
   password: z
     .string({
       message: 'Password is required',
     })
+    .min(1, 'Password is required')
     .min(6, 'Password must be at least 6 characters'),
 });
 
 export type FormType = z.infer<typeof schema>;
 
 export type LoginFormProps = {
-  onSubmit?: SubmitHandler<FormType>;
+  onSubmit?: (data: FormType) => void;
 };
 
+// eslint-disable-next-line max-lines-per-function
 export function LoginForm({ onSubmit = () => {} }: LoginFormProps) {
-  const { handleSubmit, control } = useForm<FormType>({
-    resolver: zodResolver(schema),
+  const form = useForm({
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+
+    validators: {
+      onChange: schema as any,
+    },
+    onSubmit: async ({ value }) => {
+      onSubmit(value);
+    },
   });
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -52,31 +67,60 @@ export function LoginForm({ onSubmit = () => {} }: LoginFormProps) {
           </Text>
         </View>
 
-        <ControlledInput
-          testID="name"
-          control={control}
+        <form.Field
           name="name"
-          label="Name"
+          children={field => (
+            <Input
+              testID="name"
+              label="Name"
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChangeText={field.handleChange}
+              error={getFieldError(field)}
+            />
+          )}
         />
 
-        <ControlledInput
-          testID="email-input"
-          control={control}
+        <form.Field
           name="email"
-          label="Email"
+          children={field => (
+            <Input
+              testID="email-input"
+              label="Email"
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChangeText={field.handleChange}
+              error={getFieldError(field)}
+            />
+          )}
         />
-        <ControlledInput
-          testID="password-input"
-          control={control}
+
+        <form.Field
           name="password"
-          label="Password"
-          placeholder="***"
-          secureTextEntry={true}
+          children={field => (
+            <Input
+              testID="password-input"
+              label="Password"
+              placeholder="***"
+              secureTextEntry={true}
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChangeText={field.handleChange}
+              error={getFieldError(field)}
+            />
+          )}
         />
-        <Button
-          testID="login-button"
-          label="Login"
-          onPress={handleSubmit(onSubmit)}
+
+        <form.Subscribe
+          selector={state => [state.isSubmitting]}
+          children={([isSubmitting]) => (
+            <Button
+              testID="login-button"
+              label="Login"
+              onPress={form.handleSubmit}
+              loading={isSubmitting}
+            />
+          )}
         />
       </View>
     </KeyboardAvoidingView>

@@ -1,16 +1,13 @@
 /* eslint-disable max-lines-per-function */
 import type { BottomSheetModal } from '@gorhom/bottom-sheet';
-import type { FieldValues } from 'react-hook-form';
 import type { PressableProps } from 'react-native';
 import type { SvgProps } from 'react-native-svg';
-import type { InputControllerType } from './input';
 import {
   BottomSheetFlatList,
 
 } from '@gorhom/bottom-sheet';
 import { FlashList } from '@shopify/flash-list';
 import * as React from 'react';
-import { useController } from 'react-hook-form';
 import { Platform, Pressable, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { tv } from 'tailwind-variants';
@@ -141,7 +138,6 @@ export type SelectProps = {
   placeholder?: string;
   testID?: string;
 };
-type ControlledSelectProps<T extends FieldValues> = {} & SelectProps & InputControllerType<T>;
 
 export function Select(props: SelectProps) {
   const {
@@ -219,30 +215,6 @@ export function Select(props: SelectProps) {
         onSelect={onSelectOption}
       />
     </>
-  );
-}
-
-// only used with react-hook-form
-export function ControlledSelect<T extends FieldValues>(
-  props: ControlledSelectProps<T>,
-) {
-  const { name, control, rules, onSelect: onNSelect, ...selectProps } = props;
-
-  const { field, fieldState } = useController({ control, name, rules });
-  const onSelect = React.useCallback(
-    (value: string | number) => {
-      field.onChange(value);
-      onNSelect?.(value);
-    },
-    [field, onNSelect],
-  );
-  return (
-    <Select
-      onSelect={onSelect}
-      value={field.value}
-      error={fieldState.error?.message}
-      {...selectProps}
-    />
   );
 }
 

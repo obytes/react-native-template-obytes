@@ -33,6 +33,7 @@ describe('loginForm Form ', () => {
     const passwordInput = screen.getByTestId('password-input');
 
     await user.type(emailInput, 'yyyyy');
+    emailInput.props.onBlur(); // Manually trigger blur to set touched state
     await user.type(passwordInput, 'test');
     await user.press(button);
 
@@ -55,11 +56,10 @@ describe('loginForm Form ', () => {
     });
     // expect.objectContaining({}) because we don't want to test the target event we are receiving from the onSubmit function
     expect(onSubmitMock).toHaveBeenCalledWith(
-      {
+      expect.objectContaining({
         email: 'youssef@gmail.com',
         password: 'password',
-      },
-      expect.objectContaining({}),
+      }),
     );
   });
 });

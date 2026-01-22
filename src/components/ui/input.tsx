@@ -1,12 +1,5 @@
-import type {
-  Control,
-  FieldValues,
-  Path,
-  RegisterOptions,
-} from 'react-hook-form';
 import type { TextInputProps } from 'react-native';
 import * as React from 'react';
-import { useController } from 'react-hook-form';
 import { I18nManager, TextInput as NTextInput, StyleSheet, View } from 'react-native';
 import { tv } from 'tailwind-variants';
 
@@ -52,27 +45,25 @@ export type NInputProps = {
   error?: string;
 } & TextInputProps;
 
-type TRule<T extends FieldValues>
-  = | Omit<
-    RegisterOptions<T>,
-      'disabled' | 'valueAsNumber' | 'valueAsDate' | 'setValueAs'
-  >
-  | undefined;
-
-export type RuleType<T extends FieldValues> = { [name in keyof T]: TRule<T> };
-export type InputControllerType<T extends FieldValues> = {
-  name: Path<T>;
-  control: Control<T>;
-  rules?: RuleType<T>;
-};
-
-type ControlledInputProps<T extends FieldValues> = {} & NInputProps & InputControllerType<T>;
-
 export function Input({ ref, ...props }: NInputProps & { ref?: React.Ref<NTextInput | null> }) {
-  const { label, error, testID, ...inputProps } = props;
+  const { label, error, testID, onBlur: onBlurProp, onFocus: onFocusProp, ...inputProps } = props;
   const [isFocussed, setIsFocussed] = React.useState(false);
-  const onBlur = React.useCallback(() => setIsFocussed(false), []);
-  const onFocus = React.useCallback(() => setIsFocussed(true), []);
+
+  const onBlur = React.useCallback(
+    (e: any) => {
+      setIsFocussed(false);
+      onBlurProp?.(e);
+    },
+    [onBlurProp],
+  );
+
+  const onFocus = React.useCallback(
+    (e: any) => {
+      setIsFocussed(true);
+      onFocusProp?.(e);
+    },
+    [onFocusProp],
+  );
 
   const styles = inputTv({
     error: Boolean(error),
@@ -113,24 +104,5 @@ export function Input({ ref, ...props }: NInputProps & { ref?: React.Ref<NTextIn
         </Text>
       )}
     </View>
-  );
-}
-
-// only used with react-hook-form
-export function ControlledInput<T extends FieldValues>(
-  props: ControlledInputProps<T>,
-) {
-  const { name, control, rules, ...inputProps } = props;
-
-  const { field, fieldState } = useController({ control, name, rules });
-  return (
-    <Input
-      ref={field.ref}
-      autoCapitalize="none"
-      onChangeText={field.onChange}
-      value={(field.value as string) || ''}
-      {...inputProps}
-      error={fieldState.error?.message}
-    />
   );
 }

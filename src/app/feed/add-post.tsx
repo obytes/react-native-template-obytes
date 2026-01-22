@@ -1,50 +1,58 @@
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from '@tanstack/react-form';
+
 import { Stack } from 'expo-router';
 import * as React from 'react';
-import { useForm } from 'react-hook-form';
 import { showMessage } from 'react-native-flash-message';
-import { z } from 'zod';
+import * as z from 'zod';
 
 import { useAddPost } from '@/api';
 import {
   Button,
-  ControlledInput,
+  Input,
   showErrorMessage,
   View,
 } from '@/components/ui';
+import { getFieldError } from '@/lib/form-utils';
 
 const schema = z.object({
   title: z.string().min(10),
   body: z.string().min(120),
 });
 
-type FormType = z.infer<typeof schema>;
-
+// eslint-disable-next-line max-lines-per-function
 export default function AddPost() {
-  const { control, handleSubmit } = useForm<FormType>({
-    resolver: zodResolver(schema),
-  });
   const { mutate: addPost, isPending } = useAddPost();
 
-  const onSubmit = (data: FormType) => {
-    console.log(data);
-    addPost(
-      { ...data, userId: 1 },
-      {
-        onSuccess: () => {
-          showMessage({
-            message: 'Post added successfully',
-            type: 'success',
-          });
-          // here you can navigate to the post list and refresh the list data
-          // queryClient.invalidateQueries(usePosts.getKey());
+  const form = useForm({
+    defaultValues: {
+      title: '',
+      body: '',
+    },
+
+    validators: {
+      onChange: schema as any,
+    },
+    onSubmit: ({ value }) => {
+      console.log(value);
+      addPost(
+        { ...value, userId: 1 },
+        {
+          onSuccess: () => {
+            showMessage({
+              message: 'Post added successfully',
+              type: 'success',
+            });
+            // here you can navigate to the post list and refresh the list data
+            // queryClient.invalidateQueries(usePosts.getKey());
+          },
+          onError: () => {
+            showErrorMessage('Error adding post');
+          },
         },
-        onError: () => {
-          showErrorMessage('Error adding post');
-        },
-      },
-    );
-  };
+      );
+    },
+  });
+
   return (
     <>
       <Stack.Screen
@@ -54,24 +62,43 @@ export default function AddPost() {
         }}
       />
       <View className="flex-1 p-4">
-        <ControlledInput
+        <form.Field
           name="title"
-          label="Title"
-          control={control}
-          testID="title"
+          children={field => (
+            <Input
+              label="Title"
+              testID="title"
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChangeText={field.handleChange}
+              error={getFieldError(field)}
+            />
+          )}
         />
-        <ControlledInput
+        <form.Field
           name="body"
-          label="Content"
-          control={control}
-          multiline
-          testID="body-input"
+          children={field => (
+            <Input
+              label="Content"
+              multiline
+              testID="body-input"
+              value={field.state.value}
+              onBlur={field.handleBlur}
+              onChangeText={field.handleChange}
+              error={getFieldError(field)}
+            />
+          )}
         />
-        <Button
-          label="Add Post"
-          loading={isPending}
-          onPress={handleSubmit(onSubmit)}
-          testID="add-post-button"
+        <form.Subscribe
+          selector={state => [state.isSubmitting]}
+          children={([isSubmitting]) => (
+            <Button
+              label="Add Post"
+              loading={isPending || isSubmitting}
+              onPress={form.handleSubmit}
+              testID="add-post-button"
+            />
+          )}
         />
       </View>
     </>
