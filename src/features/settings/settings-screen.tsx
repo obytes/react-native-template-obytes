@@ -1,4 +1,4 @@
-import { Env } from '@env';
+import Env from 'env';
 import { useUniwind } from 'uniwind';
 
 import {
@@ -36,8 +36,14 @@ export function SettingsScreen() {
           </SettingsContainer>
 
           <SettingsContainer title="settings.about">
-            <SettingsItem text="settings.app_name" value={Env.NAME} />
-            <SettingsItem text="settings.version" value={Env.VERSION} />
+            <SettingsItem
+              text="settings.app_name"
+              value={Env.EXPO_PUBLIC_NAME}
+            />
+            <SettingsItem
+              text="settings.version"
+              value={Env.EXPO_PUBLIC_VERSION}
+            />
           </SettingsContainer>
 
           <SettingsContainer title="settings.support_us">

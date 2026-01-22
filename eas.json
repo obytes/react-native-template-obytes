@@ -1,12 +1,13 @@
 {
   "cli": {
-    "version": ">= 3.8.1"
+    "appVersionSource": "remote"
   },
   "build": {
     "production": {
       "channel": "production",
+      "autoIncrement": true,
       "distribution": "store",
-      "pnpm": "9.12.3",
+      "environment": "production",
       "ios": {
         "image": "latest"
       },
@@ -15,15 +16,13 @@
         "image": "latest"
       },
       "env": {
-        "EXPO_NO_DOTENV": "1",
-        "APP_ENV": "production",
-        "FLIPPER_DISABLE": "1"
+        "EXPO_PUBLIC_APP_ENV": "production"
       }
     },
-    "staging": {
-      "channel": "staging",
-      "distribution": "internal",
-      "pnpm": "9.12.3",
+    "preview": {
+      "channel": "preview",
+      "autoIncrement": true,
+      "distribution": "store",
       "ios": {
         "image": "latest"
       },
@@ -31,16 +30,15 @@
         "buildType": "apk",
         "image": "latest"
       },
+      "environment": "preview",
       "env": {
-        "APP_ENV": "staging",
-        "EXPO_NO_DOTENV": "1",
-        "FLIPPER_DISABLE": "1"
+        "EXPO_PUBLIC_APP_ENV": "preview"
       }
     },
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "pnpm": "9.12.3",
+      "environment": "development",
       "ios": {
         "image": "latest"
       },
@@ -48,12 +46,11 @@
         "image": "latest"
       },
       "env": {
-        "APP_ENV": "development",
-        "EXPO_NO_DOTENV": "1"
+        "EXPO_PUBLIC_APP_ENV": "development"
       }
     },
     "simulator": {
-      "pnpm": "9.12.3",
+      "environment": "development",
       "ios": {
         "simulator": true,
         "image": "latest"
@@ -62,12 +59,12 @@
         "image": "latest"
       },
       "env": {
-        "APP_ENV": "development",
-        "EXPO_NO_DOTENV": "1"
+        "EXPO_PUBLIC_APP_ENV": "development"
       }
     }
   },
   "submit": {
+    "preview": {},
     "production": {}
   }
 }
