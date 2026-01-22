@@ -1,4 +1,4 @@
-import type { TxKeyPath } from '@/lib';
+import type { TxKeyPath } from '@/lib/i18n';
 
 import * as React from 'react';
 import { Text, View } from '@/components/ui';
@@ -8,7 +8,7 @@ type Props = {
   title?: TxKeyPath;
 };
 
-export function ItemsContainer({ children, title }: Props) {
+export function SettingsContainer({ children, title }: Props) {
   return (
     <>
       {title && <Text className="pt-4 pb-2 text-lg" tx={title} />}

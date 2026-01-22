@@ -3,7 +3,7 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-import { isRTL } from '@/lib';
+import { isRTL } from '@/lib/i18n';
 
 export function ArrowRight({ color = '#CCC', style, ...props }: SvgProps) {
   return (

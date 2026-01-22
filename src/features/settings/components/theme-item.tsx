@@ -1,11 +1,12 @@
 import type { OptionType } from '@/components/ui';
 
-import type { ColorSchemeType } from '@/lib';
+import type { ColorSchemeType } from '@/lib/hooks/use-selected-theme';
 import * as React from 'react';
 import { Options, useModal } from '@/components/ui';
-import { translate, useSelectedTheme } from '@/lib';
+import { useSelectedTheme } from '@/lib/hooks/use-selected-theme';
+import { translate } from '@/lib/i18n';
 
-import { Item } from './item';
+import { SettingsItem } from './settings-item';
 
 export function ThemeItem() {
   const { selectedTheme, setSelectedTheme } = useSelectedTheme();
@@ -35,7 +36,7 @@ export function ThemeItem() {
 
   return (
     <>
-      <Item
+      <SettingsItem
         text="settings.theme.title"
         value={theme?.label}
         onPress={modal.present}

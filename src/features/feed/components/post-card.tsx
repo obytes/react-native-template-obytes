@@ -1,4 +1,4 @@
-import type { Post } from '@/api';
+import type { Post } from '../api';
 
 import { Link } from 'expo-router';
 import * as React from 'react';
@@ -15,7 +15,7 @@ const images = [
 
 type Props = Post;
 
-export function Card({ title, body, id }: Props) {
+export function PostCard({ title, body, id }: Props) {
   return (
     <Link href={`/feed/${id}`} asChild>
       <Pressable>

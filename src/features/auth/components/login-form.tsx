@@ -5,7 +5,7 @@ import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import * as z from 'zod';
 
 import { Button, Input, Text, View } from '@/components/ui';
-import { getFieldError } from '@/lib/form-utils';
+import { getFieldError } from '@/components/ui/form-utils';
 
 const schema = z.object({
   name: z.string().optional(),

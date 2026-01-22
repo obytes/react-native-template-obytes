@@ -3,9 +3,9 @@ import type { OptionType } from '@/components/ui';
 import type { Language } from '@/lib/i18n/resources';
 import * as React from 'react';
 import { Options, useModal } from '@/components/ui';
-import { translate, useSelectedLanguage } from '@/lib';
+import { translate, useSelectedLanguage } from '@/lib/i18n';
 
-import { Item } from './item';
+import { SettingsItem } from './settings-item';
 
 export function LanguageItem() {
   const { language, setLanguage } = useSelectedLanguage();
@@ -33,7 +33,7 @@ export function LanguageItem() {
 
   return (
     <>
-      <Item
+      <SettingsItem
         text="settings.language"
         value={selectedLanguage?.label}
         onPress={modal.present}

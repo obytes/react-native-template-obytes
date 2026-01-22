@@ -1,8 +1,8 @@
-import type { TokenType } from './utils';
+import type { TokenType } from '@/lib/auth/utils';
 
 import { create } from 'zustand';
-import { createSelectors } from '../utils';
-import { getToken, removeToken, setToken } from './utils';
+import { getToken, removeToken, setToken } from '@/lib/auth/utils';
+import { createSelectors } from '@/lib/utils';
 
 type AuthState = {
   token: TokenType | null;
@@ -12,7 +12,7 @@ type AuthState = {
   hydrate: () => void;
 };
 
-const _useAuth = create<AuthState>((set, get) => ({
+const _useAuthStore = create<AuthState>((set, get) => ({
   status: 'idle',
   token: null,
   signIn: (token) => {
@@ -42,8 +42,8 @@ const _useAuth = create<AuthState>((set, get) => ({
   },
 }));
 
-export const useAuth = createSelectors(_useAuth);
+export const useAuthStore = createSelectors(_useAuthStore);
 
-export const signOut = () => _useAuth.getState().signOut();
-export const signIn = (token: TokenType) => _useAuth.getState().signIn(token);
-export const hydrateAuth = () => _useAuth.getState().hydrate();
+export const signOut = () => _useAuthStore.getState().signOut();
+export const signIn = (token: TokenType) => _useAuthStore.getState().signIn(token);
+export const hydrateAuth = () => _useAuthStore.getState().hydrate();

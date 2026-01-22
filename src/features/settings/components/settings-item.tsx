@@ -1,4 +1,4 @@
-import type { TxKeyPath } from '@/lib';
+import type { TxKeyPath } from '@/lib/i18n';
 
 import * as React from 'react';
 import { Pressable, Text, View } from '@/components/ui';
@@ -11,7 +11,7 @@ type ItemProps = {
   icon?: React.ReactNode;
 };
 
-export function Item({ text, value, icon, onPress }: ItemProps) {
+export function SettingsItem({ text, value, icon, onPress }: ItemProps) {
   const isPressable = onPress !== undefined;
   return (
     <Pressable

@@ -8,10 +8,11 @@ import { StyleSheet } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
-import { APIProvider } from '@/api';
+import { useThemeConfig } from '@/components/ui/use-theme-config';
+import { hydrateAuth } from '@/features/auth/use-auth-store';
 
-import { hydrateAuth, loadSelectedTheme } from '@/lib';
-import { useThemeConfig } from '@/lib/use-theme-config';
+import { APIProvider } from '@/lib/api';
+import { loadSelectedTheme } from '@/lib/hooks/use-selected-theme';
 // Import  global CSS file
 import '../global.css';
 
