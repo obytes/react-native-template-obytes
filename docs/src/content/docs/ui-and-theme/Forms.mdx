@@ -28,7 +28,7 @@ Here's a simple login form using TanStack Form:
 import { useForm } from '@tanstack/react-form';
 import * as z from 'zod';
 import { Button, Input, View } from '@/components/ui';
-import { getFieldError } from '@/lib/form-utils';
+import { getFieldError } from '@/components/ui/form-utils';
 
 const schema = z.object({
   email: z
@@ -129,7 +129,7 @@ The `onChange` validator runs your Zod schema on every field change, providing i
 The template includes a `getFieldError` utility function that extracts error messages from form fields:
 
 ```tsx
-import { getFieldError } from '@/lib/form-utils';
+import { getFieldError } from '@/components/ui/form-utils';
 
 <form.Field
   name="email"
@@ -213,7 +213,7 @@ Note: Use `onSelect` instead of `onChangeText` for Select components.
 
 ## Real-World Example: Form with API Integration
 
-See `src/app/feed/add-post.tsx` for a complete example that demonstrates:
+See `src/features/feed/add-post-screen.tsx` for a complete example that demonstrates:
 - Form submission with TanStack Query mutation
 - Loading states from API calls
 - Success and error notifications with react-native-flash-message
@@ -364,6 +364,6 @@ Make sure to check the following video for more details on how to handle keyboar
 
 - [TanStack Form Documentation](https://tanstack.com/form/latest)
 - [Zod Documentation](https://zod.dev)
-- [Example: Login Form](https://github.com/obytes/react-native-template-obytes/blob/master/src/components/login-form.tsx)
-- [Example: Add Post Form](https://github.com/obytes/react-native-template-obytes/blob/master/src/app/feed/add-post.tsx)
-- [Utility: getFieldError](https://github.com/obytes/react-native-template-obytes/blob/master/src/lib/form-utils.ts)
+- [Example: Login Form](https://github.com/obytes/react-native-template-obytes/blob/master/src/features/auth/components/login-form.tsx)
+- [Example: Add Post Form](https://github.com/obytes/react-native-template-obytes/blob/master/src/features/feed/add-post-screen.tsx)
+- [Utility: getFieldError](https://github.com/obytes/react-native-template-obytes/blob/master/src/components/ui/form-utils.ts)
