@@ -47,11 +47,13 @@
     "e2e-test": "maestro test .maestro/ -e APP_ID=com.obytes.development"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.4.2",
     "@expo/metro-runtime": "^6.1.2",
     "@gorhom/bottom-sheet": "^5.2.8",
-    "@hookform/resolvers": "^5.2.2",
     "@shopify/flash-list": "2.0.2",
+    "@tanstack/react-form": "^1.27.7",
     "@tanstack/react-query": "^5.90.19",
+    "@tanstack/zod-form-adapter": "^0.42.1",
     "app-icon-badge": "^0.1.2",
     "axios": "^1.13.2",
     "expo": "~54.0.31",
@@ -72,7 +74,6 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-error-boundary": "^6.1.0",
-    "react-hook-form": "^7.71.1",
     "react-i18next": "^16.5.3",
     "react-native": "0.81.5",
     "react-native-edge-to-edge": "^1.7.0",

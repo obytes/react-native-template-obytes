@@ -8,21 +8,27 @@ importers:
 
   .:
     dependencies:
+      '@expo-google-fonts/inter':
+        specifier: ^0.4.2
+        version: 0.4.2
       '@expo/metro-runtime':
         specifier: ^6.1.2
         version: 6.1.2(expo@54.0.31)(react-dom@19.1.0(react@19.1.0))(react-native@0.81.5(@babel/core@7.28.6)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)
       '@gorhom/bottom-sheet':
         specifier: ^5.2.8
         version: 5.2.8(@types/react@19.1.17)(react-native-gesture-handler@2.28.0(react-native@0.81.5(@babel/core@7.28.6)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0))(react-native-reanimated@4.1.6(@babel/core@7.28.6)(react-native-worklets@0.7.2(@babel/core@7.28.6)(react-native@0.81.5(@babel/core@7.28.6)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0))(react-native@0.81.5(@babel/core@7.28.6)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0))(react-native@0.81.5(@babel/core@7.28.6)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)
-      '@hookform/resolvers':
-        specifier: ^5.2.2
-        version: 5.2.2(react-hook-form@7.71.1(react@19.1.0))
       '@shopify/flash-list':
         specifier: 2.0.2
         version: 2.0.2(@babel/runtime@7.28.6)(react-native@0.81.5(@babel/core@7.28.6)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)
+      '@tanstack/react-form':
+        specifier: ^1.27.7
+        version: 1.27.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@tanstack/react-query':
         specifier: ^5.90.19
         version: 5.90.19(react@19.1.0)
+      '@tanstack/zod-form-adapter':
+        specifier: ^0.42.1
+        version: 0.42.1(zod@4.3.5)
       app-icon-badge:
         specifier: ^0.1.2
         version: 0.1.2
@@ -83,9 +89,6 @@ importers:
       react-error-boundary:
         specifier: ^6.1.0
         version: 6.1.0(react@19.1.0)
-      react-hook-form:
-        specifier: ^7.71.1
-        version: 7.71.1(react@19.1.0)
       react-i18next:
         specifier: ^16.5.3
         version: 16.5.3(i18next@25.8.0(typescript@5.9.3))(react-dom@19.1.0(react@19.1.0))(react-native@0.81.5(@babel/core@7.28.6)(@types/react@19.1.17)(react@19.1.0))(react@19.1.0)(typescript@5.9.3)
@@ -1098,6 +1101,9 @@ packages:
     resolution: {integrity: sha512-hZ2uC1jbf6JMSsF2ZklhRQqf6GLpYyux6DlzegnW/aFlpu6qJj5GO7ub7WOETCrEl6pl6DAX7RgTgj/fyG+6BQ==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
 
+  '@expo-google-fonts/inter@0.4.2':
+    resolution: {integrity: sha512-syfiImMaDmq7cFi0of+waE2M4uSCyd16zgyWxdPOY7fN2VBmSLKEzkfbZgeOjJq61kSqPBNNtXjggiQiSD6gMQ==}
+
   '@expo/cli@54.0.21':
     resolution: {integrity: sha512-L/FdpyZDsg/Nq6xW6kfiyF9DUzKfLZCKFXEVZcDqCNar6bXxQVotQyvgexRvtUF5nLinuT/UafLOdC3FUALUmA==}
     hasBin: true
@@ -1249,11 +1255,6 @@ packages:
     peerDependencies:
       react: '*'
       react-native: '*'
-
-  '@hookform/resolvers@5.2.2':
-    resolution: {integrity: sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==}
-    peerDependencies:
-      react-hook-form: ^7.55.0
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2205,9 +2206,6 @@ packages:
   '@sinonjs/fake-timers@10.3.0':
     resolution: {integrity: sha512-V4BG07kuYSUkTCSBHG8G8TNhM+F19jXFWnQtzj+we8DrkpSBCee9Z3Ms8yiGer/dlmhe35/Xdgyo3/0rQKg7YA==}
 
-  '@standard-schema/utils@0.3.0':
-    resolution: {integrity: sha512-e7Mew686owMaPJVNNLs55PUvgz371nKgwsc4vxE49zsODpJEnxgxRo2y/OKrqueavXgZNMDVj3DdHFlaSAeU8g==}
-
   '@stylistic/eslint-plugin@5.7.0':
     resolution: {integrity: sha512-PsSugIf9ip1H/mWKj4bi/BlEoerxXAda9ByRFsYuwsmr6af9NxJL0AaiNXs8Le7R21QR5KMiD/KdxZZ71LjAxQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -2303,13 +2301,53 @@ packages:
     resolution: {integrity: sha512-F0F7d01fmkQhsTjXezGBLdrl1KresJTcI3DB8EkScCldyKp3Msz4hub4uyYaVnk88BAS1g5DQjjF6F5qczheLA==}
     engines: {node: '>= 10'}
 
+  '@tanstack/devtools-event-client@0.4.0':
+    resolution: {integrity: sha512-RPfGuk2bDZgcu9bAJodvO2lnZeHuz4/71HjZ0bGb/SPg8+lyTA+RLSKQvo7fSmPSi8/vcH3aKQ8EM9ywf1olaw==}
+    engines: {node: '>=18'}
+
+  '@tanstack/form-core@0.42.1':
+    resolution: {integrity: sha512-jTU0jyHqFceujdtPNv3jPVej1dTqBwa8TYdIyWB5BCwRVUBZEp1PiYEBkC9r92xu5fMpBiKc+JKud3eeVjuMiA==}
+
+  '@tanstack/form-core@1.27.7':
+    resolution: {integrity: sha512-nvogpyE98fhb0NDw1Bf2YaCH+L7ZIUgEpqO9TkHucDn6zg3ni521boUpv0i8HKIrmmFwDYjWZoCnrgY4HYWTkw==}
+
+  '@tanstack/pacer-lite@0.1.1':
+    resolution: {integrity: sha512-y/xtNPNt/YeyoVxE/JCx+T7yjEzpezmbb+toK8DDD1P4m7Kzs5YR956+7OKexG3f8aXgC3rLZl7b1V+yNUSy5w==}
+    engines: {node: '>=18'}
+
   '@tanstack/query-core@5.90.19':
     resolution: {integrity: sha512-GLW5sjPVIvH491VV1ufddnfldyVB+teCnpPIvweEfkpRx7CfUmUGhoh9cdcUKBh/KwVxk22aNEDxeTsvmyB/WA==}
+
+  '@tanstack/react-form@1.27.7':
+    resolution: {integrity: sha512-xTg4qrUY0fuLaSnkATLZcK3BWlnwLp7IuAb6UTbZKngiDEvvDCNTvVvHgPlgef1O2qN4klZxInRyRY6oEkXZ2A==}
+    peerDependencies:
+      '@tanstack/react-start': '*'
+      react: ^17.0.0 || ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@tanstack/react-start':
+        optional: true
 
   '@tanstack/react-query@5.90.19':
     resolution: {integrity: sha512-qTZRZ4QyTzQc+M0IzrbKHxSeISUmRB3RPGmao5bT+sI6ayxSRhn0FXEnT5Hg3as8SBFcRosrXXRFB+yAcxVxJQ==}
     peerDependencies:
       react: ^18 || ^19
+
+  '@tanstack/react-store@0.8.0':
+    resolution: {integrity: sha512-1vG9beLIuB7q69skxK9r5xiLN3ztzIPfSQSs0GfeqWGO2tGIyInZx0x1COhpx97RKaONSoAb8C3dxacWksm1ow==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  '@tanstack/store@0.7.7':
+    resolution: {integrity: sha512-xa6pTan1bcaqYDS9BDpSiS63qa6EoDkPN9RsRaxHuDdVDNntzq3xNwR5YKTU/V3SkSyC9T4YVOPh2zRQN0nhIQ==}
+
+  '@tanstack/store@0.8.0':
+    resolution: {integrity: sha512-Om+BO0YfMZe//X2z0uLF2j+75nQga6TpTJgLJQBiq85aOyZNIhkCgleNcud2KQg4k4v9Y9l+Uhru3qWMPGTOzQ==}
+
+  '@tanstack/zod-form-adapter@0.42.1':
+    resolution: {integrity: sha512-hPRM0lawVKP64yurW4c6KHZH6altMo2MQN14hfi+GMBTKjO9S7bW1x5LPZ5cayoJE3mBvdlahpSGT5rYZtSbXQ==}
+    peerDependencies:
+      zod: ^3.x
 
   '@testing-library/react-native@13.3.3':
     resolution: {integrity: sha512-k6Mjsd9dbZgvY4Bl7P1NIpePQNi+dfYtlJ5voi9KQlynxSyQkfOgJmYGCYmw/aSgH/rUcFvG8u5gd4npzgRDyg==}
@@ -6544,12 +6582,6 @@ packages:
     peerDependencies:
       react: '>=17.0.0'
 
-  react-hook-form@7.71.1:
-    resolution: {integrity: sha512-9SUJKCGKo8HUSsCO+y0CtqkqI5nNuaDqTxyqPsZPqIwudpj4rCrAz/jZV+jn57bx5gtZKOh3neQu94DXMc+w5w==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      react: ^16.8.0 || ^17 || ^18 || ^19
-
   react-i18next@16.5.3:
     resolution: {integrity: sha512-fo+/NNch37zqxOzlBYrWMx0uy/yInPkRfjSuy4lqKdaecR17nvCHnEUt3QyzA8XjQ2B/0iW/5BhaHR3ZmukpGw==}
     peerDependencies:
@@ -9054,6 +9086,8 @@ snapshots:
       '@eslint/core': 1.0.1
       levn: 0.4.1
 
+  '@expo-google-fonts/inter@0.4.2': {}
+
   '@expo/cli@54.0.21(expo-router@6.0.22)(expo@54.0.31)(react-native@0.81.5(@babel/core@7.28.6)(@types/react@19.1.17)(react@19.1.0))':
     dependencies:
       '@0no-co/graphql.web': 1.2.0
@@ -9396,11 +9430,6 @@ snapshots:
       nanoid: 3.3.11
       react: 19.1.0
       react-native: 0.81.5(@babel/core@7.28.6)(@types/react@19.1.17)(react@19.1.0)
-
-  '@hookform/resolvers@5.2.2(react-hook-form@7.71.1(react@19.1.0))':
-    dependencies:
-      '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.71.1(react@19.1.0)
 
   '@humanfs/core@0.19.1': {}
 
@@ -10511,8 +10540,6 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@standard-schema/utils@0.3.0': {}
-
   '@stylistic/eslint-plugin@5.7.0(eslint@9.39.2(jiti@2.6.1))':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.2(jiti@2.6.1))
@@ -10595,12 +10622,50 @@ snapshots:
       '@tailwindcss/oxide-win32-arm64-msvc': 4.1.17
       '@tailwindcss/oxide-win32-x64-msvc': 4.1.17
 
+  '@tanstack/devtools-event-client@0.4.0': {}
+
+  '@tanstack/form-core@0.42.1':
+    dependencies:
+      '@tanstack/store': 0.7.7
+
+  '@tanstack/form-core@1.27.7':
+    dependencies:
+      '@tanstack/devtools-event-client': 0.4.0
+      '@tanstack/pacer-lite': 0.1.1
+      '@tanstack/store': 0.7.7
+
+  '@tanstack/pacer-lite@0.1.1': {}
+
   '@tanstack/query-core@5.90.19': {}
+
+  '@tanstack/react-form@1.27.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@tanstack/form-core': 1.27.7
+      '@tanstack/react-store': 0.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+    transitivePeerDependencies:
+      - react-dom
 
   '@tanstack/react-query@5.90.19(react@19.1.0)':
     dependencies:
       '@tanstack/query-core': 5.90.19
       react: 19.1.0
+
+  '@tanstack/react-store@0.8.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@tanstack/store': 0.8.0
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+      use-sync-external-store: 1.6.0(react@19.1.0)
+
+  '@tanstack/store@0.7.7': {}
+
+  '@tanstack/store@0.8.0': {}
+
+  '@tanstack/zod-form-adapter@0.42.1(zod@4.3.5)':
+    dependencies:
+      '@tanstack/form-core': 0.42.1
+      zod: 4.3.5
 
   '@testing-library/react-native@13.3.3(jest@29.7.0(@types/node@25.0.9))(react-native@0.81.5(@babel/core@7.28.6)(@types/react@19.1.17)(react@19.1.0))(react-test-renderer@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -15665,10 +15730,6 @@ snapshots:
   react-fast-compare@3.2.2: {}
 
   react-freeze@1.0.4(react@19.1.0):
-    dependencies:
-      react: 19.1.0
-
-  react-hook-form@7.71.1(react@19.1.0):
     dependencies:
       react: 19.1.0
 

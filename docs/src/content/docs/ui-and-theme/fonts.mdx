@@ -6,52 +6,224 @@ head:
     content: Fonts | React Native / Expo Starter
 ---
 
-With Expo, you can load fonts dynamically using `useFont` hook from `expo-font` library. With this approach, you need to wait for the font to load before showing or hiding your splash screen.
+## Overview
 
-With the last version of `expo-font` introduced with Expo 50, you can use `expo-font` as a plugin in your `app.config.js` to load fonts natively.
+This starter uses the `expo-font` config plugin to load fonts natively, providing optimal performance and ensuring fonts are available immediately when your app starts.
 
-To add a custom font you only need to put the font file in the `assets/fonts` and update the expo config by adding the exact file path to the config like the following:
+## Current Setup
 
-```js title="app.config.js"
-import type { ConfigContext, ExpoConfig } from '@expo/config';
+The template comes pre-configured with the **Inter** font family including 4 weights:
+- Regular (400)
+- Medium (500)
+- SemiBold (600)
+- Bold (700)
 
+Inter is configured as the default sans-serif font in the Tailwind CSS theme, so all text uses Inter by default.
+
+## Using Fonts in Your App
+
+### With Tailwind CSS Classes
+
+Since Inter is configured as the default `font-sans`, you can use standard Tailwind font classes:
+
+```tsx
+import { Text } from 'react-native';
+
+<Text className="font-sans font-normal">Regular Text (400)</Text>
+<Text className="font-sans font-medium">Medium Text (500)</Text>
+<Text className="font-sans font-semibold">SemiBold Text (600)</Text>
+<Text className="font-sans font-bold">Bold Text (700)</Text>
+```
+
+### With Style Props
+
+You can also use the font directly with React Native style props:
+
+```tsx
+<Text style={{ fontFamily: 'Inter', fontWeight: '400' }}>Regular Text</Text>
+<Text style={{ fontFamily: 'Inter', fontWeight: '500' }}>Medium Text</Text>
+<Text style={{ fontFamily: 'Inter', fontWeight: '600' }}>SemiBold Text</Text>
+<Text style={{ fontFamily: 'Inter', fontWeight: '700' }}>Bold Text</Text>
+```
+
+## Adding a New Font
+
+To add a new Google Font to your app, follow these steps:
+
+### 1. Install the Font Package
+
+Install the desired font from the `@expo-google-fonts` collection:
+
+```bash
+pnpm add @expo-google-fonts/roboto
+```
+
+### 2. Update `app.config.ts`
+
+Add the font to your expo-font plugin configuration with platform-specific settings:
+
+```ts title="app.config.ts"
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   plugins: [
     [
       'expo-font',
       {
-        fonts: ['./assets/fonts/Inter.ttf'],
+        ios: {
+          fonts: [
+            'node_modules/@expo-google-fonts/inter/400Regular/Inter_400Regular.ttf',
+            'node_modules/@expo-google-fonts/inter/500Medium/Inter_500Medium.ttf',
+            'node_modules/@expo-google-fonts/inter/600SemiBold/Inter_600SemiBold.ttf',
+            'node_modules/@expo-google-fonts/inter/700Bold/Inter_700Bold.ttf',
+            // Add your new font
+            'node_modules/@expo-google-fonts/roboto/400Regular/Roboto_400Regular.ttf',
+            'node_modules/@expo-google-fonts/roboto/700Bold/Roboto_700Bold.ttf',
+          ],
+        },
+        android: {
+          fonts: [
+            {
+              fontFamily: 'Inter',
+              fontDefinitions: [
+                {
+                  path: 'node_modules/@expo-google-fonts/inter/400Regular/Inter_400Regular.ttf',
+                  weight: 400,
+                },
+                {
+                  path: 'node_modules/@expo-google-fonts/inter/500Medium/Inter_500Medium.ttf',
+                  weight: 500,
+                },
+                {
+                  path: 'node_modules/@expo-google-fonts/inter/600SemiBold/Inter_600SemiBold.ttf',
+                  weight: 600,
+                },
+                {
+                  path: 'node_modules/@expo-google-fonts/inter/700Bold/Inter_700Bold.ttf',
+                  weight: 700,
+                },
+              ],
+            },
+            // Add your new font family
+            {
+              fontFamily: 'Roboto',
+              fontDefinitions: [
+                {
+                  path: 'node_modules/@expo-google-fonts/roboto/400Regular/Roboto_400Regular.ttf',
+                  weight: 400,
+                },
+                {
+                  path: 'node_modules/@expo-google-fonts/roboto/700Bold/Roboto_700Bold.ttf',
+                  weight: 700,
+                },
+              ],
+            },
+          ],
+        },
       },
     ],
   ],
 });
 ```
 
-Next, Make sure to add your new font to Tailwind CSS config to use it with `className`
+### 3. Update Tailwind Theme (Optional)
 
-```js title="tailwind.config.js"
-const colors = require('./src/components/ui/theme/colors');
+If you want to use the font with Tailwind CSS, add it to your theme in `src/global.css`:
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  // NOTE: Update this to include the paths to all of your component files.
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
-  presets: [require('nativewind/preset')],
-  theme: {
-    extend: {
-      fontFamily: {
-        inter: ['Inter'],
-      },
-      colors,
-    },
-  },
-  plugins: [],
-};
+```css title="src/global.css"
+@theme {
+  /* Font families */
+  --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-family-roboto: 'Roboto', ui-sans-serif, system-ui, sans-serif;
+
+  /* ... other theme config */
+}
 ```
 
-:::info
-As we are linking font natively you need to run `expo prebuild` and then `expo ios` or `expo android` to use the new font.
+### 4. Run Prebuild
+
+After updating the configuration, run prebuild to apply the changes:
+
+```bash
+pnpm run prebuild
+```
+
+Then rebuild your app:
+
+```bash
+pnpm run ios  # or pnpm run android
+```
+
+## Using Local Font Files
+
+If you prefer to use local font files instead of npm packages:
+
+### 1. Add Font Files
+
+Place your font files in the `assets/fonts` directory:
+
+```
+assets/fonts/
+  ├── CustomFont-Regular.ttf
+  └── CustomFont-Bold.ttf
+```
+
+### 2. Update `app.config.ts`
+
+Reference the local font files in your configuration:
+
+```ts title="app.config.ts"
+plugins: [
+  [
+    'expo-font',
+    {
+      ios: {
+        fonts: [
+          './assets/fonts/CustomFont-Regular.ttf',
+          './assets/fonts/CustomFont-Bold.ttf',
+        ],
+      },
+      android: {
+        fonts: [
+          {
+            fontFamily: 'CustomFont',
+            fontDefinitions: [
+              {
+                path: './assets/fonts/CustomFont-Regular.ttf',
+                weight: 400,
+              },
+              {
+                path: './assets/fonts/CustomFont-Bold.ttf',
+                weight: 700,
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+],
+```
+
+### 3. Run Prebuild
+
+```bash
+pnpm run prebuild
+```
+
+## Important Notes
+
+:::caution
+Font changes require running `expo prebuild` and rebuilding your app. They won't take effect with just a hot reload or app restart.
 :::
 
-More details about adding fonts with Tailwind CSS can be found in the [Nativewind documentation](https://www.nativewind.dev/v4/tailwind/typography/font-family).
+:::info
+- **iOS**: Font family names are automatically extracted from the font files
+- **Android**: You explicitly define the `fontFamily` name and weight mappings
+- Using this approach, you can use `fontFamily: 'FontName'` with `fontWeight` consistently across both platforms
+:::
+
+## Resources
+
+- [Expo Fonts Documentation](https://docs.expo.dev/develop/user-interface/fonts/)
+- [Google Fonts Expo Packages](https://github.com/expo/google-fonts)
+- [Tailwind CSS Font Family](https://tailwindcss.com/docs/font-family)

@@ -4,6 +4,9 @@
 
 /* Define your theme in CSS (replaces tailwind.config.js) */
 @theme {
+  /* Font families */
+  --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
   /* Base colors */
   --color-white: #ffffff;
   --color-black: #000000;
