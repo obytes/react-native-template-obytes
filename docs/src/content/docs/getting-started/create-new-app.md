@@ -63,14 +63,12 @@ When you open the project on Cursor you will see a popup asking you to install t
 To ensure that your code is properly validated and formatted, we highly recommend installing all of the recommended extensions. However, if you're hesitant to install them all, we suggest at least installing the following extensions, as they are essential to our code validation and formatting on file save:
 
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [Tailwindcss IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 - [Pretty TypeScript Errors](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)
 
 Here is the complete list of recommended extensions:
 
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [tailwindcss IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 - [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
 - [Auto close tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
