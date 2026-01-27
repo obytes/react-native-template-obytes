@@ -8,7 +8,7 @@
 
 ![expo](https://img.shields.io/github/package-json/dependency-version/obytes/react-native-template-obytes/expo?label=expo) ![react-native](https://img.shields.io/github/package-json/dependency-version/obytes/react-native-template-obytes/react-native?label=react-native) ![GitHub Repo stars](https://img.shields.io/github/stars/obytes/react-native-template-obytes) ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/obytes/react-native-template-obytes) ![GitHub issues](https://img.shields.io/github/issues/obytes/react-native-template-obytes) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/obytes/react-native-template-obytes)
 
-📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo, TypeScript, TailwindCSS, Husky, Lint-Staged, expo-router, react-query, react-hook-form, I18n.
+📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo, TypeScript, TailwindCSS, Husky, Lint-Staged, expo-router, react-query, TanStack Form, I18n.
 
 > Welcome to the Obytes Mobile Tribe's Expo / React Native Starter Kit!
 
@@ -43,7 +43,7 @@ When creating this starter kit, we had several guiding principles in mind::
 - 💫 Auth flow implementation using [Zustand](https://github.com/pmndrs/zustand) for state management and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) for secure data storage.
 - 🛠 10+ [Github Actions](https://github.com/features/actions) workflows for building, releasing, testing, and distributing your app.
 - 🔥 [React Query](https://react-query.tanstack.com/) and [axios](https://github.com/axios/axios) for efficient data fetching and state management.
-- 🧵 Robust form handling with [react-hook-form](https://react-hook-form.com/) and [zod](https://github.com/colinhacks/zod) for validation, plus keyboard handling.
+- 🧵 Robust form handling with [TanStack Form](https://tanstack.com/form/latest) and [zod](https://github.com/colinhacks/zod) for validation, plus keyboard handling.
 - 🎯 Localization support with [i18next](https://www.i18next.com/), including Eslint for validation.
 - 🧪 Unit testing setup with [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 - 🔍 E2E testing capabilities with [Maestro](https://maestro.mobile.dev/) for comprehensive app testing.
@@ -96,7 +96,7 @@ We value the feedback and contributions of our users, and we encourage you to le
 - [Flash list](https://github.com/Shopify/flash-list)
 - [React Query](https://tanstack.com/query/v4)
 - [Axios](https://axios-http.com/docs/intro)
-- [React Hook Form](https://react-hook-form.com/)
+- [TanStack Form](https://tanstack.com/form/latest)
 - [i18next](https://www.i18next.com/)
 - [zustand](https://github.com/pmndrs/zustand)
 - [React Native MMKV](https://github.com/mrousavy/react-native-mmkv)

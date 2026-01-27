@@ -31,8 +31,8 @@ inputs:
   APP_ENV:
     description: 'APP_ENV (one of): development, staging, production'
     required: true
-    default: 'staging'
-  AUTO_SUBMIT: ## TODO: we need to handle this too
+    default: staging
+  AUTO_SUBMIT: # # TODO: we need to handle this too
     description: 'AUTO_SUBMIT (one of): true, false'
     required: true
     default: 'false'
@@ -41,20 +41,20 @@ inputs:
     required: true
     default: 'true'
   VERSION:
-    description: 'VERSION'
+    description: VERSION
     required: true
-    default: '0.0.0'
+    default: 0.0.0
   IOS:
     description: 'run for IOS (one of): true, false'
     required: true
     default: 'false'
   EXPO_TOKEN:
-    description: 'EXPO_TOKEN'
+    description: EXPO_TOKEN
     required: true
     default: 'false'
 
 runs:
-  using: 'composite'
+  using: composite
   steps:
     - name: 💯 Check for EXPO_TOKEN
       run: |

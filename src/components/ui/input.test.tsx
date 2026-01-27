@@ -1,5 +1,4 @@
-/* eslint-disable max-lines-per-function */
-import React from 'react';
+import * as React from 'react';
 import { I18nManager } from 'react-native';
 
 import { cleanup, render, screen, setup } from '@/lib/test-utils';
@@ -8,7 +7,7 @@ import { Input } from './input';
 
 afterEach(cleanup);
 
-describe('Input component ', () => {
+describe('input component ', () => {
   it('renders correctly ', () => {
     render(<Input testID="input" />);
     expect(screen.getByTestId('input')).toBeOnTheScreen();
@@ -33,7 +32,7 @@ describe('Input component ', () => {
     render(<Input testID="input" placeholder="Enter your username" />);
     expect(screen.getByTestId('input')).toBeOnTheScreen();
     expect(
-      screen.getByPlaceholderText('Enter your username')
+      screen.getByPlaceholderText('Enter your username'),
     ).toBeOnTheScreen();
   });
 
@@ -49,7 +48,7 @@ describe('Input component ', () => {
     expect(screen.getByTestId('input')).toBeOnTheScreen();
 
     expect(screen.getByTestId('input-error')).toHaveTextContent(
-      'This is an error message'
+      'This is an error message',
     );
   });
   it('should render the label, error message & placeholder correctly ', () => {
@@ -59,17 +58,17 @@ describe('Input component ', () => {
         label="Username"
         placeholder="Enter your username"
         error="This is an error message"
-      />
+      />,
     );
     expect(screen.getByTestId('input')).toBeOnTheScreen();
 
     expect(screen.getByTestId('input-label')).toHaveTextContent('Username');
     expect(screen.getByTestId('input-error')).toBeOnTheScreen();
     expect(screen.getByTestId('input-error')).toHaveTextContent(
-      'This is an error message'
+      'This is an error message',
     );
     expect(
-      screen.getByPlaceholderText('Enter your username')
+      screen.getByPlaceholderText('Enter your username'),
     ).toBeOnTheScreen();
   });
 
@@ -93,7 +92,7 @@ describe('Input component ', () => {
   it('should trigger onChangeText event correctly', async () => {
     const onChangeText = jest.fn();
     const { user } = setup(
-      <Input testID="input" onChangeText={onChangeText} />
+      <Input testID="input" onChangeText={onChangeText} />,
     );
 
     const input = screen.getByTestId('input');

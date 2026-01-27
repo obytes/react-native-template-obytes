@@ -28,11 +28,11 @@ For naming variables, functions, classes, interfaces, and enums, we follow camel
 
 ## Linting
 
-Using a linter is a must in any JavaScript project. For starters, we are using ESLint with the React Native community config and some custom rules to ensure that we are following the rules and conventions related to file naming, Tailwind CSS classes, TypeScript types, import order, internationalization files, and more.
+Using a linter is a must in any JavaScript project. For starters, we are using ESLint with [@antfu/eslint-config](https://github.com/antfu/eslint-config) and some custom rules to ensure that we are following the rules and conventions related to file naming, Tailwind CSS classes, TypeScript types, import order, internationalization files, and more. This config also handles code formatting, so Prettier is no longer needed.
 
 Here is the complete ESLint configuration file:
 
-<Code file=".eslintrc.js" />
+<Code file="eslint.config.mjs" />
 
 ## Git Hooks with Husky
 

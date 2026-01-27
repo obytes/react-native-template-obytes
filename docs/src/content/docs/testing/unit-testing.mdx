@@ -22,7 +22,7 @@ Also worth mentioning that we should aim to test the following:
 
 Let's start by writing a simple test for our login screen. We will test the following login form component:
 
-<CodeBlock file="./src/components/login-form.tsx" />
+<CodeBlock file="./src/features/auth/components/login-form.tsx" />
 
 :::tip
 
@@ -37,9 +37,9 @@ Now, let's write a test for the login form component. We will test the following
 - Show the correct error messages on invalid or missing data.
 - Submit the form with valid data and make sure that the `onSubmit` function is called with the correct data.
 
-First, let's create a new file called `login-form.test.tsx` in the `src/screens/login` directory. Then, add the following code to it:
+First, let's create a new file called `login-form.test.tsx` in the `src/features/auth/components` directory. Then, add the following code to it:
 
-<CodeBlock file="./src/components/login-form.test.tsx" />
+<CodeBlock file="./src/features/auth/components/login-form.test.tsx" />
 
 As you may notice from the code, we are importing a bunch of things from the `@/lib/test-utils` directory. This is a simple file that exports everything from the `@testing-library/react-native` library and overrides the `render` function to wrap the component with the providers we need. This way, we don't have to import the providers in every test file.
 

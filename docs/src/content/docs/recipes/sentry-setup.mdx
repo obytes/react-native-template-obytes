@@ -39,14 +39,14 @@ The starter kit did not come with Sentry pre-configured, but it's very easy to s
    ```
 
    :::note
-   You can use the same Sentry configuration for all app variants (development, staging, production) as Sentry allows you to filter errors by app ID or package name in the dashboard. This simplifies setup and management while still providing the ability to distinguish between different environments.
+   You can use the same Sentry configuration for all app variants (development, preview, production) as Sentry allows you to filter errors by app ID or package name in the dashboard. This simplifies setup and management while still providing the ability to distinguish between different environments.
    :::
 
-   It's crucial to add these variables to `env.js` for validation. `SENTRY_ORG` and `SENTRY_PROJECT` should be added as build-time variables, while `SENTRY_DSN` should be added as a client variable.
+   It's crucial to add these variables to `env.ts` for validation. `SENTRY_ORG` and `SENTRY_PROJECT` should be added as build-time variables, while `SENTRY_DSN` should be added as a client variable.
 
-   Update your `env.js` file as follows:
+   Update your `env.ts` file as follows:
 
-   ```js title='env.js'
+   ```ts title='env.ts'
    // ... existing imports and configurations
 
    const client = z.object({
@@ -124,11 +124,11 @@ The starter kit did not come with Sentry pre-configured, but it's very easy to s
    /* eslint-env node */
    // this replaces `const { getDefaultConfig } = require('expo/metro-config');`
    const { getSentryExpoConfig } = require('@sentry/react-native/metro');
-   const { withNativeWind } = require('nativewind/metro');
+   const { withUniwind } = require('uniwind/metro');
 
    const config = getSentryExpoConfig(__dirname);
 
-   module.exports = withNativeWind(config, { input: './global.css' });
+   module.exports = withUniwind(config, { input: './global.css' });
    ```
 
 8. Now you are ready to initialize Sentry in your app.

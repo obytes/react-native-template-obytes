@@ -13,90 +13,213 @@ If you open the new project in VSCode you will see the following structure:
 
 <FileTree>
 
-- api ## any thing related to api calls and data fetching
-  - common/
-  - index.tsx
-  - posts
-  - types.ts
-- app ## app routes and layouts
-  - (app)/
-  - \_layout.tsx
+- features ## feature-oriented modules
+  - auth/
+    - login-screen.tsx
+    - use-auth-store.tsx
+    - components/
+      - login-form.tsx
+      - login-form.test.tsx
   - feed/
-  - login.tsx
-  - onboarding.tsx
-- components ## any reusable components
-  - ui ## core ui and theme configuration
+    - feed-screen.tsx
+    - post-detail-screen.tsx
+    - add-post-screen.tsx
+    - api.ts
+    - components/
+      - post-card.tsx
+  - settings/
+    - settings-screen.tsx
+    - components/
+      - settings-item.tsx
+      - settings-container.tsx
+      - language-item.tsx
+      - theme-item.tsx
+  - onboarding/
+    - onboarding-screen.tsx
+    - components/
+      - cover.tsx
+  - style-demo/
+    - style-screen.tsx
+    - components/
+      - typography-demo.tsx
+      - colors-demo.tsx
+      - buttons-demo.tsx
+      - inputs-demo.tsx
+      - title.tsx
+- app ## app routes and layouts (Expo Router)
+  - (app)/
+    - \_layout.tsx
+    - index.tsx (re-exports FeedScreen)
+    - settings.tsx (re-exports SettingsScreen)
+    - style.tsx (re-exports StyleScreen)
+  - feed/
+    - [id].tsx (re-exports PostDetailScreen)
+    - add-post.tsx (re-exports AddPostScreen)
+  - \_layout.tsx
+  - login.tsx (re-exports LoginScreen)
+  - onboarding.tsx (re-exports OnboardingScreen)
+- components ## design system and shared UI components
+  - ui/
     - button.tsx
     - checkbox.tsx
     - colors.js
     - focus-aware-status-bar.tsx
-    - icons
+    - form-utils.ts
+    - icons/
     - image.tsx
-    - index.tsx
     - input.tsx
     - list.tsx
     - modal.tsx
     - progress-bar.tsx
     - select.tsx
     - text.tsx
+    - use-theme-config.tsx
     - utils.tsx
-  - buttons.tsx
-  - card.tsx
-  - colors.tsx
-  - cover.tsx
-  - inputs.tsx
-  - login-form.test.tsx
-  - login-form.tsx
-  - settings/
-  - title.tsx
-  - typography.tsx
-- lib ## core files such as auth, localization, storage and more
-  - auth
-  - env.js
-  - hooks
-  - i18n
-  - index.tsx
-  - keyboard.ts
+- lib ## core infrastructure and utilities
+  - api/
+    - index.ts
+    - client.tsx
+    - provider.tsx
+    - utils.tsx (includes PaginateQuery type)
+  - auth/
+    - utils.tsx (token storage utilities)
+  - hooks/
+    - use-is-first-time.tsx
+    - use-selected-theme.tsx
+  - i18n/
+    - index.tsx
+    - resources.ts
+    - types.ts
+    - utils.tsx
   - storage.tsx
   - test-utils.tsx
-  - use-theme-config.tsx
   - utils.ts
 - translations ## translation resources files
   - ar.json
   - en.json
-- types ## global types
-  - index.ts
 
 </FileTree>
 
-- `components/ui`: This folder contains all the UI components and the theme configuration. We provide minimal components with a basic `obytes` theme. You can add your own components and theme configuration here.
+## Architecture Overview
 
-- `components`: This folder contains the components of the app. mainly components used inside the app folder.
+The project follows a **feature-oriented architecture** where each feature is self-contained with its screens, components, API calls, and state management. This approach promotes:
 
-- `lib`: This folder contains the core files, such as authentication, localization, storage, and more. It can be shared with other projects. That's why we are only including modules that have nothing to do with project logic. This approach helps us share code between projects and also update the starter with new features.
+- **Feature isolation**: Each feature has all related code in one place
+- **Better scalability**: Easy to add new features without affecting existing ones
+- **Improved maintainability**: Clear boundaries between features
+- **Team collaboration**: Multiple developers can work on different features simultaneously
 
-- `app`: This folder contains the routes of the app, along with its layout routes such as stack and tab navigation structures. We provide a basic navigation structure for the demo app that you can modify to fit your needs.
+### Key Folders
 
-- `api`: This folder contains the API files. We provide a basic API client and provider and you just need to create query and mutation for your modules. Check `posts` folder for inspiration on how to create a query and mutation.
+#### `features/`
 
-- `translations`: This folder contains the translation resources files. We recommend using translation files even if you are not supporting multiple languages as it will help you to support multiple languages in the future and also help you to find all the strings in one place.
+This is where all feature-specific code lives. Each feature folder follows a consistent pattern:
 
-- `types`: This folder contains the global types.
+- **Screens**: Named with `-screen.tsx` suffix, placed in the feature root
+- **components/**: Feature-specific components that are only used within this feature
+- **api.ts**: Feature-specific API calls and React Query hooks (optional)
+- **use-*-store.tsx**: Feature-specific state management with Zustand (optional)
 
-:::note
-The structure is very opinionated but we think it's
-the best way to structure a react native project. For sure you can change it as you like based on your needs.
-:::
+**Example**: The `auth` feature contains the login screen, login form component, and auth store all in one place.
 
-## Importing files
+**Convention**:
+- ✅ Screens use `-screen.tsx` suffix
+- ✅ Only `components/` subfolder is allowed
+- ✅ Use single files (`api.ts`) not folders
+- ❌ No `index.ts` barrel exports (prevents fast refresh issues)
 
-We use absolute imports to import files using the Babel module resolver plugin and TypeScript path mapping. This approach helps us avoid long relative paths and makes the code cleaner and more readable.
+#### `app/`
 
-Here is a simple example of how the Feed screen looks with absolute imports.
+This folder contains the Expo Router file-based routing structure. Routes are **thin re-export layers** that import screens from features:
 
-<Code file="src/app/(app)/index.tsx" meta="{4-7}" />
+```tsx
+// app/login.tsx
+export { LoginScreen as default } from '@/features/auth/login-screen';
+```
 
-This approach is very useful when you are working on a large project with a lot of files and folders and it can be done by updating the `babel.config.js` file and `tsconfig.json` file to the following:
+This keeps routing configuration separate from feature logic while maintaining Expo Router's file-based routing benefits.
+
+#### `components/ui/`
+
+This is the **design system** containing reusable UI primitives and shared utilities:
+
+- UI components (Button, Input, Text, etc.)
+- Form utilities (`form-utils.ts`)
+- Theme configuration (`use-theme-config.tsx`)
+- Icon components
+
+**When to promote a component here**: When it's used in 2+ features and has no feature-specific logic.
+
+#### `lib/`
+
+Core infrastructure and cross-cutting concerns:
+
+- **`api/`**: Shared API client, React Query provider, and utilities
+  - Includes `PaginateQuery` type used across features
+  - Axios client configuration
+  - API helper functions
+- **`auth/`**: Low-level token storage utilities (getToken, setToken, removeToken)
+- **`hooks/`**: Global hooks (useIsFirstTime, useSelectedTheme)
+- **`i18n/`**: Internationalization setup and utilities
+- **Core utilities**: Storage abstraction, environment config, test utilities
+
+**What stays here**: Infrastructure that features depend on but don't own.
+
+#### `translations/`
+
+Contains i18n resource files. We recommend using translation files even if you only support one language initially, as it:
+- Makes future multi-language support easier
+- Centralizes all user-facing strings
+- Facilitates copy changes without code modifications
+
+## Importing Files
+
+We use **absolute imports with direct file paths** (no barrel exports) to avoid fast refresh issues:
+
+```tsx
+// ✅ CORRECT - Direct imports
+import { Button, Input, Text } from '@/components/ui';
+import { LoginScreen } from '@/features/auth/login-screen';
+import { usePosts } from '@/features/feed/api';
+import { translate } from '@/lib/i18n';
+import { client } from '@/lib/api';
+
+// ❌ WRONG - Barrel exports (causes fast refresh issues)
+import { LoginScreen } from '@/features/auth';
+import { usePosts } from '@/features/feed';
+```
+
+### Import Patterns
+
+**Within the same feature** (use relative imports):
+```tsx
+import { LoginForm } from './components/login-form';
+import { useAuthStore } from './use-auth-store';
+```
+
+**Cross-feature imports** (use absolute with full path):
+```tsx
+import { useAuthStore } from '@/features/auth/use-auth-store';
+import { PostCard } from '@/features/feed/components/post-card';
+```
+
+**From design system**:
+```tsx
+import { Button, Input, View } from '@/components/ui';
+import { getFieldError } from '@/components/ui/form-utils';
+import { useThemeConfig } from '@/components/ui/use-theme-config';
+```
+
+**From lib**:
+```tsx
+import { translate } from '@/lib/i18n';
+import { useIsFirstTime } from '@/lib/hooks/use-is-first-time';
+import { client, APIProvider } from '@/lib/api';
+```
+
+## Configuration
+
+This absolute import pattern is enabled through Babel module resolver and TypeScript path mapping:
 
 <details>
   <summary>⚙️ Babel configuration</summary>
@@ -107,3 +230,34 @@ This approach is very useful when you are working on a large project with a lot 
   <summary>⚙️ Typescript Config</summary>
   <Code file="tsconfig.json" meta="ins={5-9}" />
 </details>
+
+## Adding a New Feature
+
+To add a new feature, follow this template:
+
+```bash
+# Create feature structure
+mkdir -p src/features/my-feature/components
+
+# Create screen
+touch src/features/my-feature/my-feature-screen.tsx
+
+# Create route re-export
+echo "export { MyFeatureScreen as default } from '@/features/my-feature/my-feature-screen';" > src/app/my-feature.tsx
+```
+
+For features with API:
+```bash
+mkdir -p src/features/my-feature/components
+touch src/features/my-feature/my-feature-screen.tsx
+touch src/features/my-feature/api.ts
+touch src/features/my-feature/components/my-component.tsx
+```
+
+:::note
+This structure is intentionally designed for scalability and maintainability. While you can modify it to fit your needs, we recommend following these patterns as they:
+- Prevent circular dependencies
+- Enable fast refresh without issues
+- Make features easy to locate and understand
+- Support team collaboration
+:::

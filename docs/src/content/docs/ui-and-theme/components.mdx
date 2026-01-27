@@ -9,7 +9,7 @@ head:
 import { FileTree } from '@astrojs/starlight/components';
 import CodeBlock from '../../../components/code.astro';
 
-The starter comes with a set of basic components and a simple design system based on Nativewind to help you get started and save you time.
+The starter comes with a set of basic components and a simple design system based on Uniwind to help you get started and save you time.
 
 All those components can be found in the `src/components/ui` folder. Our philosophy is to keep the components as simple as possible and to avoid adding too much logic to them. This way, they are easier to reuse and customize.
 
@@ -72,8 +72,8 @@ const MyComponent = () => {
 
 ## Image
 
-For the `Image` component, we use the `expo-image` library to provide a fast and performant image component. The `Image` component is a wrapper around the `Image` component from `expo-image` package with additional styling provided by `nativewind`.
-The `cssInterop` function from `nativewind` is used to apply styling and, in this way, the `className` property is applied to the `style` property of the `Image` component.
+For the `Image` component, we use the `expo-image` library to provide a fast and performant image component. The `Image` component is a wrapper around the `Image` component from `expo-image` package with additional styling provided by `uniwind`.
+The `cssInterop` function from `uniwind` is used to apply styling and, in this way, the `className` property is applied to the `style` property of the `Image` component.
 
 <CodeBlock file="src/components/ui/image.tsx" />
 
@@ -156,7 +156,7 @@ Each variant should include styles for the `container`, `indicator`, and `label`
 
 **Use Case**
 
-<CodeBlock file="src/components/buttons.tsx" />
+<CodeBlock file="src/features/style-demo/components/buttons-demo.tsx" />
 
 ## Input
 
@@ -176,9 +176,7 @@ We tried to keep the ` Input` component as simple as possible, but you can add m
 - `label` - Input label
 - `error` - Input error message
 
-We provide also a simple `ControlledInput` component that uses the `Input` component under the hood but with a `useController` hook from `react-hook-form` to make it ready to use with `react-hook-form` library.
-
-Read more about Handling Forms [here](../forms/).
+For form handling with TanStack Form, use the Input component directly with form.Field. Read more about Handling Forms [here](../forms/).
 
 **Use Case**
 
@@ -283,11 +281,7 @@ const MyComponent = () => {
 };
 ```
 
-## Controlled Select
-
-We provide a simple `ControlledSelect` component that uses the `Select` component under the hood but with a `useController` hook from `react-hook-form` to make it ready to use with `react-hook-form` library.
-
-Read more about Handling Forms [here](../forms/).
+For form handling with TanStack Form, use the Select component directly with form.Field. Read more about Handling Forms [here](../forms/).
 
 ## Checkbox, Radio & Switch
 

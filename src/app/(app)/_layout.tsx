@@ -1,6 +1,6 @@
-/* eslint-disable react/no-unstable-nested-components */
 import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
-import React, { useCallback, useEffect } from 'react';
+import * as React from 'react';
+import { useCallback, useEffect } from 'react';
 
 import { Pressable, Text } from '@/components/ui';
 import {
@@ -8,7 +8,8 @@ import {
   Settings as SettingsIcon,
   Style as StyleIcon,
 } from '@/components/ui/icons';
-import { useAuth, useIsFirstTime } from '@/lib';
+import { useAuthStore as useAuth } from '@/features/auth/use-auth-store';
+import { useIsFirstTime } from '@/lib/hooks/use-is-first-time';
 
 export default function TabLayout() {
   const status = useAuth.use.status();
@@ -18,9 +19,10 @@ export default function TabLayout() {
   }, []);
   useEffect(() => {
     if (status !== 'idle') {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         hideSplash();
       }, 1000);
+      return () => clearTimeout(timer);
     }
   }, [hideSplash, status]);
 
@@ -64,7 +66,7 @@ export default function TabLayout() {
   );
 }
 
-const CreateNewPostLink = () => {
+function CreateNewPostLink() {
   return (
     <Link href="/feed/add-post" asChild>
       <Pressable>
@@ -72,4 +74,4 @@ const CreateNewPostLink = () => {
       </Pressable>
     </Link>
   );
-};
+}

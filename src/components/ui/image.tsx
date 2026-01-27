@@ -1,30 +1,31 @@
+/* eslint-disable react-refresh/only-export-components */
 import type { ImageProps } from 'expo-image';
 import { Image as NImage } from 'expo-image';
-import { cssInterop } from 'nativewind';
 import * as React from 'react';
+import { withUniwind } from 'uniwind';
 
 export type ImgProps = ImageProps & {
   className?: string;
 };
 
-cssInterop(NImage, { className: 'style' });
+const StyledImage = withUniwind(NImage);
 
-export const Image = ({
+export function Image({
   style,
   className,
   placeholder = 'L6PZfSi_.AyE_3t7t7R**0o#DgR4',
   ...props
-}: ImgProps) => {
+}: ImgProps) {
   return (
-    <NImage
+    <StyledImage
       className={className}
       placeholder={placeholder}
       style={style}
       {...props}
     />
   );
-};
+}
 
-export const preloadImages = (sources: string[]) => {
+export function preloadImages(sources: string[]) {
   NImage.prefetch(sources);
-};
+}
