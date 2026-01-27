@@ -55,7 +55,7 @@
     "@tanstack/zod-form-adapter": "^0.42.1",
     "app-icon-badge": "^0.1.2",
     "axios": "^1.13.2",
-    "expo": "~54.0.31",
+    "expo": "~54.0.32",
     "expo-constants": "~18.0.13",
     "expo-crypto": "^15.0.8",
     "expo-dev-client": "~6.0.20",
