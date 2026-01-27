@@ -34,7 +34,6 @@
     "build:production:android": "eas build --profile production --platform android",
     "prepare": "husky",
     "app-release": "cross-env SKIP_BRANCH_PROTECTION=true np --no-publish --no-cleanup --no-release-draft",
-    "version": "cross-env STRICT_ENV_VALIDATION=1 pnpm run prebuild && git add .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "type-check": "tsc --noemit",
