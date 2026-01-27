@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import Svg from 'react-native-svg';
 import { withUniwind } from 'uniwind';
 

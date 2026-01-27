@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import type { RenderOptions } from '@testing-library/react-native';
 
 import type { ReactElement } from 'react';

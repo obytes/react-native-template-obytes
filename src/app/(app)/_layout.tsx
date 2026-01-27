@@ -19,9 +19,10 @@ export default function TabLayout() {
   }, []);
   useEffect(() => {
     if (status !== 'idle') {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         hideSplash();
       }, 1000);
+      return () => clearTimeout(timer);
     }
   }, [hideSplash, status]);
 

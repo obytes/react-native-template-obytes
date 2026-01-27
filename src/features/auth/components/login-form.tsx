@@ -29,7 +29,6 @@ export type LoginFormProps = {
   onSubmit?: (data: FormType) => void;
 };
 
-// eslint-disable-next-line max-lines-per-function
 export function LoginForm({ onSubmit = () => {} }: LoginFormProps) {
   const form = useForm({
     defaultValues: {

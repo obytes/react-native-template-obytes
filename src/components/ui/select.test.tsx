@@ -1,5 +1,3 @@
-/* eslint-disable max-lines-per-function */
-
 import type { OptionType } from '@/components/ui';
 
 import * as React from 'react';

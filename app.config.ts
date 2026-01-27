@@ -1,8 +1,12 @@
 import type { ConfigContext, ExpoConfig } from '@expo/config';
+
 import type { AppIconBadgeConfig } from 'app-icon-badge/types';
-import Env from './env';
 
 import 'tsx/cjs';
+
+// adding lint exception as we need to import tsx/cjs before env.ts is imported
+// eslint-disable-next-line perfectionist/sort-imports
+import Env from './env';
 
 const EXPO_ACCOUNT_OWNER = 'obytes';
 const EAS_PROJECT_ID = 'c3e1075b-6fe7-4686-aa49-35b46a229044';

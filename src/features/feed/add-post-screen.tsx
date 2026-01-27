@@ -19,7 +19,6 @@ const schema = z.object({
   body: z.string().min(120),
 });
 
-// eslint-disable-next-line max-lines-per-function
 export function AddPostScreen() {
   const { mutate: addPost, isPending } = useAddPost();
 

@@ -18,6 +18,7 @@ import '../global.css';
 
 export { ErrorBoundary } from 'expo-router';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const unstable_settings = {
   initialRouteName: '(app)',
 };
@@ -49,6 +50,7 @@ function Providers({ children }: { children: React.ReactNode }) {
   return (
     <GestureHandlerRootView
       style={styles.container}
+      // eslint-disable-next-line better-tailwindcss/no-unknown-classes
       className={theme.dark ? `dark` : undefined}
     >
       <KeyboardProvider>

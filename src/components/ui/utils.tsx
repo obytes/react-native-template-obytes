@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import type { AxiosError } from 'axios';
 import { Dimensions, Platform } from 'react-native';
 import { showMessage } from 'react-native-flash-message';

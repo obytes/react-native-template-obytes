@@ -1,5 +1,3 @@
-/* eslint-env node */
-
 import z from 'zod';
 
 import packageJSON from './package.json';
