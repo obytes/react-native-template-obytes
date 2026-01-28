@@ -50,7 +50,7 @@ const updatePackageInfos = async (projectName) => {
 };
 
 const updateProjectConfig = async (projectName) => {
-  const configPath = path.join(process.cwd(), `${projectName}/env.js`);
+  const configPath = path.join(process.cwd(), `${projectName}/env.ts`);
   const contents = fs.readFileSync(configPath, {
     encoding: 'utf-8',
   });
