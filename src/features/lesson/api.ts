@@ -107,6 +107,120 @@ export function useLessonFlashcardSets(lessonSlug: string | null | undefined) {
   };
 }
 
+/** Quiz option (MCQ). */
+export type QuizOption = {
+  id?: string;
+  text?: string;
+  textVi?: string;
+  isCorrect?: boolean;
+};
+
+/** Quiz question content. */
+export type QuizContent = {
+  question?: string;
+  questionVi?: string;
+  guide?: string;
+  guideVi?: string;
+  options?: QuizOption[];
+};
+
+/** Quiz question (MCQ, etc.). */
+export type QuizQuestion = {
+  id?: string;
+  questionType?: string;
+  content?: QuizContent;
+  answerSpec?: { correct_options?: string[]; [k: string]: unknown };
+};
+
+/** One quiz set (list of questions). */
+export type QuizQuestionSet = {
+  setKey: string;
+  title?: string;
+  questions: QuizQuestion[];
+  count: number;
+};
+
+type ApiOption = { id?: string; text?: string; text_vi?: string; is_correct?: boolean };
+type ApiContent = {
+  question?: string; question_vi?: string; guide?: string; guide_vi?: string;
+  options?: ApiOption[];
+};
+type ApiQuestion = {
+  _id?: string; question_type?: string; content?: ApiContent; answer_spec?: { correct_options?: string[] };
+};
+type QuestionsResponse = {
+  data?:
+    | ApiQuestion[]
+    | Record<string, { set_info?: { title?: string }; questions?: ApiQuestion[] }>;
+  count?: number;
+};
+
+function mapOption(o: ApiOption): QuizOption {
+  return {
+    id: o.id,
+    text: o.text,
+    textVi: o.text_vi,
+    isCorrect: o.is_correct === true,
+  };
+}
+
+function mapQuestion(q: ApiQuestion): QuizQuestion {
+  const c = q.content;
+  return {
+    id: q._id,
+    questionType: q.question_type,
+    content: c
+      ? {
+          question: c.question,
+          questionVi: c.question_vi,
+          guide: c.guide,
+          guideVi: c.guide_vi,
+          options: c.options?.map(mapOption),
+        }
+      : undefined,
+    answerSpec: q.answer_spec,
+  };
+}
+
+export function useLessonQuestions(lessonSlug: string | null | undefined) {
+  const query = useQuery({
+    queryKey: ['lesson-questions', lessonSlug ?? ''],
+    queryFn: async (): Promise<{ sets: QuizQuestionSet[]; questions: QuizQuestion[] }> => {
+      const slug = (lessonSlug ?? '').trim();
+      if (!slug) return { sets: [], questions: [] };
+      const res = await client.get<QuestionsResponse>(
+        `/lesson-content/lesson/slug/${encodeURIComponent(slug)}/questions`,
+      );
+      const payload = res.data?.data;
+      if (Array.isArray(payload)) {
+        const questions = payload.map(mapQuestion);
+        return {
+          sets: [{ setKey: 'main', title: 'Quiz', questions, count: questions.length }],
+          questions,
+        };
+      }
+      const raw = (payload ?? {}) as Record<string, { set_info?: { title?: string }; questions?: ApiQuestion[] }>;
+      const sets: QuizQuestionSet[] = Object.entries(raw).map(([key, s]) => {
+        const qs = (s?.questions ?? []).map(mapQuestion);
+        const title = s?.set_info?.title ?? key;
+        return { setKey: key, title, questions: qs, count: qs.length };
+      });
+      const questions = sets.flatMap((s) => s.questions);
+      return { sets, questions };
+    },
+    enabled: !!lessonSlug?.trim(),
+    staleTime: 60 * 1000,
+  });
+
+  return {
+    sets: query.data?.sets ?? [],
+    questions: query.data?.questions ?? [],
+    isLoading: query.isLoading,
+    error: query.error,
+    refetch: query.refetch,
+  };
+}
+
 export function useLessonDetail(lessonSlug: string | null | undefined) {
   const query = useQuery({
     queryKey: ['lesson-detail', lessonSlug ?? ''],

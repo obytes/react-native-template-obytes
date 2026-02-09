@@ -7,7 +7,12 @@ import {
   useLessonFlashcardSets,
   useLessonGrammars,
 } from '@/features/lesson/api';
-import { GrammarList, LessonContentPlaceholder, VocabSetList } from '@/features/lesson/components';
+import {
+  GrammarList,
+  LessonContentPlaceholder,
+  QuizSets,
+  VocabSetList,
+} from '@/features/lesson/components';
 import { getLessonPrimaryType } from '@/features/lesson/utils';
 
 export default function LessonDetailScreen() {
@@ -49,6 +54,9 @@ export default function LessonDetailScreen() {
     if (primaryType === 'vocab') {
       if (vocabLoading) return <Text className="text-neutral-500">Đang tải từ vựng...</Text>;
       return <VocabSetList sets={vocabSets} />;
+    }
+    if (primaryType === 'test' || primaryType === 'practice') {
+      return <QuizSets lessonSlug={slug} />;
     }
     return <LessonContentPlaceholder />;
   };
