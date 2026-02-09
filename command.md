@@ -63,3 +63,12 @@ Dùng **pnpm** (không dùng `npx expo`). Chạy trong thư mục gốc project.
 ---
 
 **Trong terminal khi đang chạy `pnpm start` hoặc `pnpm start:go`:** bấm `i` (iOS), `a` (Android), `w` (web), `s` (đổi sang Expo Go / dev build).
+
+## Expo Go không tự refresh khi sửa code
+
+1. **Bật Fast Refresh trong Expo Go:** lắc máy (hoặc Cmd+D trên simulator) → mở Dev Menu → kiểm tra **Fast Refresh** đang bật.
+2. **Cùng mạng:** điện thoại và máy chạy Metro phải cùng WiFi (khi dùng LAN).
+3. **Xóa cache rồi chạy lại:**  
+   `pnpm start:go:clear` hoặc `pnpm start:go` rồi trong terminal bấm `c` (clear cache).
+4. **Xóa thư mục cache Expo:** `rm -rf .expo` rồi chạy lại `pnpm start:go`.
+5. **Reload tay:** trong Dev Menu chọn **Reload**, hoặc bấm `r` trong terminal.

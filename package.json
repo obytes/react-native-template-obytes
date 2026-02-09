@@ -11,6 +11,7 @@
   "scripts": {
     "start": "expo start",
     "start:go": "expo start --go",
+    "start:go:clear": "expo start --go --clear",
     "ios:go": "expo start --go --ios",
     "android:go": "expo start --go --android",
     "prebuild": "pnpm expo prebuild",
