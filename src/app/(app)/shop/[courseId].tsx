@@ -1,7 +1,8 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { ScrollView } from 'react-native';
 
 import { Button, FocusAwareStatusBar, Text, View } from '@/components/ui';
-
+import { LessonNavigator } from '@/features/shop/components/LessonNavigator';
 import { useCourseContent, useCourseList } from '@/features/shop/api';
 
 export default function CourseDetailScreen() {
@@ -10,9 +11,11 @@ export default function CourseDetailScreen() {
   const { courses, isLoading, error } = useCourseList(courseId ?? null);
   const course = courses[0];
   const courseKey = course?.code ?? course?.slug ?? courseId ?? '';
-  const { firstLessonSlug, isLoading: isContentLoading } = useCourseContent(
-    courseKey || null,
-  );
+  const {
+    data: courseContentTree,
+    firstLessonSlug,
+    isLoading: isContentLoading,
+  } = useCourseContent(courseKey || null);
 
   if (error || (!isLoading && !course)) {
     return (
@@ -41,7 +44,11 @@ export default function CourseDetailScreen() {
   return (
     <>
       <FocusAwareStatusBar />
-      <View className="flex-1 px-4 pt-6">
+      <ScrollView
+        className="flex-1"
+        contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 24, paddingBottom: 32 }}
+        showsVerticalScrollIndicator
+      >
         <Text className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
           {courseName}
         </Text>
@@ -50,7 +57,7 @@ export default function CourseDetailScreen() {
             {course.code}
           </Text>
         ) : null}
-        <View className="mt-8">
+        <View className="mt-6">
           <Button
             label="Vào học"
             onPress={handleVaoHoc}
@@ -58,7 +65,8 @@ export default function CourseDetailScreen() {
             loading={isContentLoading}
           />
         </View>
-      </View>
+        <LessonNavigator tree={courseContentTree} />
+      </ScrollView>
     </>
   );
 }

@@ -14,14 +14,27 @@ export type LessonFromContent = {
   [key: string]: unknown;
 };
 
-type CourseContentResponse = {
+export type CourseContentLessonGroup = {
+  lessonGroup?: unknown;
+  lessons?: LessonFromContent[];
+};
+
+export type CourseContentSection = {
+  section?: { title?: string; [k: string]: unknown };
+  title?: string;
+  lessonGroups?: CourseContentLessonGroup[];
+  lesson_groups?: CourseContentLessonGroup[];
+};
+
+export type CourseContentChapter = {
+  chapter?: { title?: string; [k: string]: unknown };
+  title?: string;
+  sections?: CourseContentSection[];
+};
+
+export type CourseContentResponse = {
   course?: Course;
-  chapters?: Array<{
-    sections?: Array<{
-      lessonGroups?: Array<{ lessons?: LessonFromContent[] }>;
-      lesson_groups?: Array<{ lessons?: LessonFromContent[] }>;
-    }>;
-  }>;
+  chapters?: CourseContentChapter[];
 };
 
 function flattenLessonsFromContent(data: CourseContentResponse): LessonFromContent[] {
