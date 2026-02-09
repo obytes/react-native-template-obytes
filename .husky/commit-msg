@@ -1,1 +1,3 @@
-pnpm commitlint --edit $1
+# Commitlint disabled - commit message format không bắt buộc
+# pnpm commitlint --edit $1
+exit 0
