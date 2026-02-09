@@ -4,7 +4,9 @@ import { ScrollView, Text, View } from 'react-native';
 import { FocusAwareStatusBar } from '@/components/ui';
 import {
   useLessonDetail,
+  useLessonFlashcardSets,
   useLessonGrammars,
+  type LessonFlashcardSet,
   type LessonGrammar,
 } from '@/features/lesson/api';
 import { getLessonPrimaryType } from '@/features/lesson/utils';
@@ -47,6 +49,35 @@ function GrammarList({ grammars }: { grammars: LessonGrammar[] }) {
   );
 }
 
+function VocabSetList({ sets }: { sets: LessonFlashcardSet[] }) {
+  if (sets.length === 0) {
+    return (
+      <View className="py-6">
+        <Text className="text-center text-neutral-500 dark:text-neutral-400">
+          Chưa có bộ từ vựng nào.
+        </Text>
+      </View>
+    );
+  }
+  return (
+    <View className="gap-3 pb-6">
+      {sets.map((s) => (
+        <View
+          key={s.key}
+          className="rounded-xl border border-neutral-200 bg-white p-4 dark:border-neutral-700 dark:bg-neutral-800/50"
+        >
+          <Text className="text-base font-semibold text-neutral-900 dark:text-neutral-100">
+            {s.title}
+          </Text>
+          <Text className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
+            {s.cardCount} từ vựng
+          </Text>
+        </View>
+      ))}
+    </View>
+  );
+}
+
 export default function LessonDetailScreen() {
   const { lessonSlug } = useLocalSearchParams<{ lessonSlug: string }>();
   const slug = (lessonSlug ?? '').trim();
@@ -54,6 +85,9 @@ export default function LessonDetailScreen() {
   const primaryType = getLessonPrimaryType(lesson?.type);
   const { grammars, isLoading: grammarsLoading } = useLessonGrammars(
     primaryType === 'grammar' ? slug : null,
+  );
+  const { sets: vocabSets, isLoading: vocabLoading } = useLessonFlashcardSets(
+    primaryType === 'vocab' ? slug : null,
   );
 
   if (error || (!isLoading && !lesson)) {
@@ -98,6 +132,12 @@ export default function LessonDetailScreen() {
               <Text className="text-neutral-500">Đang tải ngữ pháp...</Text>
             ) : (
               <GrammarList grammars={grammars} />
+            )
+          ) : primaryType === 'vocab' ? (
+            vocabLoading ? (
+              <Text className="text-neutral-500">Đang tải từ vựng...</Text>
+            ) : (
+              <VocabSetList sets={vocabSets} />
             )
           ) : (
             <Text className="text-neutral-500 dark:text-neutral-400">
