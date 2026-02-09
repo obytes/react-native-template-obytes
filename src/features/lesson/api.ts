@@ -67,6 +67,66 @@ type FlashcardsResponse = {
   >;
 };
 
+/** Speaking dialogue sentence. */
+export type LessonSpeakingSentence = {
+  id?: string;
+  speaker?: string;
+  text_en?: string;
+  text_vi?: string;
+  startMs?: number;
+  endMs?: number;
+};
+
+/** Speaking block (e.g. one scene). */
+export type LessonSpeakingBlock = {
+  id?: string;
+  type?: string;
+  sentences?: LessonSpeakingSentence[];
+};
+
+/** One speaking dialogue. */
+export type LessonSpeaking = {
+  id?: string;
+  title?: string;
+  tags?: string[];
+  difficulty?: string;
+  guide_md?: string;
+  image_url?: string;
+  audio_en_url?: string;
+  audio_vi_url?: string;
+  blocks?: LessonSpeakingBlock[];
+};
+
+type SpeakingsResponse = { data?: (LessonSpeaking & { _id?: string })[]; count?: number };
+
+export function useLessonSpeakings(lessonSlug: string | null | undefined) {
+  const query = useQuery({
+    queryKey: ['lesson-speakings', lessonSlug ?? ''],
+    queryFn: async (): Promise<{ speakings: LessonSpeaking[] }> => {
+      const slug = (lessonSlug ?? '').trim();
+      if (!slug) return { speakings: [] };
+      const res = await client.get<SpeakingsResponse>(
+        `/lesson-content/lesson/slug/${encodeURIComponent(slug)}/speakings`,
+      );
+      const raw = res.data?.data ?? [];
+      const speakings: LessonSpeaking[] = raw.map((s) => ({
+        ...s,
+        id: s._id ?? s.id,
+      }));
+      return { speakings };
+    },
+    enabled: !!lessonSlug?.trim(),
+    staleTime: 60 * 1000,
+  });
+
+  return {
+    speakings: query.data?.speakings ?? [],
+    isLoading: query.isLoading,
+    error: query.error,
+    refetch: query.refetch,
+  };
+}
+
 export function useLessonFlashcardSets(lessonSlug: string | null | undefined) {
   const query = useQuery({
     queryKey: ['lesson-flashcards', lessonSlug ?? ''],

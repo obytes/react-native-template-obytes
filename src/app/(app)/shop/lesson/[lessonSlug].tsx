@@ -7,6 +7,7 @@ import {
   useLessonFlashcardSets,
   useLessonGrammars,
   useLessonQuestions,
+  useLessonSpeakings,
 } from '@/features/lesson/api';
 import {
   GrammarList,
@@ -14,6 +15,7 @@ import {
   ListeningContent,
   QuizSets,
   ReadingContent,
+  SpeakingContent,
   VocabSetList,
 } from '@/features/lesson/components';
 import { getLessonPrimaryType } from '@/features/lesson/utils';
@@ -38,6 +40,9 @@ export default function LessonDetailScreen() {
   );
   const listeningQuestion = setQuestions?.find(
     (q) => (q.questionType ?? '').toUpperCase() === 'LISTENING_SET',
+  );
+  const { speakings, isLoading: speakingsLoading } = useLessonSpeakings(
+    primaryType === 'speaking' ? slug : null,
   );
 
   if (error || (!isLoading && !lesson)) {
@@ -96,6 +101,12 @@ export default function LessonDetailScreen() {
           Chưa có nội dung bài nghe.
         </Text>
       );
+    }
+    if (primaryType === 'speaking') {
+      if (speakingsLoading) {
+        return <Text className="text-neutral-500">Đang tải bài nói...</Text>;
+      }
+      return <SpeakingContent speakings={speakings} />;
     }
     return <LessonContentPlaceholder />;
   };
