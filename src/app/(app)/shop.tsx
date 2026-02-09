@@ -1,5 +1,1 @@
-import { View } from '@/components/ui';
-
-export default function ShopScreen() {
-  return <View className="flex-1" />;
-}
+export { ShopScreen as default } from '@/features/shop/shop-screen';
