@@ -115,6 +115,31 @@ export type QuizOption = {
   isCorrect?: boolean;
 };
 
+/** Reading block sentence (for READING_SET). */
+export type ReadingSentence = {
+  id?: string;
+  text?: string;
+  transVi?: string;
+};
+
+/** Reading block (paragraph with sentences). */
+export type ReadingBlock = {
+  id?: string;
+  transVi?: string;
+  sentences?: ReadingSentence[];
+};
+
+/** Sub-question (e.g. per paragraph in READING_SET). */
+export type QuizSubQuestion = {
+  id?: string;
+  content?: {
+    question?: string;
+    questionVi?: string;
+    options?: QuizOption[];
+  };
+  answerSpec?: { correct_options?: string[] };
+};
+
 /** Quiz question content. */
 export type QuizContent = {
   question?: string;
@@ -122,6 +147,13 @@ export type QuizContent = {
   guide?: string;
   guideVi?: string;
   options?: QuizOption[];
+  /** READING_SET: passage blocks */
+  blocks?: ReadingBlock[];
+  subquestions?: QuizSubQuestion[];
+  supplementNorms?: string[];
+  title?: string;
+  footer?: string;
+  media?: Array<{ type?: string; url?: string }>;
 };
 
 /** Quiz question (MCQ, etc.). */
@@ -141,9 +173,21 @@ export type QuizQuestionSet = {
 };
 
 type ApiOption = { id?: string; text?: string; text_vi?: string; is_correct?: boolean };
+type ApiSentence = { id?: string; text?: string; trans_vi?: string };
+type ApiBlock = { id?: string; trans_vi?: string; sentences?: ApiSentence[] };
+type ApiSubQuestion = {
+  id?: string;
+  content?: { question?: string; question_vi?: string; options?: ApiOption[] };
+  answer_spec?: { correct_options?: string[] };
+};
 type ApiContent = {
   question?: string; question_vi?: string; guide?: string; guide_vi?: string;
   options?: ApiOption[];
+  blocks?: ApiBlock[];
+  subquestions?: ApiSubQuestion[];
+  supplement_norms?: string[];
+  title?: string; footer?: string;
+  media?: Array<{ type?: string; url?: string }>;
 };
 type ApiQuestion = {
   _id?: string; question_type?: string; content?: ApiContent; answer_spec?: { correct_options?: string[] };
@@ -164,6 +208,32 @@ function mapOption(o: ApiOption): QuizOption {
   };
 }
 
+function mapBlock(b: ApiBlock): ReadingBlock {
+  return {
+    id: b.id,
+    transVi: b.trans_vi,
+    sentences: b.sentences?.map((s) => ({
+      id: s.id,
+      text: s.text,
+      transVi: s.trans_vi,
+    })),
+  };
+}
+
+function mapSubQuestion(sq: ApiSubQuestion): QuizSubQuestion {
+  return {
+    id: sq.id,
+    content: sq.content
+      ? {
+          question: sq.content.question,
+          questionVi: sq.content.question_vi,
+          options: sq.content.options?.map(mapOption),
+        }
+      : undefined,
+    answerSpec: sq.answer_spec,
+  };
+}
+
 function mapQuestion(q: ApiQuestion): QuizQuestion {
   const c = q.content;
   return {
@@ -176,6 +246,14 @@ function mapQuestion(q: ApiQuestion): QuizQuestion {
           guide: c.guide,
           guideVi: c.guide_vi,
           options: c.options?.map(mapOption),
+          blocks: c.blocks?.map(mapBlock),
+          subquestions: c.subquestions?.map(mapSubQuestion),
+          supplementNorms: Array.isArray(c.supplement_norms)
+            ? c.supplement_norms.filter((x): x is string => typeof x === 'string')
+            : undefined,
+          title: c.title,
+          footer: c.footer,
+          media: c.media,
         }
       : undefined,
     answerSpec: q.answer_spec,
