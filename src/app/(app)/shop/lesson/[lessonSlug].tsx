@@ -11,6 +11,7 @@ import {
 import {
   GrammarList,
   LessonContentPlaceholder,
+  ListeningContent,
   QuizSets,
   ReadingContent,
   VocabSetList,
@@ -28,10 +29,15 @@ export default function LessonDetailScreen() {
   const { sets: vocabSets, isLoading: vocabLoading } = useLessonFlashcardSets(
     primaryType === 'vocab' ? slug : null,
   );
-  const { questions: readingQuestions, isLoading: readingQuestionsLoading } =
-    useLessonQuestions(primaryType === 'reading' ? slug : null);
-  const readingQuestion = readingQuestions?.find(
+  const { questions: setQuestions, isLoading: setQuestionsLoading } =
+    useLessonQuestions(
+      primaryType === 'reading' || primaryType === 'listening' ? slug : null,
+    );
+  const readingQuestion = setQuestions?.find(
     (q) => (q.questionType ?? '').toUpperCase() === 'READING_SET',
+  );
+  const listeningQuestion = setQuestions?.find(
+    (q) => (q.questionType ?? '').toUpperCase() === 'LISTENING_SET',
   );
 
   if (error || (!isLoading && !lesson)) {
@@ -66,7 +72,7 @@ export default function LessonDetailScreen() {
       return <QuizSets lessonSlug={slug} />;
     }
     if (primaryType === 'reading') {
-      if (readingQuestionsLoading) {
+      if (setQuestionsLoading) {
         return <Text className="text-neutral-500">Đang tải bài đọc...</Text>;
       }
       if (readingQuestion) {
@@ -78,16 +84,30 @@ export default function LessonDetailScreen() {
         </Text>
       );
     }
+    if (primaryType === 'listening') {
+      if (setQuestionsLoading) {
+        return <Text className="text-neutral-500">Đang tải bài nghe...</Text>;
+      }
+      if (listeningQuestion) {
+        return <ListeningContent question={listeningQuestion} />;
+      }
+      return (
+        <Text className="text-neutral-500 dark:text-neutral-400">
+          Chưa có nội dung bài nghe.
+        </Text>
+      );
+    }
     return <LessonContentPlaceholder />;
   };
 
-  const isReadingWithContent =
-    primaryType === 'reading' && !readingQuestionsLoading && readingQuestion;
+  const isSetWithTabs =
+    (primaryType === 'reading' && !setQuestionsLoading && readingQuestion) ||
+    (primaryType === 'listening' && !setQuestionsLoading && listeningQuestion);
 
   return (
     <>
       <FocusAwareStatusBar />
-      {isReadingWithContent ? (
+      {isSetWithTabs ? (
         <View className="flex-1 px-4 pt-4">
           <Text className="text-xl font-semibold text-neutral-900 dark:text-neutral-100">
             {title}
