@@ -72,3 +72,14 @@ Dùng **pnpm** (không dùng `npx expo`). Chạy trong thư mục gốc project.
    `pnpm start:go:clear` hoặc `pnpm start:go` rồi trong terminal bấm `c` (clear cache).
 4. **Xóa thư mục cache Expo:** `rm -rf .expo` rồi chạy lại `pnpm start:go`.
 5. **Reload tay:** trong Dev Menu chọn **Reload**, hoặc bấm `r` trong terminal.
+
+
+### Vì sao Expo Go có thể không tự refresh
+
+- **Fast Refresh bị tắt** — Trong Expo Go: lắc máy (hoặc Cmd+D trên simulator) → mở Dev Menu → bật Fast Refresh.
+- **Khác mạng** — Điện thoại và máy chạy Metro phải cùng WiFi khi dùng kết nối LAN.
+- **Cache Metro** — Chạy một lần với cache sạch: `pnpm start:go:clear`.
+- **Cache Expo** — Xóa thư mục cache: `rm -rf .expo` rồi chạy lại `pnpm start:go`.
+- **Reload tay** — Trong Dev Menu chọn **Reload**, hoặc trong terminal đang chạy Metro bấm `r`.
+
+> **Gợi ý:** Thử trước: lắc máy → Dev Menu → bật Fast Refresh, rồi sửa code và save. Nếu vẫn không đổi, chạy `pnpm start:go:clear` và mở lại app trong Expo Go.

@@ -3,7 +3,10 @@ import { useEffect } from 'react';
 
 import {
   Feed as FeedIcon,
+  Language as LanguageIcon,
+  Rate as RateIcon,
   Settings as SettingsIcon,
+  Share as ShareIcon,
   Style as StyleIcon,
 } from '@/components/ui/icons';
 
@@ -26,6 +29,30 @@ export default function TabLayout() {
         }}
       />
 
+      <Tabs.Screen
+        name="shop"
+        options={{
+          title: 'Shop',
+          tabBarIcon: ({ color }) => <RateIcon color={color} />,
+          tabBarButtonTestID: 'shop-tab',
+        }}
+      />
+      <Tabs.Screen
+        name="hoc"
+        options={{
+          title: 'Học',
+          tabBarIcon: ({ color }) => <LanguageIcon color={color} />,
+          tabBarButtonTestID: 'hoc-tab',
+        }}
+      />
+      <Tabs.Screen
+        name="review"
+        options={{
+          title: 'Review',
+          tabBarIcon: ({ color }) => <ShareIcon color={color} />,
+          tabBarButtonTestID: 'review-tab',
+        }}
+      />
       <Tabs.Screen
         name="style"
         options={{
