@@ -1,11 +1,9 @@
-import { useMMKVBoolean } from 'react-native-mmkv';
-
-import { storage } from '../storage';
+import { useStorageBoolean } from '../storage';
 
 const IS_FIRST_TIME = 'IS_FIRST_TIME';
 
 export function useIsFirstTime() {
-  const [isFirstTime, setIsFirstTime] = useMMKVBoolean(IS_FIRST_TIME, storage);
+  const [isFirstTime, setIsFirstTime] = useStorageBoolean(IS_FIRST_TIME);
   if (isFirstTime === undefined) {
     return [true, setIsFirstTime] as const;
   }

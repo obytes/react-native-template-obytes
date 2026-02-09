@@ -1,9 +1,11 @@
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-
 import { ThemeProvider } from '@react-navigation/native';
+
+import Constants from 'expo-constants';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
+import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -13,8 +15,11 @@ import { hydrateAuth } from '@/features/auth/use-auth-store';
 
 import { APIProvider } from '@/lib/api';
 import { loadSelectedTheme } from '@/lib/hooks/use-selected-theme';
+import { initStorage } from '@/lib/storage';
 // Import  global CSS file
 import '../global.css';
+
+const isExpoGo = Constants.appOwnership === 'expo';
 
 export { ErrorBoundary } from 'expo-router';
 
@@ -34,6 +39,15 @@ SplashScreen.setOptions({
 });
 
 export default function RootLayout() {
+  useEffect(() => {
+    initStorage();
+  }, []);
+  useEffect(() => {
+    const fallback = setTimeout(() => {
+      void SplashScreen.hideAsync();
+    }, 3000);
+    return () => clearTimeout(fallback);
+  }, []);
   return (
     <Providers>
       <Stack>
@@ -47,22 +61,23 @@ export default function RootLayout() {
 
 function Providers({ children }: { children: React.ReactNode }) {
   const theme = useThemeConfig();
+  const content = (
+    <ThemeProvider value={theme}>
+      <APIProvider>
+        <BottomSheetModalProvider>
+          {children}
+          <FlashMessage position="top" />
+        </BottomSheetModalProvider>
+      </APIProvider>
+    </ThemeProvider>
+  );
   return (
     <GestureHandlerRootView
       style={styles.container}
       // eslint-disable-next-line better-tailwindcss/no-unknown-classes
       className={theme.dark ? `dark` : undefined}
     >
-      <KeyboardProvider>
-        <ThemeProvider value={theme}>
-          <APIProvider>
-            <BottomSheetModalProvider>
-              {children}
-              <FlashMessage position="top" />
-            </BottomSheetModalProvider>
-          </APIProvider>
-        </ThemeProvider>
-      </KeyboardProvider>
+      {isExpoGo ? content : <KeyboardProvider>{content}</KeyboardProvider>}
     </GestureHandlerRootView>
   );
 }

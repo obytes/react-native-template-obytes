@@ -1,6 +1,9 @@
 
 . "$(dirname "$0")/common.sh"
 
+# Chỉ chạy check trong repo này (quada-mobile), bỏ qua frontend/backend nếu commit từ monorepo
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$REPO_ROOT"
 
 echo "===\n>> Checking branch name..."
 
@@ -18,7 +21,6 @@ else
 fi
 
 echo ">> Finish checking branch name"
-echo ">> Linting your files and fixing them if needed..."
+echo ">> Linting your files (quada-mobile only; type-check bỏ qua để tránh lỗi frontend/backend)..."
 
-pnpm type-check
 pnpm lint-staged

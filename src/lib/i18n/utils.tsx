@@ -6,9 +6,7 @@ import memoize from 'lodash.memoize';
 import { useCallback } from 'react';
 import { I18nManager, NativeModules, Platform } from 'react-native';
 
-import { useMMKVString } from 'react-native-mmkv';
-import RNRestart from 'react-native-restart';
-import { storage } from '../storage';
+import { storage, useStorageString } from '../storage';
 
 type DefaultLocale = typeof resources.en.translation;
 export type TxKeyPath = RecursiveKeyOf<DefaultLocale>;
@@ -33,9 +31,18 @@ export function changeLanguage(lang: Language) {
     I18nManager.forceRTL(false);
   }
   if (Platform.OS === 'ios' || Platform.OS === 'android') {
-    if (__DEV__)
-      NativeModules.DevSettings.reload();
-    else RNRestart.restart();
+    try {
+      if (__DEV__ && NativeModules.DevSettings?.reload) {
+        NativeModules.DevSettings.reload();
+      }
+      else {
+        const RNRestart = require('react-native-restart').default;
+        RNRestart.restart();
+      }
+    }
+    catch {
+      // Expo Go or missing native modules – language still changed in memory
+    }
   }
   else if (Platform.OS === 'web') {
     window.location.reload();
@@ -43,7 +50,7 @@ export function changeLanguage(lang: Language) {
 }
 
 export function useSelectedLanguage() {
-  const [language, setLang] = useMMKVString(LOCAL);
+  const [language, setLang] = useStorageString(LOCAL);
 
   const setLanguage = useCallback(
     (lang: Language) => {

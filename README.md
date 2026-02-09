@@ -12,6 +12,42 @@
 
 > Welcome to the Obytes Mobile Tribe's Expo / React Native Starter Kit!
 
+---
+
+## ⚡ Quick start — core commands
+
+**Chuẩn chạy project:** dùng **pnpm** (không dùng `npx expo`).
+
+### Cách 1: Expo Go (preview nhanh, không cần build native)
+
+Giống như chạy app trong app **Expo Go**: không cần `prebuild` hay cài bản dev build. Có thể xem trên điện thoại (quét QR) và iOS Simulator ngay.
+
+| Mục | Lệnh |
+|-----|------|
+| **Chạy dev server (Expo Go)** | `pnpm start:go` |
+| **Mở luôn iOS Simulator (Expo Go)** | `pnpm ios:go` |
+| **Mở luôn Android / quét QR (Expo Go)** | `pnpm android:go` |
+
+Sau khi chạy `pnpm start:go`: quét QR bằng app **Expo Go** trên điện thoại, hoặc bấm **`i`** (iOS simulator) / **`a`** (Android) / **`w`** (web).  
+⚠️ Project có dùng native modules (MMKV, …); một số màn có thể lỗi trong Expo Go. Khi cần đủ tính năng thì dùng cách 2.
+
+### Cách 2: Development build (đủ tính năng, cần build 1 lần)
+
+| Mục | Lệnh |
+|-----|------|
+| **Cài pnpm** (nếu chưa có) | `brew install pnpm` (macOS) hoặc `npm install -g pnpm` |
+| **Cài dependency** | `pnpm install` |
+| **Chạy Expo dev server** | `pnpm start` |
+| **Mở iOS Simulator** | `pnpm ios` (cần Xcode; lần đầu chạy `pnpm prebuild` rồi `pnpm ios`) |
+| **Mở Android emulator** | `pnpm android` (cần Android Studio + AVD) |
+| **Chạy trên web** | `pnpm web` hoặc `pnpm start` rồi bấm `w` |
+
+**Theo môi trường:** Preview: `pnpm start:preview`, `pnpm ios:preview`, … Production: `pnpm start:production`, `pnpm ios:production`, …
+
+**Khác:** Mở Xcode: `pnpm xcode`. Kiểm tra môi trường: `pnpm doctor`. Đang dùng dev build mà muốn tạm chuyển sang Expo Go: trong terminal bấm **`s`**.
+
+---
+
 ## 🚀 Motivation
 
 Our goal with this starter kit was to streamline the process of building React Native apps, both for our own team and for our clients. We wanted to create a resource that would allow us to create high-quality apps faster and with less effort, while ensuring that all of our projects adhere to the same code standards and architectural principles.

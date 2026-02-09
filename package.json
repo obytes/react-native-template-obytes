@@ -10,6 +10,9 @@
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
+    "start:go": "expo start --go",
+    "ios:go": "expo start --go --ios",
+    "android:go": "expo start --go --android",
     "prebuild": "pnpm expo prebuild",
     "android": "expo run:android",
     "ios": "expo run:ios",
@@ -46,6 +49,7 @@
     "e2e-test": "maestro test .maestro/ -e APP_ID=com.obytes.development"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "2.2.0",
     "@expo-google-fonts/inter": "^0.4.2",
     "@expo/metro-runtime": "^6.1.2",
     "@gorhom/bottom-sheet": "^5.2.8",
@@ -88,7 +92,7 @@
     "react-native-svg": "~15.12.1",
     "react-native-url-polyfill": "^3.0.0",
     "react-native-web": "~0.21.2",
-    "react-native-worklets": "^0.7.2",
+    "react-native-worklets": "0.5.1",
     "react-query-kit": "^3.3.2",
     "tailwind-merge": "^3.4.0",
     "tailwind-variants": "^3.2.2",
