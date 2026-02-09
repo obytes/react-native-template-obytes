@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 
 import {
   Feed as FeedIcon,
-  Language as LanguageIcon,
   Rate as RateIcon,
   Settings as SettingsIcon,
-  Share as ShareIcon,
   Style as StyleIcon,
+  Support as SupportIcon,
+  Website as WebsiteIcon,
 } from '@/components/ui/icons';
 
 export default function TabLayout() {
@@ -41,15 +41,15 @@ export default function TabLayout() {
         name="hoc"
         options={{
           title: 'Học',
-          tabBarIcon: ({ color }) => <LanguageIcon color={color} />,
+          tabBarIcon: ({ color }) => <SupportIcon color={color} />,
           tabBarButtonTestID: 'hoc-tab',
         }}
       />
       <Tabs.Screen
         name="review"
         options={{
-          title: 'Review',
-          tabBarIcon: ({ color }) => <ShareIcon color={color} />,
+          title: 'Ôn tập',
+          tabBarIcon: ({ color }) => <WebsiteIcon color={color} />,
           tabBarButtonTestID: 'review-tab',
         }}
       />
