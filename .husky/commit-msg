@@ -1,3 +1,4 @@
-# Commitlint disabled - commit message format không bắt buộc
+#!/bin/sh
+# Husky disabled
 # pnpm commitlint --edit $1
 exit 0
