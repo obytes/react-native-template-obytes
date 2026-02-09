@@ -5,13 +5,11 @@ import type { AppIconBadgeConfig } from 'app-icon-badge/types';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 
-// adding lint exception as we need to import tsx/cjs before env.ts is imported
-
-import Env from './env';
-
-// Resolve tsx/cjs from project root so Expo (e.g. npx) finds it
+// Load tsx/cjs trước để require() hiểu file .ts; phải chạy trước khi load env.ts
 const requireFromProject = createRequire(path.join(process.cwd(), 'package.json'));
 requireFromProject('tsx/cjs');
+
+const Env = requireFromProject(path.join(process.cwd(), 'env.ts')).default;
 
 const EXPO_ACCOUNT_OWNER = 'obytes';
 const EAS_PROJECT_ID = 'c3e1075b-6fe7-4686-aa49-35b46a229044';
