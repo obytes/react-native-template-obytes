@@ -19,7 +19,7 @@ export function MCQQuestion({ question, selectedId, onSelect, questionNumber }: 
   const hasAnswered = canGrade && Boolean(selectedId);
 
   const questionText =
-    question.content?.questionVi ?? question.content?.question ?? '';
+    question.content?.question ?? question.content?.questionVi ?? '';
 
   return (
     <View className="gap-3">
@@ -49,7 +49,7 @@ export function MCQQuestion({ question, selectedId, onSelect, questionNumber }: 
           const optId = o.id ?? '';
           const isCorrect = canGrade ? correctIds.includes(optId) : false;
           const isSelected = selectedId === optId;
-          const label = o.textVi ?? o.text ?? optId;
+          const label = o.text ?? o.textVi ?? optId;
 
           let bgClass = 'bg-white border-neutral-200 dark:border-neutral-600';
           let textClass = 'text-neutral-900 dark:text-neutral-100';
