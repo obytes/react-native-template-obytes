@@ -37,6 +37,40 @@ export default function RootLayout() {
         <Stack.Screen name="(app)" options={{ headerShown: false }} />
         <Stack.Screen name="onboarding" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
+
+        {/* Secondary screens */}
+        <Stack.Screen
+          name="meal-detail"
+          options={{ title: 'Chi tiết món ăn' }}
+        />
+        <Stack.Screen
+          name="settings"
+          options={{ title: 'Cài đặt' }}
+        />
+        <Stack.Screen
+          name="edit-profile"
+          options={{ title: 'Chỉnh sửa hồ sơ' }}
+        />
+        <Stack.Screen
+          name="search"
+          options={{ title: 'Tìm kiếm', headerShown: false }}
+        />
+        <Stack.Screen
+          name="notifications"
+          options={{ title: 'Thông báo' }}
+        />
+        <Stack.Screen
+          name="favourites"
+          options={{ title: 'Yêu thích' }}
+        />
+        <Stack.Screen
+          name="privacy"
+          options={{ title: 'Chính sách bảo mật' }}
+        />
+        <Stack.Screen
+          name="history-cooking"
+          options={{ title: 'Lịch sử nấu ăn' }}
+        />
       </Stack>
     </Providers>
   );

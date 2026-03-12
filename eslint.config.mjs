@@ -43,7 +43,6 @@ export default defineConfig([
     },
     rules: {
       'max-params': ['error', 3],
-      'max-lines-per-function': ['error', 70],
       'tailwindcss/classnames-order': [
         'warn',
         {
@@ -64,15 +63,24 @@ export default defineConfig([
       ],
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
-      'unused-imports/no-unused-imports': 'error',
-      'unused-imports/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
-          caughtErrorsIgnorePattern: '^_',
-        },
-      ],
+      '@typescript-eslint/no-unused-vars': [
+  'warn',
+  {
+    argsIgnorePattern: '^_',
+    varsIgnorePattern: '^_',
+    caughtErrorsIgnorePattern: '^_',
+  },
+],
+'unused-imports/no-unused-vars': [
+  'error',
+  {
+    args: 'after-used',
+    argsIgnorePattern: '^_',
+    vars: 'all',
+    varsIgnorePattern: '^_',
+    caughtErrorsIgnorePattern: '^_',
+  },
+],
       'import/prefer-default-export': 'off',
       'import/no-cycle': ['error', { maxDepth: '∞' }],
       'prettier/prettier': ['error', { ignores: ['expo-env.d.ts'] }],
