@@ -5,7 +5,7 @@
 - **Expo SDK 54** with React Native 0.81.5 - Managed React Native development
 - **TypeScript** - Strict type safety throughout
 - **Expo Router 6** - File-based routing (like Next.js)
-- **TailwindCSS** via Uniwind/Nativewind - Utility-first styling for React Native
+- **TailwindCSS** via Uniwind - Utility-first styling for React Native
 - **Zustand** - Lightweight global state management
 - **React Query** - Server state and data fetching
 - **TanStack Form + Zod** - Type-safe form handling and validation
@@ -55,7 +55,7 @@ pnpm build:production:ios       # EAS production build
 - **Forms**: Use TanStack Form + Zod (see `src/features/auth/components/login-form.tsx`)
 - **Data fetching**: Use React Query (see `src/features/feed/api.ts`)
 - **Global state**: Use Zustand (see `src/features/auth/use-auth-store.tsx`)
-- **Styling**: NativeWind/Tailwind classes (see `src/components/ui/button.tsx`)
+- **Styling**: Uniwind/Tailwind classes (see `src/components/ui/button.tsx`)
 - **Storage**: Use MMKV via `src/lib/storage.tsx` for sensitive data
 - **Imports**: Always use `@/` prefix, never relative imports
 

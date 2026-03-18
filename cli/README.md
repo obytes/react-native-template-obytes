@@ -14,7 +14,6 @@
 
 ```sh
 npx create-obytes-app@latest MyApp
-
 ```
 
 # Overview
@@ -46,7 +45,7 @@ When creating this starter kit, we had several guiding principles in mind::
 
 - ✅ The latest version of Expo SDK, along with the Custom Dev client, to give you access to a range of powerful features and tools.
 - 🎉 [TypeScript](https://www.typescriptlang.org/) for type checking, to help you catch bugs and improve code quality.
-- 💅 A minimal UI kit built with [tailwindcss](https://www.nativewind.dev/), which provides a range of pre-defined classes for styling your app.
+- 💅 A minimal UI kit built with [TailwindCSS](https://uniwind.dev/), which provides a range of pre-defined classes for styling your app.
 - ⚙️ Support for multiple environment builds, including Production, Staging, and Development, using Expo configuration.
 - 🦊 Husky for Git Hooks, to automate your git hooks and enforce code standards.
 - 💡 A clean project structure with Absolute Imports, to make it easier to navigate and manage your code.
@@ -103,7 +102,7 @@ We value the feedback and contributions of our users, and we encourage you to le
 
 - [Expo](https://docs.expo.io/)
 - [Expo Router](https://docs.expo.dev/router/introduction/)
-- [Nativewind](https://www.nativewind.dev/)
+- [Uniwind](https://uniwind.dev/)
 - [Flash list](https://github.com/Shopify/flash-list)
 - [React Query](https://tanstack.com/query/v4)
 - [Axios](https://axios-http.com/docs/intro)
@@ -114,7 +113,7 @@ We value the feedback and contributions of our users, and we encourage you to le
 - [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/)
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/)
 - [React Native Svg](https://github.com/software-mansion/react-native-svg)
-- [ React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
+- [React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
 - [Expo Image](https://docs.expo.dev/versions/unversioned/sdk/image/)
 
 ## Contributors
