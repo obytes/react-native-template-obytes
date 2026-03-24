@@ -11,7 +11,7 @@ module.exports = function (api) {
           root: ['./'],
           alias: {
             '@': './src',
-            '@env': './src/lib/env.js',
+            '@env': './env.ts',
           },
           extensions: [
             '.ios.ts',
