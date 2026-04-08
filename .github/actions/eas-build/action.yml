@@ -10,7 +10,7 @@
 #        `AUTO_SUBMIT`, false by default, set to true if you want to automatically submit your build to stores.
 #        `EXPO_TOKEN`, required, access token for your Expo account. https://expo.dev/settings/access-tokens
 #        `VERSION`, required, version of the app to build. used as the build message.
-#        `ANDROID`, true by default, set to true if you don't want to trigger build for Android.
+#        `ANDROID`, true by default, set to false if you don't want to trigger build for Android.
 #        `IOS`, false by default, set to true if you  want to trigger build for IOS.
 
 # 👀 Example usage:
