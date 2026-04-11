@@ -34,10 +34,8 @@ const _useAuthStore = create<AuthState>((set, get) => ({
       }
     }
     catch (e) {
-      // only to remove eslint error, handle the error properly
       console.error(e);
-      // catch error here
-      // Maybe sign_out user!
+      get().signOut();
     }
   },
 }));

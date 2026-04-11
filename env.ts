@@ -2,6 +2,10 @@ import z from 'zod';
 
 import packageJSON from './package.json';
 
+const DEFAULT_EXPO_SLUG = 'time-tracker';
+const DEFAULT_EXPO_OWNER = 'kaitomorimas-organization';
+const DEFAULT_EAS_PROJECT_ID = '83464924-f39b-4400-bae0-6b25023e502a';
+
 // Single unified environment schema
 const envSchema = z.object({
   EXPO_PUBLIC_APP_ENV: z.enum(['development', 'preview', 'production']),
@@ -17,6 +21,9 @@ const envSchema = z.object({
 
   // only available for app.config.ts usage
   APP_BUILD_ONLY_VAR: z.string().optional(),
+  APP_EXPO_OWNER: z.string(),
+  APP_EXPO_SLUG: z.string(),
+  APP_EAS_PROJECT_ID: z.string().uuid(),
 });
 
 // Config records per environment
@@ -59,6 +66,9 @@ const _env: z.infer<typeof envSchema> = {
   EXPO_PUBLIC_VAR_NUMBER: Number(process.env.EXPO_PUBLIC_VAR_NUMBER ?? 0),
   EXPO_PUBLIC_VAR_BOOL: process.env.EXPO_PUBLIC_VAR_BOOL === 'true',
   APP_BUILD_ONLY_VAR: process.env.APP_BUILD_ONLY_VAR,
+  APP_EXPO_OWNER: process.env.APP_EXPO_OWNER ?? DEFAULT_EXPO_OWNER,
+  APP_EXPO_SLUG: process.env.APP_EXPO_SLUG ?? DEFAULT_EXPO_SLUG,
+  APP_EAS_PROJECT_ID: process.env.APP_EAS_PROJECT_ID ?? DEFAULT_EAS_PROJECT_ID,
 };
 
 function getValidatedEnv(env: z.infer<typeof envSchema>) {

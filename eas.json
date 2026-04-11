@@ -1,11 +1,10 @@
 {
   "cli": {
-    "appVersionSource": "remote"
+    "appVersionSource": "local"
   },
   "build": {
     "production": {
       "channel": "production",
-      "autoIncrement": true,
       "distribution": "store",
       "environment": "production",
       "ios": {
@@ -21,12 +20,12 @@
     },
     "preview": {
       "channel": "preview",
-      "autoIncrement": true,
       "distribution": "store",
       "ios": {
         "image": "latest"
       },
       "android": {
+        "gradleCommand": "assembleRelease -PreactNativeArchitectures=arm64-v8a,armeabi-v7a",
         "buildType": "apk",
         "image": "latest"
       },

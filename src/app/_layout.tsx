@@ -4,7 +4,8 @@ import { ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { useEffect, useState } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
@@ -23,10 +24,8 @@ export const unstable_settings = {
   initialRouteName: '(app)',
 };
 
-hydrateAuth();
-loadSelectedTheme();
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+void SplashScreen.preventAutoHideAsync().catch(() => undefined);
 // Set the animation options. This is optional.
 SplashScreen.setOptions({
   duration: 500,
@@ -34,6 +33,47 @@ SplashScreen.setOptions({
 });
 
 export default function RootLayout() {
+  const [appIsReady, setAppIsReady] = useState(false);
+  const [bootError, setBootError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function prepare() {
+      let step = 'auth';
+      try {
+        await hydrateAuth();
+        step = 'theme';
+        loadSelectedTheme();
+      }
+      catch (e) {
+        const message = e instanceof Error ? e.message : String(e);
+        setBootError(`Startup failed during ${step}: ${message}`);
+      }
+      finally {
+        setAppIsReady(true);
+      }
+    }
+
+    prepare();
+  }, []);
+
+  useEffect(() => {
+    if (appIsReady) {
+      void SplashScreen.hideAsync().catch(() => undefined);
+    }
+  }, [appIsReady]);
+
+  if (!appIsReady)
+    return null;
+
+  if (bootError) {
+    return (
+      <View style={styles.errorContainer}>
+        <Text style={styles.errorTitle}>Unable to start app</Text>
+        <Text style={styles.errorMessage}>{bootError}</Text>
+      </View>
+    );
+  }
+
   return (
     <Providers>
       <Stack>
@@ -70,5 +110,24 @@ function Providers({ children }: { children: React.ReactNode }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  errorContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+    backgroundColor: '#FFFFFF',
+  },
+  errorTitle: {
+    marginBottom: 8,
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#111827',
+    textAlign: 'center',
+  },
+  errorMessage: {
+    fontSize: 14,
+    color: '#4B5563',
+    textAlign: 'center',
   },
 });

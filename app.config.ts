@@ -8,8 +8,7 @@ import 'tsx/cjs';
 // eslint-disable-next-line perfectionist/sort-imports
 import Env from './env';
 
-const EXPO_ACCOUNT_OWNER = 'obytes';
-const EAS_PROJECT_ID = 'c3e1075b-6fe7-4686-aa49-35b46a229044';
+require('dotenv').config({ path: require('node:path').resolve(__dirname, '.env') });
 
 const appIconBadgeConfig: AppIconBadgeConfig = {
   enabled: Env.EXPO_PUBLIC_APP_ENV !== 'production',
@@ -27,44 +26,58 @@ const appIconBadgeConfig: AppIconBadgeConfig = {
   ],
 };
 
-export default ({ config }: ConfigContext): ExpoConfig => ({
-  ...config,
-  name: Env.EXPO_PUBLIC_NAME,
-  description: `${Env.EXPO_PUBLIC_NAME} Mobile App`,
-  owner: EXPO_ACCOUNT_OWNER,
-  scheme: Env.EXPO_PUBLIC_SCHEME,
-  slug: 'obytesapp',
-  version: Env.EXPO_PUBLIC_VERSION.toString(),
-  orientation: 'portrait',
-  icon: './assets/icon.png',
-  userInterfaceStyle: 'automatic',
-  newArchEnabled: true,
-  updates: {
-    fallbackToCacheTimeout: 0,
-  },
-  assetBundlePatterns: ['**/*'],
-  ios: {
-    supportsTablet: true,
-    bundleIdentifier: Env.EXPO_PUBLIC_BUNDLE_ID,
-    infoPlist: {
-      ITSAppUsesNonExemptEncryption: false,
+function getBaseConfig(config: any) {
+  return {
+    ...config,
+    name: Env.EXPO_PUBLIC_NAME,
+    description: `${Env.EXPO_PUBLIC_NAME} Mobile App`,
+    owner: Env.APP_EXPO_OWNER,
+    scheme: Env.EXPO_PUBLIC_SCHEME,
+    slug: Env.APP_EXPO_SLUG,
+    version: Env.EXPO_PUBLIC_VERSION.toString(),
+    orientation: 'portrait',
+    icon: './assets/icon.png',
+    userInterfaceStyle: 'automatic',
+    newArchEnabled: true,
+    updates: {
+      fallbackToCacheTimeout: 0,
+      url: `https://u.expo.dev/${Env.APP_EAS_PROJECT_ID}`,
     },
-  },
-  experiments: {
-    typedRoutes: true,
-  },
-  android: {
-    adaptiveIcon: {
-      foregroundImage: './assets/adaptive-icon.png',
-      backgroundColor: '#2E3C4B',
+    runtimeVersion: {
+      policy: 'appVersion',
     },
-    package: Env.EXPO_PUBLIC_PACKAGE,
-  },
-  web: {
-    favicon: './assets/favicon.png',
-    bundler: 'metro',
-  },
-  plugins: [
+    experiments: {
+      typedRoutes: true,
+    },
+    assetBundlePatterns: ['**/*'],
+  };
+}
+
+function getPlatformConfig() {
+  return {
+    ios: {
+      supportsTablet: true,
+      bundleIdentifier: Env.EXPO_PUBLIC_BUNDLE_ID,
+      infoPlist: {
+        ITSAppUsesNonExemptEncryption: false,
+      },
+    },
+    android: {
+      adaptiveIcon: {
+        foregroundImage: './assets/adaptive-icon.png',
+        backgroundColor: '#2E3C4B',
+      },
+      package: Env.EXPO_PUBLIC_PACKAGE,
+    },
+    web: {
+      favicon: './assets/favicon.png',
+      bundler: 'metro',
+    },
+  };
+}
+
+function getPlugins() {
+  return [
     [
       'expo-splash-screen',
       {
@@ -115,10 +128,16 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     'expo-router',
     ['app-icon-badge', appIconBadgeConfig],
     ['react-native-edge-to-edge'],
-  ],
+  ];
+}
+
+export default ({ config }: ConfigContext): ExpoConfig => ({
+  ...getBaseConfig(config),
+  ...getPlatformConfig(),
+  plugins: getPlugins(),
   extra: {
     eas: {
-      projectId: EAS_PROJECT_ID,
+      projectId: Env.APP_EAS_PROJECT_ID,
     },
   },
 });

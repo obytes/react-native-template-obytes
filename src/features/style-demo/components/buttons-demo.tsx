@@ -15,7 +15,7 @@ export function Buttons() {
             label="small"
             loading
             size="sm"
-            className="mr-2 min-w-[60px]"
+            className="mr-2 min-w-15"
           />
           <Button
             label="small"
