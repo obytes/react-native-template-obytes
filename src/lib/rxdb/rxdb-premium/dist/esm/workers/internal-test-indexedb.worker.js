@@ -1,0 +1,1 @@
+import{getRxStorageIndexedDB as o}from"../plugins/storage-indexeddb/index.js";import{exposeWorkerRxStorage as e}from"../plugins/storage-worker/index.js";import{createRxDatabase as r}from"rxdb/plugins/core";var s=o({});async function t(){console.log("w: create 1");await r({name:"test",storage:s});console.log("w: create 2")}e({storage:s}),t();

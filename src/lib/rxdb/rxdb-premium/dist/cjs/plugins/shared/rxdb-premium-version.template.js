@@ -1,0 +1,1 @@
+Object.defineProperty(exports,"__esModule",{value:!0}),exports.RXDB_PREMIUM_VERSION=void 0;exports.RXDB_PREMIUM_VERSION="|PLACEHOLDER|";

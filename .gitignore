@@ -1,6 +1,7 @@
 node_modules/
 .expo/
 dist/
+!src/lib/rxdb/rxdb-premium/dist/
 npm-debug.*
 *.jks
 *.p8

@@ -1,0 +1,15 @@
+diff --git a/ios/ExpoNotifications/Notifications/DateComponentsSerializer.swift b/ios/ExpoNotifications/Notifications/DateComponentsSerializer.swift
+index 3d70480183d3491d6f432154be2b11575eab5b3a..e585fc52662c38578c978c0c26ddabd9748d7c94 100644
+--- a/ios/ExpoNotifications/Notifications/DateComponentsSerializer.swift
++++ b/ios/ExpoNotifications/Notifications/DateComponentsSerializer.swift
+@@ -5,9 +5,7 @@ class DateComponentsSerializer {
+     serializedComponents["calendar"] = dateComponents.calendar?.identifier ?? NSNull()
+     serializedComponents["timeZone"] = dateComponents.timeZone?.identifier ?? NSNull()
+     serializedComponents["isLeapMonth"] = dateComponents.isLeapMonth ?? false
+-    if #available(iOS 26.0, *) {
+-      serializedComponents["isRepeatedDay"] = dateComponents.isRepeatedDay ?? false
+-    }
++
+ 
+ 
+     let map = calendarUnitsConversionMap()

@@ -13,6 +13,12 @@ import { BiometricLockScreen } from '@/features/auth/components/biometric-lock-s
 import { useAuth, useBiometricLock } from '@/lib/auth';
 import { useIsFirstTime } from '@/lib/hooks/use-is-first-time';
 
+function RingIcon({ color }: { color?: string }) {
+  return (
+    <Text style={{ fontSize: 18, color: color ?? '#888' }}>💍</Text>
+  );
+}
+
 export default function TabLayout() {
   const { isHydrated, isAuthenticated, status, signOut } = useAuth();
   const [isFirstTime] = useIsFirstTime();
@@ -97,6 +103,15 @@ export default function TabLayout() {
           headerShown: false,
           tabBarIcon: ({ color }) => <SettingsIcon color={color} />,
           tabBarButtonTestID: 'settings-tab',
+        }}
+      />
+      <Tabs.Screen
+        name="ring-debug"
+        options={{
+          title: 'Ring',
+          headerShown: false,
+          tabBarIcon: ({ color }) => <RingIcon color={color} />,
+          tabBarButtonTestID: 'ring-debug-tab',
         }}
       />
     </Tabs>

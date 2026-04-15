@@ -1,0 +1,1 @@
+var e=require("../plugins/storage-opfs/index.js"),r=require("../plugins/storage-worker/index.js"),o=(0,e.getRxStorageOPFS)({jsonPositionSize:14});(0,r.exposeWorkerRxStorage)({storage:o});

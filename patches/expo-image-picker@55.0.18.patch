@@ -1,0 +1,27 @@
+diff --git a/ios/MediaHandler.swift b/ios/MediaHandler.swift
+index a0e3a442d55e63dcbad68dfd37dffc8a2d942572..9c3bf5749ed3bf2e62091ca70d221df404ce9603 100644
+--- a/ios/MediaHandler.swift
++++ b/ios/MediaHandler.swift
+@@ -296,20 +296,12 @@ internal struct MediaHandler {
+   }
+ 
+   private func getMimeType(from asset: PHAsset?, fileExtension: String) -> String? {
+-    let utType: UTType? = if #available(iOS 26.0, *) {
+-      asset?.contentType ?? UTType(filenameExtension: fileExtension)
+-    } else {
+-      UTType(filenameExtension: fileExtension)
+-    }
++    let utType: UTType? = UTType(filenameExtension: fileExtension)
+     return utType?.preferredMIMEType
+   }
+ 
+   private func getMimeType(from resource: PHAssetResource, fileExtension: String) -> String? {
+-    let utType: UTType? = if #available(iOS 26.0, *) {
+-      resource.contentType
+-    } else {
+-      UTType(resource.uniformTypeIdentifier) ?? UTType(filenameExtension: fileExtension)
+-    }
++    let utType: UTType? = UTType(resource.uniformTypeIdentifier) ?? UTType(filenameExtension: fileExtension)
+     return utType?.preferredMIMEType
+   }
+ 

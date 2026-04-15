@@ -1,0 +1,1 @@
+var e=require("../plugins/storage-indexeddb/index.js");(0,require("../plugins/storage-worker/index.js").exposeWorkerRxStorage)({storage:(0,e.getRxStorageIndexedDB)({})});

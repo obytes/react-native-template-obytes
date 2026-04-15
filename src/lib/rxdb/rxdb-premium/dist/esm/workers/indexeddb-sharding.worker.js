@@ -1,0 +1,1 @@
+import{getRxStorageIndexedDB as r}from"../plugins/storage-indexeddb/index.js";import{getRxStorageSharding as o}from"../plugins/storage-sharding/index.js";import{exposeWorkerRxStorage as s}from"../plugins/storage-worker/index.js";s({storage:o({storage:r({})})});

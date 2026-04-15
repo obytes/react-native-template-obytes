@@ -48,6 +48,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     bundleIdentifier: Env.EXPO_PUBLIC_BUNDLE_ID,
     infoPlist: {
       ITSAppUsesNonExemptEncryption: false,
+      NSBluetoothAlwaysUsageDescription: 'Allow ZivaOne to find and connect to your ZivaRing.',
+      NSBluetoothPeripheralUsageDescription: 'Allow ZivaOne to communicate with your ZivaRing.',
     },
     // Configure associated domains for universal links (if domain is set)
     ...(Env.EXPO_PUBLIC_ASSOCIATED_DOMAIN && {
@@ -144,6 +146,22 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         icon: './assets/notification-icon.png',
         color: '#FF6B35',
         sounds: [],
+      },
+    ],
+    ['@config-plugins/react-native-ble-plx', {
+      isBackgroundEnabled: true,
+      modes: ['peripheral', 'central'],
+      bluetoothAlwaysPermission: 'Allow ZivaOne to find and connect to your ZivaRing.'
+    }],
+    [
+      'expo-build-properties',
+      {
+        ios: {
+          deploymentTarget: '16.0',
+        },
+        android: {
+          minSdkVersion: 26,
+        },
       },
     ],
   ],

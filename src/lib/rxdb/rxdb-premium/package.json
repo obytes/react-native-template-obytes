@@ -1,0 +1,125 @@
+{
+  "name": "rxdb-premium",
+  "version": "15.8.1",
+  "private": false,
+  "description": "RxDB Premium",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pubkey/rxdb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pubkey/rxdb/issues"
+  },
+  "keywords": [
+    "rxdb"
+  ],
+  "author": "pubkey",
+  "homepage": "https://rxdb.info/premium",
+  "peerDependencies": {
+    "rxdb": "15.8.1",
+    "rxjs": "*"
+  },
+  "scripts": {},
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js",
+      "default": "./dist/esm/index.js"
+    },
+    "./plugins/shared": {
+      "types": "./dist/types/plugins/shared/index.d.ts",
+      "require": "./dist/cjs/plugins/shared/index.js",
+      "import": "./dist/esm/plugins/shared/index.js",
+      "default": "./dist/esm/plugins/shared/index.js"
+    },
+    "./plugins/storage-indexeddb": {
+      "types": "./dist/types/plugins/storage-indexeddb/index.d.ts",
+      "require": "./dist/cjs/plugins/storage-indexeddb/index.js",
+      "import": "./dist/esm/plugins/storage-indexeddb/index.js",
+      "default": "./dist/esm/plugins/storage-indexeddb/index.js"
+    },
+    "./plugins/storage-localstorage-meta-optimizer": {
+      "types": "./dist/types/plugins/storage-localstorage-meta-optimizer/index.d.ts",
+      "require": "./dist/cjs/plugins/storage-localstorage-meta-optimizer/index.js",
+      "import": "./dist/esm/plugins/storage-localstorage-meta-optimizer/index.js",
+      "default": "./dist/esm/plugins/storage-localstorage-meta-optimizer/index.js"
+    },
+    "./plugins/storage-memory-synced": {
+      "types": "./dist/types/plugins/storage-memory-synced/index.d.ts",
+      "require": "./dist/cjs/plugins/storage-memory-synced/index.js",
+      "import": "./dist/esm/plugins/storage-memory-synced/index.js",
+      "default": "./dist/esm/plugins/storage-memory-synced/index.js"
+    },
+    "./plugins/query-optimizer": {
+      "types": "./dist/types/plugins/query-optimizer/index.d.ts",
+      "require": "./dist/cjs/plugins/query-optimizer/index.js",
+      "import": "./dist/esm/plugins/query-optimizer/index.js",
+      "default": "./dist/esm/plugins/query-optimizer/index.js"
+    },
+    "./plugins/storage-sharding": {
+      "types": "./dist/types/plugins/storage-sharding/index.d.ts",
+      "require": "./dist/cjs/plugins/storage-sharding/index.js",
+      "import": "./dist/esm/plugins/storage-sharding/index.js",
+      "default": "./dist/esm/plugins/storage-sharding/index.js"
+    },
+    "./plugins/storage-sqlite": {
+      "types": "./dist/types/plugins/storage-sqlite/index.d.ts",
+      "require": "./dist/cjs/plugins/storage-sqlite/index.js",
+      "import": "./dist/esm/plugins/storage-sqlite/index.js",
+      "default": "./dist/esm/plugins/storage-sqlite/index.js"
+    },
+    "./plugins/storage-worker": {
+      "types": "./dist/types/plugins/storage-worker/index.d.ts",
+      "require": "./dist/cjs/plugins/storage-worker/index.js",
+      "import": "./dist/esm/plugins/storage-worker/index.js",
+      "default": "./dist/esm/plugins/storage-worker/index.js"
+    },
+    "./plugins/storage-opfs": {
+      "types": "./dist/types/plugins/storage-opfs/index.d.ts",
+      "require": "./dist/cjs/plugins/storage-opfs/index.js",
+      "import": "./dist/esm/plugins/storage-opfs/index.js",
+      "default": "./dist/esm/plugins/storage-opfs/index.js"
+    },
+    "./plugins/storage-abstract-filesystem": {
+      "types": "./dist/types/plugins/storage-abstract-filesystem/index.d.ts",
+      "require": "./dist/cjs/plugins/storage-abstract-filesystem/index.js",
+      "import": "./dist/esm/plugins/storage-abstract-filesystem/index.js",
+      "default": "./dist/esm/plugins/storage-abstract-filesystem/index.js"
+    },
+    "./plugins/storage-filesystem-node": {
+      "types": "./dist/types/plugins/storage-filesystem-node/index.d.ts",
+      "require": "./dist/cjs/plugins/storage-filesystem-node/index.js",
+      "import": "./dist/esm/plugins/storage-filesystem-node/index.js",
+      "default": "./dist/esm/plugins/storage-filesystem-node/index.js"
+    },
+    "./plugins/encryption-web-crypto": {
+      "types": "./dist/types/plugins/encryption-web-crypto/index.d.ts",
+      "require": "./dist/cjs/plugins/encryption-web-crypto/index.js",
+      "import": "./dist/esm/plugins/encryption-web-crypto/index.js",
+      "default": "./dist/esm/plugins/encryption-web-crypto/index.js"
+    },
+    "./plugins/logger": {
+      "types": "./dist/types/plugins/logger/index.d.ts",
+      "require": "./dist/cjs/plugins/logger/index.js",
+      "import": "./dist/esm/plugins/logger/index.js",
+      "default": "./dist/esm/plugins/logger/index.js"
+    },
+    "./plugins/source-code": {
+      "types": "./dist/types/plugins/source-code/index.d.ts",
+      "require": "./dist/cjs/plugins/source-code/index.js",
+      "import": "./dist/esm/plugins/source-code/index.js",
+      "default": "./dist/esm/plugins/source-code/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "array-push-at-sort-position": "4.0.1",
+    "async-test-util": "2.2.1",
+    "eth-crypto": "2.6.0",
+    "percom": "1.1.3",
+    "web-locks": "0.0.8",
+    "web-worker": "1.2.0"
+  }
+}

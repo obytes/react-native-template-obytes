@@ -1,0 +1,1 @@
+var e=require("rxdb/plugins/storage-memory"),r=require("../plugins/storage-worker/index.js"),o=(0,e.getRxStorageMemory)({});(0,r.exposeWorkerRxStorage)({storage:o});

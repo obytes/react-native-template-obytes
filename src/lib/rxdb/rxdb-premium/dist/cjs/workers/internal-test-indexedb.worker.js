@@ -1,0 +1,1 @@
+var e=require("../plugins/storage-indexeddb/index.js"),r=require("../plugins/storage-worker/index.js"),a=require("rxdb/plugins/core"),o=(0,e.getRxStorageIndexedDB)({});async function s(){console.log("w: create 1");await(0,a.createRxDatabase)({name:"test",storage:o});console.log("w: create 2")}(0,r.exposeWorkerRxStorage)({storage:o}),s();

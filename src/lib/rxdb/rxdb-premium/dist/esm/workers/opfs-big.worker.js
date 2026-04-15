@@ -1,0 +1,1 @@
+import{getRxStorageOPFS as o}from"../plugins/storage-opfs/index.js";import{exposeWorkerRxStorage as s}from"../plugins/storage-worker/index.js";s({storage:o({jsonPositionSize:14})});

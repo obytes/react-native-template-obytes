@@ -1,0 +1,1 @@
+import{getRxStorageIndexedDB as r}from"../plugins/storage-indexeddb/index.js";import{exposeWorkerRxStorage as e}from"../plugins/storage-worker/index.js";e({storage:r({})});

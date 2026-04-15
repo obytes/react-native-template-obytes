@@ -1,0 +1,1 @@
+var e=require("../plugins/storage-indexeddb/index.js"),r=require("../plugins/storage-sharding/index.js"),g=require("../plugins/storage-worker/index.js"),s=(0,r.getRxStorageSharding)({storage:(0,e.getRxStorageIndexedDB)({})});(0,g.exposeWorkerRxStorage)({storage:s});
