@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 
 import {
@@ -14,6 +15,11 @@ import { Cover } from './components/cover';
 export function OnboardingScreen() {
   const [_, setIsFirstTime] = useIsFirstTime();
   const router = useRouter();
+
+  React.useEffect(() => {
+    SplashScreen.hideAsync();
+  }, []);
+
   return (
     <View className="flex h-full items-center justify-center">
       <FocusAwareStatusBar />

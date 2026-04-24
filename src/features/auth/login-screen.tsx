@@ -1,5 +1,6 @@
 import type { LoginFormProps } from './components/login-form';
 import { useRouter } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 
 import * as React from 'react';
 import { FocusAwareStatusBar } from '@/components/ui';
@@ -9,6 +10,10 @@ import { useAuthStore } from './use-auth-store';
 export function LoginScreen() {
   const router = useRouter();
   const signIn = useAuthStore.use.signIn();
+
+  React.useEffect(() => {
+    SplashScreen.hideAsync();
+  }, []);
 
   const onSubmit: LoginFormProps['onSubmit'] = (data) => {
     console.log(data);
