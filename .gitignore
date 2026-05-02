@@ -1,3 +1,8 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
 node_modules/
 .expo/
 dist/
@@ -21,3 +26,5 @@ yarn-error.log
 
 expo-env.d.ts
 # @end expo-cli
+
+.env
