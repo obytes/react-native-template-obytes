@@ -3,11 +3,15 @@ import * as React from 'react';
 
 import { createDatabase } from './client';
 import { runMigrations } from './migrations';
+import { AccountRepository } from './repositories/account';
+import { AccountCategoryRepository } from './repositories/account-category';
 import { BudgetRepository } from './repositories/budget';
 import { BudgetCategoryRepository } from './repositories/budget-category';
 import { TransactionRepository } from './repositories/transaction';
 
 type DatabaseContextValue = {
+  accountCategories: AccountCategoryRepository;
+  accounts: AccountRepository;
   budgetCategories: BudgetCategoryRepository;
   budgets: BudgetRepository;
   transactions: TransactionRepository;
@@ -25,6 +29,8 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
     runMigrations(db)
       .then(() => {
         setRepositories({
+          accountCategories: new AccountCategoryRepository(db),
+          accounts: new AccountRepository(db),
           budgetCategories: new BudgetCategoryRepository(db),
           budgets: new BudgetRepository(db),
           transactions: new TransactionRepository(db),
