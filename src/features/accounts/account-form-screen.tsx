@@ -24,15 +24,7 @@ const STATUS_OPTIONS = [
 ];
 
 type Props = { accountId?: string };
-
-function useAccountFormSetup(accountId?: string) {
-  const { accounts, accountCategories } = useDatabase();
-  const isEdit = !!accountId;
-  const existing = accountId ? accounts.findById(accountId) : undefined;
-  const categories: AccountCategory[] = accountCategories.findAll();
-  const categoryOptions = categories.map(c => ({ label: c.name, value: c.id }));
-  return { accounts, isEdit, existing, categories, categoryOptions };
-}
+type CategoryOption = { label: string; value: string };
 
 function NoCategoriesView({ onPress }: { onPress: () => void }) {
   return (
@@ -45,11 +37,11 @@ function NoCategoriesView({ onPress }: { onPress: () => void }) {
   );
 }
 
-export function AccountFormScreen({ accountId }: Props) {
-  const router = useRouter();
-  const { accounts, isEdit, existing, categories, categoryOptions } = useAccountFormSetup(accountId);
-
-  const form = useForm({
+function useAccountForm(accountId: string | undefined, onDone: () => void) {
+  const { accounts } = useDatabase();
+  const isEdit = !!accountId;
+  const existing = accountId ? accounts.findById(accountId) : undefined;
+  return useForm({
     defaultValues: {
       name: existing?.name ?? '',
       accountCategoryId: existing?.accountCategoryId ?? '',
@@ -75,14 +67,35 @@ export function AccountFormScreen({ accountId }: Props) {
           accounts.create(data);
           showMessage({ message: 'Cuenta creada', type: 'success' });
         }
-        router.back();
+        onDone();
       }
       catch {
         showErrorMessage('Error al guardar la cuenta');
       }
     },
   });
+}
 
+function FormFields({ form, categoryOptions, isEdit }: { form: ReturnType<typeof useAccountForm>; categoryOptions: CategoryOption[]; isEdit: boolean }) {
+  return (
+    <View className="flex-1 p-4">
+      <form.Field name="name" children={field => <Input label="Nombre" value={field.state.value} onBlur={field.handleBlur} onChangeText={field.handleChange} error={getFieldError(field)} />} />
+      <form.Field name="accountCategoryId" children={field => <Select label="Categoría" value={field.state.value} options={categoryOptions} onSelect={val => field.handleChange(String(val))} error={getFieldError(field)} />} />
+      <form.Field name="initialBalance" children={field => <Input label="Saldo inicial" keyboardType="decimal-pad" value={field.state.value} onBlur={field.handleBlur} onChangeText={field.handleChange} error={getFieldError(field)} />} />
+      <form.Field name="currentBalance" children={field => <Input label="Saldo actual" keyboardType="decimal-pad" value={field.state.value} onBlur={field.handleBlur} onChangeText={field.handleChange} error={getFieldError(field)} />} />
+      <form.Field name="status" children={field => <Select label="Estado" value={field.state.value} options={STATUS_OPTIONS} onSelect={val => field.handleChange(val as 'active' | 'inactive')} error={getFieldError(field)} />} />
+      <form.Subscribe selector={state => [state.isSubmitting]} children={([isSubmitting]) => <Button label={isEdit ? 'Actualizar cuenta' : 'Guardar cuenta'} loading={isSubmitting} onPress={form.handleSubmit} />} />
+    </View>
+  );
+}
+
+export function AccountFormScreen({ accountId }: Props) {
+  const router = useRouter();
+  const { accountCategories } = useDatabase();
+  const isEdit = !!accountId;
+  const categories: AccountCategory[] = accountCategories.findAll();
+  const categoryOptions = categories.map(c => ({ label: c.name, value: c.id }));
+  const form = useAccountForm(accountId, () => router.back());
   const title = isEdit ? 'Editar Cuenta' : 'Nueva Cuenta';
 
   if (categories.length === 0) {
@@ -97,19 +110,7 @@ export function AccountFormScreen({ accountId }: Props) {
   return (
     <>
       <Stack.Screen options={{ title }} />
-      <View className="flex-1 p-4">
-        <form.Field name="name" children={(f: any) => <Input label="Nombre" value={f.state.value} onBlur={f.handleBlur} onChangeText={f.handleChange} error={getFieldError(f)} />} />
-        <form.Field name="accountCategoryId" children={(f: any) => <Select label="Categoría" value={f.state.value} options={categoryOptions} onSelect={(v: any) => f.handleChange(String(v))} error={getFieldError(f)} />} />
-        <form.Field name="initialBalance" children={(f: any) => <Input label="Saldo inicial" keyboardType="decimal-pad" value={f.state.value} onBlur={f.handleBlur} onChangeText={f.handleChange} error={getFieldError(f)} />} />
-        <form.Field name="currentBalance" children={(f: any) => <Input label="Saldo actual" keyboardType="decimal-pad" value={f.state.value} onBlur={f.handleBlur} onChangeText={f.handleChange} error={getFieldError(f)} />} />
-        <form.Field name="status" children={(f: any) => <Select label="Estado" value={f.state.value} options={STATUS_OPTIONS} onSelect={(v: any) => f.handleChange(v as 'active' | 'inactive')} error={getFieldError(f)} />} />
-        <form.Subscribe
-          selector={(s: any) => [s.isSubmitting]}
-          children={(s: any) => (
-            <Button label={isEdit ? 'Actualizar cuenta' : 'Guardar cuenta'} loading={s[0]} onPress={form.handleSubmit} />
-          )}
-        />
-      </View>
+      <FormFields form={form} categoryOptions={categoryOptions} isEdit={isEdit} />
     </>
   );
 }
