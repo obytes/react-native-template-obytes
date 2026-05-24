@@ -1,5 +1,6 @@
 import { real, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
+import { accounts } from './account';
 import { budgets } from './budget';
 
 export const transactions = sqliteTable('transaction', {
@@ -7,6 +8,9 @@ export const transactions = sqliteTable('transaction', {
   budgetId: text('budget_id')
     .notNull()
     .references(() => budgets.id, { onDelete: 'cascade' }),
+  accountId: text('account_id')
+    .notNull()
+    .references(() => accounts.id, { onDelete: 'cascade' }),
   title: text('title').notNull(),
   amount: real('amount').notNull(),
   notes: text('notes'),
