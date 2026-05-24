@@ -16,6 +16,7 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "nativewind-env.d.ts",
+    "sql-modules.d.ts",
     "env.ts"
   ],
   "exclude": [
