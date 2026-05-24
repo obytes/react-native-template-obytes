@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 // src/lib/database/provider.tsx
 import * as React from 'react';
 
@@ -25,20 +26,28 @@ export function DatabaseProvider({ children }: { children: React.ReactNode }) {
   const [error, setError] = React.useState<Error | null>(null);
 
   React.useEffect(() => {
+    let cancelled = false;
     const db = createDatabase();
     runMigrations(db)
       .then(() => {
-        setRepositories({
-          accountCategories: new AccountCategoryRepository(db),
-          accounts: new AccountRepository(db),
-          budgetCategories: new BudgetCategoryRepository(db),
-          budgets: new BudgetRepository(db),
-          transactions: new TransactionRepository(db),
-        });
+        if (!cancelled) {
+          setRepositories({
+            accountCategories: new AccountCategoryRepository(db),
+            accounts: new AccountRepository(db),
+            budgetCategories: new BudgetCategoryRepository(db),
+            budgets: new BudgetRepository(db),
+            transactions: new TransactionRepository(db),
+          });
+        }
       })
       .catch((err: unknown) => {
-        setError(err instanceof Error ? err : new Error(String(err)));
+        if (!cancelled) {
+          setError(err instanceof Error ? err : new Error(String(err)));
+        }
       });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   if (error)
