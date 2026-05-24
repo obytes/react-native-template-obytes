@@ -10,7 +10,7 @@ import { useMMKVString } from 'react-native-mmkv';
 import RNRestart from 'react-native-restart';
 import { storage } from '../storage';
 
-type DefaultLocale = typeof resources.en.translation;
+type DefaultLocale = typeof resources.es.translation;
 export type TxKeyPath = RecursiveKeyOf<DefaultLocale>;
 
 export const LOCAL = 'local';
