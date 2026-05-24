@@ -1,4 +1,5 @@
 import Env from 'env';
+import { useRouter } from 'expo-router';
 import { useUniwind } from 'uniwind';
 
 import {
@@ -18,18 +19,26 @@ import { ThemeItem } from './components/theme-item';
 
 export function SettingsScreen() {
   const signOut = useAuth.use.signOut();
+  const router = useRouter();
   const { theme } = useUniwind();
   const iconColor
     = theme === 'dark' ? colors.neutral[400] : colors.neutral[500];
   return (
     <>
       <FocusAwareStatusBar />
-
       <ScrollView>
         <View className="flex-1 px-4 pt-16">
           <Text className="text-xl font-bold">
             {translate('settings.title')}
           </Text>
+
+          <SettingsContainer title="settings.finances">
+            <SettingsItem
+              text="settings.accounts"
+              onPress={() => router.push('/cuentas')}
+            />
+          </SettingsContainer>
+
           <SettingsContainer title="settings.generale">
             <LanguageItem />
             <ThemeItem />

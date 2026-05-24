@@ -62,6 +62,13 @@ export default function TabLayout() {
           tabBarButtonTestID: 'settings-tab',
         }}
       />
+      <Tabs.Screen
+        name="cuentas"
+        options={{
+          href: null,
+          headerShown: false,
+        }}
+      />
     </Tabs>
   );
 }
