@@ -111,7 +111,7 @@ src/app/(app)/
 
 Formulario con `@tanstack/react-form` + Zod:
 - **Nombre** (Input, requerido)
-- **Categoría** (Select con opciones de `account_category`, requerido)
+- **Categoría** (Select con opciones de `account_category`, requerido. Si no hay categorías creadas, mostrar mensaje "Primero crea una categoría" con link a `/cuentas/categorias/nueva`)
 - **Saldo inicial** (Input numérico, requerido, default 0)
 - **Saldo actual** (Input numérico, requerido, default igual al inicial)
 - **Estado** (Select: Activa / Inactiva, requerido)
@@ -154,7 +154,8 @@ El formulario existente de nueva transacción recibe un campo adicional:
 
 1. `DatabaseProvider` expone `accountCategories` y `accounts`
 2. Las pantallas llaman a `useDatabase()` para acceder a los repositorios directamente (mismo patrón que el resto del proyecto)
-3. `currentBalance` se actualiza manualmente desde el formulario de edición; en el futuro puede calcularse automáticamente desde transacciones
+3. `_shared/types.ts` se actualiza para exportar `AccountCategory`, `NewAccountCategory`, `Account`, `NewAccount`
+4. `currentBalance` se actualiza manualmente desde el formulario de edición; en el futuro puede calcularse automáticamente desde transacciones
 
 ---
 
