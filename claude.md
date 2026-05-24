@@ -27,7 +27,7 @@ src/
 │   ├── hooks/        # Shared hooks
 │   ├── i18n/         # Internationalization
 │   └── storage.tsx   # MMKV key-value storage
-├── translations/     # i18n files (en.json, ar.json - both use Spanish; only Spanish supported for now)
+├── translations/     # i18n files (es.json = active Spanish; en.json/ar.json exist but are not maintained)
 └── global.css        # TailwindCSS configuration
 
 Root Files:
@@ -122,9 +122,10 @@ pnpm build:production:ios       # EAS production build
 
 ## How: Language
 
-- The app uses **Spanish only**. Both `src/translations/en.json` and `src/translations/ar.json` contain Spanish strings (the i18n infrastructure is kept so the system works regardless of device locale).
-- All UI labels, messages, screen titles and form fields should be written in **Spanish**.
-- Do not add English or Arabic strings to translation files.
+- The app uses **Spanish only** (`src/translations/es.json` is the active file and the `TxKeyPath` type source).
+- `en.json` and `ar.json` exist but are **not maintained** — do not modify them.
+- All new translation keys go into `es.json` only.
+- All UI labels, messages, screen titles and form fields must be in **Spanish**.
 
 ## How: Essential Rules
 
