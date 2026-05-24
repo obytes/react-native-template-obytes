@@ -2,9 +2,11 @@
   "onboarding": { "message": "Bienvenido a la app" },
   "settings": {
     "about": "Acerca de",
+    "accounts": "Cuentas",
     "app_name": "Nombre de la app",
     "arabic": "Árabe",
     "english": "Inglés",
+    "finances": "Finanzas",
     "generale": "General",
     "github": "Github",
     "language": "Idioma",

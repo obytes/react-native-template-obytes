@@ -4,9 +4,11 @@
   },
   "settings": {
     "about": "About",
+    "accounts": "Accounts",
     "app_name": "App Name",
     "arabic": "Arabic",
     "english": "English",
+    "finances": "Finances",
     "generale": "General",
     "github": "Github",
     "language": "Language",
