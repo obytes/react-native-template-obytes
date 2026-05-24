@@ -23,7 +23,7 @@ jest.mock('drizzle-orm/expo-sqlite/migrator', () => ({
 }));
 
 jest.mock('@/lib/database/migrations', () => ({
-  runMigrations: jest.fn(),
+  runMigrations: jest.fn(() => Promise.resolve()),
 }));
 
 describe('databaseProvider', () => {

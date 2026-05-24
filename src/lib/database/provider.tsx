@@ -18,17 +18,25 @@ const DatabaseContext = React.createContext<DatabaseContextValue | null>(null);
 export function DatabaseProvider({ children }: { children: React.ReactNode }) {
   const [repositories, setRepositories]
     = React.useState<DatabaseContextValue | null>(null);
+  const [error, setError] = React.useState<Error | null>(null);
 
   React.useEffect(() => {
     const db = createDatabase();
-    runMigrations(db);
-    setRepositories({
-      budgetCategories: new BudgetCategoryRepository(db),
-      budgets: new BudgetRepository(db),
-      transactions: new TransactionRepository(db),
-    });
+    runMigrations(db)
+      .then(() => {
+        setRepositories({
+          budgetCategories: new BudgetCategoryRepository(db),
+          budgets: new BudgetRepository(db),
+          transactions: new TransactionRepository(db),
+        });
+      })
+      .catch((err: unknown) => {
+        setError(err instanceof Error ? err : new Error(String(err)));
+      });
   }, []);
 
+  if (error)
+    throw error;
   if (!repositories)
     return null;
 
