@@ -38,6 +38,7 @@
     "lint:fix": "eslint . --fix",
     "type-check": "tsc --noemit",
     "lint:translations": "eslint ./src/translations/ --fix --ext .json",
+    "db:generate": "drizzle-kit generate",
     "test": "jest",
     "check-all": "pnpm run lint && pnpm run type-check && pnpm run lint:translations && pnpm run test",
     "test:ci": "pnpm run test --coverage",
