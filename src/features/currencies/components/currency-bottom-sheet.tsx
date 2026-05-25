@@ -239,6 +239,7 @@ export function CurrencyBottomSheet({ currency, defaultCurrency, onAction, sheet
     }
     return (
       <EnabledCurrencyContent
+        key={currency.id}
         currency={currency}
         defaultCurrency={defaultCurrency}
         onSetDefault={handleSetDefault}
