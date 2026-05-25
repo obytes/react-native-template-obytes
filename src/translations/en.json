@@ -1,4 +1,24 @@
 {
+  "currencies": {
+    "account_currency_label": "Moneda",
+    "default_badge": "PRINCIPAL",
+    "default_info": "Esta es la moneda principal. El tipo de cambio siempre es 1.",
+    "disable": "Deshabilitar moneda",
+    "disable_blocked": "No se puede deshabilitar: {{count}} cuenta(s) la usan.",
+    "disabled_badge": "Deshabilitada",
+    "enable": "Habilitar moneda",
+    "enabled_badge": "Habilitada",
+    "exchange_rate_hint": "1 {{default}} equivale a",
+    "exchange_rate_label": "Tipo de cambio",
+    "rate_saved": "Tipo de cambio actualizado",
+    "save_rate": "Guardar tipo de cambio",
+    "section_available": "DISPONIBLES",
+    "section_enabled": "HABILITADAS",
+    "set_default": "Establecer como moneda principal",
+    "set_default_confirm_message": "¿Establecer {{code}} como moneda principal? Los totales de activos y pasivos se mostrarán en esta moneda.",
+    "set_default_confirm_title": "Cambiar moneda principal",
+    "title": "Monedas"
+  },
   "onboarding": {
     "message": "Welcome to obytes app site"
   },
@@ -7,6 +27,7 @@
     "accounts": "Accounts",
     "app_name": "App Name",
     "arabic": "Arabic",
+    "currencies": "Monedas",
     "english": "English",
     "finances": "Finances",
     "generale": "General",
