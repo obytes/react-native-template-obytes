@@ -13,7 +13,7 @@ import { useDatabase } from '@/lib/database/provider';
 const schema = z.object({
   name: z.string().min(1, 'Nombre requerido'),
   accountCategoryId: z.string().min(1, 'Categoría requerida'),
-  currencyId: z.string().min(1, 'Moneda requerida'),
+  currencyId: z.string(),
   initialBalance: z.coerce.number(),
   currentBalance: z.coerce.number(),
   status: z.enum(['active', 'inactive']),
@@ -46,7 +46,7 @@ function useAccountForm(accountId: string | undefined, onDone: () => void) {
     defaultValues: {
       name: existing?.name ?? '',
       accountCategoryId: existing?.accountCategoryId ?? '',
-      currencyId: existing?.currencyId ?? '',
+      currencyId: existing?.currencyId ?? '00000000-0000-0000-0000-000000000010',
       initialBalance: String(existing?.initialBalance ?? 0),
       currentBalance: String(existing?.currentBalance ?? 0),
       status: (existing?.status ?? 'active') as 'active' | 'inactive',
