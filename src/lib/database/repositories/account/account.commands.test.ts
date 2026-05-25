@@ -29,6 +29,7 @@ describe('createAccount', () => {
     const db = makeMockChain({ getResult: sampleAccount });
     const result = createAccount(db, {
       accountCategoryId: 'cat-1',
+      currencyId: 'curr-1',
       name: 'BBVA',
       initialBalance: 8000,
       currentBalance: 8500,
@@ -42,6 +43,7 @@ describe('createAccount', () => {
     expect(() =>
       createAccount(db, {
         accountCategoryId: 'cat-1',
+        currencyId: 'curr-1',
         name: 'BBVA',
         initialBalance: 0,
         currentBalance: 0,

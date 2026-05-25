@@ -1,4 +1,4 @@
-import type { accountCategories, accounts, budgetCategories, budgets, transactions } from '../../schema';
+import type { accountCategories, accounts, budgetCategories, budgets, currencies, transactions } from '../../schema';
 
 export type { DrizzleDB } from '../../client';
 
@@ -16,3 +16,6 @@ export type NewAccountCategory = typeof accountCategories.$inferInsert;
 
 export type Account = typeof accounts.$inferSelect;
 export type NewAccount = typeof accounts.$inferInsert;
+
+export type Currency = typeof currencies.$inferSelect;
+export type NewCurrency = typeof currencies.$inferInsert;
