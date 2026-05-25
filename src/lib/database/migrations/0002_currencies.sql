@@ -26,4 +26,4 @@ INSERT INTO `currency` (`id`, `code`, `name`, `symbol`, `exchange_rate`, `is_ena
 	('00000000-0000-0000-0000-000000000014', 'HNL', 'Lempira Hondureño', 'L', 1.0, 0, 0, '2026-01-01T00:00:00.000Z'),
 	('00000000-0000-0000-0000-000000000015', 'NIO', 'Córdoba Nicaragüense', 'C$', 1.0, 0, 0, '2026-01-01T00:00:00.000Z');
 --> statement-breakpoint
-ALTER TABLE `account` ADD COLUMN `currency_id` text NOT NULL DEFAULT '00000000-0000-0000-0000-000000000010';
+ALTER TABLE `account` ADD COLUMN `currency_id` text NOT NULL DEFAULT '00000000-0000-0000-0000-000000000010' REFERENCES `currency`(`id`);
