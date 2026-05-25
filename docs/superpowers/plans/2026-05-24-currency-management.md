@@ -146,145 +146,52 @@ El archivo completo resultante de `src/translations/es.json`:
 }
 ```
 
-- [ ] **Step 2: Actualizar en.json**
+- [ ] **Step 2: Agregar las mismas claves en español a en.json y ar.json**
 
-Reemplazar `src/translations/en.json` con:
+Las traducciones de monedas solo existen en español. Para satisfacer el sistema de tipos (`TxKeyPath` se infiere de los tres archivos), las mismas claves en español se añaden como fallback a en.json y ar.json. Solo se agregan las claves de `currencies` y `settings.currencies` — el resto del archivo se mantiene igual.
+
+Agregar al final del objeto raíz de `src/translations/en.json`, después de `"settings"`:
 
 ```json
-{
-  "onboarding": {
-    "message": "Welcome to obytes app site"
-  },
-  "settings": {
-    "about": "About",
-    "accounts": "Accounts",
-    "app_name": "App Name",
-    "arabic": "Arabic",
-    "currencies": "Currencies",
-    "english": "English",
-    "finances": "Finances",
-    "generale": "General",
-    "github": "Github",
-    "language": "Language",
-    "links": "Links",
-    "logout": "Logout",
-    "more": "More",
-    "privacy": "Privacy Policy",
-    "rate": "Rate",
-    "share": "Share",
-    "support": "Support",
-    "support_us": "Support Us",
-    "terms": "Terms of Service",
-    "theme": {
-      "dark": "Dark",
-      "light": "Light",
-      "system": "System",
-      "title": "Theme"
-    },
-    "title": "Settings",
-    "version": "Version",
-    "website": "Website"
-  },
-  "currencies": {
-    "title": "Currencies",
-    "section_enabled": "ENABLED",
-    "section_available": "AVAILABLE",
-    "default_badge": "DEFAULT",
-    "enabled_badge": "Enabled",
-    "disabled_badge": "Disabled",
-    "exchange_rate_label": "Exchange rate",
-    "exchange_rate_hint": "1 {{default}} equals",
-    "save_rate": "Save exchange rate",
-    "set_default": "Set as main currency",
-    "set_default_confirm_title": "Change main currency",
-    "set_default_confirm_message": "Set {{code}} as main currency? Asset and liability totals will be shown in this currency.",
-    "disable": "Disable currency",
-    "enable": "Enable currency",
-    "disable_blocked": "Cannot disable: {{count}} account(s) use it.",
-    "default_info": "This is the main currency. Exchange rate is always 1.",
-    "account_currency_label": "Currency",
-    "rate_saved": "Exchange rate updated"
-  },
-  "welcome": "Welcome to obytes app site"
+"currencies": {
+  "title": "Monedas",
+  "section_enabled": "HABILITADAS",
+  "section_available": "DISPONIBLES",
+  "default_badge": "PRINCIPAL",
+  "enabled_badge": "Habilitada",
+  "disabled_badge": "Deshabilitada",
+  "exchange_rate_label": "Tipo de cambio",
+  "exchange_rate_hint": "1 {{default}} equivale a",
+  "save_rate": "Guardar tipo de cambio",
+  "set_default": "Establecer como moneda principal",
+  "set_default_confirm_title": "Cambiar moneda principal",
+  "set_default_confirm_message": "¿Establecer {{code}} como moneda principal? Los totales de activos y pasivos se mostrarán en esta moneda.",
+  "disable": "Deshabilitar moneda",
+  "enable": "Habilitar moneda",
+  "disable_blocked": "No se puede deshabilitar: {{count}} cuenta(s) la usan.",
+  "default_info": "Esta es la moneda principal. El tipo de cambio siempre es 1.",
+  "account_currency_label": "Moneda",
+  "rate_saved": "Tipo de cambio actualizado"
 }
 ```
 
-- [ ] **Step 3: Actualizar ar.json**
+También agregar `"currencies": "Monedas"` dentro del objeto `"settings"` de en.json.
 
-Reemplazar `src/translations/ar.json` con:
+Hacer lo mismo en `src/translations/ar.json` (mismas claves y valores en español).
 
-```json
-{
-  "onboarding": {
-    "message": "مرحبا بكم في موقع تطبيق obytes"
-  },
-  "settings": {
-    "about": "حول التطبيق ",
-    "accounts": "الحسابات",
-    "app_name": "اسم التطبيق",
-    "arabic": "عربي",
-    "currencies": "العملات",
-    "english": "إنجليزي",
-    "finances": "المالية",
-    "generale": "عام",
-    "github": "جيثب",
-    "language": "لغة",
-    "links": "الروابط",
-    "logout": "تسجيل خروج",
-    "more": "أكثر",
-    "privacy": "سياسة الخصوصية",
-    "rate": "تقييم",
-    "share": "شارك",
-    "support": "الدعم",
-    "support_us": "ادعمنا",
-    "terms": "شروط الخدمة",
-    "theme": {
-      "dark": "مظلم",
-      "light": "خفيفة",
-      "system": "System",
-      "title": "سمة"
-    },
-    "title": "إعدادات",
-    "version": "إصدار",
-    "website": "موقع الكتروني"
-  },
-  "currencies": {
-    "title": "العملات",
-    "section_enabled": "مفعّلة",
-    "section_available": "متاحة",
-    "default_badge": "افتراضية",
-    "enabled_badge": "مفعّلة",
-    "disabled_badge": "معطّلة",
-    "exchange_rate_label": "سعر الصرف",
-    "exchange_rate_hint": "1 {{default}} يساوي",
-    "save_rate": "حفظ سعر الصرف",
-    "set_default": "تعيين كعملة رئيسية",
-    "set_default_confirm_title": "تغيير العملة الرئيسية",
-    "set_default_confirm_message": "تعيين {{code}} كعملة رئيسية؟",
-    "disable": "تعطيل العملة",
-    "enable": "تفعيل العملة",
-    "disable_blocked": "لا يمكن التعطيل: {{count}} حساب(ات) تستخدمها.",
-    "default_info": "هذه هي العملة الرئيسية. سعر الصرف دائمًا 1.",
-    "account_currency_label": "العملة",
-    "rate_saved": "تم تحديث سعر الصرف"
-  },
-  "welcome": "test arabic"
-}
-```
-
-- [ ] **Step 4: Verificar type-check**
+- [ ] **Step 3: Verificar type-check**
 
 ```bash
 pnpm type-check
 ```
 
-Expected: sin errores (las claves nuevas se agregan automáticamente al tipo `TxKeyPath` inferido de los JSON).
+Expected: sin errores.
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 4: Commit**
 
 ```bash
 git add src/translations/es.json src/translations/en.json src/translations/ar.json
-git commit -m "feat(i18n): add currency management translation keys"
+git commit -m "feat(i18n): add currency management translation keys (es only)"
 ```
 
 ---
@@ -415,7 +322,7 @@ CREATE TABLE `currency` (
 );
 --> statement-breakpoint
 INSERT INTO `currency` (`id`, `code`, `name`, `symbol`, `exchange_rate`, `is_enabled`, `is_default`, `created_at`) VALUES
-	('00000000-0000-0000-0000-000000000001', 'USD', 'Dólar Estadounidense', '$', 1.0, 1, 1, '2026-01-01T00:00:00.000Z'),
+	('00000000-0000-0000-0000-000000000001', 'USD', 'Dólar Estadounidense', '$', 1.0, 0, 0, '2026-01-01T00:00:00.000Z'),
 	('00000000-0000-0000-0000-000000000002', 'EUR', 'Euro', '€', 1.0, 0, 0, '2026-01-01T00:00:00.000Z'),
 	('00000000-0000-0000-0000-000000000003', 'MXN', 'Peso Mexicano', '$', 1.0, 0, 0, '2026-01-01T00:00:00.000Z'),
 	('00000000-0000-0000-0000-000000000004', 'GTQ', 'Quetzal Guatemalteco', 'Q', 1.0, 0, 0, '2026-01-01T00:00:00.000Z'),
@@ -424,14 +331,14 @@ INSERT INTO `currency` (`id`, `code`, `name`, `symbol`, `exchange_rate`, `is_ena
 	('00000000-0000-0000-0000-000000000007', 'BRL', 'Real Brasileño', 'R$', 1.0, 0, 0, '2026-01-01T00:00:00.000Z'),
 	('00000000-0000-0000-0000-000000000008', 'CLP', 'Peso Chileno', '$', 1.0, 0, 0, '2026-01-01T00:00:00.000Z'),
 	('00000000-0000-0000-0000-000000000009', 'PEN', 'Sol Peruano', 'S/', 1.0, 0, 0, '2026-01-01T00:00:00.000Z'),
-	('00000000-0000-0000-0000-000000000010', 'BOB', 'Boliviano', 'Bs.', 1.0, 0, 0, '2026-01-01T00:00:00.000Z'),
+	('00000000-0000-0000-0000-000000000010', 'BOB', 'Boliviano', 'Bs.', 1.0, 1, 1, '2026-01-01T00:00:00.000Z'),
 	('00000000-0000-0000-0000-000000000011', 'PYG', 'Guaraní Paraguayo', '₲', 1.0, 0, 0, '2026-01-01T00:00:00.000Z'),
 	('00000000-0000-0000-0000-000000000012', 'UYU', 'Peso Uruguayo', '$', 1.0, 0, 0, '2026-01-01T00:00:00.000Z'),
 	('00000000-0000-0000-0000-000000000013', 'CRC', 'Colón Costarricense', '₡', 1.0, 0, 0, '2026-01-01T00:00:00.000Z'),
 	('00000000-0000-0000-0000-000000000014', 'HNL', 'Lempira Hondureño', 'L', 1.0, 0, 0, '2026-01-01T00:00:00.000Z'),
 	('00000000-0000-0000-0000-000000000015', 'NIO', 'Córdoba Nicaragüense', 'C$', 1.0, 0, 0, '2026-01-01T00:00:00.000Z');
 --> statement-breakpoint
-ALTER TABLE `account` ADD COLUMN `currency_id` text NOT NULL DEFAULT '00000000-0000-0000-0000-000000000001';
+ALTER TABLE `account` ADD COLUMN `currency_id` text NOT NULL DEFAULT '00000000-0000-0000-0000-000000000010';
 ```
 
 - [ ] **Step 2: Actualizar `src/lib/database/migrations/meta/_journal.json`**

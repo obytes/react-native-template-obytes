@@ -52,11 +52,11 @@ Agregar columna `currency_id` (FK → currency, NOT NULL).
 ALTER TABLE account ADD COLUMN currency_id TEXT NOT NULL REFERENCES currency(id);
 ```
 
-> Nota: SQLite no soporta `ADD COLUMN ... NOT NULL` sin default en tablas existentes. La migración debe proveer un valor default para filas existentes. Se usará el `id` de la moneda habilitada por defecto (USD) como valor inicial, insertado en la misma migración.
+> Nota: SQLite no soporta `ADD COLUMN ... NOT NULL` sin default en tablas existentes. La migración debe proveer un valor default para filas existentes. Se usará el `id` de BOB (`'00000000-0000-0000-0000-000000000010'`) como valor initial, insertado en la misma migración.
 
 ### Monedas pre-pobladas (migración)
 
-Las siguientes monedas se insertan todas con `is_enabled = 0`, excepto USD que se inserta con `is_enabled = 1, is_default = 1`:
+Las siguientes monedas se insertan todas con `is_enabled = 0`, excepto **BOB** que se inserta con `is_enabled = 1, is_default = 1` (moneda por defecto del sistema):
 
 | Code | Nombre | Símbolo |
 |------|--------|---------|
