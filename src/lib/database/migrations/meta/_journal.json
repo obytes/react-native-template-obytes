@@ -15,6 +15,13 @@
       "when": 1779656147000,
       "tag": "0001_accounts",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1779674897000,
+      "tag": "0002_currencies",
+      "breakpoints": true
     }
   ]
 }
