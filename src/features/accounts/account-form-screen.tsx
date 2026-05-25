@@ -1,4 +1,4 @@
-import type { AccountCategory } from '@/lib/database/repositories/_shared/types';
+import type { AccountCategory, Currency } from '@/lib/database/repositories/_shared/types';
 
 import { useForm } from '@tanstack/react-form';
 import { Stack, useRouter } from 'expo-router';
@@ -13,7 +13,7 @@ import { useDatabase } from '@/lib/database/provider';
 const schema = z.object({
   name: z.string().min(1, 'Nombre requerido'),
   accountCategoryId: z.string().min(1, 'Categoría requerida'),
-  currencyId: z.string(),
+  currencyId: z.string().min(1, 'Moneda requerida'),
   initialBalance: z.coerce.number(),
   currentBalance: z.coerce.number(),
   status: z.enum(['active', 'inactive']),
@@ -25,7 +25,7 @@ const STATUS_OPTIONS = [
 ];
 
 type Props = { accountId?: string };
-type CategoryOption = { label: string; value: string };
+type SelectOption = { label: string; value: string };
 
 function NoCategoriesView({ onPress }: { onPress: () => void }) {
   return (
@@ -38,7 +38,11 @@ function NoCategoriesView({ onPress }: { onPress: () => void }) {
   );
 }
 
-function useAccountForm(accountId: string | undefined, onDone: () => void) {
+function useAccountForm(
+  accountId: string | undefined,
+  onDone: () => void,
+  defaultCurrencyId: string,
+) {
   const { accounts } = useDatabase();
   const isEdit = !!accountId;
   const existing = accountId ? accounts.findById(accountId) : undefined;
@@ -46,7 +50,7 @@ function useAccountForm(accountId: string | undefined, onDone: () => void) {
     defaultValues: {
       name: existing?.name ?? '',
       accountCategoryId: existing?.accountCategoryId ?? '',
-      currencyId: existing?.currencyId ?? '00000000-0000-0000-0000-000000000010',
+      currencyId: existing?.currencyId ?? defaultCurrencyId,
       initialBalance: String(existing?.initialBalance ?? 0),
       currentBalance: String(existing?.currentBalance ?? 0),
       status: (existing?.status ?? 'active') as 'active' | 'inactive',
@@ -79,26 +83,127 @@ function useAccountForm(accountId: string | undefined, onDone: () => void) {
   });
 }
 
-function FormFields({ form, categoryOptions, isEdit }: { form: ReturnType<typeof useAccountForm>; categoryOptions: CategoryOption[]; isEdit: boolean }) {
+function FormFields({
+  form,
+  categoryOptions,
+  currencyOptions,
+  isEdit,
+}: {
+  form: ReturnType<typeof useAccountForm>;
+  categoryOptions: SelectOption[];
+  currencyOptions: SelectOption[];
+  isEdit: boolean;
+}) {
   return (
     <View className="flex-1 p-4">
-      <form.Field name="name" children={field => <Input label="Nombre" value={field.state.value} onBlur={field.handleBlur} onChangeText={field.handleChange} error={getFieldError(field)} />} />
-      <form.Field name="accountCategoryId" children={field => <Select label="Categoría" value={field.state.value} options={categoryOptions} onSelect={val => field.handleChange(String(val))} error={getFieldError(field)} />} />
-      <form.Field name="initialBalance" children={field => <Input label="Saldo inicial" keyboardType="decimal-pad" value={field.state.value} onBlur={field.handleBlur} onChangeText={field.handleChange} error={getFieldError(field)} />} />
-      <form.Field name="currentBalance" children={field => <Input label="Saldo actual" keyboardType="decimal-pad" value={field.state.value} onBlur={field.handleBlur} onChangeText={field.handleChange} error={getFieldError(field)} />} />
-      <form.Field name="status" children={field => <Select label="Estado" value={field.state.value} options={STATUS_OPTIONS} onSelect={val => field.handleChange(val as 'active' | 'inactive')} error={getFieldError(field)} />} />
-      <form.Subscribe selector={state => [state.isSubmitting]} children={([isSubmitting]) => <Button label={isEdit ? 'Actualizar cuenta' : 'Guardar cuenta'} loading={isSubmitting} onPress={form.handleSubmit} />} />
+      <form.Field
+        name="name"
+        children={field => (
+          <Input
+            label="Nombre"
+            value={field.state.value}
+            onBlur={field.handleBlur}
+            onChangeText={field.handleChange}
+            error={getFieldError(field)}
+          />
+        )}
+      />
+      <form.Field
+        name="accountCategoryId"
+        children={field => (
+          <Select
+            label="Categoría"
+            value={field.state.value}
+            options={categoryOptions}
+            onSelect={val => field.handleChange(String(val))}
+            error={getFieldError(field)}
+          />
+        )}
+      />
+      <form.Field
+        name="currencyId"
+        children={field => (
+          <Select
+            label="Moneda"
+            value={field.state.value}
+            options={currencyOptions}
+            onSelect={val => field.handleChange(String(val))}
+            error={getFieldError(field)}
+          />
+        )}
+      />
+      <form.Field
+        name="initialBalance"
+        children={field => (
+          <Input
+            label="Saldo inicial"
+            keyboardType="decimal-pad"
+            value={field.state.value}
+            onBlur={field.handleBlur}
+            onChangeText={field.handleChange}
+            error={getFieldError(field)}
+          />
+        )}
+      />
+      <form.Field
+        name="currentBalance"
+        children={field => (
+          <Input
+            label="Saldo actual"
+            keyboardType="decimal-pad"
+            value={field.state.value}
+            onBlur={field.handleBlur}
+            onChangeText={field.handleChange}
+            error={getFieldError(field)}
+          />
+        )}
+      />
+      <form.Field
+        name="status"
+        children={field => (
+          <Select
+            label="Estado"
+            value={field.state.value}
+            options={STATUS_OPTIONS}
+            onSelect={val => field.handleChange(val as 'active' | 'inactive')}
+            error={getFieldError(field)}
+          />
+        )}
+      />
+      <form.Subscribe
+        selector={state => [state.isSubmitting]}
+        children={([isSubmitting]) => (
+          <Button
+            label={isEdit ? 'Actualizar cuenta' : 'Guardar cuenta'}
+            loading={isSubmitting}
+            onPress={form.handleSubmit}
+          />
+        )}
+      />
     </View>
   );
 }
 
 export function AccountFormScreen({ accountId }: Props) {
   const router = useRouter();
-  const { accountCategories } = useDatabase();
+  const { accountCategories, currencies } = useDatabase();
   const isEdit = !!accountId;
+
   const categories: AccountCategory[] = accountCategories.findAll();
+  const enabledCurrencies: Currency[] = currencies.findEnabled();
+  const defaultCurrency = currencies.findDefault();
+
   const categoryOptions = categories.map(c => ({ label: c.name, value: c.id }));
-  const form = useAccountForm(accountId, () => router.back());
+  const currencyOptions = enabledCurrencies.map(c => ({
+    label: `${c.symbol} ${c.code} — ${c.name}`,
+    value: c.id,
+  }));
+
+  const form = useAccountForm(
+    accountId,
+    () => router.back(),
+    defaultCurrency?.id ?? '',
+  );
   const title = isEdit ? 'Editar Cuenta' : 'Nueva Cuenta';
 
   if (categories.length === 0) {
@@ -113,7 +218,12 @@ export function AccountFormScreen({ accountId }: Props) {
   return (
     <>
       <Stack.Screen options={{ title }} />
-      <FormFields form={form} categoryOptions={categoryOptions} isEdit={isEdit} />
+      <FormFields
+        form={form}
+        categoryOptions={categoryOptions}
+        currencyOptions={currencyOptions}
+        isEdit={isEdit}
+      />
     </>
   );
 }
