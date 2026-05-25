@@ -1,0 +1,26 @@
+<h2>¿Cómo se gestiona el tipo de cambio?</h2>
+<p class="subtitle">Esta decisión afecta la arquitectura de la base de datos y la experiencia de usuario</p>
+
+<div class="options">
+  <div class="option" data-choice="manual" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Manual (Recomendado)</h3>
+      <p>El usuario define el tipo de cambio directamente — por ejemplo, 1 USD = 17.5 MXN. Simple, sin dependencias externas, funciona offline.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="api" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>API de tasas en tiempo real</h3>
+      <p>Se consulta una API (ej. exchangerate-api.com) para obtener tasas actualizadas. Requiere internet y configuración de clave de API.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="hybrid" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Híbrido</h3>
+      <p>Manual por defecto, con un botón para actualizar desde una API si hay conexión. Más complejo pero más flexible.</p>
+    </div>
+  </div>
+</div>

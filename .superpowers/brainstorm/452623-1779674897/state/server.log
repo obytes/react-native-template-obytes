@@ -1,0 +1,13 @@
+{"type":"server-started","port":59806,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:59806","screen_dir":"/home/javargasa/projects/react-native-template-obytes/.superpowers/brainstorm/452623-1779674897/content","state_dir":"/home/javargasa/projects/react-native-template-obytes/.superpowers/brainstorm/452623-1779674897/state"}
+{"type":"screen-added","file":"/home/javargasa/projects/react-native-template-obytes/.superpowers/brainstorm/452623-1779674897/content/exchange-rate-type.html"}
+{"source":"user-event","type":"click","text":"A\n    \n      Manual (Recomendado)\n      El usuario define el tipo de cambio directamente — por ejemplo, 1 USD = 17.5 MXN. Simple, sin dependencias externas, funciona offline.","choice":"manual","id":null,"timestamp":1779674961808}
+{"source":"user-event","type":"click","text":"A\n    \n      Manual (Recomendado)\n      El usuario define el tipo de cambio directamente — por ejemplo, 1 USD = 17.5 MXN. Simple, sin dependencias externas, funciona offline.","choice":"manual","id":null,"timestamp":1779674969043}
+{"type":"screen-added","file":"/home/javargasa/projects/react-native-template-obytes/.superpowers/brainstorm/452623-1779674897/content/currency-catalog.html"}
+{"type":"screen-added","file":"/home/javargasa/projects/react-native-template-obytes/.superpowers/brainstorm/452623-1779674897/content/default-currency.html"}
+{"type":"screen-added","file":"/home/javargasa/projects/react-native-template-obytes/.superpowers/brainstorm/452623-1779674897/content/disable-currency.html"}
+{"type":"screen-added","file":"/home/javargasa/projects/react-native-template-obytes/.superpowers/brainstorm/452623-1779674897/content/approaches.html"}
+{"type":"screen-added","file":"/home/javargasa/projects/react-native-template-obytes/.superpowers/brainstorm/452623-1779674897/content/currency-management-screen.html"}
+{"type":"screen-added","file":"/home/javargasa/projects/react-native-template-obytes/.superpowers/brainstorm/452623-1779674897/content/currency-detail-modal.html"}
+{"type":"screen-added","file":"/home/javargasa/projects/react-native-template-obytes/.superpowers/brainstorm/452623-1779674897/content/accounts-with-currency.html"}
+{"type":"screen-added","file":"/home/javargasa/projects/react-native-template-obytes/.superpowers/brainstorm/452623-1779674897/content/balance-format.html"}
+{"type":"server-stopped","reason":"idle timeout"}

@@ -1,0 +1,38 @@
+<h2>Enfoques de arquitectura</h2>
+<p class="subtitle">¿Dónde y cómo se almacenan las monedas?</p>
+
+<div class="options">
+  <div class="option" data-choice="db" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Tabla en SQLite (Recomendado)</h3>
+      <p>Se crea una tabla <code>currency</code> en la DB con code, name, symbol, exchange_rate, is_enabled, is_default. La tabla se pre-puebla en una migración. La cuenta tiene un FK a currency. Sigue exactamente el mismo patrón que account_category y account.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>Consistente con el patrón existente</li><li>FK garantiza integridad referencial</li><li>Fácil de extender después</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Requiere nueva migración</li><li>Más archivos (schema, repository, queries)</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="option" data-choice="mmkv" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>MMKV / Estado persistido</h3>
+      <p>El catálogo de monedas se guarda en MMKV (como el auth store). La tabla account agrega solo un campo <code>currency_code</code> (texto, sin FK).</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>No requiere migración SQL compleja</li><li>Lectura rápida sin queries</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>No hay FK → datos inconsistentes posibles</li><li>Rompe el patrón del proyecto</li><li>Difícil de consultar junto a cuentas</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="option" data-choice="static" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Catálogo estático en código + DB mínima</h3>
+      <p>El catálogo completo de monedas vive en un archivo TypeScript. Solo las monedas habilitadas se guardan en DB (tabla ligera). Account guarda currency_code como texto.</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>Pros</h4><ul><li>No hay que migrar el catálogo completo</li><li>Fácil de actualizar el catálogo sin migración</li></ul></div>
+        <div class="cons"><h4>Cons</h4><ul><li>Lógica dividida entre código y DB</li><li>Sin FK real entre account y currency</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<h2>¿Cómo se gestiona el catálogo de monedas?</h2>
+<p class="subtitle">¿De dónde vienen las monedas disponibles?</p>
+
+<div class="options">
+  <div class="option" data-choice="seeded" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Lista predefinida (Recomendado)</h3>
+      <p>La app incluye ~20 monedas comunes (USD, EUR, MXN, COP, etc.) que el usuario activa/desactiva. No puede agregar monedas nuevas. Más simple.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="user-created" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Creadas por el usuario</h3>
+      <p>El usuario crea monedas manualmente: nombre, símbolo, tipo de cambio. Total flexibilidad, pero requiere más trabajo al configurar.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="hybrid" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Lista predefinida + personalizadas</h3>
+      <p>Incluye monedas comunes y permite agregar monedas custom. La opción más completa pero también más compleja de implementar.</p>
+    </div>
+  </div>
+</div>

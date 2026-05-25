@@ -1,0 +1,118 @@
+<h2>¿Cómo se agrupa la lista de cuentas?</h2>
+<p class="subtitle">Ambas opciones muestran cuentas divididas por tipo (Activo/Pasivo) y categoría</p>
+
+<div class="split">
+  <div class="mockup" data-choice="a" onclick="toggleSelect(this)" style="cursor:pointer">
+    <div class="mockup-header">A — Tipo como sección principal, categoría como sub-grupo</div>
+    <div class="mockup-body" style="padding:0;font-size:13px">
+
+      <div style="padding:6px 16px;background:#f3f4f6;border-bottom:1px solid #d1d5db;font-weight:700;font-size:11px;letter-spacing:0.08em;color:#374151;text-transform:uppercase">
+        ACTIVOS
+        <span style="float:right;font-weight:400;color:#6b7280">Total: $9,700</span>
+      </div>
+      <div style="padding:4px 16px;font-size:11px;color:#6b7280;background:#fafafa;border-bottom:1px solid #e5e7eb">Cuentas bancarias</div>
+      <div style="padding:10px 16px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between">
+        <div>
+          <div style="font-weight:500">BBVA</div>
+          <div style="font-size:11px;color:#6b7280">Activa</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-weight:600;color:#16a34a">$8,500</div>
+          <div style="font-size:11px;color:#9ca3af">Inicial: $8,000</div>
+        </div>
+      </div>
+      <div style="padding:4px 16px;font-size:11px;color:#6b7280;background:#fafafa;border-bottom:1px solid #e5e7eb">Efectivo</div>
+      <div style="padding:10px 16px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between">
+        <div>
+          <div style="font-weight:500">Billetera</div>
+          <div style="font-size:11px;color:#6b7280">Activa</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-weight:600;color:#16a34a">$1,200</div>
+          <div style="font-size:11px;color:#9ca3af">Inicial: $1,000</div>
+        </div>
+      </div>
+
+      <div style="padding:6px 16px;background:#f3f4f6;border-bottom:1px solid #d1d5db;border-top:2px solid #d1d5db;font-weight:700;font-size:11px;letter-spacing:0.08em;color:#374151;text-transform:uppercase">
+        PASIVOS
+        <span style="float:right;font-weight:400;color:#6b7280">Total: $3,200</span>
+      </div>
+      <div style="padding:4px 16px;font-size:11px;color:#6b7280;background:#fafafa;border-bottom:1px solid #e5e7eb">Tarjetas de crédito</div>
+      <div style="padding:10px 16px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between">
+        <div>
+          <div style="font-weight:500">Visa Platinum</div>
+          <div style="font-size:11px;color:#6b7280">Activa</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-weight:600;color:#dc2626">$3,200</div>
+          <div style="font-size:11px;color:#9ca3af">Inicial: $0</div>
+        </div>
+      </div>
+
+      <div style="padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #e5e7eb;color:#6b7280">
+        <span style="font-size:12px">Gestionar categorías</span><span>›</span>
+      </div>
+      <div style="padding:12px 16px;background:#2563eb;margin:8px;border-radius:10px;text-align:center;color:white;font-weight:600">
+        + Nueva cuenta
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup" data-choice="b" onclick="toggleSelect(this)" style="cursor:pointer">
+    <div class="mockup-header">B — Categoría como sección principal, badge de tipo</div>
+    <div class="mockup-body" style="padding:0;font-size:13px">
+
+      <div style="padding:6px 16px;background:#f3f4f6;border-bottom:1px solid #d1d5db;font-weight:600;font-size:12px;color:#374151;display:flex;justify-content:space-between;align-items:center">
+        Cuentas bancarias
+        <span style="background:#dbeafe;color:#1d4ed8;border-radius:9999px;padding:1px 8px;font-size:10px;font-weight:600">ACTIVO</span>
+      </div>
+      <div style="padding:10px 16px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between">
+        <div>
+          <div style="font-weight:500">BBVA</div>
+          <div style="font-size:11px;color:#6b7280">Activa</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-weight:600;color:#16a34a">$8,500</div>
+          <div style="font-size:11px;color:#9ca3af">Inicial: $8,000</div>
+        </div>
+      </div>
+
+      <div style="padding:6px 16px;background:#f3f4f6;border-bottom:1px solid #d1d5db;font-weight:600;font-size:12px;color:#374151;display:flex;justify-content:space-between;align-items:center">
+        Efectivo
+        <span style="background:#dbeafe;color:#1d4ed8;border-radius:9999px;padding:1px 8px;font-size:10px;font-weight:600">ACTIVO</span>
+      </div>
+      <div style="padding:10px 16px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between">
+        <div>
+          <div style="font-weight:500">Billetera</div>
+          <div style="font-size:11px;color:#6b7280">Activa</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-weight:600;color:#16a34a">$1,200</div>
+          <div style="font-size:11px;color:#9ca3af">Inicial: $1,000</div>
+        </div>
+      </div>
+
+      <div style="padding:6px 16px;background:#f3f4f6;border-bottom:1px solid #d1d5db;font-weight:600;font-size:12px;color:#374151;display:flex;justify-content:space-between;align-items:center">
+        Tarjetas de crédito
+        <span style="background:#fce7f3;color:#9d174d;border-radius:9999px;padding:1px 8px;font-size:10px;font-weight:600">PASIVO</span>
+      </div>
+      <div style="padding:10px 16px;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between">
+        <div>
+          <div style="font-weight:500">Visa Platinum</div>
+          <div style="font-size:11px;color:#6b7280">Activa</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-weight:600;color:#dc2626">$3,200</div>
+          <div style="font-size:11px;color:#9ca3af">Inicial: $0</div>
+        </div>
+      </div>
+
+      <div style="padding:12px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #e5e7eb;color:#6b7280">
+        <span style="font-size:12px">Gestionar categorías</span><span>›</span>
+      </div>
+      <div style="padding:12px 16px;background:#2563eb;margin:8px;border-radius:10px;text-align:center;color:white;font-weight:600">
+        + Nueva cuenta
+      </div>
+    </div>
+  </div>
+</div>

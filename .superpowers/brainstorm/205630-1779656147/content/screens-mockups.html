@@ -1,0 +1,155 @@
+<h2>Pantallas de Cuentas y Categorías</h2>
+<p class="subtitle">Flujo completo — navega entre pantallas con las flechas</p>
+
+<style>
+.phone { width:220px; border:2px solid #d1d5db; border-radius:16px; overflow:hidden; background:#fff; font-size:12px; flex-shrink:0; }
+.phone-header { background:#f9fafb; border-bottom:1px solid #e5e7eb; padding:8px 12px; font-weight:600; font-size:12px; display:flex; align-items:center; gap:6px; }
+.phone-header .back { color:#2563eb; font-size:11px; }
+.phone-body { }
+.row { padding:10px 12px; border-bottom:1px solid #f3f4f6; display:flex; justify-content:space-between; align-items:center; }
+.row-label { font-size:10px; color:#6b7280; background:#f9fafb; padding:4px 12px; border-bottom:1px solid #e5e7eb; text-transform:uppercase; letter-spacing:0.05em; font-weight:600; }
+.section-header { padding:6px 12px; background:#f3f4f6; border-bottom:1px solid #d1d5db; font-weight:700; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:#374151; display:flex; justify-content:space-between; }
+.cat-header { padding:5px 12px; background:#fafafa; border-bottom:1px solid #e5e7eb; font-size:10px; color:#6b7280; font-style:italic; }
+.balance-pos { color:#16a34a; font-weight:600; }
+.balance-neg { color:#dc2626; font-weight:600; }
+.btn-primary { background:#2563eb; color:white; margin:8px; padding:8px; border-radius:8px; text-align:center; font-weight:600; font-size:12px; }
+.btn-link { padding:8px 12px; color:#2563eb; font-size:11px; display:flex; justify-content:space-between; align-items:center; border-top:1px solid #e5e7eb; }
+.badge-activo { background:#dbeafe; color:#1d4ed8; border-radius:9999px; padding:1px 6px; font-size:9px; font-weight:600; }
+.badge-pasivo { background:#fce7f3; color:#9d174d; border-radius:9999px; padding:1px 6px; font-size:9px; font-weight:600; }
+.badge-active { background:#dcfce7; color:#166534; border-radius:9999px; padding:1px 6px; font-size:9px; }
+.badge-inactive { background:#f3f4f6; color:#6b7280; border-radius:9999px; padding:1px 6px; font-size:9px; }
+.field { padding:6px 12px; }
+.field label { font-size:10px; color:#6b7280; display:block; margin-bottom:2px; }
+.field .inp { border:1px solid #d1d5db; border-radius:6px; padding:5px 8px; font-size:11px; background:#f9fafb; width:100%; box-sizing:border-box; }
+.arrow { font-size:18px; color:#9ca3af; align-self:center; padding:0 4px; }
+.screens { display:flex; gap:8px; align-items:flex-start; overflow-x:auto; padding-bottom:8px; }
+</style>
+
+<div class="screens">
+
+  <!-- 1. Settings -->
+  <div class="phone">
+    <div class="phone-header">⚙️ Settings</div>
+    <div class="phone-body">
+      <div class="row-label">FINANZAS</div>
+      <div class="row" style="color:#111;font-weight:500">
+        Cuentas <span style="color:#9ca3af">›</span>
+      </div>
+      <div class="row-label">PREFERENCIAS</div>
+      <div class="row" style="color:#9ca3af">Idioma <span>›</span></div>
+      <div class="row" style="color:#9ca3af">Tema <span>›</span></div>
+    </div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- 2. Lista de Cuentas -->
+  <div class="phone">
+    <div class="phone-header">
+      <span class="back">‹ Settings</span>
+      Cuentas
+      <span style="margin-left:auto;color:#2563eb">+</span>
+    </div>
+    <div class="phone-body">
+      <div class="section-header">ACTIVOS <span style="font-weight:400;color:#6b7280">$9,700</span></div>
+      <div class="cat-header">Cuentas bancarias</div>
+      <div class="row">
+        <div><div style="font-weight:500">BBVA</div><span class="badge-active">Activa</span></div>
+        <div style="text-align:right"><div class="balance-pos">$8,500</div><div style="font-size:9px;color:#9ca3af">Inicial: $8,000</div></div>
+      </div>
+      <div class="cat-header">Efectivo</div>
+      <div class="row">
+        <div><div style="font-weight:500">Billetera</div><span class="badge-active">Activa</span></div>
+        <div style="text-align:right"><div class="balance-pos">$1,200</div><div style="font-size:9px;color:#9ca3af">Inicial: $1,000</div></div>
+      </div>
+      <div class="section-header" style="border-top:2px solid #d1d5db">PASIVOS <span style="font-weight:400;color:#6b7280">$3,200</span></div>
+      <div class="cat-header">Tarjetas de crédito</div>
+      <div class="row">
+        <div><div style="font-weight:500">Visa Platinum</div><span class="badge-active">Activa</span></div>
+        <div style="text-align:right"><div class="balance-neg">$3,200</div><div style="font-size:9px;color:#9ca3af">Inicial: $0</div></div>
+      </div>
+      <div class="btn-link">Gestionar categorías <span>›</span></div>
+    </div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- 3. Nueva Cuenta -->
+  <div class="phone">
+    <div class="phone-header"><span class="back">‹ Cuentas</span> Nueva Cuenta</div>
+    <div class="phone-body" style="padding:4px 0">
+      <div class="field">
+        <label>Nombre</label>
+        <div class="inp">BBVA</div>
+      </div>
+      <div class="field">
+        <label>Categoría</label>
+        <div class="inp" style="display:flex;justify-content:space-between">Cuentas bancarias <span style="color:#9ca3af">▾</span></div>
+      </div>
+      <div class="field">
+        <label>Saldo inicial</label>
+        <div class="inp">$8,000</div>
+      </div>
+      <div class="field">
+        <label>Saldo actual</label>
+        <div class="inp">$8,500</div>
+      </div>
+      <div class="field">
+        <label>Estado</label>
+        <div class="inp" style="display:flex;justify-content:space-between">Activa <span style="color:#9ca3af">▾</span></div>
+      </div>
+      <div class="btn-primary">Guardar cuenta</div>
+    </div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- 4. Categorías -->
+  <div class="phone">
+    <div class="phone-header"><span class="back">‹ Cuentas</span> Categorías <span style="margin-left:auto;color:#2563eb">+</span></div>
+    <div class="phone-body">
+      <div class="section-header">ACTIVOS</div>
+      <div class="row">
+        <span style="font-weight:500">Cuentas bancarias</span>
+        <span class="badge-activo">ACTIVO</span>
+      </div>
+      <div class="row">
+        <span style="font-weight:500">Efectivo</span>
+        <span class="badge-activo">ACTIVO</span>
+      </div>
+      <div class="section-header" style="border-top:2px solid #d1d5db">PASIVOS</div>
+      <div class="row">
+        <span style="font-weight:500">Tarjetas de crédito</span>
+        <span class="badge-pasivo">PASIVO</span>
+      </div>
+      <div class="row">
+        <span style="font-weight:500">Préstamos</span>
+        <span class="badge-pasivo">PASIVO</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="arrow">→</div>
+
+  <!-- 5. Nueva Categoría -->
+  <div class="phone">
+    <div class="phone-header"><span class="back">‹ Categorías</span> Nueva Categoría</div>
+    <div class="phone-body" style="padding:4px 0">
+      <div class="field">
+        <label>Nombre</label>
+        <div class="inp">Cuentas bancarias</div>
+      </div>
+      <div class="field">
+        <label>Tipo</label>
+        <div class="inp" style="display:flex;justify-content:space-between">Activo <span style="color:#9ca3af">▾</span></div>
+      </div>
+      <div class="btn-primary">Guardar categoría</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="section" style="margin-top:16px">
+  <h3>Actualización: Formulario de Transacción</h3>
+  <p>Se agrega un campo selector <strong>"Cuenta"</strong> al formulario de nueva transacción. Selecciona una de las cuentas activas existentes.</p>
+</div>

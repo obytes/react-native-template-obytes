@@ -1,0 +1,36 @@
+<h2>Formato del saldo en cada cuenta</h2>
+<p class="subtitle">¿Cómo debe mostrarse el monto junto al símbolo de moneda?</p>
+
+<div class="options">
+  <div class="option" data-choice="symbol-amount-code" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Símbolo + monto · código pequeño</h3>
+      <div style="font-family:monospace;margin-top:8px;">
+        <div style="font-size:16px;font-weight:600;color:#4CAF50;">$13,125.00 <span style="font-size:11px;color:#aaa;font-weight:400;">MXN</span></div>
+        <div style="font-size:11px;color:#aaa;">Inicial: $10,000.00</div>
+      </div>
+    </div>
+  </div>
+  <div class="option" data-choice="code-symbol-amount" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Código arriba · símbolo+monto abajo</h3>
+      <div style="font-family:monospace;margin-top:8px;">
+        <div style="font-size:10px;color:#aaa;">MXN</div>
+        <div style="font-size:16px;font-weight:600;color:#4CAF50;">$13,125.00</div>
+        <div style="font-size:11px;color:#aaa;">Inicial: $10,000.00</div>
+      </div>
+    </div>
+  </div>
+  <div class="option" data-choice="amount-code" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Monto · código como sufijo</h3>
+      <div style="font-family:monospace;margin-top:8px;">
+        <div style="font-size:16px;font-weight:600;color:#4CAF50;">13,125.00 MXN</div>
+        <div style="font-size:11px;color:#aaa;">Inicial: 10,000.00 MXN</div>
+      </div>
+    </div>
+  </div>
+</div>

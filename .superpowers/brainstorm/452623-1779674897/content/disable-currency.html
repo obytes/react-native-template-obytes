@@ -1,0 +1,19 @@
+<h2>¿Qué pasa si se deshabilita una moneda que tiene cuentas activas?</h2>
+<p class="subtitle">Necesitamos una política para manejar este caso</p>
+
+<div class="options">
+  <div class="option" data-choice="block" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Bloquear (Recomendado)</h3>
+      <p>No se puede deshabilitar una moneda si alguna cuenta la usa. Se muestra un mensaje indicando cuántas cuentas la tienen asignada.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="allow" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Permitir con advertencia</h3>
+      <p>Se puede deshabilitar igual, pero las cuentas que la usaban quedan sin símbolo de moneda y sus saldos se excluyen de los totales convertidos.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<h2>Panel de configuración de moneda</h2>
+<p class="subtitle">Se abre al tocar cualquier moneda de la lista</p>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">Moneda habilitada (no default)</div>
+    <div class="mockup-body">
+      <div style="background:#fff;border-radius:12px;overflow:hidden;font-family:monospace;font-size:13px;box-shadow:0 4px 20px rgba(0,0,0,0.15);">
+        <!-- Handle -->
+        <div style="display:flex;justify-content:center;padding:10px;"><div style="width:36px;height:4px;background:#ddd;border-radius:2px;"></div></div>
+        <!-- Header -->
+        <div style="padding:4px 16px 16px;border-bottom:1px solid #f0f0f0;">
+          <div style="font-size:20px;font-weight:bold;">$ MXN</div>
+          <div style="color:#888;font-size:12px;">Peso Mexicano</div>
+          <div style="display:inline-block;margin-top:6px;background:#e8f5e9;color:#4CAF50;font-size:10px;padding:2px 8px;border-radius:8px;">Habilitada</div>
+        </div>
+        <!-- Tipo de cambio -->
+        <div style="padding:16px;">
+          <div style="font-size:10px;font-weight:bold;letter-spacing:1px;color:#999;text-transform:uppercase;margin-bottom:8px;">Tipo de cambio</div>
+          <div style="color:#555;font-size:12px;margin-bottom:8px;">1 <strong>USD</strong> (default) equivale a:</div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <input value="17.50" style="flex:1;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:15px;font-family:monospace;" />
+            <span style="font-weight:bold;color:#555;">MXN</span>
+          </div>
+          <div style="margin-top:16px;">
+            <div style="background:#4285f4;color:#fff;padding:10px;border-radius:8px;text-align:center;font-weight:600;">Guardar tipo de cambio</div>
+          </div>
+        </div>
+        <!-- Acciones -->
+        <div style="border-top:1px solid #f0f0f0;padding:16px;display:flex;flex-direction:column;gap:10px;">
+          <div style="border:1px solid #4285f4;color:#4285f4;padding:10px;border-radius:8px;text-align:center;font-weight:600;">Establecer como moneda principal</div>
+          <div style="border:1px solid #f44336;color:#f44336;padding:10px;border-radius:8px;text-align:center;font-weight:600;">Deshabilitar moneda</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">Moneda default / Moneda deshabilitada</div>
+    <div class="mockup-body" style="display:flex;flex-direction:column;gap:16px;">
+      <!-- Default currency -->
+      <div style="background:#fff;border-radius:12px;overflow:hidden;font-family:monospace;font-size:13px;box-shadow:0 4px 20px rgba(0,0,0,0.15);">
+        <div style="display:flex;justify-content:center;padding:10px;"><div style="width:36px;height:4px;background:#ddd;border-radius:2px;"></div></div>
+        <div style="padding:4px 16px 16px;border-bottom:1px solid #f0f0f0;">
+          <div style="font-size:20px;font-weight:bold;">$ USD</div>
+          <div style="color:#888;font-size:12px;">Dólar Estadounidense</div>
+          <div style="display:inline-block;margin-top:6px;background:#4CAF50;color:#fff;font-size:10px;padding:2px 8px;border-radius:8px;">Moneda principal</div>
+        </div>
+        <div style="padding:16px;color:#888;font-size:12px;font-style:italic;">
+          Esta es la moneda principal. Los totales se muestran en USD. El tipo de cambio siempre es 1.
+        </div>
+      </div>
+      <!-- Disabled currency -->
+      <div style="background:#fff;border-radius:12px;overflow:hidden;font-family:monospace;font-size:13px;box-shadow:0 4px 20px rgba(0,0,0,0.15);">
+        <div style="display:flex;justify-content:center;padding:10px;"><div style="width:36px;height:4px;background:#ddd;border-radius:2px;"></div></div>
+        <div style="padding:4px 16px 16px;border-bottom:1px solid #f0f0f0;">
+          <div style="font-size:20px;font-weight:bold;color:#aaa;">Q GTQ</div>
+          <div style="color:#bbb;font-size:12px;">Quetzal</div>
+          <div style="display:inline-block;margin-top:6px;background:#f0f0f0;color:#999;font-size:10px;padding:2px 8px;border-radius:8px;">Deshabilitada</div>
+        </div>
+        <div style="padding:16px;">
+          <div style="background:#4285f4;color:#fff;padding:10px;border-radius:8px;text-align:center;font-weight:600;">Habilitar moneda</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:16px;">¿Este diseño del panel se ve bien? Puedes responder en el terminal.</p>

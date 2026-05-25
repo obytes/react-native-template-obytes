@@ -1,0 +1,107 @@
+<h2>Cuentas con moneda</h2>
+<p class="subtitle">Símbolo junto al saldo · totales convertidos a la moneda principal</p>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">AccountsScreen</div>
+    <div class="mockup-body">
+      <div style="background:#f5f5f5;border-radius:8px;overflow:hidden;font-family:monospace;font-size:13px;">
+        <!-- Section Activos -->
+        <div style="background:#e8e8e8;padding:6px 16px;display:flex;justify-content:space-between;align-items:center;border-top:2px solid #ccc;">
+          <span style="font-size:10px;font-weight:bold;letter-spacing:1px;color:#555;text-transform:uppercase;">Activos</span>
+          <span style="font-size:11px;color:#666;">$&nbsp;3,250.00 USD</span>
+        </div>
+        <!-- Category label -->
+        <div style="background:#fafafa;padding:6px 16px;border-bottom:1px solid #eee;">
+          <span style="font-size:11px;color:#aaa;font-style:italic;">Cuentas de banco</span>
+        </div>
+        <!-- Account row — USD -->
+        <div style="background:#fff;padding:12px 16px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-weight:600;">Cuenta Principal</div>
+            <div style="font-size:10px;color:#4CAF50;">Activa</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-weight:600;color:#4CAF50;">$&nbsp;2,500.00 <span style="font-size:10px;color:#aaa;">USD</span></div>
+            <div style="font-size:10px;color:#aaa;">Inicial: $&nbsp;2,000.00</div>
+          </div>
+        </div>
+        <!-- Account row — MXN convertido -->
+        <div style="background:#fff;padding:12px 16px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-weight:600;">Cuenta Ahorros MX</div>
+            <div style="font-size:10px;color:#4CAF50;">Activa</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-weight:600;color:#4CAF50;">$&nbsp;13,125.00 <span style="font-size:10px;color:#aaa;">MXN</span></div>
+            <div style="font-size:10px;color:#aaa;">Inicial: $&nbsp;10,000.00</div>
+          </div>
+        </div>
+        <!-- Section Pasivos -->
+        <div style="background:#e8e8e8;padding:6px 16px;display:flex;justify-content:space-between;align-items:center;border-top:2px solid #ccc;margin-top:4px;">
+          <span style="font-size:10px;font-weight:bold;letter-spacing:1px;color:#555;text-transform:uppercase;">Pasivos</span>
+          <span style="font-size:11px;color:#666;">$&nbsp;750.00 USD</span>
+        </div>
+        <div style="background:#fafafa;padding:6px 16px;border-bottom:1px solid #eee;">
+          <span style="font-size:11px;color:#aaa;font-style:italic;">Tarjetas de crédito</span>
+        </div>
+        <div style="background:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-weight:600;">Visa Platino</div>
+            <div style="font-size:10px;color:#4CAF50;">Activa</div>
+          </div>
+          <div style="text-align:right;">
+            <div style="font-weight:600;color:#ef4444;">€&nbsp;690.00 <span style="font-size:10px;color:#aaa;">EUR</span></div>
+            <div style="font-size:10px;color:#aaa;">Inicial: €&nbsp;0.00</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:10px;background:#fff3cd;border-radius:6px;padding:8px 12px;font-size:11px;color:#856404;font-family:monospace;">
+        ⚡ Totales de sección = suma convertida a USD (moneda principal)<br/>
+        Cuenta MXN: 13,125 ÷ 17.5 = $750 USD<br/>
+        Cuenta EUR: 690 × (1/0.92) ≈ $750 USD
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">AccountFormScreen — campo moneda</div>
+    <div class="mockup-body">
+      <div style="background:#f5f5f5;border-radius:8px;overflow:hidden;font-family:monospace;font-size:13px;">
+        <div style="background:#fff;padding:12px 16px;border-bottom:1px solid #e0e0e0;">
+          <span style="font-weight:bold;font-size:15px;">Nueva Cuenta</span>
+        </div>
+        <div style="background:#fff;padding:12px 16px;display:flex;flex-direction:column;gap:14px;">
+          <div>
+            <div style="font-size:10px;color:#666;margin-bottom:4px;">Nombre</div>
+            <div style="border:1px solid #ddd;border-radius:8px;padding:10px;color:#333;">Cuenta Ahorros</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:#666;margin-bottom:4px;">Categoría</div>
+            <div style="border:1px solid #ddd;border-radius:8px;padding:10px;color:#333;display:flex;justify-content:space-between;">
+              <span>Cuentas de banco</span><span style="color:#bbb;">▼</span>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:#666;margin-bottom:4px;">Moneda</div>
+            <div style="border:1px solid #4285f4;border-radius:8px;padding:10px;color:#333;display:flex;justify-content:space-between;background:#f0f6ff;">
+              <span>$ MXN — Peso Mexicano</span><span style="color:#bbb;">▼</span>
+            </div>
+            <div style="font-size:10px;color:#aaa;margin-top:4px;">Solo monedas habilitadas</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:#666;margin-bottom:4px;">Saldo inicial</div>
+            <div style="border:1px solid #ddd;border-radius:8px;padding:10px;color:#333;">0.00</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:#666;margin-bottom:4px;">Saldo actual</div>
+            <div style="border:1px solid #ddd;border-radius:8px;padding:10px;color:#333;">0.00</div>
+          </div>
+          <div style="background:#4285f4;color:#fff;padding:12px;border-radius:8px;text-align:center;font-weight:600;">Guardar cuenta</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:16px;">¿Este diseño de cuentas se ve bien? Responde en el terminal.</p>

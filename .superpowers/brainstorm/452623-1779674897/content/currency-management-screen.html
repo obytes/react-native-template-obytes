@@ -1,0 +1,129 @@
+<h2>Pantalla de gestión de monedas</h2>
+<p class="subtitle">Accessible desde Settings → Finanzas → Gestionar monedas</p>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">Opción A — Lista simple con estado</div>
+    <div class="mockup-body">
+      <div style="background:#f5f5f5;border-radius:8px;overflow:hidden;font-family:monospace;font-size:13px;">
+        <!-- Header -->
+        <div style="background:#fff;padding:12px 16px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-weight:bold;font-size:15px;">Monedas</span>
+        </div>
+        <!-- Section: Habilitadas -->
+        <div style="background:#e8e8e8;padding:6px 16px;font-size:10px;font-weight:bold;letter-spacing:1px;color:#666;text-transform:uppercase;">Habilitadas</div>
+        <div style="background:#fff;border-bottom:1px solid #f0f0f0;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <span style="font-weight:600;">USD</span>
+            <span style="color:#888;margin-left:6px;">Dólar · $</span>
+            <span style="background:#4CAF50;color:#fff;font-size:9px;padding:2px 6px;border-radius:8px;margin-left:6px;">DEFAULT</span>
+          </div>
+          <span style="color:#bbb;">›</span>
+        </div>
+        <div style="background:#fff;border-bottom:1px solid #f0f0f0;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <span style="font-weight:600;">MXN</span>
+            <span style="color:#888;margin-left:6px;">Peso Mex · $</span>
+            <span style="color:#999;font-size:11px;margin-left:8px;">1 USD = 17.50 MXN</span>
+          </div>
+          <span style="color:#bbb;">›</span>
+        </div>
+        <div style="background:#fff;border-bottom:1px solid #f0f0f0;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <span style="font-weight:600;">EUR</span>
+            <span style="color:#888;margin-left:6px;">Euro · €</span>
+            <span style="color:#999;font-size:11px;margin-left:8px;">1 USD = 0.92 EUR</span>
+          </div>
+          <span style="color:#bbb;">›</span>
+        </div>
+        <!-- Section: Disponibles -->
+        <div style="background:#e8e8e8;padding:6px 16px;font-size:10px;font-weight:bold;letter-spacing:1px;color:#666;text-transform:uppercase;">Disponibles</div>
+        <div style="background:#fff;border-bottom:1px solid #f0f0f0;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;opacity:0.5;">
+          <div><span style="font-weight:600;">GTQ</span><span style="color:#888;margin-left:6px;">Quetzal · Q</span></div>
+          <span style="color:#bbb;">›</span>
+        </div>
+        <div style="background:#fff;border-bottom:1px solid #f0f0f0;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;opacity:0.5;">
+          <div><span style="font-weight:600;">COP</span><span style="color:#888;margin-left:6px;">Peso Col · $</span></div>
+          <span style="color:#bbb;">›</span>
+        </div>
+        <div style="background:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;opacity:0.5;">
+          <div><span style="font-weight:600;">ARS</span><span style="color:#888;margin-left:6px;">Peso Arg · $</span></div>
+          <span style="color:#bbb;">›</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mockup">
+    <div class="mockup-header">Opción B — Lista unificada con toggle</div>
+    <div class="mockup-body">
+      <div style="background:#f5f5f5;border-radius:8px;overflow:hidden;font-family:monospace;font-size:13px;">
+        <div style="background:#fff;padding:12px 16px;border-bottom:1px solid #e0e0e0;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-weight:bold;font-size:15px;">Monedas</span>
+        </div>
+        <div style="background:#fff;border-bottom:1px solid #f0f0f0;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-weight:600;">$ USD <span style="background:#4CAF50;color:#fff;font-size:9px;padding:2px 6px;border-radius:8px;">DEFAULT</span></div>
+            <div style="color:#888;font-size:11px;">Dólar Estadounidense</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:36px;height:20px;background:#4CAF50;border-radius:10px;"></div>
+          </div>
+        </div>
+        <div style="background:#fff;border-bottom:1px solid #f0f0f0;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-weight:600;">$ MXN</div>
+            <div style="color:#888;font-size:11px;">Peso Mexicano · 1 USD = 17.50</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:36px;height:20px;background:#4CAF50;border-radius:10px;"></div>
+          </div>
+        </div>
+        <div style="background:#fff;border-bottom:1px solid #f0f0f0;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-weight:600;">Q GTQ</div>
+            <div style="color:#888;font-size:11px;">Quetzal</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:36px;height:20px;background:#ccc;border-radius:10px;"></div>
+          </div>
+        </div>
+        <div style="background:#fff;border-bottom:1px solid #f0f0f0;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-weight:600;">€ EUR</div>
+            <div style="color:#888;font-size:11px;">Euro</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:36px;height:20px;background:#ccc;border-radius:10px;"></div>
+          </div>
+        </div>
+        <div style="background:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;">
+          <div>
+            <div style="font-weight:600;">$ COP</div>
+            <div style="color:#888;font-size:11px;">Peso Colombiano</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:36px;height:20px;background:#ccc;border-radius:10px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="options" style="margin-top:24px;">
+  <div class="option" data-choice="A" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Secciones separadas</h3>
+      <p>Habilitadas arriba, disponibles abajo. Toque en cualquiera abre el panel de configuración.</p>
+    </div>
+  </div>
+  <div class="option" data-choice="B" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Lista unificada con toggle</h3>
+      <p>Una sola lista ordenada por estado. Toggle visible en cada fila; toque abre configuración solo en las habilitadas.</p>
+    </div>
+  </div>
+</div>
