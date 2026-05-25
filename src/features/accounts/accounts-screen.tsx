@@ -1,15 +1,23 @@
-import type { Account, AccountCategory } from '@/lib/database/repositories/_shared/types';
+import type { Account, AccountCategory, Currency } from '@/lib/database/repositories/_shared/types';
 
 import { Stack, useFocusEffect, useRouter } from 'expo-router';
 import * as React from 'react';
 import { useCallback, useState } from 'react';
 
 import { Pressable, ScrollView, Text, View } from '@/components/ui';
+import { toDefaultCurrency } from '@/lib/currency/conversion';
 import { useDatabase } from '@/lib/database/provider';
 
-type AccountRowProps = { account: Account; onPress: () => void; balanceClassName: string };
+type AccountRowProps = {
+  account: Account;
+  currency: Currency | undefined;
+  onPress: () => void;
+  balanceClassName: string;
+};
 
-function AccountRow({ account, onPress, balanceClassName }: AccountRowProps) {
+function AccountRow({ account, currency, onPress, balanceClassName }: AccountRowProps) {
+  const symbol = currency?.symbol ?? '';
+  const code = currency?.code ?? '';
   return (
     <Pressable
       onPress={onPress}
@@ -23,11 +31,15 @@ function AccountRow({ account, onPress, balanceClassName }: AccountRowProps) {
       </View>
       <View className="items-end">
         <Text className={`font-semibold ${balanceClassName}`}>
-          $
+          {symbol}
           {account.currentBalance.toFixed(2)}
+          {' '}
+          <Text className="text-xs text-neutral-400">{code}</Text>
         </Text>
         <Text className="text-xs text-neutral-400">
-          Inicial: $
+          Inicial:
+          {' '}
+          {symbol}
           {account.initialBalance.toFixed(2)}
         </Text>
       </View>
@@ -35,33 +47,46 @@ function AccountRow({ account, onPress, balanceClassName }: AccountRowProps) {
   );
 }
 
-type SectionHeaderProps = { label: string; total: number };
+type SectionHeaderProps = {
+  label: string;
+  total: number;
+  defaultCurrency: Currency | undefined;
+};
 
-function SectionHeader({ label, total }: SectionHeaderProps) {
+function SectionHeader({ label, total, defaultCurrency }: SectionHeaderProps) {
+  const symbol = defaultCurrency?.symbol ?? '';
+  const code = defaultCurrency?.code ?? '';
   return (
     <View className="flex-row justify-between border-t-2 border-b border-neutral-200 border-t-neutral-300 bg-neutral-100 px-4 py-2 dark:border-neutral-700 dark:border-t-neutral-600 dark:bg-neutral-800">
       <Text className="text-xs font-bold tracking-widest text-neutral-700 uppercase dark:text-neutral-300">
         {label}
       </Text>
       <Text className="text-xs text-neutral-500">
-        $
+        {symbol}
         {total.toFixed(2)}
+        {' '}
+        {code}
       </Text>
     </View>
   );
 }
 
 export function AccountsScreen() {
-  const { accounts, accountCategories } = useDatabase();
+  const { accounts, accountCategories, currencies } = useDatabase();
   const router = useRouter();
   const [accountList, setAccountList] = useState<Account[]>([]);
   const [categoryList, setCategoryList] = useState<AccountCategory[]>([]);
+  const [currencyMap, setCurrencyMap] = useState<Map<string, Currency>>(new Map());
+  const [defaultCurrency, setDefaultCurrency] = useState<Currency | undefined>(undefined);
 
   useFocusEffect(
     useCallback(() => {
       setAccountList(accounts.findAll());
       setCategoryList(accountCategories.findAll());
-    }, [accounts, accountCategories]),
+      const all = currencies.findAll();
+      setCurrencyMap(new Map(all.map(c => [c.id, c])));
+      setDefaultCurrency(currencies.findDefault());
+    }, [accounts, accountCategories, currencies]),
   );
 
   const activoCategories = categoryList.filter(c => c.type === 'activo');
@@ -74,7 +99,12 @@ export function AccountsScreen() {
     const ids = new Set(categoryList.filter(c => c.type === type).map(c => c.id));
     return accountList
       .filter(a => ids.has(a.accountCategoryId))
-      .reduce((sum, a) => sum + a.currentBalance, 0);
+      .reduce((sum, a) => {
+        const currency = currencyMap.get(a.currencyId);
+        if (!currency)
+          return sum;
+        return sum + toDefaultCurrency(a.currentBalance, currency.exchangeRate);
+      }, 0);
   };
 
   const renderCategoryGroup = (cat: AccountCategory, balanceClassName: string) => (
@@ -86,6 +116,7 @@ export function AccountsScreen() {
         <AccountRow
           key={account.id}
           account={account}
+          currency={currencyMap.get(account.currencyId)}
           onPress={() => router.push(`/cuentas/${account.id}`)}
           balanceClassName={balanceClassName}
         />
@@ -106,10 +137,18 @@ export function AccountsScreen() {
         }}
       />
       <ScrollView className="flex-1">
-        <SectionHeader label="Activos" total={totalForType('activo')} />
+        <SectionHeader
+          label="Activos"
+          total={totalForType('activo')}
+          defaultCurrency={defaultCurrency}
+        />
         {activoCategories.map(cat => renderCategoryGroup(cat, 'text-green-600'))}
 
-        <SectionHeader label="Pasivos" total={totalForType('pasivo')} />
+        <SectionHeader
+          label="Pasivos"
+          total={totalForType('pasivo')}
+          defaultCurrency={defaultCurrency}
+        />
         {pasivoCategories.map(cat => renderCategoryGroup(cat, 'text-danger-600'))}
 
         <Pressable
