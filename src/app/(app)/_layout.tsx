@@ -1,6 +1,5 @@
-import { Link, Redirect, SplashScreen, Tabs } from 'expo-router';
+import { Link, Redirect, Tabs } from 'expo-router';
 import * as React from 'react';
-import { useCallback, useEffect } from 'react';
 
 import { Pressable, Text } from '@/components/ui';
 import {
@@ -14,17 +13,6 @@ import { useIsFirstTime } from '@/lib/hooks/use-is-first-time';
 export default function TabLayout() {
   const status = useAuth.use.status();
   const [isFirstTime] = useIsFirstTime();
-  const hideSplash = useCallback(async () => {
-    await SplashScreen.hideAsync();
-  }, []);
-  useEffect(() => {
-    if (status !== 'idle') {
-      const timer = setTimeout(() => {
-        hideSplash();
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [hideSplash, status]);
 
   if (isFirstTime) {
     return <Redirect href="/onboarding" />;
