@@ -1,3 +1,4 @@
+import type { ViewProps } from 'react-native';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 import { ThemeProvider } from '@react-navigation/native';
@@ -34,8 +35,19 @@ SplashScreen.setOptions({
 });
 
 export default function RootLayout() {
+  const hasHiddenSplash = React.useRef(false);
+
+  const onLayoutRootView = React.useCallback(() => {
+    if (hasHiddenSplash.current) {
+      return;
+    }
+
+    hasHiddenSplash.current = true;
+    SplashScreen.hide();
+  }, []);
+
   return (
-    <Providers>
+    <Providers onLayout={onLayoutRootView}>
       <Stack>
         <Stack.Screen name="(app)" options={{ headerShown: false }} />
         <Stack.Screen name="onboarding" options={{ headerShown: false }} />
@@ -45,10 +57,17 @@ export default function RootLayout() {
   );
 }
 
-function Providers({ children }: { children: React.ReactNode }) {
+function Providers({
+  children,
+  onLayout,
+}: {
+  children: React.ReactNode;
+  onLayout: ViewProps['onLayout'];
+}) {
   const theme = useThemeConfig();
   return (
     <GestureHandlerRootView
+      onLayout={onLayout}
       style={styles.container}
       // eslint-disable-next-line better-tailwindcss/no-unknown-classes
       className={theme.dark ? `dark` : undefined}
