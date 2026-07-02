@@ -8,7 +8,7 @@
 
 ![expo](https://img.shields.io/github/package-json/dependency-version/obytes/react-native-template-obytes/expo?label=expo) ![GitHub Repo stars](https://img.shields.io/github/stars/obytes/react-native-template-obytes) ![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/m/obytes/react-native-template-obytes) ![GitHub issues](https://img.shields.io/github/issues/obytes/react-native-template-obytes) ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/obytes/react-native-template-obytes)
 
-📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo,TypeScript,tailwindcss, Husky, Lint-Staged, expo-router, react-query, react-hook-form, I18n.
+📱 A template for your next React Native project 🚀, Made with developer experience and performance first: Expo,TypeScript,tailwindcss, Husky, Lint-Staged, expo-router, react-query, TanStack Form, I18n.
 
 # 🚀 Quick start
 
@@ -46,7 +46,7 @@ When creating this starter kit, we had several guiding principles in mind::
 
 - ✅ The latest version of Expo SDK, along with the Custom Dev client, to give you access to a range of powerful features and tools.
 - 🎉 [TypeScript](https://www.typescriptlang.org/) for type checking, to help you catch bugs and improve code quality.
-- 💅 A minimal UI kit built with [tailwindcss](https://www.nativewind.dev/), which provides a range of pre-defined classes for styling your app.
+- 💅 A minimal UI kit built with [tailwindcss](https://tailwindcss.com/) and [Uniwind](https://github.com/uni-stack/uniwind), which provides a range of pre-defined classes for styling your app.
 - ⚙️ Support for multiple environment builds, including Production, Staging, and Development, using Expo configuration.
 - 🦊 Husky for Git Hooks, to automate your git hooks and enforce code standards.
 - 💡 A clean project structure with Absolute Imports, to make it easier to navigate and manage your code.
@@ -56,20 +56,20 @@ When creating this starter kit, we had several guiding principles in mind::
 - 💫 An auth flow with [zustand](https://github.com/pmndrs/zustand) and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) as a storage solution to save sensitive data.
 - 🛠 A simple workflow for building, releasing, and distributing your app using [Github action](https://github.com/features/actions).
 - 🔥 [React Query](https://react-query.tanstack.com/) & [axios](https://github.com/axios/axios) and [axios](https://github.com/axios/axios) for fetching data, to help you build efficient and performant apps.
-- 🧵 A good approach for handling forms with [react-hook-form](https://react-hook-form.com/) and [zod](https://github.com/colinhacks/zod) for validation + keyboard handling.
+- 🧵 A good approach for handling forms with [TanStack Form](https://github.com/TanStack/form) and [zod](https://github.com/colinhacks/zod) for validation + keyboard handling.
 - 🎯 Localization with [i18next](https://www.i18next.com/) , along with Eslint for validation.
 
 ## ✍️ Documentation
 
-- [Create new project ](https://starter.obytes.com/docs/getting-started/create-new-app)
-- [Rules and Conventions](https://starter.obytes.com/docs/getting-started/rules-and-convetions)
-- [Project structure](https://starter.obytes.com/docs/getting-started/project-structure)
-- [Environment vars and config](https://starter.obytes.com/docs/getting-started/environment-vars-config)
-- [UI and Theming](https://starter.obytes.com/docs/ui-and-theme/ui-theming)
-- [Components](https://starter.obytes.com/docs/ui-and-theme/components)
-- [Forms](https://starter.obytes.com/docs/ui-and-theme/Forms)
-- [Data fetching](https://starter.obytes.com/docs/guides/data-fetching)
-- [Contribute to starter](https://starter.obytes.com/docs/contribute)
+- [Create new project ](https://starter.obytes.com/getting-started/create-new-app/)
+- [Rules and Conventions](https://starter.obytes.com/getting-started/rules-and-conventions/)
+- [Project structure](https://starter.obytes.com/getting-started/project-structure)
+- [Environment vars and config](https://starter.obytes.com/getting-started/environment-vars-config/)
+- [UI and Theming](https://starter.obytes.com/ui-and-theme/ui-theming/)
+- [Components](https://starter.obytes.com/ui-and-theme/components/)
+- [Forms](https://starter.obytes.com/ui-and-theme/forms)
+- [Data fetching](https://starter.obytes.com/guides/data-fetching)
+- [Contribute to starter](https://starter.obytes.com/how-to-contribute)
 
 ## 😉 Why Expo?
 
@@ -103,18 +103,18 @@ We value the feedback and contributions of our users, and we encourage you to le
 
 - [Expo](https://docs.expo.io/)
 - [Expo Router](https://docs.expo.dev/router/introduction/)
-- [Nativewind](https://www.nativewind.dev/)
+- [Uniwind](https://github.com/uni-stack/uniwind)
 - [Flash list](https://github.com/Shopify/flash-list)
 - [React Query](https://tanstack.com/query/v4)
 - [Axios](https://axios-http.com/docs/intro)
-- [React Hook Form](https://react-hook-form.com/)
+- [TanStack Form](https://github.com/TanStack/form)
 - [i18next](https://www.i18next.com/)
 - [zustand](https://github.com/pmndrs/zustand)
 - [React Native MMKV](https://github.com/mrousavy/react-native-mmkv)
 - [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/)
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/)
 - [React Native Svg](https://github.com/software-mansion/react-native-svg)
-- [ React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
+- [React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
 - [Expo Image](https://docs.expo.dev/versions/unversioned/sdk/image/)
 
 ## Contributors
