@@ -12,6 +12,48 @@
 
 > Welcome to the Obytes Mobile Tribe's Expo / React Native Starter Kit!
 
+## 🚀 Getting Started
+
+To create a new project using this template, run:
+
+```bash
+npx create-obytes-app@latest <project-name>
+```
+
+Replace `<project-name>` with the name of your new project.
+
+This will:
+1. Clone the latest release of the template
+2. Remove unnecessary template files (.git, ios, android, docs, cli, LICENSE)
+3. Update package.json with your project name and set version to 0.0.1
+4. Update configuration files with your project details
+5. Initialize a new git repository
+6. Install project dependencies
+
+After the setup is complete, run:
+```bash
+cd <project-name>
+pnpm ios     # for iOS
+pnpm android # for Android
+```
+
+## 📋 What Gets Customized
+
+When you create a new project using this template, the following placeholders are automatically replaced with your project name:
+- App name (ObytesApp → YourProjectName)
+- Bundle IDs (com.obytes.* → com.yourprojectname.*)
+- URL schemes (obytesApp → yourprojectname)
+- Package name in app.config.ts
+- Project slug in app.config.ts
+- E2E test APP_ID in package.json scripts
+
+You may need to manually update:
+- Your EAS project ID in app.config.ts (replace `c3e1075b-6fe7-4686-aa49-35b46a229044`)
+- Your Expo account owner in app.config.ts (replace `obytes` with your Expo username)
+- Translation files in src/translations/ (update "obytes app" references to your project name)
+
+## 🚀 Motivation
+
 ## 🚀 Motivation
 
 Our goal with this starter kit was to streamline the process of building React Native apps, both for our own team and for our clients. We wanted to create a resource that would allow us to create high-quality apps faster and with less effort, while ensuring that all of our projects adhere to the same code standards and architectural principles.

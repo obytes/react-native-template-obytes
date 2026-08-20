@@ -1,7 +1,7 @@
 <p align="center">
     <img alt="React Native Template Obytes" src="https://user-images.githubusercontent.com/11137944/93101697-808bc580-f6a2-11ea-8ce3-482be6ca456a.png" width="200" />
-
 </p>
+
 <h1 align="center">
   React Native Template Obytes
 </h1>
@@ -14,8 +14,11 @@
 
 ```sh
 npx create-obytes-app@latest MyApp
-
 ```
+
+Replace `MyApp` with your desired project name.
+
+# Overview
 
 # Overview
 
@@ -24,6 +27,21 @@ As a team of experienced developers at Obytes Mobile Tribe, we have spent years 
 This starter kit has been thoroughly tested and proven successful in multiple projects over the past four years. It is regularly used by our team on a daily basis and has helped us deliver great results for our clients.
 
 While our starter kit is heavily influenced by our own opinions and experiences, we have carefully selected the included solutions to address common challenges and meet the needs of the majority of use cases. We believe it offers a streamlined and efficient approach to building React Native apps, and we are confident that it can help others achieve their project goals as well.
+
+## 📋 What Gets Customized
+
+When you create a new project using this template, the following placeholders are automatically replaced with your project name:
+- App name (ObytesApp → YourProjectName)
+- Bundle IDs (com.obytes.* → com.yourprojectname.*)
+- URL schemes (obytesApp → yourprojectname)
+- Package name in app.config.ts
+- Project slug in app.config.ts
+- E2E test APP_ID in package.json scripts
+
+You may need to manually update:
+- Your EAS project ID in app.config.ts (replace `c3e1075b-6fe7-4686-aa49-35b46a229044`)
+- Your Expo account owner in app.config.ts (replace `obytes` with your Expo username)
+- Translation files in src/translations/ (update "obytes app" references to your project name)
 
 ## 🚀 Motivation
 
