@@ -29,6 +29,8 @@ __tests__/        One per directory that has something to test.
 | copy, locales, RTL                      | src/lib/i18n/spec.md                          |
 | writing any test                        | src/lib/test-utils.tsx                        |
 | commands / scripts                      | agents/commands.md                            |
+| running the app, simulator, device      | README.md → "Running the app"                 |
+| driving a real simulator (Argent MCP)   | agents/rules/argent.md                        |
 | product or domain rules                 | agents/knowledge-base.md                      |
 
 `spec.md` = what it does today (present tense, always current).
@@ -98,3 +100,6 @@ fix the spec in the same change.
 - agents/rules/       — engineering rules, one file per topic
 - agents/commands.md  — full command reference
 - agents/knowledge-base.md — product domain and business rules
+- README.md "Running the app" — dev build, prebuild, environments.
+  This app cannot run in Expo Go; `pnpm start` alone is not enough on a
+  fresh clone.

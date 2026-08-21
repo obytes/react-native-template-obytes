@@ -4,13 +4,28 @@ This file lists the available MCP commands that the agent can invoke.
 Each command maps to an npm script or a helper utility.
 
 ## expo
-- `expo:dev` – `pnpm start`
+
+**This app cannot run in Expo Go.** It depends on native modules, so it needs a
+development build. `ios/` and `android/` are generated and gitignored, so a
+fresh clone must prebuild before it can run anything. Full walkthrough,
+including the platform toolchain and troubleshooting:
+[README — Running the app](../README.md#️-running-the-app).
+
+- `expo:setup` – `./setup.sh` (dependencies + `.env`; safe to re-run)
+- `expo:prebuild` – `pnpm prebuild:development` (generates `ios/` + `android/`;
+  add `--clean` to regenerate from scratch after native dependency changes)
+- `expo:dev` – `pnpm start` (needs a dev build already installed)
 - `expo:ios` – `pnpm ios`
 - `expo:android` – `pnpm android`
 - `expo:web` – `pnpm web`
+- `expo:doctor` – `pnpm doctor`
 - `expo:build:ios` – `pnpm build:production:ios`
 - `expo:build:android` – `pnpm build:production:android`
 - `expo:submit` – EAS submit (if configured)
+
+Preview and production variants exist for start/ios/android
+(`pnpm start:preview`, `pnpm android:production`, …). Each environment has its
+own bundle ID, so the three installs coexist on one device.
 
 ## clerk
 - `clerk:auth:url` – generate hosted sign-in URL (requires CLI tool)
