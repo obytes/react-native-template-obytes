@@ -1,3 +1,4 @@
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -8,6 +9,10 @@ import reactCompiler from 'eslint-plugin-react-compiler';
 import testingLibrary from 'eslint-plugin-testing-library';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const require = createRequire(import.meta.url);
+
+// Local rule: every feature/lib/ui module must carry a spec.md.
+const specRule = require('./scripts/eslint-rule-spec.js');
 
 export default antfu(
   {
@@ -40,6 +45,17 @@ export default antfu(
       'cli/',
       'expo-env.d.ts',
       'migration/*',
+      // Agent-facing docs: their fenced snippets are illustrative, not code.
+      'AGENTS.md',
+      'CLAUDE.md',
+      'claude.md',
+      'agents/**',
+      // Vendored agent skills (Argent, tdd). Their fenced snippets are
+      // documentation for agents, not code this project compiles or ships.
+      '.agents/**',
+      '.claude/**',
+      // Exported chat transcripts checked in at the repo root.
+      'session-*.md',
     ],
   },
 
@@ -64,6 +80,8 @@ export default antfu(
             'README-project.md',
             'ISSUE_TEMPLATE.md',
             'PULL_REQUEST_TEMPLATE.md',
+            'AGENTS.md',
+            'CLAUDE.md',
           ],
         },
       ],
@@ -161,5 +179,16 @@ export default antfu(
     rules: {
       ...testingLibrary.configs.react.rules,
     },
+  },
+
+  // Spec drift: features, lib modules and the UI kit must document themselves
+  {
+    files: [
+      'src/features/**/*.{ts,tsx}',
+      'src/lib/**/*.{ts,tsx}',
+      'src/components/ui/**/*.{ts,tsx}',
+    ],
+    plugins: { local: { rules: { 'spec-required': specRule } } },
+    rules: { 'local/spec-required': 'error' },
   },
 );

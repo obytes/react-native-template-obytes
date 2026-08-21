@@ -12,6 +12,146 @@
 
 > Welcome to the Obytes Mobile Tribe's Expo / React Native Starter Kit!
 
+## 🚀 Getting Started
+
+To create a new project using this template, run:
+
+```bash
+npx create-obytes-app@latest <project-name>
+```
+
+Replace `<project-name>` with the name of your new project.
+
+This will:
+1. Clone the latest release of the template
+2. Remove unnecessary template files (.git, ios, android, docs, cli, LICENSE)
+3. Update package.json with your project name and set version to 0.0.1
+4. Update configuration files with your project details
+5. Initialize a new git repository
+6. Install project dependencies
+
+After the setup is complete, run:
+```bash
+cd <project-name>
+pnpm ios     # for iOS
+pnpm android # for Android
+```
+
+### Working on this repo directly
+
+If you cloned this repository rather than generating a project from it:
+
+```bash
+./setup.sh            # checks prerequisites, creates .env, installs deps
+./setup.sh --verify   # ...and runs lint, type-check, tests and expo-doctor
+```
+
+It is safe to re-run and never overwrites an existing `.env`.
+
+## ▶️ Running the app
+
+> **This app cannot run in Expo Go.** It depends on native modules (Clerk,
+> expo-secure-store, MMKV, Reanimated), so you need a development build. If you
+> are used to scanning a QR code with Expo Go, that path will not work here.
+
+You need the platform toolchain for whichever target you build:
+
+| Target | Requires |
+|---|---|
+| iOS | macOS with Xcode + CocoaPods |
+| Android | Android Studio with the SDK, and JDK 17 (the version CI builds with) |
+
+Then:
+
+```bash
+./setup.sh                  # dependencies and .env
+pnpm prebuild:development   # generates the native ios/ and android/ projects
+pnpm ios                    # or: pnpm android
+```
+
+`ios/` and `android/` are generated, not committed — they are gitignored, so a
+fresh clone always starts with a prebuild. `pnpm ios` does prebuild implicitly
+when they are missing, but running `prebuild:development` first is worth doing:
+it pins `EXPO_PUBLIC_APP_ENV` and validates `.env` against the Zod schema in
+`env.ts` up front, rather than letting a missing variable surface later.
+
+Once the build is installed on the simulator or device, `pnpm start` runs the
+dev server on its own for day-to-day work.
+
+### Environments
+
+Three variants, each with its own bundle ID so they install side by side:
+
+| Environment | Start | Build and run |
+|---|---|---|
+| development (default) | `pnpm start` | `pnpm ios` / `pnpm android` |
+| preview | `pnpm start:preview` | `pnpm ios:preview` / `pnpm android:preview` |
+| production | `pnpm start:production` | `pnpm ios:production` / `pnpm android:production` |
+
+### Signing in
+
+`EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY` ships as a placeholder. The app builds and
+runs without a real one, but **sign-in will fail until you set it** — get a key
+from [the Clerk dashboard](https://dashboard.clerk.com) (Settings → API Keys)
+and put it in `.env`.
+
+### When things go wrong
+
+- **Added or upgraded a native dependency?** Re-run `pnpm prebuild:development`.
+  Metro will not pick up new native code on its own.
+- **Stale native build?** `pnpm prebuild:development --clean` regenerates from
+  scratch. Deleting `ios/` and `android/` is equivalent since they are generated.
+- **Check your setup:** `pnpm doctor` runs expo-doctor against the project.
+
+## 🤖 Agent tooling (MCP)
+
+This repo ships [Argent](https://github.com/software-mansion/argent) by Software
+Mansion — an MCP server that lets a coding agent drive a real iOS Simulator or
+Android Emulator: tap and type, read the view hierarchy, inspect network calls
+and console logs, capture screenshots, and profile performance.
+
+It is installed as a **devDependency**, so teammates get it from `pnpm install`.
+There is no global install and no `argent init` to run. The committed MCP config
+launches the project-local copy:
+
+| Client | Config |
+|---|---|
+| Claude Code | `.mcp.json` |
+| opencode | `opencode.json` |
+| VS Code | `.vscode/mcp.json` |
+
+Agents use it through the skills under `agents/skills/argent-*` (for example
+`argent-ios-simulator-setup`, then `argent-test-ui-flow`) rather than by calling
+commands by name. See `agents/commands.md` for the full list and
+`agents/rules/argent.md` for the house rules.
+
+Three things to know:
+
+- **It needs a development build and a booted simulator/emulator** (see
+  [Running the app](#️-running-the-app)). It has no role in CI.
+- **Telemetry is opted out** (`--no-telemetry` at install). Re-enable per
+  machine with `pnpm exec argent telemetry enable`.
+- Tool calls are **auto-approved** for Claude Code via `.claude/settings.json`
+  (`"allow": ["mcp__argent"]`). Delete that entry if you would rather approve
+  each simulator action by hand.
+
+## 📋 What Gets Customized
+
+When you create a new project using this template, the following placeholders are automatically replaced with your project name:
+- App name (ObytesApp → YourProjectName)
+- Bundle IDs (com.obytes.* → com.yourprojectname.*)
+- URL schemes (obytesApp → yourprojectname)
+- Package name in app.config.ts
+- Project slug in app.config.ts
+- E2E test APP_ID in package.json scripts
+
+You may need to manually update:
+- Your EAS project ID in app.config.ts (replace `c3e1075b-6fe7-4686-aa49-35b46a229044`)
+- Your Expo account owner in app.config.ts (replace `obytes` with your Expo username)
+- Translation files in src/translations/ (update "obytes app" references to your project name)
+
+## 🚀 Motivation
+
 ## 🚀 Motivation
 
 Our goal with this starter kit was to streamline the process of building React Native apps, both for our own team and for our clients. We wanted to create a resource that would allow us to create high-quality apps faster and with less effort, while ensuring that all of our projects adhere to the same code standards and architectural principles.
@@ -136,3 +276,22 @@ If you have any questions about the starter and want answers, please check out t
 ## 🔖 License
 
 This project is MIT licensed.
+
+## Clerk Authentication
+
+This template integrates Clerk for authentication. To enable:
+
+1. Add your Clerk publishable key to `.env`:
+   ```
+   EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=your_key_here
+   ```
+
+2. The app is wrapped with `<ClerkProvider>` in `src/app/_layout.tsx`.
+
+3. Login screen uses Clerk's `useSignIn` hook and `SignIn` component.
+
+4. API requests automatically attach the Clerk JWT via an Axios interceptor.
+
+5. On 401 responses, the user is signed out.
+
+For backend verification, validate Clerk JWTs using Clerk's JWKS endpoint.

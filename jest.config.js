@@ -2,6 +2,9 @@ module.exports = {
   preset: 'jest-expo',
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts'],
   testMatch: ['**/?(*.)+(spec|test).ts?(x)'],
+  // The CLI generates scratch apps here with their own node_modules and
+  // manual mocks; scanning them poisons the haste map for the real suite.
+  modulePathIgnorePatterns: ['<rootDir>/cli/test-project'],
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
     '!**/coverage/**',
