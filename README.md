@@ -51,6 +51,38 @@ It is safe to re-run and never overwrites an existing `.env`.
 Note that this app uses native modules, so it cannot run in Expo Go — you need
 a development build (`pnpm prebuild:development`, then `pnpm ios`/`pnpm android`).
 
+## 🤖 Agent tooling (MCP)
+
+This repo ships [Argent](https://github.com/software-mansion/argent) by Software
+Mansion — an MCP server that lets a coding agent drive a real iOS Simulator or
+Android Emulator: tap and type, read the view hierarchy, inspect network calls
+and console logs, capture screenshots, and profile performance.
+
+It is installed as a **devDependency**, so teammates get it from `pnpm install`.
+There is no global install and no `argent init` to run. The committed MCP config
+launches the project-local copy:
+
+| Client | Config |
+|---|---|
+| Claude Code | `.mcp.json` |
+| opencode | `opencode.json` |
+| VS Code | `.vscode/mcp.json` |
+
+Agents use it through the skills under `agents/skills/argent-*` (for example
+`argent-ios-simulator-setup`, then `argent-test-ui-flow`) rather than by calling
+commands by name. See `agents/commands.md` for the full list and
+`agents/rules/argent.md` for the house rules.
+
+Two things to know:
+
+- **It needs a development build and a booted simulator/emulator.** It cannot
+  work against Expo Go, and it has no role in CI.
+- **Telemetry is opted out** (`--no-telemetry` at install). Re-enable per
+  machine with `pnpm exec argent telemetry enable`.
+- Tool calls are **auto-approved** for Claude Code via `.claude/settings.json`
+  (`"allow": ["mcp__argent"]`). Delete that entry if you would rather approve
+  each simulator action by hand.
+
 ## 📋 What Gets Customized
 
 When you create a new project using this template, the following placeholders are automatically replaced with your project name:

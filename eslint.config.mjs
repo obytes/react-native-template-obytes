@@ -50,6 +50,10 @@ export default antfu(
       'CLAUDE.md',
       'claude.md',
       'agents/**',
+      // Vendored agent skills (Argent, tdd). Their fenced snippets are
+      // documentation for agents, not code this project compiles or ships.
+      '.agents/**',
+      '.claude/**',
       // Exported chat transcripts checked in at the repo root.
       'session-*.md',
     ],

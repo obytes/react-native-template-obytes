@@ -37,9 +37,23 @@ Each command maps to an npm script or a helper utility.
 - `build:android` – `pnpm build:production:android`
 
 ## argent (MCP server)
-- `argent:simulator:launch` – Launch app on simulator
-- `argent:simulator:tap` – Tap at coordinates
-- `argent:simulator:swipe` – Swipe gesture
-- `argent:debug:view-hierarchy` – Inspect view hierarchy
-- `argent:debug:network` – Inspect network requests
-- `argent:profile:record` – Record performance profile
+Argent drives a real simulator/emulator. It is installed as a devDependency and
+registered in `.mcp.json`, so it is available after `pnpm install` — no global
+install, no `argent init`. It is not invoked by name from this file; the agent
+loads one of the installed skills instead:
+
+- `argent-ios-simulator-setup` / `argent-android-emulator-setup` — boot a device
+- `argent-device-interact` — tap, swipe, type, screenshot, launch apps
+- `argent-test-ui-flow` — interact/screenshot/verify loops over a UI flow
+- `argent-metro-debugger` — console logs, network, React tree via Metro/CDP
+- `argent-react-native-profiler` / `argent-native-profiler` — performance
+- `argent-qa-flows` / `argent-create-flow` — record and replay flow YAML
+- `argent-screen-recording`, `argent-screenshot-diff`, `argent-lens`,
+  `argent-settings-permissions`, `argent-tv-interact`
+
+Requires a development build — this app cannot run in Expo Go. See
+`agents/rules/argent.md` and `.agents/skills/<name>/SKILL.md` for details.
+
+CLI (rarely needed directly):
+- `pnpm exec argent tools` — list the MCP tool surface
+- `pnpm exec argent server status` — check the shared tool-server
