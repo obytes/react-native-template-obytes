@@ -37,6 +37,20 @@ pnpm ios     # for iOS
 pnpm android # for Android
 ```
 
+### Working on this repo directly
+
+If you cloned this repository rather than generating a project from it:
+
+```bash
+./setup.sh            # checks prerequisites, creates .env, installs deps
+./setup.sh --verify   # ...and runs lint, type-check, tests and expo-doctor
+```
+
+It is safe to re-run and never overwrites an existing `.env`.
+
+Note that this app uses native modules, so it cannot run in Expo Go — you need
+a development build (`pnpm prebuild:development`, then `pnpm ios`/`pnpm android`).
+
 ## 📋 What Gets Customized
 
 When you create a new project using this template, the following placeholders are automatically replaced with your project name:
