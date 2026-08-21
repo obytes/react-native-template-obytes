@@ -21,3 +21,8 @@ yarn-error.log
 
 expo-env.d.ts
 # @end expo-cli
+# CLI scratch projects (generated, has its own node_modules)
+cli/test-project/
+
+# Editor/agent backup files
+*.bak

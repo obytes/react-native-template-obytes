@@ -1,0 +1,29 @@
+name: Spec Drift Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  drift-check:
+    runs-on: ubuntu-latest
+    steps:
+      # fetch-depth: 0 gives us origin/<base> to diff against.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Single source of truth: the same script `pnpm check-specs` runs
+      # locally. It has no dependencies, so there is nothing to install.
+      - name: Check spec updates
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: node scripts/check-specs.js --base "origin/$BASE_REF"

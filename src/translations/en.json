@@ -1,4 +1,7 @@
 {
+  "login": {
+    "failed": "Sign in failed. Check your email and password."
+  },
   "onboarding": {
     "message": "Welcome to obytes app site"
   },
@@ -12,6 +15,7 @@
     "language": "Language",
     "links": "Links",
     "logout": "Logout",
+    "logout_failed": "Could not sign out. Please try again.",
     "more": "More",
     "privacy": "Privacy Policy",
     "rate": "Rate",

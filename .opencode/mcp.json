@@ -1,0 +1,10 @@
+{
+  "mcp": {
+    "atlassian": {
+      "type": "remote",
+      "url": "https://mcp.atlassian.com/v1/mcp",
+      "enabled": true,
+      "oauth": {}
+    }
+  }
+}
