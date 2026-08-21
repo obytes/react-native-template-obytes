@@ -178,3 +178,22 @@ If you have any questions about the starter and want answers, please check out t
 ## 🔖 License
 
 This project is MIT licensed.
+
+## Clerk Authentication
+
+This template integrates Clerk for authentication. To enable:
+
+1. Add your Clerk publishable key to `.env`:
+   ```
+   EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=your_key_here
+   ```
+
+2. The app is wrapped with `<ClerkProvider>` in `src/app/_layout.tsx`.
+
+3. Login screen uses Clerk's `useSignIn` hook and `SignIn` component.
+
+4. API requests automatically attach the Clerk JWT via an Axios interceptor.
+
+5. On 401 responses, the user is signed out.
+
+For backend verification, validate Clerk JWTs using Clerk's JWKS endpoint.

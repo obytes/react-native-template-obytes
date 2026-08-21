@@ -1,3 +1,4 @@
+import { useAuth } from '@clerk/expo';
 import { Link, Redirect, Tabs } from 'expo-router';
 import * as React from 'react';
 
@@ -7,17 +8,21 @@ import {
   Settings as SettingsIcon,
   Style as StyleIcon,
 } from '@/components/ui/icons';
-import { useAuthStore as useAuth } from '@/features/auth/use-auth-store';
 import { useIsFirstTime } from '@/lib/hooks/use-is-first-time';
 
 export default function TabLayout() {
-  const status = useAuth.use.status();
+  const { isSignedIn, isLoaded } = useAuth();
   const [isFirstTime] = useIsFirstTime();
 
   if (isFirstTime) {
     return <Redirect href="/onboarding" />;
   }
-  if (status === 'signOut') {
+  // Clerk restores the session from the token cache asynchronously. Redirecting
+  // before that resolves would bounce an already-signed-in user to /login.
+  if (!isLoaded) {
+    return null;
+  }
+  if (!isSignedIn) {
     return <Redirect href="/login" />;
   }
   return (
