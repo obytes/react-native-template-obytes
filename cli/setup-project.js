@@ -54,8 +54,12 @@ const updateProjectConfig = async (projectName) => {
   const contents = fs.readFileSync(configPath, {
     encoding: 'utf-8',
   });
+  // Schemes first, lowercase only. /ObytesApp/gi also matches `obytesapp`
+  // and would copy PascalCase from the project name (breaks EAS Update).
+  const scheme = projectName.toLowerCase().replace(/[^a-z0-9+.-]/g, '');
   const replaced = contents
-    .replace(/ObytesApp/gi, projectName)
+    .replace(/obytesapp/g, scheme)
+    .replace(/ObytesApp/g, projectName)
     .replace(/com.obytes/gi, `com.${projectName.toLowerCase()}`)
     .replace(/obytes/gi, 'expo-owner');
 
