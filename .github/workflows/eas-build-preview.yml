@@ -5,7 +5,7 @@
 # ✍️ Description:
 # This workflow is used to trigger a build on EAS for the QA environment.
 # It will run on every GitHub release published on the repo or can be triggered manually from the actions tab.
-# This workflow will use ./actions/eas-build action to trigger the build on EAS with staging env.
+# This workflow will use ./actions/eas-build action to trigger the build on EAS with preview env.
 
 # 🚨 GITHUB SECRETS REQUIRED:
 #         - EXPO_TOKEN: Expo token to authenticate with EAS

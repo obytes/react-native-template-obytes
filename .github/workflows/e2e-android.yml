@@ -37,7 +37,7 @@ jobs:
       - name: 📦 Set Up JDK + Generate Test APK
         uses: ./.github/actions/setup-jdk-generate-apk
         with:
-          APP_ENV: staging
+          APP_ENV: preview
 
       - name: Upload Test APK
         uses: actions/upload-artifact@v3
@@ -102,7 +102,7 @@ jobs:
           profile: Nexus 6
           script: |
             adb install "${{ github.workspace }}/app-release.apk"
-            $HOME/.maestro/bin/maestro test .maestro/ --env=APP_ID=com.obytes.staging  --format junit
+            $HOME/.maestro/bin/maestro test .maestro/ --env=APP_ID=com.obytes.preview  --format junit
 
       - name: Upload artifacts
         if: always()
