@@ -45,6 +45,10 @@ To add a new environment variable to the project, follow these steps:
 
 ### 1. Add to the `.env` file
 
+:::caution
+`.env` is gitignored. Copy `.env.example` to `.env` for local work. Do not commit `.env`.
+:::
+
 Add the new environment variable to your `.env` file. Use the `EXPO_PUBLIC_` prefix if the variable needs to be accessible in your client code:
 
 ```bash title=".env"

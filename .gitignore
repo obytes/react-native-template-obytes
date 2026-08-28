@@ -21,3 +21,7 @@ yarn-error.log
 
 expo-env.d.ts
 # @end expo-cli
+
+# Local env files (copy .env.example -> .env). Never commit secrets.
+.env
+.env*.local
