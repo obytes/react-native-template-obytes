@@ -5,7 +5,7 @@
 # ✍️ Description:
 # This is a composite action, which means it can be used in other actions.
 # This action is used to set up the JDK environment and generate an Android APK for testing.
-# This action accepts one input: `APP_ENV`, which is used to generate an APK for a specific environment (development, staging, production). We use staging by default.
+# This action accepts one input: `APP_ENV`, which is used to generate an APK for a specific environment (development, preview, production). We use preview by default.
 # Before generating the APK, we run a pre-build script to generate the necessary native folders based on the APP_ENV.
 # On success, the APK is generated at `./android/app/build/outputs/apk/release/app-release.apk`.
 
@@ -13,15 +13,15 @@
 #       - name : 📦 Set Up JDK + Generate Test APK
 #         uses: ./.github/actions/setup-jdk-generate-apk
 #         with:
-#           APP_ENV: 'staging'
+#           APP_ENV: 'preview'
 
 name: 'Setup  JDK + GRADLE + Generate APK'
 description: 'Setup  JDK + GRADLE + Generate APK'
 inputs:
   APP_ENV:
-    description: 'APP_ENV (one of): development, staging, production'
+    description: 'APP_ENV (one of): development, preview, production'
     required: true
-    default: staging
+    default: preview
 
 runs:
   using: composite
