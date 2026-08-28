@@ -4,9 +4,9 @@
 
 # ✍️ Description:
 # This is a composite action, which means it can be used in other actions.
-# This action is used to trigger an EAS Build for a specific environment (development, staging, production).
+# This action is used to trigger an EAS Build for a specific environment (development, preview, production).
 # This action accepts those inputs:
-#        `APP_ENV`, which is used to generate an APK for a specific environment (development, staging, production). We use staging by default.
+#        `APP_ENV`, which is used to generate an APK for a specific environment (development, preview, production). We use preview by default.
 #        `AUTO_SUBMIT`, false by default, set to true if you want to automatically submit your build to stores.
 #        `EXPO_TOKEN`, required, access token for your Expo account. https://expo.dev/settings/access-tokens
 #        `VERSION`, required, version of the app to build. used as the build message.
@@ -17,7 +17,7 @@
 #      - name: ⏱️ EAS Build
 #        uses: ./.github/actions/eas-build
 #        with:
-#          APP_ENV: staging
+#          APP_ENV: preview
 #          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 #          VERSION: ${{ github.event.release.tag_name }}
 #          IOS: false
@@ -28,7 +28,7 @@ inputs:
   APP_ENV:
     description: 'APP_ENV (one of): development, preview, production'
     required: true
-    default: staging
+    default: preview
   AUTO_SUBMIT: # # TODO: we need to handle this too
     description: 'AUTO_SUBMIT (one of): true, false'
     required: true
