@@ -11,6 +11,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { Path, Svg } from 'react-native-svg';
 
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { usePostableSpaces } from '@/features/community-posting/api/use-postable-spaces';
@@ -124,6 +125,8 @@ export function SpaceFeedView({
 }
 
 function NewPostHeaderButton({ onPress }: { onPress: () => void }) {
+  // Native stack header-right slot is narrow (back title + screen title
+  // compete for width), so use a compact icon rather than a text label.
   return (
     <Pressable
       testID="space-feed-new-post"
@@ -131,8 +134,11 @@ function NewPostHeaderButton({ onPress }: { onPress: () => void }) {
       accessibilityLabel="New post"
       onPress={onPress}
       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+      className="size-9 items-center justify-center rounded-full bg-violet-700"
     >
-      <Text className="font-sans text-base font-medium text-violet-700">New post</Text>
+      <Svg width={18} height={18} viewBox="0 0 24 24" accessibilityElementsHidden>
+        <Path d="M12 5v14M5 12h14" stroke="#FFFFFF" strokeWidth={2.5} strokeLinecap="round" />
+      </Svg>
     </Pressable>
   );
 }
