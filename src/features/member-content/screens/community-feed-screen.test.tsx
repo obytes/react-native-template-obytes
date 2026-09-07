@@ -235,4 +235,13 @@ describe('signedInCommunityFeed', () => {
     expect(screen.queryByRole('button', { name: 'All' })).not.toBeOnTheScreen();
     expect(screen.getByText('Laska morning update')).toBeOnTheScreen();
   });
+
+  it('keeps showing the cached chips when a later refetch errors', () => {
+    mockUseFeedChips.mockReturnValue({ data: { ok: true, chips: CHIPS }, isError: true, isLoading: false });
+
+    render(<CommunityFeedScreen />);
+
+    expect(screen.getByRole('button', { name: 'All' })).toBeOnTheScreen();
+    expect(screen.getByRole('button', { name: 'Polls' })).toBeOnTheScreen();
+  });
 });

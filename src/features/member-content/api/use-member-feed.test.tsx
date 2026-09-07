@@ -106,24 +106,26 @@ describe('useMemberFeed filtering', () => {
   });
 
   it('does not read the snapshot for a filtered feed', async () => {
-    const { getCachedMemberFeed } = jest.requireMock(
+    const { getCachedMemberFeed, setCachedMemberFeed } = jest.requireMock(
       '@/features/member-content/cache/member-content-cache',
-    ) as { getCachedMemberFeed: jest.Mock };
+    ) as { getCachedMemberFeed: jest.Mock; setCachedMemberFeed: jest.Mock };
     mockGet.mockResolvedValue({ data: { ok: true, items: [ITEM], page: 1, hasNextPage: false } });
     const { result } = renderHook(() => useMemberFeed(SCOPE, { kind: 'poll' }), { wrapper });
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     expect(getCachedMemberFeed).not.toHaveBeenCalled();
+    expect(setCachedMemberFeed).not.toHaveBeenCalled();
   });
 
   it('reads the snapshot for the unfiltered feed', async () => {
-    const { getCachedMemberFeed } = jest.requireMock(
+    const { getCachedMemberFeed, setCachedMemberFeed } = jest.requireMock(
       '@/features/member-content/cache/member-content-cache',
-    ) as { getCachedMemberFeed: jest.Mock };
+    ) as { getCachedMemberFeed: jest.Mock; setCachedMemberFeed: jest.Mock };
     mockGet.mockResolvedValue({ data: { ok: true, items: [ITEM], page: 1, hasNextPage: false } });
     const { result } = renderHook(() => useMemberFeed(SCOPE), { wrapper });
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     expect(getCachedMemberFeed).toHaveBeenCalledWith(SCOPE);
+    expect(setCachedMemberFeed).toHaveBeenCalled();
   });
 });

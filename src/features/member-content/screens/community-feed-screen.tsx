@@ -210,7 +210,7 @@ function SignedInCommunityFeed({ member }: { member: AuthUser }) {
     [member.id],
   );
   const chipsQuery = useFeedChips(scope);
-  const chips = chipsQuery.isError ? [] : (chipsQuery.data?.chips ?? []);
+  const chips = chipsQuery.data?.chips ?? [];
   const chipSelection = useFeedChipSelection(scope, chips);
   const filter = chipSelection.selectedChip ? chipToFilter(chipSelection.selectedChip) : undefined;
   const feed = useMemberFeed(scope, filter);
