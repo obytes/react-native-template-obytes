@@ -67,6 +67,7 @@ const BASE_PROPS = {
   onOpenPost: jest.fn(),
   onVote: jest.fn(),
   pendingVotePollIds: [],
+  onOpenStory: jest.fn(),
 };
 
 describe('spaceFeedView', () => {
