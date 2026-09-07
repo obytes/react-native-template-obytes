@@ -1,4 +1,4 @@
-import type { MemberContentState, MemberFeedItem } from '@/features/member-content/types';
+import type { FeedChip, MemberContentState, MemberFeedItem } from '@/features/member-content/types';
 import type { AuthUser } from '@/lib/auth/utils';
 
 import Env from 'env';
@@ -17,9 +17,13 @@ import { useScreenTopPadding } from '@/components/ui/screen-layout';
 import { useTabBarContentPadding } from '@/components/ui/tab-bar-layout';
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { NewPostButton } from '@/features/community-posting/components/new-post-button';
+import { useFeedChips } from '@/features/member-content/api/use-feed-chips';
 import { useMemberFeed } from '@/features/member-content/api/use-member-feed';
 import { usePostLike } from '@/features/member-content/api/use-post-like';
+import { FeedChipRow } from '@/features/member-content/components/feed-chip-row';
 import { FeedItemRenderer } from '@/features/member-content/components/feed-item-renderer';
+import { chipToFilter } from '@/features/member-content/lib/chip-filter';
+import { useFeedChipSelection } from '@/features/member-content/lib/use-feed-chip-selection';
 import { usePollVote } from '@/features/polls/api/use-poll-vote';
 
 type CommunityFeedViewProps = {
@@ -36,6 +40,10 @@ type CommunityFeedViewProps = {
   onVote: (pollId: string, optionId: string) => void;
   pendingVotePollIds: string[];
   onOpenStory: (slug: string) => void;
+  chips?: FeedChip[];
+  selectedChipId?: string;
+  onSelectChip?: (id: string) => void;
+  emptyCopy?: { title: string; message: string };
 };
 
 function EmptyState({
@@ -50,9 +58,39 @@ function EmptyState({
   return (
     <View testID={testID} className="rounded-2xl border border-neutral-300 bg-white p-6">
       <Text className="font-sans text-lg font-semibold text-neutral-950">{title}</Text>
-      <Text className="mt-2 font-sans text-sm/5 text-neutral-600">{message}</Text>
+      {message
+        ? <Text className="mt-2 font-sans text-sm/5 text-neutral-600">{message}</Text>
+        : null}
     </View>
   );
+}
+
+const DEFAULT_EMPTY_COPY = {
+  title: 'Nothing new yet',
+  message: 'New updates from your live circles will appear here.',
+};
+
+/** Per-chip empty copy (S12-02b) — falls back to the default feed copy for the "all" chip. */
+export function emptyCopyForChip(chip: FeedChip | undefined): { title: string; message: string } {
+  if (!chip) {
+    return DEFAULT_EMPTY_COPY;
+  }
+  switch (chip.kind) {
+    case 'space':
+      return { title: `Nothing in ${chip.label} yet`, message: 'Start the first post.' };
+    case 'horses':
+      return {
+        title: 'Nothing from your horses yet',
+        message: 'Follow a horse to see its space here.',
+      };
+    case 'polls':
+      return { title: 'No polls right now', message: '' };
+    case 'news':
+    case 'charity':
+      return { title: 'No stories yet', message: '' };
+    default:
+      return DEFAULT_EMPTY_COPY;
+  }
 }
 
 export function CommunityFeedView({
@@ -69,6 +107,10 @@ export function CommunityFeedView({
   onVote,
   pendingVotePollIds,
   onOpenStory,
+  chips = [],
+  selectedChipId = 'all',
+  onSelectChip = () => {},
+  emptyCopy = DEFAULT_EMPTY_COPY,
 }: CommunityFeedViewProps) {
   const contentPaddingBottom = useTabBarContentPadding(24);
   const contentPaddingTop = useScreenTopPadding();
@@ -105,6 +147,8 @@ export function CommunityFeedView({
         </Pressable>
       </View>
 
+      <FeedChipRow chips={chips} selectedId={selectedChipId} onSelect={onSelectChip} />
+
       {contentState === 'saved'
         ? (
             <View className="mb-4 rounded-xl border border-violet-300 bg-violet-50 px-4 py-3">
@@ -128,8 +172,8 @@ export function CommunityFeedView({
           ? (
               <EmptyState
                 testID="member-feed-empty"
-                title="Nothing new yet"
-                message="New updates from your live circles will appear here."
+                title={emptyCopy.title}
+                message={emptyCopy.message}
               />
             )
           : null}
@@ -165,7 +209,11 @@ function SignedInCommunityFeed({ member }: { member: AuthUser }) {
     () => ({ organizationId: Env.EXPO_PUBLIC_CLUB_ID, memberId: member.id }),
     [member.id],
   );
-  const feed = useMemberFeed(scope);
+  const chipsQuery = useFeedChips(scope);
+  const chips = chipsQuery.isError ? [] : (chipsQuery.data?.chips ?? []);
+  const chipSelection = useFeedChipSelection(scope, chips);
+  const filter = chipSelection.selectedChip ? chipToFilter(chipSelection.selectedChip) : undefined;
+  const feed = useMemberFeed(scope, filter);
   const like = usePostLike(scope);
   const poll = usePollVote(scope);
 
@@ -187,6 +235,10 @@ function SignedInCommunityFeed({ member }: { member: AuthUser }) {
         onVote={(pollId, optionId) => poll.vote({ pollId, optionId })}
         pendingVotePollIds={poll.pendingPollIds}
         onOpenStory={slug => router.push(`/news/${encodeURIComponent(slug)}`)}
+        chips={chips}
+        selectedChipId={chipSelection.selectedId}
+        onSelectChip={chipSelection.select}
+        emptyCopy={emptyCopyForChip(chipSelection.selectedChip)}
       />
       <NewPostButton scope={scope} />
     </View>

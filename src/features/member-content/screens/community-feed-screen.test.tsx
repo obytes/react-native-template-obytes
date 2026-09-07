@@ -1,9 +1,13 @@
+import type { FeedChip, FeedFilter } from '@/features/member-content/types';
 import type { AuthUser } from '@/lib/auth/utils';
 
 import { fireEvent, render, screen } from '@testing-library/react-native';
 import * as React from 'react';
 
-import { CommunityFeedView } from '@/features/member-content/screens/community-feed-screen';
+import {
+  CommunityFeedScreen,
+  CommunityFeedView,
+} from '@/features/member-content/screens/community-feed-screen';
 
 jest.mock('@/components/ui', () => {
   const RN = jest.requireActual('react-native');
@@ -21,6 +25,47 @@ jest.mock('@/components/ui/screen-layout', () => ({
 
 jest.mock('@/components/ui/tab-bar-layout', () => ({
   useTabBarContentPadding: () => 120,
+}));
+
+jest.mock('expo-router', () => ({
+  useRouter: () => ({ push: jest.fn() }),
+}));
+
+jest.mock('@/features/auth/use-auth-store', () => ({
+  useAuthStore: {
+    use: {
+      user: () => ({ id: 'member-1', email: 'jane@example.com', name: 'Jane Member' }),
+    },
+  },
+}));
+
+jest.mock('@/features/community-posting/components/new-post-button', () => ({
+  NewPostButton: () => null,
+}));
+
+jest.mock('@/features/member-content/api/use-post-like', () => ({
+  usePostLike: () => ({ toggleLike: jest.fn(), pendingPostId: null }),
+}));
+
+jest.mock('@/features/polls/api/use-poll-vote', () => ({
+  usePollVote: () => ({ vote: jest.fn(), pendingPollIds: [] }),
+}));
+
+const mockUseFeedChips = jest.fn();
+jest.mock('@/features/member-content/api/use-feed-chips', () => ({
+  useFeedChips: (...args: unknown[]) => mockUseFeedChips(...args),
+}));
+
+const mockUseMemberFeed = jest.fn();
+jest.mock('@/features/member-content/api/use-member-feed', () => ({
+  useMemberFeed: (...args: unknown[]) => mockUseMemberFeed(...args),
+}));
+
+const mockGetItem = jest.fn();
+const mockSetItem = jest.fn();
+jest.mock('@/lib/storage', () => ({
+  getItem: (...args: unknown[]) => mockGetItem(...args),
+  setItem: (...args: unknown[]) => mockSetItem(...args),
 }));
 
 const MEMBER: AuthUser = {
@@ -127,5 +172,67 @@ describe('communityFeedView', () => {
     expect(screen.getByText('Which charity?')).toBeOnTheScreen();
     fireEvent.press(screen.getByTestId('poll-option-o2'));
     expect(BASE_PROPS.onVote).toHaveBeenCalledWith('p1', 'o2');
+  });
+});
+
+const CHIPS: FeedChip[] = [
+  { id: 'all', label: 'All', kind: 'all', spaceIds: [] },
+  { id: 'polls', label: 'Polls', kind: 'polls', spaceIds: [] },
+];
+
+function feedResult(overrides: Record<string, unknown> = {}) {
+  return {
+    data: [ITEM],
+    contentState: 'fresh' as const,
+    isLoading: false,
+    isRefetching: false,
+    isError: false,
+    refetch: jest.fn(),
+    ...overrides,
+  };
+}
+
+describe('signedInCommunityFeed', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    mockGetItem.mockReturnValue(null);
+    mockUseFeedChips.mockReturnValue({ data: { ok: true, chips: CHIPS }, isError: false, isLoading: false });
+    mockUseMemberFeed.mockReturnValue(feedResult());
+  });
+
+  it('queries the feed with the filter for the selected chip', () => {
+    render(<CommunityFeedScreen />);
+
+    fireEvent.press(screen.getByRole('button', { name: 'Polls' }));
+
+    const lastCall = mockUseMemberFeed.mock.calls[mockUseMemberFeed.mock.calls.length - 1];
+    const filter = lastCall[1] as FeedFilter | undefined;
+    expect(filter).toEqual({ kind: 'poll' });
+  });
+
+  it('shows the polls empty copy when the polls chip has no items', () => {
+    mockUseMemberFeed.mockReturnValue(feedResult({ data: [], contentState: 'empty' }));
+
+    render(<CommunityFeedScreen />);
+    fireEvent.press(screen.getByRole('button', { name: 'Polls' }));
+
+    expect(screen.getByText('No polls right now')).toBeOnTheScreen();
+  });
+
+  it('hides the chip row while chips are loading with nothing cached', () => {
+    mockUseFeedChips.mockReturnValue({ data: undefined, isError: false, isLoading: true });
+
+    render(<CommunityFeedScreen />);
+
+    expect(screen.queryByRole('button', { name: 'All' })).not.toBeOnTheScreen();
+  });
+
+  it('hides the chip row when the chips query errored', () => {
+    mockUseFeedChips.mockReturnValue({ data: undefined, isError: true, isLoading: false });
+
+    render(<CommunityFeedScreen />);
+
+    expect(screen.queryByRole('button', { name: 'All' })).not.toBeOnTheScreen();
+    expect(screen.getByText('Laska morning update')).toBeOnTheScreen();
   });
 });
