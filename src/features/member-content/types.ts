@@ -15,9 +15,11 @@ export const MEMBER_CONTENT_QUERY_ROOT = 'member-content';
 export type MemberFeedItem = {
   id: string;
   spaceId: string | null;
-  kind: 'news' | 'post' | 'poll';
+  kind: 'news' | 'post' | 'poll' | 'story';
   /** Present only when kind === 'poll' (S12-01a). */
   poll?: Poll;
+  /** Present only when kind === 'story' (S12-02b): a merged news/charity story. */
+  story?: { slug: string; category: 'charity' | null };
   title: string;
   excerpt: string | null;
   createdAt: string | null;
@@ -85,6 +87,26 @@ export type PostCommentsPage = {
   comments: PostComment[];
   hasNextPage: boolean;
   totalCount: number | null;
+};
+
+export type FeedChipKind = 'all' | 'horses' | 'news' | 'charity' | 'polls' | 'space';
+
+export type FeedChip = {
+  id: string;
+  label: string;
+  kind: FeedChipKind;
+  spaceIds: string[];
+};
+
+export type FeedChipsResult = {
+  ok: boolean;
+  chips: FeedChip[];
+};
+
+export type FeedFilter = {
+  kind?: 'poll' | 'story';
+  category?: 'charity';
+  spaceIds?: string[];
 };
 
 export type MemberContentState = 'fresh' | 'saved' | 'empty' | 'unavailable';

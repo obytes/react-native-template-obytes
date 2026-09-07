@@ -35,6 +35,7 @@ type CommunityFeedViewProps = {
   pendingLikePostId?: string | null;
   onVote: (pollId: string, optionId: string) => void;
   pendingVotePollIds: string[];
+  onOpenStory: (slug: string) => void;
 };
 
 function EmptyState({
@@ -67,6 +68,7 @@ export function CommunityFeedView({
   pendingLikePostId,
   onVote,
   pendingVotePollIds,
+  onOpenStory,
 }: CommunityFeedViewProps) {
   const contentPaddingBottom = useTabBarContentPadding(24);
   const contentPaddingTop = useScreenTopPadding();
@@ -149,6 +151,7 @@ export function CommunityFeedView({
             likePending={pendingLikePostId === item.id}
             onVote={onVote}
             votePending={item.poll ? pendingVotePollIds.includes(item.poll.id) : false}
+            onOpenStory={onOpenStory}
           />
         ))}
       </View>
@@ -183,6 +186,7 @@ function SignedInCommunityFeed({ member }: { member: AuthUser }) {
         pendingLikePostId={like.pendingPostId}
         onVote={(pollId, optionId) => poll.vote({ pollId, optionId })}
         pendingVotePollIds={poll.pendingPollIds}
+        onOpenStory={slug => router.push(`/news/${encodeURIComponent(slug)}`)}
       />
       <NewPostButton scope={scope} />
     </View>

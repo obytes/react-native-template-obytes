@@ -34,6 +34,10 @@ type SpaceFeedViewProps = {
   pendingVotePollIds: string[];
 };
 
+// Stories are merged into the Community feed only, never per-space feeds, so
+// FeedItemRenderer's onOpenStory is wired to a no-op here.
+function noOpOpenStory() {}
+
 function EmptyState({
   testID,
   title,
@@ -117,6 +121,7 @@ export function SpaceFeedView({
             likePending={pendingLikePostId === item.id}
             onVote={onVote}
             votePending={item.poll ? pendingVotePollIds.includes(item.poll.id) : false}
+            onOpenStory={noOpOpenStory}
           />
         ))}
       </View>

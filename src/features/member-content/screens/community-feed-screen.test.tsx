@@ -56,6 +56,7 @@ const BASE_PROPS = {
   onOpenProfile: jest.fn(),
   onVote: jest.fn(),
   pendingVotePollIds: [],
+  onOpenStory: jest.fn(),
 };
 
 const POLL_ITEM = {
