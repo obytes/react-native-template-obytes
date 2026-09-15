@@ -18,6 +18,7 @@ import { ClubVoteTile } from '@/features/home/components/club-vote-tile';
 import { HeadlineCard } from '@/features/home/components/headline-card';
 import { InsideTrackTile } from '@/features/home/components/inside-track-tile';
 import { NextEventTile } from '@/features/home/components/next-event-tile';
+import { NotificationsBell } from '@/features/home/components/notifications-bell';
 import { PaddockPreviewTile } from '@/features/home/components/paddock-preview-tile';
 import { selectHeadline } from '@/features/home/lib/select-headline';
 import { useHomeQueries } from '@/features/home/lib/use-home-queries';
@@ -72,17 +73,20 @@ export function HomeScreen() {
             </Text>
             <Text className="mt-2 font-sans text-3xl font-semibold text-ink">Home</Text>
           </View>
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel="Open profile"
-            testID="home-avatar"
-            onPress={() => router.push('/profile')}
-            className="size-11 items-center justify-center rounded-full border border-neutral-400 bg-white"
-          >
-            <Text className="font-sans text-base font-semibold text-neutral-950">
-              {displayName.slice(0, 1).toUpperCase()}
-            </Text>
-          </Pressable>
+          <View className="flex-row items-center gap-3">
+            <NotificationsBell scope={scope} />
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Open profile"
+              testID="home-avatar"
+              onPress={() => router.push('/profile')}
+              className="size-11 items-center justify-center rounded-full border border-neutral-400 bg-white"
+            >
+              <Text className="font-sans text-base font-semibold text-neutral-950">
+                {displayName.slice(0, 1).toUpperCase()}
+              </Text>
+            </Pressable>
+          </View>
         </View>
 
         <View className="gap-6">

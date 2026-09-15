@@ -2,7 +2,7 @@ import type * as NotificationsType from 'expo-notifications';
 
 import Env from 'env';
 
-import { client } from '@/lib/api/client';
+import { fetchInboxBadge } from '@/features/notification-centre/api/use-inbox-badge';
 
 let Notifications: typeof NotificationsType | null = null;
 try {
@@ -12,24 +12,18 @@ catch {
   Notifications = null;
 }
 
-export async function syncNotificationBadgeCount(): Promise<void> {
+export async function syncNotificationBadgeCount(): Promise<number> {
   if (!Notifications?.setBadgeCountAsync)
-    return;
+    return 0;
 
   try {
-    const { data } = await client.get('/api/circle/notification-badge-count', {
-      params: { organizationId: Env.EXPO_PUBLIC_CLUB_ID },
-    });
-    const count = typeof data?.count === 'number' ? data.count : 0;
-    await Notifications.setBadgeCountAsync(Math.max(0, Math.min(99, count)));
+    const count = await fetchInboxBadge(Env.EXPO_PUBLIC_CLUB_ID);
+    await Notifications.setBadgeCountAsync(Math.min(99, count));
+    return count;
   }
   catch (err) {
-    const status = (err as { response?: { status?: number } })?.response?.status;
-    if (status === 404) {
-      await Notifications.setBadgeCountAsync(0);
-      return;
-    }
     console.warn('Failed to sync notification badge count', err);
+    return 0;
   }
 }
 

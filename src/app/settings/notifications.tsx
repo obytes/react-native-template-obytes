@@ -1,4 +1,3 @@
-import type { UserPreferences } from '@/features/settings/api/use-preferences';
 import * as React from 'react';
 
 import { ActivityIndicator, Switch } from 'react-native';
@@ -13,92 +12,8 @@ import {
   usePreferences,
   useUpdatePreferences,
 } from '@/features/settings/api/use-preferences';
+import { EMAIL_ROWS, PUSH_ROWS } from '@/features/settings/lib/notification-rows';
 import { translate } from '@/lib/i18n';
-
-type Row = {
-  labelKey: Parameters<typeof translate>[0];
-  get: (prefs: UserPreferences) => boolean;
-  set: (value: boolean) => Partial<UserPreferences>;
-};
-
-const PUSH_ROWS: Row[] = [
-  {
-    labelKey: 'settings.notifications.horseDeclared',
-    get: p => p.pushPreferences.horseDeclared !== false,
-    set: v => ({ pushPreferences: { horseDeclared: v } }),
-  },
-  {
-    labelKey: 'settings.notifications.raceResult',
-    get: p => p.pushPreferences.raceResult !== false,
-    set: v => ({ pushPreferences: { raceResult: v } }),
-  },
-  {
-    labelKey: 'settings.notifications.horseUpdates',
-    get: p => p.pushPreferences.horseUpdates !== false,
-    set: v => ({ pushPreferences: { horseUpdates: v } }),
-  },
-  {
-    labelKey: 'settings.notifications.trainerPost',
-    get: p => p.pushPreferences.trainerPost !== false,
-    set: v => ({ pushPreferences: { trainerPost: v } }),
-  },
-  {
-    labelKey: 'settings.notifications.newsPost',
-    get: p => p.pushPreferences.newsPost !== false,
-    set: v => ({ pushPreferences: { newsPost: v } }),
-  },
-  {
-    labelKey: 'settings.notifications.insideTrack',
-    get: p => p.pushPreferences.insideTrack !== false,
-    set: v => ({ pushPreferences: { insideTrack: v } }),
-  },
-  {
-    labelKey: 'settings.notifications.events',
-    get: p => p.pushPreferences.events !== false,
-    set: v => ({ pushPreferences: { events: v } }),
-  },
-  {
-    labelKey: 'settings.notifications.polls',
-    get: p => p.pushPreferences.polls !== false,
-    set: v => ({ pushPreferences: { polls: v } }),
-  },
-];
-
-const COMMUNITY_ROWS: Row[] = [
-  {
-    labelKey: 'settings.notifications.circleMention',
-    get: p => p.pushPreferences.circleMention !== false,
-    set: v => ({ pushPreferences: { circleMention: v } }),
-  },
-  {
-    labelKey: 'settings.notifications.circleReply',
-    get: p => p.pushPreferences.circleReply !== false,
-    set: v => ({ pushPreferences: { circleReply: v } }),
-  },
-  {
-    labelKey: 'settings.notifications.circleReaction',
-    get: p => p.pushPreferences.circleReaction !== false,
-    set: v => ({ pushPreferences: { circleReaction: v } }),
-  },
-  {
-    labelKey: 'settings.notifications.circleDm',
-    get: p => p.pushPreferences.circleDm !== false,
-    set: v => ({ pushPreferences: { circleDm: v } }),
-  },
-  {
-    labelKey: 'settings.notifications.circleHorseDiscussion',
-    get: p => p.pushPreferences.circleHorseDiscussion !== false,
-    set: v => ({ pushPreferences: { circleHorseDiscussion: v } }),
-  },
-];
-
-const EMAIL_ROWS: Row[] = [
-  {
-    labelKey: 'settings.notifications.emailNewsPost',
-    get: p => p.emailPreferences.newsPost !== false,
-    set: v => ({ emailPreferences: { newsPost: v } }),
-  },
-];
 
 export default function NotificationsScreen() {
   const { data, isLoading, isError } = usePreferences();
@@ -136,19 +51,11 @@ export default function NotificationsScreen() {
             onChange={v => update.mutate({ pushEnabled: v })}
           />
 
-          <SectionLabel text="settings.notifications.whenSection" />
+          <SectionLabel text="settings.notifications.pushSection" />
+          <Text className="px-4 pb-2 font-sans text-xs text-neutral-500">
+            {translate('settings.notifications.pushHelper')}
+          </Text>
           {PUSH_ROWS.map(row => (
-            <ToggleRow
-              key={row.labelKey}
-              labelKey={row.labelKey}
-              value={pushMasterOn && row.get(data)}
-              disabled={!pushMasterOn}
-              onChange={v => update.mutate(row.set(v))}
-            />
-          ))}
-
-          <SectionLabel text="settings.notifications.communitySection" />
-          {COMMUNITY_ROWS.map(row => (
             <ToggleRow
               key={row.labelKey}
               labelKey={row.labelKey}

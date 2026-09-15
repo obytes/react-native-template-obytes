@@ -39,12 +39,6 @@
     "logout": "Sign out",
     "more": "More",
     "notifications": {
-      "circleDm": "Direct messages",
-      "circleHorseDiscussion": "Horse discussion activity",
-      "circleMention": "Mentions",
-      "circleReaction": "Reactions",
-      "circleReply": "Replies",
-      "communitySection": "Community",
       "emailNewsPost": "News posts by email",
       "emailSection": "Email notifications",
       "enablePush": "Enable push notifications",
@@ -54,11 +48,12 @@
       "insideTrack": "Inside Track",
       "newsPost": "News posts",
       "polls": "Club votes and polls",
+      "postComments": "Comments on my posts",
       "preferences": "Notification preferences",
+      "pushHelper": "Everything still appears in your notifications.",
+      "pushSection": "Push alerts",
       "raceResult": "Race results",
-      "title": "Notifications",
-      "trainerPost": "Trainer updates",
-      "whenSection": "When to notify me"
+      "title": "Notifications"
     },
     "privacy": "Privacy Policy",
     "profile": {

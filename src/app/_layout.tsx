@@ -14,6 +14,7 @@ import {
 } from '@expo-google-fonts/plus-jakarta-sans';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { ThemeProvider } from '@react-navigation/native';
+import Env from 'env';
 import { useFonts as useLocalFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -24,8 +25,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { useThemeConfig } from '@/components/ui/use-theme-config';
 import { hydrateAuth, useAuthStore as useAuth } from '@/features/auth/use-auth-store';
-import { CommunityPanel } from '@/features/community/components/community-panel';
-import { prewarmCircleSession } from '@/features/community/lib/circle-prewarm';
+import { NOTIFICATION_CENTRE_QUERY_ROOT } from '@/features/notification-centre/types';
 import {
   clearNotificationBadgeCount,
   syncNotificationBadgeCount,
@@ -33,6 +33,7 @@ import {
 import { handleNotificationResponse } from '@/features/notifications/deep-link';
 import { registerForPushNotifications } from '@/features/notifications/setup';
 import { APIProvider } from '@/lib/api';
+import { queryClient } from '@/lib/api/query-client';
 
 import { loadSelectedTheme } from '@/lib/hooks/use-selected-theme';
 import '@/features/notifications/handler';
@@ -96,6 +97,9 @@ function useNotificationBadgeSync(status: ReturnType<typeof useAuth.use.status>)
     const subscription = AppState.addEventListener('change', (state) => {
       if (state === 'active') {
         syncNotificationBadgeCount().catch(() => {});
+        void queryClient.invalidateQueries({
+          queryKey: [NOTIFICATION_CENTRE_QUERY_ROOT, Env.EXPO_PUBLIC_CLUB_ID],
+        });
       }
     });
 
@@ -104,26 +108,26 @@ function useNotificationBadgeSync(status: ReturnType<typeof useAuth.use.status>)
   }, [status]);
 }
 
-// S6-03: pre-warm the Circle session on app foreground. The mint is throttled
-// internally (no-op when the cached token is still fresh), so this is cheap to
-// fire on every active transition. Also fires once on mount for the
-// already-signed-in cold-start case (sign-in itself triggers via the auth
-// store).
-function useCircleSessionPrewarm(status: ReturnType<typeof useAuth.use.status>) {
+// S12-06b: a push notification received while the app is foregrounded doesn't
+// trigger AppState's 'active' transition (the app never backgrounded), so the
+// inbox list + badge queries would otherwise go stale until the next
+// foreground. Invalidate them directly off the notification-received event.
+function useForegroundNotificationRefresh() {
   React.useEffect(() => {
-    if (status !== 'signIn')
+    let NotificationsMod: typeof NotificationsType | null = null;
+    try {
+      NotificationsMod = require('expo-notifications');
+    }
+    catch {
       return;
-
-    void prewarmCircleSession();
-
-    const subscription = AppState.addEventListener('change', (state) => {
-      if (state === 'active') {
-        void prewarmCircleSession();
-      }
+    }
+    if (!NotificationsMod)
+      return;
+    const subscription = NotificationsMod.addNotificationReceivedListener(() => {
+      void queryClient.invalidateQueries({ queryKey: [NOTIFICATION_CENTRE_QUERY_ROOT] });
     });
-
     return () => subscription.remove();
-  }, [status]);
+  }, []);
 }
 
 function useNotificationResponseListener() {
@@ -169,7 +173,7 @@ export default function RootLayout() {
   useNotificationRegistration(status);
   useNotificationBadgeSync(status);
   useNotificationResponseListener();
-  useCircleSessionPrewarm(status);
+  useForegroundNotificationRefresh();
 
   // Keep splash visible until fonts are ready
   if (!fontsLoaded) {
@@ -194,7 +198,6 @@ const MODAL_STACK_SCREENS: {
   name: string;
   options: React.ComponentProps<typeof Stack.Screen>['options'];
 }[] = [
-  { name: 'community-view', options: { headerShown: false } },
   {
     name: 'stables/[horse-id]',
     options: { title: '', headerBackTitle: 'Stables', headerTransparent: true },
@@ -243,6 +246,7 @@ const MODAL_STACK_SCREENS: {
     options: { title: 'Charity impact', headerBackTitle: 'The Paddock' },
   },
   { name: 'profile', options: { title: 'Profile', headerBackTitle: 'Back' } },
+  { name: 'notifications', options: { title: 'Notifications', headerBackTitle: 'Home' } },
   {
     name: 'settings/notifications',
     options: { title: 'Notifications', headerBackTitle: 'Profile' },
@@ -270,9 +274,6 @@ function Providers({ children }: { children: React.ReactNode }) {
           <APIProvider>
             <BottomSheetModalProvider>
               {children}
-              {/* S6-05: persistent Community WebView singleton — mounted once,
-                  never unmounted by navigation. Renders null until first open. */}
-              <CommunityPanel />
               <FlashMessage position="top" />
             </BottomSheetModalProvider>
           </APIProvider>

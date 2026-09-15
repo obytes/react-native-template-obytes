@@ -6,13 +6,9 @@ import Env from 'env';
 import Constants from 'expo-constants';
 import { create } from 'zustand';
 import { clearCircleWebViewCookies } from '@/features/community/lib/circle-cookie-clear';
-import {
-  clearCachedCircleSession,
-  getCachedCircleSession,
-} from '@/features/community/lib/circle-session-store';
-import { resetCommunityPanel } from '@/features/community/lib/use-community-panel-store';
 import { clearEventsStorage } from '@/features/events/lib/events-logout';
 import { clearMemberContentForMember } from '@/features/member-content/lib/member-content-logout';
+import { clearInboxStorage } from '@/features/notification-centre/lib/inbox-logout';
 import { client } from '@/lib/api/client';
 import { bootstrapMobileOrganization } from '@/lib/auth/mobile-org-bootstrap';
 import {
@@ -26,63 +22,77 @@ import {
 import { removeItem } from '@/lib/storage';
 import { createSelectors } from '@/lib/utils';
 
-// MUST stay in sync with use-community-session.ts / circle-prewarm.ts
-// (COMMUNITY_BASE_URL_KEY). The cached community base URL lives in its own MMKV
-// key; we clear it on sign-out alongside the cached session token.
+// Legacy MMKV keys from the retired Circle WebView build (S6-03/S6-04). The
+// app is now fully native — nothing writes these keys any more — but a device
+// upgrading from a WebView build may still have them on disk, so we keep
+// clearing them best-effort on sign-out.
+const CIRCLE_SESSION_KEY = 'circle.session.v1';
 const CIRCLE_COMMUNITY_BASE_URL_KEY = 'circle.communityBaseUrl.v1';
 
 /**
- * Invalidate the Circle session on sign-out, three independent ways, in order.
- * S6-03 B5 + S6-04. Every step is best-effort: a failure in any one MUST NOT
- * block the rest, nor block logout. Call this BEFORE clearing local auth state —
- * step 1 needs the cached Circle access token to revoke it server-side.
+ * Best-effort cleanup of the retired Circle WebView's on-device state on
+ * sign-out. There is no server-side revoke any more (the WebView, and the
+ * session it held, are gone) — this only clears state a pre-native-migration
+ * install may still be carrying:
  *
- *   1. Server-side token revoke (deterministic) — revokes the member's Circle
- *      access + refresh tokens and clears the stored refresh token server-side.
- *   2. Clear the on-device token cache (deterministic) — cached session token
- *      and the cached community base URL.
- *   3. Clear the LIVE WebView session (S6-04, best-effort, device-bound) — a
- *      local Expo module (modules/circle-cookies) clears WK cookies, the
- *      app-level HTTPCookieStorage.shared, and all web storage so a different
- *      member signing in within the SAME app instance gets a clean Circle
- *      session (no restart). Replaces the old hidden-/users/sign_out flush,
- *      which only expired the on-disk cookies and left the §E leak open.
+ *   1. The legacy cached-session MMKV keys (session token + community base
+ *      URL), in case a device upgrading from a WebView build still has them.
+ *   2. The live WebView cookies / web storage (modules/circle-cookies), in
+ *      case a device upgrading from a WebView build still has an active
+ *      Circle cookie session that could otherwise leak across members.
+ *
+ * Every step is best-effort: a failure in either MUST NOT block the rest, nor
+ * block logout.
  */
-async function invalidateCircleSession(): Promise<void> {
-  // Step 1 — server-side revoke (deterministic). Read the cached access token
-  // BEFORE clearing the cache; swallow any failure.
-  const cached = getCachedCircleSession();
-  if (cached?.accessToken) {
-    try {
-      await client.post('/api/circle/revoke-session', {
-        accessToken: cached.accessToken,
-      });
-    }
-    catch (e) {
-      console.warn('[auth] Circle revoke-session failed (continuing logout):', e);
-    }
-  }
-
-  // Step 2 — clear the on-device caches (deterministic): the session token and
-  // the cached community base URL key.
+async function clearLegacyCircleState(): Promise<void> {
   try {
-    clearCachedCircleSession();
+    void removeItem(CIRCLE_SESSION_KEY);
     void removeItem(CIRCLE_COMMUNITY_BASE_URL_KEY);
   }
   catch (e) {
-    console.warn('[auth] Failed to clear cached Circle session (continuing logout):', e);
+    console.warn('[auth] Failed to clear legacy Circle session keys (continuing logout):', e);
   }
 
-  // Step 3 — clear the LIVE WebView session (S6-04). Unlike the superseded hidden
-  // /users/sign_out flush (on-disk only), the local native module clears WK
-  // cookies (+ HTTPCookieStorage.shared, which sharedCookiesEnabled would
-  // otherwise resurrect) and all web storage, closing the cross-user §E hole
-  // within a single app instance. Best-effort — logs but never blocks logout.
   try {
     await clearCircleWebViewCookies();
   }
   catch (e) {
     console.warn('[auth] Failed to clear live Circle WebView cookies (continuing logout):', e);
+  }
+}
+
+/**
+ * Clear every per-member feature cache on sign-out (member content, events,
+ * notification centre): best-effort, so one feature's failure never blocks
+ * the rest or logout itself. Call AFTER the Circle session teardown.
+ */
+function clearFeatureCaches(signedInMember: AuthUser | null): void {
+  if (signedInMember) {
+    try {
+      clearMemberContentForMember({
+        organizationId: Env.EXPO_PUBLIC_CLUB_ID,
+        memberId: signedInMember.id,
+      });
+    }
+    catch (e) {
+      console.warn('[auth] Failed to clear member content (continuing logout):', e);
+    }
+  }
+
+  // Clear every persisted events snapshot (any member/org) + the in-memory
+  // events query cache so the next member on this device starts clean.
+  try {
+    clearEventsStorage();
+  }
+  catch (e) {
+    console.warn('[auth] Failed to clear events cache (continuing logout):', e);
+  }
+
+  try {
+    clearInboxStorage();
+  }
+  catch (e) {
+    console.warn('[auth] Failed to clear notification centre cache (continuing logout):', e);
   }
 }
 
@@ -141,43 +151,12 @@ const _useAuthStore = create<AuthState>((set, get) => ({
       }
     }
 
-    // S6-03 B5: invalidate the Circle session (server revoke + cache clear +
-    // best-effort cookie flush) BEFORE clearing local auth state — the
-    // server-side revoke needs the cached Circle access token. Best-effort:
-    // any failure inside here is swallowed and never blocks logout.
-    await invalidateCircleSession();
+    // Best-effort cleanup of any legacy Circle WebView state a device
+    // upgrading from a pre-native build may still be carrying. Never blocks
+    // logout.
+    await clearLegacyCircleState();
 
-    // S6-05: tear down the persistent Community panel. With the cookies/web
-    // storage cleared above, unmounting the singleton (activated=false) is the
-    // one correct teardown — the next member's open mounts a fresh WebView with
-    // THEIR token. Best-effort; never blocks logout.
-    try {
-      resetCommunityPanel();
-    }
-    catch (e) {
-      console.warn('[auth] Failed to reset Community panel (continuing logout):', e);
-    }
-
-    if (signedInMember) {
-      try {
-        clearMemberContentForMember({
-          organizationId: Env.EXPO_PUBLIC_CLUB_ID,
-          memberId: signedInMember.id,
-        });
-      }
-      catch (e) {
-        console.warn('[auth] Failed to clear member content (continuing logout):', e);
-      }
-    }
-
-    // Clear every persisted events snapshot (any member/org) + the in-memory
-    // events query cache so the next member on this device starts clean.
-    try {
-      clearEventsStorage();
-    }
-    catch (e) {
-      console.warn('[auth] Failed to clear events cache (continuing logout):', e);
-    }
+    clearFeatureCaches(signedInMember);
 
     removeToken();
     removeUser();
