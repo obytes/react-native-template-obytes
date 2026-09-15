@@ -13,6 +13,7 @@ import {
 import { resetCommunityPanel } from '@/features/community/lib/use-community-panel-store';
 import { clearEventsStorage } from '@/features/events/lib/events-logout';
 import { clearMemberContentForMember } from '@/features/member-content/lib/member-content-logout';
+import { clearInboxStorage } from '@/features/notification-centre/lib/inbox-logout';
 import { client } from '@/lib/api/client';
 import { bootstrapMobileOrganization } from '@/lib/auth/mobile-org-bootstrap';
 import {
@@ -83,6 +84,41 @@ async function invalidateCircleSession(): Promise<void> {
   }
   catch (e) {
     console.warn('[auth] Failed to clear live Circle WebView cookies (continuing logout):', e);
+  }
+}
+
+/**
+ * Clear every per-member feature cache on sign-out (member content, events,
+ * notification centre): best-effort, so one feature's failure never blocks
+ * the rest or logout itself. Call AFTER the Circle session teardown.
+ */
+function clearFeatureCaches(signedInMember: AuthUser | null): void {
+  if (signedInMember) {
+    try {
+      clearMemberContentForMember({
+        organizationId: Env.EXPO_PUBLIC_CLUB_ID,
+        memberId: signedInMember.id,
+      });
+    }
+    catch (e) {
+      console.warn('[auth] Failed to clear member content (continuing logout):', e);
+    }
+  }
+
+  // Clear every persisted events snapshot (any member/org) + the in-memory
+  // events query cache so the next member on this device starts clean.
+  try {
+    clearEventsStorage();
+  }
+  catch (e) {
+    console.warn('[auth] Failed to clear events cache (continuing logout):', e);
+  }
+
+  try {
+    clearInboxStorage();
+  }
+  catch (e) {
+    console.warn('[auth] Failed to clear notification centre cache (continuing logout):', e);
   }
 }
 
@@ -158,26 +194,7 @@ const _useAuthStore = create<AuthState>((set, get) => ({
       console.warn('[auth] Failed to reset Community panel (continuing logout):', e);
     }
 
-    if (signedInMember) {
-      try {
-        clearMemberContentForMember({
-          organizationId: Env.EXPO_PUBLIC_CLUB_ID,
-          memberId: signedInMember.id,
-        });
-      }
-      catch (e) {
-        console.warn('[auth] Failed to clear member content (continuing logout):', e);
-      }
-    }
-
-    // Clear every persisted events snapshot (any member/org) + the in-memory
-    // events query cache so the next member on this device starts clean.
-    try {
-      clearEventsStorage();
-    }
-    catch (e) {
-      console.warn('[auth] Failed to clear events cache (continuing logout):', e);
-    }
+    clearFeatureCaches(signedInMember);
 
     removeToken();
     removeUser();
