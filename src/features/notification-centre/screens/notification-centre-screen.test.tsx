@@ -49,6 +49,10 @@ jest.mock('@/features/notification-centre/api/use-inbox-actions', () => ({
 }));
 jest.mock('@/features/notifications/deep-link', () => ({
   routeToTarget: (data: unknown) => mockRouteToTarget(data),
+  isPushData: (data: unknown) => {
+    const d = data as { screen?: unknown };
+    return !!d && typeof d === 'object' && typeof d.screen === 'string' && d.screen !== 'bogus';
+  },
 }));
 
 function itemAt(id: string, isoOffset: number, unread: boolean): InboxItem {
@@ -139,6 +143,17 @@ describe('notificationCentreScreen', () => {
     fireEvent.press(screen.getByTestId('inbox-row-today-1'));
     expect(mockMarkRead.mutate).not.toHaveBeenCalled();
     expect(mockRouteToTarget).toHaveBeenCalledWith({ screen: 'insideTrack' });
+  });
+
+  it('pressing a row with malformed data marks it read but does not route', () => {
+    const items = [
+      { ...itemAt('today-1', 0, true), data: { screen: 'bogus' } },
+    ] as unknown as InboxItem[];
+    mockInbox = baseInbox({ data: { pages: [{ items }] } });
+    render(<NotificationCentreScreen />);
+    fireEvent.press(screen.getByTestId('inbox-row-today-1'));
+    expect(mockMarkRead.mutate).toHaveBeenCalledWith('today-1');
+    expect(mockRouteToTarget).not.toHaveBeenCalled();
   });
 
   it('shows the mark-all-as-read action only when something is unread and calls markAllRead on press', () => {

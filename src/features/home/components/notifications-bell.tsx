@@ -19,7 +19,7 @@ export function NotificationsBell({ scope }: { scope: MemberContentScope }) {
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={badge ? `Notifications, ${badge} new` : 'Notifications'}
+      accessibilityLabel={badge ? `Notifications, ${badge} unread` : 'Notifications'}
       testID="home-bell"
       onPress={() => router.push('/notifications')}
       className="size-11 items-center justify-center rounded-full border border-neutral-400 bg-white"

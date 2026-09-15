@@ -12,7 +12,7 @@ import { useMarkAllRead, useMarkRead, useMarkSeen } from '@/features/notificatio
 import { InboxRow } from '@/features/notification-centre/components/inbox-row';
 import { InboxEmpty, InboxLoading, InboxUnavailable } from '@/features/notification-centre/components/inbox-states';
 import { groupInboxSections } from '@/features/notification-centre/lib/sections';
-import { routeToTarget } from '@/features/notifications/deep-link';
+import { isPushData, routeToTarget } from '@/features/notifications/deep-link';
 
 function MarkAllHeaderAction({ onPress }: { onPress: () => void }) {
   return (
@@ -58,7 +58,8 @@ export function NotificationCentreScreen() {
   const handlePress = React.useCallback((item: InboxItem) => {
     if (item.unread)
       markRead.mutate(item.id);
-    routeToTarget(item.data);
+    if (isPushData(item.data))
+      routeToTarget(item.data);
   }, [markRead]);
 
   const isLoading = inbox.isLoading && !inbox.data;

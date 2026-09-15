@@ -155,4 +155,55 @@ describe('useMarkSeen', () => {
       organizationId: SCOPE.organizationId,
     });
   });
+
+  it('cancels an in-flight badge query before zeroing it', async () => {
+    let resolvePost: (value: { data: unknown }) => void;
+    mockPost.mockReturnValue(
+      new Promise((resolve) => {
+        resolvePost = resolve;
+      }),
+    );
+
+    const queryClient = seededClient([inboxItem('a')]);
+    queryClient.setQueryData(BADGE_KEY, 5);
+    const cancelSpy = jest.spyOn(queryClient, 'cancelQueries');
+    const { result } = renderHook(() => useMarkSeen(SCOPE), { wrapper: wrapper(queryClient) });
+
+    result.current.mutate();
+
+    await waitFor(() => expect(result.current.isPending).toBe(true));
+
+    expect(cancelSpy).toHaveBeenCalledWith({ queryKey: BADGE_KEY });
+    expect(queryClient.getQueryData(BADGE_KEY)).toBe(0);
+
+    resolvePost!({ data: {} });
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+  });
+
+  it('re-zeros the badge query on success even if a stale fetch overwrote it first', async () => {
+    let resolvePost: (value: { data: unknown }) => void;
+    mockPost.mockReturnValue(
+      new Promise((resolve) => {
+        resolvePost = resolve;
+      }),
+    );
+
+    const queryClient = seededClient([inboxItem('a')]);
+    queryClient.setQueryData(BADGE_KEY, 5);
+    const { result } = renderHook(() => useMarkSeen(SCOPE), { wrapper: wrapper(queryClient) });
+
+    result.current.mutate();
+
+    await waitFor(() => expect(result.current.isPending).toBe(true));
+
+    // Simulate a stale in-flight badge fetch (e.g. foreground sync) landing
+    // between onMutate zeroing the badge and the POST resolving.
+    queryClient.setQueryData(BADGE_KEY, 5);
+
+    resolvePost!({ data: {} });
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+
+    expect(queryClient.getQueryData(BADGE_KEY)).toBe(0);
+    expect(mockClearBadge).toHaveBeenCalledTimes(2);
+  });
 });

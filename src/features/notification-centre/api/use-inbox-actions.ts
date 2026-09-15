@@ -53,7 +53,12 @@ export function useMarkSeen(scope: MemberContentScope) {
     mutationFn: async () => {
       await client.post('/api/inbox/seen', { organizationId: scope.organizationId });
     },
-    onMutate: () => {
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: inboxBadgeQueryKey(scope) });
+      queryClient.setQueryData(inboxBadgeQueryKey(scope), 0);
+      void clearNotificationBadgeCount();
+    },
+    onSuccess: () => {
       queryClient.setQueryData(inboxBadgeQueryKey(scope), 0);
       void clearNotificationBadgeCount();
     },

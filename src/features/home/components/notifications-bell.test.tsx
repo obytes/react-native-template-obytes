@@ -44,7 +44,7 @@ describe('notificationsBell', () => {
     mockUseInboxBadge.mockReturnValue({ data: 3 });
     render(<NotificationsBell scope={scope} />);
     expect(screen.getByTestId('home-bell-badge')).toHaveTextContent('3');
-    expect(screen.getByLabelText('Notifications, 3 new')).toBeOnTheScreen();
+    expect(screen.getByLabelText('Notifications, 3 unread')).toBeOnTheScreen();
   });
 
   it('navigates to /notifications on press', () => {
