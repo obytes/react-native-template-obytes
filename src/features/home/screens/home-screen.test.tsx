@@ -70,6 +70,9 @@ jest.mock('@/features/paddock/api/use-offers', () => ({
 jest.mock('@/features/polls/api/use-poll-vote', () => ({
   usePollVote: () => ({ vote: jest.fn(), pendingPollIds: [] }),
 }));
+jest.mock('@/features/home/components/notifications-bell', () => ({
+  NotificationsBell: () => null,
+}));
 
 describe('homeScreen', () => {
   beforeEach(() => jest.clearAllMocks());
