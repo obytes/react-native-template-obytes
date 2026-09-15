@@ -25,8 +25,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { useThemeConfig } from '@/components/ui/use-theme-config';
 import { hydrateAuth, useAuthStore as useAuth } from '@/features/auth/use-auth-store';
-import { CommunityPanel } from '@/features/community/components/community-panel';
-import { prewarmCircleSession } from '@/features/community/lib/circle-prewarm';
 import { NOTIFICATION_CENTRE_QUERY_ROOT } from '@/features/notification-centre/types';
 import {
   clearNotificationBadgeCount,
@@ -132,28 +130,6 @@ function useForegroundNotificationRefresh() {
   }, []);
 }
 
-// S6-03: pre-warm the Circle session on app foreground. The mint is throttled
-// internally (no-op when the cached token is still fresh), so this is cheap to
-// fire on every active transition. Also fires once on mount for the
-// already-signed-in cold-start case (sign-in itself triggers via the auth
-// store).
-function useCircleSessionPrewarm(status: ReturnType<typeof useAuth.use.status>) {
-  React.useEffect(() => {
-    if (status !== 'signIn')
-      return;
-
-    void prewarmCircleSession();
-
-    const subscription = AppState.addEventListener('change', (state) => {
-      if (state === 'active') {
-        void prewarmCircleSession();
-      }
-    });
-
-    return () => subscription.remove();
-  }, [status]);
-}
-
 function useNotificationResponseListener() {
   React.useEffect(() => {
     let NotificationsMod: typeof NotificationsType | null = null;
@@ -198,7 +174,6 @@ export default function RootLayout() {
   useNotificationBadgeSync(status);
   useNotificationResponseListener();
   useForegroundNotificationRefresh();
-  useCircleSessionPrewarm(status);
 
   // Keep splash visible until fonts are ready
   if (!fontsLoaded) {
@@ -223,7 +198,6 @@ const MODAL_STACK_SCREENS: {
   name: string;
   options: React.ComponentProps<typeof Stack.Screen>['options'];
 }[] = [
-  { name: 'community-view', options: { headerShown: false } },
   {
     name: 'stables/[horse-id]',
     options: { title: '', headerBackTitle: 'Stables', headerTransparent: true },
@@ -300,9 +274,6 @@ function Providers({ children }: { children: React.ReactNode }) {
           <APIProvider>
             <BottomSheetModalProvider>
               {children}
-              {/* S6-05: persistent Community WebView singleton — mounted once,
-                  never unmounted by navigation. Renders null until first open. */}
-              <CommunityPanel />
               <FlashMessage position="top" />
             </BottomSheetModalProvider>
           </APIProvider>
