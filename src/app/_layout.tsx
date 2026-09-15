@@ -272,6 +272,7 @@ const MODAL_STACK_SCREENS: {
     options: { title: 'Charity impact', headerBackTitle: 'The Paddock' },
   },
   { name: 'profile', options: { title: 'Profile', headerBackTitle: 'Back' } },
+  { name: 'notifications', options: { title: 'Notifications', headerBackTitle: 'Home' } },
   {
     name: 'settings/notifications',
     options: { title: 'Notifications', headerBackTitle: 'Profile' },
