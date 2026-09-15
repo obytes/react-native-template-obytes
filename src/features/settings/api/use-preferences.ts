@@ -16,6 +16,7 @@ export type PushPreferences = {
   insideTrack?: boolean;
   events?: boolean;
   polls?: boolean;
+  postComments?: boolean;
 };
 
 export type EmailPreferences = {
