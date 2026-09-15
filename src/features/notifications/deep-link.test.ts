@@ -68,4 +68,53 @@ describe('handleNotificationResponse', () => {
 
     expect(router.push).not.toHaveBeenCalled();
   });
+
+  it('routes post pushes to the native post screen', () => {
+    handleNotificationResponse(makeResponse({ screen: 'post', spaceId: 's1', postId: 'p1' }));
+    expect(router.push).toHaveBeenCalledWith({
+      pathname: '/post/[space-id]/[post-id]',
+      params: { 'space-id': 's1', 'post-id': 'p1' },
+    });
+  });
+
+  it('routes spaceFeed pushes to the space feed', () => {
+    handleNotificationResponse(makeResponse({ screen: 'spaceFeed', spaceId: 's1' }));
+    expect(router.push).toHaveBeenCalledWith({
+      pathname: '/space-feed/[space-id]',
+      params: { 'space-id': 's1' },
+    });
+  });
+
+  it('routes notifications pushes to the centre', () => {
+    handleNotificationResponse(makeResponse({ screen: 'notifications' }));
+    expect(router.push).toHaveBeenCalledWith('/notifications');
+  });
+
+  it('routes community pushes carrying a post natively', () => {
+    handleNotificationResponse(makeResponse({ screen: 'community', url: 'https://c/x', spaceId: 's1', postId: 'p1' }));
+    expect(router.push).toHaveBeenCalledWith({
+      pathname: '/post/[space-id]/[post-id]',
+      params: { 'space-id': 's1', 'post-id': 'p1' },
+    });
+  });
+
+  it('routes community pushes carrying only a space to the space feed', () => {
+    handleNotificationResponse(makeResponse({ screen: 'community', spaceId: 's1' }));
+    expect(router.push).toHaveBeenCalledWith({
+      pathname: '/space-feed/[space-id]',
+      params: { 'space-id': 's1' },
+    });
+  });
+
+  it('routes legacy community pushes to the Community tab, never the WebView', () => {
+    handleNotificationResponse(makeResponse({ screen: 'community', url: 'https://c/x' }));
+    expect(router.push).toHaveBeenCalledWith('/(app)/community');
+  });
+
+  it('ignores malformed payloads', () => {
+    handleNotificationResponse(makeResponse({ screen: 'post', spaceId: 's1' }));
+    handleNotificationResponse(makeResponse({ screen: 'spaceFeed' }));
+    handleNotificationResponse(makeResponse({ screen: 'community', spaceId: 7 }));
+    expect(router.push).not.toHaveBeenCalled();
+  });
 });
