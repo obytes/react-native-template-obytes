@@ -20,7 +20,8 @@ const MIN_BODY_LENGTH = 10;
 const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
 
 const FAILURE_COPY: Record<CreatePostFailure | 'network', string> = {
-  blocked: 'That post can\'t be published.',
+  blocked:
+    'Our auto-moderation held back this post. Please edit it to keep things friendly and respectful, then try again.',
   rate_limited: 'You\'ve posted a lot today — try again later.',
   not_allowed: 'You can\'t post in that space.',
   image_failed: 'That photo couldn\'t be uploaded.',
