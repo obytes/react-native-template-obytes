@@ -290,7 +290,7 @@ function CommentComposer({
       {commentError === 'blocked'
         ? (
             <Text className="font-sans text-xs text-red-600">
-              That comment can&apos;t be posted.
+              Our auto-moderation held back this comment. Please edit it and try again.
             </Text>
           )
         : null}

@@ -127,7 +127,7 @@ describe('composePostScreen', () => {
     render(<ComposePostScreen />);
     typeEnoughBody();
     fireEvent.press(screen.getByTestId('compose-post-submit'));
-    await screen.findByText('That post can\'t be published.');
+    await screen.findByText('Our auto-moderation held back this post. Please edit it to keep things friendly and respectful, then try again.');
 
     expect(screen.getByLabelText('Post body').props.value).toBe('Ten characters plus');
   });
@@ -260,7 +260,7 @@ describe('composePostScreen last-used space', () => {
     render(<ComposePostScreen />);
     typeEnoughBody();
     fireEvent.press(screen.getByTestId('compose-post-submit'));
-    await screen.findByText('That post can\'t be published.');
+    await screen.findByText('Our auto-moderation held back this post. Please edit it to keep things friendly and respectful, then try again.');
 
     expect(mockSetItem).not.toHaveBeenCalled();
   });

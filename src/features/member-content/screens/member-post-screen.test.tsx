@@ -297,7 +297,7 @@ describe('memberPostView blocked comments', () => {
       />,
     );
 
-    expect(screen.getByText('That comment can\'t be posted.')).toBeOnTheScreen();
+    expect(screen.getByText('Our auto-moderation held back this comment. Please edit it and try again.')).toBeOnTheScreen();
     expect(screen.getByLabelText('Write a comment').props.value).toBe('Bad words here');
   });
 
@@ -311,7 +311,7 @@ describe('memberPostView blocked comments', () => {
         commentError="failed"
       />,
     );
-    expect(screen.queryByText('That comment can\'t be posted.')).not.toBeOnTheScreen();
+    expect(screen.queryByText('Our auto-moderation held back this comment. Please edit it and try again.')).not.toBeOnTheScreen();
   });
 });
 
