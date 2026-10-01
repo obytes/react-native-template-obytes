@@ -25,6 +25,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { useThemeConfig } from '@/components/ui/use-theme-config';
 import { hydrateAuth, useAuthStore as useAuth } from '@/features/auth/use-auth-store';
+import { TermsGate } from '@/features/legal/terms-gate';
 import { NOTIFICATION_CENTRE_QUERY_ROOT } from '@/features/notification-centre/types';
 import {
   clearNotificationBadgeCount,
@@ -190,6 +191,7 @@ export default function RootLayout() {
         <Stack.Screen name="onboarding" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
       </Stack>
+      <TermsGate />
     </Providers>
   );
 }
