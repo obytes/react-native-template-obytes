@@ -13,6 +13,7 @@ import {
   View,
 } from 'react-native';
 
+import colors from '@/components/ui/colors';
 import { useScreenTopPadding } from '@/components/ui/screen-layout';
 import { useTabBarContentPadding } from '@/components/ui/tab-bar-layout';
 import { useAuthStore } from '@/features/auth/use-auth-store';
@@ -56,10 +57,10 @@ function EmptyState({
   message: string;
 }) {
   return (
-    <View testID={testID} className="rounded-2xl border border-neutral-300 bg-white p-6">
-      <Text className="font-sans text-lg font-semibold text-neutral-950">{title}</Text>
+    <View testID={testID} className="rounded-2xl border border-outline-variant bg-white p-6">
+      <Text className="font-sans text-lg font-semibold text-ink">{title}</Text>
       {message
-        ? <Text className="mt-2 font-sans text-sm/5 text-neutral-600">{message}</Text>
+        ? <Text className="mt-2 font-sans text-sm/5 text-ink-variant">{message}</Text>
         : null}
     </View>
   );
@@ -118,7 +119,7 @@ export function CommunityFeedView({
 
   return (
     <ScrollView
-      className="flex-1 bg-neutral-100"
+      className="flex-1 bg-surface"
       contentContainerStyle={{
         paddingHorizontal: 20,
         paddingTop: contentPaddingTop,
@@ -128,10 +129,10 @@ export function CommunityFeedView({
     >
       <View className="mb-8 flex-row items-center justify-between">
         <View className="flex-1 pr-4">
-          <Text className="font-mono text-[10px] tracking-widest text-violet-700 uppercase">
+          <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
             Members feed
           </Text>
-          <Text className="mt-2 font-sans text-3xl font-semibold text-neutral-950">
+          <Text className="mt-2 font-sans text-3xl font-semibold text-ink">
             Community
           </Text>
         </View>
@@ -139,9 +140,9 @@ export function CommunityFeedView({
           accessibilityRole="button"
           accessibilityLabel="Open profile"
           onPress={onOpenProfile}
-          className="size-11 items-center justify-center rounded-full border border-neutral-400 bg-white"
+          className="size-11 items-center justify-center rounded-full border border-outline-variant bg-white"
         >
-          <Text className="font-sans text-base font-semibold text-neutral-950">
+          <Text className="font-sans text-base font-semibold text-ink">
             {displayName.slice(0, 1).toUpperCase()}
           </Text>
         </Pressable>
@@ -151,8 +152,8 @@ export function CommunityFeedView({
 
       {contentState === 'saved'
         ? (
-            <View className="mb-4 rounded-xl border border-violet-300 bg-violet-50 px-4 py-3">
-              <Text className="font-sans text-sm font-medium text-violet-900">
+            <View className="mb-4 rounded-xl border border-on-primary-container bg-primary-fixed/40 px-4 py-3">
+              <Text className="font-sans text-sm font-medium text-ink">
                 Showing saved content
               </Text>
             </View>
@@ -163,8 +164,8 @@ export function CommunityFeedView({
         {isLoading && !items
           ? (
               <View testID="member-feed-loading" className="items-center py-16">
-                <ActivityIndicator color="#6D28D9" />
-                <Text className="mt-3 font-sans text-sm text-neutral-600">Loading your feed…</Text>
+                <ActivityIndicator color={colors.primary} />
+                <Text className="mt-3 font-sans text-sm text-ink-variant">Loading your feed…</Text>
               </View>
             )
           : null}

@@ -1,3 +1,4 @@
+// Colour-sweep exception (S13-01): multi-colour flag illustration, not a themeable icon. Allow-listed in design-tokens.test.ts.
 import type { SvgProps } from 'react-native-svg';
 import * as React from 'react';
 import Svg, { G, Path, Text, TSpan } from 'react-native-svg';

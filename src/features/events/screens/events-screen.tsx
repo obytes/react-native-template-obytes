@@ -11,6 +11,7 @@ import {
   Text,
   View,
 } from '@/components/ui';
+import colors from '@/components/ui/colors';
 import { useScreenTopPadding } from '@/components/ui/screen-layout';
 import { useTabBarContentPadding } from '@/components/ui/tab-bar-layout';
 import { useAuthStore } from '@/features/auth/use-auth-store';
@@ -55,7 +56,7 @@ export function EventsScreen() {
           paddingBottom: contentPaddingBottom,
         }}
       >
-        <Text className="font-mono text-[10px] tracking-widest text-violet-700 uppercase">
+        <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
           Race days & socials
         </Text>
         <Text className="mt-2 font-sans text-3xl font-semibold text-ink">Events</Text>
@@ -69,8 +70,8 @@ export function EventsScreen() {
               onPress={() => setScope(segment.value)}
               className={`rounded-full border px-4 py-2 font-sans text-sm ${
                 scope === segment.value
-                  ? 'border-[#391d3a] bg-[#391d3a] font-semibold text-[#fcf9f2]'
-                  : 'border-neutral-300 bg-white text-neutral-700'
+                  ? 'border-primary bg-primary font-semibold text-on-primary'
+                  : 'border-outline-variant bg-white text-ink-variant'
               }`}
             >
               {segment.label}
@@ -81,8 +82,8 @@ export function EventsScreen() {
         {isLoading
           ? (
               <View testID="events-loading" className="mt-6 items-center py-16">
-                <ActivityIndicator color="#391d3a" />
-                <Text className="mt-3 font-sans text-sm text-neutral-600">
+                <ActivityIndicator color={colors.primary} />
+                <Text className="mt-3 font-sans text-sm text-ink-variant">
                   Loading events…
                 </Text>
               </View>
@@ -91,21 +92,21 @@ export function EventsScreen() {
             ? (
                 <View
                   testID="events-unavailable"
-                  className="mt-6 rounded-2xl border border-neutral-300 bg-white p-6"
+                  className="mt-6 rounded-2xl border border-outline-variant bg-white p-6"
                 >
                   <Text className="font-sans text-lg font-semibold text-ink">Events unavailable</Text>
-                  <Text className="mt-2 font-sans text-sm/5 text-neutral-600">
+                  <Text className="mt-2 font-sans text-sm/5 text-ink-variant">
                     Check your connection and try again shortly.
                   </Text>
                 </View>
               )
             : items.length === 0
               ? (
-                  <View testID="events-empty" className="mt-6 rounded-2xl border border-neutral-300 bg-white p-6">
+                  <View testID="events-empty" className="mt-6 rounded-2xl border border-outline-variant bg-white p-6">
                     <Text className="font-sans text-lg font-semibold text-ink">
                       {scope === 'upcoming' ? 'Events are on the way' : 'Nothing here yet'}
                     </Text>
-                    <Text className="mt-2 font-sans text-sm/5 text-neutral-600">
+                    <Text className="mt-2 font-sans text-sm/5 text-ink-variant">
                       {EMPTY_COPY[scope]}
                     </Text>
                   </View>

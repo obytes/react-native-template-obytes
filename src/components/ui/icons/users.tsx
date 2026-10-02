@@ -1,9 +1,10 @@
 import type { SvgProps } from 'react-native-svg';
 import * as React from 'react';
 import Svg, { Circle, Path } from 'react-native-svg';
+import colors from '@/components/ui/colors';
 
 // Lucide "users" icon
-export function Users({ color = '#000', ...props }: SvgProps) {
+export function Users({ color = colors.ink, ...props }: SvgProps) {
   return (
     <Svg width={24} height={24} viewBox="0 0 24 24" fill="none" {...props}>
       <Path

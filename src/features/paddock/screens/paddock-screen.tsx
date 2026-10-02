@@ -28,13 +28,13 @@ function PaddockRow({ row }: { row: HubRow }) {
       testID={`paddock-row-${row.title}`}
       accessibilityRole="button"
       onPress={row.onPress}
-      className="rounded-2xl border border-neutral-300 bg-white p-5"
+      className="rounded-2xl border border-outline-variant bg-white p-5"
     >
       <View className="flex-row items-center justify-between">
         <Text className="font-sans text-base font-semibold text-ink">{row.title}</Text>
-        <Text className="font-sans text-lg text-violet-700">›</Text>
+        <Text className="font-sans text-lg text-primary">›</Text>
       </View>
-      <Text className="mt-1 font-sans text-sm/5 text-neutral-600">{row.subtitle}</Text>
+      <Text className="mt-1 font-sans text-sm/5 text-ink-variant">{row.subtitle}</Text>
     </Pressable>
   );
 }
@@ -72,7 +72,7 @@ export function PaddockHubView({ offersCount, charitySummary, onOpenBenefits, on
           paddingBottom: contentPaddingBottom,
         }}
       >
-        <Text className="font-mono text-[10px] tracking-widest text-violet-700 uppercase">
+        <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
           Rewards & benefits
         </Text>
         <Text className="mt-2 font-sans text-3xl font-semibold text-ink">The Paddock</Text>

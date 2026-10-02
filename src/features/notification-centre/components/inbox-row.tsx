@@ -31,8 +31,8 @@ function LeadingVisual({ item }: { item: InboxItem }) {
     );
   }
   return (
-    <View className="size-11 items-center justify-center rounded-full bg-[#391d3a]">
-      <Text className="font-sans font-semibold text-[#fcf9f2]">R</Text>
+    <View className="size-11 items-center justify-center rounded-full bg-primary">
+      <Text className="font-sans font-semibold text-on-primary">R</Text>
     </View>
   );
 }
@@ -45,7 +45,7 @@ export function InboxRow({ item, onPress }: InboxRowProps) {
       accessibilityState={{ selected: false }}
       accessibilityHint={item.unread ? 'Unread' : undefined}
       onPress={() => onPress(item)}
-      className={`flex-row gap-3 px-5 py-4 ${item.unread ? 'bg-violet-50' : 'bg-white'}`}
+      className={`flex-row gap-3 px-5 py-4 ${item.unread ? 'bg-primary-fixed/40' : 'bg-white'}`}
     >
       <LeadingVisual item={item} />
       <View className="flex-1">
@@ -54,17 +54,17 @@ export function InboxRow({ item, onPress }: InboxRowProps) {
         </Text>
         {item.body
           ? (
-              <Text numberOfLines={1} className="mt-0.5 font-sans text-sm text-neutral-600">
+              <Text numberOfLines={1} className="mt-0.5 font-sans text-sm text-ink-variant">
                 {item.body}
               </Text>
             )
           : null}
-        <Text className="mt-1 font-mono text-[10px] tracking-widest text-neutral-500 uppercase">
+        <Text className="mt-1 font-mono text-[10px] tracking-widest text-ink-muted uppercase">
           {relativeTime(item.updatedAt)}
         </Text>
       </View>
       {item.unread
-        ? <View testID="inbox-unread-dot" className="size-2.5 self-center rounded-full bg-violet-700" />
+        ? <View testID="inbox-unread-dot" className="size-2.5 self-center rounded-full bg-primary" />
         : null}
     </Pressable>
   );

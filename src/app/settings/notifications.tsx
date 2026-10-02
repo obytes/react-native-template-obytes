@@ -30,7 +30,7 @@ export default function NotificationsScreen() {
   if (isError) {
     return (
       <View className="flex-1 items-center justify-center bg-background p-4">
-        <Text className="text-center text-charcoal-500">
+        <Text className="text-center text-ink-muted">
           Couldn't load preferences. Pull down or try again.
         </Text>
       </View>
@@ -52,7 +52,7 @@ export default function NotificationsScreen() {
           />
 
           <SectionLabel text="settings.notifications.pushSection" />
-          <Text className="px-4 pb-2 font-sans text-xs text-neutral-500">
+          <Text className="px-4 pb-2 font-sans text-xs text-ink-muted">
             {translate('settings.notifications.pushHelper')}
           </Text>
           {PUSH_ROWS.map(row => (
@@ -82,7 +82,7 @@ export default function NotificationsScreen() {
 
 function SectionLabel({ text }: { text: Parameters<typeof translate>[0] }) {
   return (
-    <Text className="pt-6 pb-2 text-sm font-medium text-neutral-500 uppercase">
+    <Text className="pt-6 pb-2 text-sm font-medium text-ink-muted uppercase">
       {translate(text)}
     </Text>
   );
@@ -100,10 +100,10 @@ function ToggleRow({
   onChange: (v: boolean) => void;
 }) {
   return (
-    <View className="my-1 flex-row items-center justify-between rounded-md border border-neutral-200 bg-white px-4 py-3 dark:border-neutral-700 dark:bg-neutral-800">
+    <View className="my-1 flex-row items-center justify-between rounded-md border border-outline-variant bg-white px-4 py-3">
       <Text
         className={
-          disabled ? 'text-neutral-400' : 'text-black dark:text-white'
+          disabled ? 'text-ink-muted' : 'text-ink'
         }
       >
         {translate(labelKey)}
@@ -112,7 +112,7 @@ function ToggleRow({
         value={value}
         onValueChange={onChange}
         disabled={disabled}
-        trackColor={{ true: colors.primary?.[500] ?? '#D63384' }}
+        trackColor={{ true: colors.primary }}
       />
     </View>
   );

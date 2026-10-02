@@ -3,6 +3,7 @@ import type { HydratedNode } from '@/features/member-content/tiptap/hydrate';
 import * as React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import colors from '@/components/ui/colors';
 import { CircleMediaFrame } from '@/features/member-content/components/circle-media-frame';
 import { nonEmptyString, safeExternalUrl } from '@/features/member-content/lib/content-format';
 
@@ -61,8 +62,8 @@ export function CircleEmbedBlock({ node, onOpenUrl }: CircleEmbedBlockProps) {
 const styles = StyleSheet.create({
   fallback: {
     alignItems: 'center',
-    backgroundColor: '#F2F2F2',
-    borderColor: '#D9D9D9',
+    backgroundColor: colors.surfaceContainer,
+    borderColor: colors.outlineVariant,
     borderRadius: 8,
     borderWidth: StyleSheet.hairlineWidth,
     justifyContent: 'center',
@@ -70,12 +71,12 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   fallbackText: {
-    color: '#6D28D9',
+    color: colors.primary,
     fontSize: 15,
     textDecorationLine: 'underline',
   },
   unavailableText: {
-    color: '#6B6B6B',
+    color: colors.inkVariant,
     fontSize: 14,
   },
 });

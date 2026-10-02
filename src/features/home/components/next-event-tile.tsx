@@ -38,7 +38,7 @@ export function NextEventTile({ data, isLoading }: NextEventTileProps) {
               <Text className="font-sans text-base font-semibold text-ink">
                 {nextEvent.title}
               </Text>
-              <Text className="font-sans text-sm text-violet-700">
+              <Text className="font-sans text-sm text-primary">
                 {nextEvent.rsvp.going ? 'You\'re going ✓' : 'View & RSVP →'}
               </Text>
             </Pressable>

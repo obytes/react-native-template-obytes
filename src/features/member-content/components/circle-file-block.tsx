@@ -3,6 +3,7 @@ import type { HydratedNode } from '@/features/member-content/tiptap/hydrate';
 import * as React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
+import colors from '@/components/ui/colors';
 import { CircleMediaFrame } from '@/features/member-content/components/circle-media-frame';
 import { CircleUnsupportedBlock } from '@/features/member-content/components/circle-unsupported-block';
 import { nonEmptyString, safeExternalUrl } from '@/features/member-content/lib/content-format';
@@ -87,8 +88,8 @@ export function CircleFileBlock({ node, onOpenUrl }: CircleFileBlockProps) {
 const styles = StyleSheet.create({
   fileLink: {
     alignItems: 'center',
-    backgroundColor: '#F2F2F2',
-    borderColor: '#D9D9D9',
+    backgroundColor: colors.surfaceContainer,
+    borderColor: colors.outlineVariant,
     borderRadius: 8,
     borderWidth: StyleSheet.hairlineWidth,
     justifyContent: 'center',
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   fileLinkText: {
-    color: '#6D28D9',
+    color: colors.primary,
     fontSize: 15,
     textDecorationLine: 'underline',
   },

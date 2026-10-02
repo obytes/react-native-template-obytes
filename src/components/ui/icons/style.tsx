@@ -1,6 +1,7 @@
 import type { SvgProps } from 'react-native-svg';
 import * as React from 'react';
 import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
+import colors from '@/components/ui/colors';
 
 export function Style({ color, ...props }: SvgProps) {
   return (
@@ -16,7 +17,7 @@ export function Style({ color, ...props }: SvgProps) {
       </G>
       <Defs>
         <ClipPath id="style">
-          <Path fill="#fff" transform="translate(.002)" d="M0 0h24v24H0z" />
+          <Path fill={colors.white} transform="translate(.002)" d="M0 0h24v24H0z" />
         </ClipPath>
       </Defs>
     </Svg>

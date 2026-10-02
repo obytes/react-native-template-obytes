@@ -13,17 +13,17 @@ export function CharityStoryRow({ story, onOpen }: CharityStoryRowProps) {
       testID={`charity-story-${story.id}`}
       accessibilityRole="button"
       onPress={() => onOpen(story.slug)}
-      className="flex-row items-center gap-4 rounded-2xl border border-neutral-300 bg-white p-4"
+      className="flex-row items-center gap-4 rounded-2xl border border-outline-variant bg-white p-4"
     >
       {story.featuredImageUrl
         ? <Image source={{ uri: `${story.featuredImageUrl}?width=200&quality=80` }} className="size-16 rounded-xl" contentFit="cover" />
         : <View className="size-16 rounded-xl bg-surface-container" />}
       <View className="flex-1 gap-1">
-        <Text className="font-mono text-[10px] tracking-widest text-violet-700 uppercase">Impact story</Text>
+        <Text className="font-mono text-[10px] tracking-widest text-label uppercase">Impact story</Text>
         <Text className="font-sans text-base font-semibold text-ink" numberOfLines={2}>{story.title}</Text>
-        {story.subtitle ? <Text className="font-sans text-sm text-neutral-600" numberOfLines={1}>{story.subtitle}</Text> : null}
+        {story.subtitle ? <Text className="font-sans text-sm text-ink-variant" numberOfLines={1}>{story.subtitle}</Text> : null}
       </View>
-      <Text className="font-sans text-lg text-violet-700">›</Text>
+      <Text className="font-sans text-lg text-primary">›</Text>
     </Pressable>
   );
 }

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
+import colors from '@/components/ui/colors';
 import { safeExternalUrl } from '@/features/member-content/lib/content-format';
 
 type CircleMediaFrameProps = {
@@ -26,7 +27,7 @@ function mediaDocument(fragment: string): string {
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="Content-Security-Policy" content="default-src https: data: blob:; frame-src https:; img-src https: data: blob:; media-src https: blob:; script-src https: 'unsafe-inline'; style-src https: 'unsafe-inline'">
     <style>
-      html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #f2f2f2; }
+      html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: ${colors.surfaceContainer}; }
       iframe, video { border: 0; width: 100% !important; height: 100% !important; }
       img { max-width: 100%; height: auto; }
     </style>
@@ -85,8 +86,8 @@ export function CircleMediaFrame({ fragment, testID, onOpenUrl }: CircleMediaFra
 
 const styles = StyleSheet.create({
   frame: {
-    backgroundColor: '#F2F2F2',
-    borderColor: '#D9D9D9',
+    backgroundColor: colors.surfaceContainer,
+    borderColor: colors.outlineVariant,
     borderRadius: 8,
     borderWidth: StyleSheet.hairlineWidth,
     height: 220,
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   webView: {
-    backgroundColor: '#F2F2F2',
+    backgroundColor: colors.surfaceContainer,
     height: 220,
     width: '100%',
   },

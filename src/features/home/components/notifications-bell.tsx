@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import * as React from 'react';
 
 import { Pressable, Text, View } from '@/components/ui';
+import colors from '@/components/ui/colors';
 import { Bell } from '@/components/ui/icons';
 import { useInboxBadge } from '@/features/notification-centre/api/use-inbox-badge';
 
@@ -22,14 +23,14 @@ export function NotificationsBell({ scope }: { scope: MemberContentScope }) {
       accessibilityLabel={badge ? `Notifications, ${badge} unread` : 'Notifications'}
       testID="home-bell"
       onPress={() => router.push('/notifications')}
-      className="size-11 items-center justify-center rounded-full border border-neutral-400 bg-white"
+      className="size-11 items-center justify-center rounded-full border border-outline-variant bg-white"
     >
-      <Bell color="#171717" />
+      <Bell color={colors.ink} />
       {badge
         ? (
             <View
               testID="home-bell-badge"
-              className="absolute -top-1 -right-1 min-w-5 items-center rounded-full bg-violet-700 px-1.5 py-0.5"
+              className="absolute -top-1 -right-1 min-w-5 items-center rounded-full bg-primary px-1.5 py-0.5"
             >
               <Text className="font-sans text-[10px] font-semibold text-white">{badge}</Text>
             </View>

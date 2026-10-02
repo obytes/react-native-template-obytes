@@ -21,6 +21,7 @@ import {
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 
 import { Image } from '@/components/ui';
+import colors from '@/components/ui/colors';
 import { Heart } from '@/components/ui/icons';
 import { useScreenBottomPadding } from '@/components/ui/screen-layout';
 import { useAuthStore } from '@/features/auth/use-auth-store';
@@ -70,9 +71,9 @@ type MemberPostViewProps = {
 
 function PostUnavailable({ onRetry }: { onRetry?: () => void }) {
   return (
-    <View testID="member-post-unavailable" className="flex-1 items-center justify-center bg-neutral-100 px-8">
-      <Text className="font-sans text-xl font-semibold text-neutral-950">Post unavailable</Text>
-      <Text className="mt-2 text-center font-sans text-sm/5 text-neutral-600">
+    <View testID="member-post-unavailable" className="flex-1 items-center justify-center bg-surface px-8">
+      <Text className="font-sans text-xl font-semibold text-ink">Post unavailable</Text>
+      <Text className="mt-2 text-center font-sans text-sm/5 text-ink-variant">
         Check your connection and try again.
       </Text>
       {onRetry
@@ -80,10 +81,10 @@ function PostUnavailable({ onRetry }: { onRetry?: () => void }) {
             <Pressable
               accessibilityRole="button"
               accessibilityLabel="Retry post"
-              className="mt-5 h-11 items-center justify-center rounded-xl border border-violet-700 bg-white px-6"
+              className="mt-5 h-11 items-center justify-center rounded-xl border border-primary bg-white px-6"
               onPress={onRetry}
             >
-              <Text className="font-sans text-sm font-semibold text-violet-800">Try again</Text>
+              <Text className="font-sans text-sm font-semibold text-primary">Try again</Text>
             </Pressable>
           )
         : null}
@@ -99,20 +100,20 @@ function PostAuthor({ post }: { post: MemberPostDetail }) {
         ? (
             <Image
               source={{ uri: post.authorAvatarUrl }}
-              className="size-10 rounded-full bg-neutral-200"
+              className="size-10 rounded-full bg-secondary-container"
               contentFit="cover"
               cachePolicy="memory-disk"
               accessibilityLabel={`${authorName} avatar`}
             />
           )
         : (
-            <View className="size-10 items-center justify-center rounded-full border border-neutral-300 bg-neutral-100">
-              <Text className="font-sans text-sm font-semibold text-neutral-800">
+            <View className="size-10 items-center justify-center rounded-full border border-outline-variant bg-surface">
+              <Text className="font-sans text-sm font-semibold text-ink">
                 {authorName.slice(0, 1).toUpperCase()}
               </Text>
             </View>
           )}
-      <Text className="font-sans text-sm font-medium text-neutral-800">{authorName}</Text>
+      <Text className="font-sans text-sm font-medium text-ink">{authorName}</Text>
     </View>
   );
 }
@@ -128,7 +129,7 @@ function PostLikeControl({
 }) {
   const countLabel = formatCount(post.likeCount, 'like', 'likes');
   if (!onToggleLike) {
-    return <Text className="font-sans text-xs text-neutral-500">{countLabel}</Text>;
+    return <Text className="font-sans text-xs text-ink-muted">{countLabel}</Text>;
   }
   return (
     <Pressable
@@ -143,13 +144,13 @@ function PostLikeControl({
         width={16}
         height={16}
         filled={post.isLiked}
-        color={post.isLiked ? '#BE123C' : '#737373'}
+        color={post.isLiked ? colors.danger[700] : colors.inkMuted}
       />
       <Text
         className={
           post.isLiked
-            ? 'font-sans text-xs font-medium text-rose-700'
-            : 'font-sans text-xs text-neutral-500'
+            ? 'font-sans text-xs font-medium text-danger-700'
+            : 'font-sans text-xs text-ink-muted'
         }
       >
         {countLabel}
@@ -163,7 +164,7 @@ function CommentAvatar({ name, avatarUrl }: { name: string; avatarUrl: string | 
     return (
       <Image
         source={{ uri: avatarUrl }}
-        className="size-8 rounded-full bg-neutral-200"
+        className="size-8 rounded-full bg-secondary-container"
         contentFit="cover"
         cachePolicy="memory-disk"
         accessibilityLabel={`${name} avatar`}
@@ -171,8 +172,8 @@ function CommentAvatar({ name, avatarUrl }: { name: string; avatarUrl: string | 
     );
   }
   return (
-    <View className="size-8 items-center justify-center rounded-full border border-neutral-300 bg-neutral-100">
-      <Text className="font-sans text-xs font-semibold text-neutral-800">
+    <View className="size-8 items-center justify-center rounded-full border border-outline-variant bg-surface">
+      <Text className="font-sans text-xs font-semibold text-ink">
         {name.slice(0, 1).toUpperCase()}
       </Text>
     </View>
@@ -206,10 +207,10 @@ function CommentRow({
       <View className="flex-row items-center gap-2.5">
         <CommentAvatar name={authorName} avatarUrl={comment.authorAvatarUrl} />
         <View className="flex-1 flex-row items-center gap-2">
-          <Text className="font-sans text-xs font-semibold text-neutral-800">{authorName}</Text>
+          <Text className="font-sans text-xs font-semibold text-ink">{authorName}</Text>
           {comment.createdAt
             ? (
-                <Text className="font-sans text-[10px] text-neutral-500">
+                <Text className="font-sans text-[10px] text-ink-muted">
                   {formatMemberContentDate(comment.createdAt)}
                 </Text>
               )
@@ -224,14 +225,14 @@ function CommentRow({
                 hitSlop={8}
                 onPress={() => onDeleteComment(postId, comment.id)}
               >
-                <Text className="font-sans text-xs text-neutral-500">Delete</Text>
+                <Text className="font-sans text-xs text-ink-muted">Delete</Text>
               </Pressable>
             )
           : null}
       </View>
       {comment.bodyText
         ? (
-            <Text className="mt-1.5 ml-[42px] font-sans text-sm/5 text-neutral-900">
+            <Text className="mt-1.5 ml-[42px] font-sans text-sm/5 text-ink">
               {comment.bodyText}
             </Text>
           )
@@ -284,12 +285,12 @@ function CommentComposer({
 
   return (
     <View
-      className="gap-2 border-t border-neutral-200 bg-white px-4 pt-3"
+      className="gap-2 border-t border-outline-variant bg-white px-4 pt-3"
       style={{ paddingBottom: bottomPadding + 12 }}
     >
       {commentError === 'blocked'
         ? (
-            <Text className="font-sans text-xs text-red-600">
+            <Text className="font-sans text-xs text-danger-700">
               Our auto-moderation held back this comment. Please edit it and try again.
             </Text>
           )
@@ -298,12 +299,12 @@ function CommentComposer({
         <TextInput
           accessibilityLabel="Write a comment"
           placeholder="Write a comment…"
-          placeholderTextColor="#737373"
+          placeholderTextColor={colors.inkMuted}
           value={text}
           onChangeText={setText}
           editable={!commentSubmitting}
           multiline
-          className="max-h-28 flex-1 rounded-2xl border border-neutral-300 bg-neutral-50 px-4 py-2.5 font-sans text-sm text-neutral-900"
+          className="max-h-28 flex-1 rounded-2xl border border-outline-variant bg-surface px-4 py-2.5 font-sans text-sm text-ink"
         />
         <Pressable
           accessibilityRole="button"
@@ -312,8 +313,8 @@ function CommentComposer({
           onPress={submit}
           className={
             trimmed.length > 0 && !commentSubmitting
-              ? 'h-10 items-center justify-center rounded-full bg-violet-700 px-5'
-              : 'h-10 items-center justify-center rounded-full bg-neutral-300 px-5'
+              ? 'h-10 items-center justify-center rounded-full bg-primary px-5'
+              : 'h-10 items-center justify-center rounded-full bg-ink-muted px-5'
           }
         >
           <Text className="font-sans text-sm font-semibold text-white">Send</Text>
@@ -339,14 +340,14 @@ function CommentsSection({
   onLongPressComment?: (postId: string, comment: PostComment) => void;
 }) {
   return (
-    <View className="mt-4 rounded-2xl border border-neutral-300 bg-white p-5">
-      <Text className="font-mono text-[10px] tracking-widest text-neutral-500 uppercase">
+    <View className="mt-4 rounded-2xl border border-outline-variant bg-white p-5">
+      <Text className="font-mono text-[10px] tracking-widest text-ink-muted uppercase">
         Comments
       </Text>
       {commentsUnavailable
         ? (
             <View testID="post-comments-unavailable" className="mt-3">
-              <Text className="font-sans text-sm text-neutral-600">
+              <Text className="font-sans text-sm text-ink-variant">
                 Comments couldn’t load. Pull down to try again.
               </Text>
             </View>
@@ -355,8 +356,8 @@ function CommentsSection({
       {!commentsUnavailable && comments && comments.length === 0
         ? (
             <View className="mt-3">
-              <Text className="font-sans text-sm font-medium text-neutral-800">No comments yet</Text>
-              <Text className="mt-1 font-sans text-xs text-neutral-500">
+              <Text className="font-sans text-sm font-medium text-ink">No comments yet</Text>
+              <Text className="mt-1 font-sans text-xs text-ink-muted">
                 Be the first to join the conversation.
               </Text>
             </View>
@@ -392,12 +393,12 @@ function PostCard({
   likePending?: boolean;
 }) {
   return (
-    <View className="overflow-hidden rounded-2xl border border-neutral-300 bg-white">
+    <View className="overflow-hidden rounded-2xl border border-outline-variant bg-white">
       {post.imageUrl
         ? (
             <Image
               source={{ uri: post.imageUrl }}
-              className="aspect-video w-full bg-neutral-200"
+              className="aspect-video w-full bg-secondary-container"
               contentFit="cover"
               cachePolicy="memory-disk"
               accessibilityLabel={post.title}
@@ -407,18 +408,18 @@ function PostCard({
       <View className="p-5">
         {meta
           ? (
-              <Text className="font-mono text-[10px] tracking-wider text-neutral-500 uppercase">
+              <Text className="font-mono text-[10px] tracking-wider text-ink-muted uppercase">
                 {meta}
               </Text>
             )
           : null}
-        <Text className="mt-3 font-sans text-3xl/9 font-semibold text-neutral-950">
+        <Text className="mt-3 font-sans text-3xl/9 font-semibold text-ink">
           {post.title}
         </Text>
         <PostAuthor post={post} />
-        <View className="mt-4 flex-row items-center gap-4 border-b border-neutral-200 pb-5">
+        <View className="mt-4 flex-row items-center gap-4 border-b border-outline-variant pb-5">
           <PostLikeControl post={post} onToggleLike={onToggleLike} likePending={likePending} />
-          <Text className="font-sans text-xs text-neutral-500">
+          <Text className="font-sans text-xs text-ink-muted">
             {formatCount(post.commentCount, 'comment', 'comments')}
           </Text>
         </View>
@@ -426,7 +427,7 @@ function PostCard({
           {circleDocHasContent(hydratedDoc)
             ? <CircleTiptapRenderer doc={hydratedDoc} onOpenUrl={onOpenUrl} />
             : (
-                <Text className="font-sans text-base/6 text-neutral-900">
+                <Text className="font-sans text-base/6 text-ink">
                   {post.bodyText ?? 'This post has no readable content yet.'}
                 </Text>
               )}
@@ -462,9 +463,9 @@ export function MemberPostView({
 
   if (isLoading && !post) {
     return (
-      <View testID="member-post-loading" className="flex-1 items-center justify-center bg-neutral-100">
-        <ActivityIndicator color="#6D28D9" />
-        <Text className="mt-3 font-sans text-sm text-neutral-600">Loading post…</Text>
+      <View testID="member-post-loading" className="flex-1 items-center justify-center bg-surface">
+        <ActivityIndicator color={colors.primary} />
+        <Text className="mt-3 font-sans text-sm text-ink-variant">Loading post…</Text>
       </View>
     );
   }
@@ -490,13 +491,13 @@ export function MemberPostView({
       keyboardVerticalOffset={headerHeight}
     >
       <ScrollView
-        className="flex-1 bg-neutral-100"
+        className="flex-1 bg-surface"
         contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 24, paddingBottom: 48 }}
       >
         {contentState === 'saved'
           ? (
-              <View className="mb-4 rounded-xl border border-violet-300 bg-violet-50 px-4 py-3">
-                <Text className="font-sans text-sm font-medium text-violet-900">
+              <View className="mb-4 rounded-xl border border-on-primary-container bg-primary-fixed/40 px-4 py-3">
+                <Text className="font-sans text-sm font-medium text-ink">
                   Showing saved content
                 </Text>
               </View>

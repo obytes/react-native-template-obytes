@@ -19,11 +19,11 @@ function getPositionColor(position: number | null): string {
     case 1:
       return 'text-yellow-600';
     case 2:
-      return 'text-neutral-400';
+      return 'text-ink-muted';
     case 3:
       return 'text-amber-700';
     default:
-      return 'text-neutral-600';
+      return 'text-ink-variant';
   }
 }
 
@@ -32,11 +32,11 @@ function getPositionBg(position: number | null): string {
     case 1:
       return 'bg-yellow-50';
     case 2:
-      return 'bg-neutral-50';
+      return 'bg-surface';
     case 3:
       return 'bg-amber-50';
     default:
-      return 'bg-neutral-50';
+      return 'bg-surface';
   }
 }
 
@@ -85,22 +85,22 @@ export function ResultRow({ entry }: ResultRowProps) {
               </Text>
             )
           : (
-              <Text className="text-sm font-bold text-neutral-400">--</Text>
+              <Text className="text-sm font-bold text-ink-muted">--</Text>
             )}
       </View>
 
       <View className="flex-1">
         <View className="flex-row items-center justify-between">
-          <Text className="text-sm font-semibold text-charcoal-800">
+          <Text className="text-sm font-semibold text-ink">
             {courseName}
           </Text>
-          <Text className="text-xs text-neutral-500">{date}</Text>
+          <Text className="text-xs text-ink-muted">{date}</Text>
         </View>
 
         {race.name
           ? (
               <Text
-                className="mt-0.5 text-xs text-neutral-600"
+                className="mt-0.5 text-xs text-ink-variant"
                 numberOfLines={1}
               >
                 {race.name}
@@ -111,7 +111,7 @@ export function ResultRow({ entry }: ResultRowProps) {
         {detailParts.length > 0
           ? (
               <Text
-                className="mt-0.5 text-xs text-neutral-500"
+                className="mt-0.5 text-xs text-ink-muted"
                 numberOfLines={1}
               >
                 {detailParts.join(' · ')}
@@ -122,7 +122,7 @@ export function ResultRow({ entry }: ResultRowProps) {
         {entry.timeformComment
           ? (
               <Text
-                className="mt-0.5 text-xs text-neutral-500"
+                className="mt-0.5 text-xs text-ink-muted"
                 numberOfLines={1}
               >
                 {entry.timeformComment}

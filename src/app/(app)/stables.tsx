@@ -23,7 +23,7 @@ function StablesHeader({
 }) {
   return (
     <View className="mb-2 px-1">
-      <Text className="font-mono text-[10px] tracking-widest text-violet-700 uppercase">
+      <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
         Our horses
       </Text>
       <Text className="mt-2 mb-4 font-sans text-3xl font-semibold text-ink">Stables</Text>
@@ -89,7 +89,7 @@ export default function StablesScreen() {
   if (isError) {
     return (
       <View className="flex-1 items-center justify-center bg-background p-4">
-        <Text className="text-center text-charcoal-500">
+        <Text className="text-center text-ink-muted">
           Something went wrong loading the stables.
         </Text>
       </View>
@@ -99,10 +99,10 @@ export default function StablesScreen() {
   if (!data || data.length === 0) {
     return (
       <View className="flex-1 items-center justify-center bg-background p-4">
-        <Text className="text-lg font-semibold text-charcoal-700">
+        <Text className="text-lg font-semibold text-ink-variant">
           No horses yet
         </Text>
-        <Text className="mt-1 text-center text-charcoal-500">
+        <Text className="mt-1 text-center text-ink-muted">
           Horses will appear here once they're added.
         </Text>
       </View>
@@ -116,7 +116,7 @@ export default function StablesScreen() {
         ListHeaderComponent={listHeader}
         ListEmptyComponent={(
           <View className="items-center px-1 py-12">
-            <Text className="text-center text-charcoal-500">
+            <Text className="text-center text-ink-muted">
               No horses match this filter.
             </Text>
           </View>

@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 
+import colors from '@/components/ui/colors';
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { usePostableSpaces } from '@/features/community-posting/api/use-postable-spaces';
 import { usePostLike } from '@/features/member-content/api/use-post-like';
@@ -48,9 +49,9 @@ function EmptyState({
   message: string;
 }) {
   return (
-    <View testID={testID} className="rounded-2xl border border-neutral-300 bg-white p-6">
-      <Text className="font-sans text-lg font-semibold text-neutral-950">{title}</Text>
-      <Text className="mt-2 font-sans text-sm/5 text-neutral-600">{message}</Text>
+    <View testID={testID} className="rounded-2xl border border-outline-variant bg-white p-6">
+      <Text className="font-sans text-lg font-semibold text-ink">{title}</Text>
+      <Text className="mt-2 font-sans text-sm/5 text-ink-variant">{message}</Text>
     </View>
   );
 }
@@ -70,15 +71,15 @@ export function SpaceFeedView({
 }: SpaceFeedViewProps) {
   return (
     <ScrollView
-      className="flex-1 bg-neutral-100"
+      className="flex-1 bg-surface"
       contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 24, paddingBottom: 48 }}
       refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={onRefresh} />}
     >
       <View className="mb-6">
-        <Text className="font-mono text-[10px] tracking-widest text-violet-700 uppercase">
+        <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
           Discussion
         </Text>
-        <Text className="mt-2 font-sans text-3xl font-semibold text-neutral-950">
+        <Text className="mt-2 font-sans text-3xl font-semibold text-ink">
           {title}
         </Text>
       </View>
@@ -87,8 +88,8 @@ export function SpaceFeedView({
         {isLoading && !items
           ? (
               <View testID="space-feed-loading" className="items-center py-16">
-                <ActivityIndicator color="#6D28D9" />
-                <Text className="mt-3 font-sans text-sm text-neutral-600">
+                <ActivityIndicator color={colors.primary} />
+                <Text className="mt-3 font-sans text-sm text-ink-variant">
                   Loading the discussion…
                 </Text>
               </View>
@@ -139,10 +140,10 @@ function NewPostHeaderButton({ onPress }: { onPress: () => void }) {
       accessibilityLabel="New post"
       onPress={onPress}
       hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-      className="size-9 items-center justify-center rounded-full bg-violet-700"
+      className="size-9 items-center justify-center rounded-full bg-primary"
     >
       <Svg width={18} height={18} viewBox="0 0 24 24" accessibilityElementsHidden>
-        <Path d="M12 5v14M5 12h14" stroke="#FFFFFF" strokeWidth={2.5} strokeLinecap="round" />
+        <Path d="M12 5v14M5 12h14" stroke={colors.onPrimary} strokeWidth={2.5} strokeLinecap="round" />
       </Svg>
     </Pressable>
   );

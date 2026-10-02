@@ -66,7 +66,7 @@ export function PostOverflowMenu({ scope, postId, spaceId, isOwn, onReportPost, 
         onPress={modal.present}
         testID="post-overflow-trigger"
       >
-        <Text className="px-2 font-sans text-xl font-semibold text-neutral-800">···</Text>
+        <Text className="px-2 font-sans text-xl font-semibold text-ink">···</Text>
       </Pressable>
       <Modal ref={modal.ref} snapPoints={[isOwn ? '36%' : '28%']}>
         <View className="px-4 pb-6">
@@ -74,9 +74,9 @@ export function PostOverflowMenu({ scope, postId, spaceId, isOwn, onReportPost, 
             accessibilityRole="button"
             accessibilityLabel="Report post"
             onPress={onReport}
-            className="border-b border-neutral-200 py-3.5"
+            className="border-b border-outline-variant py-3.5"
           >
-            <Text className="font-sans text-base text-neutral-950">Report post</Text>
+            <Text className="font-sans text-base text-ink">Report post</Text>
           </Pressable>
           {isOwn
             ? (
@@ -87,7 +87,7 @@ export function PostOverflowMenu({ scope, postId, spaceId, isOwn, onReportPost, 
                   onPress={onDelete}
                   className="py-3.5"
                 >
-                  <Text className="font-sans text-base text-red-600">Delete post</Text>
+                  <Text className="font-sans text-base text-danger-700">Delete post</Text>
                 </Pressable>
               )
             : null}

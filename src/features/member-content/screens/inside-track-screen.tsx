@@ -11,6 +11,7 @@ import {
   View,
 } from 'react-native';
 
+import colors from '@/components/ui/colors';
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { useInsideTrack } from '@/features/member-content/api/use-inside-track';
 import { usePostLike } from '@/features/member-content/api/use-post-like';
@@ -31,10 +32,10 @@ type InsideTrackViewProps = {
 function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <View className="mb-4">
-      <Text className="font-mono text-[10px] tracking-widest text-violet-700 uppercase">
+      <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
         {eyebrow}
       </Text>
-      <Text className="mt-2 font-sans text-2xl font-semibold text-neutral-950">{title}</Text>
+      <Text className="mt-2 font-sans text-2xl font-semibold text-ink">{title}</Text>
     </View>
   );
 }
@@ -49,9 +50,9 @@ function EmptyState({
   message: string;
 }) {
   return (
-    <View testID={testID} className="rounded-2xl border border-neutral-300 bg-white p-6">
-      <Text className="font-sans text-lg font-semibold text-neutral-950">{title}</Text>
-      <Text className="mt-2 font-sans text-sm/5 text-neutral-600">{message}</Text>
+    <View testID={testID} className="rounded-2xl border border-outline-variant bg-white p-6">
+      <Text className="font-sans text-lg font-semibold text-ink">{title}</Text>
+      <Text className="mt-2 font-sans text-sm/5 text-ink-variant">{message}</Text>
     </View>
   );
 }
@@ -95,15 +96,15 @@ export function InsideTrackView({
 }: InsideTrackViewProps) {
   return (
     <ScrollView
-      className="flex-1 bg-neutral-100"
+      className="flex-1 bg-surface"
       contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 24, paddingBottom: 48 }}
       refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={onRefresh} />}
     >
       {isLoading && !pinned && !latest
         ? (
             <View testID="inside-track-loading" className="items-center py-16">
-              <ActivityIndicator color="#6D28D9" />
-              <Text className="mt-3 font-sans text-sm text-neutral-600">
+              <ActivityIndicator color={colors.primary} />
+              <Text className="mt-3 font-sans text-sm text-ink-variant">
                 Loading the Inside Track…
               </Text>
             </View>

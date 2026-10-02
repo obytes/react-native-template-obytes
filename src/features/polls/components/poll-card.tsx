@@ -26,11 +26,11 @@ export function PollCard({ poll, onVote, pending, variant }: PollCardProps) {
   return (
     <View
       testID={`poll-card-${poll.id}`}
-      className={variant === 'card' ? 'gap-4 rounded-2xl border border-neutral-300 bg-white p-5' : 'gap-4 px-6 py-4'}
+      className={variant === 'card' ? 'gap-4 rounded-2xl border border-outline-variant bg-white p-5' : 'gap-4 px-6 py-4'}
     >
       <View className="gap-1">
         {showEyebrow
-          ? <Text className="font-mono text-[10px] tracking-widest text-violet-700 uppercase">{eyebrowText}</Text>
+          ? <Text className="font-mono text-[10px] tracking-widest text-label uppercase">{eyebrowText}</Text>
           : null}
         <Text className="font-sans text-lg font-semibold text-ink">{poll.question}</Text>
       </View>
@@ -68,10 +68,10 @@ export function PollCard({ poll, onVote, pending, variant }: PollCardProps) {
               disabled={!canVote}
               onPress={() => onVote(poll.id, option.id)}
               className={`rounded-full border px-4 py-3 ${
-                mine ? 'border-primary bg-primary' : 'border-neutral-300 bg-white'
+                mine ? 'border-primary bg-primary' : 'border-outline-variant bg-white'
               }`}
             >
-              <Text className={`font-sans text-sm ${mine ? 'font-semibold text-on-primary' : 'text-neutral-700'}`}>
+              <Text className={`font-sans text-sm ${mine ? 'font-semibold text-on-primary' : 'text-ink-variant'}`}>
                 {option.label}
               </Text>
             </Pressable>
@@ -79,7 +79,7 @@ export function PollCard({ poll, onVote, pending, variant }: PollCardProps) {
         })}
       </View>
 
-      <Text className="font-sans text-xs text-neutral-600">
+      <Text className="font-sans text-xs text-ink-variant">
         {pending
           ? 'Saving your vote…'
           : showResults && poll.results

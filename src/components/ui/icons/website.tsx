@@ -5,7 +5,7 @@ import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 import colors from '../colors';
 
 export function Website({
-  color = colors.neutral[500],
+  color = colors.inkMuted,
   ...props
 }: SvgProps) {
   return (
@@ -22,7 +22,7 @@ export function Website({
       </G>
       <Defs>
         <ClipPath id="a">
-          <Path fill="#fff" d="M0 0h24v24H0z" />
+          <Path fill={colors.white} d="M0 0h24v24H0z" />
         </ClipPath>
       </Defs>
     </Svg>

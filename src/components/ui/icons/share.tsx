@@ -4,7 +4,7 @@ import Svg, { Path } from 'react-native-svg';
 
 import colors from '../colors';
 
-export function Share({ color = colors.neutral[500], ...props }: SvgProps) {
+export function Share({ color = colors.inkMuted, ...props }: SvgProps) {
   return (
     <Svg width={24} height={24} fill="none" viewBox="0 0 24 24" {...props}>
       <Path

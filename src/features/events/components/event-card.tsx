@@ -22,14 +22,14 @@ export function EventCard({ event, onPress }: EventCardProps) {
       accessibilityRole="button"
       accessibilityLabel={event.title}
       onPress={onPress}
-      className="overflow-hidden rounded-2xl border border-neutral-300 bg-white"
+      className="overflow-hidden rounded-2xl border border-outline-variant bg-white"
     >
       {event.coverImageUrl
         ? (
             <Image
               testID="event-card-cover"
               source={{ uri: event.coverImageUrl }}
-              className="h-40 w-full bg-neutral-200"
+              className="h-40 w-full bg-secondary-container"
               contentFit="cover"
               cachePolicy="memory-disk"
               accessibilityLabel={event.title}
@@ -38,9 +38,9 @@ export function EventCard({ event, onPress }: EventCardProps) {
         : (
             <View
               testID="event-card-placeholder"
-              className="h-24 w-full items-start justify-end bg-[#391d3a] px-4 pb-3"
+              className="h-24 w-full items-start justify-end bg-primary px-4 pb-3"
             >
-              <Text className="font-mono text-xs tracking-widest text-[#fcf9f2] uppercase">
+              <Text className="font-mono text-xs tracking-widest text-on-primary uppercase">
                 Rionna event
               </Text>
             </View>
@@ -48,7 +48,7 @@ export function EventCard({ event, onPress }: EventCardProps) {
       <View className="gap-1 px-4 py-3">
         {date
           ? (
-              <Text className="font-mono text-xs tracking-wider text-violet-700 uppercase">
+              <Text className="font-mono text-xs tracking-wider text-label uppercase">
                 {date}
               </Text>
             )
@@ -61,13 +61,13 @@ export function EventCard({ event, onPress }: EventCardProps) {
         </Text>
         {event.rsvp.going
           ? (
-              <Text className="mt-1 self-start rounded-full bg-emerald-100 px-3 py-1 font-sans text-xs font-semibold text-emerald-800">
+              <Text className="mt-1 self-start rounded-full bg-success-50 px-3 py-1 font-sans text-xs font-semibold text-success-700">
                 Going ✓
               </Text>
             )
           : event.rsvp.full
             ? (
-                <Text className="mt-1 self-start rounded-full bg-neutral-200 px-3 py-1 font-sans text-xs font-semibold text-neutral-600">
+                <Text className="mt-1 self-start rounded-full bg-secondary-container px-3 py-1 font-sans text-xs font-semibold text-ink-variant">
                   Full
                 </Text>
               )

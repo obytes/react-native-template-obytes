@@ -3,9 +3,10 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
+import colors from '@/components/ui/colors';
 import { isRTL } from '@/lib/i18n';
 
-export function ArrowRight({ color = '#CCC', style, ...props }: SvgProps) {
+export function ArrowRight({ color = colors.inkMuted, style, ...props }: SvgProps) {
   return (
     <Svg
       width={7}

@@ -17,7 +17,7 @@ function PedigreeRow({ label, value }: { label: string; value: string }) {
       <Text className="font-mono text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
         {label}
       </Text>
-      <Text className="font-sans text-sm text-charcoal-800">{value}</Text>
+      <Text className="font-sans text-sm text-ink">{value}</Text>
     </View>
   );
 }
@@ -51,7 +51,7 @@ export function StorySection({ story, pedigree }: StorySectionProps) {
 
       {shownStory
         ? (
-            <Text className="mb-2 font-sans text-base/relaxed text-charcoal-800">
+            <Text className="mb-2 font-sans text-base/relaxed text-ink">
               {shownStory}
             </Text>
           )

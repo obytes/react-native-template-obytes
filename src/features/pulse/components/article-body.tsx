@@ -25,7 +25,7 @@ export function ArticleBody({ contentHtml }: ArticleBodyProps) {
 
   return (
     <View className="mt-2">
-      <Text className="text-base/relaxed text-charcoal-800">
+      <Text className="text-base/relaxed text-ink">
         {plainText}
       </Text>
     </View>

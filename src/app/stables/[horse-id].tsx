@@ -61,7 +61,7 @@ function DetailModules({
 
       {horse.trainer && (
         <View className="rounded-2xl bg-primary p-6">
-          <Text className="mb-2 font-mono text-[10px] font-bold tracking-widest uppercase" style={{ color: '#c39cc0' }}>Trainer</Text>
+          <Text className="mb-2 font-mono text-[10px] font-bold tracking-widest text-on-primary-container uppercase">Trainer</Text>
           <Text className="font-display text-2xl text-on-primary">{horse.trainer.name}</Text>
         </View>
       )}

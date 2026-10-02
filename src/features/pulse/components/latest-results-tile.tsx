@@ -3,6 +3,7 @@ import type { LatestResult } from '@/features/pulse/types';
 import { useRouter } from 'expo-router';
 
 import { Pressable, Text, View } from '@/components/ui';
+import colors from '@/components/ui/colors';
 import { TileWrapper } from '@/features/pulse/components/tile-wrapper';
 
 function ordinal(n: number): string {
@@ -13,12 +14,12 @@ function ordinal(n: number): string {
 
 function positionColor(pos: number | null): string {
   if (pos === 1)
-    return '#FFD700';
+    return colors.medal.gold;
   if (pos === 2)
-    return '#C0C0C0';
+    return colors.medal.silver;
   if (pos === 3)
-    return '#CD7F32';
-  return '#9CA3AF';
+    return colors.medal.bronze;
+  return colors.medal.other;
 }
 
 function PositionBadge({ position }: { position: number | null }) {

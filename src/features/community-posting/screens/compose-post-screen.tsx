@@ -6,6 +6,7 @@ import * as React from 'react';
 import { ActivityIndicator, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 
+import colors from '@/components/ui/colors';
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { useCreatePost } from '@/features/community-posting/api/use-create-post';
 import { usePostableSpaces } from '@/features/community-posting/api/use-postable-spaces';
@@ -76,22 +77,22 @@ function ComposeFields({ title, onChangeTitle, body, onChangeBody }: ComposeFiel
       <TextInput
         accessibilityLabel="Post title"
         placeholder="Title (optional)"
-        placeholderTextColor="#737373"
+        placeholderTextColor={colors.inkMuted}
         value={title}
         onChangeText={onChangeTitle}
         maxLength={TITLE_MAX}
-        className="rounded-2xl border border-neutral-300 bg-white px-4 py-3 font-sans text-base text-neutral-950"
+        className="rounded-2xl border border-outline-variant bg-white px-4 py-3 font-sans text-base text-ink"
       />
       <TextInput
         accessibilityLabel="Post body"
         placeholder="What's on your mind?"
-        placeholderTextColor="#737373"
+        placeholderTextColor={colors.inkMuted}
         value={body}
         onChangeText={onChangeBody}
         maxLength={BODY_MAX}
         multiline
         textAlignVertical="top"
-        className="min-h-40 rounded-2xl border border-neutral-300 bg-white px-4 py-3 font-sans text-base text-neutral-950"
+        className="min-h-40 rounded-2xl border border-outline-variant bg-white px-4 py-3 font-sans text-base text-ink"
       />
     </View>
   );
@@ -107,23 +108,23 @@ type SpacesStatusProps = {
 function SpacesStatus({ isError, isEmpty, onRetry }: SpacesStatusProps) {
   if (isError) {
     return (
-      <View className="mb-4 gap-2 rounded-2xl border border-neutral-300 bg-white px-4 py-3">
-        <Text className="font-sans text-sm text-neutral-700">Couldn&apos;t load your spaces. Pull to retry.</Text>
+      <View className="mb-4 gap-2 rounded-2xl border border-outline-variant bg-white px-4 py-3">
+        <Text className="font-sans text-sm text-ink-variant">Couldn&apos;t load your spaces. Pull to retry.</Text>
         <Pressable
           accessibilityRole="button"
           accessibilityLabel="Retry"
           testID="compose-post-spaces-retry"
           onPress={onRetry}
         >
-          <Text className="font-sans text-sm font-semibold text-violet-700">Retry</Text>
+          <Text className="font-sans text-sm font-semibold text-primary">Retry</Text>
         </Pressable>
       </View>
     );
   }
   if (isEmpty) {
     return (
-      <View className="mb-4 rounded-2xl border border-neutral-300 bg-white px-4 py-3">
-        <Text className="font-sans text-sm text-neutral-700">You can&apos;t post in any spaces yet.</Text>
+      <View className="mb-4 rounded-2xl border border-outline-variant bg-white px-4 py-3">
+        <Text className="font-sans text-sm text-ink-variant">You can&apos;t post in any spaces yet.</Text>
       </View>
     );
   }
@@ -142,7 +143,7 @@ function ComposeFooter({ errorMessage, isPending, canSubmit, onSubmit }: Compose
   return (
     <View className="mt-4 gap-3">
       {errorMessage
-        ? <Text className="font-sans text-sm text-red-600">{errorMessage}</Text>
+        ? <Text className="font-sans text-sm text-danger-700">{errorMessage}</Text>
         : null}
       <Pressable
         testID="compose-post-submit"
@@ -150,7 +151,7 @@ function ComposeFooter({ errorMessage, isPending, canSubmit, onSubmit }: Compose
         accessibilityLabel="Post"
         disabled={disabled}
         onPress={onSubmit}
-        className={`items-center rounded-2xl px-4 py-3 ${disabled ? 'bg-neutral-300' : 'bg-violet-700'}`}
+        className={`items-center rounded-2xl px-4 py-3 ${disabled ? 'bg-ink-muted' : 'bg-primary'}`}
       >
         <Text className="font-sans text-base font-semibold text-white">
           {isPending ? 'Posting…' : 'Post'}
@@ -248,7 +249,7 @@ export function ComposePostScreen() {
   const spacesLoading = !spacesQuery.isError && !spacesQuery.isSuccess;
 
   return (
-    <KeyboardAvoidingView behavior="padding" className="flex-1 bg-neutral-100">
+    <KeyboardAvoidingView behavior="padding" className="flex-1 bg-surface">
       <ScrollView className="flex-1" contentContainerStyle={{ padding: 20 }}>
         {spacesLoading
           ? (

@@ -36,17 +36,17 @@ export function NextEntryCard({ entry }: NextEntryCardProps) {
 
       {race.name
         ? (
-            <Text className="mb-2 font-display text-lg font-bold text-charcoal-900">
+            <Text className="mb-2 font-display text-lg font-bold text-ink">
               {race.name}
             </Text>
           )
         : null}
 
       <View className="mb-3 flex-row items-center gap-2">
-        <Text className="text-sm font-semibold text-charcoal-800">
+        <Text className="text-sm font-semibold text-ink">
           {courseName}
         </Text>
-        <Text className="text-sm text-neutral-500">
+        <Text className="text-sm text-ink-muted">
           {meetingDate}
           {' '}
           at
@@ -86,8 +86,8 @@ export function NextEntryCard({ entry }: NextEntryCardProps) {
 function DetailItem({ label, value }: { label: string; value: string }) {
   return (
     <View>
-      <Text className="text-xs text-neutral-500">{label}</Text>
-      <Text className="text-sm font-medium text-charcoal-800">{value}</Text>
+      <Text className="text-xs text-ink-muted">{label}</Text>
+      <Text className="text-sm font-medium text-ink">{value}</Text>
     </View>
   );
 }

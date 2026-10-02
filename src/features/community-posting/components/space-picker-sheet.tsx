@@ -35,12 +35,12 @@ export function SpacePickerSheet({ spaces, selectedSpaceId, onSelect }: SpacePic
         accessibilityLabel="Choose space"
         onPress={modal.present}
         testID="compose-post-space-trigger"
-        className="mb-4 flex-row items-center justify-between rounded-2xl border border-neutral-300 bg-white px-4 py-3"
+        className="mb-4 flex-row items-center justify-between rounded-2xl border border-outline-variant bg-white px-4 py-3"
       >
-        <Text className="font-sans text-base font-medium text-neutral-950">
+        <Text className="font-sans text-base font-medium text-ink">
           {selected ? `${selected.emoji ?? ''} ${selected.name}`.trim() : 'Choose a space'}
         </Text>
-        <Text className="font-sans text-sm text-violet-700">Change</Text>
+        <Text className="font-sans text-sm text-primary">Change</Text>
       </Pressable>
       <SpacePickerOptions
         ref={modal.ref}
@@ -97,13 +97,13 @@ function SpaceOption({
       accessibilityLabel={space.name}
       onPress={onPress}
       testID={`compose-post-space-${space.id}`}
-      className="flex-row items-center border-b border-neutral-200 px-4 py-3"
+      className="flex-row items-center border-b border-outline-variant px-4 py-3"
     >
-      <Text className="flex-1 font-sans text-base text-neutral-950">
+      <Text className="flex-1 font-sans text-base text-ink">
         {space.emoji ? `${space.emoji} ` : ''}
         {space.name}
       </Text>
-      {selected ? <Text className="font-sans text-sm text-violet-700">Selected</Text> : null}
+      {selected ? <Text className="font-sans text-sm text-primary">Selected</Text> : null}
     </Pressable>
   );
 }

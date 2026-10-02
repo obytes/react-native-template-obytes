@@ -29,8 +29,8 @@ export function PaddockPreviewTile({ data, isLoading }: PaddockPreviewTileProps)
             >
               <Text className="font-mono text-xs tracking-wider text-ink-variant uppercase">New partner offer</Text>
               <Text className="font-sans text-base font-semibold text-ink">{offer.title}</Text>
-              <Text className="font-sans text-sm text-neutral-700">{offer.partnerName}</Text>
-              <Text className="font-sans text-sm text-violet-700">See all member benefits →</Text>
+              <Text className="font-sans text-sm text-ink-variant">{offer.partnerName}</Text>
+              <Text className="font-sans text-sm text-primary">See all member benefits →</Text>
             </Pressable>
           )
         : null}

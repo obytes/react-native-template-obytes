@@ -14,6 +14,7 @@ import {
   Text,
   View,
 } from '@/components/ui';
+import colors from '@/components/ui/colors';
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { RsvpError, useEventRsvp } from '@/features/events/api/use-event-rsvp';
 import { findEventById, useEvents } from '@/features/events/api/use-events';
@@ -36,7 +37,7 @@ function EventCover({ event }: { event: ClubEvent }) {
       <Image
         testID="event-detail-cover"
         source={{ uri: event.coverImageUrl }}
-        className="h-56 w-full bg-neutral-200"
+        className="h-56 w-full bg-secondary-container"
         contentFit="cover"
         cachePolicy="memory-disk"
         accessibilityLabel={event.title}
@@ -46,9 +47,9 @@ function EventCover({ event }: { event: ClubEvent }) {
   return (
     <View
       testID="event-detail-placeholder"
-      className="h-40 w-full items-start justify-end bg-[#391d3a] px-5 pb-4"
+      className="h-40 w-full items-start justify-end bg-primary px-5 pb-4"
     >
-      <Text className="font-mono text-xs tracking-widest text-[#fcf9f2] uppercase">
+      <Text className="font-mono text-xs tracking-widest text-on-primary uppercase">
         Rionna event
       </Text>
     </View>
@@ -63,7 +64,7 @@ function EventLocationLine({ event }: { event: ClubEvent }) {
         accessibilityRole="link"
         onPress={() => openExternalLink(event.virtualLocationUrl!)}
       >
-        <Text className="font-sans text-sm font-semibold text-violet-700 underline">
+        <Text className="font-sans text-sm font-semibold text-primary underline">
           Join online
         </Text>
       </Pressable>
@@ -97,9 +98,9 @@ function RsvpButton({
         testID="event-rsvp-cta"
         accessibilityRole="button"
         accessibilityState={{ disabled: true }}
-        className="mt-1 items-center rounded-full border border-neutral-300 bg-neutral-200 py-3"
+        className="mt-1 items-center rounded-full border border-outline-variant bg-secondary-container py-3"
       >
-        <Text className="font-sans text-sm font-semibold text-neutral-500">Event full</Text>
+        <Text className="font-sans text-sm font-semibold text-ink-muted">Event full</Text>
       </View>
     );
   }
@@ -112,9 +113,9 @@ function RsvpButton({
       accessibilityLabel={going ? 'Cancel RSVP' : 'RSVP to this event'}
       disabled={rsvpPending}
       onPress={() => onToggleRsvp?.(!going)}
-      className={`mt-1 items-center rounded-full py-3 ${going ? 'bg-emerald-100' : 'bg-[#391d3a]'} ${rsvpPending ? 'opacity-60' : ''}`}
+      className={`mt-1 items-center rounded-full py-3 ${going ? 'bg-success-50' : 'bg-primary'} ${rsvpPending ? 'opacity-60' : ''}`}
     >
-      <Text className={`font-sans text-sm font-semibold ${going ? 'text-emerald-800' : 'text-[#fcf9f2]'}`}>
+      <Text className={`font-sans text-sm font-semibold ${going ? 'text-success-700' : 'text-on-primary'}`}>
         {going ? 'Going ✓ — tap to cancel' : 'RSVP — I\'m going'}
       </Text>
     </Pressable>
@@ -138,9 +139,9 @@ function AddToCalendarButton({
         accessibilityLabel="Add to calendar"
         disabled={calendarPending}
         onPress={onAddToCalendar}
-        className={`items-center rounded-full border border-violet-700 bg-white py-3 ${calendarPending ? 'opacity-60' : ''}`}
+        className={`items-center rounded-full border border-primary bg-white py-3 ${calendarPending ? 'opacity-60' : ''}`}
       >
-        <Text className="font-sans text-sm font-semibold text-violet-800">
+        <Text className="font-sans text-sm font-semibold text-primary">
           {calendarPending ? 'Adding…' : 'Add to calendar'}
         </Text>
       </Pressable>
@@ -148,7 +149,7 @@ function AddToCalendarButton({
         ? (
             <Text
               testID="event-add-to-calendar-outcome"
-              className="text-center font-sans text-xs text-neutral-500"
+              className="text-center font-sans text-xs text-ink-muted"
             >
               {CALENDAR_OUTCOME_LABEL[calendarOutcome]}
             </Text>
@@ -187,17 +188,17 @@ type EventDetailViewProps = {
 function EventUnresolvedState({ isLoading, isError }: { isLoading: boolean; isError: boolean }) {
   if (isLoading) {
     return (
-      <View testID="event-detail-loading" className="flex-1 items-center justify-center bg-neutral-100">
-        <ActivityIndicator color="#6D28D9" />
-        <Text className="mt-3 font-sans text-sm text-neutral-600">Loading event…</Text>
+      <View testID="event-detail-loading" className="flex-1 items-center justify-center bg-surface">
+        <ActivityIndicator color={colors.primary} />
+        <Text className="mt-3 font-sans text-sm text-ink-variant">Loading event…</Text>
       </View>
     );
   }
 
   if (isError) {
     return (
-      <View testID="event-detail-error" className="flex-1 items-center justify-center bg-neutral-100 px-8">
-        <Text className="text-center font-sans text-base text-neutral-700">
+      <View testID="event-detail-error" className="flex-1 items-center justify-center bg-surface px-8">
+        <Text className="text-center font-sans text-base text-ink-variant">
           Couldn't load this event — check your connection and try again.
         </Text>
       </View>
@@ -205,8 +206,8 @@ function EventUnresolvedState({ isLoading, isError }: { isLoading: boolean; isEr
   }
 
   return (
-    <View testID="event-detail-unavailable" className="flex-1 items-center justify-center bg-neutral-100 px-8">
-      <Text className="text-center font-sans text-base text-neutral-700">
+    <View testID="event-detail-unavailable" className="flex-1 items-center justify-center bg-surface px-8">
+      <Text className="text-center font-sans text-base text-ink-variant">
         This event is no longer available.
       </Text>
     </View>
@@ -242,7 +243,7 @@ export function EventDetailView({
 
   return (
     <ScrollView
-      className="flex-1 bg-neutral-100"
+      className="flex-1 bg-surface"
       contentContainerStyle={{ paddingBottom: 48 }}
     >
       <EventCover event={event} />
@@ -250,13 +251,13 @@ export function EventDetailView({
         <Text className="font-sans text-3xl font-semibold text-ink">{event.title}</Text>
         {date
           ? (
-              <Text className="font-mono text-xs tracking-wider text-violet-700 uppercase">
+              <Text className="font-mono text-xs tracking-wider text-label uppercase">
                 {date}
               </Text>
             )
           : null}
         <EventLocationLine event={event} />
-        <Text className="font-sans text-sm text-neutral-600">{countLabel}</Text>
+        <Text className="font-sans text-sm text-ink-variant">{countLabel}</Text>
 
         <RsvpButton
           event={event}
@@ -266,7 +267,7 @@ export function EventDetailView({
         />
         {showFull
           ? (
-              <Text className="font-sans text-xs text-neutral-500">This event is full.</Text>
+              <Text className="font-sans text-xs text-ink-muted">This event is full.</Text>
             )
           : null}
 
@@ -290,7 +291,7 @@ export function EventDetailView({
               )
             : event.bodyText
               ? (
-                  <Text className="font-sans text-base/6 text-neutral-900">
+                  <Text className="font-sans text-base/6 text-ink">
                     {event.bodyText}
                   </Text>
                 )

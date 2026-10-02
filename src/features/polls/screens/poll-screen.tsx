@@ -27,14 +27,14 @@ export function PollScreenView({ poll, isLoading, onVote, pendingPollIds }: Poll
         className="flex-1 bg-background"
         contentContainerStyle={{ paddingHorizontal: 20, paddingTop: contentPaddingTop, paddingBottom: 32 }}
       >
-        <Text className="font-mono text-[10px] tracking-widest text-violet-700 uppercase">Club vote</Text>
+        <Text className="font-mono text-[10px] tracking-widest text-label uppercase">Club vote</Text>
         <View className="mt-6">
           {isLoading && !poll ? <ActivityIndicator /> : null}
           {!isLoading && !poll
             ? (
                 <View className="items-center py-16">
                   <Text className="font-sans text-lg font-semibold text-ink">This vote has ended</Text>
-                  <Text className="mt-2 font-sans text-sm text-neutral-600">
+                  <Text className="mt-2 font-sans text-sm text-ink-variant">
                     Results stay in the Community feed for a week after closing.
                   </Text>
                 </View>

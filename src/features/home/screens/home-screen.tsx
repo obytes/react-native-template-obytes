@@ -68,7 +68,7 @@ export function HomeScreen() {
       >
         <View className="mb-6 flex-row items-center justify-between">
           <View className="flex-1 pr-4">
-            <Text className="font-mono text-[10px] tracking-widest text-violet-700 uppercase">
+            <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
               Rionna Ireland
             </Text>
             <Text className="mt-2 font-sans text-3xl font-semibold text-ink">Home</Text>
@@ -80,9 +80,9 @@ export function HomeScreen() {
               accessibilityLabel="Open profile"
               testID="home-avatar"
               onPress={() => router.push('/profile')}
-              className="size-11 items-center justify-center rounded-full border border-neutral-400 bg-white"
+              className="size-11 items-center justify-center rounded-full border border-outline-variant bg-white"
             >
-              <Text className="font-sans text-base font-semibold text-neutral-950">
+              <Text className="font-sans text-base font-semibold text-ink">
                 {displayName.slice(0, 1).toUpperCase()}
               </Text>
             </Pressable>

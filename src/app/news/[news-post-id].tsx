@@ -22,7 +22,7 @@ export default function NewsPostScreen() {
   if (isError || !post) {
     return (
       <View className="flex-1 items-center justify-center bg-background p-4">
-        <Text className="text-center text-charcoal-500">
+        <Text className="text-center text-ink-muted">
           Article not found.
         </Text>
       </View>

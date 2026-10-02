@@ -1,10 +1,10 @@
 import type { AuthUser } from '@/lib/auth/utils';
 import { useForm } from '@tanstack/react-form';
-import * as React from 'react';
-import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
-
-import * as z from 'zod';
 import Env from 'env';
+import * as React from 'react';
+
+import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
+import * as z from 'zod';
 
 import { Button, Input, Text, View } from '@/components/ui';
 import { getFieldError } from '@/components/ui/form-utils';
@@ -55,17 +55,17 @@ function FormHeader() {
     <View className="mb-6 items-center justify-center">
       <Text
         testID="form-title"
-        className="pb-2 text-center text-4xl font-bold text-black dark:text-white"
+        className="pb-2 text-center text-4xl font-bold text-ink"
       >
         Rionna
       </Text>
-      <Text className="text-center text-charcoal-500">
+      <Text className="text-center text-ink-muted">
         Sign in to your account
       </Text>
       {showHost && (
         <Text
           testID="api-host"
-          className="mt-1 text-center text-xs text-charcoal-500"
+          className="mt-1 text-center text-xs text-ink-muted"
         >
           {apiHost()}
         </Text>
@@ -77,10 +77,10 @@ function FormHeader() {
 function FormFooter() {
   return (
     <View className="mt-8 items-center">
-      {/* <Text className="text-center text-sm text-charcoal-500">
+      {/* <Text className="text-center text-sm text-ink-muted">
         New members visit
         {' '}
-        <Text className="font-bold text-black dark:text-white">
+        <Text className="font-bold text-ink">
           rionna.com
         </Text>
         {' '}
@@ -123,7 +123,7 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
 
         {error && (
           <View className="mb-4 rounded-lg bg-danger-50 p-3">
-            <Text className="text-center text-sm text-black">{error}</Text>
+            <Text className="text-center text-sm text-ink">{error}</Text>
           </View>
         )}
 

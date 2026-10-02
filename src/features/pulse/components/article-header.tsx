@@ -25,12 +25,12 @@ export function ArticleHeader({
 }: ArticleHeaderProps) {
   return (
     <View className="gap-2">
-      <Text className="font-display text-2xl font-bold text-charcoal-900">
+      <Text className="font-display text-2xl font-bold text-ink">
         {title}
       </Text>
       {subtitle
         ? (
-            <Text className="text-base/relaxed text-charcoal-600">
+            <Text className="text-base/relaxed text-ink-variant">
               {subtitle}
             </Text>
           )
@@ -39,14 +39,14 @@ export function ArticleHeader({
         {authorName
           ? (
               <>
-                <Text className="text-sm font-medium text-charcoal-700">
+                <Text className="text-sm font-medium text-ink-variant">
                   {authorName}
                 </Text>
-                <Text className="text-sm text-charcoal-400">&middot;</Text>
+                <Text className="text-sm text-ink-muted">&middot;</Text>
               </>
             )
           : null}
-        <Text className="text-sm text-charcoal-500">
+        <Text className="text-sm text-ink-muted">
           {formatDate(publishedAt)}
         </Text>
       </View>

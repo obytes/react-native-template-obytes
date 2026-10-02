@@ -3,6 +3,7 @@ import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import * as React from 'react';
 import { Pressable, View } from 'react-native';
 
+import colors from '@/components/ui/colors';
 import {
   Calendar as CalendarIcon,
   Home as HomeIcon,
@@ -19,7 +20,7 @@ export function CustomTabBar({ state, descriptors, navigation }: BottomTabBarPro
 
   return (
     <View
-      className="absolute inset-x-6 flex-row items-center justify-between rounded-full bg-white/80 px-6 py-4 shadow-lg shadow-black/5"
+      className="absolute inset-x-6 flex-row items-center justify-between rounded-full bg-white/80 px-6 py-4 shadow-lg shadow-ink/5"
       style={{ bottom: bottomOffset }}
     >
       {state.routes.map((route, index) => {
@@ -53,9 +54,9 @@ export function CustomTabBar({ state, descriptors, navigation }: BottomTabBarPro
             key={route.key}
             onPress={onPress}
             testID={options.tabBarButtonTestID}
-            className={`items-center justify-center rounded-full p-3 ${isFocused ? 'bg-[#391d3a] shadow-md' : ''}`}
+            className={`items-center justify-center rounded-full p-3 ${isFocused ? 'bg-primary shadow-md' : ''}`}
           >
-            <Icon color={isFocused ? '#ffffff' : '#1c1c18'} />
+            <Icon color={isFocused ? colors.onPrimary : colors.inkVariant} />
           </Pressable>
         );
       })}

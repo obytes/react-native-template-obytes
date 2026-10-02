@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Pressable, Text, View } from 'react-native';
 
 import { Image } from '@/components/ui';
+import colors from '@/components/ui/colors';
 import { Heart } from '@/components/ui/icons';
 import { formatCount, formatMemberContentDate } from '@/features/member-content/lib/content-format';
 
@@ -25,7 +26,7 @@ type LikeControlProps = {
 function LikeControl({ item, onToggleLike, likePending = false }: LikeControlProps) {
   const countLabel = formatCount(item.likeCount, 'like', 'likes');
   if (!onToggleLike) {
-    return <Text className="font-sans text-xs text-neutral-500">{countLabel}</Text>;
+    return <Text className="font-sans text-xs text-ink-muted">{countLabel}</Text>;
   }
   return (
     <Pressable
@@ -40,13 +41,13 @@ function LikeControl({ item, onToggleLike, likePending = false }: LikeControlPro
         width={16}
         height={16}
         filled={item.isLiked}
-        color={item.isLiked ? '#BE123C' : '#737373'}
+        color={item.isLiked ? colors.danger[700] : colors.inkMuted}
       />
       <Text
         className={
           item.isLiked
-            ? 'font-sans text-xs font-medium text-rose-700'
-            : 'font-sans text-xs text-neutral-500'
+            ? 'font-sans text-xs font-medium text-danger-700'
+            : 'font-sans text-xs text-ink-muted'
         }
       >
         {countLabel}
@@ -60,12 +61,12 @@ function CardBody({ item, onToggleLike, likePending }: LikeControlProps) {
   const meta = [item.spaceName, date].filter(Boolean).join(' · ');
 
   return (
-    <View className="overflow-hidden rounded-2xl border border-neutral-300 bg-white">
+    <View className="overflow-hidden rounded-2xl border border-outline-variant bg-white">
       {item.imageUrl
         ? (
             <Image
               source={{ uri: item.imageUrl }}
-              className="aspect-video w-full bg-neutral-200"
+              className="aspect-video w-full bg-secondary-container"
               contentFit="cover"
               cachePolicy="memory-disk"
               accessibilityLabel={item.title}
@@ -75,27 +76,27 @@ function CardBody({ item, onToggleLike, likePending }: LikeControlProps) {
       <View className="gap-3 p-5">
         {meta
           ? (
-              <Text className="font-mono text-[10px] tracking-wider text-neutral-500 uppercase">
+              <Text className="font-mono text-[10px] tracking-wider text-ink-muted uppercase">
                 {meta}
               </Text>
             )
           : null}
-        <Text className="font-sans text-xl font-semibold text-neutral-950">
+        <Text className="font-sans text-xl font-semibold text-ink">
           {item.title}
         </Text>
         {item.excerpt
           ? (
-              <Text className="font-sans text-sm/5 text-neutral-600" numberOfLines={3}>
+              <Text className="font-sans text-sm/5 text-ink-variant" numberOfLines={3}>
                 {item.excerpt}
               </Text>
             )
           : null}
         <View className="flex-row flex-wrap items-center gap-x-4 gap-y-1">
           {item.authorName
-            ? <Text className="font-sans text-xs text-neutral-600">{item.authorName}</Text>
+            ? <Text className="font-sans text-xs text-ink-variant">{item.authorName}</Text>
             : null}
           <LikeControl item={item} onToggleLike={onToggleLike} likePending={likePending} />
-          <Text className="font-sans text-xs text-neutral-500">
+          <Text className="font-sans text-xs text-ink-muted">
             {formatCount(item.commentCount, 'comment', 'comments')}
           </Text>
         </View>

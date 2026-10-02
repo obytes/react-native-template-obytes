@@ -39,6 +39,7 @@ import { Pressable, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { Path, Svg } from 'react-native-svg';
 
+import colors from './colors';
 import { Text } from './text';
 
 type ModalProps = BottomSheetModalProps & {
@@ -79,7 +80,7 @@ export function Modal({ ref, snapPoints: _snapPoints = ['60%'] as (string | numb
   const renderHandleComponent = React.useCallback(
     () => (
       <>
-        <View className="mt-2 mb-8 h-1 w-12 self-center rounded-lg bg-gray-400 dark:bg-gray-700" />
+        <View className="mt-2 mb-8 h-1 w-12 self-center rounded-lg bg-ink/20" />
         <ModalHeader title={title} dismiss={modal.dismiss} />
       </>
     ),
@@ -113,7 +114,7 @@ function CustomBackdrop({ style }: BottomSheetBackdropProps) {
       onPress={() => close()}
       entering={FadeIn.duration(50)}
       exiting={FadeOut.duration(20)}
-      style={[style, { backgroundColor: 'rgba(0, 0, 0, 0.4)' }]}
+      style={[style, { backgroundColor: colors.scrim }]}
     />
   );
 }
@@ -153,7 +154,7 @@ const ModalHeader = React.memo(({ title, dismiss }: ModalHeaderProps) => {
         <View className="flex-row px-2 py-4">
           <View className="size-6" />
           <View className="flex-1">
-            <Text className="text-center text-[16px] font-bold text-[#26313D] dark:text-white">
+            <Text className="text-center text-[16px] font-bold text-ink">
               {title}
             </Text>
           </View>
@@ -175,7 +176,7 @@ function CloseButton({ close }: { close: () => void }) {
       accessibilityHint="closes the modal"
     >
       <Svg
-        className="fill-neutral-300 dark:fill-white"
+        className="fill-ink-muted"
         width={24}
         height={24}
         fill="none"

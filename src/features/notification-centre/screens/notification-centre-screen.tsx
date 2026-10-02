@@ -6,6 +6,7 @@ import * as React from 'react';
 import { ActivityIndicator, RefreshControl, SectionList, View } from 'react-native';
 
 import { FocusAwareStatusBar, Text } from '@/components/ui';
+import colors from '@/components/ui/colors';
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { useInbox } from '@/features/notification-centre/api/use-inbox';
 import { useMarkAllRead, useMarkRead, useMarkSeen } from '@/features/notification-centre/api/use-inbox-actions';
@@ -20,7 +21,7 @@ function MarkAllHeaderAction({ onPress }: { onPress: () => void }) {
       accessibilityRole="button"
       testID="inbox-mark-all"
       onPress={onPress}
-      className="font-sans text-sm font-semibold text-violet-700"
+      className="font-sans text-sm font-semibold text-primary"
     >
       Mark all as read
     </Text>
@@ -29,7 +30,7 @@ function MarkAllHeaderAction({ onPress }: { onPress: () => void }) {
 
 function SectionHeader({ title }: { title: string }) {
   return (
-    <Text className="bg-background px-5 pt-5 pb-2 font-mono text-[10px] tracking-widest text-violet-700 uppercase">
+    <Text className="bg-background px-5 pt-5 pb-2 font-mono text-[10px] tracking-widest text-label uppercase">
       {title}
     </Text>
   );
@@ -87,7 +88,7 @@ export function NotificationCentreScreen() {
                   keyExtractor={item => item.id}
                   renderSectionHeader={({ section }) => <SectionHeader title={section.title} />}
                   renderItem={({ item }) => <InboxRow item={item} onPress={handlePress} />}
-                  ItemSeparatorComponent={() => <View className="h-px bg-neutral-200" />}
+                  ItemSeparatorComponent={() => <View className="h-px bg-secondary-container" />}
                   refreshControl={(
                     <RefreshControl
                       refreshing={inbox.isRefetching && !inbox.isFetchingNextPage}
@@ -102,7 +103,7 @@ export function NotificationCentreScreen() {
                   ListFooterComponent={inbox.isFetchingNextPage
                     ? (
                         <View className="items-center py-4">
-                          <ActivityIndicator color="#391d3a" />
+                          <ActivityIndicator color={colors.primary} />
                         </View>
                       )
                     : null}

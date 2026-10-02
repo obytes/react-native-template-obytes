@@ -1,4 +1,5 @@
 /* eslint-disable max-lines-per-function */
+// Colour-sweep exception (S13-01): third-party unDraw illustration with its own fixed palette; replaced when onboarding is restyled (S13-02). Allow-listed in design-tokens.test.ts.
 import type { SvgProps } from 'react-native-svg';
 import * as React from 'react';
 import Svg, { Circle, Path, Polygon } from 'react-native-svg';

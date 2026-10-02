@@ -12,7 +12,7 @@ export default function NotFoundScreen() {
         </Text>
 
         <Link href="/" className="mt-4">
-          <Text className="text-blue-500 underline">Go to home screen!</Text>
+          <Text className="text-primary underline">Go to home screen!</Text>
         </Link>
       </View>
     </>

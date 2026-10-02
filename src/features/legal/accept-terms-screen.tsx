@@ -35,16 +35,16 @@ export function AcceptTermsScreen({ onAccept, isAccepting, error }: Props) {
         paddingBottom: insets.bottom + 16,
       }}
     >
-      <Text className="mb-2 font-display text-3xl text-black dark:text-white">
+      <Text className="mb-2 font-display text-3xl text-ink">
         Terms & Conditions
       </Text>
-      <Text className="mb-6 text-charcoal-500">
+      <Text className="mb-6 text-ink-muted">
         Please confirm you are 18 or over and accept our Terms & Conditions to continue.
       </Text>
 
       {error && (
         <View className="mb-4 rounded-lg bg-danger-50 p-3">
-          <Text className="text-center text-sm text-black">{error}</Text>
+          <Text className="text-center text-sm text-ink">{error}</Text>
         </View>
       )}
 

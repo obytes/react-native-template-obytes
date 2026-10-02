@@ -4,6 +4,7 @@ import type { MemberContentScope } from '@/features/member-content/types';
 import * as React from 'react';
 import { Alert, Pressable, Text, TextInput, View } from 'react-native';
 
+import colors from '@/components/ui/colors';
 import { Modal, useModal } from '@/components/ui/modal';
 import { useReportContent } from '@/features/community-posting/api/use-report-content';
 
@@ -38,12 +39,12 @@ function ReportReasonOption({
       accessibilityState={{ selected }}
       accessibilityLabel={reason.label}
       onPress={() => onSelect(reason.value)}
-      className={`flex-row items-center justify-between border-b border-neutral-200 py-3.5 ${
+      className={`flex-row items-center justify-between border-b border-outline-variant py-3.5 ${
         selected ? 'opacity-100' : 'opacity-80'
       }`}
     >
-      <Text className="font-sans text-base text-neutral-950">{reason.label}</Text>
-      {selected ? <Text className="font-sans text-sm text-violet-700">Selected</Text> : null}
+      <Text className="font-sans text-base text-ink">{reason.label}</Text>
+      {selected ? <Text className="font-sans text-sm text-primary">Selected</Text> : null}
     </Pressable>
   );
 }
@@ -109,13 +110,13 @@ export function ReportSheet({ scope, target, onClose }: ReportSheetProps) {
               <TextInput
                 accessibilityLabel="Report note"
                 placeholder="Tell us more (optional)"
-                placeholderTextColor="#737373"
+                placeholderTextColor={colors.inkMuted}
                 value={note}
                 onChangeText={setNote}
                 maxLength={NOTE_MAX}
                 multiline
                 textAlignVertical="top"
-                className="mt-3 min-h-24 rounded-2xl border border-neutral-300 bg-white px-4 py-3 font-sans text-sm text-neutral-950"
+                className="mt-3 min-h-24 rounded-2xl border border-outline-variant bg-white px-4 py-3 font-sans text-sm text-ink"
               />
             )
           : null}
@@ -124,7 +125,7 @@ export function ReportSheet({ scope, target, onClose }: ReportSheetProps) {
           accessibilityLabel="Send report"
           disabled={isPending}
           onPress={() => void onSend()}
-          className={`mt-4 items-center rounded-2xl px-4 py-3 ${isPending ? 'bg-neutral-300' : 'bg-violet-700'}`}
+          className={`mt-4 items-center rounded-2xl px-4 py-3 ${isPending ? 'bg-ink-muted' : 'bg-primary'}`}
         >
           <Text className="font-sans text-base font-semibold text-white">
             {isPending ? 'Sending…' : 'Send'}

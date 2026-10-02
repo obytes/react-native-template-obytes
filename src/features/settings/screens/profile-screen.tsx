@@ -27,14 +27,14 @@ export function ProfileScreen() {
       <ScrollView className="flex-1 bg-background" contentContainerStyle={{ paddingBottom: 40 }}>
         <View className="flex-1 px-4 pt-6">
           <View className="mb-2 flex-row items-center gap-4">
-            <View className="size-14 items-center justify-center rounded-full border border-neutral-300 bg-neutral-100">
-              <Text className="font-sans text-xl font-semibold text-neutral-900">
+            <View className="size-14 items-center justify-center rounded-full border border-outline-variant bg-surface">
+              <Text className="font-sans text-xl font-semibold text-ink">
                 {displayName.slice(0, 1).toUpperCase()}
               </Text>
             </View>
             <View className="flex-1">
               <Text className="font-sans text-xl font-semibold text-ink">{displayName}</Text>
-              <Text className="mt-0.5 font-sans text-sm text-neutral-600">
+              <Text className="mt-0.5 font-sans text-sm text-ink-variant">
                 {user?.email ?? ''}
               </Text>
             </View>

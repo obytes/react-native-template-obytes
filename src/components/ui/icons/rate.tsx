@@ -4,7 +4,7 @@ import Svg, { ClipPath, Defs, G, Path } from 'react-native-svg';
 
 import colors from '../colors';
 
-export function Rate({ color = colors.neutral[500], ...props }: SvgProps) {
+export function Rate({ color = colors.inkMuted, ...props }: SvgProps) {
   return (
     <Svg width={24} height={24} fill="none" viewBox="0 0 24 24" {...props}>
       <G clipPath="url(#a)">
@@ -18,7 +18,7 @@ export function Rate({ color = colors.neutral[500], ...props }: SvgProps) {
       </G>
       <Defs>
         <ClipPath id="a">
-          <Path fill="#fff" d="M0 0h24v24H0z" />
+          <Path fill={colors.white} d="M0 0h24v24H0z" />
         </ClipPath>
       </Defs>
     </Svg>

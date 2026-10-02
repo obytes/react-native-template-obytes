@@ -28,7 +28,7 @@ export function ComposeImageRow({ image, imageError, onPickImage, onRemoveImage 
                 accessibilityRole="button"
                 accessibilityLabel="Remove photo"
                 onPress={onRemoveImage}
-                className="absolute -top-2 -right-2 size-6 items-center justify-center rounded-full bg-neutral-900"
+                className="absolute -top-2 -right-2 size-6 items-center justify-center rounded-full bg-primary"
               >
                 <Text className="font-sans text-xs font-semibold text-white">×</Text>
               </Pressable>
@@ -39,13 +39,13 @@ export function ComposeImageRow({ image, imageError, onPickImage, onRemoveImage 
               accessibilityRole="button"
               accessibilityLabel="Add photo"
               onPress={onPickImage}
-              className="self-start rounded-2xl border border-dashed border-neutral-400 px-4 py-3"
+              className="self-start rounded-2xl border border-dashed border-outline-variant px-4 py-3"
             >
-              <Text className="font-sans text-sm font-medium text-neutral-700">Add photo</Text>
+              <Text className="font-sans text-sm font-medium text-ink-variant">Add photo</Text>
             </Pressable>
           )}
       {imageError
-        ? <Text className="font-sans text-xs text-red-600">{imageError}</Text>
+        ? <Text className="font-sans text-xs text-danger-700">{imageError}</Text>
         : null}
     </View>
   );

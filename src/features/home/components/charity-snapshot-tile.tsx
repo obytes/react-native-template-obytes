@@ -30,8 +30,8 @@ export function CharitySnapshotTile({ data, isLoading }: CharitySnapshotTileProp
             >
               <Text className="font-mono text-xs tracking-wider text-ink-variant uppercase">Raised together, to date</Text>
               <Text className="font-display text-4xl tracking-tight text-ink">{formatEuro(charity.totalCents)}</Text>
-              <Text className="font-sans text-sm text-neutral-700">{`${charity.percentage}% of every membership goes to ${charity.charityName}`}</Text>
-              <Text className="font-sans text-sm text-violet-700">See our impact →</Text>
+              <Text className="font-sans text-sm text-ink-variant">{`${charity.percentage}% of every membership goes to ${charity.charityName}`}</Text>
+              <Text className="font-sans text-sm text-primary">See our impact →</Text>
             </Pressable>
           )
         : null}

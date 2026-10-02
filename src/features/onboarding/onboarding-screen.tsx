@@ -24,7 +24,7 @@ export function OnboardingScreen() {
         <Text className="my-3 text-center text-5xl font-bold">
           Obytes Starter
         </Text>
-        <Text className="mb-2 text-center text-lg text-gray-600">
+        <Text className="mb-2 text-center text-lg text-ink-variant">
           The right way to build your mobile app
         </Text>
 

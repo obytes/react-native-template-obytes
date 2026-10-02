@@ -30,23 +30,23 @@ type CharityViewProps = {
 };
 
 function SectionTitle({ children }: { children: string }) {
-  return <Text className="font-mono text-[10px] tracking-widest text-violet-700 uppercase">{children}</Text>;
+  return <Text className="font-mono text-[10px] tracking-widest text-label uppercase">{children}</Text>;
 }
 
 function CharityCard({ charity, onOpenWebsite }: { charity: Charity; onOpenWebsite: (url: string) => void }) {
   return (
-    <View className="gap-3 rounded-2xl border border-neutral-300 bg-white p-5">
+    <View className="gap-3 rounded-2xl border border-outline-variant bg-white p-5">
       <View className="flex-row items-center gap-3">
         {charity.logoUrl
           ? <Image source={{ uri: `${charity.logoUrl}?width=160&quality=80` }} className="size-12 rounded-lg" contentFit="contain" />
           : null}
         <Text className="flex-1 font-sans text-lg font-semibold text-ink">{charity.charityName}</Text>
       </View>
-      <Text className="font-sans text-sm/5 text-neutral-700">{charity.description}</Text>
+      <Text className="font-sans text-sm/5 text-ink-variant">{charity.description}</Text>
       {charity.websiteUrl
         ? (
             <Pressable testID="charity-website" accessibilityRole="link" onPress={() => onOpenWebsite(charity.websiteUrl ?? '')}>
-              <Text className="font-sans text-sm font-semibold text-violet-700">Visit website →</Text>
+              <Text className="font-sans text-sm font-semibold text-primary">Visit website →</Text>
             </Pressable>
           )
         : null}
@@ -99,17 +99,17 @@ export function CharityView(props: CharityViewProps) {
         {showLoading ? <View testID="charity-loading" className="items-center py-16"><ActivityIndicator /></View> : null}
         {showUnavailable
           ? (
-              <View testID="charity-unavailable" className="rounded-2xl border border-neutral-300 bg-white p-6">
+              <View testID="charity-unavailable" className="rounded-2xl border border-outline-variant bg-white p-6">
                 <Text className="font-sans text-lg font-semibold text-ink">Charity impact unavailable</Text>
-                <Text className="mt-2 font-sans text-sm/5 text-neutral-600">Check your connection and pull down to try again.</Text>
+                <Text className="mt-2 font-sans text-sm/5 text-ink-variant">Check your connection and pull down to try again.</Text>
               </View>
             )
           : null}
         {showEmpty
           ? (
-              <View testID="charity-empty" className="rounded-2xl border border-neutral-300 bg-white p-6">
+              <View testID="charity-empty" className="rounded-2xl border border-outline-variant bg-white p-6">
                 <Text className="font-sans text-lg font-semibold text-ink">Coming soon</Text>
-                <Text className="mt-2 font-sans text-sm/5 text-neutral-600">The club will announce its charity partner here.</Text>
+                <Text className="mt-2 font-sans text-sm/5 text-ink-variant">The club will announce its charity partner here.</Text>
               </View>
             )
           : null}

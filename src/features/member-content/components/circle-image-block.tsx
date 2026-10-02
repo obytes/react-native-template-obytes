@@ -5,6 +5,7 @@ import { Image } from 'expo-image';
 import * as React from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import colors from '@/components/ui/colors';
 import { nonEmptyString } from '@/features/member-content/lib/content-format';
 
 type CircleImageBlockProps = {
@@ -52,7 +53,7 @@ export function CircleImageBlock({ node }: CircleImageBlockProps) {
 const styles = StyleSheet.create({
   image: {
     aspectRatio: 16 / 9,
-    backgroundColor: '#F2F2F2',
+    backgroundColor: colors.surfaceContainer,
     borderRadius: 8,
     width: '100%',
   },

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import colors from '@/components/ui/colors';
 
 type CircleUnsupportedBlockProps = {
   type?: string;
@@ -24,14 +25,14 @@ export function CircleUnsupportedBlock({ type }: CircleUnsupportedBlockProps) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F2F2F2',
-    borderColor: '#D9D9D9',
+    backgroundColor: colors.surfaceContainer,
+    borderColor: colors.outlineVariant,
     borderRadius: 6,
     borderWidth: StyleSheet.hairlineWidth,
     padding: 12,
   },
   text: {
-    color: '#6B6B6B',
+    color: colors.inkVariant,
     fontSize: 14,
     fontStyle: 'italic',
   },

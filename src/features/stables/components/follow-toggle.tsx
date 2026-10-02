@@ -32,7 +32,7 @@ export function FollowToggle({
   const background = isFollowing
     ? 'bg-primary'
     : variant === 'overlay'
-      ? 'bg-black/50'
+      ? 'bg-ink/50'
       : 'bg-muted';
   const labelColor = isFollowing
     ? 'text-on-primary'

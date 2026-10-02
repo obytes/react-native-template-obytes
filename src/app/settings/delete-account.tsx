@@ -56,19 +56,19 @@ export default function DeleteAccountScreen() {
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
         <ScrollView className="flex-1 bg-background">
           <View className="flex-1 px-4 pt-6 pb-10">
-            <Text className="font-display text-3xl text-black dark:text-white">
+            <Text className="font-display text-3xl text-ink">
               {translate('settings.deleteAccount.title')}
             </Text>
 
-            <View className="mt-4 rounded-lg bg-red-50 p-4">
-              <Text className="text-sm text-black">
+            <View className="mt-4 rounded-lg bg-danger-50 p-4">
+              <Text className="text-sm text-ink">
                 {translate('settings.deleteAccount.warning')}
               </Text>
             </View>
 
             {error && (
               <View className="mt-4 rounded-lg bg-danger-50 p-3">
-                <Text className="text-center text-sm text-black">{error}</Text>
+                <Text className="text-center text-sm text-ink">{error}</Text>
               </View>
             )}
 

@@ -9,7 +9,7 @@ export function CaretDown({ ...props }: SvgProps) {
       height={13}
       fill="none"
       {...props}
-      className="stroke-black dark:stroke-white"
+      className="stroke-ink"
     >
       <Path
         strokeLinecap="round"

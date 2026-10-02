@@ -88,19 +88,19 @@ export default function ChangePasswordScreen() {
       <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
         <ScrollView className="flex-1 bg-background">
           <View className="flex-1 px-4 pt-6 pb-10">
-            <Text className="font-display text-3xl text-black dark:text-white">
+            <Text className="font-display text-3xl text-ink">
               {translate('settings.changePassword.title')}
             </Text>
 
             {error && (
               <View className="mt-4 rounded-lg bg-danger-50 p-3">
-                <Text className="text-center text-sm text-black">{error}</Text>
+                <Text className="text-center text-sm text-ink">{error}</Text>
               </View>
             )}
 
             {success && (
-              <View className="mt-4 rounded-lg bg-green-100 p-3">
-                <Text className="text-center text-sm text-black">
+              <View className="mt-4 rounded-lg bg-success-50 p-3">
+                <Text className="text-center text-sm text-ink">
                   {translate('settings.changePassword.success')}
                 </Text>
               </View>

@@ -39,7 +39,7 @@ function UpdateBody({ bodyText }: { bodyText: string }) {
   return (
     <View>
       <Text
-        className="font-sans text-sm/relaxed text-charcoal-800"
+        className="font-sans text-sm/relaxed text-ink"
         numberOfLines={isLong && !expanded ? COLLAPSED_LINES : undefined}
       >
         {bodyText}
@@ -71,7 +71,7 @@ function UpdateRow({ update }: { update: HorseUpdate }) {
           {relativeTime(update.publishedAt)}
         </Text>
       </View>
-      <Text className="font-sans text-base font-medium text-charcoal-800">
+      <Text className="font-sans text-base font-medium text-ink">
         {update.title}
       </Text>
       <UpdateBody bodyText={update.bodyText} />

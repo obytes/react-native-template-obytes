@@ -32,15 +32,15 @@ export function FeedChipRow({ chips, selectedId, onSelect }: FeedChipRowProps) {
             onPress={() => onSelect(chip.id)}
             className={
               selected
-                ? 'rounded-full bg-neutral-950 px-4 py-2'
-                : 'rounded-full border border-neutral-300 bg-white px-4 py-2'
+                ? 'rounded-full bg-primary px-4 py-2'
+                : 'rounded-full border border-outline-variant bg-white px-4 py-2'
             }
           >
             <Text
               className={
                 selected
                   ? 'font-sans text-sm font-medium text-white'
-                  : 'font-sans text-sm font-medium text-neutral-700'
+                  : 'font-sans text-sm font-medium text-ink-variant'
               }
             >
               {chip.label}
