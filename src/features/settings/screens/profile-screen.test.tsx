@@ -4,10 +4,11 @@ import * as React from 'react';
 import { ProfileScreen } from '@/features/settings/screens/profile-screen';
 
 const mockPush = jest.fn();
+const mockNavigate = jest.fn();
 const mockSignOut = jest.fn();
 
 jest.mock('expo-router', () => ({
-  useRouter: () => ({ push: mockPush, back: jest.fn() }),
+  useRouter: () => ({ push: mockPush, navigate: mockNavigate, back: jest.fn() }),
   Stack: { Screen: () => null },
 }));
 
@@ -66,7 +67,7 @@ describe('profileScreen', () => {
     fireEvent.press(screen.getByTestId('row-notification-preferences'));
     expect(mockPush).toHaveBeenLastCalledWith('/settings/notifications');
     fireEvent.press(screen.getByTestId('row-followed-horses'));
-    expect(mockPush).toHaveBeenLastCalledWith({ pathname: '/stables', params: { filter: 'following' } });
+    expect(mockNavigate).toHaveBeenLastCalledWith({ pathname: '/stables', params: { filter: 'following' } });
     fireEvent.press(screen.getByTestId('row-change-password'));
     expect(mockPush).toHaveBeenLastCalledWith('/settings/change-password');
     fireEvent.press(screen.getByTestId('row-delete-account'));

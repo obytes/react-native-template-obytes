@@ -94,7 +94,7 @@ export function ProfileScreen() {
             testID="row-followed-horses"
             label={translate('settings.profile.followedHorses')}
             chevron
-            onPress={() => router.push({ pathname: '/stables', params: { filter: 'following' } })}
+            onPress={() => router.navigate({ pathname: '/stables', params: { filter: 'following' } })}
           />
           <ListRow
             testID="row-help"
