@@ -115,7 +115,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   version: Env.EXPO_PUBLIC_VERSION.toString(),
   orientation: 'portrait',
   icon: './assets/icon.png',
-  userInterfaceStyle: 'automatic',
+  userInterfaceStyle: 'light',
   newArchEnabled: true,
   runtimeVersion: {
     policy: 'appVersion',

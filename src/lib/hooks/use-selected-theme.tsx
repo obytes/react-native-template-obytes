@@ -1,36 +1,10 @@
-import * as React from 'react';
-import { useMMKVString } from 'react-native-mmkv';
-import { Uniwind, useUniwind } from 'uniwind';
+import { Uniwind } from 'uniwind';
 
-import { storage } from '../storage';
+// Design V2 (S13-01 §9, D40 decision 4): Rionna is light-only. The theme
+// picker is gone, and any stale 'dark'/'system' value persisted by an older
+// build is ignored, so OTA users on an old binary can't flip to dark.
 
-const SELECTED_THEME = 'SELECTED_THEME';
-export type ColorSchemeType = 'light' | 'dark' | 'system';
-/**
- * this hooks should only be used while selecting the theme
- * This hooks will return the selected theme which is stored in MMKV
- * selectedTheme should be one of the following values 'light', 'dark' or 'system'
- * don't use this hooks if you want to use it to style your component based on the theme use useUniwind from uniwind instead
- *
- */
-export function useSelectedTheme() {
-  const { theme: _theme } = useUniwind();
-  const [theme, _setTheme] = useMMKVString(SELECTED_THEME, storage);
-
-  const setSelectedTheme = React.useCallback(
-    (t: ColorSchemeType) => {
-      Uniwind.setTheme(t);
-      _setTheme(t);
-    },
-    [_setTheme],
-  );
-
-  const selectedTheme = (theme ?? 'system') as ColorSchemeType;
-  return { selectedTheme, setSelectedTheme } as const;
-}
-// to be used in the root file to load the selected theme from MMKV
+// Called once from the root layout before first render.
 export function loadSelectedTheme() {
-  // Pink Connections is a light-only app — no theme switcher in the UI.
-  // Always force light regardless of device preference or any stale MMKV value.
   Uniwind.setTheme('light');
 }

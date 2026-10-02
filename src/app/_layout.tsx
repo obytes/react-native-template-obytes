@@ -23,6 +23,7 @@ import { AppState, LogBox, StyleSheet } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
+import colors from '@/components/ui/colors';
 import { useThemeConfig } from '@/components/ui/use-theme-config';
 import { hydrateAuth, useAuthStore as useAuth } from '@/features/auth/use-auth-store';
 import { TermsGate } from '@/features/legal/terms-gate';
@@ -210,7 +211,7 @@ const MODAL_STACK_SCREENS: {
       title: '',
       headerBackTitle: 'Community',
       headerShadowVisible: false,
-      headerStyle: { backgroundColor: '#F5F5F5' },
+      headerStyle: { backgroundColor: colors.background },
     },
   },
   {
@@ -223,7 +224,7 @@ const MODAL_STACK_SCREENS: {
       title: '',
       headerBackTitle: 'Back',
       headerShadowVisible: false,
-      headerStyle: { backgroundColor: '#F5F5F5' },
+      headerStyle: { backgroundColor: colors.background },
     },
   },
   {
@@ -232,7 +233,7 @@ const MODAL_STACK_SCREENS: {
       title: '',
       headerBackTitle: 'Events',
       headerShadowVisible: false,
-      headerStyle: { backgroundColor: '#F5F5F5' },
+      headerStyle: { backgroundColor: colors.background },
     },
   },
   {
@@ -268,8 +269,6 @@ function Providers({ children }: { children: React.ReactNode }) {
   return (
     <GestureHandlerRootView
       style={styles.container}
-      // eslint-disable-next-line better-tailwindcss/no-unknown-classes
-      className={theme.dark ? `dark` : undefined}
     >
       <KeyboardProvider>
         <ThemeProvider value={theme}>
