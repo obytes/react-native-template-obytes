@@ -186,8 +186,9 @@ export default function RootLayout() {
     <Providers>
       <Stack>
         <Stack.Screen name="(app)" options={{ headerShown: false }} />
+        {/* Design V2 screens draw their own ScreenHeader (with back), so the native header stays hidden. */}
         {MODAL_STACK_SCREENS.map(({ name, options }) => (
-          <Stack.Screen key={name} name={name} options={options} />
+          <Stack.Screen key={name} name={name} options={{ ...options, headerShown: false }} />
         ))}
         <Stack.Screen name="onboarding" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
