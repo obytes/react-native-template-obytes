@@ -15,7 +15,8 @@ import {
   ScrollView,
   View,
 } from '@/components/ui';
-import { useTabBarContentPadding } from '@/components/ui/tab-bar-layout';
+import { useScreenBottomPadding } from '@/components/ui/screen-layout';
+
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { useCharity } from '@/features/paddock/api/use-charity';
 import { CharityStoryCard } from '@/features/paddock/components/charity-story-card';
@@ -58,7 +59,7 @@ export function CharityView(props: CharityViewProps) {
   const showLoading = isLoading && charity === undefined;
   const showUnavailable = !showLoading && isError && charity === undefined;
   const showEmpty = !showLoading && !showUnavailable && charity === null;
-  const paddingBottom = useTabBarContentPadding(24);
+  const paddingBottom = useScreenBottomPadding(24);
 
   return (
     <View className="flex-1 bg-secondary-container">

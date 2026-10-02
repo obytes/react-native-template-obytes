@@ -16,7 +16,8 @@ import {
   ScrollView,
   View,
 } from '@/components/ui';
-import { useTabBarContentPadding } from '@/components/ui/tab-bar-layout';
+import { useScreenBottomPadding } from '@/components/ui/screen-layout';
+
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { useOffers } from '@/features/paddock/api/use-offers';
 import { OfferCard } from '@/features/paddock/components/offer-card';
@@ -38,7 +39,7 @@ export function BenefitsView({ offers, isLoading, isError, isRefetching, onRefre
   const showLoading = isLoading && !offers;
   const showUnavailable = !showLoading && isError && !offers;
   const showEmpty = !showLoading && !showUnavailable && offers?.length === 0;
-  const paddingBottom = useTabBarContentPadding(24);
+  const paddingBottom = useScreenBottomPadding(24);
 
   return (
     <View className="flex-1 bg-background">

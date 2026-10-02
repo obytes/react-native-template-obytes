@@ -9,8 +9,7 @@ jest.mock('@/components/ui', () => {
   const actual = jest.requireActual('@/components/ui');
   return { ...actual, FocusAwareStatusBar: () => null, Image: 'Image' };
 });
-jest.mock('@/components/ui/screen-layout', () => ({ useScreenTopPadding: () => 70 }));
-jest.mock('@/components/ui/tab-bar-layout', () => ({ useTabBarContentPadding: () => 120 }));
+jest.mock('@/components/ui/screen-layout', () => ({ useScreenTopPadding: () => 70, useScreenBottomPadding: () => 24 }));
 
 const OFFER: Offer = {
   id: 'o1',
