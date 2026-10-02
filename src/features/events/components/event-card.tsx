@@ -1,3 +1,4 @@
+import type { TileSpec } from '@/components/brand/pattern/tile-data';
 import type { ClubEvent } from '@/features/events/types';
 
 import * as React from 'react';
@@ -8,6 +9,20 @@ import { rsvpButtonState } from '@/features/events/lib/calendar-grid';
 import { eventStripColourway } from '@/features/events/lib/event-type';
 import { formatEventDateLine } from '@/features/events/lib/format-event-date';
 import { translate } from '@/lib/i18n';
+
+// Hoisted so PatternFill (memoised) sees stable spec/style references.
+const STRIP_STYLE = { flex: 1 } as const;
+const STRIP_WIDTH_STYLE = { width: 36 } as const;
+const PAST_SPEC: TileSpec = { kind: 'harlequin', colourway: 'cream', turn: 0 };
+const stripSpecCache = new Map<string, TileSpec>();
+function stripSpec(colourway: ReturnType<typeof eventStripColourway>): TileSpec {
+  let spec = stripSpecCache.get(colourway);
+  if (!spec) {
+    spec = { kind: 'harlequin', colourway, turn: 0 };
+    stripSpecCache.set(colourway, spec);
+  }
+  return spec;
+}
 
 export type EventCardProps = {
   event: ClubEvent;
@@ -41,11 +56,11 @@ export function EventCard({
         onPress={onPress}
         className="flex-row"
       >
-        <View testID={`event-card-${event.id}-strip`} style={{ width: 36 }}>
+        <View testID={`event-card-${event.id}-strip`} style={STRIP_WIDTH_STYLE}>
           <PatternFill
-            spec={{ kind: 'harlequin', colourway: past ? 'cream' : eventStripColourway(event.type), turn: 0 }}
+            spec={past ? PAST_SPEC : stripSpec(eventStripColourway(event.type))}
             tileSize={36}
-            style={{ flex: 1 }}
+            style={STRIP_STYLE}
           />
         </View>
         <View className="flex-1 gap-2 p-4">

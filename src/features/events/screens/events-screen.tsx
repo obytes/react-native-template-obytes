@@ -20,6 +20,7 @@ import {
 import colors from '@/components/ui/colors';
 import { useScreenTopPadding } from '@/components/ui/screen-layout';
 import { useTabBarContentPadding } from '@/components/ui/tab-bar-layout';
+import { showErrorMessage } from '@/components/ui/utils';
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { useEventRsvp } from '@/features/events/api/use-event-rsvp';
 import { useEvents } from '@/features/events/api/use-events';
@@ -35,6 +36,13 @@ import { eventDayColour } from '@/features/events/lib/event-type';
 import { translate } from '@/lib/i18n';
 
 const ALL = 'all';
+
+// Same copy as the detail screen's inline notice.
+const REMINDER_NOTICE_KEY = {
+  'denied': 'events.detail.reminderDenied',
+  'too-late': 'events.detail.reminderTooLate',
+  'failed': 'events.detail.reminderFailed',
+} as const;
 
 function byStart(a: ClubEvent, b: ClubEvent) {
   return (Date.parse(a.startsAt ?? '') || 0) - (Date.parse(b.startsAt ?? '') || 0);
@@ -62,7 +70,12 @@ function ConnectedEventCard({
       rsvpPending={rsvpPending}
       onToggleRsvp={going => onToggleRsvp(event.id, going)}
       reminderOn={reminder.on}
-      onToggleReminder={() => void reminder.toggle()}
+      onToggleReminder={() => {
+        void reminder.toggle().then((outcome) => {
+          if (outcome in REMINDER_NOTICE_KEY)
+            showErrorMessage(translate(REMINDER_NOTICE_KEY[outcome as keyof typeof REMINDER_NOTICE_KEY]));
+        });
+      }}
     />
   );
 }
@@ -272,7 +285,7 @@ export function EventsScreen() {
       onLayoutY={y => setCardY(event.id, y)}
       onOpen={() => openEvent(event.id)}
       onToggleRsvp={handleToggleRsvp}
-      rsvpPending={rsvp.isPending}
+      rsvpPending={rsvp.isPending && rsvp.variables?.eventId === event.id}
     />
   );
 

@@ -150,8 +150,10 @@ export type Horse = {
   ageYears?: number | null;
   foaledOn?: string | null;
   foaledPlace?: string | null;
-  // The list payload carries recent results today (RAN only); if it ever
-  // includes a declared entry, the card's "Declared" pill appears.
+  // GET /api/horses carries recent results only (RAN, max 3) plus the scalar
+  // `nextEntryId`; no next-entry status or date. If a declared entry ever
+  // appears here the card shows "Declared · date", else `nextEntryId` drives a
+  // neutral "Entry upcoming" pill.
   entries?: Entry[];
 };
 

@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Pressable, View } from 'react-native';
 
 import { Card, MonoLabel, Tag, Text } from '@/components/ui';
-import { relativeTime } from '@/features/pulse/components/relative-time';
+import { formatUpdateStamp } from '@/features/stables/lib/horse-facts';
 import { translate } from '@/lib/i18n';
 
 type HorseUpdatesTimelineProps = {
@@ -68,7 +68,7 @@ function UpdateCard({ update, onLayout }: { update: HorseUpdate; onLayout?: (eve
       <View className="flex-row items-center justify-between gap-3">
         {/* S8-05 category chip, restyled as a V2 tag. */}
         {typeLabel ? <Tag variant="ice" label={typeLabel} /> : <View />}
-        <MonoLabel>{relativeTime(update.publishedAt)}</MonoLabel>
+        <MonoLabel>{formatUpdateStamp(update.publishedAt)}</MonoLabel>
       </View>
       <Text variant="title">{update.title}</Text>
       <UpdateBody bodyText={update.bodyText} />

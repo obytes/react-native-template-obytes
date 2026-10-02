@@ -18,7 +18,10 @@ export type ReminderOutcome = 'scheduled' | 'cancelled' | 'denied' | 'too-late' 
 
 const STORAGE_KEY = 'event-reminders';
 
-type ReminderMap = Record<string, string>; // eventId -> notification identifier
+type ReminderEntry = { id: string; startsAt: string }; // notification identifier + event start (for pruning)
+type ReminderMap = Record<string, ReminderEntry | string>; // legacy entries were a bare identifier
+
+const entryId = (entry: ReminderEntry | string) => (typeof entry === 'string' ? entry : entry.id);
 
 let cache: ReminderMap | null = null;
 const listeners = new Set<() => void>();
@@ -57,7 +60,23 @@ function writeMap(next: ReminderMap) {
   listeners.forEach(listener => listener());
 }
 
-export function isReminderSet(eventId: string): boolean {
+/** Drop reminders whose event has started so past events never read "Reminding". */
+function pruneExpired(now: Date) {
+  const map = readMap();
+  const kept: ReminderMap = {};
+  let changed = false;
+  for (const [id, entry] of Object.entries(map)) {
+    const startsAt = typeof entry === 'string' ? Number.NaN : Date.parse(entry.startsAt);
+    if (!Number.isNaN(startsAt) && startsAt <= now.getTime())
+      changed = true;
+    else kept[id] = entry;
+  }
+  if (changed)
+    writeMap(kept);
+}
+
+export function isReminderSet(eventId: string, now: Date = new Date()): boolean {
+  pruneExpired(now);
   return eventId in readMap();
 }
 
@@ -95,7 +114,7 @@ export async function scheduleEventReminder(
     // Replace any stale reminder for this event.
     const previous = readMap()[event.id];
     if (previous)
-      await Notifications.cancelScheduledNotificationAsync(previous);
+      await Notifications.cancelScheduledNotificationAsync(entryId(previous));
 
     const identifier = await Notifications.scheduleNotificationAsync({
       content: {
@@ -103,12 +122,13 @@ export async function scheduleEventReminder(
         body: event.inPersonLocation
           ? `Tomorrow at ${event.inPersonLocation}`
           : 'Starts tomorrow',
-        data: { eventId: event.id, kind: 'event-reminder' },
+        // Shape must satisfy deep-link.ts isPushData (screen: 'event').
+        data: { screen: 'event', eventId: event.id },
       },
       // `type: 'date'` is SchedulableTriggerInputTypes.DATE (literal avoids touching the enum).
       trigger: { type: 'date', date: fireAt } as never,
     });
-    writeMap({ ...readMap(), [event.id]: identifier });
+    writeMap({ ...readMap(), [event.id]: { id: identifier, startsAt: String(event.startsAt) } });
     return 'scheduled';
   }
   catch {
@@ -118,7 +138,8 @@ export async function scheduleEventReminder(
 
 export async function cancelEventReminder(eventId: string): Promise<ReminderOutcome> {
   try {
-    const identifier = readMap()[eventId];
+    const entry = readMap()[eventId];
+    const identifier = entry ? entryId(entry) : undefined;
     const { [eventId]: _removed, ...rest } = readMap();
     writeMap(rest);
     if (identifier) {

@@ -100,6 +100,13 @@ describe('horseCard', () => {
     expect(screen.queryByText('In Training')).toBeNull();
   });
 
+  it('shows a neutral Entry upcoming pill when only nextEntryId is present', () => {
+    render(<HorseCard horse={makeHorse({ nextEntryId: 'entry-9' })} onPress={jest.fn()} />);
+    expect(screen.getByTestId('entry-upcoming-pill')).toBeOnTheScreen();
+    expect(screen.getByText('Entry upcoming')).toBeOnTheScreen();
+    expect(screen.queryByText('In Training')).toBeNull();
+  });
+
   it('renders a Private tag when the horse is invite-only', () => {
     render(<HorseCard horse={makeHorse({ inviteOnly: true })} onPress={jest.fn()} />);
     expect(screen.getByText('Private')).toBeOnTheScreen();

@@ -5,7 +5,7 @@ import { Pressable, StyleSheet, View } from 'react-native';
 
 import { Card, getInitials, Image, Tag, Text } from '@/components/ui';
 import { FollowToggle } from '@/features/stables/components/follow-toggle';
-import { DeclaredPill, StatusPill } from '@/features/stables/components/status-pill';
+import { DeclaredPill, EntryUpcomingPill, StatusPill } from '@/features/stables/components/status-pill';
 import {
   formatDeclaredDate,
   getDeclaredEntry,
@@ -86,10 +86,12 @@ export function HorseCard({ horse, onPress, onToggleFollow, followPending = fals
               : null}
           </View>
 
-          {declared
+          {declared || horse.nextEntryId
             ? (
                 <View className="gap-1">
-                  <DeclaredPill date={formatDeclaredDate(declared.race.postTime)} />
+                  {declared
+                    ? <DeclaredPill date={formatDeclaredDate(declared.race.postTime)} />
+                    : <EntryUpcomingPill />}
                   {follow ? <View className="flex-row">{follow}</View> : null}
                 </View>
               )

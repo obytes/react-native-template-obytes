@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unnecessary-use-prefix -- jest mock factories mirror real hook names */
 import type { ClubEvent } from '@/features/events/types';
 
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import * as React from 'react';
 
 import { clubEvent } from '@/features/events/test-fixtures';
@@ -11,6 +11,8 @@ import { EventsScreen } from './events-screen';
 const mockPush = jest.fn();
 const mockRsvpMutate = jest.fn();
 const mockToggle = jest.fn();
+const mockShowError = jest.fn();
+jest.mock('@/components/ui/utils', () => ({ showErrorMessage: (m: string) => mockShowError(m) }));
 
 jest.mock('expo-router', () => ({
   useRouter: () => ({ push: mockPush }),
@@ -130,10 +132,18 @@ describe('eventsScreen', () => {
     expect(screen.queryByTestId('events-empty')).toBeNull();
   });
 
+  it('surfaces a reminder failure from the card instead of swallowing it', async () => {
+    mockToggle.mockResolvedValueOnce('denied');
+    render(<EventsScreen />);
+    fireEvent.press(screen.getByTestId('event-card-event-1-remind'));
+    await waitFor(() => expect(mockShowError).toHaveBeenCalledTimes(1));
+  });
+
   it('rSVPs and toggles the reminder from the card, and opens detail on tap', () => {
     render(<EventsScreen />);
     fireEvent.press(screen.getByTestId('event-card-event-1-rsvp'));
     expect(mockRsvpMutate).toHaveBeenCalledWith({ eventId: 'event-1', going: true });
+    mockToggle.mockResolvedValueOnce('scheduled');
     fireEvent.press(screen.getByTestId('event-card-event-1-remind'));
     expect(mockToggle).toHaveBeenCalledTimes(1);
     fireEvent.press(screen.getByLabelText('Autumn Race Day'));

@@ -9,6 +9,7 @@ import {
   formatRaceDescriptor,
   formatResultLine,
   formatResultMeta,
+  formatUpdateStamp,
   getDeclaredEntry,
   getFoaledLine,
   getNextEntry,
@@ -198,5 +199,18 @@ describe('buildHorseShareContent', () => {
   it('uses the public URL when present', () => {
     expect(buildHorseShareContent({ name: 'Laska', publicUrl: 'https://rionna.com/horses/laska' }, 'Meet Laska.').message)
       .toBe('Meet Laska. https://rionna.com/horses/laska');
+  });
+});
+
+describe('formatUpdateStamp', () => {
+  const now = new Date(2026, 9, 2, 12, 0);
+  it('is relative within a week', () => {
+    expect(formatUpdateStamp(new Date(Date.now() - 2 * 3600_000 - 5000).toISOString(), new Date())).toBe('2 hours ago');
+  });
+  it('uses a short date without year in the current year', () => {
+    expect(formatUpdateStamp(new Date(2026, 7, 20, 9, 0).toISOString(), now)).toBe('20 August');
+  });
+  it('adds the year when not the current one', () => {
+    expect(formatUpdateStamp(new Date(2025, 7, 20, 9, 0).toISOString(), now)).toBe('20 August 2025');
   });
 });

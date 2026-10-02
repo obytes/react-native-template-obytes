@@ -1,5 +1,7 @@
 import type { Entry, Horse, HorseSex, HorseUpdate, Race } from '@/features/stables/types';
 
+import { relativeTime } from '@/features/pulse/components/relative-time';
+
 /**
  * Pure formatting for the Stables card and Horse detail (S13-04). Everything
  * that depends on an S13-10 field returns `null` when the field is absent, so
@@ -123,6 +125,18 @@ export function formatRaceDayTime(iso: string): string {
 export function formatShortDate(iso: string): string {
   const d = new Date(iso);
   return `${d.getDate()} ${MONTHS_LONG[d.getMonth()]}`;
+}
+
+/**
+ * Horse-update card stamp: relative within a week (shared helper), otherwise
+ * the mono short date ("20 August", plus the year when not the current one).
+ */
+export function formatUpdateStamp(iso: string, now: Date = new Date()): string {
+  const d = new Date(iso);
+  if (now.getTime() - d.getTime() < 7 * 24 * 3600 * 1000)
+    return relativeTime(iso);
+  const base = formatShortDate(iso);
+  return d.getFullYear() === now.getFullYear() ? base : `${base} ${d.getFullYear()}`;
 }
 
 /** "Naas, 6f mdn — 3rd of 11" (field size from S13-10 when present). */

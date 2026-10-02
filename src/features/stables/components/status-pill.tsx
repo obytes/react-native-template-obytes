@@ -64,3 +64,17 @@ export function DeclaredPill({ date, className }: { date: string; className?: st
     </View>
   );
 }
+
+/** Neutral "Entry upcoming": the list payload only carries `nextEntryId`, no status or date. */
+export function EntryUpcomingPill({ className }: { className?: string }) {
+  return (
+    <View
+      testID="entry-upcoming-pill"
+      className={twMerge('h-[30px] items-center justify-center rounded-md border border-ice bg-white px-3', className)}
+    >
+      <Text variant="body-sm" numberOfLines={1} className="font-sans-semibold text-ink">
+        {translate('stables.entryUpcoming')}
+      </Text>
+    </View>
+  );
+}

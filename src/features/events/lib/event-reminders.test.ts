@@ -1,4 +1,5 @@
 import { clubEvent } from '@/features/events/test-fixtures';
+import { isPushData } from '@/features/notifications/deep-link';
 
 const mockStore: Record<string, unknown> = {};
 jest.mock('@/lib/storage', () => ({
@@ -44,7 +45,7 @@ describe('event reminders', () => {
     expect(call.content.title).toBe('Autumn Race Day');
     expect(call.trigger.date.toISOString()).toBe('2030-09-04T10:00:00.000Z');
     expect(isReminderSet('event-1')).toBe(true);
-    expect(mockStore['event-reminders']).toEqual({ 'event-1': 'notif-1' });
+    expect(mockStore['event-reminders']).toEqual({ 'event-1': { id: 'notif-1', startsAt: String(clubEvent().startsAt) } });
   });
 
   it('survives an app restart (cache cleared, state read back from storage)', async () => {
@@ -80,5 +81,20 @@ describe('event reminders', () => {
     mockNotifications.scheduleNotificationAsync.mockRejectedValue(new Error('boom'));
     expect(await scheduleEventReminder(clubEvent(), NOW)).toBe('failed');
     expect(isReminderSet('event-1')).toBe(false);
+  });
+
+  it('schedules a payload the notification deep-link parser accepts', async () => {
+    await scheduleEventReminder(clubEvent(), NOW);
+    const call = mockNotifications.scheduleNotificationAsync.mock.calls[0][0];
+    expect(isPushData(call.content.data)).toBe(true);
+    expect(call.content.data).toEqual({ screen: 'event', eventId: 'event-1' });
+  });
+
+  it('prunes reminders for events that have already started', async () => {
+    await scheduleEventReminder(clubEvent(), NOW);
+    expect(isReminderSet('event-1', NOW)).toBe(true);
+    const after = new Date(new Date(clubEvent().startsAt as string).getTime() + 60_000);
+    expect(isReminderSet('event-1', after)).toBe(false);
+    expect(mockStore['event-reminders']).toEqual({});
   });
 });
