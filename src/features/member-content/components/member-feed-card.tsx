@@ -1,12 +1,11 @@
 import type { MemberFeedItem } from '@/features/member-content/types';
 
 import * as React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable } from 'react-native';
 
-import { Image } from '@/components/ui';
-import colors from '@/components/ui/colors';
-import { Heart } from '@/components/ui/icons';
-import { formatCount, formatMemberContentDate } from '@/features/member-content/lib/content-format';
+import { Card, Image, Text } from '@/components/ui';
+import { ActivityRow, AuthorHeader } from '@/features/member-content/components/post-parts';
+import { formatRelativeTime } from '@/features/member-content/lib/space-tag';
 
 type MemberFeedCardProps = {
   item: MemberFeedItem;
@@ -17,91 +16,41 @@ type MemberFeedCardProps = {
   likePending?: boolean;
 };
 
-type LikeControlProps = {
-  item: MemberFeedItem;
-  onToggleLike?: (postId: string, liked: boolean) => void;
-  likePending?: boolean;
-};
+type CardBodyProps = Pick<MemberFeedCardProps, 'item' | 'onToggleLike' | 'likePending'>;
 
-function LikeControl({ item, onToggleLike, likePending = false }: LikeControlProps) {
-  const countLabel = formatCount(item.likeCount, 'like', 'likes');
-  if (!onToggleLike) {
-    return <Text className="font-sans text-xs text-ink-muted">{countLabel}</Text>;
-  }
+function CardBody({ item, onToggleLike, likePending }: CardBodyProps) {
   return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityLabel={item.isLiked ? 'Unlike post' : 'Like post'}
-      disabled={likePending}
-      hitSlop={8}
-      onPress={() => onToggleLike(item.id, !item.isLiked)}
-      className="flex-row items-center gap-1.5"
-    >
-      <Heart
-        width={16}
-        height={16}
-        filled={item.isLiked}
-        color={item.isLiked ? colors.danger[700] : colors.inkMuted}
+    <Card className="gap-3 border border-outline-variant">
+      <AuthorHeader
+        name={item.authorName}
+        avatarUrl={item.authorAvatarUrl}
+        time={formatRelativeTime(item.createdAt)}
+        spaceName={item.spaceName}
+        role={item.authorRole}
       />
-      <Text
-        className={
-          item.isLiked
-            ? 'font-sans-medium text-xs text-danger-700'
-            : 'font-sans text-xs text-ink-muted'
-        }
-      >
-        {countLabel}
-      </Text>
-    </Pressable>
-  );
-}
-
-function CardBody({ item, onToggleLike, likePending }: LikeControlProps) {
-  const date = formatMemberContentDate(item.createdAt);
-  const meta = [item.spaceName, date].filter(Boolean).join(' · ');
-
-  return (
-    <View className="overflow-hidden rounded-2xl border border-outline-variant bg-white">
+      {item.title ? <Text variant="title">{item.title}</Text> : null}
+      {item.excerpt
+        ? <Text variant="body-lg" className="text-ink-variant" numberOfLines={3}>{item.excerpt}</Text>
+        : null}
       {item.imageUrl
         ? (
             <Image
               source={{ uri: item.imageUrl }}
-              className="aspect-video w-full bg-secondary-container"
+              className="aspect-video w-full rounded-md bg-secondary-container"
               contentFit="cover"
               cachePolicy="memory-disk"
               accessibilityLabel={item.title}
             />
           )
         : null}
-      <View className="gap-3 p-5">
-        {meta
-          ? (
-              <Text className="font-mono text-[10px] tracking-wider text-ink-muted uppercase">
-                {meta}
-              </Text>
-            )
-          : null}
-        <Text className="font-sans-semibold text-xl text-ink">
-          {item.title}
-        </Text>
-        {item.excerpt
-          ? (
-              <Text className="font-sans text-sm/5 text-ink-variant" numberOfLines={3}>
-                {item.excerpt}
-              </Text>
-            )
-          : null}
-        <View className="flex-row flex-wrap items-center gap-x-4 gap-y-1">
-          {item.authorName
-            ? <Text className="font-sans text-xs text-ink-variant">{item.authorName}</Text>
-            : null}
-          <LikeControl item={item} onToggleLike={onToggleLike} likePending={likePending} />
-          <Text className="font-sans text-xs text-ink-muted">
-            {formatCount(item.commentCount, 'comment', 'comments')}
-          </Text>
-        </View>
-      </View>
-    </View>
+      <ActivityRow
+        likeCount={item.likeCount}
+        commentCount={item.commentCount}
+        isLiked={item.isLiked}
+        likePending={likePending}
+        onToggleLike={onToggleLike ? () => onToggleLike(item.id, !item.isLiked) : undefined}
+      />
+    </Card>
   );
 }
 

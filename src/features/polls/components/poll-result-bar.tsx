@@ -1,4 +1,4 @@
-import { Text, View } from '@/components/ui';
+import { ProgressBar, Text, View } from '@/components/ui';
 
 type PollResultBarProps = {
   label: string;
@@ -9,21 +9,15 @@ type PollResultBarProps = {
 
 export function PollResultBar({ label, percent, mine, optionId }: PollResultBarProps) {
   return (
-    <View className="gap-1">
+    <View className="gap-2">
       <View className="flex-row items-center justify-between">
-        <View className="flex-row items-center gap-2">
-          <Text className={`font-sans text-sm ${mine ? 'font-sans-semibold text-ink' : 'text-ink-variant'}`}>{label}</Text>
-          {mine ? <Text testID={`poll-my-choice-${optionId}`} className="font-sans text-sm text-primary">✓</Text> : null}
+        <View className="flex-1 flex-row items-center gap-2">
+          <Text variant="body" className={mine ? 'font-sans-semibold' : 'text-ink-variant'}>{label}</Text>
+          {mine ? <Text testID={`poll-my-choice-${optionId}`} variant="body" className="text-primary">✓</Text> : null}
         </View>
-        <Text className="font-mono text-xs text-ink-variant">{`${percent}%`}</Text>
+        <Text variant="label">{`${percent}%`}</Text>
       </View>
-      <View className="h-2 overflow-hidden rounded-full bg-surface-container">
-        <View
-          testID={`poll-bar-${optionId}`}
-          className={`h-2 rounded-full ${mine ? 'bg-primary' : 'bg-outline-variant'}`}
-          style={{ width: `${percent}%` }}
-        />
-      </View>
+      <ProgressBar testID={`poll-bar-${optionId}`} value={percent} tone="light" height={8} />
     </View>
   );
 }

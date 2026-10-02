@@ -9,10 +9,6 @@ import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import { PostOverflowMenu } from '@/features/community-posting/components/post-overflow-menu';
 import { MemberPostView } from '@/features/member-content/screens/member-post-screen';
 
-jest.mock('@/components/ui', () => ({
-  Image: 'Image',
-}));
-
 jest.mock('@/components/ui/screen-layout', () => ({
   useScreenTopPadding: () => 70,
   useScreenBottomPadding: () => 34,
@@ -71,9 +67,9 @@ describe('memberPostView', () => {
 
     expect(screen.getByText('Native rich content')).toBeOnTheScreen();
     expect(screen.queryByText('Plain text fallback')).not.toBeOnTheScreen();
-    expect(screen.getByText('5 likes')).toBeOnTheScreen();
-    expect(screen.getByText('2 comments')).toBeOnTheScreen();
-    expect(screen.getByLabelText('Rionna Racing avatar')).toBeOnTheScreen();
+    expect(screen.getByLabelText('5 likes')).toBeOnTheScreen();
+    expect(screen.getByLabelText('2 comments')).toBeOnTheScreen();
+    expect(screen.getByLabelText('Rionna Racing')).toBeOnTheScreen();
   });
 
   it('falls back to body text when the TipTap document is unusable', () => {
@@ -127,7 +123,7 @@ describe('memberPostView', () => {
   it('keeps the like count read-only when no handler is wired', () => {
     render(<MemberPostView post={POST} contentState="fresh" />);
     expect(screen.queryByLabelText('Like post')).not.toBeOnTheScreen();
-    expect(screen.getByText('5 likes')).toBeOnTheScreen();
+    expect(screen.getByLabelText('5 likes')).toBeOnTheScreen();
   });
 
   it('renders the loading state', () => {

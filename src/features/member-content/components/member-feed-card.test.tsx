@@ -30,8 +30,8 @@ describe('memberFeedCard', () => {
     expect(screen.getByText('Morning from the yard')).toBeOnTheScreen();
     expect(screen.getByText('The horses have finished first lot.')).toBeOnTheScreen();
     expect(screen.getByText('Jane Trainer')).toBeOnTheScreen();
-    expect(screen.getByText('9 likes')).toBeOnTheScreen();
-    expect(screen.getByText('4 comments')).toBeOnTheScreen();
+    expect(screen.getByLabelText('9 likes')).toBeOnTheScreen();
+    expect(screen.getByLabelText('4 comments')).toBeOnTheScreen();
   });
 
   it('opens a post with the Circle space and post ids', async () => {
@@ -91,6 +91,6 @@ describe('memberFeedCard', () => {
   it('shows a read-only like count when no like handler is wired', () => {
     render(<MemberFeedCard item={item} onOpen={jest.fn()} />);
     expect(screen.queryByLabelText('Like post')).toBeNull();
-    expect(screen.getByText('9 likes')).toBeOnTheScreen();
+    expect(screen.getByLabelText('9 likes')).toBeOnTheScreen();
   });
 });

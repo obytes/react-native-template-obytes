@@ -1,5 +1,4 @@
 import type { FeedChip, FeedFilter } from '@/features/member-content/types';
-import type { AuthUser } from '@/lib/auth/utils';
 
 import { fireEvent, render, screen } from '@testing-library/react-native';
 import * as React from 'react';
@@ -9,18 +8,9 @@ import {
   CommunityFeedView,
 } from '@/features/member-content/screens/community-feed-screen';
 
-jest.mock('@/components/ui', () => {
-  const RN = jest.requireActual('react-native');
-  return {
-    Image: 'Image',
-    Pressable: RN.Pressable,
-    Text: RN.Text,
-    View: RN.View,
-  };
-});
-
 jest.mock('@/components/ui/screen-layout', () => ({
   useScreenTopPadding: () => 70,
+  useScreenBottomPadding: () => 34,
 }));
 
 jest.mock('@/components/ui/tab-bar-layout', () => ({
@@ -68,12 +58,6 @@ jest.mock('@/lib/storage', () => ({
   setItem: (...args: unknown[]) => mockSetItem(...args),
 }));
 
-const MEMBER: AuthUser = {
-  id: 'member-1',
-  email: 'jane@example.com',
-  name: 'Jane Member',
-};
-
 const ITEM = {
   id: 'post-1',
   spaceId: 'space-1',
@@ -91,14 +75,12 @@ const ITEM = {
 };
 
 const BASE_PROPS = {
-  member: MEMBER,
   items: [ITEM],
   contentState: 'fresh' as const,
   isLoading: false,
   isRefetching: false,
   onRefresh: jest.fn(),
   onOpenPost: jest.fn(),
-  onOpenProfile: jest.fn(),
   onVote: jest.fn(),
   pendingVotePollIds: [],
   onOpenStory: jest.fn(),
@@ -135,6 +117,33 @@ const POLL_ITEM = {
 describe('communityFeedView', () => {
   beforeEach(() => jest.clearAllMocks());
 
+  it('shows no announcement carousel without announcement posts', () => {
+    render(<CommunityFeedView {...BASE_PROPS} />);
+    expect(screen.queryByTestId('announcement-carousel')).not.toBeOnTheScreen();
+  });
+
+  it('shows announcement posts in the carousel and opens them with Read', () => {
+    const announcement = { ...ITEM, id: 'post-a', title: 'Race-day itinerary', spaceName: 'Official Announcements', spaceId: 'ann' };
+    render(<CommunityFeedView {...BASE_PROPS} items={[ITEM, announcement]} />);
+    expect(screen.getByTestId('announcement-carousel')).toBeOnTheScreen();
+    fireEvent.press(screen.getByLabelText('Read Race-day itinerary'));
+    expect(BASE_PROPS.onOpenPost).toHaveBeenCalledWith('ann', 'post-a');
+  });
+
+  it('renders the featured card only when data is supplied (S13-11 slot)', () => {
+    const { rerender } = render(<CommunityFeedView {...BASE_PROPS} />);
+    expect(screen.queryByTestId('featured-card')).not.toBeOnTheScreen();
+    rerender(<CommunityFeedView {...BASE_PROPS} featuredCard={{ id: 'qa', kicker: 'Live Q&A', title: 'Ask the trainer' }} />);
+    expect(screen.getByTestId('featured-card')).toBeOnTheScreen();
+  });
+
+  it('shows the role badge only when authorRole is present', () => {
+    const { rerender } = render(<CommunityFeedView {...BASE_PROPS} />);
+    expect(screen.queryByTestId('role-badge')).not.toBeOnTheScreen();
+    rerender(<CommunityFeedView {...BASE_PROPS} items={[{ ...ITEM, authorRole: 'trainer' }]} />);
+    expect(screen.getByTestId('role-badge')).toBeOnTheScreen();
+  });
+
   it('shows the live member feed and opens a native post', () => {
     render(<CommunityFeedView {...BASE_PROPS} />);
 
@@ -157,13 +166,6 @@ describe('communityFeedView', () => {
   ])('renders the %s state', (_name, props) => {
     render(<CommunityFeedView {...props} />);
     expect(screen.getByTestId(`member-feed-${_name}`)).toBeOnTheScreen();
-  });
-
-  it('opens the profile from the avatar', () => {
-    render(<CommunityFeedView {...BASE_PROPS} />);
-
-    fireEvent.press(screen.getByRole('button', { name: 'Open profile' }));
-    expect(BASE_PROPS.onOpenProfile).toHaveBeenCalledTimes(1);
   });
 
   it('renders kind:poll items with the poll question', () => {

@@ -1,6 +1,6 @@
 import type { Poll } from '@/features/polls/types';
 
-import { Pressable, Text, View } from '@/components/ui';
+import { Card, MonoLabel, Pressable, Text, View } from '@/components/ui';
 import { PollResultBar } from '@/features/polls/components/poll-result-bar';
 import { percentagesFor } from '@/features/polls/lib/percentages';
 
@@ -24,15 +24,14 @@ export function PollCard({ poll, onVote, pending, variant }: PollCardProps) {
   const percents = showResults && poll.results ? percentagesFor(poll.options, poll.results) : null;
 
   return (
-    <View
+    <Card
       testID={`poll-card-${poll.id}`}
-      className={variant === 'card' ? 'gap-4 rounded-2xl border border-outline-variant bg-white p-5' : 'gap-4 px-6 py-4'}
+      noPadding={variant !== 'card'}
+      className={variant === 'card' ? 'gap-4 border border-outline-variant' : 'gap-4 px-6 py-4'}
     >
-      <View className="gap-1">
-        {showEyebrow
-          ? <Text className="font-mono text-[10px] tracking-widest text-label uppercase">{eyebrowText}</Text>
-          : null}
-        <Text className="font-sans-semibold text-lg text-ink">{poll.question}</Text>
+      <View className="gap-2">
+        {showEyebrow ? <MonoLabel>{eyebrowText}</MonoLabel> : null}
+        <Text variant="display-sm">{poll.question}</Text>
       </View>
 
       <View className="gap-3">
@@ -67,25 +66,26 @@ export function PollCard({ poll, onVote, pending, variant }: PollCardProps) {
               accessibilityState={{ selected: mine, disabled: !canVote }}
               disabled={!canVote}
               onPress={() => onVote(poll.id, option.id)}
-              className={`rounded-full border px-4 py-3 ${
-                mine ? 'border-primary bg-primary' : 'border-outline-variant bg-white'
-              }`}
+              className="flex-row items-center gap-3 rounded-lg border border-outline-variant bg-white p-3"
             >
-              <Text className={`font-sans text-sm ${mine ? 'font-sans-semibold text-on-primary' : 'text-ink-variant'}`}>
-                {option.label}
-              </Text>
+              <View
+                className={`size-5 items-center justify-center rounded-sm ${mine ? 'bg-primary' : 'bg-secondary-container'}`}
+              >
+                {mine ? <Text className="font-sans-bold text-[12px]/[14px] text-on-primary">✓</Text> : null}
+              </View>
+              <Text variant="body" className={mine ? 'font-sans-semibold' : ''}>{option.label}</Text>
             </Pressable>
           );
         })}
       </View>
 
-      <Text className="font-sans text-xs text-ink-variant">
+      <Text variant="body-sm" className="text-ink-variant">
         {pending
           ? 'Saving your vote…'
           : showResults && poll.results
             ? formatVotes(poll.results.total)
             : 'Tap an option to vote. You can change your mind while the vote is open.'}
       </Text>
-    </View>
+    </Card>
   );
 }

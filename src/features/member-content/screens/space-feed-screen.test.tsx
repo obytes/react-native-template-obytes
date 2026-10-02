@@ -3,15 +3,10 @@ import * as React from 'react';
 
 import { SpaceFeedView } from '@/features/member-content/screens/space-feed-screen';
 
-jest.mock('@/components/ui', () => {
-  const RN = jest.requireActual('react-native');
-  return {
-    Image: 'Image',
-    Pressable: RN.Pressable,
-    Text: RN.Text,
-    View: RN.View,
-  };
-});
+jest.mock('@/components/ui/screen-layout', () => ({
+  useScreenTopPadding: () => 70,
+  useScreenBottomPadding: () => 34,
+}));
 
 const ITEM = {
   id: 'post-9',

@@ -4,6 +4,7 @@ import { PollScreenView } from '@/features/polls/screens/poll-screen';
 
 jest.mock('@/components/ui/screen-layout', () => ({
   useScreenTopPadding: () => 70,
+  useScreenBottomPadding: () => 34,
 }));
 
 jest.mock('@/components/ui', () => {

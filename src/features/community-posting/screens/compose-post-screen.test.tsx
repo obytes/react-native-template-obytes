@@ -5,6 +5,11 @@ import * as React from 'react';
 
 import { ComposePostScreen } from '@/features/community-posting/screens/compose-post-screen';
 
+jest.mock('@/components/ui/screen-layout', () => ({
+  useScreenTopPadding: () => 70,
+  useScreenBottomPadding: () => 34,
+}));
+
 const mockReplace = jest.fn();
 const mockPush = jest.fn();
 let mockParams: { spaceId?: string } = {};
@@ -67,11 +72,6 @@ jest.mock('@/lib/storage', () => ({
   getItem: jest.fn(() => null),
   setItem: (...args: unknown[]) => mockSetItem(...args),
 }));
-
-jest.mock('@/components/ui', () => {
-  const RN = jest.requireActual('react-native');
-  return { Image: RN.Image, Pressable: RN.Pressable, Text: RN.Text, View: RN.View };
-});
 
 jest.mock('@/components/ui/modal', () => {
   const RN = jest.requireActual('react-native');
@@ -176,7 +176,7 @@ describe('composePostScreen', () => {
   it('preselects the space passed as a search param', () => {
     mockParams = { spaceId: 'space-2' };
     render(<ComposePostScreen />);
-    expect(screen.getByTestId('compose-post-space-trigger')).toHaveTextContent(/Club News/);
+    expect(screen.getByTestId('compose-post-space-space-2').props.accessibilityState).toEqual(expect.objectContaining({ selected: true }));
   });
 });
 
@@ -195,7 +195,7 @@ describe('composePostScreen spaces status', () => {
     render(<ComposePostScreen />);
 
     expect(screen.getByText('You can\'t post in any spaces yet.')).toBeOnTheScreen();
-    expect(screen.queryByTestId('compose-post-space-trigger')).toBeNull();
+    expect(screen.queryByTestId('compose-post-space-space-1')).toBeNull();
     expect(screen.getByTestId('compose-post-submit').props.accessibilityState).toEqual(
       expect.objectContaining({ disabled: true }),
     );
@@ -206,7 +206,7 @@ describe('composePostScreen spaces status', () => {
     render(<ComposePostScreen />);
 
     expect(screen.getByText('Couldn\'t load your spaces. Pull to retry.')).toBeOnTheScreen();
-    expect(screen.queryByTestId('compose-post-space-trigger')).toBeNull();
+    expect(screen.queryByTestId('compose-post-space-space-1')).toBeNull();
 
     fireEvent.press(screen.getByTestId('compose-post-spaces-retry'));
     expect(mockRefetch).toHaveBeenCalled();
@@ -218,7 +218,7 @@ describe('composePostScreen spaces status', () => {
 
     expect(screen.queryByText('You can\'t post in any spaces yet.')).toBeNull();
     expect(screen.queryByText('Couldn\'t load your spaces. Pull to retry.')).toBeNull();
-    expect(screen.queryByTestId('compose-post-space-trigger')).toBeNull();
+    expect(screen.queryByTestId('compose-post-space-space-1')).toBeNull();
     expect(screen.getByTestId('compose-post-submit').props.accessibilityState).toEqual(
       expect.objectContaining({ disabled: true }),
     );
@@ -237,7 +237,6 @@ describe('composePostScreen last-used space', () => {
 
   it('does not remember the space just from picking it', () => {
     render(<ComposePostScreen />);
-    fireEvent.press(screen.getByTestId('compose-post-space-trigger'));
     fireEvent.press(screen.getByTestId('compose-post-space-space-2'));
     expect(mockSetItem).not.toHaveBeenCalled();
   });
