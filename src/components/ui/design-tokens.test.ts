@@ -21,7 +21,6 @@ const GLOBAL_CSS = path.join(SRC, 'global.css');
 const HEX_ALLOWLIST = new Set([
   'components/ui/colors.js',
   'components/ui/design-tokens.test.ts',
-  'features/onboarding/components/cover.tsx',
   'components/ui/list.tsx',
   'components/ui/icons/language.tsx',
   // Verbatim port of the waitlist pattern palette (rionna-ireland tiles.tsx); some
