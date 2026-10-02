@@ -35,7 +35,7 @@ describe('selectAnnouncements', () => {
       post({ id: 'd', spaceId: 'z' }),
     ];
     const ids = selectAnnouncements(items, ['ann']).map(i => i.id);
-    expect(ids.toSorted()).toEqual(['a', 'b', 'c']);
+    expect([...ids].sort()).toEqual(['a', 'b', 'c']);
   });
 
   it('sorts newest first, caps the count and skips polls and unopenable posts', () => {

@@ -29,13 +29,13 @@ export function selectAnnouncements(
     return [];
   }
   const ids = new Set(announcementSpaceIds);
-  return items
+  return [...items]
     .filter(item => item.kind === 'post' && item.spaceId !== null)
     .filter(item =>
       item.isAnnouncement === true
       || (item.spaceId !== null && ids.has(item.spaceId))
       || (item.spaceName !== null && ANNOUNCEMENT_SPACE_NAME.test(item.spaceName)),
     )
-    .toSorted((a, b) => (Date.parse(b.createdAt ?? '') || 0) - (Date.parse(a.createdAt ?? '') || 0))
+    .sort((a, b) => (Date.parse(b.createdAt ?? '') || 0) - (Date.parse(a.createdAt ?? '') || 0))
     .slice(0, limit);
 }
