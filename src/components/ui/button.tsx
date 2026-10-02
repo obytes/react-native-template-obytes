@@ -1,90 +1,89 @@
-import type { PressableProps, View } from 'react-native';
+import type { Insets, PressableProps, View } from 'react-native';
 import type { VariantProps } from 'tailwind-variants';
 import * as React from 'react';
-import { ActivityIndicator, Pressable, Text } from 'react-native';
+import { ActivityIndicator, Pressable } from 'react-native';
 import { tv } from 'tailwind-variants';
 
+import colors from './colors';
+import { Text } from './text';
+
+/**
+ * Design V2 button (S13-01 §7). Variants come from the Figma `Button L/M/S`
+ * components; sizes L 45h r8 `title`, M 30h r6 SemiBold 12, S 27h r4
+ * SemiBold 12. No motion here: press feedback is plain opacity (S14 adds the
+ * press scale).
+ *
+ * Legacy variant names stay accepted so existing callers keep working:
+ * `default` → `primary`, `outline` → `secondary`. `ghost`/`link` are
+ * text-only buttons on light surfaces.
+ */
 const button = tv({
   slots: {
-    container: 'my-2 flex flex-row items-center justify-center rounded-full px-4',
-    label: 'font-mono text-base font-medium tracking-widest uppercase',
-    indicator: 'h-6 text-on-primary',
+    container: 'flex-row items-center justify-center',
+    label: 'text-center',
   },
-
   variants: {
     variant: {
-      default: {
-        container: 'bg-primary shadow-sm',
-        label: 'text-on-primary',
-        indicator: 'text-on-primary',
-      },
-      secondary: {
-        container: 'bg-surface-container-high',
-        label: 'text-primary',
-        indicator: 'text-primary',
-      },
-      outline: {
-        container: 'border border-outline-variant bg-transparent',
-        label: 'text-ink',
-        indicator: 'text-ink',
-      },
-      destructive: {
-        container: 'bg-danger-700',
-        label: 'text-white',
-        indicator: 'text-white',
-      },
-      ghost: {
-        container: 'bg-transparent',
-        label: 'text-ink underline',
-        indicator: 'text-ink',
-      },
-      link: {
-        container: 'bg-transparent',
-        label: 'text-ink',
-        indicator: 'text-ink',
-      },
+      'primary': { container: 'bg-primary', label: 'text-on-primary' },
+      'default': { container: 'bg-primary', label: 'text-on-primary' },
+      'secondary': { container: 'border border-primary bg-white', label: 'text-ink' },
+      'outline': { container: 'border border-primary bg-white', label: 'text-ink' },
+      'accent': { container: 'bg-primary-fixed', label: 'text-plum' },
+      'on-dark': { container: 'bg-white', label: 'text-ink' },
+      'ghost-on-dark': { container: 'border border-white bg-transparent', label: 'text-white' },
+      'destructive': { container: 'bg-plum', label: 'text-on-primary' },
+      'ghost': { container: 'bg-transparent', label: 'text-ink underline' },
+      'link': { container: 'bg-transparent', label: 'text-ink' },
     },
     size: {
-      default: {
-        container: 'h-10 px-4',
-        label: 'text-base',
-      },
-      lg: {
-        container: 'h-12 px-8',
-        label: 'text-xl',
-      },
-      sm: {
-        container: 'h-8 px-3',
-        label: 'text-sm',
-        indicator: 'h-2',
-      },
-      icon: { container: 'size-9' },
+      lg: { container: 'h-[45px] rounded-lg px-[26px]' },
+      default: { container: 'h-[45px] rounded-lg px-[26px]' },
+      md: { container: 'h-[30px] rounded-md px-4', label: 'font-semibold' },
+      sm: { container: 'h-[27px] rounded-sm px-3', label: 'font-semibold' },
     },
     disabled: {
-      true: {
-        container: 'bg-surface-container',
-        label: 'text-ink-variant',
-        indicator: 'text-ink-variant',
-      },
+      true: { container: 'opacity-40' },
     },
     fullWidth: {
-      true: {
-        container: '',
-      },
-      false: {
-        container: 'self-center',
-      },
+      true: { container: '' },
+      false: { container: 'self-center' },
     },
   },
   defaultVariants: {
-    variant: 'default',
+    variant: 'primary',
     disabled: false,
     fullWidth: true,
-    size: 'default',
+    size: 'lg',
   },
 });
 
 type ButtonVariants = VariantProps<typeof button>;
+export type ButtonVariant = NonNullable<ButtonVariants['variant']>;
+export type ButtonSize = NonNullable<ButtonVariants['size']>;
+
+const SIZE_HEIGHT: Record<ButtonSize, number> = { lg: 45, default: 45, md: 30, sm: 27 };
+
+const INDICATOR_COLOR: Record<ButtonVariant, string> = {
+  'primary': colors.onPrimary,
+  'default': colors.onPrimary,
+  'secondary': colors.ink,
+  'outline': colors.ink,
+  'accent': colors.plum,
+  'on-dark': colors.ink,
+  'ghost-on-dark': colors.white,
+  'destructive': colors.onPrimary,
+  'ghost': colors.ink,
+  'link': colors.ink,
+};
+
+/** Vertical hitSlop that grows a short button to the 44pt minimum target. */
+export function minHitSlop(height: number): Insets | undefined {
+  if (height >= 44)
+    return undefined;
+  const pad = Math.ceil((44 - height) / 2);
+  return { top: pad, bottom: pad };
+}
+
 type Props = {
   label?: string;
   loading?: boolean;
@@ -92,44 +91,63 @@ type Props = {
   textClassName?: string;
 } & ButtonVariants & Omit<PressableProps, 'disabled'>;
 
-export function Button({ ref, label: text, loading = false, variant = 'default', disabled = false, size = 'default', className = '', testID, textClassName = '', ...props }: Props & { ref?: React.RefObject<View | null> }) {
+export function Button({
+  ref,
+  label: text,
+  loading = false,
+  variant = 'primary',
+  disabled = false,
+  size = 'lg',
+  fullWidth = true,
+  className = '',
+  testID,
+  textClassName = '',
+  ...props
+}: Props & { ref?: React.RefObject<View | null> }) {
   const styles = React.useMemo(
-    () => button({ variant, disabled, size }),
-    [variant, disabled, size],
+    () => button({ variant, disabled, size, fullWidth }),
+    [variant, disabled, size, fullWidth],
   );
+  const v = variant ?? 'primary';
+  const s = size ?? 'lg';
+  const isLarge = s === 'lg' || s === 'default';
+  const isDisabled = Boolean(disabled) || loading;
 
   return (
     <Pressable
-      disabled={disabled || loading}
+      disabled={isDisabled}
+      accessibilityRole="button"
+      accessibilityLabel={text}
+      accessibilityState={{ disabled: isDisabled, busy: loading }}
+      hitSlop={minHitSlop(SIZE_HEIGHT[s])}
       className={styles.container({ className })}
+      style={({ pressed }) => (pressed && !isDisabled ? { opacity: 0.7 } : null)}
       {...props}
       ref={ref}
       testID={testID}
     >
       {props.children
         ? (
-            props.children
+            props.children as React.ReactNode
           )
-        : (
-            <>
-              {loading
-                ? (
-                    <ActivityIndicator
-                      size="small"
-                      className={styles.indicator()}
-                      testID={testID ? `${testID}-activity-indicator` : undefined}
-                    />
-                  )
-                : (
-                    <Text
-                      testID={testID ? `${testID}-label` : undefined}
-                      className={styles.label({ className: textClassName })}
-                    >
-                      {text}
-                    </Text>
-                  )}
-            </>
-          )}
+        : loading
+          ? (
+              <ActivityIndicator
+                size="small"
+                color={INDICATOR_COLOR[v]}
+                testID={testID ? `${testID}-activity-indicator` : undefined}
+              />
+            )
+          : (
+              <Text
+                variant={isLarge ? 'title' : 'body-sm'}
+                testID={testID ? `${testID}-label` : undefined}
+                className={styles.label({ className: textClassName })}
+                numberOfLines={1}
+              >
+                {text}
+              </Text>
+            )}
     </Pressable>
   );
 }

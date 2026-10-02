@@ -15,6 +15,8 @@ import colors from './colors';
  * - `card-plum-glow` / `card-sage-glow`: radial overlays that sit on top of a
  *   card's pattern fill. They are transparent at the edges and carry no base
  *   colour; the card itself provides `bg-plum` / `bg-sage`.
+ * - `photo-scrim`: navy scrim over full-bleed photo cards so white text stays
+ *   legible on real photos (not in the Figma file; S13-01 §7 Card `photo`).
  */
 export type GradientVariant
   = | 'page'
@@ -22,7 +24,8 @@ export type GradientVariant
     | 'welcome-light'
     | 'welcome-navy'
     | 'card-plum-glow'
-    | 'card-sage-glow';
+    | 'card-sage-glow'
+    | 'photo-scrim';
 
 /** `#rrggbb` + alpha (0–1) → `#rrggbbaa`, which RN's colour parser accepts. */
 export function withAlpha(hex: string, alpha: number): string {
@@ -59,6 +62,9 @@ export const GRADIENTS: Record<GradientVariant, GradientSpec> = {
   },
   'card-sage-glow': {
     backgroundImage: `radial-gradient(ellipse farthest-side at center, ${colors.sage} 0%, ${withAlpha(colors.sage, 0.9)} 49%, ${withAlpha(colors.sage, 0.75)} 82%, ${withAlpha(colors.sage, 0)} 100%)`,
+  },
+  'photo-scrim': {
+    backgroundImage: `linear-gradient(to bottom, ${withAlpha(colors.navyDeep, 0.35)} 0%, ${withAlpha(colors.navyDeep, 0.05)} 40%, ${withAlpha(colors.navyDeep, 0.85)} 100%)`,
   },
 };
 

@@ -22,7 +22,7 @@ export default function NotificationsScreen() {
   if (isLoading || !data) {
     return (
       <View className="flex-1 items-center justify-center bg-background">
-        <ActivityIndicator />
+        <ActivityIndicator color={colors.primary} />
       </View>
     );
   }

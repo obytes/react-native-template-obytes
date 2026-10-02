@@ -254,7 +254,7 @@ export function ComposePostScreen() {
         {spacesLoading
           ? (
               <View className="mb-4 items-center justify-center py-6" testID="compose-post-spaces-loading">
-                <ActivityIndicator />
+                <ActivityIndicator color={colors.primary} />
               </View>
             )
           : spacesUnusable

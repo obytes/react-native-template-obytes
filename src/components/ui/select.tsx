@@ -20,16 +20,16 @@ import { Text } from './text';
 const selectTv = tv({
   slots: {
     container: 'mb-4',
-    label: 'mb-1 text-lg text-ink-variant',
+    label: 'mb-1.5 font-sans text-xs/4 font-medium text-ink-variant',
     input:
-      'mt-0 flex-row items-center justify-center rounded-xl border-[0.5px] border-outline-variant p-3',
-    inputValue: '',
+      'mt-0 flex-row items-center justify-center rounded-lg border border-outline-variant bg-white p-4',
+    inputValue: 'font-sans text-sm/5 font-medium text-ink',
   },
 
   variants: {
     focused: {
       true: {
-        input: 'border-outline-variant',
+        input: 'border-primary',
       },
     },
     error: {
@@ -41,7 +41,7 @@ const selectTv = tv({
     },
     disabled: {
       true: {
-        input: 'bg-secondary-container',
+        input: 'opacity-50',
       },
     },
   },
@@ -114,10 +114,10 @@ const Option = React.memo(
   }) => {
     return (
       <Pressable
-        className="flex-row items-center border-b border-outline-variant bg-white px-3 py-2"
+        className="min-h-11 flex-row items-center border-b border-outline-variant bg-white px-4 py-3"
         {...props}
       >
-        <Text className="flex-1">{label}</Text>
+        <Text variant="body" className="flex-1">{label}</Text>
         {selected && <Check />}
       </Pressable>
     );

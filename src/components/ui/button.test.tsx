@@ -77,34 +77,55 @@ describe('button component ', () => {
 
     expect(onClick).toHaveBeenCalledTimes(0);
   });
-  it('should apply correct styles based on size prop', () => {
-    render(<Button testID="button" size="lg" />);
-    const button = screen.getByTestId('button');
-    // TODO: should be fixed to use haveStyle instead of comparing the class name
-    const expectedStyle
-      = 'font-mono font-medium tracking-widest uppercase text-on-primary text-xl';
-    const receivedStyle
-      = button.props.children[0].props.children.props.className;
-    expect(receivedStyle).toContain(expectedStyle);
-  });
-  it('should apply correct styles for label when variant is secondary', () => {
-    render(<Button testID="button" variant="secondary" label="Submit" />);
-    const button = screen.getByTestId('button');
+});
 
-    const expectedStyle
-      = 'font-mono font-medium tracking-widest uppercase text-primary text-base';
-    const receivedStyle
-      = button.props.children[0].props.children.props.className;
-    expect(receivedStyle).toContain(expectedStyle);
+describe('button v2 variants', () => {
+  it('uses the title ramp for large buttons and SemiBold 12 for M/S', () => {
+    render(
+      <>
+        <Button testID="lg" size="lg" label="Large" />
+        <Button testID="md" size="md" label="Medium" />
+      </>,
+    );
+    expect(screen.getByTestId('lg-label')).toHaveStyle({ fontSize: 16 });
+    expect(screen.getByTestId('md-label')).toHaveStyle({ fontSize: 12 });
+    expect(screen.getByTestId('md-label').props.className).toContain('font-semibold');
   });
-  it('should apply correct styles for label when is disabled', () => {
+  it.each([
+    ['primary', 'bg-primary', 'text-on-primary'],
+    ['secondary', 'border-primary', 'text-ink'],
+    ['accent', 'bg-primary-fixed', 'text-plum'],
+    ['on-dark', 'bg-white', 'text-ink'],
+    ['ghost-on-dark', 'border-white', 'text-white'],
+    ['destructive', 'bg-plum', 'text-on-primary'],
+  ] as const)('styles the %s variant', (variant, container, label) => {
+    render(<Button testID="button" variant={variant} label="Go" />);
+    expect(screen.getByTestId('button').props.className).toContain(container);
+    expect(screen.getByTestId('button-label').props.className).toContain(label);
+  });
+  it('keeps legacy variant names working', () => {
+    render(
+      <>
+        <Button testID="a" variant="default" label="A" />
+        <Button testID="b" variant="outline" label="B" />
+      </>,
+    );
+    expect(screen.getByTestId('a').props.className).toContain('bg-primary');
+    expect(screen.getByTestId('b').props.className).toContain('border-primary');
+  });
+  it('exposes button role, label and busy state', () => {
+    render(<Button testID="button" label="Save" loading />);
+    const btn = screen.getByTestId('button');
+    expect(btn.props.accessibilityRole).toBe('button');
+    expect(btn.props.accessibilityLabel).toBe('Save');
+    expect(btn.props.accessibilityState).toMatchObject({ busy: true, disabled: true });
+  });
+  it('pads small buttons to a 44pt hit target', () => {
+    render(<Button testID="button" size="sm" label="Small" />);
+    expect(screen.getByTestId('button').props.hitSlop).toEqual({ top: 9, bottom: 9 });
+  });
+  it('dims when disabled', () => {
     render(<Button testID="button" label="Submit" disabled />);
-    const button = screen.getByTestId('button');
-
-    const expectedStyle
-      = 'font-mono font-medium tracking-widest uppercase text-base text-ink-variant';
-    const receivedStyle
-      = button.props.children[0].props.children.props.className;
-    expect(receivedStyle).toContain(expectedStyle);
+    expect(screen.getByTestId('button').props.className).toContain('opacity-40');
   });
 });

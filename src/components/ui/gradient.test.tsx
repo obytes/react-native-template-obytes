@@ -18,12 +18,13 @@ afterEach(cleanup);
 const VARIANTS = Object.keys(GRADIENTS) as GradientVariant[];
 
 describe('gradient', () => {
-  it('defines the six design variants', () => {
+  it('defines the six design variants plus the photo scrim', () => {
     expect(VARIANTS.sort()).toEqual([
       'card-plum-glow',
       'card-sage-glow',
       'page',
       'page-ice',
+      'photo-scrim',
       'welcome-light',
       'welcome-navy',
     ]);

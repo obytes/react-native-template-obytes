@@ -1,4 +1,9 @@
 {
+  "common": {
+    "back": "Back",
+    "errorTitle": "Something went wrong",
+    "tryAgain": "Try again"
+  },
   "onboarding": {
     "message": "Welcome to obytes app site"
   },

@@ -1,9 +1,10 @@
 // Colour-sweep exception (S13-01): NoData unDraw illustration keeps its own palette; superseded by EmptyState. Allow-listed in design-tokens.test.ts.
 import { FlashList as NFlashList } from '@shopify/flash-list';
 import * as React from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { View } from 'react-native';
 import Svg, { Circle, Path } from 'react-native-svg';
 
+import { ActivityIndicator } from './activity-indicator';
 import { Text } from './text';
 
 type Props = {

@@ -97,9 +97,17 @@ export function Modal({ ref, snapPoints: _snapPoints = ['60%'] as (string | numb
       backdropComponent={props.backdropComponent || renderBackdrop}
       enableDynamicSizing={false}
       handleComponent={renderHandleComponent}
+      backgroundStyle={[SHEET_BACKGROUND, props.backgroundStyle]}
     />
   );
 }
+
+/** V2 sheet surface (S13-01 §7): white, r16 top corners. Handle is ink @20%. */
+const SHEET_BACKGROUND = {
+  backgroundColor: colors.white,
+  borderTopLeftRadius: 16,
+  borderTopRightRadius: 16,
+};
 
 /**
  * Custom Backdrop
@@ -154,7 +162,7 @@ const ModalHeader = React.memo(({ title, dismiss }: ModalHeaderProps) => {
         <View className="flex-row px-2 py-4">
           <View className="size-6" />
           <View className="flex-1">
-            <Text className="text-center text-[16px] font-bold text-ink">
+            <Text variant="title" className="text-center">
               {title}
             </Text>
           </View>

@@ -1,3 +1,4 @@
+import { fireEvent } from '@testing-library/react-native';
 import * as React from 'react';
 import { I18nManager } from 'react-native';
 
@@ -105,5 +106,25 @@ describe('input component ', () => {
 
     const input = screen.getByTestId('input');
     expect(input.props.disabled).toBe(true);
+  });
+});
+
+describe('input tones (form field)', () => {
+  it('uses the light V2 field by default', () => {
+    render(<Input testID="input" label="Email" />);
+    expect(screen.getByTestId('input').props.className).toContain('bg-white');
+    expect(screen.getByTestId('input').props.className).toContain('rounded-lg');
+  });
+
+  it('uses the dark field on navy', () => {
+    render(<Input testID="input" tone="dark" label="Email" />);
+    expect(screen.getByTestId('input').props.className).toContain('bg-white/8');
+    expect(screen.getByTestId('input').props.className).toContain('border-white/18');
+  });
+
+  it('shows the focus border when focused', () => {
+    render(<Input testID="input" tone="dark" />);
+    fireEvent(screen.getByTestId('input'), 'focus');
+    expect(screen.getByTestId('input').props.className).toContain('border-on-primary-container');
   });
 });
