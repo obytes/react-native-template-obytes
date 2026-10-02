@@ -34,7 +34,7 @@ const plugins: ExpoConfig['plugins'] = [
   [
     'expo-splash-screen',
     {
-      backgroundColor: '#391d3a',
+      backgroundColor: '#ffffff', // S13-02: equals the JS first frame (top of bg-welcome-light); takes effect at next native build (S14-01)
       image: './assets/splash-icon.png',
       imageWidth: 150,
     },
@@ -149,7 +149,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   android: {
     adaptiveIcon: {
       foregroundImage: './assets/adaptive-icon.png',
-      backgroundColor: '#391d3a',
+      backgroundColor: '#ffffff', // S13-02: equals the JS first frame (top of bg-welcome-light); takes effect at next native build (S14-01)
     },
     package: Env.EXPO_PUBLIC_PACKAGE,
   },

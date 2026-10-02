@@ -2,13 +2,17 @@ import type { AuthUser } from '@/lib/auth/utils';
 import { useForm } from '@tanstack/react-form';
 import Env from 'env';
 import * as React from 'react';
+import { Keyboard, ScrollView, useWindowDimensions } from 'react-native';
 
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import * as z from 'zod';
 
-import { Button, Input, Text, View } from '@/components/ui';
+import { Submark } from '@/components/brand/logo';
+import { Button, colors, Input, Text, View } from '@/components/ui';
 import { getFieldError } from '@/components/ui/form-utils';
+import { LoginMedia } from '@/features/arrival/login-media';
 import { client } from '@/lib/api/client';
+import { openExternalLink } from '@/lib/open-external-link';
 
 const schema = z.object({
   email: z
@@ -49,23 +53,58 @@ function describeLoginError(error: any): string {
   return error?.message ?? 'Sign in failed. Please check your credentials.';
 }
 
+const POSTER = require('../../../../assets/login-poster.jpg');
+
+const SHORT_SCREEN_HEIGHT = 700;
+const MARKETING_URL = 'https://rionna.com';
+
+/** Forgot-password lives on the web app, at the API/auth origin. */
+export function forgotPasswordUrl(apiUrl: string = Env.EXPO_PUBLIC_API_URL): string {
+  try {
+    return `${new URL(apiUrl).origin}/forgot-password`;
+  }
+  catch {
+    return `${apiUrl.replace(/\/+$/, '')}/forgot-password`;
+  }
+}
+
+/** True while the software keyboard is up. */
+function useKeyboardVisible(): boolean {
+  const [visible, setVisible] = React.useState(false);
+  React.useEffect(() => {
+    const subs = [
+      Keyboard.addListener('keyboardDidShow', () => setVisible(true)),
+      Keyboard.addListener('keyboardDidHide', () => setVisible(false)),
+    ];
+    return () => subs.forEach(sub => sub.remove());
+  }, []);
+  return visible;
+}
+
 function FormHeader() {
   const showHost = Env.EXPO_PUBLIC_APP_ENV !== 'production';
   return (
-    <View className="mb-6 items-center justify-center">
+    <View className="items-center">
+      <Submark width={52} color={colors.secondaryContainer} />
       <Text
         testID="form-title"
-        className="pb-2 text-center font-sans-bold text-4xl text-ink"
+        variant="display-xl"
+        className="mt-6 text-center text-secondary-container"
       >
-        Rionna
+        <Text variant="display-xl" className="text-on-primary-container">Not </Text>
+        just for the few.
       </Text>
-      <Text className="text-center text-ink-muted">
-        Sign in to your account
+      <Text
+        variant="body"
+        className="mt-6 text-center font-sans-medium text-on-primary-container"
+      >
+        Welcome to Rionna, a new way into racing.
       </Text>
       {showHost && (
         <Text
           testID="api-host"
-          className="mt-1 text-center text-xs text-ink-muted"
+          variant="body-sm"
+          className="mt-1 text-center text-on-primary-container opacity-60"
         >
           {apiHost()}
         </Text>
@@ -76,22 +115,37 @@ function FormHeader() {
 
 function FormFooter() {
   return (
-    <View className="mt-8 items-center">
-      {/* <Text className="text-center text-sm text-ink-muted">
-        New members visit
-        {' '}
-        <Text className="font-sans-bold text-ink">
-          rionna.com
+    <View className="mt-4 items-center gap-2">
+      <Text
+        testID="forgot-password-link"
+        accessibilityRole="link"
+        variant="body-sm"
+        className="font-sans-medium text-on-primary-container"
+        onPress={() => openExternalLink(forgotPasswordUrl())}
+      >
+        Forgot password?
+      </Text>
+      <Text variant="body-sm" className="font-sans-medium text-white">
+        {'Don’t have an account? '}
+        <Text
+          testID="signup-link"
+          accessibilityRole="link"
+          variant="body-sm"
+          className="font-sans-medium text-on-primary-container"
+          onPress={() => openExternalLink(MARKETING_URL)}
+        >
+          Rionna.com
         </Text>
-        {' '}
-        to join.
-      </Text> */}
+      </Text>
     </View>
   );
 }
 
 export function LoginForm({ onSuccess }: LoginFormProps) {
   const [error, setError] = React.useState<string | null>(null);
+  const keyboardVisible = useKeyboardVisible();
+  const { height } = useWindowDimensions();
+  const collapseMedia = keyboardVisible && height < SHORT_SCREEN_HEIGHT;
 
   const form = useForm({
     defaultValues: { email: '', password: '' },
@@ -118,61 +172,79 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
       behavior="padding"
       keyboardVerticalOffset={10}
     >
-      <View className="flex-1 justify-center p-4">
+      <ScrollView
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+        contentContainerClassName="grow items-center justify-center gap-8 px-8 py-[60px]"
+      >
         <FormHeader />
 
-        {error && (
-          <View className="mb-4 rounded-lg bg-danger-50 p-3">
-            <Text className="text-center text-sm text-ink">{error}</Text>
-          </View>
-        )}
+        {!collapseMedia && <LoginMedia poster={POSTER} />}
 
-        <form.Field
-          name="email"
-          children={field => (
-            <Input
-              testID="email-input"
-              label="Email"
-              autoCapitalize="none"
-              keyboardType="email-address"
-              value={field.state.value}
-              onBlur={field.handleBlur}
-              onChangeText={field.handleChange}
-              error={getFieldError(field)}
-            />
+        <View className="w-full">
+          {error && (
+            <Text
+              testID="login-error"
+              accessibilityRole="alert"
+              variant="body-sm"
+              className="mb-2 text-center font-sans-medium text-on-primary-container"
+            >
+              {error}
+            </Text>
           )}
-        />
 
-        <form.Field
-          name="password"
-          children={field => (
-            <Input
-              testID="password-input"
-              label="Password"
-              placeholder="***"
-              secureTextEntry={true}
-              value={field.state.value}
-              onBlur={field.handleBlur}
-              onChangeText={field.handleChange}
-              error={getFieldError(field)}
-            />
-          )}
-        />
+          <form.Field
+            name="email"
+            children={field => (
+              <Input
+                testID="email-input"
+                tone="dark"
+                accessibilityLabel="Email"
+                placeholder="Email"
+                autoCapitalize="none"
+                autoComplete="email"
+                keyboardType="email-address"
+                value={field.state.value}
+                onBlur={field.handleBlur}
+                onChangeText={field.handleChange}
+                error={getFieldError(field)}
+              />
+            )}
+          />
 
-        <form.Subscribe
-          selector={state => [state.isSubmitting]}
-          children={([isSubmitting]) => (
-            <Button
-              testID="login-button"
-              label="Sign In"
-              onPress={form.handleSubmit}
-              loading={isSubmitting}
-            />
-          )}
-        />
+          <form.Field
+            name="password"
+            children={field => (
+              <Input
+                testID="password-input"
+                tone="dark"
+                accessibilityLabel="Password"
+                placeholder="Password"
+                secureTextEntry={true}
+                value={field.state.value}
+                onBlur={field.handleBlur}
+                onChangeText={field.handleChange}
+                error={getFieldError(field)}
+              />
+            )}
+          />
 
-        <FormFooter />
-      </View>
+          <form.Subscribe
+            selector={state => [state.isSubmitting]}
+            children={([isSubmitting]) => (
+              <Button
+                testID="login-button"
+                label="Sign In"
+                variant="on-dark"
+                onPress={form.handleSubmit}
+                loading={isSubmitting}
+              />
+            )}
+          />
+
+          <FormFooter />
+        </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }
