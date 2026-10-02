@@ -1,0 +1,11 @@
+export * from './bell';
+export * from './calendar';
+export * from './caret-right';
+export * from './chat';
+export * from './home';
+export * from './horseshoe';
+export * from './pencil';
+export * from './play';
+export * from './star';
+export type { IconV2Props } from './types';
+export * from './wallet';
