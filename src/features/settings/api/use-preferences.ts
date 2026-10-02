@@ -31,6 +31,15 @@ export type UserPreferences = {
 
 const QUERY_KEY = ['user', 'preferences'];
 
+export function mergePreferences(current: UserPreferences, patch: Partial<UserPreferences>): UserPreferences {
+  return {
+    ...current,
+    ...patch,
+    pushPreferences: { ...current.pushPreferences, ...patch.pushPreferences },
+    emailPreferences: { ...current.emailPreferences, ...patch.emailPreferences },
+  };
+}
+
 export function usePreferences() {
   return useQuery({
     queryKey: QUERY_KEY,
@@ -47,6 +56,18 @@ export function useUpdatePreferences() {
     mutationFn: async (input: Partial<UserPreferences>) => {
       const { data } = await client.put('/api/users/preferences', input);
       return data as UserPreferences;
+    },
+    // Optimistic: merge the patch into the cached prefs, roll back on error.
+    onMutate: async (input) => {
+      await queryClient.cancelQueries({ queryKey: QUERY_KEY });
+      const previous = queryClient.getQueryData<UserPreferences>(QUERY_KEY);
+      if (previous)
+        queryClient.setQueryData(QUERY_KEY, mergePreferences(previous, input));
+      return { previous };
+    },
+    onError: (_error, _input, context) => {
+      if (context?.previous)
+        queryClient.setQueryData(QUERY_KEY, context.previous);
     },
     onSuccess: (data) => {
       queryClient.setQueryData(QUERY_KEY, data);

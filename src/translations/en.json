@@ -44,6 +44,8 @@
     "logout": "Sign out",
     "more": "More",
     "notifications": {
+      "allPreferences": "All preferences",
+      "communityReplies": "Community Replies",
       "emailNewsPost": "News posts by email",
       "emailSection": "Email notifications",
       "enablePush": "Enable push notifications",
@@ -55,18 +57,37 @@
       "polls": "Club votes and polls",
       "postComments": "Comments on my posts",
       "preferences": "Notification preferences",
+      "preferencesCard": "Preferences",
       "pushHelper": "Everything still appears in your notifications.",
       "pushSection": "Push alerts",
+      "raceDeclarations": "Race declarations",
       "raceResult": "Race results",
-      "title": "Notifications"
+      "results": "Results",
+      "title": "Notifications",
+      "trainerUpdates": "Trainer Updates"
+    },
+    "personalDetails": {
+      "email": "Email",
+      "error": "Could not update your details.",
+      "name": "Name",
+      "nameRequired": "Name is required",
+      "save": "Save changes",
+      "saved": "Details updated.",
+      "title": "Personal details"
     },
     "privacy": "Privacy Policy",
     "profile": {
       "club": "Club",
+      "fallbackName": "Rionna member",
+      "followedHorses": "Followed horses",
       "help": "Help & support",
+      "helpSubject": "Rionna app support",
+      "logout": "Log out",
       "membership": "Membership",
       "membershipStatus": "Status",
       "membershipStatusValue": "Active member",
+      "personalDetails": "Personal details",
+      "statusActive": "Active",
       "title": "Profile"
     },
     "rate": "Rate",

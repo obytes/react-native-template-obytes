@@ -4,14 +4,18 @@ import Env from 'env';
 import { Stack, useRouter } from 'expo-router';
 import * as React from 'react';
 import {
-  ActivityIndicator,
   RefreshControl,
   ScrollView,
-  Text,
   View,
 } from 'react-native';
 
-import colors from '@/components/ui/colors';
+// Direct module paths (not the barrel) so the screen's test can mock the barrel's Image alone.
+import { ActivityIndicator } from '@/components/ui/activity-indicator';
+import { EmptyState, ErrorState } from '@/components/ui/empty-state';
+import { FocusAwareStatusBar } from '@/components/ui/focus-aware-status-bar';
+import { MonoLabel } from '@/components/ui/mono-label';
+import { ScreenHeader } from '@/components/ui/screen-header';
+import { Text } from '@/components/ui/text';
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { useInsideTrack } from '@/features/member-content/api/use-inside-track';
 import { usePostLike } from '@/features/member-content/api/use-post-like';
@@ -31,28 +35,9 @@ type InsideTrackViewProps = {
 
 function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
-    <View className="mb-4">
-      <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
-        {eyebrow}
-      </Text>
-      <Text className="mt-2 font-sans-semibold text-2xl text-ink">{title}</Text>
-    </View>
-  );
-}
-
-function EmptyState({
-  testID,
-  title,
-  message,
-}: {
-  testID: string;
-  title: string;
-  message: string;
-}) {
-  return (
-    <View testID={testID} className="rounded-2xl border border-outline-variant bg-white p-6">
-      <Text className="font-sans-semibold text-lg text-ink">{title}</Text>
-      <Text className="mt-2 font-sans text-sm/5 text-ink-variant">{message}</Text>
+    <View className="mb-4 gap-2">
+      <MonoLabel>{eyebrow}</MonoLabel>
+      <Text variant="display-sm" accessibilityRole="header">{title}</Text>
     </View>
   );
 }
@@ -96,15 +81,18 @@ export function InsideTrackView({
 }: InsideTrackViewProps) {
   return (
     <ScrollView
-      className="flex-1 bg-surface"
-      contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 24, paddingBottom: 48 }}
+      className="flex-1 bg-secondary-container"
+      contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 48 }}
       refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={onRefresh} />}
     >
+      <Text variant="display-lg" accessibilityRole="header" className="mb-6">
+        Inside Track
+      </Text>
       {isLoading && !pinned && !latest
         ? (
             <View testID="inside-track-loading" className="items-center py-16">
-              <ActivityIndicator color={colors.primary} />
-              <Text className="mt-3 font-sans text-sm text-ink-variant">
+              <ActivityIndicator />
+              <Text variant="body" className="mt-3 text-ink-variant">
                 Loading the Inside Track…
               </Text>
             </View>
@@ -112,10 +100,12 @@ export function InsideTrackView({
         : null}
       {!isLoading && contentState === 'unavailable'
         ? (
-            <EmptyState
+            <ErrorState
               testID="inside-track-unavailable"
               title="Inside Track unavailable"
-              message="Check your connection and pull down to try again."
+              body="Check your connection and try again."
+              onRetry={onRefresh}
+              retrying={isRefetching}
             />
           )
         : null}
@@ -124,7 +114,7 @@ export function InsideTrackView({
             <EmptyState
               testID="inside-track-empty"
               title="Nothing here yet"
-              message="Educational videos and articles will appear here soon."
+              body="Educational videos and articles will appear here soon."
             />
           )
         : null}
@@ -185,6 +175,7 @@ function SignedInInsideTrack({ memberId }: { memberId: string }) {
 }
 
 export function InsideTrackScreen() {
+  const router = useRouter();
   const member = useAuthStore.use.user();
 
   if (!member) {
@@ -192,9 +183,11 @@ export function InsideTrackScreen() {
   }
 
   return (
-    <>
-      <Stack.Screen options={{ title: 'Inside Track' }} />
+    <View className="flex-1 bg-secondary-container">
+      <Stack.Screen options={{ headerShown: false }} />
+      <FocusAwareStatusBar />
+      <ScreenHeader kicker="Club" onBack={() => router.back()} />
       <SignedInInsideTrack memberId={member.id} />
-    </>
+    </View>
   );
 }
