@@ -26,3 +26,23 @@ export function formatEventLocation(event: {
     return 'Online';
   return 'Location TBC';
 }
+
+/** "Sat 4 July · 12:30" -- the card/detail date line (Irish format, 24h). */
+export function formatEventDateLine(startsAt: string | null): string | null {
+  if (!startsAt)
+    return null;
+  const date = new Date(startsAt);
+  if (Number.isNaN(date.getTime()))
+    return null;
+  const day = new Intl.DateTimeFormat('en-IE', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'long',
+  }).format(date).replace(/,/g, '');
+  const time = new Intl.DateTimeFormat('en-IE', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+  }).format(date);
+  return `${day} · ${time}`;
+}

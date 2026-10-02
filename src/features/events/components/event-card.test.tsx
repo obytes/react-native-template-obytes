@@ -1,117 +1,67 @@
-import type { ClubEvent } from '@/features/events/types';
+import { clubEvent, rsvp } from '@/features/events/test-fixtures';
+import { cleanup, fireEvent, render, screen } from '@/lib/test-utils';
 
-import * as React from 'react';
-
-import { EventCard } from '@/features/events/components/event-card';
-import { cleanup, render, screen, setup } from '@/lib/test-utils';
+import { EventCard } from './event-card';
 
 afterEach(cleanup);
 
-function clubEvent(overrides: Partial<ClubEvent> = {}): ClubEvent {
-  return {
-    id: 'event-1',
-    spaceId: 'space-1',
-    title: 'Autumn Race Day',
-    startsAt: '2026-09-05T10:00:00.000Z',
-    endsAt: '2026-09-05T12:00:00.000Z',
-    locationType: 'in_person',
-    inPersonLocation: 'The Curragh',
-    virtualLocationUrl: null,
-    coverImageUrl: null,
-    bodyText: null,
-    tiptapDoc: null,
-    embeds: {},
-    inlineAttachments: [],
-    url: null,
-    rsvp: {
-      going: false,
-      status: null,
-      count: 3,
-      limit: null,
-      disabled: false,
-      full: false,
-    },
-    ...overrides,
-  };
-}
-
 describe('eventCard', () => {
-  it('renders the title, formatted date and location', () => {
-    render(<EventCard event={clubEvent()} onPress={jest.fn()} />);
-
+  it('renders title and the date line, with the type only when present', () => {
+    const { rerender } = render(<EventCard event={clubEvent()} onPress={jest.fn()} />);
     expect(screen.getByText('Autumn Race Day')).toBeOnTheScreen();
-    expect(screen.getByText('The Curragh')).toBeOnTheScreen();
-    expect(
-      screen.getByText(
-        new Intl.DateTimeFormat(undefined, {
-          weekday: 'short',
-          day: 'numeric',
-          month: 'short',
-          hour: '2-digit',
-          minute: '2-digit',
-        }).format(new Date('2026-09-05T10:00:00.000Z')),
-      ),
-    ).toBeOnTheScreen();
+    expect(screen.getByText(/^Thu 5 September · \d{2}:\d{2}$/)).toBeOnTheScreen();
+    rerender(<EventCard event={clubEvent({ type: 'Race Day' })} onPress={jest.fn()} />);
+    expect(screen.getByText(/· race day$/)).toBeOnTheScreen();
   });
 
-  it('shows a Going chip when the member has RSVPed', () => {
+  it('shows RSVP + Remind me and wires them', () => {
+    const onToggleRsvp = jest.fn();
+    const onToggleReminder = jest.fn();
     render(
-      <EventCard
-        event={clubEvent({ rsvp: { going: true, status: 'yes', count: 4, limit: null, disabled: false, full: false } })}
-        onPress={jest.fn()}
-      />,
+      <EventCard event={clubEvent()} onPress={jest.fn()} onToggleRsvp={onToggleRsvp} onToggleReminder={onToggleReminder} />,
     );
+    fireEvent.press(screen.getByText('RSVP'));
+    fireEvent.press(screen.getByText('Remind me'));
+    expect(onToggleRsvp).toHaveBeenCalledWith(true);
+    expect(onToggleReminder).toHaveBeenCalledTimes(1);
+  });
 
+  it('shows "Going ✓" when RSVPd and pressing cancels', () => {
+    const onToggleRsvp = jest.fn();
+    render(<EventCard event={clubEvent({ rsvp: rsvp({ going: true }) })} onPress={jest.fn()} onToggleRsvp={onToggleRsvp} />);
+    fireEvent.press(screen.getByText('Going ✓'));
+    expect(onToggleRsvp).toHaveBeenCalledWith(false);
+  });
+
+  it('disables "Full" when full and not going', () => {
+    const onToggleRsvp = jest.fn();
+    render(<EventCard event={clubEvent({ rsvp: rsvp({ full: true }) })} onPress={jest.fn()} onToggleRsvp={onToggleRsvp} />);
+    expect(screen.getByTestId('event-card-event-1-rsvp')).toBeDisabled();
+    fireEvent.press(screen.getByText('Full'));
+    expect(onToggleRsvp).not.toHaveBeenCalled();
+  });
+
+  it('keeps "Going ✓" enabled on a full event the member joined', () => {
+    render(<EventCard event={clubEvent({ rsvp: rsvp({ full: true, going: true }) })} onPress={jest.fn()} />);
+    expect(screen.getByTestId('event-card-event-1-rsvp')).not.toBeDisabled();
     expect(screen.getByText('Going ✓')).toBeOnTheScreen();
   });
 
-  it('shows a Full badge when the event is full and the member is not going', () => {
-    render(
-      <EventCard
-        event={clubEvent({ rsvp: { going: false, status: null, count: 20, limit: 20, disabled: true, full: true } })}
-        onPress={jest.fn()}
-      />,
-    );
-
-    expect(screen.getByText('Full')).toBeOnTheScreen();
+  it('reflects the reminder state', () => {
+    render(<EventCard event={clubEvent()} onPress={jest.fn()} reminderOn />);
+    expect(screen.getByText('Reminder on')).toBeOnTheScreen();
   });
 
-  it('does not show the Full badge when the member is going to a full event', () => {
-    render(
-      <EventCard
-        event={clubEvent({ rsvp: { going: true, status: 'yes', count: 20, limit: 20, disabled: true, full: true } })}
-        onPress={jest.fn()}
-      />,
-    );
-
-    expect(screen.getByText('Going ✓')).toBeOnTheScreen();
-    expect(screen.queryByText('Full')).toBeNull();
+  it('past events have no buttons', () => {
+    render(<EventCard event={clubEvent()} onPress={jest.fn()} past />);
+    expect(screen.queryByText('RSVP')).toBeNull();
+    expect(screen.queryByText('Remind me')).toBeNull();
   });
 
-  it('renders the placeholder block when there is no cover image', () => {
-    render(<EventCard event={clubEvent({ coverImageUrl: null })} onPress={jest.fn()} />);
-
-    expect(screen.getByTestId('event-card-placeholder')).toBeOnTheScreen();
-    expect(screen.queryByTestId('event-card-cover')).toBeNull();
-  });
-
-  it('renders the cover image when set', () => {
-    render(
-      <EventCard
-        event={clubEvent({ coverImageUrl: 'https://example.com/cover.jpg' })}
-        onPress={jest.fn()}
-      />,
-    );
-
-    expect(screen.getByTestId('event-card-cover')).toBeOnTheScreen();
-    expect(screen.queryByTestId('event-card-placeholder')).toBeNull();
-  });
-
-  it('fires onPress when tapped', async () => {
+  it('opens the event when the card is tapped', () => {
     const onPress = jest.fn();
-    const { user } = setup(<EventCard event={clubEvent()} onPress={onPress} />);
-
-    await user.press(screen.getByTestId('event-card-event-1'));
+    render(<EventCard event={clubEvent()} onPress={onPress} />);
+    fireEvent.press(screen.getByLabelText('Autumn Race Day'));
     expect(onPress).toHaveBeenCalledTimes(1);
   });
 });
