@@ -1,10 +1,11 @@
-import type { Insets, PressableProps, View } from 'react-native';
+import type { PressableProps, View } from 'react-native';
 import type { VariantProps } from 'tailwind-variants';
 import * as React from 'react';
 import { ActivityIndicator, Pressable } from 'react-native';
 import { tv } from 'tailwind-variants';
 
 import colors from './colors';
+import { minHitSlop } from './hit-slop';
 import { Text } from './text';
 
 /**
@@ -75,14 +76,6 @@ const INDICATOR_COLOR: Record<ButtonVariant, string> = {
   'ghost': colors.ink,
   'link': colors.ink,
 };
-
-/** Vertical hitSlop that grows a short button to the 44pt minimum target. */
-export function minHitSlop(height: number): Insets | undefined {
-  if (height >= 44)
-    return undefined;
-  const pad = Math.ceil((44 - height) / 2);
-  return { top: pad, bottom: pad };
-}
 
 type Props = {
   label?: string;

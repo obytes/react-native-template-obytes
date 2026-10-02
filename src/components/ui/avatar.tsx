@@ -3,7 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import { twMerge } from 'tailwind-merge';
 
 import { Image } from './image';
-import { getInitials, PhotoFallback } from './photo-fallback';
+import { getInitials } from './initials';
+import { PhotoFallback } from './photo-fallback';
 import { Text } from './text';
 
 export type AvatarProps = {

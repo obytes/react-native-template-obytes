@@ -8,7 +8,7 @@ import { CustomTabBar } from './tab-bar';
 
 jest.mock('./tab-bar-layout', () => ({
   ...jest.requireActual('./tab-bar-layout'),
-  useTabBarBottomOffset: () => 34,
+  useTabBarBottomOffset: jest.fn(() => 34),
 }));
 
 afterEach(cleanup);

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Pressable } from 'react-native';
 import { tv } from 'tailwind-variants';
 
-import { minHitSlop } from './button';
+import { minHitSlop } from './hit-slop';
 
 /**
  * Icon-only button (S13-01 §7).

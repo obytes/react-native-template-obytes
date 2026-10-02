@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 import { twMerge } from 'tailwind-merge';
 
-import { minHitSlop } from './button';
+import { minHitSlop } from './hit-slop';
 import { Text } from './text';
 
 /**

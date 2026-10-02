@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import { cleanup, render, screen } from '@/lib/test-utils';
 
-import { getInitials, PhotoFallback } from './photo-fallback';
+import { getInitials } from './initials';
+import { PhotoFallback } from './photo-fallback';
 
 afterEach(cleanup);
 

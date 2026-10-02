@@ -4,7 +4,7 @@ import { cleanup, render, screen, setup } from '@/lib/test-utils';
 
 import { ScreenHeader } from './screen-header';
 
-jest.mock('./screen-layout', () => ({ useScreenTopPadding: () => 59 }));
+jest.mock('./screen-layout', () => ({ useScreenTopPadding: jest.fn(() => 59) }));
 
 afterEach(cleanup);
 
