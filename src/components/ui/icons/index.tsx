@@ -16,4 +16,5 @@ export * from './settings';
 export * from './share';
 export * from './support';
 export * from './users';
+export * from './v2';
 export * from './website';
