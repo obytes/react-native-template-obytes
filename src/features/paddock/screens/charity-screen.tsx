@@ -6,14 +6,25 @@ import { useRouter } from 'expo-router';
 import * as React from 'react';
 import { RefreshControl } from 'react-native';
 
-import { ActivityIndicator, FocusAwareStatusBar, Image, Pressable, ScrollView, Text, View } from '@/components/ui';
+import {
+  ActivityIndicator,
+  EmptyState,
+  ErrorState,
+  FocusAwareStatusBar,
+  ScreenHeader,
+  ScrollView,
+  View,
+} from '@/components/ui';
+import { useTabBarContentPadding } from '@/components/ui/tab-bar-layout';
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { useCharity } from '@/features/paddock/api/use-charity';
-import { CharityHeader } from '@/features/paddock/components/charity-header';
-import { CharityStoryRow } from '@/features/paddock/components/charity-story-row';
+import { CharityStoryCard } from '@/features/paddock/components/charity-story-card';
+import { CharityTotalCard } from '@/features/paddock/components/charity-total-card';
+import { CharityVoteCard } from '@/features/paddock/components/charity-vote-card';
+import { CurrentCharitiesCard } from '@/features/paddock/components/current-charities-card';
+import { currentCharities } from '@/features/paddock/lib/current-charities';
 import { useActivePolls } from '@/features/polls/api/use-active-polls';
 import { usePollVote } from '@/features/polls/api/use-poll-vote';
-import { PollCard } from '@/features/polls/components/poll-card';
 import { openExternalLink } from '@/lib/open-external-link';
 
 type CharityViewProps = {
@@ -27,95 +38,49 @@ type CharityViewProps = {
   onOpenWebsite: (url: string) => void;
   onVote: (pollId: string, optionId: string) => void;
   pendingPollIds: string[];
+  onBack?: () => void;
 };
 
-function SectionTitle({ children }: { children: string }) {
-  return <Text className="font-mono text-[10px] tracking-widest text-label uppercase">{children}</Text>;
-}
-
-function CharityCard({ charity, onOpenWebsite }: { charity: Charity; onOpenWebsite: (url: string) => void }) {
+function CharityBody({ charity, poll, onOpenStory, onOpenWebsite, onVote, pendingPollIds }: Omit<CharityViewProps, 'isLoading' | 'isError' | 'isRefetching' | 'onRefresh' | 'onBack'> & { charity: Charity }) {
+  const story = charity.stories[0];
   return (
-    <View className="gap-3 rounded-2xl border border-outline-variant bg-white p-5">
-      <View className="flex-row items-center gap-3">
-        {charity.logoUrl
-          ? <Image source={{ uri: `${charity.logoUrl}?width=160&quality=80` }} className="size-12 rounded-lg" contentFit="contain" />
-          : null}
-        <Text className="flex-1 font-sans-semibold text-lg text-ink">{charity.charityName}</Text>
-      </View>
-      <Text className="font-sans text-sm/5 text-ink-variant">{charity.description}</Text>
-      {charity.websiteUrl
-        ? (
-            <Pressable testID="charity-website" accessibilityRole="link" onPress={() => onOpenWebsite(charity.websiteUrl ?? '')}>
-              <Text className="font-sans-semibold text-sm text-primary">Visit website →</Text>
-            </Pressable>
-          )
-        : null}
-    </View>
-  );
-}
-
-function CharityBody({ charity, poll, onOpenStory, onOpenWebsite, onVote, pendingPollIds }: Omit<CharityViewProps, 'isLoading' | 'isError' | 'isRefetching' | 'onRefresh'> & { charity: Charity }) {
-  return (
-    <View className="gap-6">
-      <CharityHeader charity={charity} />
-      <View className="gap-3">
-        <SectionTitle>Current charity</SectionTitle>
-        <CharityCard charity={charity} onOpenWebsite={onOpenWebsite} />
-      </View>
-      {charity.stories.length > 0
-        ? (
-            <View className="gap-3">
-              <SectionTitle>Impact stories</SectionTitle>
-              {charity.stories.map(story => <CharityStoryRow key={story.id} story={story} onOpen={onOpenStory} />)}
-            </View>
-          )
-        : null}
-      {poll
-        ? (
-            <View className="gap-3">
-              <SectionTitle>Member vote</SectionTitle>
-              <PollCard poll={poll} onVote={onVote} pending={pendingPollIds.includes(poll.id)} variant="card" />
-            </View>
-          )
-        : null}
+    <View className="gap-3">
+      <CharityTotalCard charity={charity} />
+      <CurrentCharitiesCard charities={currentCharities(charity)} onOpen={onOpenWebsite} />
+      {story ? <CharityStoryCard story={story} onOpen={onOpenStory} /> : null}
+      {poll ? <CharityVoteCard poll={poll} onVote={onVote} pending={pendingPollIds.includes(poll.id)} /> : null}
     </View>
   );
 }
 
 export function CharityView(props: CharityViewProps) {
-  const { charity, isLoading, isError, isRefetching, onRefresh } = props;
+  const { charity, isLoading, isError, isRefetching, onRefresh, onBack } = props;
   const showLoading = isLoading && charity === undefined;
   const showUnavailable = !showLoading && isError && charity === undefined;
   const showEmpty = !showLoading && !showUnavailable && charity === null;
+  const paddingBottom = useTabBarContentPadding(24);
 
   return (
-    <>
+    <View className="flex-1 bg-secondary-container">
       <FocusAwareStatusBar />
       <ScrollView
-        className="flex-1 bg-background"
-        contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 24, paddingBottom: 48 }}
+        className="flex-1"
+        contentContainerStyle={{ paddingBottom, gap: 32 }}
         refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={onRefresh} />}
       >
-        {showLoading ? <View testID="charity-loading" className="items-center py-16"><ActivityIndicator /></View> : null}
-        {showUnavailable
-          ? (
-              <View testID="charity-unavailable" className="rounded-2xl border border-outline-variant bg-white p-6">
-                <Text className="font-sans-semibold text-lg text-ink">Charity impact unavailable</Text>
-                <Text className="mt-2 font-sans text-sm/5 text-ink-variant">Check your connection and pull down to try again.</Text>
-              </View>
-            )
-          : null}
-        {showEmpty
-          ? (
-              <View testID="charity-empty" className="rounded-2xl border border-outline-variant bg-white p-6">
-                <Text className="font-sans-semibold text-lg text-ink">Coming soon</Text>
-                <Text className="mt-2 font-sans text-sm/5 text-ink-variant">The club will announce its charity partner here.</Text>
-              </View>
-            )
-          : null}
-        {charity ? <CharityBody {...props} charity={charity} /> : null}
+        <ScreenHeader kicker="CHARITY" onBack={onBack} />
+        <View className="px-4">
+          {showLoading ? <View testID="charity-loading" className="items-center py-16"><ActivityIndicator /></View> : null}
+          {showUnavailable
+            ? <ErrorState testID="charity-unavailable" kicker="CHARITY" title="Charity impact unavailable" body="Check your connection and try again." onRetry={onRefresh} retrying={isRefetching} />
+            : null}
+          {showEmpty
+            ? <EmptyState testID="charity-empty" kicker="CHARITY" title="Coming soon" body="The club will announce its charity partner here." />
+            : null}
+          {charity ? <CharityBody {...props} charity={charity} /> : null}
+        </View>
       </ScrollView>
-    </>
+    </View>
   );
 }
 
@@ -147,6 +112,7 @@ export function CharityScreen() {
       onOpenWebsite={openExternalLink}
       onVote={(id, optionId) => vote({ pollId: id, optionId })}
       pendingPollIds={pendingPollIds}
+      onBack={() => router.back()}
     />
   );
 }

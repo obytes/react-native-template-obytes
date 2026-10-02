@@ -24,7 +24,12 @@ export type CharityStoryTeaser = {
   subtitle: string | null;
   featuredImageUrl: string | null;
   publishedAt: string;
+  /** Optional: lets the client compute read time (not served yet). */
+  wordCount?: number | null;
+  body?: string | null;
 };
+
+export type CurrentCharity = { name: string; url: string | null; logoUrl?: string | null };
 
 export type Charity = {
   charityName: string;
@@ -38,6 +43,8 @@ export type Charity = {
   currency: string;
   stories: CharityStoryTeaser[];
   pollId: string | null;
+  /** S13-15: several current charities. Absent on older backends. */
+  charities?: CurrentCharity[];
 };
 
 export type CharityResult = { ok: boolean; charity: Charity | null };

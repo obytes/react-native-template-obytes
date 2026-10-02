@@ -9,6 +9,8 @@ jest.mock('@/components/ui', () => {
   const actual = jest.requireActual('@/components/ui');
   return { ...actual, FocusAwareStatusBar: () => null, Image: 'Image' };
 });
+jest.mock('@/components/ui/screen-layout', () => ({ useScreenTopPadding: () => 70 }));
+jest.mock('@/components/ui/tab-bar-layout', () => ({ useTabBarContentPadding: () => 120 }));
 
 const OFFER: Offer = {
   id: 'o1',
@@ -33,6 +35,11 @@ describe('benefitsView', () => {
   it('shows the empty state when there are no offers', () => {
     render(<BenefitsView {...base} offers={[]} />);
     expect(screen.getByTestId('benefits-empty')).toBeOnTheScreen();
+  });
+  it('shows the new-partners copy and no Active/Redeemed tabs', () => {
+    render(<BenefitsView {...base} offers={[]} />);
+    expect(screen.getByText('New partners are on the way')).toBeOnTheScreen();
+    expect(screen.queryByText('Redeemed')).toBeNull();
   });
   it('shows the unavailable state on error', () => {
     render(<BenefitsView {...base} offers={undefined} isError />);

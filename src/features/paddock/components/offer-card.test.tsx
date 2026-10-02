@@ -4,6 +4,7 @@ import { fireEvent, render, screen } from '@testing-library/react-native';
 import * as React from 'react';
 
 import { OfferCard } from '@/features/paddock/components/offer-card';
+import { formatValidTo } from '@/features/paddock/lib/format-valid-to';
 
 jest.mock('@/components/ui', () => {
   const actual = jest.requireActual('@/components/ui');
@@ -27,7 +28,6 @@ describe('offerCard', () => {
   it('shows a copy button for a discount code and forwards the code', () => {
     const onCopyCode = jest.fn();
     render(<OfferCard offer={{ ...BASE, discountCode: 'RIONNA15' }} onCopyCode={onCopyCode} onOpenLink={jest.fn()} />);
-    expect(screen.getByText('RIONNA15')).toBeOnTheScreen();
     fireEvent.press(screen.getByTestId('offer-copy-o1'));
     expect(onCopyCode).toHaveBeenCalledWith('RIONNA15');
   });
@@ -39,16 +39,31 @@ describe('offerCard', () => {
     expect(onOpenLink).toHaveBeenCalledWith('https://example.com/deal');
   });
 
-  it('shows the how-to-redeem line for in-store offers and no buttons', () => {
+  it('reveals the how-to-redeem line on tap and shows no buttons', () => {
     render(<OfferCard offer={{ ...BASE, howToRedeem: 'Show this screen at the till' }} onCopyCode={jest.fn()} onOpenLink={jest.fn()} />);
+    expect(screen.queryByText('Show this screen at the till')).toBeNull();
+    fireEvent.press(screen.getByTestId('offer-toggle-o1'));
     expect(screen.getByText('Show this screen at the till')).toBeOnTheScreen();
     expect(screen.queryByTestId('offer-copy-o1')).toBeNull();
     expect(screen.queryByTestId('offer-link-o1')).toBeNull();
   });
 
-  it('shows the validity date and category', () => {
-    render(<OfferCard offer={{ ...BASE, validUntil: '2026-09-30T23:59:59.999Z' }} onCopyCode={jest.fn()} onOpenLink={jest.fn()} />);
-    expect(screen.getByText(/Valid until/)).toBeOnTheScreen();
-    expect(screen.getByText('Hotel')).toBeOnTheScreen();
+  it('shows partner, offer line and valid-to month', () => {
+    render(<OfferCard offer={{ ...BASE, validUntil: '2026-09-30T12:00:00.000Z' }} onCopyCode={jest.fn()} onOpenLink={jest.fn()} />);
+    expect(screen.getByText('The Shelbourne')).toBeOnTheScreen();
+    expect(screen.getByText('15% off stays; Valid to September')).toBeOnTheScreen();
+  });
+
+  it('omits the valid-to part when there is no date', () => {
+    render(<OfferCard offer={BASE} onCopyCode={jest.fn()} onOpenLink={jest.fn()} />);
+    expect(screen.getByText('15% off stays')).toBeOnTheScreen();
+  });
+});
+
+describe('formatValidTo', () => {
+  it('formats the month or returns null', () => {
+    expect(formatValidTo('2026-03-15T00:00:00.000Z')).toBe('Valid to March');
+    expect(formatValidTo(null)).toBeNull();
+    expect(formatValidTo('nope')).toBeNull();
   });
 });

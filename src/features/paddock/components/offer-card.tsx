@@ -1,6 +1,12 @@
-import type { Offer, OfferCategory } from '@/features/paddock/types';
+import type { Offer } from '@/features/paddock/types';
 
-import { Image, Pressable, Text, View } from '@/components/ui';
+import * as React from 'react';
+
+import { Card, colors, IconButton, Image, Pressable, Text, View } from '@/components/ui';
+import { CaretRightV2 } from '@/components/ui/icons/v2';
+import { getInitials } from '@/components/ui/initials';
+import { CopyIcon } from '@/features/paddock/components/paddock-icons';
+import { formatValidTo } from '@/features/paddock/lib/format-valid-to';
 
 type OfferCardProps = {
   offer: Offer;
@@ -8,83 +14,74 @@ type OfferCardProps = {
   onOpenLink: (url: string) => void;
 };
 
-const CATEGORY_LABEL: Record<OfferCategory, string> = {
-  restaurant: 'Restaurant',
-  hotel: 'Hotel',
-  lifestyle: 'Lifestyle',
-  racing: 'Racing',
-  other: 'Partner',
-};
+export function OfferCard({ offer, onCopyCode, onOpenLink }: OfferCardProps) {
+  const [open, setOpen] = React.useState(false);
+  const validTo = formatValidTo(offer.validUntil);
+  const hasDetails = Boolean(offer.description || offer.discountCode || offer.howToRedeem);
+  const subline = [offer.title, validTo].filter(Boolean).join('; ');
 
-function formatValidUntil(iso: string) {
-  const d = new Date(iso);
-  return `Valid until ${d.toLocaleDateString('en-IE', { day: 'numeric', month: 'short', year: 'numeric' })}`;
-}
-
-function OfferActions({ offer, onCopyCode, onOpenLink }: OfferCardProps) {
   return (
-    <View className="gap-3">
-      {offer.discountCode
-        ? (
-            <View className="flex-row items-center justify-between rounded-xl bg-surface-container px-4 py-3">
-              <Text selectable className="font-mono text-base tracking-wider text-ink">{offer.discountCode}</Text>
-              <Pressable
+    <Card testID={`offer-card-${offer.id}`} className="gap-3">
+      <Pressable
+        testID={`offer-toggle-${offer.id}`}
+        accessibilityRole={hasDetails ? 'button' : undefined}
+        accessibilityState={hasDetails ? { expanded: open } : undefined}
+        disabled={!hasDetails}
+        onPress={() => setOpen(v => !v)}
+        className="flex-row items-center gap-4"
+      >
+        <Image
+          source={offer.imageUrl ? { uri: `${offer.imageUrl}?width=160&quality=80` } : undefined}
+          className="size-12 rounded-lg"
+          contentFit="cover"
+          fallback={{ colourway: 'plum', initials: getInitials(offer.partnerName) }}
+        />
+        <View className="flex-1">
+          <Text variant="body-lg" numberOfLines={1}>{offer.partnerName}</Text>
+          <Text variant="body-sm" className="text-ink-variant" numberOfLines={2}>{subline}</Text>
+        </View>
+        {offer.discountCode
+          ? (
+              <IconButton
                 testID={`offer-copy-${offer.id}`}
-                accessibilityRole="button"
+                variant="circle-light"
+                className="bg-ice"
                 accessibilityLabel="Copy code"
                 onPress={() => onCopyCode(offer.discountCode ?? '')}
-                className="rounded-full bg-primary px-4 py-2"
               >
-                <Text className="font-sans-semibold text-sm text-white">Copy</Text>
-              </Pressable>
+                <CopyIcon color={colors.ink} />
+              </IconButton>
+            )
+          : offer.redeemUrl
+            ? (
+                <IconButton
+                  testID={`offer-link-${offer.id}`}
+                  variant="circle-light"
+                  className="bg-ice"
+                  accessibilityLabel="Open offer"
+                  onPress={() => onOpenLink(offer.redeemUrl ?? '')}
+                >
+                  <CaretRightV2 size={20} color={colors.ink} />
+                </IconButton>
+              )
+            : null}
+      </Pressable>
+      {open
+        ? (
+            <View testID={`offer-details-${offer.id}`} className="gap-2 border-t border-outline-variant pt-3">
+              {offer.description ? <Text variant="body">{offer.description}</Text> : null}
+              {offer.discountCode ? <Text selectable variant="label" className="text-ink">{offer.discountCode}</Text> : null}
+              {offer.howToRedeem ? <Text variant="body-sm" className="text-ink-variant">{offer.howToRedeem}</Text> : null}
+              {offer.redeemUrl && offer.discountCode
+                ? (
+                    <Pressable testID={`offer-link-${offer.id}`} accessibilityRole="link" onPress={() => onOpenLink(offer.redeemUrl ?? '')}>
+                      <Text variant="body-sm" className="font-sans-semibold text-primary">Open offer</Text>
+                    </Pressable>
+                  )
+                : null}
             </View>
           )
         : null}
-      {offer.redeemUrl
-        ? (
-            <Pressable
-              testID={`offer-link-${offer.id}`}
-              accessibilityRole="link"
-              onPress={() => onOpenLink(offer.redeemUrl ?? '')}
-              className="items-center rounded-full border border-outline-variant px-4 py-3"
-            >
-              <Text className="font-sans-semibold text-sm text-primary">Open offer →</Text>
-            </Pressable>
-          )
-        : null}
-      {offer.howToRedeem
-        ? <Text className="font-sans text-sm/5 text-ink-variant">{offer.howToRedeem}</Text>
-        : null}
-    </View>
-  );
-}
-
-export function OfferCard({ offer, onCopyCode, onOpenLink }: OfferCardProps) {
-  return (
-    <View testID={`offer-card-${offer.id}`} className="gap-4 overflow-hidden rounded-2xl border border-outline-variant bg-white">
-      {offer.imageUrl
-        ? (
-            <Image
-              source={{ uri: `${offer.imageUrl}?width=800&quality=80` }}
-              className="aspect-video w-full"
-              contentFit="cover"
-            />
-          )
-        : null}
-      <View className="gap-3 px-5 pt-1 pb-5">
-        <View className="gap-1">
-          <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
-            {CATEGORY_LABEL[offer.category]}
-          </Text>
-          <Text className="font-sans-semibold text-lg text-ink">{offer.title}</Text>
-          <Text className="font-sans text-sm text-ink-variant">{offer.partnerName}</Text>
-        </View>
-        <Text className="font-sans text-sm/5 text-ink-variant">{offer.description}</Text>
-        <OfferActions offer={offer} onCopyCode={onCopyCode} onOpenLink={onOpenLink} />
-        {offer.validUntil
-          ? <Text className="font-mono text-xs text-ink-muted">{formatValidUntil(offer.validUntil)}</Text>
-          : null}
-      </View>
-    </View>
+    </Card>
   );
 }

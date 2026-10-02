@@ -13,7 +13,7 @@ jest.mock('@/components/ui/tab-bar-layout', () => ({ useTabBarContentPadding: ()
 function renderHub(overrides: Partial<React.ComponentProps<typeof PaddockHubView>> = {}) {
   const props = {
     offersCount: 3,
-    charitySummary: '€24,500 raised for Irish Injured Jockeys',
+    charitySummary: '\u20AC24,500 raised to date. Vote on what\u2019s next',
     onOpenBenefits: jest.fn(),
     onOpenCharity: jest.fn(),
     ...overrides,
@@ -23,38 +23,43 @@ function renderHub(overrides: Partial<React.ComponentProps<typeof PaddockHubView
 }
 
 describe('paddockHubView', () => {
-  it('renders live rows with summaries and navigates on press', () => {
+  it('renders the heading and live rows, and navigates on press', () => {
     const { onOpenBenefits, onOpenCharity } = renderHub();
+    expect(screen.getByText('Paddock')).toBeOnTheScreen();
     expect(screen.getByText('3 offers')).toBeOnTheScreen();
-    expect(screen.getByText('€24,500 raised for Irish Injured Jockeys')).toBeOnTheScreen();
-    fireEvent.press(screen.getByTestId('paddock-row-Member benefits'));
-    fireEvent.press(screen.getByTestId('paddock-row-Charity impact'));
+    expect(screen.getByText('\u20AC24,500 raised to date. Vote on what\u2019s next')).toBeOnTheScreen();
+    fireEvent.press(screen.getByTestId('paddock-row-Membership Benefits'));
+    fireEvent.press(screen.getByTestId('paddock-row-Charity Snapshot'));
     expect(onOpenBenefits).toHaveBeenCalledTimes(1);
     expect(onOpenCharity).toHaveBeenCalledTimes(1);
   });
 
-  it('falls back to static subtitles while summaries are unknown', () => {
-    renderHub({ offersCount: null, charitySummary: null });
-    expect(screen.getByText('Restaurant, hotel and lifestyle partners')).toBeOnTheScreen();
-    expect(screen.getByText('Total donated, voting and impact stories')).toBeOnTheScreen();
-  });
-
-  it('does not render deferred paddock rows', () => {
+  it('shows Merchandise as a disabled coming-soon row', () => {
     renderHub();
-    for (const title of ['My Rionna journey', 'Merchandise', 'Competitions']) {
-      expect(screen.queryByText(title)).not.toBeOnTheScreen();
-    }
-    expect(screen.queryByText('Coming soon')).not.toBeOnTheScreen();
+    expect(screen.getByText('Merchandise')).toBeOnTheScreen();
+    expect(screen.getByText('Coming soon')).toBeOnTheScreen();
+    expect(screen.getByTestId('paddock-row-Merchandise')).toHaveProp('accessibilityState', { disabled: true });
   });
 
-  it('pluralises a single offer', () => {
-    renderHub({ offersCount: 1 });
-    expect(screen.getByText('1 offer')).toBeOnTheScreen();
+  it('does not render a Competitions row', () => {
+    renderHub();
+    expect(screen.queryByText('Competitions')).not.toBeOnTheScreen();
   });
 
-  it('falls back to the static subtitle when there are no offers', () => {
-    renderHub({ offersCount: 0 });
-    expect(screen.getByText('Restaurant, hotel and lifestyle partners')).toBeOnTheScreen();
-    expect(screen.queryByText('0 offers')).not.toBeOnTheScreen();
+  it('hides the journey card until a badge exists', () => {
+    renderHub();
+    expect(screen.queryByTestId('journey-card')).not.toBeOnTheScreen();
+    expect(screen.queryByText('My Rionna journey')).not.toBeOnTheScreen();
+  });
+
+  it('shows the Founding Member badge when flagged', () => {
+    renderHub({ badges: ['founding-member'] });
+    expect(screen.getByTestId('journey-card')).toBeOnTheScreen();
+    expect(screen.getByText('Founding Member')).toBeOnTheScreen();
+  });
+
+  it('falls back to the static benefits subtitle when unknown', () => {
+    renderHub({ offersCount: null });
+    expect(screen.getByText('Restaurants, hotels, lifestyle partners')).toBeOnTheScreen();
   });
 });

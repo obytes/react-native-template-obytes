@@ -10,6 +10,8 @@ jest.mock('@/components/ui', () => {
   const actual = jest.requireActual('@/components/ui');
   return { ...actual, FocusAwareStatusBar: () => null, Image: 'Image' };
 });
+jest.mock('@/components/ui/screen-layout', () => ({ useScreenTopPadding: () => 70 }));
+jest.mock('@/components/ui/tab-bar-layout', () => ({ useTabBarContentPadding: () => 120 }));
 
 const CHARITY: Charity = {
   charityName: 'Irish Injured Jockeys',
@@ -50,37 +52,60 @@ const base = {
 };
 
 describe('charityView', () => {
-  it('renders total, goal progress, the percentage statement and the charity', () => {
+  it('renders total, goal line and the single active charity', () => {
     render(<CharityView {...base} charity={CHARITY} poll={POLL} />);
-    expect(screen.getByText('€24,500')).toBeOnTheScreen();
-    expect(screen.getByText('68% of the €36,000 goal')).toBeOnTheScreen();
-    expect(screen.getByText('5% of every membership goes to Irish Injured Jockeys')).toBeOnTheScreen();
-    expect(screen.getByText('Supporting jockeys after injury.')).toBeOnTheScreen();
+    expect(screen.getByText('\u20AC24,500')).toBeOnTheScreen();
+    expect(screen.getByText('68% of this year\u2019s \u20AC36,000 goal')).toBeOnTheScreen();
+    expect(screen.getByText('Irish Injured Jockeys')).toBeOnTheScreen();
   });
 
-  it('opens a story by slug and the website link', () => {
-    render(<CharityView {...base} charity={CHARITY} poll={POLL} />);
+  it('opens the charity url, and lists charities[] when present', () => {
+    const { rerender } = render(<CharityView {...base} charity={CHARITY} poll={POLL} />);
+    fireEvent.press(screen.getByTestId('charity-row-0'));
+    expect(base.onOpenWebsite).toHaveBeenCalledWith('https://iij.ie');
+    rerender(<CharityView {...base} poll={POLL} charity={{ ...CHARITY, charities: [{ name: 'A', url: null }, { name: 'B', url: 'https://b.ie' }] }} />);
+    expect(screen.getByText('A')).toBeOnTheScreen();
+    expect(screen.getByText('B')).toBeOnTheScreen();
+    expect(screen.queryByTestId('charity-row-0-chevron')).toBeNull();
+    expect(screen.getByTestId('charity-row-1-chevron')).toBeOnTheScreen();
+  });
+
+  it('opens the latest story and shows read time only when measurable', () => {
+    const { rerender } = render(<CharityView {...base} charity={CHARITY} poll={POLL} />);
     fireEvent.press(screen.getByTestId('charity-story-n1'));
     expect(base.onOpenStory).toHaveBeenCalledWith('six-horses');
-    fireEvent.press(screen.getByTestId('charity-website'));
-    expect(base.onOpenWebsite).toHaveBeenCalledWith('https://iij.ie');
+    expect(screen.queryByTestId('story-read-time')).toBeNull();
+    rerender(<CharityView {...base} poll={POLL} charity={{ ...CHARITY, stories: [{ ...CHARITY.stories[0], wordCount: 500 }] }} />);
+    expect(screen.getByText('3 min read')).toBeOnTheScreen();
   });
 
-  it('renders the linked poll card and forwards votes', () => {
+  it('renders the inline vote and forwards votes', () => {
     render(<CharityView {...base} charity={CHARITY} poll={POLL} />);
     fireEvent.press(screen.getByTestId('poll-option-a'));
     expect(base.onVote).toHaveBeenCalledWith('p1', 'a');
   });
 
-  it('omits the goal line and vote section when absent', () => {
-    render(<CharityView {...base} charity={{ ...CHARITY, goalCents: null, goalProgress: null, pollId: null }} poll={undefined} />);
+  it('shows results bars after voting', () => {
+    render(<CharityView {...base} charity={CHARITY} poll={{ ...POLL, myVoteOptionId: 'a', results: { total: 4, byOption: { a: 3, b: 1 } } }} />);
+    expect(screen.getByTestId('poll-bar-a')).toBeOnTheScreen();
+    expect(screen.getByText('4 votes')).toBeOnTheScreen();
+  });
+
+  it('omits goal, stories and vote when absent', () => {
+    render(<CharityView {...base} charity={{ ...CHARITY, goalCents: null, goalProgress: null, pollId: null, stories: [] }} poll={undefined} />);
     expect(screen.queryByText(/goal/)).toBeNull();
+    expect(screen.queryByTestId('charity-story-n1')).toBeNull();
     expect(screen.queryByText('Member vote')).toBeNull();
   });
 
   it('shows the not-yet state when no charity is configured', () => {
     render(<CharityView {...base} charity={null} poll={undefined} />);
     expect(screen.getByTestId('charity-empty')).toBeOnTheScreen();
+  });
+
+  it('shows the unavailable state on error', () => {
+    render(<CharityView {...base} charity={undefined} poll={undefined} isError />);
+    expect(screen.getByTestId('charity-unavailable')).toBeOnTheScreen();
   });
 
   it('disables the poll options while the vote is pending', () => {
