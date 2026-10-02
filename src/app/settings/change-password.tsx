@@ -13,6 +13,7 @@ import {
   View,
 } from '@/components/ui';
 import { getFieldError } from '@/components/ui/form-utils';
+import { PageHeader } from '@/features/settings/components/page-header';
 import { client } from '@/lib/api/client';
 import { translate } from '@/lib/i18n';
 
@@ -85,46 +86,45 @@ export default function ChangePasswordScreen() {
   return (
     <>
       <FocusAwareStatusBar />
-      <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
-        <ScrollView className="flex-1 bg-background">
-          <View className="flex-1 px-4 pt-6 pb-10">
-            <Text className="font-display text-3xl text-ink">
-              {translate('settings.changePassword.title')}
-            </Text>
+      <View className="flex-1 bg-secondary-container">
+        <PageHeader kicker={translate('settings.changePassword.title')} />
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+          <ScrollView className="flex-1" keyboardShouldPersistTaps="handled">
+            <View className="flex-1 px-4 pt-6 pb-10">
+              {error && (
+                <View className="mb-4 rounded-lg bg-white p-3">
+                  <Text variant="body" className="text-center text-danger-700">{error}</Text>
+                </View>
+              )}
 
-            {error && (
-              <View className="mt-4 rounded-lg bg-danger-50 p-3">
-                <Text className="text-center text-sm text-ink">{error}</Text>
+              {success && (
+                <View className="mb-4 rounded-lg bg-white p-3">
+                  <Text variant="body" className="text-center">
+                    {translate('settings.changePassword.success')}
+                  </Text>
+                </View>
+              )}
+
+              <View>
+                <PasswordField form={form} name="currentPassword" labelKey="settings.changePassword.current" />
+                <PasswordField form={form} name="newPassword" labelKey="settings.changePassword.new" />
+                <PasswordField form={form} name="confirmPassword" labelKey="settings.changePassword.confirm" />
+                <form.Subscribe
+                  selector={state => [state.isSubmitting, state.canSubmit]}
+                  children={([isSubmitting, canSubmit]) => (
+                    <Button
+                      label={translate('settings.changePassword.submit')}
+                      onPress={form.handleSubmit}
+                      loading={isSubmitting}
+                      disabled={!canSubmit || isSubmitting}
+                    />
+                  )}
+                />
               </View>
-            )}
-
-            {success && (
-              <View className="mt-4 rounded-lg bg-success-50 p-3">
-                <Text className="text-center text-sm text-ink">
-                  {translate('settings.changePassword.success')}
-                </Text>
-              </View>
-            )}
-
-            <View className="mt-4">
-              <PasswordField form={form} name="currentPassword" labelKey="settings.changePassword.current" />
-              <PasswordField form={form} name="newPassword" labelKey="settings.changePassword.new" />
-              <PasswordField form={form} name="confirmPassword" labelKey="settings.changePassword.confirm" />
-              <form.Subscribe
-                selector={state => [state.isSubmitting, state.canSubmit]}
-                children={([isSubmitting, canSubmit]) => (
-                  <Button
-                    label={translate('settings.changePassword.submit')}
-                    onPress={form.handleSubmit}
-                    loading={isSubmitting}
-                    disabled={!canSubmit || isSubmitting}
-                  />
-                )}
-              />
             </View>
-          </View>
-        </ScrollView>
-      </KeyboardAvoidingView>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </View>
     </>
   );
 }

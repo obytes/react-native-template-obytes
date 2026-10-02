@@ -58,3 +58,27 @@ export const EMAIL_ROWS: Row[] = [
     set: v => ({ emailPreferences: { newsPost: v } }),
   },
 ];
+
+/** The four quick toggles on the notification centre's inline Preferences card. */
+export const INLINE_ROWS: Row[] = [
+  {
+    labelKey: 'settings.notifications.raceDeclarations',
+    get: p => p.pushPreferences.horseDeclared !== false,
+    set: v => ({ pushPreferences: { horseDeclared: v } }),
+  },
+  {
+    labelKey: 'settings.notifications.results',
+    get: p => p.pushPreferences.raceResult !== false,
+    set: v => ({ pushPreferences: { raceResult: v } }),
+  },
+  {
+    labelKey: 'settings.notifications.trainerUpdates',
+    get: p => p.pushPreferences.horseUpdates !== false,
+    set: v => ({ pushPreferences: { horseUpdates: v } }),
+  },
+  {
+    labelKey: 'settings.notifications.communityReplies',
+    get: p => p.pushPreferences.postComments !== false,
+    set: v => ({ pushPreferences: { postComments: v } }),
+  },
+];

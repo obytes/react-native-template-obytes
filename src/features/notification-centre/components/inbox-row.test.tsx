@@ -24,11 +24,23 @@ const BASE: InboxItem = {
 };
 
 describe('inboxRow', () => {
-  it('renders title, body and relative time', () => {
+  it('renders the title, relative time and category tag', () => {
     render(<InboxRow item={BASE} onPress={jest.fn()} />);
     expect(screen.getByText('Club update')).toBeOnTheScreen();
-    expect(screen.getByText('Something happened at the club.')).toBeOnTheScreen();
     expect(screen.getByText('Just now')).toBeOnTheScreen();
+    expect(screen.getByText('Club')).toBeOnTheScreen();
+  });
+
+  it('tags race kinds as Racing', () => {
+    render(<InboxRow item={{ ...BASE, kind: 'race_declared' }} onPress={jest.fn()} />);
+    expect(screen.getByText('Racing')).toBeOnTheScreen();
+  });
+
+  it('uses SemiBold title when unread and regular when read', () => {
+    const { rerender } = render(<InboxRow item={BASE} onPress={jest.fn()} />);
+    expect(screen.getByText('Club update').props.className).toContain('font-sans-semibold');
+    rerender(<InboxRow item={{ ...BASE, unread: false }} onPress={jest.fn()} />);
+    expect(screen.getByText('Club update').props.className).not.toContain('font-sans-semibold');
   });
 
   it('shows the unread dot when unread', () => {
@@ -41,16 +53,16 @@ describe('inboxRow', () => {
     expect(screen.queryByTestId('inbox-unread-dot')).not.toBeOnTheScreen();
   });
 
-  it('renders an image when icon is horse and imageUrl is set', () => {
-    render(<InboxRow item={{ ...BASE, icon: 'horse', imageUrl: 'https://example.com/horse.jpg' }} onPress={jest.fn()} />);
-    expect(screen.getByTestId('inbox-row-item-1')).toBeOnTheScreen();
+  it('renders the right-hand image when imageUrl is set', () => {
+    render(<InboxRow item={{ ...BASE, imageUrl: 'https://example.com/horse.jpg' }} onPress={jest.fn()} />);
     const image = screen.UNSAFE_getByType('Image' as never);
     expect(image.props.source).toEqual({ uri: 'https://example.com/horse.jpg' });
   });
 
-  it('renders the club monogram when icon is club', () => {
-    render(<InboxRow item={BASE} onPress={jest.fn()} />);
-    expect(screen.getByText('R')).toBeOnTheScreen();
+  it('goes full width with no image, and ignores the actor avatar', () => {
+    render(<InboxRow item={{ ...BASE, icon: 'actor', actorAvatarUrl: 'https://example.com/a.jpg' }} onPress={jest.fn()} />);
+    expect(screen.queryByTestId('inbox-image-item-1')).toBeNull();
+    expect(screen.UNSAFE_queryByType('Image' as never)).toBeNull();
   });
 
   it('calls onPress with the item when pressed', () => {

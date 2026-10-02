@@ -21,9 +21,20 @@ let mockInbox: {
   refetch: jest.Mock;
 };
 
+const mockPush = jest.fn();
 jest.mock('expo-router', () => ({
   useFocusEffect: (cb: () => void) => cb(),
-  Stack: { Screen: ({ options }: { options?: { headerRight?: () => React.ReactNode } }) => options?.headerRight?.() ?? null },
+  useRouter: () => ({ push: mockPush, back: jest.fn() }),
+  Stack: { Screen: () => null },
+}));
+
+jest.mock('@/components/ui/screen-layout', () => ({ useScreenTopPadding: () => 0 }));
+
+let mockPrefs: unknown;
+const mockUpdatePrefs = { mutate: jest.fn() };
+jest.mock('@/features/settings/api/use-preferences', () => ({
+  usePreferences: () => ({ data: mockPrefs }),
+  useUpdatePreferences: () => mockUpdatePrefs,
 }));
 
 jest.mock('@/components/ui', () => {
@@ -90,6 +101,7 @@ describe('notificationCentreScreen', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockInbox = baseInbox();
+    mockPrefs = { pushEnabled: true, pushPreferences: { trainerPost: true, horseUpdates: false }, emailPreferences: {} };
   });
 
   it('shows the loading state', () => {
@@ -156,18 +168,41 @@ describe('notificationCentreScreen', () => {
     expect(mockRouteToTarget).not.toHaveBeenCalled();
   });
 
-  it('shows the mark-all-as-read action only when something is unread and calls markAllRead on press', () => {
+  it('moves mark-all-read into the overflow menu and calls markAllRead', () => {
     const items = [itemAt('today-1', 0, true)];
     mockInbox = baseInbox({ data: { pages: [{ items }] } });
     render(<NotificationCentreScreen />);
+    expect(screen.queryByTestId('inbox-mark-all')).not.toBeOnTheScreen();
+    fireEvent.press(screen.getByTestId('inbox-menu'));
     fireEvent.press(screen.getByTestId('inbox-mark-all'));
     expect(mockMarkAllRead.mutate).toHaveBeenCalledTimes(1);
+    expect(screen.queryByTestId('inbox-mark-all')).not.toBeOnTheScreen();
   });
 
-  it('does not show the mark-all-as-read action when nothing is unread', () => {
+  it('hides the overflow menu when nothing is unread', () => {
     const items = [itemAt('today-1', 0, false)];
     mockInbox = baseInbox({ data: { pages: [{ items }] } });
     render(<NotificationCentreScreen />);
-    expect(screen.queryByTestId('inbox-mark-all')).not.toBeOnTheScreen();
+    expect(screen.queryByTestId('inbox-menu')).not.toBeOnTheScreen();
+  });
+
+  it('renders the inline preferences card and toggles optimistically via the hook', () => {
+    const items = [itemAt('today-1', 0, false)];
+    mockInbox = baseInbox({ data: { pages: [{ items }] } });
+    render(<NotificationCentreScreen />);
+    expect(screen.getByText('Race declarations')).toBeOnTheScreen();
+    expect(screen.getByText('Results')).toBeOnTheScreen();
+    expect(screen.getByText('Trainer Updates')).toBeOnTheScreen();
+    expect(screen.getByText('Community Replies')).toBeOnTheScreen();
+    fireEvent(screen.getByTestId('inbox-pref-settings.notifications.trainerUpdates'), 'valueChange', true);
+    expect(mockUpdatePrefs.mutate).toHaveBeenCalledWith({ pushPreferences: { horseUpdates: true } });
+    fireEvent.press(screen.getByTestId('inbox-all-preferences'));
+    expect(mockPush).toHaveBeenCalledWith('/settings/notifications');
+  });
+
+  it('keeps the preferences card under the empty state', () => {
+    mockInbox = baseInbox({ data: { pages: [{ items: [] }] } });
+    render(<NotificationCentreScreen />);
+    expect(screen.getByTestId('inbox-preferences')).toBeOnTheScreen();
   });
 });
