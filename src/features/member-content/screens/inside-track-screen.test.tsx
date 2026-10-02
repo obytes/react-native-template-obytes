@@ -5,8 +5,9 @@ import * as React from 'react';
 
 import { InsideTrackView } from '@/features/member-content/screens/inside-track-screen';
 
-jest.mock('@/components/ui', () => ({
-  Image: 'Image',
+jest.mock('@/components/ui/screen-layout', () => ({
+  useScreenTopPadding: () => 70,
+  useScreenBottomPadding: () => 34,
 }));
 
 function feedItem(overrides: Partial<MemberFeedItem> = {}): MemberFeedItem {

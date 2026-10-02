@@ -3,15 +3,14 @@ import type { CreatePostFailure, CreatePostInput, PostableSpace, PostImage } fro
 import Env from 'env';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as React from 'react';
-import { ActivityIndicator, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 
-import colors from '@/components/ui/colors';
+import { ActivityIndicator, Button, ChipRow, FormField, MonoLabel, ScreenHeader, Text } from '@/components/ui';
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { useCreatePost } from '@/features/community-posting/api/use-create-post';
 import { usePostableSpaces } from '@/features/community-posting/api/use-postable-spaces';
 import { ComposeImageRow } from '@/features/community-posting/components/compose-image-row';
-import { SpacePickerSheet } from '@/features/community-posting/components/space-picker-sheet';
 import { pickImage } from '@/features/community-posting/lib/pick-image';
 import { getItem, setItem } from '@/lib/storage';
 
@@ -73,27 +72,58 @@ type ComposeFieldsProps = {
 
 function ComposeFields({ title, onChangeTitle, body, onChangeBody }: ComposeFieldsProps) {
   return (
-    <View className="gap-3">
-      <TextInput
+    <View>
+      <FormField
         accessibilityLabel="Post title"
         placeholder="Title (optional)"
-        placeholderTextColor={colors.inkMuted}
         value={title}
         onChangeText={onChangeTitle}
         maxLength={TITLE_MAX}
-        className="rounded-2xl border border-outline-variant bg-white px-4 py-3 font-sans text-base text-ink"
       />
-      <TextInput
+      <FormField
         accessibilityLabel="Post body"
         placeholder="What's on your mind?"
-        placeholderTextColor={colors.inkMuted}
         value={body}
         onChangeText={onChangeBody}
         maxLength={BODY_MAX}
         multiline
         textAlignVertical="top"
-        className="min-h-40 rounded-2xl border border-outline-variant bg-white px-4 py-3 font-sans text-base text-ink"
+        className="min-h-40"
       />
+    </View>
+  );
+}
+
+function SpaceChips({
+  spaces,
+  selectedSpaceId,
+  onSelect,
+}: {
+  spaces: PostableSpace[];
+  selectedSpaceId: string | null;
+  onSelect: (space: PostableSpace) => void;
+}) {
+  const items = React.useMemo(
+    () => spaces.map(space => ({ key: space.id, label: `${space.emoji ? `${space.emoji} ` : ''}${space.name}` })),
+    [spaces],
+  );
+  return (
+    <View className="mb-4 gap-2">
+      <MonoLabel>Post in</MonoLabel>
+      <View className="-mx-4">
+        <ChipRow
+          testID="compose-post-space"
+          items={items}
+          selectedKey={selectedSpaceId ?? undefined}
+          contentInset={16}
+          onSelect={(key) => {
+            const space = spaces.find(candidate => candidate.id === key);
+            if (space) {
+              onSelect(space);
+            }
+          }}
+        />
+      </View>
     </View>
   );
 }
@@ -108,23 +138,23 @@ type SpacesStatusProps = {
 function SpacesStatus({ isError, isEmpty, onRetry }: SpacesStatusProps) {
   if (isError) {
     return (
-      <View className="mb-4 gap-2 rounded-2xl border border-outline-variant bg-white px-4 py-3">
-        <Text className="font-sans text-sm text-ink-variant">Couldn&apos;t load your spaces. Pull to retry.</Text>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel="Retry"
+      <View className="mb-4 gap-3 rounded-lg bg-white p-4">
+        <Text variant="body" className="text-ink-variant">Couldn&apos;t load your spaces. Pull to retry.</Text>
+        <Button
           testID="compose-post-spaces-retry"
+          variant="secondary"
+          size="md"
+          fullWidth={false}
+          label="Retry"
           onPress={onRetry}
-        >
-          <Text className="font-sans-semibold text-sm text-primary">Retry</Text>
-        </Pressable>
+        />
       </View>
     );
   }
   if (isEmpty) {
     return (
-      <View className="mb-4 rounded-2xl border border-outline-variant bg-white px-4 py-3">
-        <Text className="font-sans text-sm text-ink-variant">You can&apos;t post in any spaces yet.</Text>
+      <View className="mb-4 rounded-lg bg-white p-4">
+        <Text variant="body" className="text-ink-variant">You can&apos;t post in any spaces yet.</Text>
       </View>
     );
   }
@@ -139,24 +169,19 @@ type ComposeFooterProps = {
 };
 
 function ComposeFooter({ errorMessage, isPending, canSubmit, onSubmit }: ComposeFooterProps) {
-  const disabled = !canSubmit || isPending;
   return (
     <View className="mt-4 gap-3">
       {errorMessage
-        ? <Text className="font-sans text-sm text-danger-700">{errorMessage}</Text>
+        ? <Text variant="body" className="text-plum">{errorMessage}</Text>
         : null}
-      <Pressable
+      <Button
         testID="compose-post-submit"
-        accessibilityRole="button"
+        size="lg"
+        label={isPending ? 'Posting…' : 'Post'}
         accessibilityLabel="Post"
-        disabled={disabled}
+        disabled={!canSubmit || isPending}
         onPress={onSubmit}
-        className={`items-center rounded-2xl px-4 py-3 ${disabled ? 'bg-ink-muted' : 'bg-primary'}`}
-      >
-        <Text className="font-sans-semibold text-base text-white">
-          {isPending ? 'Posting…' : 'Post'}
-        </Text>
-      </Pressable>
+      />
     </View>
   );
 }
@@ -250,11 +275,16 @@ export function ComposePostScreen() {
 
   return (
     <KeyboardAvoidingView behavior="padding" className="flex-1 bg-surface">
-      <ScrollView className="flex-1" contentContainerStyle={{ padding: 20 }}>
+      <ScreenHeader kicker="New post" onBack={() => router.back()} backLabel="Cancel" className="pb-4" />
+      <ScrollView
+        className="flex-1"
+        keyboardShouldPersistTaps="handled"
+        contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 32 }}
+      >
         {spacesLoading
           ? (
               <View className="mb-4 items-center justify-center py-6" testID="compose-post-spaces-loading">
-                <ActivityIndicator color={colors.primary} />
+                <ActivityIndicator />
               </View>
             )
           : spacesUnusable
@@ -267,9 +297,9 @@ export function ComposePostScreen() {
               )
             : (
                 <>
-                  <SpacePickerSheet spaces={spaces} selectedSpaceId={selectedSpaceId} onSelect={onSelectSpace} />
+                  <SpaceChips spaces={spaces} selectedSpaceId={selectedSpaceId} onSelect={onSelectSpace} />
                   <ComposeFields title={title} onChangeTitle={setTitle} body={body} onChangeBody={setBody} />
-                  <View className="mt-3">
+                  <View className="mt-1">
                     <ComposeImageRow
                       image={image}
                       imageError={imageError}

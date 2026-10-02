@@ -1,19 +1,13 @@
+import type { FeaturedCardData } from '@/features/member-content/components/featured-card';
 import type { FeedChip, MemberContentState, MemberFeedItem } from '@/features/member-content/types';
 import type { AuthUser } from '@/lib/auth/utils';
 
 import Env from 'env';
 import { useRouter } from 'expo-router';
 import * as React from 'react';
-import {
-  ActivityIndicator,
-  Pressable,
-  RefreshControl,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native';
+import { RefreshControl, ScrollView, StyleSheet, View } from 'react-native';
 
-import colors from '@/components/ui/colors';
+import { ActivityIndicator, EmptyState, ErrorState, Gradient, Text } from '@/components/ui';
 import { useScreenTopPadding } from '@/components/ui/screen-layout';
 import { useTabBarContentPadding } from '@/components/ui/tab-bar-layout';
 import { useAuthStore } from '@/features/auth/use-auth-store';
@@ -21,21 +15,22 @@ import { NewPostButton } from '@/features/community-posting/components/new-post-
 import { useFeedChips } from '@/features/member-content/api/use-feed-chips';
 import { useMemberFeed } from '@/features/member-content/api/use-member-feed';
 import { usePostLike } from '@/features/member-content/api/use-post-like';
+import { AnnouncementCarousel } from '@/features/member-content/components/announcement-carousel';
+import { FeaturedCard } from '@/features/member-content/components/featured-card';
 import { FeedChipRow } from '@/features/member-content/components/feed-chip-row';
 import { FeedItemRenderer } from '@/features/member-content/components/feed-item-renderer';
+import { announcementSpaceIdsFromChips, selectAnnouncements } from '@/features/member-content/lib/announcements';
 import { chipToFilter } from '@/features/member-content/lib/chip-filter';
 import { useFeedChipSelection } from '@/features/member-content/lib/use-feed-chip-selection';
 import { usePollVote } from '@/features/polls/api/use-poll-vote';
 
 type CommunityFeedViewProps = {
-  member: AuthUser;
   items: MemberFeedItem[] | undefined;
   contentState: MemberContentState;
   isLoading: boolean;
   isRefetching: boolean;
   onRefresh: () => void;
   onOpenPost: (spaceId: string, postId: string) => void;
-  onOpenProfile: () => void;
   onToggleLike?: (postId: string, liked: boolean) => void;
   pendingLikePostId?: string | null;
   onVote: (pollId: string, optionId: string) => void;
@@ -45,26 +40,12 @@ type CommunityFeedViewProps = {
   selectedChipId?: string;
   onSelectChip?: (id: string) => void;
   emptyCopy?: { title: string; message: string };
+  /** Top-right action (the "+" new-post button). */
+  headerRight?: React.ReactNode;
+  /** Live Q&A slot — S13-11 supplies this; nothing renders without it. */
+  featuredCard?: FeaturedCardData | null;
+  onOpenFeaturedCard?: (id: string) => void;
 };
-
-function EmptyState({
-  testID,
-  title,
-  message,
-}: {
-  testID: string;
-  title: string;
-  message: string;
-}) {
-  return (
-    <View testID={testID} className="rounded-2xl border border-outline-variant bg-white p-6">
-      <Text className="font-sans-semibold text-lg text-ink">{title}</Text>
-      {message
-        ? <Text className="mt-2 font-sans text-sm/5 text-ink-variant">{message}</Text>
-        : null}
-    </View>
-  );
-}
 
 const DEFAULT_EMPTY_COPY = {
   title: 'Nothing new yet',
@@ -95,14 +76,12 @@ export function emptyCopyForChip(chip: FeedChip | undefined): { title: string; m
 }
 
 export function CommunityFeedView({
-  member,
   items,
   contentState,
   isLoading,
   isRefetching,
   onRefresh,
   onOpenPost,
-  onOpenProfile,
   onToggleLike,
   pendingLikePostId,
   onVote,
@@ -112,78 +91,67 @@ export function CommunityFeedView({
   selectedChipId = 'all',
   onSelectChip = () => {},
   emptyCopy = DEFAULT_EMPTY_COPY,
+  headerRight,
+  featuredCard,
+  onOpenFeaturedCard,
 }: CommunityFeedViewProps) {
   const contentPaddingBottom = useTabBarContentPadding(24);
   const contentPaddingTop = useScreenTopPadding();
-  const displayName = member.name?.trim() || 'Rionna member';
+  const announcements = React.useMemo(
+    () => selectAnnouncements(items, announcementSpaceIdsFromChips(chips)),
+    [items, chips],
+  );
 
   return (
     <ScrollView
       className="flex-1 bg-surface"
-      contentContainerStyle={{
-        paddingHorizontal: 20,
-        paddingTop: contentPaddingTop,
-        paddingBottom: contentPaddingBottom,
-      }}
+      contentContainerStyle={{ paddingBottom: contentPaddingBottom }}
       refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={onRefresh} />}
     >
-      <View className="mb-8 flex-row items-center justify-between">
-        <View className="flex-1 pr-4">
-          <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
-            Members feed
-          </Text>
-          <Text className="mt-2 font-sans-semibold text-3xl text-ink">
-            Community
-          </Text>
+      {/* The gradient covers the header + featured area only; posts sit on plain surface. */}
+      <View className="gap-4 pb-6" style={{ paddingTop: contentPaddingTop }}>
+        <Gradient variant="page" pointerEvents="none" style={StyleSheet.absoluteFill} />
+        <View className="flex-row items-center justify-between px-4">
+          <Text variant="display-lg" accessibilityRole="header">Community</Text>
+          {headerRight}
         </View>
-        <Pressable
-          accessibilityRole="button"
-          accessibilityLabel="Open profile"
-          onPress={onOpenProfile}
-          className="size-11 items-center justify-center rounded-full border border-outline-variant bg-white"
-        >
-          <Text className="font-sans-semibold text-base text-ink">
-            {displayName.slice(0, 1).toUpperCase()}
-          </Text>
-        </Pressable>
+        <FeedChipRow chips={chips} selectedId={selectedChipId} onSelect={onSelectChip} contentInset={16} />
+        <AnnouncementCarousel announcements={announcements} onOpen={onOpenPost} />
+        {featuredCard
+          ? (
+              <View className="px-4">
+                <FeaturedCard card={featuredCard} onPress={onOpenFeaturedCard} />
+              </View>
+            )
+          : null}
       </View>
 
-      <FeedChipRow chips={chips} selectedId={selectedChipId} onSelect={onSelectChip} />
-
-      {contentState === 'saved'
-        ? (
-            <View className="mb-4 rounded-xl border border-on-primary-container bg-primary-fixed/40 px-4 py-3">
-              <Text className="font-sans-medium text-sm text-ink">
-                Showing saved content
-              </Text>
-            </View>
-          )
-        : null}
-
-      <View className="gap-4">
+      <View className="gap-3 px-4">
+        {contentState === 'saved'
+          ? (
+              <View className="rounded-lg bg-primary-fixed px-4 py-3">
+                <Text variant="body-sm" className="font-sans-medium">Showing saved content</Text>
+              </View>
+            )
+          : null}
         {isLoading && !items
           ? (
               <View testID="member-feed-loading" className="items-center py-16">
-                <ActivityIndicator color={colors.primary} />
-                <Text className="mt-3 font-sans text-sm text-ink-variant">Loading your feed…</Text>
+                <ActivityIndicator />
+                <Text variant="body" className="mt-3 text-ink-variant">Loading your feed…</Text>
               </View>
             )
           : null}
         {!isLoading && contentState === 'empty'
-          ? (
-              <EmptyState
-                testID="member-feed-empty"
-                title={emptyCopy.title}
-                message={emptyCopy.message}
-              />
-            )
+          ? <EmptyState testID="member-feed-empty" title={emptyCopy.title} body={emptyCopy.message || undefined} />
           : null}
         {!isLoading && contentState === 'unavailable'
           ? (
-              <EmptyState
+              <ErrorState
                 testID="member-feed-unavailable"
                 title="Feed unavailable"
-                message="Check your connection and pull down to try again."
+                body="Check your connection and try again."
+                onRetry={onRefresh}
               />
             )
           : null}
@@ -221,7 +189,6 @@ function SignedInCommunityFeed({ member }: { member: AuthUser }) {
   return (
     <View className="flex-1">
       <CommunityFeedView
-        member={member}
         items={feed.data}
         contentState={feed.contentState}
         isLoading={feed.isLoading}
@@ -230,7 +197,6 @@ function SignedInCommunityFeed({ member }: { member: AuthUser }) {
         onOpenPost={(spaceId, postId) => router.push(
           `/post/${encodeURIComponent(spaceId)}/${encodeURIComponent(postId)}`,
         )}
-        onOpenProfile={() => router.push('/profile')}
         onToggleLike={(postId, liked) => like.toggleLike({ postId, liked })}
         pendingLikePostId={like.pendingPostId}
         onVote={(pollId, optionId) => poll.vote({ pollId, optionId })}
@@ -240,8 +206,8 @@ function SignedInCommunityFeed({ member }: { member: AuthUser }) {
         selectedChipId={chipSelection.selectedId}
         onSelectChip={chipSelection.select}
         emptyCopy={emptyCopyForChip(chipSelection.selectedChip)}
+        headerRight={<NewPostButton scope={scope} />}
       />
-      <NewPostButton scope={scope} />
     </View>
   );
 }

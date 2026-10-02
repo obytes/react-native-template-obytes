@@ -2,26 +2,23 @@ import type { MemberContentScope } from '@/features/member-content/types';
 
 import { useRouter } from 'expo-router';
 import * as React from 'react';
-import { Pressable } from 'react-native';
-import { Path, Svg } from 'react-native-svg';
 
-import colors from '@/components/ui/colors';
-import { useTabBarContentPadding } from '@/components/ui/tab-bar-layout';
+import { IconButton } from '@/components/ui';
 import { usePostableSpaces } from '@/features/community-posting/api/use-postable-spaces';
+import { PlusGlyph } from '@/features/community-posting/components/plus-glyph';
 
 type NewPostButtonProps = {
   scope: MemberContentScope;
 };
 
 /**
- * Floating "New post" action on the Community tab. Hides itself when the
- * member has nowhere postable (no spaces, or the postable-spaces query
- * errored) rather than leaving a dead-end button on screen.
+ * "New post" action in the Community header: a 52pt lilac square "+" (S13-06).
+ * Hides itself when the member has nowhere postable (no spaces, or the
+ * postable-spaces query errored) rather than leaving a dead-end button.
  */
 export function NewPostButton({ scope }: NewPostButtonProps) {
   const router = useRouter();
   const spacesQuery = usePostableSpaces(scope);
-  const bottomOffset = useTabBarContentPadding(16);
 
   const hasPostableSpaces = !spacesQuery.isError && (spacesQuery.data?.spaces.length ?? 0) > 0;
   if (!hasPostableSpaces) {
@@ -29,17 +26,14 @@ export function NewPostButton({ scope }: NewPostButtonProps) {
   }
 
   return (
-    <Pressable
+    <IconButton
       testID="new-post-button"
-      accessibilityRole="button"
+      variant="square-accent"
       accessibilityLabel="New post"
       onPress={() => router.push('/post/new')}
-      style={{ bottom: bottomOffset }}
-      className="absolute right-6 size-14 items-center justify-center rounded-full bg-primary shadow-lg"
+      className="size-[52px] border border-on-primary-container"
     >
-      <Svg width={26} height={26} viewBox="0 0 24 24" accessibilityElementsHidden>
-        <Path d="M12 5v14M5 12h14" stroke={colors.onPrimary} strokeWidth={2.5} strokeLinecap="round" />
-      </Svg>
-    </Pressable>
+      <PlusGlyph />
+    </IconButton>
   );
 }

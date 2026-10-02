@@ -1,11 +1,10 @@
 import type { Poll } from '@/features/polls/types';
 
 import Env from 'env';
-import { useLocalSearchParams } from 'expo-router';
+import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import * as React from 'react';
 
-import { ActivityIndicator, FocusAwareStatusBar, ScrollView, Text, View } from '@/components/ui';
-import { useScreenTopPadding } from '@/components/ui/screen-layout';
+import { ActivityIndicator, EmptyState, FocusAwareStatusBar, ScreenHeader, ScrollView, View } from '@/components/ui';
 import { useAuthStore } from '@/features/auth/use-auth-store';
 import { useActivePolls } from '@/features/polls/api/use-active-polls';
 import { usePollVote } from '@/features/polls/api/use-poll-vote';
@@ -16,28 +15,26 @@ type PollScreenViewProps = {
   isLoading: boolean;
   onVote: (pollId: string, optionId: string) => void;
   pendingPollIds: string[];
+  onBack?: () => void;
 };
 
-export function PollScreenView({ poll, isLoading, onVote, pendingPollIds }: PollScreenViewProps) {
-  const contentPaddingTop = useScreenTopPadding();
+export function PollScreenView({ poll, isLoading, onVote, pendingPollIds, onBack }: PollScreenViewProps) {
   return (
     <>
       <FocusAwareStatusBar />
       <ScrollView
         className="flex-1 bg-background"
-        contentContainerStyle={{ paddingHorizontal: 20, paddingTop: contentPaddingTop, paddingBottom: 32 }}
+        contentContainerStyle={{ paddingBottom: 32 }}
       >
-        <Text className="font-mono text-[10px] tracking-widest text-label uppercase">Club vote</Text>
-        <View className="mt-6">
+        <ScreenHeader kicker="Club vote" onBack={onBack} />
+        <View className="mt-6 px-4">
           {isLoading && !poll ? <ActivityIndicator /> : null}
           {!isLoading && !poll
             ? (
-                <View className="items-center py-16">
-                  <Text className="font-sans-semibold text-lg text-ink">This vote has ended</Text>
-                  <Text className="mt-2 font-sans text-sm text-ink-variant">
-                    Results stay in the Community feed for a week after closing.
-                  </Text>
-                </View>
+                <EmptyState
+                  title="This vote has ended"
+                  body="Results stay in the Community feed for a week after closing."
+                />
               )
             : null}
           {poll ? <PollCard poll={poll} onVote={onVote} pending={pendingPollIds.includes(poll.id)} variant="card" /> : null}
@@ -48,6 +45,7 @@ export function PollScreenView({ poll, isLoading, onVote, pendingPollIds }: Poll
 }
 
 export function PollScreen() {
+  const router = useRouter();
   const { 'poll-id': pollId } = useLocalSearchParams<{ 'poll-id': string }>();
   const user = useAuthStore.use.user();
   const scope = React.useMemo(
@@ -59,11 +57,15 @@ export function PollScreen() {
   const poll = polls.data?.polls.find(p => p.id === pollId);
 
   return (
-    <PollScreenView
-      poll={poll}
-      isLoading={polls.isLoading}
-      onVote={(id, optionId) => vote({ pollId: id, optionId })}
-      pendingPollIds={pendingPollIds}
-    />
+    <>
+      <Stack.Screen options={{ headerShown: false }} />
+      <PollScreenView
+        poll={poll}
+        isLoading={polls.isLoading}
+        onVote={(id, optionId) => vote({ pollId: id, optionId })}
+        pendingPollIds={pendingPollIds}
+        onBack={() => router.back()}
+      />
+    </>
   );
 }

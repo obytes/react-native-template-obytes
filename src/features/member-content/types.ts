@@ -12,6 +12,9 @@ export type MemberPostCacheLocator = MemberContentScope & {
 
 export const MEMBER_CONTENT_QUERY_ROOT = 'member-content';
 
+/** S13-11 author role badge values. */
+export type AuthorRole = 'trainer' | 'staff';
+
 export type MemberFeedItem = {
   id: string;
   spaceId: string | null;
@@ -30,6 +33,12 @@ export type MemberFeedItem = {
   isLiked: boolean;
   imageUrl: string | null;
   url: string | null;
+  /** S13-11: set by the backend for Official Announcements / pinned posts. Absent until it ships. */
+  isAnnouncement?: boolean;
+  /** S13-11: author's club role (shows a badge). Absent until it ships. */
+  authorRole?: AuthorRole | null;
+  /** Avatar URL when the feed payload carries one. */
+  authorAvatarUrl?: string | null;
 };
 
 export type MemberFeedResult = {
@@ -66,6 +75,8 @@ export type MemberPostDetail = {
   url: string | null;
   /** Whether the signed-in member authored this post. Absent on older cached posts — treat as false. */
   isOwn?: boolean;
+  /** S13-11: author's club role. Absent until it ships. */
+  authorRole?: AuthorRole | null;
 };
 
 export type PostComment = {
@@ -79,6 +90,8 @@ export type PostComment = {
   likeCount: number;
   isLiked: boolean;
   canDelete: boolean;
+  /** S13-11: author's club role. Absent until it ships. */
+  authorRole?: AuthorRole | null;
   replies: PostComment[];
 };
 
