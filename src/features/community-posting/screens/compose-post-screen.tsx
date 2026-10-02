@@ -3,7 +3,7 @@ import type { CreatePostFailure, CreatePostInput, PostableSpace, PostImage } fro
 import Env from 'env';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as React from 'react';
-import { ScrollView, View } from 'react-native';
+import { Platform, ScrollView, View } from 'react-native';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 
 import { ActivityIndicator, Button, ChipRow, FormField, MonoLabel, ScreenHeader, Text } from '@/components/ui';
@@ -211,6 +211,21 @@ function useComposeImageState() {
   return { image, imageError, onPickImage, onRemoveImage };
 }
 
+// iOS presents this route as a page sheet, which already sits below the status
+// bar, so the root safe-area top inset would leave a gap above the header.
+function ComposeHeader({ onCancel }: { onCancel: () => void }) {
+  const isSheet = Platform.OS === 'ios';
+  return (
+    <ScreenHeader
+      kicker="New post"
+      onBack={onCancel}
+      backLabel="Cancel"
+      safeArea={!isSheet}
+      className={isSheet ? 'pt-3 pb-4' : 'pb-4'}
+    />
+  );
+}
+
 export function ComposePostScreen() {
   const params = useLocalSearchParams<{ spaceId?: string }>();
   const router = useRouter();
@@ -275,7 +290,7 @@ export function ComposePostScreen() {
 
   return (
     <KeyboardAvoidingView behavior="padding" className="flex-1 bg-surface">
-      <ScreenHeader kicker="New post" onBack={() => router.back()} backLabel="Cancel" className="pb-4" />
+      <ComposeHeader onCancel={() => router.back()} />
       <ScrollView
         className="flex-1"
         keyboardShouldPersistTaps="handled"
