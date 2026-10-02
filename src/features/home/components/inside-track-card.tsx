@@ -10,10 +10,13 @@ import { PlayV2 } from '@/components/ui/icons/v2';
 import { isNewItem, pickInsideTrackTeaser } from '@/features/home/lib/card-helpers';
 
 const INSIDE_TRACK_HEIGHT = 183;
+// Tom (2026-10-02): the card always uses the brand horseback photograph, not the
+// item's own image, so the title sits on a known, scrim-tested background.
+const INSIDE_TRACK_BACKGROUND = require('../../../../assets/inside-track-bg.jpg');
 
 /**
  * S13-03 §6: full-bleed photo card. "N min watch" stays hidden until S13-13
- * ships a duration. Missing image → cream pattern fallback (Card photo).
+ * ships a duration. Background is the fixed brand horseback photo.
  */
 export function InsideTrackCard({ data, now }: { data: InsideTrackResult | undefined; now: Date }) {
   const router = useRouter();
@@ -38,8 +41,7 @@ export function InsideTrackCard({ data, now }: { data: InsideTrackResult | undef
     >
       <Card
         variant="photo"
-        image={teaser.imageUrl}
-        fallbackColourway="cream"
+        image={INSIDE_TRACK_BACKGROUND}
         className="justify-between"
         style={{ height: INSIDE_TRACK_HEIGHT }}
       >

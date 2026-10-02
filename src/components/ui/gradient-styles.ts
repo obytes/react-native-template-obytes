@@ -64,7 +64,7 @@ export const GRADIENTS: Record<GradientVariant, GradientSpec> = {
     backgroundImage: `radial-gradient(ellipse farthest-side at center, ${colors.sage} 0%, ${withAlpha(colors.sage, 0.9)} 49%, ${withAlpha(colors.sage, 0.75)} 82%, ${withAlpha(colors.sage, 0)} 100%)`,
   },
   'photo-scrim': {
-    backgroundImage: `linear-gradient(to bottom, ${withAlpha(colors.navyDeep, 0.35)} 0%, ${withAlpha(colors.navyDeep, 0.05)} 40%, ${withAlpha(colors.navyDeep, 0.85)} 100%)`,
+    backgroundImage: `linear-gradient(to bottom, ${withAlpha(colors.navyDeep, 0.7)} 0%, ${withAlpha(colors.navyDeep, 0.35)} 35%, ${withAlpha(colors.navyDeep, 0.1)} 60%, ${withAlpha(colors.navyDeep, 0.8)} 100%)`,
   },
 };
 
