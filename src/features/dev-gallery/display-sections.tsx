@@ -33,7 +33,7 @@ export function CardSection() {
       </Card>
       <Card variant="navy" className="gap-4">
         <Text variant="display-md" className="text-primary-fixed">
-          Ashfield Rose declares
+          {'Ashfield Rose declares '}
           <Text variant="display-md" className="text-on-primary">for Leopardstown</Text>
         </Text>
         <Dots count={3} index={0} />
@@ -41,6 +41,13 @@ export function CardSection() {
       <Card variant="plum" className="h-[180px] justify-between">
         <MonoLabel tone="white">Charity snapshot</MonoLabel>
         <Text variant="display-xl" className="text-primary-fixed">€24,500</Text>
+      </Card>
+      <Card variant="forest" className="h-[180px] justify-between">
+        <MonoLabel tone="white">Raised together, to date</MonoLabel>
+        <Text variant="display-xl" className="text-primary-fixed">€24,500</Text>
+      </Card>
+      <Card variant="sage" pattern={{ kind: 'harlequin', colourway: 'green', turn: 0 }} className="h-[140px] justify-end">
+        <Text variant="display-sm" className="text-forest">Member vote (faint pattern)</Text>
       </Card>
       <Card variant="sage" className="h-[140px] justify-end">
         <Text variant="display-sm" className="text-forest">Which cause should we back next season?</Text>

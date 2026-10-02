@@ -8,6 +8,7 @@ import { twMerge } from 'tailwind-merge';
 
 import { PatternFill } from '@/components/brand/pattern';
 
+import colors from './colors';
 import { Gradient } from './gradient';
 import { Image } from './image';
 
@@ -16,21 +17,30 @@ import { Image } from './image';
  * - `white` (default): white on the page gradient.
  * - `navy`: navy hero/news card.
  * - `plum`: plum harlequin pattern under the plum-mid glow (charity snapshot).
- * - `sage`: sage with a radial glow (wellbeing / member vote).
+ * - `forest`: forest base with the green pattern subdued under a forest veil
+ *   (charity hero; Figma frame 15).
+ * - `sage`: sage with a radial glow (wellbeing / member vote). Pass `pattern`
+ *   for the faint pattern behind it.
  * - `photo`: full-bleed image with a navy scrim for text legibility; a
  *   missing or broken image falls back to the `fallbackColourway` pattern.
  */
-export type CardVariant = 'white' | 'navy' | 'plum' | 'sage' | 'photo';
+export type CardVariant = 'white' | 'navy' | 'plum' | 'forest' | 'sage' | 'photo';
 
 const BG: Record<CardVariant, string> = {
   white: 'bg-white',
   navy: 'bg-primary',
   plum: 'bg-plum',
+  forest: 'bg-forest',
   sage: 'bg-sage',
   photo: 'bg-primary',
 };
 
 const PLUM_PATTERN: TileSpec = { kind: 'harlequin', colourway: 'plum', turn: 0 };
+const FOREST_PATTERN: TileSpec = { kind: 'harlequin', colourway: 'green', turn: 0 };
+
+/** Veil opacity over the pattern: higher = quieter motifs. */
+export const FOREST_VEIL_OPACITY = 0.78;
+export const SAGE_VEIL_OPACITY = 0.82;
 
 export type CardProps = ViewProps & {
   variant?: CardVariant;
@@ -38,7 +48,7 @@ export type CardProps = ViewProps & {
   image?: ImageSource | string | null;
   /** `photo` only: pattern colourway if the image is missing/fails (default cream). */
   fallbackColourway?: FallbackColourway;
-  /** `plum` only: override the pattern tile (e.g. the green charity hero). */
+  /** `plum`/`forest`: override the pattern tile. `sage`: opt-in faint pattern. */
   pattern?: TileSpec;
   /** Drop the default 16pt padding (e.g. a card whose top is a full-bleed image). */
   noPadding?: boolean;
@@ -51,6 +61,23 @@ function CardBackdrop({ variant, image, fallbackColourway, pattern }: Pick<CardP
       <>
         <PatternFill spec={pattern ?? PLUM_PATTERN} borderRadius={8} style={StyleSheet.absoluteFill} />
         <Gradient variant="card-plum-glow" pointerEvents="none" style={[StyleSheet.absoluteFill, styles.glow]} />
+      </>
+    );
+  }
+  if (variant === 'forest') {
+    return (
+      <>
+        <PatternFill spec={pattern ?? FOREST_PATTERN} borderRadius={8} style={StyleSheet.absoluteFill} />
+        <View pointerEvents="none" testID="card-veil" style={[StyleSheet.absoluteFill, { backgroundColor: colors.forest, opacity: FOREST_VEIL_OPACITY }]} />
+      </>
+    );
+  }
+  if (variant === 'sage' && pattern) {
+    return (
+      <>
+        <PatternFill spec={pattern} borderRadius={8} style={StyleSheet.absoluteFill} />
+        <View pointerEvents="none" testID="card-veil" style={[StyleSheet.absoluteFill, { backgroundColor: colors.sage, opacity: SAGE_VEIL_OPACITY }]} />
+        <Gradient variant="card-sage-glow" pointerEvents="none" style={[StyleSheet.absoluteFill, styles.glow]} />
       </>
     );
   }

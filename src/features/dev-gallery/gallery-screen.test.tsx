@@ -36,4 +36,9 @@ describe('dev gallery', () => {
     ])
       expect(screen.getByText(title)).toBeOnTheScreen();
   });
+
+  it('keeps the space between split-colour headline runs', () => {
+    render(<GalleryScreen />);
+    expect(screen.getByText('Ashfield Rose declares for Leopardstown')).toBeOnTheScreen();
+  });
 });
