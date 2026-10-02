@@ -1,48 +1,42 @@
+import type { HorsePhoto } from '@/features/stables/types';
+
 import * as React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { Image } from '@/components/ui';
 
-type Photo = { url: string; caption?: string };
+type PhotoCarouselProps = {
+  photos: HorsePhoto[];
+  /** Fires with the settled page index after a swipe (drives the hero's Dots). */
+  onIndexChange?: (index: number) => void;
+};
 
-function Dots({ count, activeIndex }: { count: number; activeIndex: number }) {
-  return (
-    <View
-      testID="photo-carousel-dots"
-      className="absolute inset-x-0 bottom-3 flex-row items-center justify-center gap-1.5"
-    >
-      {Array.from({ length: count }, (_, index) => (
-        <View
-          key={index}
-          testID={`photo-carousel-dot-${index}`}
-          className={`size-1.5 rounded-full ${
-            index === activeIndex ? 'bg-white' : 'bg-white/40'
-          }`}
-        />
-      ))}
-    </View>
-  );
+function photoSource(url: string) {
+  return { uri: `${url}?width=1000&quality=80` };
 }
 
 /**
- * Swipable photo pager for the horse hero. One photo renders statically;
- * several page horizontally with a dot indicator. Fills its parent, so wrap
- * it in the aspect/rounded container.
+ * Photo pager for the horse hero. One photo renders statically; several
+ * page horizontally. Fills its parent. No photos is the hero's job (pattern
+ * fallback), so this only renders a bare placeholder for safety. Page dots
+ * are drawn by the hero so they sit above the scrim.
  */
-export function PhotoCarousel({ photos }: { photos: Photo[] }) {
+export function PhotoCarousel({ photos, onIndexChange }: PhotoCarouselProps) {
   const [width, setWidth] = React.useState(0);
-  const [activeIndex, setActiveIndex] = React.useState(0);
 
   if (photos.length === 0) {
-    return <View testID="photo-carousel-placeholder" className="flex-1 bg-muted" />;
+    return <View testID="photo-carousel-placeholder" className="flex-1 bg-primary" />;
   }
 
   if (photos.length === 1) {
     return (
       <Image
-        source={{ uri: `${photos[0].url}?width=800&quality=80` }}
-        className="size-full"
+        testID="photo-carousel-single"
+        source={photoSource(photos[0].url)}
+        style={StyleSheet.absoluteFill}
         contentFit="cover"
+        fallback={{ colourway: 'navy' }}
+        accessibilityIgnoresInvertColors
       />
     );
   }
@@ -50,30 +44,30 @@ export function PhotoCarousel({ photos }: { photos: Photo[] }) {
   return (
     <View
       testID="photo-carousel"
-      className="size-full"
+      style={StyleSheet.absoluteFill}
       onLayout={event => setWidth(event.nativeEvent.layout.width)}
     >
       <ScrollView
-        horizontal={true}
-        pagingEnabled={true}
+        horizontal
+        pagingEnabled
         showsHorizontalScrollIndicator={false}
         onMomentumScrollEnd={(event) => {
-          if (width > 0) {
-            setActiveIndex(Math.round(event.nativeEvent.contentOffset.x / width));
-          }
+          if (width > 0)
+            onIndexChange?.(Math.round(event.nativeEvent.contentOffset.x / width));
         }}
       >
         {photos.map(photo => (
           <View key={photo.url} style={{ width: width || undefined }} className="h-full">
             <Image
-              source={{ uri: `${photo.url}?width=800&quality=80` }}
+              source={photoSource(photo.url)}
               className="size-full"
               contentFit="cover"
+              fallback={{ colourway: 'navy' }}
+              accessibilityIgnoresInvertColors
             />
           </View>
         ))}
       </ScrollView>
-      <Dots count={photos.length} activeIndex={activeIndex} />
     </View>
   );
 }

@@ -17,7 +17,7 @@ const BASE_ENTRY: Entry = {
   status: 'RAN',
   draw: null,
   weightLbs: null,
-  finishingPosition: 1,
+  finishingPosition: 3,
   beatenLengths: null,
   ratingAchieved: null,
   timeformComment: null,
@@ -29,21 +29,35 @@ const BASE_ENTRY: Entry = {
   race: {
     id: 'race-1',
     name: 'Test Handicap',
-    postTime: '2026-01-01T14:00:00.000Z',
-    raceType: null,
-    distanceFurlongs: 8,
+    postTime: new Date(2026, 5, 21, 14, 0).toISOString(),
+    raceType: 'Maiden',
+    distanceFurlongs: 6,
     className: null,
     goingDescription: null,
     meeting: {
       id: 'meeting-1',
-      date: '2026-01-01T00:00:00.000Z',
-      course: { id: 'course-1', name: 'Leopardstown', country: 'IE' },
+      date: '2026-06-21T00:00:00.000Z',
+      course: { id: 'course-1', name: 'Naas', country: 'IE' },
     },
   },
 };
 
 describe('resultRow', () => {
   beforeEach(() => jest.clearAllMocks());
+
+  it('renders the result line and date', () => {
+    render(<ResultRow entry={BASE_ENTRY} />);
+
+    expect(screen.getByText('Naas, 6f mdn — 3rd')).toBeOnTheScreen();
+    expect(screen.getByText('21 June')).toBeOnTheScreen();
+  });
+
+  it('adds field size and SP when S13-10 fields are present', () => {
+    render(<ResultRow entry={{ ...BASE_ENTRY, fieldSize: 11, startingPrice: '6/1' }} />);
+
+    expect(screen.getByText('Naas, 6f mdn — 3rd of 11')).toBeOnTheScreen();
+    expect(screen.getByText('21 June · 6/1')).toBeOnTheScreen();
+  });
 
   it('does not render a replay affordance when replayUrl is absent', () => {
     render(<ResultRow entry={BASE_ENTRY} />);

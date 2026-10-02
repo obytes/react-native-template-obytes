@@ -1,91 +1,110 @@
 import type { Horse } from '@/features/stables/types';
-import { Image, Pressable, Text, View } from '@/components/ui';
+
+import * as React from 'react';
+import { Pressable, StyleSheet, View } from 'react-native';
+
+import { Card, getInitials, Image, Tag, Text } from '@/components/ui';
 import { FollowToggle } from '@/features/stables/components/follow-toggle';
-import { StatusBadge } from '@/features/stables/components/status-badge';
+import { DeclaredPill, StatusPill } from '@/features/stables/components/status-pill';
+import {
+  formatDeclaredDate,
+  getDeclaredEntry,
+  getProfileLine,
+  getTrainerLine,
+} from '@/features/stables/lib/horse-facts';
+import { translate } from '@/lib/i18n';
 
 type HorseCardProps = {
   horse: Horse;
   onPress: () => void;
-  /** Omit to render the card read-only, without the follow heart. */
+  /** Omit to render the card read-only, without the Follow button. */
   onToggleFollow?: (horseId: string, following: boolean) => void;
   followPending?: boolean;
 };
 
+/**
+ * Stables list card (S13-04 §3, Figma frame 6): white row card, 86×146
+ * photo on the left, name / ⏳profile line / trainer on the right, then the
+ * status (or Declared) pill and the Follow button along the bottom.
+ */
 export function HorseCard({ horse, onPress, onToggleFollow, followPending = false }: HorseCardProps) {
   const photoUrl = horse.photos[0]?.url;
+  const profileLine = getProfileLine(horse);
+  const trainerLine = getTrainerLine(horse);
+  const declared = getDeclaredEntry(horse.entries);
+
+  const follow = onToggleFollow
+    ? (
+        <FollowToggle
+          testID={`horse-card-follow-${horse.id}`}
+          className="flex-1"
+          isFollowing={horse.isFollowing}
+          pending={followPending}
+          onToggle={following => onToggleFollow(horse.id, following)}
+          confirmBeforeUnfollow={horse.inviteOnly ? { horseName: horse.name } : undefined}
+        />
+      )
+    : null;
 
   return (
     <Pressable
+      testID={`horse-card-${horse.id}`}
       onPress={onPress}
-      className="overflow-hidden rounded-2xl bg-card"
+      accessibilityRole="button"
+      accessibilityLabel={horse.name}
+      style={({ pressed }) => (pressed ? styles.pressed : null)}
     >
-      <View className="relative">
-        {photoUrl
-          ? (
-              <Image
-                source={{ uri: `${photoUrl}?width=400&quality=80` }}
-                className="aspect-3/2 w-full"
-                contentFit="cover"
-              />
-            )
-          : (
-              <View className="aspect-3/2 w-full items-center justify-center bg-muted">
-                <Text className="text-sm text-muted-foreground">No photo</Text>
-              </View>
-            )}
+      <Card className="flex-row gap-4 border border-outline-variant">
+        <View className="min-h-[146px] w-[86px] overflow-hidden rounded-lg">
+          <Image
+            testID="horse-card-photo"
+            source={photoUrl ? { uri: `${photoUrl}?width=400&quality=80` } : null}
+            style={StyleSheet.absoluteFill}
+            contentFit="cover"
+            fallback={{ colourway: 'navy', initials: getInitials(horse.name) }}
+            accessibilityIgnoresInvertColors
+          />
+        </View>
 
-        {onToggleFollow
-          ? (
-              <FollowToggle
-                variant="overlay"
-                isFollowing={horse.isFollowing}
-                pending={followPending}
-                onToggle={following => onToggleFollow(horse.id, following)}
-                confirmBeforeUnfollow={horse.inviteOnly ? { horseName: horse.name } : undefined}
-              />
-            )
-          : null}
-      </View>
-
-      <View className="gap-2 p-4">
-        <View className="flex-row items-center justify-between">
-          <Text className="font-display text-2xl text-foreground">
-            {horse.name}
-          </Text>
-          <View className="flex-row items-center gap-2">
-            {horse.inviteOnly
+        <View className="flex-1 justify-between gap-4">
+          <View className="gap-2">
+            <Text variant="display-sm" numberOfLines={2}>{horse.name}</Text>
+            {profileLine || trainerLine
               ? (
-                  <View className="rounded-full bg-muted px-3.5 py-2">
-                    <Text className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-                      Private
-                    </Text>
+                  <View className="gap-1">
+                    {profileLine
+                      ? <Text testID="horse-card-profile-line" variant="body-sm" className="text-ink-variant">{profileLine}</Text>
+                      : null}
+                    {trainerLine
+                      ? <Text variant="body-sm" className="font-sans-semibold text-label">{trainerLine}</Text>
+                      : null}
                   </View>
                 )
               : null}
-            <StatusBadge status={horse.status} />
+            {horse.inviteOnly
+              ? <Tag variant="ice" label={translate('stables.card.private')} testID="horse-card-private" />
+              : null}
           </View>
+
+          {declared
+            ? (
+                <View className="gap-1">
+                  <DeclaredPill date={formatDeclaredDate(declared.race.postTime)} />
+                  {follow ? <View className="flex-row">{follow}</View> : null}
+                </View>
+              )
+            : (
+                <View className="flex-row gap-1">
+                  <StatusPill status={horse.status} className="flex-1" />
+                  {follow}
+                </View>
+              )}
         </View>
-
-        {horse.trainer
-          ? (
-              <Text className="text-sm text-muted-foreground">
-                Trainer:
-                {' '}
-                {horse.trainer.name}
-              </Text>
-            )
-          : null}
-
-        {horse.nextEntryId
-          ? (
-              <View className="mt-1 rounded-lg bg-muted px-3 py-2">
-                <Text className="font-mono text-[10px] tracking-widest text-primary uppercase">
-                  Entry upcoming
-                </Text>
-              </View>
-            )
-          : null}
-      </View>
+      </Card>
     </Pressable>
   );
 }
+
+const styles = StyleSheet.create({
+  pressed: { opacity: 0.85 },
+});

@@ -1,45 +1,42 @@
+import type { LayoutChangeEvent } from 'react-native';
 import type { HorseUpdate, HorseUpdateType } from '@/features/stables/types';
+import type { TxKeyPath } from '@/lib/i18n';
 
 import * as React from 'react';
-import { Pressable, Text, View } from '@/components/ui';
+import { Pressable, View } from 'react-native';
+
+import { Card, MonoLabel, Tag, Text } from '@/components/ui';
 import { relativeTime } from '@/features/pulse/components/relative-time';
+import { translate } from '@/lib/i18n';
 
 type HorseUpdatesTimelineProps = {
   updates: HorseUpdate[] | undefined;
+  /** Each card's y within the timeline (lets Wellbeing rows scroll to "the update"). */
+  onItemLayout?: (updateId: string, y: number) => void;
 };
 
-// Body text collapses behind "Read more" past this many characters (same
-// heuristic as StorySection's COLLAPSE_THRESHOLD) with numberOfLines used
-// to cap the collapsed rendering, to keep the timeline scannable when a
-// post runs long.
+// Body text collapses behind "Read more" past this many characters, with
+// numberOfLines capping the collapsed rendering, to keep the timeline
+// scannable when a post runs long.
 const COLLAPSE_THRESHOLD = 220;
 const COLLAPSED_LINES = 4;
 
-const TYPE_LABELS: Record<HorseUpdateType, string> = {
-  trainer: 'Trainer',
-  wellbeing: 'Wellbeing',
-  general: 'General',
-  race: 'Race notes',
+const TYPE_LABELS: Record<HorseUpdateType, TxKeyPath> = {
+  trainer: 'stables.detail.updateTypes.trainer',
+  wellbeing: 'stables.detail.updateTypes.wellbeing',
+  general: 'stables.detail.updateTypes.general',
+  race: 'stables.detail.updateTypes.race',
 };
-
-function TypeChip({ type }: { type: HorseUpdateType }) {
-  return (
-    <View className="self-start rounded-full bg-muted px-3 py-1">
-      <Text className="font-mono text-[10px] tracking-widest text-primary uppercase">
-        {TYPE_LABELS[type] ?? type}
-      </Text>
-    </View>
-  );
-}
 
 function UpdateBody({ bodyText }: { bodyText: string }) {
   const [expanded, setExpanded] = React.useState(false);
   const isLong = bodyText.length > COLLAPSE_THRESHOLD;
 
   return (
-    <View>
+    <View className="gap-2">
       <Text
-        className="font-sans text-sm/relaxed text-ink"
+        variant="body"
+        className="text-ink-variant"
         numberOfLines={isLong && !expanded ? COLLAPSED_LINES : undefined}
       >
         {bodyText}
@@ -50,11 +47,11 @@ function UpdateBody({ bodyText }: { bodyText: string }) {
               accessibilityRole="button"
               onPress={() => setExpanded(prev => !prev)}
               hitSlop={8}
-              className="mt-1"
+              className="self-start"
             >
-              <Text className="font-mono text-[10px] tracking-widest text-primary uppercase">
-                {expanded ? 'Show less' : 'Read more'}
-              </Text>
+              <MonoLabel className="text-ink">
+                {translate(expanded ? 'stables.detail.showLess' : 'stables.detail.readMore')}
+              </MonoLabel>
             </Pressable>
           )
         : null}
@@ -62,44 +59,44 @@ function UpdateBody({ bodyText }: { bodyText: string }) {
   );
 }
 
-function UpdateRow({ update }: { update: HorseUpdate }) {
+function UpdateCard({ update, onLayout }: { update: HorseUpdate; onLayout?: (event: LayoutChangeEvent) => void }) {
+  const typeLabel = update.updateType && TYPE_LABELS[update.updateType]
+    ? translate(TYPE_LABELS[update.updateType])
+    : null;
   return (
-    <View className="gap-2 border-b border-muted py-4 last:border-b-0 last:pb-0">
-      <View className="flex-row items-center justify-between">
-        {update.updateType ? <TypeChip type={update.updateType} /> : <View />}
-        <Text className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-          {relativeTime(update.publishedAt)}
-        </Text>
+    <Card testID={`update-card-${update.id}`} onLayout={onLayout} className="gap-3 border border-outline-variant">
+      <View className="flex-row items-center justify-between gap-3">
+        {/* S8-05 category chip, restyled as a V2 tag. */}
+        {typeLabel ? <Tag variant="ice" label={typeLabel} /> : <View />}
+        <MonoLabel>{relativeTime(update.publishedAt)}</MonoLabel>
       </View>
-      <Text className="font-sans-medium text-base text-ink">
-        {update.title}
-      </Text>
+      <Text variant="title">{update.title}</Text>
       <UpdateBody bodyText={update.bodyText} />
-    </View>
+    </Card>
   );
 }
 
 /**
- * Horse profile timeline, sourced from the "Horse updates" (MemberPost)
- * feature. Renders nothing when there are no updates.
+ * Horse updates (S13-04 detail §5), sourced from the "Horse updates"
+ * (MemberPost) feature: one white card per update, newest first. Renders
+ * nothing when there are no updates.
  */
-export function HorseUpdatesTimeline({ updates }: HorseUpdatesTimelineProps) {
+export function HorseUpdatesTimeline({ updates, onItemLayout }: HorseUpdatesTimelineProps) {
   const items = updates ?? [];
 
-  if (items.length === 0) {
+  if (items.length === 0)
     return null;
-  }
 
   return (
-    <View className="rounded-2xl bg-card p-6">
-      <Text className="mb-4 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-        Updates
-      </Text>
-      <View>
-        {items.map(update => (
-          <UpdateRow key={update.id} update={update} />
-        ))}
-      </View>
+    <View testID="updates-section" className="gap-2">
+      <MonoLabel className="px-1 pt-2 pb-1">{translate('stables.detail.updatesLabel')}</MonoLabel>
+      {items.map(update => (
+        <UpdateCard
+          key={update.id}
+          update={update}
+          onLayout={onItemLayout ? e => onItemLayout(update.id, e.nativeEvent.layout.y) : undefined}
+        />
+      ))}
     </View>
   );
 }

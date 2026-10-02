@@ -99,5 +99,80 @@
     "version": "Version",
     "website": "Website"
   },
+  "stables": {
+    "card": {
+      "private": "Private"
+    },
+    "declaredOn": "Declared · {{date}}",
+    "detail": {
+      "back": "Stables",
+      "backA11y": "Back to Stables",
+      "declared": "Declared",
+      "discussion": "Join the discussion",
+      "notFoundBody": "This horse may have been moved or is no longer listed.",
+      "notFoundTitle": "Horse not found",
+      "pedigree": {
+        "dam": "Dam",
+        "damsire": "Dam's sire",
+        "foaled": "Foaled",
+        "sire": "Sire"
+      },
+      "racingLabel": "Racing",
+      "racingNext": "Next — {{race}}",
+      "readMore": "Read more",
+      "sections": {
+        "racing": "Racing",
+        "story": "Story",
+        "updates": "Updates",
+        "wellbeing": "Wellbeing"
+      },
+      "share": "Share",
+      "shareA11y": "Share {{name}}",
+      "shareMessage": "Meet {{name}}, one of the horses at {{club}}.",
+      "showLess": "Show less",
+      "storyLabel": "Story & pedigree",
+      "updateTypes": {
+        "general": "General",
+        "race": "Race notes",
+        "trainer": "Trainer",
+        "wellbeing": "Wellbeing"
+      },
+      "updatesLabel": "Updates",
+      "watchReplay": "Watch Replay",
+      "wellbeingLabel": "Wellbeing",
+      "wellbeingRowA11y": "Open update: {{title}}"
+    },
+    "follow": {
+      "follow": "Follow",
+      "followA11y": "Follow horse",
+      "following": "Following",
+      "leaveBody": "You'll lose access to {{name}}. Only a club admin can add you back.",
+      "leaveCancel": "Cancel",
+      "leaveConfirm": "Leave",
+      "leaveTitle": "Leave {{name}}?",
+      "unfollowA11y": "Unfollow horse"
+    },
+    "list": {
+      "emptyBody": "Horses will appear here once they're added.",
+      "emptyFilterBody": "Try another filter to see the rest of the yard.",
+      "emptyFilterTitle": "No horses match this filter",
+      "emptyFollowingBody": "Tap Follow on a horse to get its updates and race news.",
+      "emptyFollowingTitle": "You're not following any horses yet",
+      "emptyTitle": "No horses yet",
+      "errorBody": "We couldn't load the stables.",
+      "filterAll": "All",
+      "filterFollowing": "Following",
+      "kicker": "Today at the yard",
+      "subtitle": "Every horse in our club, follow the ones you love.",
+      "title": "Our Stables"
+    },
+    "status": {
+      "inTraining": "In Training",
+      "preTraining": "Pre-Training",
+      "rehab": "Rehab",
+      "retired": "Retired",
+      "sold": "Sold"
+    }
+  },
   "welcome": "Welcome to obytes app site"
 }

@@ -1,55 +1,57 @@
+import * as React from 'react';
 import { Alert } from 'react-native';
-import { Pressable, Text } from '@/components/ui';
+
+import { Button } from '@/components/ui';
+import { tx } from '@/features/stables/lib/tx';
+
+import { translate } from '@/lib/i18n';
 
 type FollowToggleProps = {
   isFollowing: boolean;
   pending?: boolean;
   onToggle: (following: boolean) => void;
-  /** Overlay variant for the horse card's photo; defaults to inline. */
-  variant?: 'inline' | 'overlay';
+  /**
+   * `card` (Stables list): `secondary` "Follow" / `primary` "Following".
+   * `hero` (Horse detail photo): white-outline "Follow" / ice-filled "Following".
+   */
+  tone?: 'card' | 'hero';
   /**
    * When set, unfollowing (isFollowing -> false) confirms via Alert.alert
-   * first instead of calling onToggle directly -- for invite-only horses,
-   * where unfollowing loses access and only a club admin can add the
-   * member back. Following always happens directly, regardless.
+   * first instead of calling onToggle directly -- for invite-only horses
+   * (S9-05), where unfollowing loses access and only a club admin can add
+   * the member back. Following always happens directly, regardless.
    */
   confirmBeforeUnfollow?: { horseName: string };
+  className?: string;
+  testID?: string;
 };
 
 /**
- * Explicit follow/unfollow pill ("+ Follow" / "Following"), shared by the
- * Stables card (photo overlay) and the profile header. Follows the stables
- * chip convention: mono uppercase label, bg-primary when active.
+ * Follow / Following button (S13-04). The mutation is optimistic, so the
+ * label flips immediately; while it's in flight presses are ignored rather
+ * than dimming the button.
  */
 export function FollowToggle({
   isFollowing,
   pending = false,
   onToggle,
-  variant = 'inline',
+  tone = 'card',
   confirmBeforeUnfollow,
+  className,
+  testID,
 }: FollowToggleProps) {
-  const position = variant === 'overlay' ? 'absolute right-3 top-3' : '';
-  const background = isFollowing
-    ? 'bg-primary'
-    : variant === 'overlay'
-      ? 'bg-ink/50'
-      : 'bg-muted';
-  const labelColor = isFollowing
-    ? 'text-on-primary'
-    : variant === 'overlay'
-      ? 'text-white'
-      : 'text-muted-foreground';
-
   const handlePress = () => {
+    if (pending)
+      return;
     const next = !isFollowing;
     if (!next && confirmBeforeUnfollow) {
       const { horseName } = confirmBeforeUnfollow;
       Alert.alert(
-        `Leave ${horseName}?`,
-        `You'll lose access to ${horseName}. Only a club admin can add you back.`,
+        tx('stables.follow.leaveTitle', { name: horseName }),
+        tx('stables.follow.leaveBody', { name: horseName }),
         [
-          { text: 'Cancel', style: 'cancel' },
-          { text: 'Leave', style: 'destructive', onPress: () => onToggle(false) },
+          { text: translate('stables.follow.leaveCancel'), style: 'cancel' },
+          { text: translate('stables.follow.leaveConfirm'), style: 'destructive', onPress: () => onToggle(false) },
         ],
       );
       return;
@@ -57,19 +59,22 @@ export function FollowToggle({
     onToggle(next);
   };
 
+  const hero = tone === 'hero';
+  const variant = hero
+    ? (isFollowing ? 'on-dark' : 'ghost-on-dark')
+    : (isFollowing ? 'primary' : 'secondary');
+
   return (
-    <Pressable
-      accessibilityRole="button"
-      accessibilityState={{ selected: isFollowing }}
-      accessibilityLabel={isFollowing ? 'Unfollow horse' : 'Follow horse'}
-      disabled={pending}
-      hitSlop={8}
+    <Button
+      testID={testID}
+      size="md"
+      variant={variant}
+      label={translate(isFollowing ? 'stables.follow.following' : 'stables.follow.follow')}
+      // Ice fill for the hero's "Following" (Figma frame 7).
+      className={[hero && isFollowing ? 'bg-ice' : '', className ?? ''].join(' ').trim()}
+      accessibilityLabel={translate(isFollowing ? 'stables.follow.unfollowA11y' : 'stables.follow.followA11y')}
+      accessibilityState={{ selected: isFollowing, busy: pending }}
       onPress={handlePress}
-      className={`rounded-full px-3.5 py-2 ${position} ${background} ${pending ? 'opacity-60' : ''}`}
-    >
-      <Text className={`font-mono text-[10px] tracking-widest uppercase ${labelColor}`}>
-        {isFollowing ? 'Following' : '+ Follow'}
-      </Text>
-    </Pressable>
+    />
   );
 }

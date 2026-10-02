@@ -5,20 +5,21 @@ import { StorySection } from '@/features/stables/components/story-section';
 
 describe('storySection', () => {
   it('renders nothing when there is no story or pedigree', () => {
-    const { toJSON } = render(<StorySection story={null} pedigree={null} />);
+    const { toJSON } = render(<StorySection story={null} pedigree={[]} />);
     expect(toJSON()).toBeNull();
   });
 
   it('renders a short story without a "Read more" toggle', () => {
-    render(<StorySection story="A short and sweet story." pedigree={null} />);
+    render(<StorySection story="A short and sweet story." pedigree={[]} />);
 
+    expect(screen.getByText('Story & pedigree')).toBeOnTheScreen();
     expect(screen.getByText('A short and sweet story.')).toBeOnTheScreen();
     expect(screen.queryByText('Read more')).toBeNull();
   });
 
   it('collapses a long story behind "Read more" and expands on tap', () => {
-    const longStory = 'x'.repeat(400);
-    render(<StorySection story={longStory} pedigree={null} />);
+    const longStory = 'x'.repeat(600);
+    render(<StorySection story={longStory} pedigree={[]} />);
 
     expect(screen.getByText('Read more')).toBeOnTheScreen();
     expect(screen.queryByText(longStory)).toBeNull();
@@ -29,11 +30,16 @@ describe('storySection', () => {
     expect(screen.getByText('Show less')).toBeOnTheScreen();
   });
 
-  it('renders pedigree fields that are present and omits missing ones', () => {
+  it('labels the second row Dam (the Figma duplicate "Sire" is a typo) and adds Dam\'s sire', () => {
     render(
       <StorySection
         story={null}
-        pedigree={{ sire: 'Galileo', dam: 'Urban Sea' }}
+        pedigree={[
+          { key: 'sire', value: 'Galileo' },
+          { key: 'dam', value: 'Urban Sea' },
+          { key: 'damsire', value: 'Miswaki' },
+          { key: 'foaled', value: 'May 2023 · Co. Meath' },
+        ]}
       />,
     );
 
@@ -41,6 +47,7 @@ describe('storySection', () => {
     expect(screen.getByText('Galileo')).toBeOnTheScreen();
     expect(screen.getByText('Dam')).toBeOnTheScreen();
     expect(screen.getByText('Urban Sea')).toBeOnTheScreen();
-    expect(screen.queryByText('Damsire')).toBeNull();
+    expect(screen.getByText('Dam\'s sire')).toBeOnTheScreen();
+    expect(screen.getByText('Foaled')).toBeOnTheScreen();
   });
 });
