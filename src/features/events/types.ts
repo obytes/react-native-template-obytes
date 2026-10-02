@@ -27,6 +27,11 @@ export type ClubEvent = {
   inlineAttachments: Record<string, unknown>[];
   url: string | null;
   rsvp: ClubEventRsvp;
+  /**
+   * Event category ("Race Day", "Stable Visit", ...). Arrives with S13-11; until
+   * then it is absent and every type-driven element falls back to its default.
+   */
+  type?: string | null;
 };
 
 export type EventsResult = {

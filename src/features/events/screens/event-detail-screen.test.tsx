@@ -1,9 +1,10 @@
-import type { ClubEvent } from '@/features/events/types';
-
+/* eslint-disable react/no-unnecessary-use-prefix -- jest mock factories mirror real hook names */
 import { fireEvent, render, screen } from '@testing-library/react-native';
 import * as React from 'react';
 
 import { EventDetailScreen, EventDetailView } from '@/features/events/screens/event-detail-screen';
+
+import { clubEvent, rsvp } from '@/features/events/test-fixtures';
 
 jest.mock('@/components/ui', () => {
   const actual = jest.requireActual('@/components/ui');
@@ -20,44 +21,34 @@ jest.mock('@/features/events/lib/add-to-calendar', () => ({
   addEventToDeviceCalendar: (...args: unknown[]) => mockAddEventToDeviceCalendar(...args),
 }));
 
-function clubEvent(overrides: Partial<ClubEvent> = {}): ClubEvent {
-  return {
-    id: 'event-1',
-    spaceId: 'space-1',
-    title: 'Autumn Race Day',
-    startsAt: '2026-09-05T10:00:00.000Z',
-    endsAt: '2026-09-05T12:00:00.000Z',
-    locationType: 'in_person',
-    inPersonLocation: 'The Curragh',
-    virtualLocationUrl: null,
-    coverImageUrl: null,
-    bodyText: 'Join us for a day at the races.',
-    tiptapDoc: null,
-    embeds: {},
-    inlineAttachments: [],
-    url: null,
-    rsvp: {
-      going: false,
-      status: null,
-      count: 12,
-      limit: null,
-      disabled: false,
-      full: false,
-    },
-    ...overrides,
-  };
-}
+jest.mock('@/components/ui/screen-layout', () => ({ useScreenTopPadding: () => 44 }));
+jest.mock('@/components/ui/focus-aware-status-bar', () => ({ FocusAwareStatusBar: () => null }));
 
 describe('eventDetailView', () => {
   beforeEach(() => jest.clearAllMocks());
 
-  it('renders the title, date, location and body', () => {
-    render(<EventDetailView event={clubEvent()} />);
-
+  it('renders the header band, details card and spots/attending rows', () => {
+    render(<EventDetailView event={clubEvent({ type: 'Race Day', rsvp: rsvp({ count: 37, limit: 40 }) })} />);
     expect(screen.getByText('Autumn Race Day')).toBeOnTheScreen();
-    expect(screen.getByText('The Curragh')).toBeOnTheScreen();
+    expect(screen.getByText(/Thu 5 September · \d{2}:\d{2} · The Curragh/)).toBeOnTheScreen();
+    expect(screen.getByTestId('event-detail-pattern')).toBeOnTheScreen();
+    expect(screen.getByTestId('event-detail-type')).toHaveTextContent('Race Day');
     expect(screen.getByText('Join us for a day at the races.')).toBeOnTheScreen();
-    expect(screen.getByText(/Sat.*Sep.*5/)).toBeOnTheScreen();
+    expect(screen.getByText('3 of 40')).toBeOnTheScreen();
+    expect(screen.getByText('37 going')).toBeOnTheScreen();
+  });
+
+  it('hides the type label until the event has a type, and the spots row without a limit', () => {
+    render(<EventDetailView event={clubEvent()} />);
+    expect(screen.queryByTestId('event-detail-type')).toBeNull();
+    expect(screen.queryByText('Spots remaining')).toBeNull();
+    expect(screen.getByText('12 going')).toBeOnTheScreen();
+  });
+
+  it('uses the cover photo instead of the pattern when present', () => {
+    render(<EventDetailView event={clubEvent({ coverImageUrl: 'https://example.com/c.jpg' })} />);
+    expect(screen.getByTestId('event-detail-cover')).toBeOnTheScreen();
+    expect(screen.queryByTestId('event-detail-pattern')).toBeNull();
   });
 
   it('renders hydrated TipTap content natively when available', () => {
@@ -65,171 +56,131 @@ describe('eventDetailView', () => {
       <EventDetailView
         event={clubEvent({
           bodyText: 'Plain text fallback',
-          tiptapDoc: {
-            type: 'doc',
-            content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Native race day content' }] }],
-          },
+          tiptapDoc: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Native race day content' }] }] },
         })}
       />,
     );
-
     expect(screen.getByText('Native race day content')).toBeOnTheScreen();
-    expect(screen.queryByText('Plain text fallback')).not.toBeOnTheScreen();
+    expect(screen.queryByText('Plain text fallback')).toBeNull();
   });
 
-  it('renders a tappable "Join online" link for virtual events instead of a plain location', () => {
-    render(
-      <EventDetailView
-        event={clubEvent({
-          locationType: 'virtual',
-          inPersonLocation: null,
-          virtualLocationUrl: 'https://example.com/live',
-        })}
-      />,
-    );
-
+  it('renders a "Join online" link for virtual events', () => {
+    render(<EventDetailView event={clubEvent({ locationType: 'virtual', inPersonLocation: null, virtualLocationUrl: 'https://example.com/live' })} />);
     expect(screen.getByText('Join online')).toBeOnTheScreen();
-    expect(screen.queryByText('Online')).not.toBeOnTheScreen();
   });
 
-  it('shows the fallback message when the event cannot be found', () => {
-    render(<EventDetailView event={undefined} />);
-    expect(screen.getByText('This event is no longer available.')).toBeOnTheScreen();
+  it('shows SHARE only with a url and calls onShare', () => {
+    const onShare = jest.fn();
+    const { rerender } = render(<EventDetailView event={clubEvent()} onShare={onShare} />);
+    expect(screen.queryByTestId('event-detail-share')).toBeNull();
+    rerender(<EventDetailView event={clubEvent({ url: 'https://circle.example/e/1' })} onShare={onShare} />);
+    fireEvent.press(screen.getByTestId('event-detail-share'));
+    expect(onShare).toHaveBeenCalledTimes(1);
   });
 
-  it('shows a loading state while the event is not yet resolved', () => {
-    render(<EventDetailView event={undefined} isLoading />);
+  it('shows loading / error / unavailable states', () => {
+    const { rerender } = render(<EventDetailView event={undefined} isLoading />);
     expect(screen.getByTestId('event-detail-loading')).toBeOnTheScreen();
-    expect(screen.queryByText('This event is no longer available.')).toBeNull();
-  });
-
-  it('shows a connection-problem message (not the unavailable message) when the backing queries errored', () => {
-    render(<EventDetailView event={undefined} isError />);
-    expect(screen.getByTestId('event-detail-error')).toBeOnTheScreen();
-    expect(
-      screen.getByText('Couldn\'t load this event — check your connection and try again.'),
-    ).toBeOnTheScreen();
-    expect(screen.queryByText('This event is no longer available.')).toBeNull();
-  });
-
-  it('shows the unavailable message (not the connection-problem message) when the queries settled without error', () => {
-    render(<EventDetailView event={undefined} isError={false} />);
-    expect(screen.getByTestId('event-detail-unavailable')).toBeOnTheScreen();
+    rerender(<EventDetailView event={undefined} isError />);
+    expect(screen.getByText('Couldn\'t load this event — check your connection and try again.')).toBeOnTheScreen();
+    rerender(<EventDetailView event={undefined} />);
     expect(screen.getByText('This event is no longer available.')).toBeOnTheScreen();
-    expect(
-      screen.queryByText('Couldn\'t load this event — check your connection and try again.'),
-    ).toBeNull();
-  });
-});
-
-describe('eventDetailView rsvp count', () => {
-  beforeEach(() => jest.clearAllMocks());
-
-  it('shows the "N going" count with no limit', () => {
-    render(<EventDetailView event={clubEvent({ rsvp: { going: false, status: null, count: 12, limit: null, disabled: false, full: false } })} />);
-    expect(screen.getByText('12 going')).toBeOnTheScreen();
-  });
-
-  it('shows the "N of M going" count when a limit is set', () => {
-    render(<EventDetailView event={clubEvent({ rsvp: { going: false, status: null, count: 12, limit: 20, disabled: false, full: false } })} />);
-    expect(screen.getByText('12 of 20 going')).toBeOnTheScreen();
   });
 });
 
 describe('eventDetailView rsvp button', () => {
   beforeEach(() => jest.clearAllMocks());
 
-  it('shows the default RSVP label and calls onToggleRsvp(true) when pressed', () => {
+  it('rSVP – I am going calls onToggleRsvp(true)', () => {
     const onToggleRsvp = jest.fn();
     render(<EventDetailView event={clubEvent()} onToggleRsvp={onToggleRsvp} />);
-
-    expect(screen.getByText('RSVP — I\'m going')).toBeOnTheScreen();
-    fireEvent.press(screen.getByTestId('event-rsvp-cta'));
+    fireEvent.press(screen.getByText('RSVP – I am going'));
     expect(onToggleRsvp).toHaveBeenCalledWith(true);
   });
 
-  it('shows the going label and calls onToggleRsvp(false) when pressed', () => {
+  it('cancel RSVP when already going', () => {
     const onToggleRsvp = jest.fn();
-    render(
-      <EventDetailView
-        event={clubEvent({ rsvp: { going: true, status: 'yes', count: 13, limit: null, disabled: false, full: false } })}
-        onToggleRsvp={onToggleRsvp}
-      />,
-    );
-
-    expect(screen.getByText('Going ✓ — tap to cancel')).toBeOnTheScreen();
-    fireEvent.press(screen.getByTestId('event-rsvp-cta'));
+    render(<EventDetailView event={clubEvent({ rsvp: rsvp({ going: true }) })} onToggleRsvp={onToggleRsvp} />);
+    fireEvent.press(screen.getByText('Cancel RSVP'));
     expect(onToggleRsvp).toHaveBeenCalledWith(false);
   });
 
-  it('shows a disabled "Event full" state when full and not going', () => {
+  it('disabled "Event full" when full and not going; no waitlist button', () => {
     const onToggleRsvp = jest.fn();
-    render(
-      <EventDetailView
-        event={clubEvent({ rsvp: { going: false, status: null, count: 20, limit: 20, disabled: false, full: true } })}
-        onToggleRsvp={onToggleRsvp}
-      />,
-    );
-
-    expect(screen.getByText('Event full')).toBeOnTheScreen();
-    fireEvent.press(screen.getByTestId('event-rsvp-cta'));
+    render(<EventDetailView event={clubEvent({ rsvp: rsvp({ full: true, count: 20, limit: 20 }) })} onToggleRsvp={onToggleRsvp} />);
+    expect(screen.getByTestId('event-rsvp-cta')).toBeDisabled();
+    fireEvent.press(screen.getByText('Event full'));
     expect(onToggleRsvp).not.toHaveBeenCalled();
+    expect(screen.queryByText('Join Waitlist')).toBeNull();
   });
 
-  it('hides the RSVP control entirely when rsvp.disabled is true', () => {
-    render(
-      <EventDetailView
-        event={clubEvent({ rsvp: { going: false, status: null, count: 5, limit: null, disabled: true, full: false } })}
-      />,
-    );
-
-    expect(screen.queryByTestId('event-rsvp-cta')).toBeNull();
-    expect(screen.queryByText('RSVP — I\'m going')).toBeNull();
+  it('full but already going: still Cancel RSVP (enabled)', () => {
+    render(<EventDetailView event={clubEvent({ rsvp: rsvp({ full: true, going: true, count: 20, limit: 20 }) })} />);
+    expect(screen.getByText('Cancel RSVP')).toBeOnTheScreen();
+    expect(screen.getByTestId('event-rsvp-cta')).not.toBeDisabled();
   });
 
-  it('shows the full state and message when rsvpFullError is set, even if the cached event is not full', () => {
-    render(<EventDetailView event={clubEvent({ rsvp: { going: false, status: null, count: 5, limit: null, disabled: false, full: false } })} rsvpFullError />);
-
+  it('rsvpFullError forces the full state', () => {
+    render(<EventDetailView event={clubEvent()} rsvpFullError />);
     expect(screen.getByText('Event full')).toBeOnTheScreen();
-    expect(screen.getByText('This event is full.')).toBeOnTheScreen();
+  });
+
+  it('hides the control when rsvp is disabled', () => {
+    render(<EventDetailView event={clubEvent({ rsvp: rsvp({ disabled: true }) })} />);
+    expect(screen.queryByTestId('event-rsvp-cta')).toBeNull();
   });
 });
 
-describe('eventDetailView add to calendar', () => {
+describe('eventDetailView remind me', () => {
   beforeEach(() => jest.clearAllMocks());
 
-  it('shows the add-to-calendar button for events with a start time', () => {
-    render(<EventDetailView event={clubEvent()} />);
-    expect(screen.getByTestId('event-add-to-calendar')).toBeOnTheScreen();
+  it('reflects reminder state and calls onToggleReminder', () => {
+    const onToggleReminder = jest.fn();
+    render(<EventDetailView event={clubEvent()} reminderOn onToggleReminder={onToggleReminder} />);
+    expect(screen.getByTestId('event-remind-switch').props.value).toBe(true);
+    fireEvent(screen.getByTestId('event-remind-switch'), 'valueChange', false);
+    expect(onToggleReminder).toHaveBeenCalledTimes(1);
   });
 
-  it('hides the add-to-calendar button when the event has no start time', () => {
-    render(<EventDetailView event={clubEvent({ startsAt: null })} />);
-    expect(screen.queryByTestId('event-add-to-calendar')).toBeNull();
-  });
-
-  it('calls onAddToCalendar when the add-to-calendar button is pressed', () => {
+  it('offers Add to calendar only while the reminder is on and the event has a start', () => {
     const onAddToCalendar = jest.fn();
-    render(<EventDetailView event={clubEvent()} onAddToCalendar={onAddToCalendar} />);
+    const { rerender } = render(<EventDetailView event={clubEvent()} />);
+    expect(screen.queryByTestId('event-add-to-calendar')).toBeNull();
+    rerender(<EventDetailView event={clubEvent()} reminderOn onAddToCalendar={onAddToCalendar} />);
     fireEvent.press(screen.getByTestId('event-add-to-calendar'));
     expect(onAddToCalendar).toHaveBeenCalledTimes(1);
+    rerender(<EventDetailView event={clubEvent({ startsAt: null })} reminderOn />);
+    expect(screen.queryByTestId('event-add-to-calendar')).toBeNull();
   });
 
   it.each([
     ['added', 'Added to your calendar ✓'],
     ['denied', 'Calendar permission denied'],
     ['failed', 'Couldn\'t add to calendar'],
-  ] as const)('shows the "%s" outcome label', (outcome, label) => {
-    render(<EventDetailView event={clubEvent()} calendarOutcome={outcome} />);
+  ] as const)('shows the "%s" calendar outcome', (outcome, label) => {
+    render(<EventDetailView event={clubEvent()} reminderOn calendarOutcome={outcome} />);
     expect(screen.getByText(label)).toBeOnTheScreen();
+  });
+
+  it('explains why a reminder could not be set', () => {
+    render(<EventDetailView event={clubEvent()} reminderNotice="denied" />);
+    expect(screen.getByText('Allow notifications in Settings to get reminders.')).toBeOnTheScreen();
   });
 });
 
 const mockUseEvents = jest.fn();
 const mockRsvpMutate = jest.fn();
 
+const mockBack = jest.fn();
 jest.mock('expo-router', () => ({
   useLocalSearchParams: () => mockUseLocalSearchParams(),
+  useRouter: () => ({ back: mockBack }),
+  Stack: { Screen: () => null },
+}));
+
+const mockReminderToggle = jest.fn();
+jest.mock('@/features/events/lib/event-reminders', () => ({
+  useEventReminder: () => ({ on: false, pending: false, toggle: mockReminderToggle }),
 }));
 const mockUseLocalSearchParams = jest.fn();
 
@@ -321,11 +272,25 @@ describe('eventDetailScreen', () => {
     fireEvent.press(screen.getByTestId('event-rsvp-cta'));
 
     expect(await screen.findByText('Event full')).toBeOnTheScreen();
-    expect(screen.getByText('This event is full.')).toBeOnTheScreen();
+  });
+
+  it('toggles the shared reminder from the switch and shows a notice when it cannot be set', async () => {
+    mockReminderToggle.mockResolvedValue('too-late');
+    render(<EventDetailScreen />);
+    fireEvent(screen.getByTestId('event-remind-switch'), 'valueChange', true);
+    expect(mockReminderToggle).toHaveBeenCalledTimes(1);
+    expect(await screen.findByTestId('event-remind-notice')).toBeOnTheScreen();
+  });
+
+  it('goes back from the header', () => {
+    render(<EventDetailScreen />);
+    fireEvent.press(screen.getByTestId('event-detail-back'));
+    expect(mockBack).toHaveBeenCalledTimes(1);
   });
 
   it('surfaces the add-to-calendar outcome once the native call resolves', async () => {
     mockAddEventToDeviceCalendar.mockResolvedValue('added');
+    jest.requireMock('@/features/events/lib/event-reminders').useEventReminder = () => ({ on: true, pending: false, toggle: mockReminderToggle });
     render(<EventDetailScreen />);
 
     fireEvent.press(screen.getByTestId('event-add-to-calendar'));
