@@ -110,6 +110,12 @@ describe('input component ', () => {
 });
 
 describe('input tones (form field)', () => {
+  it('merges a caller className instead of dropping the field styling', () => {
+    render(<Input testID="input" className="min-h-40" />);
+    const cls = screen.getByTestId('input').props.className;
+    expect(cls).toContain('bg-white');
+    expect(cls).toContain('min-h-40');
+  });
   it('uses the light V2 field by default', () => {
     render(<Input testID="input" label="Email" />);
     expect(screen.getByTestId('input').props.className).toContain('bg-white');

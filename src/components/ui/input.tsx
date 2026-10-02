@@ -67,7 +67,7 @@ export type NInputProps = {
 } & TextInputProps;
 
 export function Input({ ref, ...props }: NInputProps & { ref?: React.Ref<NTextInput | null> }) {
-  const { label, error, tone = 'light', testID, onBlur: onBlurProp, onFocus: onFocusProp, ...inputProps } = props;
+  const { label, error, tone = 'light', testID, className, onBlur: onBlurProp, onFocus: onFocusProp, ...inputProps } = props;
   const [isFocussed, setIsFocussed] = React.useState(false);
 
   const onBlur = React.useCallback(
@@ -110,7 +110,7 @@ export function Input({ ref, ...props }: NInputProps & { ref?: React.Ref<NTextIn
         editable={!props.disabled}
         accessibilityLabel={label}
         accessibilityState={{ disabled: Boolean(props.disabled) }}
-        className={styles.input()}
+        className={styles.input({ class: className })}
         onBlur={onBlur}
         onFocus={onFocus}
         {...inputProps}
