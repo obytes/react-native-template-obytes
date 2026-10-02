@@ -35,6 +35,7 @@ type VariantSpec = {
 /** Default Dynamic Type cap for body/label text. Display styles use 1.2. */
 export const DEFAULT_MAX_FONT_SIZE_MULTIPLIER = 1.3;
 const DISPLAY_MAX_FONT_SIZE_MULTIPLIER = 1.2;
+const DISPLAY_DESCENDER_RATIO = 0.15;
 
 function display(size: number, lineHeight: number): VariantSpec {
   return {
@@ -76,9 +77,15 @@ export const TEXT_VARIANTS: Record<TextVariant, VariantSpec> = {
 /** Size, line height and letter spacing (in points) for a variant. */
 export function textVariantStyle(variant: TextVariant): TextStyle {
   const { fontSize, lineHeight, tracking } = TEXT_VARIANTS[variant];
-  return {
+  const style: TextStyle = {
     fontSize,
     lineHeight,
     letterSpacing: Math.round(fontSize * tracking * 100) / 100,
   };
+  // PP Eiko's descenders (g, y, p) hang below the design's tight display
+  // leading, and iOS clips the last line to its line box. Bottom padding keeps
+  // the glyphs visible without loosening the headline leading.
+  if (variant.startsWith('display-'))
+    style.paddingBottom = Math.ceil(fontSize * DISPLAY_DESCENDER_RATIO);
+  return style;
 }
