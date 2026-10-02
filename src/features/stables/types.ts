@@ -32,6 +32,8 @@ export type HorsePedigree = {
 export type Trainer = {
   id: string;
   name: string;
+  // S13-10 (not yet shipped): "Kildare". Rendered only when present.
+  location?: string | null;
 };
 
 export type Jockey = {
@@ -77,6 +79,10 @@ export type Entry = {
   // select-narrowing so it's already on every entry response, but may be
   // absent/undefined on older cached payloads -- treat as optional.
   replayUrl?: string | null;
+  // S13-10 (not yet shipped): runner count and starting price ("6/1",
+  // "Evs", "11/4F"). Rendered only when present.
+  fieldSize?: number | null;
+  startingPrice?: string | null;
   createdAt: string;
   updatedAt: string;
   jockey: Jockey | null;
@@ -134,7 +140,22 @@ export type Horse = {
   providerLastSync: string | null;
   createdAt: string;
   updatedAt: string;
+  // --- S13-10 horse facts (not yet shipped). Every one is optional and the
+  // UI renders it only when present, so the fields light up without a
+  // mobile release. `profileLine` is server-derived ("Bay filly, 3 years
+  // old") and wins over the client-side composition from the parts.
+  profileLine?: string | null;
+  colour?: string | null;
+  sex?: HorseSex | null;
+  ageYears?: number | null;
+  foaledOn?: string | null;
+  foaledPlace?: string | null;
+  // The list payload carries recent results today (RAN only); if it ever
+  // includes a declared entry, the card's "Declared" pill appears.
+  entries?: Entry[];
 };
+
+export type HorseSex = 'FILLY' | 'COLT' | 'MARE' | 'GELDING' | 'STALLION';
 
 export type HorseDetail = {
   entries: Entry[];

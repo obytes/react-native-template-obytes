@@ -87,8 +87,19 @@ describe('followToggle', () => {
     expect(onToggle).toHaveBeenCalledWith(false);
   });
 
-  it('renders the plain follow/unfollow labels regardless of confirmBeforeUnfollow', () => {
-    render(<FollowToggle isFollowing={false} onToggle={jest.fn()} />);
-    expect(screen.getByText('+ Follow')).toBeOnTheScreen();
+  it('ignores presses while the mutation is pending', async () => {
+    const onToggle = jest.fn();
+    const { user } = setup(<FollowToggle isFollowing={false} pending onToggle={onToggle} />);
+
+    await user.press(screen.getByLabelText('Follow horse'));
+
+    expect(onToggle).not.toHaveBeenCalled();
+  });
+
+  it('renders Follow / Following labels', () => {
+    const { rerender } = render(<FollowToggle isFollowing={false} onToggle={jest.fn()} />);
+    expect(screen.getByText('Follow')).toBeOnTheScreen();
+    rerender(<FollowToggle isFollowing tone="hero" onToggle={jest.fn()} />);
+    expect(screen.getByText('Following')).toBeOnTheScreen();
   });
 });

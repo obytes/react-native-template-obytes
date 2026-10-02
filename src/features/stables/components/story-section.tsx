@@ -1,86 +1,97 @@
-import type { HorsePedigree } from '@/features/stables/types';
+import type { PedigreeRow, PedigreeRowKey } from '@/features/stables/lib/horse-facts';
+import type { TxKeyPath } from '@/lib/i18n';
 
 import * as React from 'react';
-import { Pressable, Text, View } from '@/components/ui';
+import { Pressable, View } from 'react-native';
+import { twMerge } from 'tailwind-merge';
+
+import { Card, MonoLabel, Text } from '@/components/ui';
+import { translate } from '@/lib/i18n';
 
 type StorySectionProps = {
+  /** Story text (`story`, falling back to `bio`). */
   story: string | null | undefined;
-  pedigree: HorsePedigree | null | undefined;
+  pedigree: PedigreeRow[];
 };
 
 // Long stories collapse behind "Read more" to keep the profile scannable.
-const COLLAPSE_THRESHOLD = 320;
+const COLLAPSE_THRESHOLD = 480;
 
-function PedigreeRow({ label, value }: { label: string; value: string }) {
+const PEDIGREE_LABELS: Record<PedigreeRowKey, TxKeyPath> = {
+  sire: 'stables.detail.pedigree.sire',
+  dam: 'stables.detail.pedigree.dam',
+  damsire: 'stables.detail.pedigree.damsire',
+  foaled: 'stables.detail.pedigree.foaled',
+};
+
+/**
+ * Pedigree row (Figma frame 7): mono label left, body value right, ice
+ * hairline between rows. Feature-local rather than `ListRow`, whose label
+ * is `body-lg` (the frame uses a mono label here).
+ */
+function PedigreeRowView({ row, divider }: { row: PedigreeRow; divider: boolean }) {
+  const label = translate(PEDIGREE_LABELS[row.key]);
   return (
-    <View className="flex-row items-center justify-between py-1.5">
-      <Text className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-        {label}
-      </Text>
-      <Text className="font-sans text-sm text-ink">{value}</Text>
+    <View
+      testID={`pedigree-${row.key}`}
+      accessible
+      accessibilityLabel={`${label}, ${row.value}`}
+      className={twMerge('min-h-9 flex-row items-center justify-between gap-4 py-2', divider && 'border-b border-ice')}
+    >
+      <MonoLabel className="text-ink">{label}</MonoLabel>
+      <Text variant="body" className="shrink text-right text-label">{row.value}</Text>
     </View>
   );
 }
 
 /**
- * "Story & Pedigree" module -- long-form narrative (collapsible past
- * COLLAPSE_THRESHOLD chars) plus sire/dam/damsire, when present. Renders
- * nothing when the horse has neither, so it never leaves an empty card in
- * the Detail Modules list.
+ * "Story & pedigree" white card (S13-04 detail §3). Renders nothing when
+ * the horse has neither a story nor any pedigree row.
  */
 export function StorySection({ story, pedigree }: StorySectionProps) {
   const [expanded, setExpanded] = React.useState(false);
-  const pedigreeEntries = [
-    pedigree?.sire ? ['Sire', pedigree.sire] : null,
-    pedigree?.dam ? ['Dam', pedigree.dam] : null,
-    pedigree?.damsire ? ['Damsire', pedigree.damsire] : null,
-  ].filter((entry): entry is [string, string] => entry !== null);
 
-  if (!story && pedigreeEntries.length === 0) {
+  if (!story && pedigree.length === 0)
     return null;
-  }
 
   const isLong = !!story && story.length > COLLAPSE_THRESHOLD;
-  const shownStory = isLong && !expanded ? `${story.slice(0, COLLAPSE_THRESHOLD).trimEnd()}...` : story;
+  const shownStory = isLong && !expanded ? `${story.slice(0, COLLAPSE_THRESHOLD).trimEnd()}…` : story;
 
   return (
-    <View className="rounded-2xl bg-card p-6">
-      <Text className="mb-4 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
-        Story & Pedigree
-      </Text>
+    <Card testID="story-section" className="gap-4 border border-outline-variant">
+      <MonoLabel>{translate('stables.detail.storyLabel')}</MonoLabel>
 
       {shownStory
         ? (
-            <Text className="mb-2 font-sans text-base/relaxed text-ink">
-              {shownStory}
-            </Text>
+            <View className="gap-2">
+              <Text variant="body-lg" className="text-ink-variant">{shownStory}</Text>
+              {isLong
+                ? (
+                    <Pressable
+                      accessibilityRole="button"
+                      onPress={() => setExpanded(prev => !prev)}
+                      hitSlop={8}
+                      className="self-start"
+                    >
+                      <MonoLabel className="text-ink">
+                        {translate(expanded ? 'stables.detail.showLess' : 'stables.detail.readMore')}
+                      </MonoLabel>
+                    </Pressable>
+                  )
+                : null}
+            </View>
           )
         : null}
 
-      {isLong
+      {pedigree.length > 0
         ? (
-            <Pressable
-              accessibilityRole="button"
-              onPress={() => setExpanded(prev => !prev)}
-              hitSlop={8}
-              className="mb-2"
-            >
-              <Text className="font-mono text-[10px] tracking-widest text-primary uppercase">
-                {expanded ? 'Show less' : 'Read more'}
-              </Text>
-            </Pressable>
-          )
-        : null}
-
-      {pedigreeEntries.length > 0
-        ? (
-            <View className={story ? 'mt-4 border-t border-muted pt-4' : ''}>
-              {pedigreeEntries.map(([label, value]) => (
-                <PedigreeRow key={label} label={label} value={value} />
+            <View>
+              {pedigree.map((row, i) => (
+                <PedigreeRowView key={row.key} row={row} divider={i < pedigree.length - 1} />
               ))}
             </View>
           )
         : null}
-    </View>
+    </Card>
   );
 }
