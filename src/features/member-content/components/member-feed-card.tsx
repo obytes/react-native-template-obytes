@@ -26,6 +26,7 @@ function CardBody({ item, onToggleLike, likePending }: CardBodyProps) {
         avatarUrl={item.authorAvatarUrl}
         time={formatRelativeTime(item.createdAt)}
         spaceName={item.spaceName}
+        spaceId={item.spaceId}
         role={item.authorRole}
       />
       {item.title ? <Text variant="title">{item.title}</Text> : null}
