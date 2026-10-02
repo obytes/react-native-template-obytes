@@ -35,7 +35,7 @@ function SectionHeader({ eyebrow, title }: { eyebrow: string; title: string }) {
       <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
         {eyebrow}
       </Text>
-      <Text className="mt-2 font-sans text-2xl font-semibold text-ink">{title}</Text>
+      <Text className="mt-2 font-sans-semibold text-2xl text-ink">{title}</Text>
     </View>
   );
 }
@@ -51,7 +51,7 @@ function EmptyState({
 }) {
   return (
     <View testID={testID} className="rounded-2xl border border-outline-variant bg-white p-6">
-      <Text className="font-sans text-lg font-semibold text-ink">{title}</Text>
+      <Text className="font-sans-semibold text-lg text-ink">{title}</Text>
       <Text className="mt-2 font-sans text-sm/5 text-ink-variant">{message}</Text>
     </View>
   );

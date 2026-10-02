@@ -32,7 +32,7 @@ export function NotificationsBell({ scope }: { scope: MemberContentScope }) {
               testID="home-bell-badge"
               className="absolute -top-1 -right-1 min-w-5 items-center rounded-full bg-primary px-1.5 py-0.5"
             >
-              <Text className="font-sans text-[10px] font-semibold text-white">{badge}</Text>
+              <Text className="font-sans-semibold text-[10px] text-white">{badge}</Text>
             </View>
           )
         : null}

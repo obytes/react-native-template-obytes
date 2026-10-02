@@ -12,7 +12,7 @@ export function PollResultBar({ label, percent, mine, optionId }: PollResultBarP
     <View className="gap-1">
       <View className="flex-row items-center justify-between">
         <View className="flex-row items-center gap-2">
-          <Text className={`font-sans text-sm ${mine ? 'font-semibold text-ink' : 'text-ink-variant'}`}>{label}</Text>
+          <Text className={`font-sans text-sm ${mine ? 'font-sans-semibold text-ink' : 'text-ink-variant'}`}>{label}</Text>
           {mine ? <Text testID={`poll-my-choice-${optionId}`} className="font-sans text-sm text-primary">✓</Text> : null}
         </View>
         <Text className="font-mono text-xs text-ink-variant">{`${percent}%`}</Text>

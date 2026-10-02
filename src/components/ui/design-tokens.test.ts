@@ -119,4 +119,20 @@ describe('design tokens', () => {
     const hits = offending(legacy, new Set(['components/ui/design-tokens.test.ts']));
     expect(hits).toEqual([]);
   });
+
+  it('uses weight-specific Jakarta families, never fontWeight classes or props', () => {
+    // iOS can't map fontWeight onto single-weight custom families: use
+    // font-sans-medium|semibold|bold (global.css) or FONT_FAMILY (ui/fonts.ts).
+    const classHits = offending(
+      /(?<![\w-])font-(?:medium|semibold|bold|extrabold)(?![\w-])/,
+      new Set(['components/ui/design-tokens.test.ts']),
+    );
+    expect(classHits).toEqual([]);
+    const propHits = offending(
+      /fontWeight\s*[:=]/,
+      // SVG <text> in the language flag icon is not Jakarta text.
+      new Set(['components/ui/design-tokens.test.ts', 'components/ui/icons/language.tsx']),
+    );
+    expect(propHits).toEqual([]);
+  });
 });

@@ -32,7 +32,7 @@ export function HeadlineCard({ headline }: { headline: Headline }) {
               onPress={() => router.push(cta.href as Href)}
               className="mt-4 self-start rounded-full bg-on-primary px-5 py-2.5"
             >
-              <Text className="font-sans text-sm font-semibold text-primary">
+              <Text className="font-sans-semibold text-sm text-primary">
                 {cta.label}
               </Text>
             </Pressable>

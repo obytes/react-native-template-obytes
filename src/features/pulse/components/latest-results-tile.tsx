@@ -28,7 +28,7 @@ function PositionBadge({ position }: { position: number | null }) {
       className="size-10 items-center justify-center rounded-full shadow-sm"
       style={{ backgroundColor: positionColor(position) }}
     >
-      <Text className="font-sans text-sm font-bold text-white">
+      <Text className="font-sans-bold text-sm text-white">
         {position
           ? ordinal(position)
           : '—'}
@@ -47,7 +47,7 @@ function ResultRow({ result }: { result: LatestResult }) {
     >
       <PositionBadge position={result.finishingPosition} />
       <View className="flex-1">
-        <Text className="font-sans text-base font-semibold text-ink">
+        <Text className="font-sans-semibold text-base text-ink">
           {result.horse.name}
         </Text>
         <Text className="font-mono text-xs tracking-wider text-ink-variant uppercase">

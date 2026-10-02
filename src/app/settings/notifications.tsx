@@ -82,7 +82,7 @@ export default function NotificationsScreen() {
 
 function SectionLabel({ text }: { text: Parameters<typeof translate>[0] }) {
   return (
-    <Text className="pt-6 pb-2 text-sm font-medium text-ink-muted uppercase">
+    <Text className="pt-6 pb-2 font-sans-medium text-sm text-ink-muted uppercase">
       {translate(text)}
     </Text>
   );

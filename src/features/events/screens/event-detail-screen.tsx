@@ -64,7 +64,7 @@ function EventLocationLine({ event }: { event: ClubEvent }) {
         accessibilityRole="link"
         onPress={() => openExternalLink(event.virtualLocationUrl!)}
       >
-        <Text className="font-sans text-sm font-semibold text-primary underline">
+        <Text className="font-sans-semibold text-sm text-primary underline">
           Join online
         </Text>
       </Pressable>
@@ -100,7 +100,7 @@ function RsvpButton({
         accessibilityState={{ disabled: true }}
         className="mt-1 items-center rounded-full border border-outline-variant bg-secondary-container py-3"
       >
-        <Text className="font-sans text-sm font-semibold text-ink-muted">Event full</Text>
+        <Text className="font-sans-semibold text-sm text-ink-muted">Event full</Text>
       </View>
     );
   }
@@ -115,7 +115,7 @@ function RsvpButton({
       onPress={() => onToggleRsvp?.(!going)}
       className={`mt-1 items-center rounded-full py-3 ${going ? 'bg-success-50' : 'bg-primary'} ${rsvpPending ? 'opacity-60' : ''}`}
     >
-      <Text className={`font-sans text-sm font-semibold ${going ? 'text-success-700' : 'text-on-primary'}`}>
+      <Text className={`font-sans-semibold text-sm ${going ? 'text-success-700' : 'text-on-primary'}`}>
         {going ? 'Going ✓ — tap to cancel' : 'RSVP — I\'m going'}
       </Text>
     </Pressable>
@@ -141,7 +141,7 @@ function AddToCalendarButton({
         onPress={onAddToCalendar}
         className={`items-center rounded-full border border-primary bg-white py-3 ${calendarPending ? 'opacity-60' : ''}`}
       >
-        <Text className="font-sans text-sm font-semibold text-primary">
+        <Text className="font-sans-semibold text-sm text-primary">
           {calendarPending ? 'Adding…' : 'Add to calendar'}
         </Text>
       </Pressable>
@@ -248,7 +248,7 @@ export function EventDetailView({
     >
       <EventCover event={event} />
       <View className="gap-3 px-5 pt-5">
-        <Text className="font-sans text-3xl font-semibold text-ink">{event.title}</Text>
+        <Text className="font-sans-semibold text-3xl text-ink">{event.title}</Text>
         {date
           ? (
               <Text className="font-mono text-xs tracking-wider text-label uppercase">

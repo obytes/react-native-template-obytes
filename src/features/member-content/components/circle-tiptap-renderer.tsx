@@ -5,6 +5,7 @@ import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import colors from '@/components/ui/colors';
+import { FONT_FAMILY } from '@/components/ui/fonts';
 import { CircleEmbedBlock } from '@/features/member-content/components/circle-embed-block';
 import { CircleFileBlock } from '@/features/member-content/components/circle-file-block';
 import { CircleImageBlock } from '@/features/member-content/components/circle-image-block';
@@ -225,7 +226,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   bold: {
-    fontWeight: '700',
+    fontFamily: FONT_FAMILY.bold,
   },
   italic: {
     fontStyle: 'italic',
@@ -289,8 +290,8 @@ const styles = StyleSheet.create({
 });
 
 const headingStyles: Record<number, TextStyle> = {
-  1: { color: colors.ink, fontSize: 28, fontWeight: '700', lineHeight: 34 },
-  2: { color: colors.ink, fontSize: 24, fontWeight: '700', lineHeight: 30 },
-  3: { color: colors.ink, fontSize: 20, fontWeight: '700', lineHeight: 26 },
-  4: { color: colors.ink, fontSize: 18, fontWeight: '700', lineHeight: 24 },
+  1: { color: colors.ink, fontSize: 28, fontFamily: FONT_FAMILY.bold, lineHeight: 34 },
+  2: { color: colors.ink, fontSize: 24, fontFamily: FONT_FAMILY.bold, lineHeight: 30 },
+  3: { color: colors.ink, fontSize: 20, fontFamily: FONT_FAMILY.bold, lineHeight: 26 },
+  4: { color: colors.ink, fontSize: 18, fontFamily: FONT_FAMILY.bold, lineHeight: 24 },
 };

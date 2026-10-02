@@ -79,19 +79,19 @@ export function ResultRow({ entry }: ResultRowProps) {
         {position != null
           ? (
               <Text
-                className={`text-sm font-bold ${getPositionColor(position)}`}
+                className={`font-sans-bold text-sm ${getPositionColor(position)}`}
               >
                 {getOrdinal(position)}
               </Text>
             )
           : (
-              <Text className="text-sm font-bold text-ink-muted">--</Text>
+              <Text className="font-sans-bold text-sm text-ink-muted">--</Text>
             )}
       </View>
 
       <View className="flex-1">
         <View className="flex-row items-center justify-between">
-          <Text className="text-sm font-semibold text-ink">
+          <Text className="font-sans-semibold text-sm text-ink">
             {courseName}
           </Text>
           <Text className="text-xs text-ink-muted">{date}</Text>
@@ -139,7 +139,7 @@ export function ResultRow({ entry }: ResultRowProps) {
                 onPress={() => openExternalLink(entry.replayUrl as string)}
                 className="mt-1.5 self-start"
               >
-                <Text className="font-mono text-[10px] font-bold tracking-widest text-primary uppercase">
+                <Text className="font-mono text-[10px] tracking-widest text-primary uppercase">
                   Watch Replay
                 </Text>
               </Pressable>

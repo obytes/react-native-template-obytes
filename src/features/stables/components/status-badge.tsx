@@ -44,7 +44,7 @@ export function StatusBadge({ status }: StatusBadgeProps) {
 
   return (
     <View className={`rounded-full px-2.5 py-0.5 ${config.bg}`}>
-      <Text className={`text-xs font-medium ${config.text}`}>
+      <Text className={`font-sans-medium text-xs ${config.text}`}>
         {config.label}
       </Text>
     </View>

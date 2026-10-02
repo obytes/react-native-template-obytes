@@ -20,10 +20,10 @@ import { Text } from './text';
 const selectTv = tv({
   slots: {
     container: 'mb-4',
-    label: 'mb-1.5 font-sans text-xs/4 font-medium text-ink-variant',
+    label: 'mb-1.5 font-sans-medium text-xs/4 text-ink-variant',
     input:
       'mt-0 flex-row items-center justify-center rounded-lg border border-outline-variant bg-white p-4',
-    inputValue: 'font-sans text-sm/5 font-medium text-ink',
+    inputValue: 'font-sans-medium text-sm/5 text-ink',
   },
 
   variants: {

@@ -22,7 +22,7 @@ function FeaturedNewsRow({ item }: { item: NewsItem }) {
             />
           )
         : null}
-      <Text className="font-sans text-base font-semibold text-ink">
+      <Text className="font-sans-semibold text-base text-ink">
         {item.title}
       </Text>
       {item.author
@@ -42,7 +42,7 @@ function CompactNewsRow({ item }: { item: NewsItem }) {
       onPress={() => router.push(`/news/${item.slug}`)}
       className="px-6 py-4"
     >
-      <Text className="font-sans text-base font-semibold text-ink">
+      <Text className="font-sans-semibold text-base text-ink">
         {item.title}
       </Text>
     </Pressable>

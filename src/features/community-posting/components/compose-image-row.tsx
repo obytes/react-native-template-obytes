@@ -30,7 +30,7 @@ export function ComposeImageRow({ image, imageError, onPickImage, onRemoveImage 
                 onPress={onRemoveImage}
                 className="absolute -top-2 -right-2 size-6 items-center justify-center rounded-full bg-primary"
               >
-                <Text className="font-sans text-xs font-semibold text-white">×</Text>
+                <Text className="font-sans-semibold text-xs text-white">×</Text>
               </Pressable>
             </View>
           )
@@ -41,7 +41,7 @@ export function ComposeImageRow({ image, imageError, onPickImage, onRemoveImage 
               onPress={onPickImage}
               className="self-start rounded-2xl border border-dashed border-outline-variant px-4 py-3"
             >
-              <Text className="font-sans text-sm font-medium text-ink-variant">Add photo</Text>
+              <Text className="font-sans-medium text-sm text-ink-variant">Add photo</Text>
             </Pressable>
           )}
       {imageError

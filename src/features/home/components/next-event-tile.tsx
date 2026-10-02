@@ -35,7 +35,7 @@ export function NextEventTile({ data, isLoading }: NextEventTileProps) {
               <Text className="font-mono text-xs tracking-wider text-ink-variant uppercase">
                 {formatEventDate(nextEvent.startsAt) ?? 'Date to be confirmed'}
               </Text>
-              <Text className="font-sans text-base font-semibold text-ink">
+              <Text className="font-sans-semibold text-base text-ink">
                 {nextEvent.title}
               </Text>
               <Text className="font-sans text-sm text-primary">

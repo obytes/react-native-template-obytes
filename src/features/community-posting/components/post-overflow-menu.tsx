@@ -66,7 +66,7 @@ export function PostOverflowMenu({ scope, postId, spaceId, isOwn, onReportPost, 
         onPress={modal.present}
         testID="post-overflow-trigger"
       >
-        <Text className="px-2 font-sans text-xl font-semibold text-ink">···</Text>
+        <Text className="px-2 font-sans-semibold text-xl text-ink">···</Text>
       </Pressable>
       <Modal ref={modal.ref} snapPoints={[isOwn ? '36%' : '28%']}>
         <View className="px-4 pb-6">

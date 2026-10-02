@@ -46,7 +46,7 @@ function LikeControl({ item, onToggleLike, likePending = false }: LikeControlPro
       <Text
         className={
           item.isLiked
-            ? 'font-sans text-xs font-medium text-danger-700'
+            ? 'font-sans-medium text-xs text-danger-700'
             : 'font-sans text-xs text-ink-muted'
         }
       >
@@ -81,7 +81,7 @@ function CardBody({ item, onToggleLike, likePending }: LikeControlProps) {
               </Text>
             )
           : null}
-        <Text className="font-sans text-xl font-semibold text-ink">
+        <Text className="font-sans-semibold text-xl text-ink">
           {item.title}
         </Text>
         {item.excerpt

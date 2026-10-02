@@ -24,6 +24,12 @@
 @theme {
   /* Font families */
   --font-sans: 'PlusJakartaSans';
+  /* One family per weight: iOS can't map fontWeight onto a single-weight custom
+     family, so weights are picked by family (loaded in src/app/_layout.tsx).
+     Use font-sans-medium|semibold|bold, never font-medium|semibold|bold. */
+  --font-sans-medium: 'PlusJakartaSans_500Medium';
+  --font-sans-semibold: 'PlusJakartaSans_600SemiBold';
+  --font-sans-bold: 'PlusJakartaSans_700Bold';
   --font-display: 'PPEiko';
   --font-mono: 'IBMPlexMono';
 

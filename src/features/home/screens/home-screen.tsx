@@ -71,7 +71,7 @@ export function HomeScreen() {
             <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
               Rionna Ireland
             </Text>
-            <Text className="mt-2 font-sans text-3xl font-semibold text-ink">Home</Text>
+            <Text className="mt-2 font-sans-semibold text-3xl text-ink">Home</Text>
           </View>
           <View className="flex-row items-center gap-3">
             <NotificationsBell scope={scope} />
@@ -82,7 +82,7 @@ export function HomeScreen() {
               onPress={() => router.push('/profile')}
               className="size-11 items-center justify-center rounded-full border border-outline-variant bg-white"
             >
-              <Text className="font-sans text-base font-semibold text-ink">
+              <Text className="font-sans-semibold text-base text-ink">
                 {displayName.slice(0, 1).toUpperCase()}
               </Text>
             </Pressable>

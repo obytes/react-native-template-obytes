@@ -37,7 +37,7 @@ export function SpacePickerSheet({ spaces, selectedSpaceId, onSelect }: SpacePic
         testID="compose-post-space-trigger"
         className="mb-4 flex-row items-center justify-between rounded-2xl border border-outline-variant bg-white px-4 py-3"
       >
-        <Text className="font-sans text-base font-medium text-ink">
+        <Text className="font-sans-medium text-base text-ink">
           {selected ? `${selected.emoji ?? ''} ${selected.name}`.trim() : 'Choose a space'}
         </Text>
         <Text className="font-sans text-sm text-primary">Change</Text>

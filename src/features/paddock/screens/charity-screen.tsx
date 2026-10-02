@@ -40,13 +40,13 @@ function CharityCard({ charity, onOpenWebsite }: { charity: Charity; onOpenWebsi
         {charity.logoUrl
           ? <Image source={{ uri: `${charity.logoUrl}?width=160&quality=80` }} className="size-12 rounded-lg" contentFit="contain" />
           : null}
-        <Text className="flex-1 font-sans text-lg font-semibold text-ink">{charity.charityName}</Text>
+        <Text className="flex-1 font-sans-semibold text-lg text-ink">{charity.charityName}</Text>
       </View>
       <Text className="font-sans text-sm/5 text-ink-variant">{charity.description}</Text>
       {charity.websiteUrl
         ? (
             <Pressable testID="charity-website" accessibilityRole="link" onPress={() => onOpenWebsite(charity.websiteUrl ?? '')}>
-              <Text className="font-sans text-sm font-semibold text-primary">Visit website →</Text>
+              <Text className="font-sans-semibold text-sm text-primary">Visit website →</Text>
             </Pressable>
           )
         : null}
@@ -100,7 +100,7 @@ export function CharityView(props: CharityViewProps) {
         {showUnavailable
           ? (
               <View testID="charity-unavailable" className="rounded-2xl border border-outline-variant bg-white p-6">
-                <Text className="font-sans text-lg font-semibold text-ink">Charity impact unavailable</Text>
+                <Text className="font-sans-semibold text-lg text-ink">Charity impact unavailable</Text>
                 <Text className="mt-2 font-sans text-sm/5 text-ink-variant">Check your connection and pull down to try again.</Text>
               </View>
             )
@@ -108,7 +108,7 @@ export function CharityView(props: CharityViewProps) {
         {showEmpty
           ? (
               <View testID="charity-empty" className="rounded-2xl border border-outline-variant bg-white p-6">
-                <Text className="font-sans text-lg font-semibold text-ink">Coming soon</Text>
+                <Text className="font-sans-semibold text-lg text-ink">Coming soon</Text>
                 <Text className="mt-2 font-sans text-sm/5 text-ink-variant">The club will announce its charity partner here.</Text>
               </View>
             )

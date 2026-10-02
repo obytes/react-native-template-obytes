@@ -68,13 +68,13 @@ export function AcceptTermsScreen({ onAccept, isAccepting, error }: Props) {
         <Text className="flex-1 pl-2">
           I agree to the
           {' '}
-          <Text className="font-bold underline" onPress={() => openExternalLink(TERMS_URL)}>
+          <Text className="font-sans-bold underline" onPress={() => openExternalLink(TERMS_URL)}>
             Terms & Conditions
           </Text>
           {' '}
           and have read the
           {' '}
-          <Text className="font-bold underline" onPress={() => openExternalLink(PRIVACY_URL)}>
+          <Text className="font-sans-bold underline" onPress={() => openExternalLink(PRIVACY_URL)}>
             Privacy Policy
           </Text>
         </Text>

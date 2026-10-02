@@ -55,7 +55,7 @@ function FormHeader() {
     <View className="mb-6 items-center justify-center">
       <Text
         testID="form-title"
-        className="pb-2 text-center text-4xl font-bold text-ink"
+        className="pb-2 text-center font-sans-bold text-4xl text-ink"
       >
         Rionna
       </Text>
@@ -80,7 +80,7 @@ function FormFooter() {
       {/* <Text className="text-center text-sm text-ink-muted">
         New members visit
         {' '}
-        <Text className="font-bold text-ink">
+        <Text className="font-sans-bold text-ink">
           rionna.com
         </Text>
         {' '}

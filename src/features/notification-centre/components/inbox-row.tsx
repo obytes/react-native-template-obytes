@@ -32,7 +32,7 @@ function LeadingVisual({ item }: { item: InboxItem }) {
   }
   return (
     <View className="size-11 items-center justify-center rounded-full bg-primary">
-      <Text className="font-sans font-semibold text-on-primary">R</Text>
+      <Text className="font-sans-semibold text-on-primary">R</Text>
     </View>
   );
 }
@@ -49,7 +49,7 @@ export function InboxRow({ item, onPress }: InboxRowProps) {
     >
       <LeadingVisual item={item} />
       <View className="flex-1">
-        <Text numberOfLines={2} className="font-sans text-sm font-semibold text-ink">
+        <Text numberOfLines={2} className="font-sans-semibold text-sm text-ink">
           {item.title}
         </Text>
         {item.body

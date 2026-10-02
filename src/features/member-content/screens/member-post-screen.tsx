@@ -72,7 +72,7 @@ type MemberPostViewProps = {
 function PostUnavailable({ onRetry }: { onRetry?: () => void }) {
   return (
     <View testID="member-post-unavailable" className="flex-1 items-center justify-center bg-surface px-8">
-      <Text className="font-sans text-xl font-semibold text-ink">Post unavailable</Text>
+      <Text className="font-sans-semibold text-xl text-ink">Post unavailable</Text>
       <Text className="mt-2 text-center font-sans text-sm/5 text-ink-variant">
         Check your connection and try again.
       </Text>
@@ -84,7 +84,7 @@ function PostUnavailable({ onRetry }: { onRetry?: () => void }) {
               className="mt-5 h-11 items-center justify-center rounded-xl border border-primary bg-white px-6"
               onPress={onRetry}
             >
-              <Text className="font-sans text-sm font-semibold text-primary">Try again</Text>
+              <Text className="font-sans-semibold text-sm text-primary">Try again</Text>
             </Pressable>
           )
         : null}
@@ -108,12 +108,12 @@ function PostAuthor({ post }: { post: MemberPostDetail }) {
           )
         : (
             <View className="size-10 items-center justify-center rounded-full border border-outline-variant bg-surface">
-              <Text className="font-sans text-sm font-semibold text-ink">
+              <Text className="font-sans-semibold text-sm text-ink">
                 {authorName.slice(0, 1).toUpperCase()}
               </Text>
             </View>
           )}
-      <Text className="font-sans text-sm font-medium text-ink">{authorName}</Text>
+      <Text className="font-sans-medium text-sm text-ink">{authorName}</Text>
     </View>
   );
 }
@@ -149,7 +149,7 @@ function PostLikeControl({
       <Text
         className={
           post.isLiked
-            ? 'font-sans text-xs font-medium text-danger-700'
+            ? 'font-sans-medium text-xs text-danger-700'
             : 'font-sans text-xs text-ink-muted'
         }
       >
@@ -173,7 +173,7 @@ function CommentAvatar({ name, avatarUrl }: { name: string; avatarUrl: string | 
   }
   return (
     <View className="size-8 items-center justify-center rounded-full border border-outline-variant bg-surface">
-      <Text className="font-sans text-xs font-semibold text-ink">
+      <Text className="font-sans-semibold text-xs text-ink">
         {name.slice(0, 1).toUpperCase()}
       </Text>
     </View>
@@ -207,7 +207,7 @@ function CommentRow({
       <View className="flex-row items-center gap-2.5">
         <CommentAvatar name={authorName} avatarUrl={comment.authorAvatarUrl} />
         <View className="flex-1 flex-row items-center gap-2">
-          <Text className="font-sans text-xs font-semibold text-ink">{authorName}</Text>
+          <Text className="font-sans-semibold text-xs text-ink">{authorName}</Text>
           {comment.createdAt
             ? (
                 <Text className="font-sans text-[10px] text-ink-muted">
@@ -317,7 +317,7 @@ function CommentComposer({
               : 'h-10 items-center justify-center rounded-full bg-ink-muted px-5'
           }
         >
-          <Text className="font-sans text-sm font-semibold text-white">Send</Text>
+          <Text className="font-sans-semibold text-sm text-white">Send</Text>
         </Pressable>
       </View>
     </View>
@@ -356,7 +356,7 @@ function CommentsSection({
       {!commentsUnavailable && comments && comments.length === 0
         ? (
             <View className="mt-3">
-              <Text className="font-sans text-sm font-medium text-ink">No comments yet</Text>
+              <Text className="font-sans-medium text-sm text-ink">No comments yet</Text>
               <Text className="mt-1 font-sans text-xs text-ink-muted">
                 Be the first to join the conversation.
               </Text>
@@ -413,7 +413,7 @@ function PostCard({
               </Text>
             )
           : null}
-        <Text className="mt-3 font-sans text-3xl/9 font-semibold text-ink">
+        <Text className="mt-3 font-sans-semibold text-3xl/9 text-ink">
           {post.title}
         </Text>
         <PostAuthor post={post} />
@@ -497,7 +497,7 @@ export function MemberPostView({
         {contentState === 'saved'
           ? (
               <View className="mb-4 rounded-xl border border-on-primary-container bg-primary-fixed/40 px-4 py-3">
-                <Text className="font-sans text-sm font-medium text-ink">
+                <Text className="font-sans-medium text-sm text-ink">
                   Showing saved content
                 </Text>
               </View>

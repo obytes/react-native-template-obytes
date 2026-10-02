@@ -25,7 +25,7 @@ export function ArticleHeader({
 }: ArticleHeaderProps) {
   return (
     <View className="gap-2">
-      <Text className="font-display text-2xl font-bold text-ink">
+      <Text className="font-display text-2xl text-ink">
         {title}
       </Text>
       {subtitle
@@ -39,7 +39,7 @@ export function ArticleHeader({
         {authorName
           ? (
               <>
-                <Text className="text-sm font-medium text-ink-variant">
+                <Text className="font-sans-medium text-sm text-ink-variant">
                   {authorName}
                 </Text>
                 <Text className="text-sm text-ink-muted">&middot;</Text>

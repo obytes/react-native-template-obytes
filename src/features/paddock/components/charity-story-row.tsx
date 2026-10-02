@@ -20,7 +20,7 @@ export function CharityStoryRow({ story, onOpen }: CharityStoryRowProps) {
         : <View className="size-16 rounded-xl bg-surface-container" />}
       <View className="flex-1 gap-1">
         <Text className="font-mono text-[10px] tracking-widest text-label uppercase">Impact story</Text>
-        <Text className="font-sans text-base font-semibold text-ink" numberOfLines={2}>{story.title}</Text>
+        <Text className="font-sans-semibold text-base text-ink" numberOfLines={2}>{story.title}</Text>
         {story.subtitle ? <Text className="font-sans text-sm text-ink-variant" numberOfLines={1}>{story.subtitle}</Text> : null}
       </View>
       <Text className="font-sans text-lg text-primary">›</Text>

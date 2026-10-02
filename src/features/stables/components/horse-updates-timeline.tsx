@@ -25,7 +25,7 @@ const TYPE_LABELS: Record<HorseUpdateType, string> = {
 function TypeChip({ type }: { type: HorseUpdateType }) {
   return (
     <View className="self-start rounded-full bg-muted px-3 py-1">
-      <Text className="font-mono text-[10px] font-bold tracking-widest text-primary uppercase">
+      <Text className="font-mono text-[10px] tracking-widest text-primary uppercase">
         {TYPE_LABELS[type] ?? type}
       </Text>
     </View>
@@ -52,7 +52,7 @@ function UpdateBody({ bodyText }: { bodyText: string }) {
               hitSlop={8}
               className="mt-1"
             >
-              <Text className="font-mono text-[10px] font-bold tracking-widest text-primary uppercase">
+              <Text className="font-mono text-[10px] tracking-widest text-primary uppercase">
                 {expanded ? 'Show less' : 'Read more'}
               </Text>
             </Pressable>
@@ -71,7 +71,7 @@ function UpdateRow({ update }: { update: HorseUpdate }) {
           {relativeTime(update.publishedAt)}
         </Text>
       </View>
-      <Text className="font-sans text-base font-medium text-ink">
+      <Text className="font-sans-medium text-base text-ink">
         {update.title}
       </Text>
       <UpdateBody bodyText={update.bodyText} />
@@ -92,7 +92,7 @@ export function HorseUpdatesTimeline({ updates }: HorseUpdatesTimelineProps) {
 
   return (
     <View className="rounded-2xl bg-card p-6">
-      <Text className="mb-4 font-mono text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+      <Text className="mb-4 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
         Updates
       </Text>
       <View>

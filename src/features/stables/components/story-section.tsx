@@ -14,7 +14,7 @@ const COLLAPSE_THRESHOLD = 320;
 function PedigreeRow({ label, value }: { label: string; value: string }) {
   return (
     <View className="flex-row items-center justify-between py-1.5">
-      <Text className="font-mono text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+      <Text className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
         {label}
       </Text>
       <Text className="font-sans text-sm text-ink">{value}</Text>
@@ -45,7 +45,7 @@ export function StorySection({ story, pedigree }: StorySectionProps) {
 
   return (
     <View className="rounded-2xl bg-card p-6">
-      <Text className="mb-4 font-mono text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+      <Text className="mb-4 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
         Story & Pedigree
       </Text>
 
@@ -65,7 +65,7 @@ export function StorySection({ story, pedigree }: StorySectionProps) {
               hitSlop={8}
               className="mb-2"
             >
-              <Text className="font-mono text-[10px] font-bold tracking-widest text-primary uppercase">
+              <Text className="font-mono text-[10px] tracking-widest text-primary uppercase">
                 {expanded ? 'Show less' : 'Read more'}
               </Text>
             </Pressable>

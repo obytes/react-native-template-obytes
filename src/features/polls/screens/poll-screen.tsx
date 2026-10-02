@@ -33,7 +33,7 @@ export function PollScreenView({ poll, isLoading, onVote, pendingPollIds }: Poll
           {!isLoading && !poll
             ? (
                 <View className="items-center py-16">
-                  <Text className="font-sans text-lg font-semibold text-ink">This vote has ended</Text>
+                  <Text className="font-sans-semibold text-lg text-ink">This vote has ended</Text>
                   <Text className="mt-2 font-sans text-sm text-ink-variant">
                     Results stay in the Community feed for a week after closing.
                   </Text>

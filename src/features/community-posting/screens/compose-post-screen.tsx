@@ -116,7 +116,7 @@ function SpacesStatus({ isError, isEmpty, onRetry }: SpacesStatusProps) {
           testID="compose-post-spaces-retry"
           onPress={onRetry}
         >
-          <Text className="font-sans text-sm font-semibold text-primary">Retry</Text>
+          <Text className="font-sans-semibold text-sm text-primary">Retry</Text>
         </Pressable>
       </View>
     );
@@ -153,7 +153,7 @@ function ComposeFooter({ errorMessage, isPending, canSubmit, onSubmit }: Compose
         onPress={onSubmit}
         className={`items-center rounded-2xl px-4 py-3 ${disabled ? 'bg-ink-muted' : 'bg-primary'}`}
       >
-        <Text className="font-sans text-base font-semibold text-white">
+        <Text className="font-sans-semibold text-base text-white">
           {isPending ? 'Posting…' : 'Post'}
         </Text>
       </Pressable>

@@ -26,7 +26,7 @@ function StablesHeader({
       <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
         Our horses
       </Text>
-      <Text className="mt-2 mb-4 font-sans text-3xl font-semibold text-ink">Stables</Text>
+      <Text className="mt-2 mb-4 font-sans-semibold text-3xl text-ink">Stables</Text>
       <StatusFilterChips value={statusFilter} onChange={onStatusFilterChange} />
     </View>
   );
@@ -99,7 +99,7 @@ export default function StablesScreen() {
   if (!data || data.length === 0) {
     return (
       <View className="flex-1 items-center justify-center bg-background p-4">
-        <Text className="text-lg font-semibold text-ink-variant">
+        <Text className="font-sans-semibold text-lg text-ink-variant">
           No horses yet
         </Text>
         <Text className="mt-1 text-center text-ink-muted">

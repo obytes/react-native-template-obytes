@@ -61,7 +61,7 @@ export function Tag({ label, variant = 'forest', className, testID }: TagProps) 
     <View testID={testID} className={twMerge('self-start', t.box, className)}>
       <Text
         variant={mono ? 'label-sm' : 'body-sm'}
-        className={twMerge(t.text, !mono && 'font-medium')}
+        className={twMerge(t.text, !mono && 'font-sans-medium')}
         numberOfLines={1}
       >
         {label}

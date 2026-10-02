@@ -39,8 +39,8 @@ export function FeedChipRow({ chips, selectedId, onSelect }: FeedChipRowProps) {
             <Text
               className={
                 selected
-                  ? 'font-sans text-sm font-medium text-white'
-                  : 'font-sans text-sm font-medium text-ink-variant'
+                  ? 'font-sans-medium text-sm text-white'
+                  : 'font-sans-medium text-sm text-ink-variant'
               }
             >
               {chip.label}

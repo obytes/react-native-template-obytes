@@ -15,8 +15,8 @@ import { Text } from './text';
 const inputTv = tv({
   slots: {
     container: 'mb-2',
-    label: 'mb-1.5 font-sans text-xs/4 font-medium',
-    input: 'mt-0 rounded-lg border p-4 font-sans text-sm/5 font-medium',
+    label: 'mb-1.5 font-sans-medium text-xs/4',
+    input: 'mt-0 rounded-lg border p-4 font-sans-medium text-sm/5',
   },
 
   variants: {

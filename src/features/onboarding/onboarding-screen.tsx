@@ -21,7 +21,7 @@ export function OnboardingScreen() {
         <Cover />
       </View>
       <View className="justify-end">
-        <Text className="my-3 text-center text-5xl font-bold">
+        <Text className="my-3 text-center font-sans-bold text-5xl">
           Obytes Starter
         </Text>
         <Text className="mb-2 text-center text-lg text-ink-variant">

@@ -89,7 +89,7 @@ describe('button v2 variants', () => {
     );
     expect(screen.getByTestId('lg-label')).toHaveStyle({ fontSize: 16 });
     expect(screen.getByTestId('md-label')).toHaveStyle({ fontSize: 12 });
-    expect(screen.getByTestId('md-label').props.className).toContain('font-semibold');
+    expect(screen.getByTestId('md-label').props.className).toContain('font-sans-semibold');
   });
   it.each([
     ['primary', 'bg-primary', 'text-on-primary'],

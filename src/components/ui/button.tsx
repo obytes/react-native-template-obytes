@@ -39,8 +39,8 @@ const button = tv({
     size: {
       lg: { container: 'h-[45px] rounded-lg px-[26px]' },
       default: { container: 'h-[45px] rounded-lg px-[26px]' },
-      md: { container: 'h-[30px] rounded-md px-4', label: 'font-semibold' },
-      sm: { container: 'h-[27px] rounded-sm px-3', label: 'font-semibold' },
+      md: { container: 'h-[30px] rounded-md px-4', label: 'font-sans-semibold' },
+      sm: { container: 'h-[27px] rounded-sm px-3', label: 'font-sans-semibold' },
     },
     disabled: {
       true: { container: 'opacity-40' },

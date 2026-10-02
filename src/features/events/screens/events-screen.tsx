@@ -59,7 +59,7 @@ export function EventsScreen() {
         <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
           Race days & socials
         </Text>
-        <Text className="mt-2 font-sans text-3xl font-semibold text-ink">Events</Text>
+        <Text className="mt-2 font-sans-semibold text-3xl text-ink">Events</Text>
 
         <View className="mt-6 flex-row gap-2">
           {SEGMENTS.map(segment => (
@@ -70,7 +70,7 @@ export function EventsScreen() {
               onPress={() => setScope(segment.value)}
               className={`rounded-full border px-4 py-2 font-sans text-sm ${
                 scope === segment.value
-                  ? 'border-primary bg-primary font-semibold text-on-primary'
+                  ? 'border-primary bg-primary font-sans-semibold text-on-primary'
                   : 'border-outline-variant bg-white text-ink-variant'
               }`}
             >
@@ -94,7 +94,7 @@ export function EventsScreen() {
                   testID="events-unavailable"
                   className="mt-6 rounded-2xl border border-outline-variant bg-white p-6"
                 >
-                  <Text className="font-sans text-lg font-semibold text-ink">Events unavailable</Text>
+                  <Text className="font-sans-semibold text-lg text-ink">Events unavailable</Text>
                   <Text className="mt-2 font-sans text-sm/5 text-ink-variant">
                     Check your connection and try again shortly.
                   </Text>
@@ -103,7 +103,7 @@ export function EventsScreen() {
             : items.length === 0
               ? (
                   <View testID="events-empty" className="mt-6 rounded-2xl border border-outline-variant bg-white p-6">
-                    <Text className="font-sans text-lg font-semibold text-ink">
+                    <Text className="font-sans-semibold text-lg text-ink">
                       {scope === 'upcoming' ? 'Events are on the way' : 'Nothing here yet'}
                     </Text>
                     <Text className="mt-2 font-sans text-sm/5 text-ink-variant">

@@ -40,7 +40,7 @@ function NextRunContent({ entry }: { entry: NextRunEntry }) {
       <NextRunPhoto url={photoUrl} />
 
       <View className="gap-2 p-6">
-        <Text className="font-sans text-2xl font-semibold text-ink">
+        <Text className="font-sans-semibold text-2xl text-ink">
           {entry.horse.name}
         </Text>
         <Text className="font-mono text-xs tracking-wider text-ink-variant uppercase">

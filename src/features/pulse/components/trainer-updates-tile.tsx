@@ -26,7 +26,7 @@ function UpdateRow({ update }: { update: TrainerUpdate }) {
       onPress={() => router.push(`/stables/${update.horseId}`)}
       className="gap-2 px-6 py-4"
     >
-      <Text className="font-mono text-[10px] font-bold tracking-widest text-primary uppercase">
+      <Text className="font-mono text-[10px] tracking-widest text-primary uppercase">
         {update.horseName}
       </Text>
       <Text className="font-sans text-base text-ink">{excerpt}</Text>

@@ -32,7 +32,7 @@ export function InsideTrackTile({ data, isLoading }: InsideTrackTileProps) {
               <Text className="font-mono text-xs tracking-wider text-ink-variant uppercase">
                 Latest from the Inside Track
               </Text>
-              <Text className="font-sans text-base font-semibold text-ink">{teaser.title}</Text>
+              <Text className="font-sans-semibold text-base text-ink">{teaser.title}</Text>
               <Text className="font-sans text-sm text-primary">Explore the Inside Track →</Text>
             </Pressable>
           )

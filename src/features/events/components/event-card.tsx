@@ -53,7 +53,7 @@ export function EventCard({ event, onPress }: EventCardProps) {
               </Text>
             )
           : null}
-        <Text className="font-sans text-lg font-semibold text-ink" numberOfLines={2}>
+        <Text className="font-sans-semibold text-lg text-ink" numberOfLines={2}>
           {event.title}
         </Text>
         <Text className="font-sans text-sm text-ink-variant" numberOfLines={1}>
@@ -61,13 +61,13 @@ export function EventCard({ event, onPress }: EventCardProps) {
         </Text>
         {event.rsvp.going
           ? (
-              <Text className="mt-1 self-start rounded-full bg-success-50 px-3 py-1 font-sans text-xs font-semibold text-success-700">
+              <Text className="mt-1 self-start rounded-full bg-success-50 px-3 py-1 font-sans-semibold text-xs text-success-700">
                 Going ✓
               </Text>
             )
           : event.rsvp.full
             ? (
-                <Text className="mt-1 self-start rounded-full bg-secondary-container px-3 py-1 font-sans text-xs font-semibold text-ink-variant">
+                <Text className="mt-1 self-start rounded-full bg-secondary-container px-3 py-1 font-sans-semibold text-xs text-ink-variant">
                   Full
                 </Text>
               )

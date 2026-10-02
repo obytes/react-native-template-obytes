@@ -39,14 +39,14 @@ function DetailModules({
     <View className="mb-12 gap-6 px-6">
       {nextEntry && (
         <View className="rounded-2xl bg-card p-6">
-          <Text className="mb-4 font-mono text-[10px] font-bold tracking-widest text-muted-foreground uppercase">Next Up</Text>
+          <Text className="mb-4 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Next Up</Text>
           <NextEntryCard entry={nextEntry} />
         </View>
       )}
 
       {results.length > 0 && (
         <View className="rounded-2xl bg-card p-6">
-          <Text className="mb-4 font-mono text-[10px] font-bold tracking-widest text-muted-foreground uppercase">Recent Results</Text>
+          <Text className="mb-4 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Recent Results</Text>
           <View className="overflow-hidden">
             {results.map(entry => (
               <ResultRow key={entry.id} entry={entry} />
@@ -61,7 +61,7 @@ function DetailModules({
 
       {horse.trainer && (
         <View className="rounded-2xl bg-primary p-6">
-          <Text className="mb-2 font-mono text-[10px] font-bold tracking-widest text-on-primary-container uppercase">Trainer</Text>
+          <Text className="mb-2 font-mono text-[10px] tracking-widest text-on-primary-container uppercase">Trainer</Text>
           <Text className="font-display text-2xl text-on-primary">{horse.trainer.name}</Text>
         </View>
       )}
@@ -71,7 +71,7 @@ function DetailModules({
           onPress={onDiscussion}
           className="mt-4 items-center rounded-full bg-primary py-4 duration-200 active:scale-95"
         >
-          <Text className="font-mono text-sm font-bold tracking-widest text-on-primary uppercase">
+          <Text className="font-mono text-sm tracking-widest text-on-primary uppercase">
             Join the Discussion
           </Text>
         </Pressable>
@@ -102,7 +102,7 @@ function HorseHero({
       </View>
       <View className="mt-8">
         <View className="mb-2 flex-row items-center justify-between">
-          <Text className="font-mono text-[10px] font-bold tracking-widest text-primary uppercase">
+          <Text className="font-mono text-[10px] tracking-widest text-primary uppercase">
             Equestrian Profile
           </Text>
           <FollowToggle
@@ -117,14 +117,14 @@ function HorseHero({
         </Text>
         <View className="mb-6 flex-row flex-wrap gap-2">
           <View className="rounded-full bg-muted px-3 py-1.5">
-            <Text className="font-mono text-[10px] font-bold tracking-widest text-primary uppercase">
+            <Text className="font-mono text-[10px] tracking-widest text-primary uppercase">
               {horse.status}
             </Text>
           </View>
           {horse.inviteOnly
             ? (
                 <View className="rounded-full bg-muted px-3.5 py-2">
-                  <Text className="font-mono text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+                  <Text className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
                     Private
                   </Text>
                 </View>
@@ -200,11 +200,11 @@ export default function HorseProfileScreen() {
       {/* Stats Grid -- tonal layering, no borders or shadows */}
       <View className="mb-10 flex-row flex-wrap gap-4 px-6">
         <View className="w-[47%] rounded-2xl bg-card p-6">
-          <Text className="mb-2 font-mono text-[10px] font-bold tracking-widest text-muted-foreground uppercase">Total Wins</Text>
+          <Text className="mb-2 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Total Wins</Text>
           <Text className="font-display text-4xl text-primary">{wins}</Text>
         </View>
         <View className="w-[47%] rounded-2xl bg-card p-6">
-          <Text className="mb-2 font-mono text-[10px] font-bold tracking-widest text-muted-foreground uppercase">Starts</Text>
+          <Text className="mb-2 font-mono text-[10px] tracking-widest text-muted-foreground uppercase">Starts</Text>
           <Text className="font-display text-4xl text-primary">{results.length}</Text>
         </View>
       </View>

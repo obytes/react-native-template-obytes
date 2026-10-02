@@ -30,20 +30,20 @@ export function NextEntryCard({ entry }: NextEntryCardProps) {
 
   return (
     <View className="overflow-hidden rounded-2xl bg-muted p-4">
-      <Text className="mb-1 font-mono text-[10px] font-bold tracking-widest text-primary uppercase">
+      <Text className="mb-1 font-mono text-[10px] tracking-widest text-primary uppercase">
         Next Entry
       </Text>
 
       {race.name
         ? (
-            <Text className="mb-2 font-display text-lg font-bold text-ink">
+            <Text className="mb-2 font-display text-lg text-ink">
               {race.name}
             </Text>
           )
         : null}
 
       <View className="mb-3 flex-row items-center gap-2">
-        <Text className="text-sm font-semibold text-ink">
+        <Text className="font-sans-semibold text-sm text-ink">
           {courseName}
         </Text>
         <Text className="text-sm text-ink-muted">
@@ -87,7 +87,7 @@ function DetailItem({ label, value }: { label: string; value: string }) {
   return (
     <View>
       <Text className="text-xs text-ink-muted">{label}</Text>
-      <Text className="text-sm font-medium text-ink">{value}</Text>
+      <Text className="font-sans-medium text-sm text-ink">{value}</Text>
     </View>
   );
 }

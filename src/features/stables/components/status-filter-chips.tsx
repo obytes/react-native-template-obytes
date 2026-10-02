@@ -44,7 +44,7 @@ export function StatusFilterChips({ value, onChange }: StatusFilterChipsProps) {
             className={`rounded-full px-3.5 py-2 ${isActive ? 'bg-primary' : 'bg-muted'}`}
           >
             <Text
-              className={`font-mono text-[10px] font-bold tracking-widest uppercase ${
+              className={`font-mono text-[10px] tracking-widest uppercase ${
                 isActive ? 'text-on-primary' : 'text-muted-foreground'
               }`}
             >

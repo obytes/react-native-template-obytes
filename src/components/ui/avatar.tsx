@@ -87,7 +87,7 @@ export function Avatar({
             <Text
               testID={testID ? `${testID}-initials` : undefined}
               className={twMerge(
-                'absolute font-sans font-semibold',
+                'absolute font-sans-semibold',
                 kind === 'horse' ? 'text-on-primary' : 'text-ink',
               )}
               style={{ fontSize: Math.round(inner * 0.36), lineHeight: Math.round(inner * 0.46) }}

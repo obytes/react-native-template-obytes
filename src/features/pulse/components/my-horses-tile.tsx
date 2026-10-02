@@ -35,7 +35,7 @@ function HorseTile({ horse }: { horse: Horse }) {
               </View>
             )}
       </View>
-      <Text className="font-sans text-sm font-semibold text-ink" numberOfLines={1}>
+      <Text className="font-sans-semibold text-sm text-ink" numberOfLines={1}>
         {horse.name}
       </Text>
       <Text className="font-mono text-[10px] tracking-widest text-ink-variant uppercase" numberOfLines={1}>

@@ -36,7 +36,7 @@ export function Chip({ label, selected = false, count, className, testID, ...pro
       style={({ pressed }) => (pressed ? { opacity: 0.7 } : null)}
       {...props}
     >
-      <Text variant="body-sm" className="font-semibold" numberOfLines={1}>
+      <Text variant="body-sm" className="font-sans-semibold" numberOfLines={1}>
         {label}
       </Text>
       {count !== undefined && (
@@ -47,7 +47,7 @@ export function Chip({ label, selected = false, count, className, testID, ...pro
             selected ? 'bg-white' : 'bg-secondary-container',
           )}
         >
-          <Text className="font-sans text-[10px]/[13px] font-semibold text-ink">{count}</Text>
+          <Text className="font-sans-semibold text-[10px]/[13px] text-ink">{count}</Text>
         </View>
       )}
     </Pressable>

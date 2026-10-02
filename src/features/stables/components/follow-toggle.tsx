@@ -67,7 +67,7 @@ export function FollowToggle({
       onPress={handlePress}
       className={`rounded-full px-3.5 py-2 ${position} ${background} ${pending ? 'opacity-60' : ''}`}
     >
-      <Text className={`font-mono text-[10px] font-bold tracking-widest uppercase ${labelColor}`}>
+      <Text className={`font-mono text-[10px] tracking-widest uppercase ${labelColor}`}>
         {isFollowing ? 'Following' : '+ Follow'}
       </Text>
     </Pressable>

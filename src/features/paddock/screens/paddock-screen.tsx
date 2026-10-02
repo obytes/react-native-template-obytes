@@ -31,7 +31,7 @@ function PaddockRow({ row }: { row: HubRow }) {
       className="rounded-2xl border border-outline-variant bg-white p-5"
     >
       <View className="flex-row items-center justify-between">
-        <Text className="font-sans text-base font-semibold text-ink">{row.title}</Text>
+        <Text className="font-sans-semibold text-base text-ink">{row.title}</Text>
         <Text className="font-sans text-lg text-primary">›</Text>
       </View>
       <Text className="mt-1 font-sans text-sm/5 text-ink-variant">{row.subtitle}</Text>
@@ -75,7 +75,7 @@ export function PaddockHubView({ offersCount, charitySummary, onOpenBenefits, on
         <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
           Rewards & benefits
         </Text>
-        <Text className="mt-2 font-sans text-3xl font-semibold text-ink">The Paddock</Text>
+        <Text className="mt-2 font-sans-semibold text-3xl text-ink">The Paddock</Text>
         <View className="mt-6 gap-4">
           {rows.map(row => (
             <PaddockRow key={row.title} row={row} />

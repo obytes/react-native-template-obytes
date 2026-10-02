@@ -26,7 +26,7 @@ export function CharityHeader({ charity }: { charity: Charity }) {
             </View>
           )
         : null}
-      <Text className="font-sans text-base font-semibold text-ink">
+      <Text className="font-sans-semibold text-base text-ink">
         {`${charity.percentage}% of every membership goes to ${charity.charityName}`}
       </Text>
     </View>

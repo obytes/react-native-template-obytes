@@ -21,7 +21,7 @@ function MarkAllHeaderAction({ onPress }: { onPress: () => void }) {
       accessibilityRole="button"
       testID="inbox-mark-all"
       onPress={onPress}
-      className="font-sans text-sm font-semibold text-primary"
+      className="font-sans-semibold text-sm text-primary"
     >
       Mark all as read
     </Text>

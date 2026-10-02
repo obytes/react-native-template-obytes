@@ -65,7 +65,7 @@ export const TEXT_VARIANTS: Record<TextVariant, VariantSpec> = {
   'display-lg': display(32, 34),
   'display-md': display(26, 28),
   'display-sm': display(21, 24),
-  'title': { ...sans(16, 20, 'font-sans font-semibold text-ink'), tracking: 0 },
+  'title': { ...sans(16, 20, 'font-sans-semibold text-ink'), tracking: 0 },
   'body-lg': sans(15, 22),
   'body': sans(14, 20),
   'body-sm': sans(12, 16),

@@ -32,7 +32,7 @@ export function PollCard({ poll, onVote, pending, variant }: PollCardProps) {
         {showEyebrow
           ? <Text className="font-mono text-[10px] tracking-widest text-label uppercase">{eyebrowText}</Text>
           : null}
-        <Text className="font-sans text-lg font-semibold text-ink">{poll.question}</Text>
+        <Text className="font-sans-semibold text-lg text-ink">{poll.question}</Text>
       </View>
 
       <View className="gap-3">
@@ -71,7 +71,7 @@ export function PollCard({ poll, onVote, pending, variant }: PollCardProps) {
                 mine ? 'border-primary bg-primary' : 'border-outline-variant bg-white'
               }`}
             >
-              <Text className={`font-sans text-sm ${mine ? 'font-semibold text-on-primary' : 'text-ink-variant'}`}>
+              <Text className={`font-sans text-sm ${mine ? 'font-sans-semibold text-on-primary' : 'text-ink-variant'}`}>
                 {option.label}
               </Text>
             </Pressable>

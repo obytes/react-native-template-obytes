@@ -57,7 +57,7 @@ jest.mock('./components/login-form', () => {
   };
 });
 
-describe('LoginScreen', () => {
+describe('loginScreen', () => {
   beforeEach(() => {
     mockReplace.mockReset();
     mockSignIn.mockReset();

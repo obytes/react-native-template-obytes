@@ -127,7 +127,7 @@ export function ReportSheet({ scope, target, onClose }: ReportSheetProps) {
           onPress={() => void onSend()}
           className={`mt-4 items-center rounded-2xl px-4 py-3 ${isPending ? 'bg-ink-muted' : 'bg-primary'}`}
         >
-          <Text className="font-sans text-base font-semibold text-white">
+          <Text className="font-sans-semibold text-base text-white">
             {isPending ? 'Sending…' : 'Send'}
           </Text>
         </Pressable>

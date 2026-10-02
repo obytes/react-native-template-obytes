@@ -56,7 +56,7 @@ export function HorseCard({ horse, onPress, onToggleFollow, followPending = fals
             {horse.inviteOnly
               ? (
                   <View className="rounded-full bg-muted px-3.5 py-2">
-                    <Text className="font-mono text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+                    <Text className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
                       Private
                     </Text>
                   </View>
@@ -79,7 +79,7 @@ export function HorseCard({ horse, onPress, onToggleFollow, followPending = fals
         {horse.nextEntryId
           ? (
               <View className="mt-1 rounded-lg bg-muted px-3 py-2">
-                <Text className="font-mono text-[10px] font-bold tracking-widest text-primary uppercase">
+                <Text className="font-mono text-[10px] tracking-widest text-primary uppercase">
                   Entry upcoming
                 </Text>
               </View>

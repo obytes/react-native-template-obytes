@@ -25,7 +25,7 @@ type BenefitsViewProps = {
 function StateCard({ testID, title, message }: { testID: string; title: string; message: string }) {
   return (
     <View testID={testID} className="rounded-2xl border border-outline-variant bg-white p-6">
-      <Text className="font-sans text-lg font-semibold text-ink">{title}</Text>
+      <Text className="font-sans-semibold text-lg text-ink">{title}</Text>
       <Text className="mt-2 font-sans text-sm/5 text-ink-variant">{message}</Text>
     </View>
   );
@@ -45,7 +45,7 @@ export function BenefitsView({ offers, isLoading, isError, isRefetching, onRefre
         refreshControl={<RefreshControl refreshing={isRefetching} onRefresh={onRefresh} />}
       >
         <Text className="font-mono text-[10px] tracking-widest text-label uppercase">Member benefits</Text>
-        <Text className="mt-2 font-sans text-2xl font-semibold text-ink">The good life, members' rates</Text>
+        <Text className="mt-2 font-sans-semibold text-2xl text-ink">The good life, members' rates</Text>
         <View className="mt-6 gap-4">
           {showLoading
             ? (

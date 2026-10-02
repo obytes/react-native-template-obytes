@@ -58,7 +58,7 @@ function EmptyState({
 }) {
   return (
     <View testID={testID} className="rounded-2xl border border-outline-variant bg-white p-6">
-      <Text className="font-sans text-lg font-semibold text-ink">{title}</Text>
+      <Text className="font-sans-semibold text-lg text-ink">{title}</Text>
       {message
         ? <Text className="mt-2 font-sans text-sm/5 text-ink-variant">{message}</Text>
         : null}
@@ -132,7 +132,7 @@ export function CommunityFeedView({
           <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
             Members feed
           </Text>
-          <Text className="mt-2 font-sans text-3xl font-semibold text-ink">
+          <Text className="mt-2 font-sans-semibold text-3xl text-ink">
             Community
           </Text>
         </View>
@@ -142,7 +142,7 @@ export function CommunityFeedView({
           onPress={onOpenProfile}
           className="size-11 items-center justify-center rounded-full border border-outline-variant bg-white"
         >
-          <Text className="font-sans text-base font-semibold text-ink">
+          <Text className="font-sans-semibold text-base text-ink">
             {displayName.slice(0, 1).toUpperCase()}
           </Text>
         </Pressable>
@@ -153,7 +153,7 @@ export function CommunityFeedView({
       {contentState === 'saved'
         ? (
             <View className="mb-4 rounded-xl border border-on-primary-container bg-primary-fixed/40 px-4 py-3">
-              <Text className="font-sans text-sm font-medium text-ink">
+              <Text className="font-sans-medium text-sm text-ink">
                 Showing saved content
               </Text>
             </View>
