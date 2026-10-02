@@ -1,39 +1,92 @@
+import type { HeroRunInput } from '@/features/home/lib/hero-slides';
+
 import Env from 'env';
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import * as React from 'react';
-import { RefreshControl } from 'react-native';
+import { RefreshControl, ScrollView, useWindowDimensions, View } from 'react-native';
 
 import {
+  Avatar,
   FocusAwareStatusBar,
   Pressable,
-  ScrollView,
+  ScreenBackground,
+  ScreenHeader,
   Text,
-  View,
 } from '@/components/ui';
-import { useScreenTopPadding } from '@/components/ui/screen-layout';
 import { useTabBarContentPadding } from '@/components/ui/tab-bar-layout';
 import { useAuthStore } from '@/features/auth/use-auth-store';
-import { CharitySnapshotTile } from '@/features/home/components/charity-snapshot-tile';
-import { ClubVoteTile } from '@/features/home/components/club-vote-tile';
-import { HeadlineCard } from '@/features/home/components/headline-card';
-import { InsideTrackTile } from '@/features/home/components/inside-track-tile';
-import { NextEventTile } from '@/features/home/components/next-event-tile';
+import { CharityCard } from '@/features/home/components/charity-card';
+import { HeroCarousel } from '@/features/home/components/hero-carousel';
+import { InsideTrackCard } from '@/features/home/components/inside-track-card';
+import { MyHorsesCard } from '@/features/home/components/my-horses-card';
 import { NotificationsBell } from '@/features/home/components/notifications-bell';
-import { PaddockPreviewTile } from '@/features/home/components/paddock-preview-tile';
-import { selectHeadline } from '@/features/home/lib/select-headline';
+import { UpcomingEventCard } from '@/features/home/components/upcoming-event-card';
+import { YardChipsRow } from '@/features/home/components/yard-chips-row';
+import { greeting } from '@/features/home/lib/greeting';
+import { buildHeroSlides } from '@/features/home/lib/hero-slides';
 import { useHomeQueries } from '@/features/home/lib/use-home-queries';
-import { usePollVote } from '@/features/polls/api/use-poll-vote';
-import { LatestNewsTile } from '@/features/pulse/components/latest-news-tile';
-import { LatestResultsTile } from '@/features/pulse/components/latest-results-tile';
-import { MyHorsesTile } from '@/features/pulse/components/my-horses-tile';
-import { NextRunTile } from '@/features/pulse/components/next-run-tile';
-import { TrainerUpdatesTile } from '@/features/pulse/components/trainer-updates-tile';
+import { buildYardChips, countEventsThisWeek, raceDayHorseIds } from '@/features/home/lib/yard-chips';
+
+const GUTTER = 16;
+
+/** Device clock, re-read whenever Home regains focus (greeting window, NEW tag). */
+function useFocusedNow(): Date {
+  const [now, setNow] = React.useState(() => new Date());
+  useFocusEffect(React.useCallback(() => {
+    setNow(new Date());
+  }, []));
+  return now;
+}
+
+type HomeQueries = ReturnType<typeof useHomeQueries>;
+
+function useHomeModel(q: HomeQueries, now: Date) {
+  const followed = q.followedHorses.data;
+  const nextRun: HeroRunInput | null | undefined = q.nextRun.data;
+
+  const chips = React.useMemo(() => {
+    const followedIds = new Set((followed ?? []).map(h => h.id));
+    return buildYardChips({
+      raceDayHorseIds: raceDayHorseIds(nextRun ? [nextRun] : [], followedIds, now),
+      unread: q.inboxBadge.data ?? 0,
+      eventsThisWeek: countEventsThisWeek(q.upcomingEvents.data?.events ?? [], now),
+    });
+  }, [followed, nextRun, q.inboxBadge.data, q.upcomingEvents.data, now]);
+
+  const slides = React.useMemo(
+    () => buildHeroSlides({
+      nextRun,
+      news: q.news.data,
+      results: q.results.data,
+    }, now),
+    [nextRun, q.news.data, q.results.data, now],
+  );
+
+  return { chips, slides };
+}
+
+function HomeHeaderRight({ scope, name }: { scope: { organizationId: string; memberId: string }; name: string | undefined }) {
+  const router = useRouter();
+  return (
+    <View className="flex-row items-center gap-3">
+      <NotificationsBell scope={scope} />
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel="Open profile"
+        testID="home-avatar"
+        onPress={() => router.push('/profile')}
+      >
+        <Avatar ring size={41} name={name} />
+      </Pressable>
+    </View>
+  );
+}
 
 export function HomeScreen() {
-  const router = useRouter();
   const user = useAuthStore.use.user();
+  const { width } = useWindowDimensions();
   const contentPaddingBottom = useTabBarContentPadding(24);
-  const contentPaddingTop = useScreenTopPadding();
+  const now = useFocusedNow();
 
   const scope = React.useMemo(
     () => ({ organizationId: Env.EXPO_PUBLIC_CLUB_ID, memberId: user?.id ?? '' }),
@@ -41,73 +94,37 @@ export function HomeScreen() {
   );
 
   const q = useHomeQueries(scope);
-  const { vote, pendingPollIds } = usePollVote(scope);
-
-  const headline = selectHeadline(
-    {
-      nextRun: q.nextRun.data,
-      latestResult: q.results.data?.[0] ?? null,
-      latestNews: q.news.data?.[0] ?? null,
-    },
-    new Date(),
-  );
-
-  const displayName = user?.name?.trim() || 'Rionna member';
+  const { chips, slides } = useHomeModel(q, now);
 
   return (
-    <>
-      <FocusAwareStatusBar />
+    <View className="flex-1">
+      <FocusAwareStatusBar barStyle="dark" />
+      <ScreenBackground variant="page" />
       <ScrollView
-        className="flex-1 bg-background"
-        contentContainerStyle={{
-          paddingHorizontal: 20,
-          paddingTop: contentPaddingTop,
-          paddingBottom: contentPaddingBottom,
-        }}
+        className="flex-1"
+        contentContainerStyle={{ paddingBottom: contentPaddingBottom }}
         refreshControl={<RefreshControl refreshing={q.isRefetching} onRefresh={q.refetchAll} />}
       >
-        <View className="mb-6 flex-row items-center justify-between">
-          <View className="flex-1 pr-4">
-            <Text className="font-mono text-[10px] tracking-widest text-label uppercase">
-              Rionna Ireland
-            </Text>
-            <Text className="mt-2 font-sans-semibold text-3xl text-ink">Home</Text>
+        <ScreenHeader
+          variant="tab-root"
+          brand
+          testID="home-header"
+          right={<HomeHeaderRight scope={scope} name={user?.name} />}
+        />
+        <View className="gap-8 px-4 pt-8">
+          <Text variant="display-md" accessibilityRole="header" testID="home-greeting">
+            {greeting(now, user?.name)}
+          </Text>
+          <View className="gap-3">
+            <YardChipsRow chips={chips} />
+            <HeroCarousel slides={slides} width={width - GUTTER * 2} />
+            <MyHorsesCard horses={q.followedHorses.data} isLoading={q.followedHorses.isLoading} />
+            <InsideTrackCard data={q.insideTrack.data} now={now} />
+            <CharityCard data={q.charity.data} />
+            <UpcomingEventCard data={q.upcomingEvents.data} />
           </View>
-          <View className="flex-row items-center gap-3">
-            <NotificationsBell scope={scope} />
-            <Pressable
-              accessibilityRole="button"
-              accessibilityLabel="Open profile"
-              testID="home-avatar"
-              onPress={() => router.push('/profile')}
-              className="size-11 items-center justify-center rounded-full border border-outline-variant bg-white"
-            >
-              <Text className="font-sans-semibold text-base text-ink">
-                {displayName.slice(0, 1).toUpperCase()}
-              </Text>
-            </Pressable>
-          </View>
-        </View>
-
-        <View className="gap-6">
-          <HeadlineCard headline={headline} />
-          <ClubVoteTile
-            data={q.activePolls.data}
-            isLoading={q.activePolls.isLoading}
-            onVote={(pollId, optionId) => vote({ pollId, optionId })}
-            pendingPollIds={pendingPollIds}
-          />
-          <CharitySnapshotTile data={q.charity.data} isLoading={q.charity.isLoading} />
-          <PaddockPreviewTile data={q.offers.data} isLoading={q.offers.isLoading} />
-          <NextRunTile data={q.nextRun.data} isLoading={q.nextRun.isLoading} />
-          <MyHorsesTile data={q.followedHorses.data} isLoading={q.followedHorses.isLoading} />
-          <LatestResultsTile data={q.results.data} isLoading={q.results.isLoading} />
-          <TrainerUpdatesTile data={q.trainerUpdates.data} isLoading={q.trainerUpdates.isLoading} />
-          <LatestNewsTile data={q.news.data} isLoading={q.news.isLoading} />
-          <InsideTrackTile data={q.insideTrack.data} isLoading={q.insideTrack.isLoading} />
-          <NextEventTile data={q.upcomingEvents.data} isLoading={q.upcomingEvents.isLoading} />
         </View>
       </ScrollView>
-    </>
+    </View>
   );
 }
