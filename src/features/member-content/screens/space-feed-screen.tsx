@@ -74,7 +74,9 @@ export function SpaceFeedView({
                 variant="square-accent"
                 accessibilityLabel="New post"
                 onPress={onNewPost}
-                className="size-11"
+                // The header's right slot pulls 12pt outward for bare icons;
+                // a filled button must sit on the 16pt gutter like the cards.
+                className="mr-3 size-11"
               >
                 <PlusGlyph size={20} />
               </IconButton>
