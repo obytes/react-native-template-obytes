@@ -9,7 +9,7 @@ import { HeaderHeightContext } from '@react-navigation/elements';
 import Env from 'env';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import * as React from 'react';
-import { Linking, Pressable, ScrollView, View } from 'react-native';
+import { Linking, Pressable, ScrollView, TextInput, View } from 'react-native';
 import { KeyboardAvoidingView } from 'react-native-keyboard-controller';
 import { Path, Svg } from 'react-native-svg';
 
@@ -17,7 +17,6 @@ import {
   ActivityIndicator,
   Button,
   Card,
-  FormField,
   IconButton,
   Image,
   MonoLabel,
@@ -216,24 +215,23 @@ function CommentComposer({
             </Text>
           )
         : null}
-      <View className="flex-row items-end gap-2">
-        <View className="flex-1">
-          <FormField
-            accessibilityLabel="Write a comment"
-            placeholder="Write a reply…"
-            value={text}
-            onChangeText={setText}
-            disabled={commentSubmitting}
-            multiline
-            className="max-h-28 min-h-[46px] py-3"
-          />
-        </View>
+      <View className="flex-row items-end gap-3 rounded-xl border border-outline-variant bg-white p-3">
+        <TextInput
+          accessibilityLabel="Write a comment"
+          placeholder="Write a reply…"
+          placeholderTextColor={colors.inkMuted}
+          value={text}
+          onChangeText={setText}
+          editable={!commentSubmitting}
+          multiline
+          className="max-h-28 min-h-[46px] flex-1 font-sans-medium text-sm/5 text-ink"
+          textAlignVertical="center"
+        />
         <IconButton
           variant="square-accent"
           accessibilityLabel="Send comment"
           disabled={commentSubmitting || trimmed.length === 0}
           onPress={submit}
-          className="mb-2 border border-on-primary-container"
         >
           <SendArrow />
         </IconButton>
@@ -247,7 +245,7 @@ function SendArrow() {
     <Svg width={20} height={20} viewBox="0 0 24 24" accessibilityElementsHidden>
       <Path
         d="M12 19V5M5.5 11.5L12 5l6.5 6.5"
-        stroke={colors.ink}
+        stroke={colors.plum}
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -330,6 +328,7 @@ function PostCard({
         avatarUrl={post.authorAvatarUrl}
         time={formatRelativeTime(post.createdAt)}
         spaceName={post.spaceName}
+        spaceId={post.spaceId}
         role={post.authorRole}
       />
       {post.title ? <Text variant="display-sm">{post.title}</Text> : null}
