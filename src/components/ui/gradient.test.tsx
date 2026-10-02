@@ -56,9 +56,9 @@ describe('gradient', () => {
   });
 
   it('withAlpha appends a two-digit alpha channel', () => {
-    expect(withAlpha('#172741', 0.12)).toBe('#1727411f');
-    expect(withAlpha('#172741', 0)).toBe('#17274100');
-    expect(withAlpha('#172741', 1)).toBe('#172741ff');
+    expect(withAlpha(colors.ink, 0.12)).toBe(colors.outlineVariant);
+    expect(withAlpha(colors.ink, 0)).toBe(`${colors.ink}00`);
+    expect(withAlpha(colors.ink, 1)).toBe(`${colors.ink}ff`);
   });
 
   it('renders the variant style and merges caller style', () => {
