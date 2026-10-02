@@ -24,6 +24,9 @@ const HEX_ALLOWLIST = new Set([
   'features/onboarding/components/cover.tsx',
   'components/ui/list.tsx',
   'components/ui/icons/language.tsx',
+  // Verbatim port of the waitlist pattern palette (rionna-ireland tiles.tsx); some
+  // tile colours (#a6b999) have no app token, and keeping it identical to web matters.
+  'components/brand/pattern/tile-data.ts',
 ]);
 
 // JS-only keys in colors.js with no `--color-*` token (not className colours).

@@ -3,9 +3,11 @@ import * as React from 'react';
 
 import Svg, { Path } from 'react-native-svg';
 
+import colors from '@/components/ui/colors';
+
 /** Home (tab bar). Extracted from the Figma file (node-derived, stroked centreline). */
 export function HomeV2({
-  color = '#172741',
+  color = colors.ink,
   size = 24,
   strokeWidth = 1.425,
   ...props

@@ -3,9 +3,11 @@ import * as React from 'react';
 
 import Svg, { Path } from 'react-native-svg';
 
+import colors from '@/components/ui/colors';
+
 /** Eight-point star (Paddock tab). Extracted from the Figma file (node-derived, filled outline). */
 export function StarV2({
-  color = '#4e5a74',
+  color = colors.ink,
   size = 24,
   ...props
 }: IconV2Props) {

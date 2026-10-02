@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import colors from '@/components/ui/colors';
 import { cleanup, render, screen } from '@/lib/test-utils';
 
 import * as icons from './index';
@@ -17,7 +18,7 @@ describe('v2 icons', () => {
 
   it.each(names)('%s renders with color and size', (name) => {
     const Icon = icons[name] as React.ComponentType<any>;
-    render(<Icon testID="icon" color="#123456" size={32} strokeWidth={2} />);
+    render(<Icon testID="icon" color={colors.plum} size={32} strokeWidth={2} />);
     expect(screen.getByTestId('icon')).toBeOnTheScreen();
   });
 });

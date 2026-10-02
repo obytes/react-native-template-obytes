@@ -3,9 +3,11 @@ import * as React from 'react';
 
 import Svg, { Path } from 'react-native-svg';
 
+import colors from '@/components/ui/colors';
+
 /** Chat bubble (Community tab). Extracted from the Figma file (node-derived, stroked centreline). */
 export function ChatV2({
-  color = '#172741',
+  color = colors.ink,
   size = 24,
   strokeWidth = 1.725,
   ...props

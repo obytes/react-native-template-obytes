@@ -3,9 +3,11 @@ import * as React from 'react';
 
 import Svg, { Path } from 'react-native-svg';
 
+import colors from '@/components/ui/colors';
+
 /** Pencil (edit). Extracted from the Figma file (node-derived, filled outline). */
 export function PencilV2({
-  color = '#1c1b1f',
+  color = colors.ink,
   size = 24,
   ...props
 }: IconV2Props) {

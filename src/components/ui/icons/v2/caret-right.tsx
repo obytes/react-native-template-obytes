@@ -3,9 +3,11 @@ import * as React from 'react';
 
 import Svg, { Path } from 'react-native-svg';
 
+import colors from '@/components/ui/colors';
+
 /** Caret right. Extracted from the Figma file (node-derived, stroked centreline). */
 export function CaretRightV2({
-  color = '#172741',
+  color = colors.ink,
   size = 24,
   strokeWidth = 1.7,
   ...props

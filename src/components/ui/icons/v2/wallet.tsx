@@ -3,9 +3,11 @@ import * as React from 'react';
 
 import Svg, { Path } from 'react-native-svg';
 
+import colors from '@/components/ui/colors';
+
 /** Wallet (account_balance_wallet). Extracted from the Figma file (node-derived, filled outline). */
 export function WalletV2({
-  color = '#3a243c',
+  color = colors.ink,
   size = 24,
   ...props
 }: IconV2Props) {
