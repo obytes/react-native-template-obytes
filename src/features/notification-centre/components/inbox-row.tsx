@@ -23,6 +23,7 @@ export function InboxRow({ item, onPress }: InboxRowProps) {
     <Pressable
       testID={`inbox-row-${item.id}`}
       accessibilityRole="button"
+      accessibilityLabel={[item.title, item.body, relativeTime(item.updatedAt)].filter(Boolean).join('. ')}
       accessibilityHint={item.unread ? 'Unread' : undefined}
       onPress={() => onPress(item)}
       className="flex-row overflow-hidden rounded-lg bg-white"

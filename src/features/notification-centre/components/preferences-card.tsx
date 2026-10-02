@@ -27,7 +27,8 @@ export function PreferencesCard() {
             <PreferenceSwitch
               testID={`inbox-pref-${row.labelKey}`}
               label={translate(row.labelKey)}
-              value={row.get(data)}
+              value={data.pushEnabled && row.get(data)}
+              disabled={!data.pushEnabled}
               onValueChange={v => update.mutate(row.set(v))}
             />
           )}

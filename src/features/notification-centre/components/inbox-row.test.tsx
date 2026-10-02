@@ -65,6 +65,13 @@ describe('inboxRow', () => {
     expect(screen.UNSAFE_queryByType('Image' as never)).toBeNull();
   });
 
+  it('includes the body in the accessibility label', () => {
+    render(<InboxRow item={BASE} onPress={jest.fn()} />);
+    const label = screen.getByTestId('inbox-row-item-1').props.accessibilityLabel;
+    expect(label).toContain('Club update');
+    expect(label).toContain('Something happened at the club.');
+  });
+
   it('calls onPress with the item when pressed', () => {
     const onPress = jest.fn();
     render(<InboxRow item={BASE} onPress={onPress} />);
