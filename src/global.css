@@ -9,6 +9,18 @@
  * non-className props (icon colour, StatusBar, navigation theme, Reanimated).
  * Parity is enforced by src/components/ui/design-tokens.test.ts.
  */
+/*
+ * Spacing, radius, elevation (S13-01 §4): V2 maps onto the stock Tailwind
+ * scale, so there are no custom spacing/radius tokens.
+ *   page gutter 16 → px-4 · card padding 16 → p-4 · gap between cards 12 → gap-3
+ *   gap between page sections 32 → gap-8
+ *   card radius 8 → rounded-lg · chip/small button 6 → rounded-md
+ *   pill/avatar → rounded-full
+ * No card shadows in V2. The only shadows are the tab bar and the centre
+ * Community button (see tab-bar.tsx).
+ * Type ramp: <Text variant="…"> (src/components/ui/text-variants.ts).
+ * Gradients: <Gradient> / <ScreenBackground> (src/components/ui/gradient-styles.ts).
+ */
 @theme {
   /* Font families */
   --font-sans: 'PlusJakartaSans';
