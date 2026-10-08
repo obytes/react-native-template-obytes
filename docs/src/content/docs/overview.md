@@ -99,7 +99,6 @@ We value the feedback and contributions of our users, and we encourage you to le
 - [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/)
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/)
 - [React Native Svg](https://github.com/software-mansion/react-native-svg)
-- [React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
 - [Expo Image](https://docs.expo.dev/versions/unversioned/sdk/image/)
 - [React Native Keyboard Controller](https://github.com/kirillzyusko/react-native-keyboard-controller)
 - [Moti](https://moti.fyi/)
