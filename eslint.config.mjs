@@ -4,7 +4,6 @@ import { fileURLToPath } from 'node:url';
 import antfu from '@antfu/eslint-config';
 import betterTailwindcss from 'eslint-plugin-better-tailwindcss';
 import i18nJsonPlugin from 'eslint-plugin-i18n-json';
-import reactCompiler from 'eslint-plugin-react-compiler';
 import testingLibrary from 'eslint-plugin-testing-library';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -44,8 +43,19 @@ export default antfu(
     ],
   },
 
+  // typescript-eslint 8.71 with TypeScript 6 wrongly reports values in plain .js files
+  // as "only used as a type". Use the core rule for .js until it is fixed upstream.
+  {
+    files: ['**/*.js'],
+    rules: {
+      'unused-imports/no-unused-vars': 'off',
+      'no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+    },
+  },
+
   // Custom rules
   {
+    files: ['**/*.{js,jsx,ts,tsx,mjs,cjs}'],
     rules: {
       'max-params': ['error', 3],
       'max-lines-per-function': ['error', 110],
@@ -109,16 +119,6 @@ export default antfu(
       'better-tailwindcss/no-unnecessary-whitespace': 'warn',
       'better-tailwindcss/no-unknown-classes': 'warn',
       'better-tailwindcss/enforce-consistent-line-wrapping': 'off', // Can be too strict for some cases
-    },
-  },
-
-  // React Compiler plugin
-  {
-    plugins: {
-      'react-compiler': reactCompiler,
-    },
-    rules: {
-      'react-compiler/react-compiler': 'error',
     },
   },
 

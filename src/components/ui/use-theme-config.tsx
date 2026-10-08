@@ -1,8 +1,5 @@
-import type { Theme } from '@react-navigation/native';
-import {
-  DarkTheme as _DarkTheme,
-  DefaultTheme,
-} from '@react-navigation/native';
+import type { Theme } from 'expo-router/react-navigation';
+import { DarkTheme as _DarkTheme, DefaultTheme } from 'expo-router/react-navigation';
 import { useUniwind } from 'uniwind';
 
 import colors from '@/components/ui/colors';

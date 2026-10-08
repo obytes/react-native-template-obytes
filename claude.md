@@ -2,10 +2,10 @@
 
 ## What: Technology Stack
 
-- **Expo SDK 54** with React Native 0.81.5 - Managed React Native development
+- **Expo SDK 57** with React Native 0.86 and React 19.2 - Managed React Native development
 - **TypeScript** - Strict type safety throughout
-- **Expo Router 6** - File-based routing (like Next.js)
-- **TailwindCSS** via Uniwind/Nativewind - Utility-first styling for React Native
+- **Expo Router** - File-based routing (like Next.js). Import navigation APIs from `expo-router` or `expo-router/react-navigation`, never from `@react-navigation/*`
+- **TailwindCSS** via Uniwind - Utility-first styling for React Native
 - **Zustand** - Lightweight global state management
 - **React Query** - Server state and data fetching
 - **TanStack Form + Zod** - Type-safe form handling and validation

@@ -3,8 +3,8 @@ import type { RenderOptions } from '@testing-library/react-native';
 
 import type { ReactElement } from 'react';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import { NavigationContainer } from '@react-navigation/native';
 import { render, userEvent } from '@testing-library/react-native';
+import { NavigationContainer } from 'expo-router/react-navigation';
 import * as React from 'react';
 import '@shopify/flash-list/jestSetup';
 

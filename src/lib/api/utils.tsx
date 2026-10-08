@@ -26,21 +26,19 @@ export function normalizePages<T>(pages?: PaginateQuery<T>[]): T[] {
     : [];
 }
 
+const URL_PARAMS_REGEX = /[?&]([^=#]+)=([^&#]*)/g;
+
 // a function that accept a url and return params as an object
 export function getUrlParameters(
   url: string | null,
-): { [k: string]: string } | null {
+): Record<string, string> | null {
   if (url === null) {
     return null;
   }
-  const regex = /[?&]([^=#]+)=([^&#]*)/g;
-  const params = {};
-  let match;
-  while ((match = regex.exec(url))) {
-    if (match[1] !== null) {
-      // @ts-expect-error - Dynamic key assignment
-      params[match[1]] = match[2];
-    }
+  const params: Record<string, string> = {};
+  // matchAll works on a copy of the regex, so the shared global regex keeps no state between calls
+  for (const [, key, value] of url.matchAll(URL_PARAMS_REGEX)) {
+    params[key] = value;
   }
   return params;
 }
