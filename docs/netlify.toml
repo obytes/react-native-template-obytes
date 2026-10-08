@@ -1,0 +1,9 @@
+# Netlify build settings for the documentation website (starter.obytes.com).
+# Netlify installs dependencies from bun.lock, then runs the command below.
+[build]
+  command = "bun run build"
+  publish = "dist"
+
+[build.environment]
+  BUN_VERSION = "1.3.14"
+  NODE_VERSION = "24"
