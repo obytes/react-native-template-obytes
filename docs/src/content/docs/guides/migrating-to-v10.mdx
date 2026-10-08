@@ -1,0 +1,145 @@
+---
+title: Migrating to v10
+description: Upgrade a project created from v9 of the starter to v10 (Bun, Expo SDK 57, React Native 0.86)
+head:
+  - tag: title
+    content: Migrating to v10 | React Native / Expo Starter
+---
+
+v10 moves the starter from pnpm to Bun and from Expo SDK 54 to SDK 57 (React Native 0.86, React 19.2). This guide lists every change that affects an existing project, in the order we recommend applying them.
+
+Work on a new branch and commit after each step, so you can run the checks and find problems early.
+
+:::note
+New projects created with `create-obytes-app` after the v10 release already include everything below.
+:::
+
+## Before you start
+
+- Install [Bun](https://bun.sh/docs/installation) and Node.js 24 LTS. Node is still required, because Expo CLI and Metro run on it.
+- For iOS builds, use Xcode 26.4 or newer. SDK 56 raised the minimum iOS version to 16.4.
+- Read the official Expo changelogs for [SDK 55](https://expo.dev/changelog/sdk-55), [SDK 56](https://expo.dev/changelog/sdk-56) and [SDK 57](https://expo.dev/changelog/sdk-57) if your app uses Expo modules the starter does not include.
+
+## 1. Switch from pnpm to Bun
+
+1. Set `"packageManager": "bun@1.3.14"` in `package.json` and change the `preinstall` script to `npx only-allow bun`.
+2. Replace `pnpm run` with `bun run` in your scripts, Husky hooks and CI workflows. The starter's CI uses the `setup-node-bun-install` composite action.
+3. Delete `.npmrc` and add a `bunfig.toml` that keeps the flat `node_modules` layout Metro expects:
+
+```toml title="bunfig.toml"
+[install]
+linker = "hoisted"
+```
+
+4. Add a `.nvmrc` file containing `24`.
+5. Delete `pnpm-lock.yaml` and `node_modules`, then run `bun install`.
+
+:::caution
+Run tests with `bun run test`. Plain `bun test` starts Bun's own test runner instead of Jest.
+:::
+
+## 2. Upgrade to Expo SDK 57
+
+```bash
+bunx expo install expo@^57.0.0 --fix
+bunx expo install --fix
+```
+
+Run the second command until it reports that dependencies are up to date. Expo cannot edit `app.config.ts` itself, so apply the config changes from step 4 by hand.
+
+If `react-native-worklets` is listed in `expo.install.exclude` in `package.json`, remove it so Expo manages its version.
+
+## 3. Move navigation imports to Expo Router
+
+Since SDK 56, `expo-router` no longer depends on React Navigation packages directly. Run the official codemod:
+
+```bash
+bunx expo-codemod sdk-56-expo-router-react-navigation-replace src
+```
+
+It rewrites imports such as `ThemeProvider`, `useIsFocused` and `NavigationContainer` from `@react-navigation/native` to `expo-router/react-navigation`.
+
+## 4. Update the app config
+
+In `app.config.ts`:
+
+- Remove `newArchEnabled`. SDK 55 removed the legacy architecture, so the option no longer exists.
+- Remove the `react-native-edge-to-edge` plugin and uninstall the package. Edge-to-edge is built in since SDK 55.
+- Add the `expo-image` and `expo-status-bar` plugins.
+- If you build with Xcode 27, add scene support with `expo-build-properties`:
+
+```ts title="app.config.ts"
+[
+  'expo-build-properties',
+  {
+    ios: {
+      // Required for apps built with the iOS 27 SDK (Xcode 27+). Default from SDK 58.
+      enableSceneSupport: true,
+    },
+  },
+],
+```
+
+Replace `SystemBars` from `react-native-edge-to-edge` with `StatusBar` from `expo-status-bar`. See `src/components/ui/focus-aware-status-bar.tsx` for an example.
+
+Because the app now always draws under the status bar, pass the safe-area inset to `FlashMessage`, otherwise messages are hidden behind the status bar:
+
+```tsx
+const insets = useSafeAreaInsets();
+// ...
+<FlashMessage position="top" statusBarHeight={insets.top} />
+```
+
+## 5. Update Babel and TypeScript config
+
+- Remove `'react-native-reanimated/plugin'` from `babel.config.js`. `babel-preset-expo` adds the worklets plugin automatically.
+- TypeScript 6 deprecates `baseUrl`. Remove it from `tsconfig.json` and use explicit paths:
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@env": ["./env.ts"]
+    },
+    "types": ["jest", "node"]
+  }
+}
+```
+
+- Imports of the bare `env` module relied on `baseUrl`. Change them to `@env`, and point the `@env` alias in `babel.config.js` at `./env.ts`.
+- TypeScript 6 also type-checks side-effect imports such as `import '../global.css'`. Add a `css.d.ts` file containing `declare module '*.css';`.
+- Add `react-test-renderer` as a dev dependency, pinned to your React version, for React Native Testing Library.
+
+## 6. Replace react-native-restart
+
+Expo ships `reloadAppAsync`, which reloads the app in both debug and release builds. Uninstall `react-native-restart` and replace both `RNRestart.restart()` and `DevSettings.reload()`:
+
+```ts
+import { reloadAppAsync } from 'expo';
+
+reloadAppAsync('Language changed');
+```
+
+## 7. Optional: adopt the new v10 features
+
+- **React Compiler**: run `bunx expo install babel-plugin-react-compiler` and set `experiments.reactCompiler: true` in `app.config.ts`. You can then remove `eslint-plugin-react-compiler`, because `eslint-plugin-react-hooks` v7 includes its rules. See [Rules and Conventions](/getting-started/rules-and-conventions/#react-compiler).
+- **Nitro Fetch**: run Axios on a native HTTP stack in release builds. See [Data Fetching](/guides/data-fetching/#native-networking-with-nitro-fetch).
+- **Argent**: let AI assistants drive simulators and emulators. See [AI Device Control](/recipes/argent-setup/).
+
+## 8. Regenerate native projects and verify
+
+```bash
+rm -rf ios android
+bun run prebuild
+bunx expo-doctor@latest
+bun run check-all
+```
+
+Then build and run the app on both platforms with `bun ios` and `bun android`, and create a new development build if you use EAS.
+
+## Troubleshooting
+
+- **`Cannot read property 'useCallback' of null` at runtime**: two copies of React are installed. This happens when a lockfile converted from pnpm keeps old peer versions. Delete `bun.lock` and `node_modules`, then run `bun install` again.
+- **`Package subpath './v4' is not defined by "exports"` from ESLint**: `eslint-plugin-react-hooks` resolved an old `zod-validation-error`. Add `"overrides": { "zod-validation-error": "^4.0.2" }` to `package.json`.
+- **Expo Doctor reports `react-native-nitro-fetch` as untested on the New Architecture**: the React Native Directory metadata is outdated. Nitro modules only run on the New Architecture. Add the package to `expo.doctor.reactNativeDirectoryCheck.exclude`.

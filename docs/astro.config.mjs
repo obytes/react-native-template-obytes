@@ -151,6 +151,11 @@ export default defineConfig({
               label: 'Upgrade Dependencies',
               link: '/guides/upgrading-deps/',
             },
+            {
+              label: 'Migrating to v10',
+              link: '/guides/migrating-to-v10/',
+              badge: 'new',
+            },
           ],
         },
         {
