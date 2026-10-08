@@ -1,0 +1,76 @@
+---
+title: React Compiler
+description: How React Compiler is set up in the starter and what it means for the way you write components
+head:
+  - tag: title
+    content: React Compiler | React Native / Expo Starter
+---
+
+[React Compiler](https://react.dev/learn/react-compiler) is a build-time tool that memoizes your components and hooks automatically. The starter enables it by default, so components only re-render when the values they use actually change, without manual `useMemo`, `useCallback` or `React.memo`.
+
+## How it is enabled
+
+Two pieces turn the compiler on:
+
+- `babel-plugin-react-compiler` in `devDependencies`, installed with `bunx expo install` so its version matches the Expo SDK
+- `experiments.reactCompiler` in `app.config.ts`:
+
+```ts title="app.config.ts"
+experiments: {
+  typedRoutes: true,
+  reactCompiler: true,
+},
+```
+
+`babel-preset-expo` picks up the setting and runs the compiler on your source code. There is nothing else to configure.
+
+## What changes in your code
+
+**Skip manual memoization.** The compiler already memoizes values, callbacks and JSX. Write plain components:
+
+```tsx
+// Before: manual memoization
+const filtered = React.useMemo(() => posts.filter(p => p.published), [posts]);
+const onPress = React.useCallback(() => open(id), [id]);
+
+// With React Compiler: write it plainly
+const filtered = posts.filter(p => p.published);
+const onPress = () => open(id);
+```
+
+Existing `useMemo` and `useCallback` calls keep working, so you do not have to remove them. Only add new ones when profiling shows a specific need, for example when a third-party library requires a stable reference that the compiler cannot see.
+
+**Follow the Rules of React.** The compiler assumes your components follow the [Rules of React](https://react.dev/reference/rules): components and hooks are pure, props and state are not mutated, and hooks are called unconditionally. When a component breaks a rule, the compiler skips it and leaves it unoptimized instead of breaking it.
+
+## Linting
+
+`eslint-plugin-react-hooks` v7, included through the starter's ESLint config, contains the compiler's diagnostic rules. Code the compiler cannot optimize, such as reading a ref during render or mutating a value, shows up as a lint error. Keep `bun run lint` clean and the compiler can optimize every component.
+
+## Check that it works
+
+Open React Native DevTools from the dev menu and switch to the **Components** tab. Components optimized by the compiler show a **Memo ✨** badge next to their name.
+
+## Opting out
+
+If a component misbehaves with the compiler, add the `"use no memo"` directive at the top of the component to skip it, then fix the underlying rule violation:
+
+```tsx
+function LegacyChart() {
+  'use no memo';
+  // ...
+}
+```
+
+Use this as a temporary escape hatch, not a permanent fix.
+
+To turn the compiler off for the whole app, remove `reactCompiler: true` from `app.config.ts` and restart Metro with a cleared cache:
+
+```bash
+bun start -c
+```
+
+## Learn more
+
+- [React Compiler introduction](https://react.dev/learn/react-compiler)
+- [Expo guide to React Compiler](https://docs.expo.dev/guides/react-compiler/)
+- [Rules of React](https://react.dev/reference/rules)

@@ -1,0 +1,153 @@
+---
+title: Native Networking with Nitro Fetch
+description: How the starter runs Axios on a native HTTP stack in release builds with react-native-nitro-fetch
+head:
+  - tag: title
+    content: Native Networking with Nitro Fetch | React Native / Expo Starter
+---
+
+import CodeBlock from '../../../components/code.astro';
+
+[Nitro Fetch](https://github.com/margelo/react-native-nitro-fetch) by Margelo is a drop-in replacement for `fetch` that sends requests through the platform's native HTTP stack: URLSession on iOS and Cronet on Android. The starter uses it under the Axios `client`, so your API hooks get native networking without any code changes.
+
+## Why native networking?
+
+React Native's built-in networking goes through a JavaScript bridge layer. Nitro Fetch hands requests directly to the native client, which brings:
+
+- **HTTP/2 and HTTP/3 (QUIC)** support, plus Brotli compression
+- **Disk caching** handled by the native stack
+- **Less work on the JavaScript thread**, since the request and response handling happen natively
+- **Prefetching**, including requests that start before your JavaScript bundle runs
+
+## How the starter uses it
+
+The Axios `client` in `src/lib/api/client.tsx` switches to Nitro Fetch through Axios' built-in `fetch` adapter:
+
+<CodeBlock file="src/lib/api/client.tsx" />
+
+| Build | Network stack |
+| --- | --- |
+| Release, iOS and Android | Nitro Fetch (URLSession, Cronet) |
+| Development | Axios' default XHR adapter |
+| Web | The browser's own network stack |
+
+Development builds keep XHR on purpose: network inspectors such as React Native DevTools only see XHR traffic. Release builds, which your users run, get the native stack.
+
+Setting `Request` and `Response` to `null` in the adapter config tells Axios to pass the URL and options straight to Nitro's native client, instead of wrapping them in JavaScript `Request` and `Response` objects first.
+
+Nothing changes for the code that calls the API. The hooks in `src/features/*/api.ts` keep using `client` as before. See [Data Fetching](/guides/data-fetching/) for how those hooks are built.
+
+## Test the native stack
+
+To try Nitro Fetch in a development build, temporarily set `USE_NITRO_FETCH` to `true` in `src/lib/api/client.tsx` and reload the app. The native module is already part of every build, so no rebuild is needed.
+
+To test exactly what users get, run a release build locally:
+
+```bash
+bunx expo run:ios --configuration Release
+bunx expo run:android --variant release
+```
+
+On Android, you can confirm that Nitro Fetch is active by looking for Cronet in the device logs:
+
+```bash
+adb logcat -d | grep -i cronet
+```
+
+## Use Nitro Fetch directly
+
+You can also call Nitro Fetch without Axios. It has the same API as the built-in `fetch`:
+
+```ts
+import { fetch } from 'react-native-nitro-fetch';
+
+const res = await fetch('https://dummyjson.com/posts');
+const json = await res.json();
+```
+
+## Prefetching
+
+Prefetching starts a request before your code needs the response. Nitro Fetch keeps the result in its native cache, and the next `fetch` call with the same `prefetchKey` header resolves immediately instead of waiting for the network.
+
+### Prefetch before navigating
+
+Start a request when the user is about to open a screen, for example when they press a list item. The screen's own request then finds the data ready:
+
+```tsx
+import { router } from 'expo-router';
+import { prefetch } from 'react-native-nitro-fetch';
+import Env from '@env';
+
+function openPost(id: number) {
+  // Fire and forget: navigation does not wait for the request
+  prefetch(`${Env.EXPO_PUBLIC_API_URL}posts/${id}`, {
+    headers: { prefetchKey: `post-${id}` },
+  });
+  router.push(`/feed/${id}`);
+}
+```
+
+On the new screen, request the same URL with the same `prefetchKey`:
+
+```ts
+import { fetch } from 'react-native-nitro-fetch';
+import Env from '@env';
+
+const res = await fetch(`${Env.EXPO_PUBLIC_API_URL}posts/${id}`, {
+  headers: { prefetchKey: `post-${id}` },
+});
+// "nitroPrefetched" tells you whether the response came from the prefetch
+console.log(res.headers.get('nitroPrefetched'));
+```
+
+### Prefetch on the next app start
+
+`prefetchOnAppStart` queues a request for the **next** launch. Native code sends it while the app starts, before your JavaScript bundle runs, so data like the home feed is ready on the first render. Margelo measured about 220 ms faster time-to-interactive from prefetching alone.
+
+```ts
+import { prefetchOnAppStart } from 'react-native-nitro-fetch';
+
+await prefetchOnAppStart(`${Env.EXPO_PUBLIC_API_URL}posts`, {
+  prefetchKey: 'feed',
+});
+```
+
+When the app opens next time, a `fetch` with `headers: { prefetchKey: 'feed' }` uses the prefetched response.
+
+On Android, app-start prefetching needs Nitro Fetch's config plugin, which hooks the prefetcher into the app's startup code. iOS picks the queue up automatically. Add the plugin to `app.config.ts` and run `bun run prebuild`:
+
+```ts title="app.config.ts"
+plugins: [
+  // ...
+  'react-native-nitro-fetch',
+],
+```
+
+If those startup requests need an auth token, Nitro Fetch can refresh it natively before sending them. See `registerTokenRefresh` in the [Nitro Fetch documentation](https://github.com/margelo/react-native-nitro-fetch#token-refresh-cold-start).
+
+:::caution
+Prefetching uses Nitro Fetch directly, so the matching request must also use Nitro Fetch's `fetch` with the same URL and `prefetchKey`. A request made through the Axios `client` does not pick up a prefetched response.
+:::
+
+## More Nitro Fetch features
+
+Nitro Fetch can also parse responses on a worklet with `nitroFetchOnWorklet`, so large JSON payloads do not block the JavaScript thread, and stream response bodies. See the [Nitro Fetch documentation](https://fetch.margelo.com/docs/api).
+
+:::note
+Requests made with Nitro Fetch directly bypass the Axios `client`, so they skip its base URL and any interceptors you add. Prefer the `client` for regular API calls.
+:::
+
+## Testing with Jest
+
+Native modules do not exist in Jest, so `jest-setup.ts` mocks `react-native-nitro-fetch`. Tests run in development mode, where the `client` uses XHR anyway.
+
+## Removing Nitro Fetch
+
+If you prefer the default networking stack:
+
+1. Remove the `react-native-nitro-fetch` import and the `nitroFetchConfig` spread from `src/lib/api/client.tsx`.
+2. Run `bun remove react-native-nitro-fetch` and delete its mock from `jest-setup.ts`.
+3. Remove it from `expo.doctor.reactNativeDirectoryCheck.exclude` in `package.json`.
+4. Rebuild the app with `bun run prebuild`.
+
+Keep `react-native-nitro-modules`, because MMKV depends on it.

@@ -36,9 +36,7 @@ Here is the complete ESLint configuration file:
 
 ## React Compiler
 
-[React Compiler](https://react.dev/learn/react-compiler) is enabled through `experiments.reactCompiler` in `app.config.ts`. It memoizes components and hooks at build time, so you rarely need `useMemo`, `useCallback` or `React.memo`. Only add them when profiling shows a need.
-
-The compiler skips components that break the [Rules of React](https://react.dev/reference/rules). The `react-hooks` ESLint rules flag these cases, so keep the linter clean.
+[React Compiler](/guides/react-compiler/) is enabled, so you rarely need `useMemo`, `useCallback` or `React.memo`. Follow the [Rules of React](https://react.dev/reference/rules) and keep the `react-hooks` lint rules clean so the compiler can optimize every component.
 
 ## Git Hooks with Husky
 

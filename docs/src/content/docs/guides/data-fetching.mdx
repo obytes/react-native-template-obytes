@@ -40,13 +40,7 @@ You recommend reading Those guides and checking those resources to learn more ab
 
 ## Native networking with Nitro Fetch
 
-In release builds on iOS and Android, the Axios `client` sends requests through [Nitro Fetch](https://github.com/margelo/react-native-nitro-fetch), a native HTTP stack built on URLSession (iOS) and Cronet (Android). It supports HTTP/2, HTTP/3 and disk caching, and it keeps network work off the JavaScript thread.
-
-Dev builds keep Axios' default XHR adapter, because network inspectors such as React Native DevTools only see XHR traffic. Web uses the browser's network stack. Your API hooks do not change either way.
-
-<CodeBlock file="src/lib/api/client.tsx" />
-
-To test the native stack in a dev build, temporarily set `USE_NITRO_FETCH` to `true`. Nitro Fetch also offers prefetching, worklet-based response parsing and streaming. See the [Nitro Fetch documentation](https://fetch.margelo.com/docs/api).
+In release builds on iOS and Android, the Axios `client` sends requests through [Nitro Fetch](https://github.com/margelo/react-native-nitro-fetch), a native HTTP stack. Dev builds keep XHR so network inspectors work. Your API hooks do not change either way. See [Native Networking with Nitro Fetch](/guides/nitro-fetch/) for details, testing and prefetching.
 
 ## Data Fetching Use Cases
 
