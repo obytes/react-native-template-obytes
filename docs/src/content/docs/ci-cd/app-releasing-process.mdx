@@ -112,7 +112,7 @@ In case you want to submit the app to the App Store and Google Play, you need to
 
 All github workflows are already ready to be used in the starter. You just need to add the required secrets to your GitHub repo:
 
-- GH_TOKEN: A [Github token](https://github.com/settings/tokens) with access to your repo.
+- GH_TOKEN: A [GitHub personal access token](https://github.com/settings/tokens) with write access to your repo. It is optional: without it, the release workflow falls back to the default `GITHUB_TOKEN`, but tags pushed with that token do not trigger the GitHub release workflow.
 
 - EXPO_TOKEN: Expo token to authenticate with EAS. You can get generate yours [here](https://expo.dev/settings/access-tokens)
 

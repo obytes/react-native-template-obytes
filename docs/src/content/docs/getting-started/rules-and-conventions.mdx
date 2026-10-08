@@ -34,6 +34,12 @@ Here is the complete ESLint configuration file:
 
 <Code file="eslint.config.mjs" />
 
+## React Compiler
+
+[React Compiler](https://react.dev/learn/react-compiler) is enabled through `experiments.reactCompiler` in `app.config.ts`. It memoizes components and hooks at build time, so you rarely need `useMemo`, `useCallback` or `React.memo`. Only add them when profiling shows a need.
+
+The compiler skips components that break the [Rules of React](https://react.dev/reference/rules). The `react-hooks` ESLint rules flag these cases, so keep the linter clean.
+
 ## Git Hooks with Husky
 
 The starter comes with a set of git hooks that help us to enforce rules and conventions. Those hooks are configured using [Husky](https://typicode.github.io/husky/#/). and here is the complete list of the hooks:

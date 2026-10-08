@@ -13,7 +13,7 @@ Let's create a new React Native project with Obytes starter.
 First make sure you have the following tools installed on your machine:
 
 - [React Native dev environment ](https://reactnative.dev/docs/environment-setup)
-- [Node.js LTS release](https://nodejs.org/en/)
+- [Node.js](https://nodejs.org/en/) 24 LTS (the version pinned in `.nvmrc`). Expo CLI and Metro run on Node, while Bun installs dependencies and runs scripts
 - [Git](https://git-scm.com/)
 - [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall), required only for macOS or Linux users
 - [Bun](https://bun.sh/docs/installation)

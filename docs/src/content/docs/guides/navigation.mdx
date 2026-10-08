@@ -22,4 +22,8 @@ Here is a simple example of the tabs layout.
 
 <CodeBlock file="src/app/(app)/_layout.tsx" />
 
+:::note
+Since Expo SDK 56, `expo-router` no longer depends on React Navigation packages directly. Import navigation APIs such as `useIsFocused`, `ThemeProvider` or `DefaultTheme` from `expo-router` or `expo-router/react-navigation`, never from `@react-navigation/*`.
+:::
+
 Make sure to check the official docs for more information and examples about [expo-router](https://docs.expo.dev/router/introduction/).
