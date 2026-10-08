@@ -37,6 +37,14 @@ To run the app on Android
 bun android
 ```
 
+## 🤖 AI device control (optional)
+
+To let your AI coding assistant run, tap through and debug the app on simulators and emulators, set up [Argent](https://argent.swmansion.com):
+
+```sh
+bun run argent:setup
+```
+
 ## ✍️ Documentation
 
 - [Rules and Conventions](https://starter.obytes.com/getting-started/rules-and-conventions/)

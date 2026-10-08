@@ -162,6 +162,11 @@ export default defineConfig({
               link: '/recipes/sentry-setup/',
               badge: 'new',
             },
+            {
+              label: 'AI Device Control (Argent)',
+              link: '/recipes/argent-setup/',
+              badge: 'new',
+            },
           ],
         },
         {

@@ -69,3 +69,14 @@ bun run build:production:ios    # EAS production build
 - ✅ **DO** use EAS Build for production: `bun run build:production:ios`
 - ✅ **DO** prefix env vars with `EXPO_PUBLIC_*` for app access
 - ❌ **DO NOT** modify `android/` or `ios/` directly (use Expo config plugins)
+
+## How: Verify UI Changes on Devices (Argent, opt-in)
+
+[Argent](https://argent.swmansion.com) lets AI assistants drive iOS simulators and Android emulators. It is not installed by default. Set it up with `bun run argent:setup`.
+
+When Argent's MCP tools are available:
+
+- Verify any change to visible UI, navigation or styling on a simulator or emulator, not only with tests
+- Start Metro with `bun start`, then build with `bun ios` or `bun android`
+- Prefer Argent's React Native component tree for tap targets, since screens expose `testID`s
+- Keep reusable QA flows in `.argent/flows/` and commit them. Never commit `.argent/secrets.env`
