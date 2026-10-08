@@ -68,6 +68,7 @@ bun run build:production:ios    # EAS production build
 - ✅ **DO** use Bun for installs and scripts (`bun install`, `bun add`, `bun run <script>`). Use `bun run test`, not `bun test`, which starts Bun's own test runner instead of Jest
 - ✅ **DO** use EAS Build for production: `bun run build:production:ios`
 - ✅ **DO** prefix env vars with `EXPO_PUBLIC_*` for app access
+- ✅ **DO** rely on React Compiler (enabled) for memoization. Do not add `useMemo`, `useCallback` or `React.memo` for performance unless profiling shows a need
 - ❌ **DO NOT** modify `android/` or `ios/` directly (use Expo config plugins)
 
 ## How: Verify UI Changes on Devices (Argent, opt-in)
