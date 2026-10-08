@@ -4,7 +4,7 @@
 # ✍️ Description:
 # This workflow runs the expo doctor command to check if your project dependencies are aligned with the expo sdk version you are using.
 # Can be triggered manually from the Actions tab in your project.
-# Runs Also on pull requests and pushes to the main/master branch, but only if the `package.json` or `pnpm-lock.yaml` files have been changed.
+# Runs Also on pull requests and pushes to the main/master branch, but only if the `package.json` or `bun.lock` files have been changed.
 
 # 🚨 GITHUB SECRETS REQUIRED: NONE
 
@@ -17,11 +17,11 @@ on:
       - master
     paths:
       - package.json
-      - pnpm-lock.yaml
+      - bun.lock
   pull_request:
     paths:
       - package.json
-      - pnpm-lock.yaml
+      - bun.lock
 
 permissions:
   contents: read
@@ -41,11 +41,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 📦 Setup Node + PNPM + install deps
-        uses: ./.github/actions/setup-node-pnpm-install
+      - name: 📦 Setup Node + Bun + install deps
+        uses: ./.github/actions/setup-node-bun-install
 
       - name: Run prebuild
-        run: pnpm run prebuild
+        run: bun run prebuild
 
       - name: 🚑 Run Doctor Checks
         run: |

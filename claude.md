@@ -33,19 +33,19 @@ Root Files:
 
 **Essential Commands:**
 ```bash
-pnpm start              # Start dev server
-pnpm ios/android        # Run on platform
-pnpm lint               # ESLint check
-pnpm type-check         # TypeScript validation
-pnpm test               # Run Jest tests
-pnpm check-all          # All quality checks
+bun start               # Start dev server
+bun ios / bun android   # Run on platform
+bun run lint            # ESLint check
+bun run type-check      # TypeScript validation
+bun run test            # Run Jest tests
+bun run check-all       # All quality checks
 ```
 
 **Environment-Specific:**
 ```bash
-pnpm start:preview              # Preview environment
-pnpm ios:production             # Production iOS
-pnpm build:production:ios       # EAS production build
+bun run start:preview           # Preview environment
+bun run ios:production          # Production iOS
+bun run build:production:ios    # EAS production build
 ```
 
 ## How: Key Patterns
@@ -65,6 +65,7 @@ pnpm build:production:ios       # EAS production build
 - ✅ **DO** follow feature-based structure: `src/features/[name]/`
 - ✅ **DO** use TanStack Form for forms (not react-hook-form)
 - ✅ **DO** use MMKV storage for sensitive data (not AsyncStorage)
-- ✅ **DO** use EAS Build for production: `pnpm build:production:ios`
+- ✅ **DO** use Bun for installs and scripts (`bun install`, `bun add`, `bun run <script>`). Use `bun run test`, not `bun test`, which starts Bun's own test runner instead of Jest
+- ✅ **DO** use EAS Build for production: `bun run build:production:ios`
 - ✅ **DO** prefix env vars with `EXPO_PUBLIC_*` for app access
 - ❌ **DO NOT** modify `android/` or `ios/` directly (use Expo config plugins)
