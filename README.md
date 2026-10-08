@@ -33,8 +33,9 @@ When creating this starter kit, we had several guiding principles in mind::
 
 - ✅ Latest Expo SDK with Custom Dev Client: Leverage the best of the Expo ecosystem while maintaining full control over your app.
 - 🎉 [TypeScript](https://www.typescriptlang.org/) for enhanced code quality and bug prevention through static type checking.
-- 💅 Minimal UI kit built with [TailwindCSS](https://www.nativewind.dev/), featuring common components essential for your app.
+- 💅 Minimal UI kit built with [TailwindCSS](https://tailwindcss.com/) via [Uniwind](https://github.com/uni-stack/uniwind), featuring common components essential for your app.
 - ⚙️ Multi-environment build support (Production, Staging, Development) using Expo configuration.
+- ⚡ [Bun](https://bun.sh/) for fast installs and scripts, and [React Compiler](https://react.dev/learn/react-compiler) for automatic memoization.
 - 🦊 Husky for Git Hooks: Automate your git hooks and enforce code standards.
 - 💡 Clean project structure with Absolute Imports for easier code navigation and management.
 - 🚫 Lint-staged: Run Eslint and TypeScript checks on Git staged files to maintain code quality.
@@ -42,11 +43,12 @@ When creating this starter kit, we had several guiding principles in mind::
 - ☂️ Pre-installed [Expo Router](https://docs.expo.dev/router/introduction/) with examples for comprehensive app navigation.
 - 💫 Auth flow implementation using [Zustand](https://github.com/pmndrs/zustand) for state management and [react-native-mmkv](https://github.com/mrousavy/react-native-mmkv) for secure data storage.
 - 🛠 10+ [Github Actions](https://github.com/features/actions) workflows for building, releasing, testing, and distributing your app.
-- 🔥 [React Query](https://react-query.tanstack.com/) and [axios](https://github.com/axios/axios) for efficient data fetching and state management.
+- 🔥 [React Query](https://react-query.tanstack.com/) and [axios](https://github.com/axios/axios) for efficient data fetching and state management, running on the native [Nitro Fetch](https://github.com/margelo/react-native-nitro-fetch) HTTP stack in release builds.
 - 🧵 Robust form handling with [TanStack Form](https://tanstack.com/form/latest) and [zod](https://github.com/colinhacks/zod) for validation, plus keyboard handling.
 - 🎯 Localization support with [i18next](https://www.i18next.com/), including Eslint for validation.
 - 🧪 Unit testing setup with [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 - 🔍 E2E testing capabilities with [Maestro](https://maestro.mobile.dev/) for comprehensive app testing.
+- 🤖 Optional [Argent](https://argent.swmansion.com) setup so AI coding assistants can run, test and debug the app on simulators and emulators.
 
 ## Is this starter for me?
 
@@ -92,10 +94,11 @@ We value the feedback and contributions of our users, and we encourage you to le
 
 - [Expo](https://docs.expo.io/)
 - [Expo Router](https://docs.expo.dev/router/introduction/)
-- [Nativewind](https://www.nativewind.dev/v4/overview)
+- [Uniwind](https://github.com/uni-stack/uniwind)
 - [Flash list](https://github.com/Shopify/flash-list)
 - [React Query](https://tanstack.com/query/v4)
 - [Axios](https://axios-http.com/docs/intro)
+- [Nitro Fetch](https://github.com/margelo/react-native-nitro-fetch)
 - [TanStack Form](https://tanstack.com/form/latest)
 - [i18next](https://www.i18next.com/)
 - [zustand](https://github.com/pmndrs/zustand)
@@ -103,7 +106,6 @@ We value the feedback and contributions of our users, and we encourage you to le
 - [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/)
 - [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/docs/)
 - [React Native Svg](https://github.com/software-mansion/react-native-svg)
-- [React Error Boundaries](https://github.com/bvaughn/react-error-boundary)
 - [Expo Image](https://docs.expo.dev/versions/unversioned/sdk/image/)
 - [React Native Keyboard Controller](https://github.com/kirillzyusko/react-native-keyboard-controller)
 - [Moti](https://moti.fyi/)

@@ -1,0 +1,4 @@
+[install]
+# Keep a flat node_modules layout, matching the previous pnpm `node-linker=hoisted`
+# setup. Metro and some React Native tooling expect hoisted dependencies.
+linker = "hoisted"

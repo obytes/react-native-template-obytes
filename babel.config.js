@@ -11,7 +11,7 @@ module.exports = function (api) {
           root: ['./'],
           alias: {
             '@': './src',
-            '@env': './src/lib/env.js',
+            '@env': './env.ts',
           },
           extensions: [
             '.ios.ts',
@@ -26,7 +26,6 @@ module.exports = function (api) {
           ],
         },
       ],
-      'react-native-reanimated/plugin',
     ],
   };
 };

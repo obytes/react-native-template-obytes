@@ -1,13 +1,13 @@
 import type TranslateOptions from 'i18next';
 import type { Language, resources } from './resources';
 import type { RecursiveKeyOf } from './types';
+import { reloadAppAsync } from 'expo';
 import i18n from 'i18next';
 import memoize from 'lodash.memoize';
 import { useCallback } from 'react';
-import { I18nManager, NativeModules, Platform } from 'react-native';
+import { I18nManager, Platform } from 'react-native';
 
 import { useMMKVString } from 'react-native-mmkv';
-import RNRestart from 'react-native-restart';
 import { storage } from '../storage';
 
 type DefaultLocale = typeof resources.en.translation;
@@ -33,9 +33,8 @@ export function changeLanguage(lang: Language) {
     I18nManager.forceRTL(false);
   }
   if (Platform.OS === 'ios' || Platform.OS === 'android') {
-    if (__DEV__)
-      NativeModules.DevSettings.reload();
-    else RNRestart.restart();
+    // Reload so the RTL/LTR layout direction change takes effect (debug and release builds)
+    reloadAppAsync('Language changed');
   }
   else if (Platform.OS === 'web') {
     window.location.reload();

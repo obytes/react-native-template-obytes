@@ -34,6 +34,10 @@ Here is the complete ESLint configuration file:
 
 <Code file="eslint.config.mjs" />
 
+## React Compiler
+
+[React Compiler](/guides/react-compiler/) is enabled, so you rarely need `useMemo`, `useCallback` or `React.memo`. Follow the [Rules of React](https://react.dev/reference/rules) and keep the `react-hooks` lint rules clean so the compiler can optimize every component.
+
 ## Git Hooks with Husky
 
 The starter comes with a set of git hooks that help us to enforce rules and conventions. Those hooks are configured using [Husky](https://typicode.github.io/husky/#/). and here is the complete list of the hooks:
@@ -46,7 +50,7 @@ As the name suggest, this hook will run before each commit and it will make sure
 
 ### post-merge
 
-As the name suggest, this hook will run after each merge and it will check if there is any changed in pnpm-lock.yaml and if there is any, it will run `pnpm install` to make sure the dependencies are up to date.
+As the name suggest, this hook will run after each merge and it will check if there is any changed in bun.lock and if there is any, it will run `bun install` to make sure the dependencies are up to date.
 
 <Code file=".husky/post-merge" language="bash" />
 

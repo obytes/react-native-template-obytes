@@ -92,10 +92,10 @@ const _env: z.infer<typeof envSchema> = {
 
 ### 4. Run prebuild
 
-Make sure to run `pnpm prebuild` to load the new values:
+Make sure to run `bun run prebuild` to load the new values:
 
 ```bash
-pnpm prebuild
+bun run prebuild
 ```
 
 ### 5. Use in your code
@@ -126,26 +126,26 @@ To switch between environments, use the `EXPO_PUBLIC_APP_ENV` variable:
 
 ```bash
 # Development (default)
-pnpm start
+bun run start
 
 # Preview environment
-pnpm start:preview
+bun run start:preview
 
 # Production environment
-pnpm start:production
+bun run start:production
 ```
 
 For prebuild with strict validation:
 
 ```bash
 # Development
-pnpm prebuild:development
+bun run prebuild:development
 
 # Preview
-pnpm prebuild:preview
+bun run prebuild:preview
 
 # Production
-pnpm prebuild:production
+bun run prebuild:production
 ```
 
 ## Validation
@@ -235,7 +235,7 @@ Client-side environment variables with the `EXPO_PUBLIC_*` prefix are NOT passed
 :::note[TSX Dependency]
 The `tsx` package must be installed as a dev dependency to allow importing TypeScript files in `app.config.ts`:
 ```bash
-pnpm add -D tsx
+bun add -d tsx
 ```
 :::
 

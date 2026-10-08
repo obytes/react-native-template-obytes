@@ -1,0 +1,39 @@
+# 🔗 Links:
+# Source file: https://github.com/obytes/react-native-template-obytes/blob/master/.github/actions/setup-node-bun-install/action.yml
+# Composite actions docs: https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
+
+# ✍️ Description:
+# This is a composite action, which means it can be used in other actions.
+# It is used in almost all workflows to set up the environment and install dependencies.
+# Updating the package manager or Node version here will be reflected in all workflows.
+# Bun is the package manager and script runner. Node is still required because Expo CLI and Metro run on it.
+# The Node version comes from `.nvmrc` and the Bun version from the `packageManager` field in `package.json`.
+
+# 👀 Example usage:
+#       - name : 📦 Setup Node + Bun + install deps
+#         uses: ./.github/actions/setup-node-bun-install
+
+name: 'Setup Node + Bun + Install Dependencies'
+description: 'Setup Node + Bun + Install Dependencies'
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version-file: .nvmrc
+
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version-file: package.json
+
+    - name: 📦 Cache Bun dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.bun/install/cache
+        key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-bun-
+
+    - name: 📦 Install Project Dependencies
+      run: bun install --frozen-lockfile
+      shell: bash

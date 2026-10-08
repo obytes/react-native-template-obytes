@@ -1,14 +1,15 @@
 import type { ViewProps } from 'react-native';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
-import { ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
+import { ThemeProvider } from 'expo-router/react-navigation';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import FlashMessage from 'react-native-flash-message';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useThemeConfig } from '@/components/ui/use-theme-config';
 import { hydrateAuth } from '@/features/auth/use-auth-store';
 
@@ -35,14 +36,14 @@ SplashScreen.setOptions({
 });
 
 export default function RootLayout() {
-  const hasHiddenSplash = React.useRef(false);
+  const hasHiddenSplashRef = React.useRef(false);
 
   const onLayoutRootView = React.useCallback(() => {
-    if (hasHiddenSplash.current) {
+    if (hasHiddenSplashRef.current) {
       return;
     }
 
-    hasHiddenSplash.current = true;
+    hasHiddenSplashRef.current = true;
     SplashScreen.hide();
   }, []);
 
@@ -65,6 +66,8 @@ function Providers({
   onLayout: ViewProps['onLayout'];
 }) {
   const theme = useThemeConfig();
+  // Edge-to-edge is always on (SDK 55+), so offset flash messages by the real status bar inset.
+  const insets = useSafeAreaInsets();
   return (
     <GestureHandlerRootView
       onLayout={onLayout}
@@ -77,7 +80,7 @@ function Providers({
           <APIProvider>
             <BottomSheetModalProvider>
               {children}
-              <FlashMessage position="top" />
+              <FlashMessage position="top" statusBarHeight={insets.top} />
             </BottomSheetModalProvider>
           </APIProvider>
         </ThemeProvider>

@@ -1,3 +1,6 @@
+const INTERPOLATION_REGEX = /\{\{ ?(?:- |\w+?)(, ?)?\w+ ?\}\}/;
+const NESTING_REGEX = /\$t\(\w+:\w+(?:\.\w+)*\)/;
+
 function validate(message = '') {
   if (!(message || '').trim()) {
     throw new SyntaxError('Message is Empty.');
@@ -7,13 +10,13 @@ function validate(message = '') {
   }
   if (
     (message.includes('{') || message.includes('}'))
-    && !/\{\{ ?(?:- |\w+?)(, ?)?\w+ ?\}\}/.test(message)
+    && !INTERPOLATION_REGEX.test(message)
   ) {
     throw new SyntaxError(
       'Interpolation error. See: https://www.i18next.com/misc/json-format',
     );
   }
-  if (message.includes('$t(') && !/\$t\(\w+:\w+(?:\.\w+)*\)/.test(message)) {
+  if (message.includes('$t(') && !NESTING_REGEX.test(message)) {
     throw new SyntaxError(
       'Nesting error. See: https://www.i18next.com/misc/json-format',
     );

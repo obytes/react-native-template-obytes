@@ -21,3 +21,8 @@ yarn-error.log
 
 expo-env.d.ts
 # @end expo-cli
+# Argent (opt-in AI device control). Flows and project config can be committed.
+.argent/secrets.env
+.argent/recordings/
+.argent/tmp/
+.argent/*.log

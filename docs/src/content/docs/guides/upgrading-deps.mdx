@@ -26,15 +26,15 @@ Finally, run the following commands to make sure everything is working as expect
 
 ```bash
 rm -rf node_modules ## remove node_modules folder
-pnpm install ## install new dependencies
-pnpm run doctor ## check for any issues with the dependencies you added to your project
-pnpm lint ## linting
-pnpm type-check ## type checking
-pnpm test ## tests
-pnpm prebuild --clean ## clean ios and android build folders and regenerate them
-pnpm ios ## run ios build
-pnpm android ## run android build
-pnpm start -c ## start the server
+bun install ## install new dependencies
+bun run doctor ## check for any issues with the dependencies you added to your project
+bun run lint ## linting
+bun run type-check ## type checking
+bun run test ## tests
+bun run prebuild --clean ## clean ios and android build folders and regenerate them
+bun run ios ## run ios build
+bun run android ## run android build
+bun run start -c ## start the server
 ```
 
 :::info
@@ -50,14 +50,14 @@ Visit the npm package registry [here](https://www.npmjs.com/package/expo) to ens
 Once you have confirmed that you have the latest version, open your terminal and enter the following command:
 
 ```bash
-pnpm add expo@latest
-## pnpm add expo@48.0.5 for example
+bun add expo@latest
+## bun add expo@48.0.5 for example
 ```
 
 Thanks to the amazing work of the expo team, you can run the following command to upgrade your dependencies to match the correct version required by Expo last version.
 
 ```bash
-pnpm expo install --fix
+bunx expo install --fix
 ```
 
 Running the command above will update your dependencies to ensure that they match the version requirements of Expo. In some cases, you may need to manually apply changes to your project in order to make it work with the new version. The command may also provide more detailed information on any necessary changes.
@@ -65,7 +65,7 @@ Running the command above will update your dependencies to ensure that they matc
 After updating your dependencies, run expo doctor to identify and fix any other issues that may be related to the new version of Expo and your devDependencies.
 
 ```bash
-pnpm run doctor ## a script inside the starter
+bun run doctor ## a script inside the starter
 ```
 
 Running this command will generate a list of issues that require manual attention. In addition, it will provide a set of npm packages that need to be updated with the exact version required by the new version of Expo.
@@ -74,14 +74,14 @@ Now it's time to make sure everything is still working as expected 😀:
 
 ```bash
 rm -rf node_modules ## remove node_modules folder
-pnpm install ## install new dependencies
-pnpm lint ## linting
-pnpm type-check ## type checking
-pnpm test ## tests
-pnpm prebuild --clean ## clean ios and android build folders and regenerate them
-pnpm ios ## run ios build
-pnpm android ## run android build
-pnpm start -c ## start the server
+bun install ## install new dependencies
+bun run lint ## linting
+bun run type-check ## type checking
+bun run test ## tests
+bun run prebuild --clean ## clean ios and android build folders and regenerate them
+bun run ios ## run ios build
+bun run android ## run android build
+bun run start -c ## start the server
 ```
 
 Unfortunately, there is no magic trick here in case you have any issues while running your checks, Fixing those errors may require some manual effort. You can start by reading the error message and identifying any relevant packages that may be causing the issue. Check the changelog of those packages to see if there have been any recent updates that might have introduced breaking changes. This will help you to pinpoint the root cause of the issue and take the necessary steps to resolve it.
@@ -96,12 +96,12 @@ Upgrading your project regularly can make the process much easier. We recommend 
 
 While Expo upgrade will help you update most native dependencies automatically through the process outlined above, it's important to keep in mind that non-native dependencies(JS only) may also need to be updated.
 
-This time you will use the power of pnpm to update dependencies to the last version and then run our checks to make sure everything is working as expected.
+This time you will use the power of Bun to update dependencies to the last version and then run our checks to make sure everything is working as expected.
 
 First, run the following command:
 
 ```bash
-pnpm up -i
+bun update --interactive
 ```
 
 When you run this command, it will generate a list of all dependencies associated with your project. You will then be prompted to select the dependencies that you want to update.
@@ -135,19 +135,19 @@ There is no one-size-fits-all solution for managing updates to your project's de
 We recommend to start updating `devDependencies` first by following this process:
 
 1. Select all `devDependencies` and update them to the latest version.
-2. Run `pnpm doctor` to revert any changes that are not in sync with the Expo version you are using.
+2. Run `bun run doctor` to revert any changes that are not in sync with the Expo version you are using.
 3. Run your checks to make sure everything is working as expected.
 
 ```bash
 rm -rf node_modules ## remove node_modules folder
-pnpm install ## install new dependencies
-pnpm lint ## linting
-pnpm type-check ## type checking
-pnpm test ## tests
-pnpm prebuild --clean ## clean ios and Android build folders and regenerate them
-pnpm ios ## run ios build
-pnpm android ## run android build
-pnpm start -c ## start the server
+bun install ## install new dependencies
+bun run lint ## linting
+bun run type-check ## type checking
+bun run test ## tests
+bun run prebuild --clean ## clean ios and Android build folders and regenerate them
+bun run ios ## run ios build
+bun run android ## run android build
+bun run start -c ## start the server
 ```
 
 If you are lucky enough and everything works as expected without any issues, you can now update the rest of the dependencies.

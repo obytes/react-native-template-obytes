@@ -69,6 +69,11 @@ jest.mock('expo-localization', () => ({
   ]),
 }));
 
+// Mock react-native-nitro-fetch (native module, not available in Jest)
+jest.mock('react-native-nitro-fetch', () => ({
+  fetch: jest.fn(),
+}));
+
 // Mock react-native-mmkv
 jest.mock('react-native-mmkv', () => ({
   MMKV: jest.fn(() => ({

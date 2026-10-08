@@ -13,18 +13,18 @@ Let's create a new React Native project with Obytes starter.
 First make sure you have the following tools installed on your machine:
 
 - [React Native dev environment ](https://reactnative.dev/docs/environment-setup)
-- [Node.js LTS release](https://nodejs.org/en/)
+- [Node.js](https://nodejs.org/en/) 24 LTS (the version pinned in `.nvmrc`). Expo CLI and Metro run on Node, while Bun installs dependencies and runs scripts
 - [Git](https://git-scm.com/)
 - [Watchman](https://facebook.github.io/watchman/docs/install#buildinstall), required only for macOS or Linux users
-- [Pnpm](https://pnpm.io/installation)
+- [Bun](https://bun.sh/docs/installation)
 - [Cursor](https://www.cursor.com/) is recommended but you can use [VS Code Editor](https://code.visualstudio.com/download).
 
 ## Initializing a new project
 
-First make sure you have `pnpm` installed on your machine, if not you can install it using the following command:
+First make sure you have `bun` installed on your machine, if not you can install it using the following command:
 
 ```bash
-npm install -g pnpm
+curl -fsSL https://bun.sh/install | bash
 ```
 
 Start your project using `create-obytes-app` command:
@@ -86,8 +86,8 @@ If the installation was successful, the created app should be ready to use, and 
 
 ```bash
 # Run the app on iOS simulator
-pnpm ios
+bun run ios
 
 # Run the app on Android simulator
-pnpm android
+bun run android
 ```

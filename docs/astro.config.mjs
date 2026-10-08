@@ -140,6 +140,16 @@ export default defineConfig({
               link: '/guides/data-fetching/',
             },
             {
+              label: 'Native Networking (Nitro Fetch)',
+              link: '/guides/nitro-fetch/',
+              badge: 'new',
+            },
+            {
+              label: 'React Compiler',
+              link: '/guides/react-compiler/',
+              badge: 'new',
+            },
+            {
               label: 'Internationalization',
               link: '/guides/internationalization/',
             },
@@ -151,6 +161,11 @@ export default defineConfig({
               label: 'Upgrade Dependencies',
               link: '/guides/upgrading-deps/',
             },
+            {
+              label: 'Migrating to v10',
+              link: '/guides/migrating-to-v10/',
+              badge: 'new',
+            },
           ],
         },
         {
@@ -160,6 +175,10 @@ export default defineConfig({
             {
               label: 'Sentry Setup',
               link: '/recipes/sentry-setup/',
+            },
+            {
+              label: 'AI Device Control (Argent)',
+              link: '/recipes/argent-setup/',
               badge: 'new',
             },
           ],
@@ -207,7 +226,6 @@ export default defineConfig({
         {
           label: 'FAQ',
           link: '/faq',
-          badge: 'new',
         },
         {
           label: 'CHANGELOG',
@@ -220,7 +238,6 @@ export default defineConfig({
         {
           label: 'Reviews',
           link: '/reviews',
-          badge: 'new',
         },
         {
           label: 'Stay Updated',

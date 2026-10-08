@@ -1,0 +1,57 @@
+---
+title: AI Agent Device Control (Argent)
+description: Let your AI coding assistant run, test and debug the app on simulators and emulators with Argent
+head:
+  - tag: title
+    content: AI Agent Device Control (Argent) | React Native / Expo Starter
+---
+
+[Argent](https://argent.swmansion.com) by Software Mansion gives AI coding assistants such as Claude Code, Cursor and Codex direct control of iOS simulators, Android emulators and devices. Your assistant can build and launch the app, tap through screens, take screenshots, read logs and network requests, and profile renders, without you leaving the terminal.
+
+The starter does not install Argent by default. It is opt-in, because it downloads platform-specific native binaries and is only useful if you work with an AI assistant.
+
+## Setup
+
+Run the setup script from the project root:
+
+```bash
+bun run argent:setup
+```
+
+This runs the official Argent installer. It installs the `argent` CLI on your machine and configures the current workspace: the MCP server for your editor or assistant, plus Argent's skills and rules.
+
+Restart your assistant afterwards so it picks up the new MCP server.
+
+## Share the setup with your team
+
+By default the installer configures Argent for your machine only. To commit a setup that every teammate gets on `bun install`, run the installer in local mode instead:
+
+```bash
+bunx @swmansion/argent@latest init --local
+```
+
+This adds Argent as a devDependency and writes the editor configuration into the repository. Commit the generated files.
+
+## Things to try
+
+Once Argent is set up, ask your assistant things like:
+
+- "Run the app on the iOS simulator and log in with any email."
+- "Check the settings screen in dark mode on Android and take a screenshot."
+- "Profile the feed screen and tell me which components re-render too often."
+- "What can Argent do?"
+
+## Privacy
+
+Argent collects anonymous telemetry by default. To turn it off:
+
+```bash
+argent telemetry disable
+```
+
+See the [Argent privacy notice](https://github.com/software-mansion/argent/blob/main/Telemetry.md) for details.
+
+## Learn more
+
+- [Argent documentation](https://docs.swmansion.com/argent/docs/fundamentals/installation)
+- [Supported platforms](https://docs.swmansion.com/argent/docs/fundamentals/supported-platforms)

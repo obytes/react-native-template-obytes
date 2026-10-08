@@ -1,21 +1,27 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@env": ["env.ts"]
+      "@/*": [
+        "./src/*"
+      ],
+      "@env": [
+        "./env.ts"
+      ]
     },
     "checkJs": true,
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": [
+      "jest",
+      "node"
+    ]
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-    "nativewind-env.d.ts",
     "env.ts"
   ],
   "exclude": [

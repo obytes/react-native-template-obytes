@@ -2,7 +2,7 @@
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
   "search.exclude": {
-    "yarn.lock": true
+    "bun.lock": true
   },
 
   // Disable Prettier completely

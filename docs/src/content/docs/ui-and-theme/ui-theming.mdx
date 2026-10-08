@@ -14,7 +14,7 @@ How we manage the UI and theming of the application.
 
 For the past few years, we have tried multiple approaches to style our React Native apps: Stylesheet API, styled-components, restyle, and more.
 
-Right now, we are confident that using Tailwind CSS with React Native is the right solution, especially after trying [Uniwind](https://github.com/huozhi/uniwind).
+Right now, we are confident that using Tailwind CSS with React Native is the right solution, especially after trying [Uniwind](https://github.com/uni-stack/uniwind).
 
 If you are familiar with Tailwind CSS on the web you will find it very easy to use and you can even copy past your styling from a web application and should work without issues with react native too with some minor adjustments of course.
 
@@ -34,7 +34,7 @@ Uniwind is a library that allows you to use Tailwind CSS with React Native. Uniw
 
 Uniwind provides an efficient development experience with a utility-first approach that simplifies the styling process by using classes and applying styles directly within JSX elements.
 
-For more details about Uniwind you can check their [documentation](https://github.com/huozhi/uniwind).
+For more details about Uniwind you can check their [documentation](https://github.com/uni-stack/uniwind).
 
 Here is an example of how your component should look like:
 
@@ -46,9 +46,9 @@ Uniwind is the same as Tailwind CSS, it comes with a default theme and colors th
 
 You need to understand that Uniwind is a library that is built on top of Tailwind CSS. Feel free to add any Tailwind CSS config that you want to use in your application such as updating colors, spacing, typography, etc.
 
-We have created a `ui/theme` folder where you can find our custom colors that have been imported into `tailwind.config.js` and used as a theme for our demo application. You can add your own color palette and use them in your components with Tailwind class names.
+There is no `tailwind.config.js`. With Tailwind CSS v4, the theme lives in CSS: our custom colors and fonts are declared in the `@theme` block of `src/global.css`. Add your own color palette there and use it in your components with Tailwind class names. The same palette is exported from `src/components/ui/colors.js` for places that need raw color values, such as the navigation theme.
 
-You can read more about how to [configure your project with Tailwind CSS](https://tailwindcss.com/docs/configuration).
+You can read more about [theme variables in Tailwind CSS](https://tailwindcss.com/docs/theme).
 
 ## Dark Mode
 
@@ -69,8 +69,8 @@ This template comes with dark mode support out of the box, and it's very easy to
 
 ### Implementation
 
-Since we're using [uniwind](https://github.com/huozhi/uniwind) (which uses Tailwind CSS under the hood) and expo-router we let them handle the application of theme, and we just take care of the colors we want.
-We set the colors in `ui/theme/colors.js` and we use them in our hook `useThemeConfig.tsx` to get the theme object that we pass to ThemeProvider directly. For more information check out [expo-router](https://docs.expo.dev/router/appearance/)
+Since we're using [uniwind](https://github.com/uni-stack/uniwind) (which uses Tailwind CSS under the hood) and expo-router we let them handle the application of theme, and we just take care of the colors we want.
+We set the colors in `src/components/ui/colors.js` and we use them in our hook `use-theme-config.tsx` to get the theme object that we pass to ThemeProvider directly. For more information check out [expo-router](https://docs.expo.dev/router/appearance/)
 
 <CodeBlock file="src/components/ui/use-theme-config.tsx" />
 
@@ -103,4 +103,4 @@ const style =
     : { backgroundColor: 'white' };
 ```
 
-For more details about dark mode, you can check [tailwind](https://tailwindcss.com/docs/dark-mode) and [uniwind](https://github.com/huozhi/uniwind)
+For more details about dark mode, you can check [tailwind](https://tailwindcss.com/docs/dark-mode) and [uniwind](https://github.com/uni-stack/uniwind)

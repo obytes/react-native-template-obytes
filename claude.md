@@ -2,12 +2,12 @@
 
 ## What: Technology Stack
 
-- **Expo SDK 54** with React Native 0.81.5 - Managed React Native development
+- **Expo SDK 57** with React Native 0.86 and React 19.2 - Managed React Native development
 - **TypeScript** - Strict type safety throughout
-- **Expo Router 6** - File-based routing (like Next.js)
-- **TailwindCSS** via Uniwind/Nativewind - Utility-first styling for React Native
+- **Expo Router** - File-based routing (like Next.js). Import navigation APIs from `expo-router` or `expo-router/react-navigation`, never from `@react-navigation/*`
+- **TailwindCSS** via Uniwind - Utility-first styling for React Native
 - **Zustand** - Lightweight global state management
-- **React Query** - Server state and data fetching
+- **React Query + axios** - Server state and data fetching. In release builds axios runs on **Nitro Fetch** (native HTTP stack), in dev builds on XHR so network inspectors work (see `src/lib/api/client.tsx`)
 - **TanStack Form + Zod** - Type-safe form handling and validation
 - **MMKV** - Encrypted local storage
 - **Jest + React Testing Library** - Unit testing
@@ -33,19 +33,19 @@ Root Files:
 
 **Essential Commands:**
 ```bash
-pnpm start              # Start dev server
-pnpm ios/android        # Run on platform
-pnpm lint               # ESLint check
-pnpm type-check         # TypeScript validation
-pnpm test               # Run Jest tests
-pnpm check-all          # All quality checks
+bun start               # Start dev server
+bun ios / bun android   # Run on platform
+bun run lint            # ESLint check
+bun run type-check      # TypeScript validation
+bun run test            # Run Jest tests
+bun run check-all       # All quality checks
 ```
 
 **Environment-Specific:**
 ```bash
-pnpm start:preview              # Preview environment
-pnpm ios:production             # Production iOS
-pnpm build:production:ios       # EAS production build
+bun run start:preview           # Preview environment
+bun run ios:production          # Production iOS
+bun run build:production:ios    # EAS production build
 ```
 
 ## How: Key Patterns
@@ -65,6 +65,19 @@ pnpm build:production:ios       # EAS production build
 - ✅ **DO** follow feature-based structure: `src/features/[name]/`
 - ✅ **DO** use TanStack Form for forms (not react-hook-form)
 - ✅ **DO** use MMKV storage for sensitive data (not AsyncStorage)
-- ✅ **DO** use EAS Build for production: `pnpm build:production:ios`
+- ✅ **DO** use Bun for installs and scripts (`bun install`, `bun add`, `bun run <script>`). Use `bun run test`, not `bun test`, which starts Bun's own test runner instead of Jest
+- ✅ **DO** use EAS Build for production: `bun run build:production:ios`
 - ✅ **DO** prefix env vars with `EXPO_PUBLIC_*` for app access
+- ✅ **DO** rely on React Compiler (enabled) for memoization. Do not add `useMemo`, `useCallback` or `React.memo` for performance unless profiling shows a need
 - ❌ **DO NOT** modify `android/` or `ios/` directly (use Expo config plugins)
+
+## How: Verify UI Changes on Devices (Argent, opt-in)
+
+[Argent](https://argent.swmansion.com) lets AI assistants drive iOS simulators and Android emulators. It is not installed by default. Set it up with `bun run argent:setup`.
+
+When Argent's MCP tools are available:
+
+- Verify any change to visible UI, navigation or styling on a simulator or emulator, not only with tests
+- Start Metro with `bun start`, then build with `bun ios` or `bun android`
+- Prefer Argent's React Native component tree for tap targets, since screens expose `testID`s
+- Keep reusable QA flows in `.argent/flows/` and commit them. Never commit `.argent/secrets.env`

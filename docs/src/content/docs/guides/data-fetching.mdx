@@ -38,6 +38,10 @@ You recommend reading Those guides and checking those resources to learn more ab
 
 :::
 
+## Native networking with Nitro Fetch
+
+In release builds on iOS and Android, the Axios `client` sends requests through [Nitro Fetch](https://github.com/margelo/react-native-nitro-fetch), a native HTTP stack. Dev builds keep XHR so network inspectors work. Your API hooks do not change either way. See [Native Networking with Nitro Fetch](/guides/nitro-fetch/) for details, testing and prefetching.
+
 ## Data Fetching Use Cases
 
 Suppose you're building a blog app and need to add the following features:

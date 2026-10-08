@@ -41,25 +41,22 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: 🔍 GH_TOKEN
-        if: env.GH_TOKEN == ''
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: echo "GH_TOKEN=${GITHUB_TOKEN}" >> $GITHUB_ENV
       - name: 📦 Checkout project repo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GH_TOKEN }}
+          # Prefer a GH_TOKEN secret (personal access token): tags pushed with the default
+          # GITHUB_TOKEN do not trigger other workflows such as new-github-release.
+          token: ${{ secrets.GH_TOKEN || github.token }}
 
       - name: 📝 Git User Setup
         run: |
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
 
-      - name: 📦 Setup Node + PNPM + install deps
-        uses: ./.github/actions/setup-node-pnpm-install
+      - name: 📦 Setup Node + Bun + install deps
+        uses: ./.github/actions/setup-node-bun-install
 
       - name: 🏃‍♂️ Run App release
         run: |
-          pnpm app-release ${{ github.event.inputs.release-type }}
+          bun run app-release ${{ github.event.inputs.release-type }}
