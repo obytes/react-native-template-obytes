@@ -7,7 +7,7 @@
 - **Expo Router** - File-based routing (like Next.js). Import navigation APIs from `expo-router` or `expo-router/react-navigation`, never from `@react-navigation/*`
 - **TailwindCSS** via Uniwind - Utility-first styling for React Native
 - **Zustand** - Lightweight global state management
-- **React Query** - Server state and data fetching
+- **React Query + axios** - Server state and data fetching. In release builds axios runs on **Nitro Fetch** (native HTTP stack), in dev builds on XHR so network inspectors work (see `src/lib/api/client.tsx`)
 - **TanStack Form + Zod** - Type-safe form handling and validation
 - **MMKV** - Encrypted local storage
 - **Jest + React Testing Library** - Unit testing
